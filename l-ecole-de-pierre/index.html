@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>L'Ecole de Pierre · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Questrial&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0e1f58; --navy2:#1c2183; --blue:#255bfe; --blue-dark:#1b3cb0; --sky:#b6c8ff; --mist:#e6ebfb; --sun:#feab00; --coral:#e8615a;
+    --ink:#101a40; --text:#333a55; --muted:#646b85; --line:#dfe5f7; --white:#fff; --radius:16px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Work Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,.q{font-family:Questrial,"Work Sans",sans-serif;font-weight:400}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:600}
+
+  .demo{background:var(--navy);color:var(--sky);font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo img{height:52px;width:52px}
+  .logo span{display:none;font-family:Questrial,sans-serif;font-size:1.25rem;color:var(--navy);white-space:nowrap}
+  .menu{display:flex;list-style:none;gap:2px}
+  .menu a{display:block;padding:8px 10px;border-radius:999px;font-size:.9rem;font-weight:500;color:var(--ink);white-space:nowrap}
+  .menu a:hover{background:var(--mist);color:var(--blue)}
+  .menu a.on{background:var(--blue);color:#fff}
+  .tools{display:flex;align-items:center;gap:10px;font-size:.82rem}
+  .tools .lang{display:flex;gap:4px}
+  .tools .lang a{padding:4px 7px;border-radius:6px;color:var(--muted);font-weight:600}
+  .tools .lang a.on{color:var(--blue);background:var(--mist)}
+  .login{border:1.5px solid var(--sky);border-radius:999px;padding:6px 14px;color:var(--navy);font-weight:500;white-space:nowrap}
+  .login:hover{border-color:var(--blue)}
+  .mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.95rem;transition:.2s;border:1.5px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--blue)}
+  .btn-line:hover{background:var(--mist)}
+  .btn-wa{background:#fff;color:var(--navy);border-color:var(--sky)}
+  .btn-wa svg{color:#25a35a}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,#f4f4f6 0%,#eef0f7 100%);position:relative;overflow:hidden}
+  .hero .wrap{padding-top:64px;padding-bottom:28px;text-align:center;position:relative;z-index:1}
+  .since{display:inline-flex;align-items:center;gap:10px;font-family:Questrial,sans-serif;color:var(--coral);font-size:1.05rem}
+  .since a{color:#c13584;display:inline-flex}
+  .hero h1{font-size:clamp(2.8rem,7vw,5rem);color:#3d7cf5;line-height:1.05;margin:14px 0 8px}
+  .hero .sub{font-family:Questrial,sans-serif;color:var(--coral);font-size:clamp(1.1rem,2.2vw,1.4rem)}
+  .hero .row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .collage{height:200px;background:url("https://static.wixstatic.com/media/186529_4183e0f9dabd4c57a88d0a6c96a7b6d3~mv2.jpg") center bottom/cover no-repeat;margin-top:-10px}
+  .full{background:var(--sky);text-align:center;padding:28px 20px}
+  .full p:first-child{font-family:Questrial,sans-serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--navy)}
+  .full p:last-child{color:var(--navy2);font-size:1.05rem;margin-top:2px}
+
+  section{padding:88px 0}
+  .head{max-width:780px;margin-bottom:38px}
+  .head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.15;color:var(--ink);margin-top:8px}
+  .head p{color:var(--muted);margin-top:12px;font-size:1.05rem}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* testimonials */
+  .ops{background:var(--blue);color:#fff;padding:72px 0}
+  .ops .eyebrow{color:var(--sky)}
+  .ops .head h2{color:#fff}
+  .ops .head h2 a:hover{text-decoration:underline}
+  .tests{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 40px)/3);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.5) transparent}
+  .test{scroll-snap-align:start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+  .test blockquote{font-size:1rem;line-height:1.6}
+  .test blockquote::before{content:"“";display:block;font-family:Questrial,serif;font-size:3rem;line-height:.6;color:var(--sun);margin-bottom:8px}
+  .test cite{font-style:normal;font-weight:600;color:var(--sky);margin-top:auto}
+  .hint{font-size:.82rem;color:var(--sky);margin-top:10px}
+
+  /* enrol */
+  .enrol{background:var(--navy2);color:#e8ebff}
+  .enrol .head h2{color:#fff}
+  .en-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
+  .en-grid p+p{margin-top:16px}
+  .en-grid a{color:#fff;text-decoration:underline}
+  .price{background:#fff;color:var(--navy);border-radius:var(--radius);overflow:hidden;text-align:center;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .price img{width:100%;height:120px;object-fit:cover}
+  .price div{padding:22px 24px 26px}
+  .price h3{font-size:1.3rem;line-height:1.2}
+  .price .amt{font-family:Questrial,sans-serif;font-size:3.6rem;line-height:1.1;margin:8px 0 14px}
+  .price .amt sup{font-size:1.4rem;vertical-align:top;position:relative;top:10px;margin-left:2px}
+  .price .btn{width:100%}
+
+  /* options */
+  .opts{background:var(--mist)}
+  .pair{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch}
+  .or{align-self:center;font-family:Questrial,sans-serif;color:var(--muted);font-size:.95rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap}
+  .opt{background:#fff;border-radius:var(--radius);padding:28px 26px;border:1px solid var(--line);border-top:5px solid var(--blue);box-shadow:0 20px 40px -32px rgba(14,31,88,.5)}
+  .opt.red{border-top-color:var(--coral)}
+  .opt.green{border-top-color:#2fb46e}
+  .opt.yellow{border-top-color:var(--sun)}
+  .opt .lbl{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .opt h3{font-size:1.55rem;color:var(--ink);line-height:1.15;margin:4px 0 4px}
+  .opt .tag{display:inline-block;font-size:.8rem;font-weight:600;color:var(--blue);background:var(--mist);border-radius:999px;padding:3px 12px;margin:6px 0 12px}
+  .opt p{font-size:.96rem}
+  .opt p+p{margin-top:8px}
+  .opt strong{color:var(--ink)}
+  .bridge{text-align:center;color:var(--navy);font-family:Questrial,sans-serif;font-size:1.2rem;margin:44px auto 26px;max-width:640px}
+  .opts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .recover{padding-top:0}
+
+  /* steps */
+  .steps{display:grid;gap:22px;max-width:900px}
+  .step{display:grid;grid-template-columns:72px 1fr;gap:22px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .step > div{min-width:0}
+  .step .btn{white-space:normal;text-align:center}
+  .step .n{font-family:Questrial,sans-serif;font-size:2.8rem;line-height:1;color:var(--blue)}
+  .step h3{font-size:1.35rem;color:var(--ink);line-height:1.25;margin-bottom:10px}
+  .step p{font-size:.97rem}
+  .step p+p{margin-top:8px}
+  .step a.u{color:var(--blue);text-decoration:underline;font-weight:600}
+  .inline-price{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:16px;padding:14px 18px;background:var(--mist);border-radius:12px}
+  .inline-price b{font-family:Questrial,sans-serif;font-weight:400;font-size:1.6rem;color:var(--navy)}
+
+  /* teacher + teaching */
+  .prof{background:var(--navy2);color:#e8ebff}
+  .prof .head h2{color:#fff}
+  .prof dl{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .prof dl div{border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:24px 22px;background:rgba(255,255,255,.04)}
+  .prof dt{font-family:Questrial,sans-serif;color:var(--sun);font-size:1.15rem;margin-bottom:8px}
+  .teach{background:#3d4585;color:#eceefe}
+  .teach .head h2{color:#fff}
+  .teach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .tcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:24px 22px}
+  .tcard h3{color:#fff;font-size:1.3rem;margin-bottom:8px}
+  .tcard a{text-decoration:underline;color:#fff}
+  .tcard ul{margin:10px 0 0 18px;display:grid;gap:8px}
+  .tcard.wide{grid-column:span 2}
+
+  /* resources */
+  .res{background:#5174e6;color:#fff}
+  .res .head h2{color:#fff}
+  .res .eyebrow{color:var(--sky)}
+  .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .rcard{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:var(--radius);padding:22px}
+  .rcard h3{font-size:1.05rem;letter-spacing:.06em;margin-bottom:12px;color:#fff}
+  .rcard ul{list-style:none;display:grid;gap:8px}
+  .rcard a{display:inline-flex;gap:8px;align-items:center;font-size:.92rem;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+  .rcard a::after{content:"↗";text-decoration:none;opacity:.7}
+
+  /* clients */
+  .clients{background:var(--mist)}
+  .logos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--navy);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .logos div{display:grid;place-items:center;padding:28px;aspect-ratio:1/1;border-right:1px solid var(--line)}
+  .logos div:last-child{border-right:0}
+  .logos img{max-height:150px;width:auto;object-fit:contain}
+
+  /* contact */
+  .contact{background:var(--sky);color:var(--navy)}
+  .ct-grid{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:22px}
+  .ccard{background:#fff;border-radius:var(--radius);padding:28px 26px;box-shadow:0 20px 40px -32px rgba(14,31,88,.5)}
+  .ccard h3{font-size:1.6rem;color:var(--ink);margin-bottom:4px}
+  .ccard h3 small{font-size:1rem;color:var(--muted)}
+  .ccard .note{color:var(--muted);margin-bottom:14px}
+  .ccard address{font-style:normal;margin-top:14px}
+  .ccard .links{display:grid;gap:10px;margin-top:6px}
+  .ccard .links a{color:var(--blue);font-weight:600;word-break:break-word}
+  .hours{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem}
+  .hours td{padding:8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .hours td:first-child{font-weight:600;color:var(--ink);padding-right:14px;width:40%}
+  .hours tr:last-child td{border-bottom:0}
+
+  footer{padding:30px 0;font-size:.86rem;color:var(--muted);text-align:center}
+  footer a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1180px){
+    .menu,.tools{display:none}
+    .logo span{display:inline}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;padding:10px 16px;border:1.5px solid var(--blue);border-radius:999px;color:var(--blue);font-weight:600;font-size:.9rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav ul{list-style:none;position:absolute;right:0;top:calc(100% + 10px);width:240px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 24px 50px -24px rgba(14,31,88,.5)}
+    .mnav li a{display:block;padding:9px 12px;border-radius:8px;font-weight:500;color:var(--ink)}
+    .mnav li a:hover{background:var(--mist);color:var(--blue)}
+    .mnav li.sep{border-top:1px solid var(--line);margin-top:6px;padding-top:6px}
+    .tests{grid-auto-columns:calc((100% - 20px)/2)}
+    .en-grid{grid-template-columns:1fr}
+    .price{max-width:360px}
+    .prof dl{grid-template-columns:1fr 1fr}
+    .teach-grid,.res-grid{grid-template-columns:1fr 1fr}
+    .tcard.wide{grid-column:span 2}
+    .ct-grid{grid-template-columns:1fr 1fr}
+    .ct-grid .ccard:last-child{grid-column:span 2}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:66px}
+    .logo img{height:44px;width:44px}
+    .logo span{font-size:1.1rem}
+    .hero .wrap{padding-top:44px}
+    .hero .row .btn{width:100%}
+    .collage{height:78px;background-size:160% auto}
+    section{padding:60px 0}
+    .tests{grid-auto-columns:86%}
+    .pair{grid-template-columns:1fr}
+    .or{justify-self:center}
+    .opts-grid{grid-template-columns:1fr}
+    .step{grid-template-columns:1fr;gap:8px;padding:22px 20px}
+    .prof dl,.teach-grid,.res-grid,.ct-grid{grid-template-columns:1fr}
+    .tcard.wide,.ct-grid .ccard:last-child{grid-column:auto}
+    .logos{grid-template-columns:1fr 1fr}
+    .logos div{border-bottom:1px solid var(--line)}
+    .logos div:nth-child(2n){border-right:0}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para L'Ecole de Pierre · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://www.lecoledepierre.com/" class="logo" aria-label="L'Ecole de Pierre"><img src="https://static.wixstatic.com/media/186529_82bb2a08ae154725898b9039f2469060~mv2.png" alt="L'Ecole de Pierre"><span>L'Ecole de Pierre</span></a>
+    <ul class="menu">
+      <li><a href="https://www.lecoledepierre.com/" class="on">Inicio</a></li>
+      <li><a href="https://www.lecoledepierre.com/reservas">Reservas</a></li>
+      <li><a href="https://www.lecoledepierre.com/tarifas">Tarifas</a></li>
+      <li><a href="https://www.lecoledepierre.com/delfdalf">Delf</a></li>
+      <li><a href="https://www.lecoledepierre.com/manuales">Manuales</a></li>
+      <li><a href="https://www.lecoledepierre.com/referencias">Opiniones</a></li>
+      <li><a href="https://www.lecoledepierre.com/metodolog%C3%ADa">Método</a></li>
+      <li><a href="https://www.lecoledepierre.com/recursos">Recursos</a></li>
+      <li><a href="https://www.lecoledepierre.com/blog">Blog</a></li>
+      <li><a href="https://www.lecoledepierre.com/contacto">Contacto</a></li>
+    </ul>
+    <div class="tools">
+      <div class="lang"><a href="https://www.lecoledepierre.com/" class="on" title="Spanish">ES</a><a href="https://www.lecoledepierre.com/fr" title="French">FR</a><a href="https://www.lecoledepierre.com/en" title="English">EN</a></div>
+      <a href="https://www.lecoledepierre.com/" class="login">Iniciar sesión</a>
+    </div>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <ul>
+        <li><a href="https://www.lecoledepierre.com/">Inicio</a></li>
+        <li><a href="https://www.lecoledepierre.com/reservas">Reservas</a></li>
+        <li><a href="https://www.lecoledepierre.com/tarifas">Tarifas</a></li>
+        <li><a href="https://www.lecoledepierre.com/delfdalf">Delf</a></li>
+        <li><a href="https://www.lecoledepierre.com/manuales">Manuales</a></li>
+        <li><a href="https://www.lecoledepierre.com/referencias">Opiniones</a></li>
+        <li><a href="https://www.lecoledepierre.com/metodolog%C3%ADa">Método</a></li>
+        <li><a href="https://www.lecoledepierre.com/recursos">Recursos</a></li>
+        <li><a href="https://www.lecoledepierre.com/blog">Blog</a></li>
+        <li><a href="https://www.lecoledepierre.com/contacto">Contacto</a></li>
+        <li class="sep"><a href="https://www.lecoledepierre.com/">Iniciar sesión</a></li>
+        <li><a href="https://www.lecoledepierre.com/fr">FR</a></li>
+        <li><a href="https://www.lecoledepierre.com/en">EN</a></li>
+      </ul>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="since">desde 2003
+        <a href="https://www.instagram.com/lecoledepierre/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      </span>
+      <h1>L'Ecole de Pierre</h1>
+      <p class="sub">Clases de francés en Valladolid y online</p>
+      <div class="row">
+        <a href="https://www.lecoledepierre.com/recursos" class="btn btn-blue">PRUEBA TU NIVEL GRATIS</a>
+        <a href="https://api.whatsapp.com/send?phone=34686692463" class="btn btn-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          Whatsapp
+        </a>
+      </div>
+    </div>
+    <div class="collage" role="img" aria-label="L'Ecole de Pierre"></div>
+  </div>
+  <div class="full">
+    <p>No quedan plazas disponibles.</p>
+    <p>¡Habrá más huecos pronto!</p>
+  </div>
+
+  <!-- OPINIONES -->
+  <div class="ops">
+    <div class="wrap">
+      <div class="head">
+        <h2><a href="https://www.lecoledepierre.com/referencias">Opiniones</a></h2>
+      </div>
+      <div class="tests">
+        <figure class="test"><blockquote>Me preparé con Pierre para el Bachibac (B2) y la experiencia fue inmejorable. Es un gran profesional con mucha capacidad de trabajo.</blockquote><cite><a href="https://www.google.com/maps/contrib/115307859587721433005" target="_blank" rel="noopener">Irene Becoechea</a></cite></figure>
+        <figure class="test"><blockquote>Me he preparado el B1 con él y sólo puedo hablar maravillas. Nunca se me han dado bien los idiomas, pero con él todo es fácil.</blockquote><cite>Laura De la Iglesia</cite></figure>
+        <figure class="test"><blockquote>Un profesor fantástico, saber inculcar su pasión por el idioma de una forma lúdica y práctica.</blockquote><cite>David Pérez Maseda</cite></figure>
+        <figure class="test"><blockquote>Profesor excelente, muy trabajador en sus clases y comprometido con los alumnos.</blockquote><cite>Sara Murias Vargas</cite></figure>
+        <figure class="test"><blockquote>Da una visión global del idioma, contextualizada, con gran dominio del vocabulario, la gramática y las expresiones propias del idioma.</blockquote><cite>Antonio Arroyo</cite></figure>
+        <figure class="test"><blockquote>Es una persona afable, culta, muy organizada y siempre dispuesta a proporcionar más medios para aprender la cultura y la lengua francesa: textos, cuestionarios, etc.</blockquote><cite>María Bernal</cite></figure>
+        <figure class="test"><blockquote>Utiliza un método muy práctico que hace que retengas con facilidad lo explicado.</blockquote><cite>Elisabet Deig Ramos</cite></figure>
+        <figure class="test"><blockquote>Muy buena experiencia, aprendizaje guiado con resultados rápidos.</blockquote><cite>Paula Alba Fernández</cite></figure>
+        <figure class="test"><blockquote>Se adaptó a mis necesidades y objetivos (le debo mi DALF) además de mis horarios variables y desorganizados.</blockquote><cite>Pedro Gatón Pérez</cite></figure>
+        <figure class="test"><blockquote>Las clases son adaptadas al ritmo de cada alumno, dejando siempre todo muy claro y resolviendo las dudas necesarias tantas veces como cada uno necesite.</blockquote><cite>Lúa de la Rosa</cite></figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRICULA -->
+  <section class="enrol" id="matricula">
+    <div class="wrap en-grid">
+      <div>
+        <div class="head" style="margin-bottom:24px">
+          <h2>¡Apúntate y accede al único método progresivo de francés para hispanohablantes, fruto de más de 24 años de experiencia!</h2>
+        </div>
+        <p>La matrícula da acceso en formato PDF al método <a href="https://www.lecoledepierre.com/manuales">LE CAHIER PROGRESSIF</a> (6 manuales con más de 1.500 páginas de explicaciones detalladas en francés y castellano, centenares de ejemplos, decenas de actividades corregidas y 1.471 ficheros MP3 para pasar de manera autónoma de un nivel principiante (A1) a un nivel avanzado (C1)).</p>
+        <p>Después de realizar el pago de matrícula, podrás acceder a la página de descargas del material reservada a los alumnos de L'ECOLE DE PIERRE. Si lo prefieres, puedes pagar la matrícula por la plataforma Bizum (686.692.463).</p>
+      </div>
+      <div class="price">
+        <img src="https://static.wixstatic.com/media/186529_dbbcdda18c3546049e74c46aed6bb068~mv2.png" alt="Matrícula con Temario Completo" loading="lazy">
+        <div>
+          <h3>Matrícula con Temario Completo</h3>
+          <p class="amt">35<sup>€</sup></p>
+          <a href="https://www.lecoledepierre.com/pricing-plans/plan-customization?planId=65559b24-6771-4cbe-b93b-088f7564672a" class="btn btn-blue">¡Me apunto!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDADES -->
+  <section class="opts" id="modalidades">
+    <div class="wrap">
+      <div class="head center" style="text-align:center">
+        <h2>¿Cuál es la mejor modalidad de clases para mí?</h2>
+        <p>El alumno puede decidir qué tipo de enseñanza se adapta mejor a sus objetivos,</p>
+      </div>
+      <div class="pair">
+        <article class="opt red">
+          <span class="lbl">Clase privada</span>
+          <h3>1 alumno</h3>
+          <span class="tag">PRESENCIAL / ONLINE</span>
+          <p>Clase a medida.<br>El ritmo de aprendizaje se adapta a las circunstancias de cada alumno.</p>
+          <p><strong>La forma más rápida de avanzar.</strong></p>
+        </article>
+        <span class="or">o bien</span>
+        <article class="opt red">
+          <span class="lbl">Clase privada</span>
+          <h3>2 alumnos</h3>
+          <span class="tag">PRESENCIAL / ONLINE</span>
+          <p>La enseñanza se adapta a las circunstancias comunes a los 2 alumnos.</p>
+          <p>Ideal para aprender <strong>en pareja</strong>, con <strong>un amigo</strong>, <strong>un familiar</strong> o <strong>un compañero</strong>.</p>
+        </article>
+      </div>
+
+      <p class="bridge">y también por supuesto a la flexibilidad horaria que pueda necesitar</p>
+
+      <div class="pair">
+        <article class="opt green">
+          <span class="lbl">Tarifas mensuales</span>
+          <h3>Cuota mensual</h3>
+          <p>El alumno tiene garantizado un horario de 1, 2 ó 3 horas semanales.</p>
+          <p><strong>No tiene que preocuparse por reservar.</strong></p>
+        </article>
+        <span class="or">o bien</span>
+        <article class="opt green">
+          <span class="lbl">Bonos de clases</span>
+          <h3>Pago por bono</h3>
+          <p>El alumno va usando su bono de 1, 5, 10 ó 20 horas de clase al ritmo que más le convenga. <strong>Reserva con flexibilidad</strong> sus clases con hasta 3 semanas de antelación en un calendario online.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECUPERACIONES -->
+  <section class="opts recover" id="recuperaciones">
+    <div class="wrap">
+      <div class="head center" style="text-align:center">
+        <h2>¿Se recuperan las clases que caen en días no lectivos?</h2>
+        <p>El alumno puede también en este aspecto elegir lo que más le convenga:</p>
+      </div>
+      <div class="opts-grid">
+        <article class="opt yellow">
+          <span class="lbl">Tarifa mensual</span>
+          <h3>Tarifa VIP</h3>
+          <p><strong>Se recupera la totalidad</strong> de las clases que caen en día no lectivo o festivo en Valladolid.</p>
+          <p>El alumno tiene de plazo hasta el 31 de diciembre de 2027 para efectuar estas clases.</p>
+        </article>
+        <article class="opt yellow">
+          <span class="lbl">Tarifa mensual</span>
+          <h3>Tarifa Premium</h3>
+          <p><strong>Se recuperan las clases que caen en día no lectivo</strong> pero no las que lo hacen en día festivo en Valladolid.<br>Todos los días del verano se consideran lectivos.</p>
+          <p>El alumno tiene de plazo hasta el 31/12/2027 para efectuar estas clases.</p>
+        </article>
+        <article class="opt yellow">
+          <span class="lbl">Tarifas mensuales</span>
+          <h3>Tarifa Flexible</h3>
+          <p><strong>No se recuperan</strong> las clases que caen en día festivo o no lectivo (salvo en verano) en Valladolid.<br>El alumno dispone sin embargo de la <strong>posibilidad de cambiar</strong>, como en la tarifa VIP y PREMIUM, <strong>un número determinado de clases al mes</strong>.</p>
+        </article>
+        <article class="opt yellow">
+          <span class="lbl">Tarifas mensuales</span>
+          <h3>Tarifa Eco</h3>
+          <p>Esta tarifa, <strong>la más económica</strong>, no permite recuperar ninguna clase ni realizar ningún cambio, tomando sin embargo en cuenta que <strong>todos los días del verano se consideran lectivos</strong>.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASOS -->
+  <section id="empezar">
+    <div class="wrap">
+      <div class="head">
+        <h2>¿Qué tengo que hacer para empezar las clases?</h2>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="n">01</span>
+          <div>
+            <h3>Elegir la modalidad de reserva (tarifa mensual o bono de clases) y el tipo de tarifa.</h3>
+            <p>-Si le viene mejor un horario fijo, la tarifa mensual es perfecta. Sólo tiene que elegir su horario semanal entre los que están disponibles a fecha de hoy.</p>
+            <p>-Si necesita mucha flexibilidad, la modalidad de los bonos es la ideal. Sólo tiene que pensar de cuántas clases quiere su primer bono: 1, 5, 10 ó 20 (por supuesto, el siguiente podrá ser de un número diferente de clases).</p>
+            <p>-En ambos casos, debe elegir también qué tipo de tarifa prefiere en función del número de cambios posibles de clase y de recuperación en caso de día no lectivo o festivo (para la modalidad de las tarifas mensuales).</p>
+            <p>Para ver todos los tipos de tarifas posibles en función de la modalidad, haga clic <a class="u" href="https://www.lecoledepierre.com/tarifas">aquí</a>.</p>
+          </div>
+        </article>
+        <article class="step">
+          <span class="n">02</span>
+          <div>
+            <h3>Abonar la matrícula (pago único para nuevos alumnos)</h3>
+            <p>La matrícula es un pago único que se realiza únicamente la primera vez que un alumno va a iniciar las clases. Va asociado a la entrega en formato pdf y mp3 de todo el material didáctico exclusivo de L'ECOLE DE PIERRE.</p>
+            <p>Se puede pagar por esta web, por Bizum (686.692.463) o por transferencia bancaria.</p>
+            <div class="inline-price">
+              <span>Matrícula con Temario Completo</span><b>35 €</b>
+              <a href="https://www.lecoledepierre.com/pricing-plans/plan-customization?planId=65559b24-6771-4cbe-b93b-088f7564672a" class="btn btn-blue">¡Me apunto!</a>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <span class="n">03</span>
+          <div>
+            <h3>Completar el siguiente formulario online de matrícula.</h3>
+            <a href="https://forms.gle/yv4eHcvQ1vQP91ut8" class="btn btn-line" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+              Formulario GoogleForms de Matrícula
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESOR -->
+  <section class="prof" id="profesor">
+    <div class="wrap">
+      <div class="head"><h2>El profesor</h2></div>
+      <dl>
+        <div><dt>NATIVO.</dt><dd>Nacido en 1977 en Francia, en Le Puy-en-Velay (departamento de la Haute-Loire).</dd></div>
+        <div><dt>TITULADO.</dt><dd>Licenciado en 1999 por la Universidad Blaise-Pascal de Clermont-Ferrand (Francia).</dd></div>
+        <div><dt>MUY EXPERIMENTADO.</dt><dd>Más de 20.000 horas de clases de francés impartidas desde el año 2002.</dd></div>
+        <div><dt>CON PUBLICACIONES.</dt><dd>Autor de material didáctico publicado en España y Portugal por la editorial Pearson.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ENSEÑANZA -->
+  <section class="teach" id="ensenanza">
+    <div class="wrap">
+      <div class="head"><h2>La enseñanza</h2></div>
+      <div class="teach-grid">
+        <article class="tcard"><h3>Organizada</h3><p>El proceso general de aprendizaje se desarrolla en torno a la realización progresiva de las unidades de <a href="https://www.lecoledepierre.com/manuales">LE CAHIER PROGRESSIF</a>.</p></article>
+        <article class="tcard"><h3>Eficaz</h3><p>Un objetivo razonable, para quien decide dedicar unas 6 horas semanales al francés (2 de clases y 4 de estudio personal), puede ser, siguiendo <a href="https://www.lecoledepierre.com/metodolog%C3%ADa">este método</a> y partiendo de un nivel cero, alcanzar el nivel A2 en un curso escolar y el nivel B2 en otro.</p></article>
+        <article class="tcard"><h3>Flexible</h3><p>Al tratarse de una enseñanza personalizada y pudiendo disponer de una gran variedad de material didáctico, el contenido de las clases es fácilmente adaptable a las características y circunstancias personales de cada alumno.</p></article>
+        <article class="tcard"><h3>Dinámica</h3><p>La experiencia, atención y sensibilidad del profesor le permiten elegir en cada momento la naturaleza de la actividad a realizar para que la concentración y motivación del alumno sean constantes.</p></article>
+        <article class="tcard wide"><h3>Económica</h3><p>Para alcanzar su objetivo, el alumno necesita un número muy inferior de clases ya que:</p>
+          <ul>
+            <li>La atención personalizada permite al alumno progresar mucho más rápidamente que en una clase, por ejemplo, de 10 alumnos.</li>
+            <li>Al disponer de mucho material para trabajar en casa, se podrá aprovechar mejor el tiempo de clase dedicándolo a la práctica oral y a la resolución de dudas.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECURSOS -->
+  <section class="res" id="recursos">
+    <div class="wrap">
+      <div class="head"><h2>Recomendaciones de L'Ecole de Pierre</h2></div>
+      <div class="res-grid">
+        <div class="rcard"><h3>RECURSOS PÚBLICOS</h3><ul>
+          <li><a href="https://apprendre.tv5monde.com/es" target="_blank" rel="noopener">TV5 MONDE</a></li>
+          <li><a href="https://francaisfacile.rfi.fr/fr/" target="_blank" rel="noopener">RFI</a></li>
+        </ul></div>
+        <div class="rcard"><h3>MEJOR DICCIONARIO UNILINGÜE</h3><ul>
+          <li><a href="https://www.cnrtl.fr/definition/" target="_blank" rel="noopener">CNRTL</a></li>
+        </ul></div>
+        <div class="rcard"><h3>MEJOR SINTETIZADOR DE VOZ</h3><ul>
+          <li><a href="https://www.acapela-group.com/demos/" target="_blank" rel="noopener">ACAPELA</a></li>
+        </ul></div>
+        <div class="rcard"><h3>TELEVISIÓN EN FRANCÉS</h3><ul>
+          <li><a href="https://www.tv5mondeplus.com/es" target="_blank" rel="noopener">TV5 MONDE (SERIES Y PELÍCULAS)</a></li>
+          <li><a href="https://www.bfmtv.com/en-direct/" target="_blank" rel="noopener">BFMTV (ACTUALIDAD)</a></li>
+          <li><a href="https://www.franceinfo.fr/en-direct/tv.html" target="_blank" rel="noopener">FRANCE INFO TV (ACTUALIDAD)</a></li>
+        </ul></div>
+        <div class="rcard"><h3>MEJOR PODCAST VIDEO</h3><ul>
+          <li><a href="https://www.youtube.com/channel/UCQgWpmt02UtJkyO32HGUASQ" target="_blank" rel="noopener">THINKERVIEW</a></li>
+        </ul></div>
+        <div class="rcard"><h3>MEJOR PODCAST AUDIO</h3><ul>
+          <li><a href="https://play.google.com/store/apps/details?id=com.radiofrance.radio.radiofrance.android&amp;hl=fr&amp;gl=US" target="_blank" rel="noopener">APPLICATION RADIO FRANCE ANDROID</a></li>
+          <li><a href="https://apps.apple.com/es/app/radio-france-podcast-direct/id310211433" target="_blank" rel="noopener">APPLICATION RADIO FRANCE APPLE</a></li>
+          <li><a href="https://francaisfacile.rfi.fr/fr/podcasts/journal-en-fran%C3%A7ais-facile/" target="_blank" rel="noopener">HISTOIRES FACILES</a></li>
+          <li><a href="https://francaisfacile.rfi.fr/fr/podcasts/journal-en-fran%C3%A7ais-facile/" target="_blank" rel="noopener">JOURNAL EN FRANÇAIS FACILE (RFI)</a></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section class="clients" id="clientes">
+    <div class="wrap">
+      <div class="head center" style="text-align:center"><h2>Algunos de los clientes que confían en L'Ecole de Pierre</h2></div>
+      <div class="logos">
+        <div><img src="https://static.wixstatic.com/media/186529_53ff26fd8b824f389483fdae650cbace~mv2.png/v1/fill/w_480,h_238,al_c,q_85,usm_0.66_1.00_0.01/cascajares.png" alt="Cascajares"></div>
+        <div><img src="https://static.wixstatic.com/media/186529_6bdf31c19169434485891273cf93551d~mv2.png/v1/fill/w_340,h_340,al_c,q_85,usm_0.66_1.00_0.01/Florimond.png" alt="Florimond Desprez"></div>
+        <div><img src="https://static.wixstatic.com/media/186529_bb8f421f61ef4416892f339d074c41bb~mv2.png/v1/crop/x_0,y_2,w_497,h_497/fill/w_340,h_340,al_c,q_85,usm_0.66_1.00_0.01/cicrosa.png" alt="Cicrosa Hidráulica"></div>
+        <div><img src="https://static.wixstatic.com/media/186529_952da610352f44bcb8a0434a51f603f5~mv2.png/v1/crop/x_28,y_0,w_464,h_464/fill/w_340,h_340,al_c,q_85,usm_0.66_1.00_0.01/zamora.png" alt="Manuel Zamora"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap ct-grid">
+      <div class="ccard">
+        <h3>Dirección</h3>
+        <address>Calle López Gómez 17<br>Entreplanta, Oficina 12<br>47002 VALLADOLID<br>España</address>
+      </div>
+      <div class="ccard">
+        <h3>Contacto</h3>
+        <p class="note">sólo por mensaje<br>o correo electrónico</p>
+        <div class="links">
+          <a href="https://api.whatsapp.com/send?phone=34686692463" target="_blank" rel="noopener">Whatsapp : +34 686 692 463</a>
+          <a href="mailto:lecoledepierre@gmail.com">lecoledepierre@gmail.com</a>
+        </div>
+      </div>
+      <div class="ccard">
+        <h3>Horarios <small>(con cita previa)</small></h3>
+        <table class="hours">
+          <tr><td>Lunes</td><td>de 09:00 a 15:00</td></tr>
+          <tr><td>Martes</td><td>de 09:00 a 15:00<br>y de 17:00 a 22:00</td></tr>
+          <tr><td>Miércoles</td><td>de 09:00 a 15:00</td></tr>
+          <tr><td>Jueves</td><td>de 09:00 a 15:00</td></tr>
+          <tr><td>Viernes</td><td>de 09:00 a 15:00<br>y de 17:00 a 22:00</td></tr>
+          <tr><td>Sábado</td><td>de 08:00 a 14:00</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2006-2026 L'Ecole de Pierre. <a href="https://www.lecoledepierre.com/aviso-legal">Aviso Legal</a>. <a href="https://www.lecoledepierre.com/privacidad">Política de Privacidad</a>. Pierre Arsac</div>
+</footer>
+
+<div class="callbar">
+  <a href="https://api.whatsapp.com/send?phone=34686692463" class="btn btn-blue" target="_blank" rel="noopener">Whatsapp</a>
+  <a href="mailto:lecoledepierre@gmail.com" class="btn btn-line">Email</a>
+</div>
+</body>
+</html>

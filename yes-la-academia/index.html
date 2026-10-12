@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yes! La Academia · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#00a9e0; --blue-logo:#38b6ff; --blue-dark:#004aad; --yellow:#ffde59;
+    --ink:#0f2742; --text:#33475b; --muted:#5f7286; --line:#dcebf5; --tint:#eef8fd; --white:#fff;
+    --radius:16px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .disp{font-family:"Baloo 2",system-ui,sans-serif;color:var(--ink);line-height:1.08;font-weight:800}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-dark);font-weight:600}
+
+  .demo{background:var(--ink);color:#cfe9f7;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* topbar */
+  .topbar{background:var(--tint);border-bottom:1px solid var(--line);font-size:.82rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:7px;padding-bottom:7px;flex-wrap:wrap}
+  .social{display:flex;gap:14px}
+  .social a{color:var(--blue-dark);font-weight:500}
+  .social a:hover{text-decoration:underline}
+  .topbar .phones{display:flex;gap:16px;color:var(--ink);font-weight:600}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:18px}
+  .logo img{height:62px;width:62px;border-radius:12px}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 9px;font-weight:600;font-size:.88rem;color:var(--ink);border-radius:8px;white-space:nowrap}
+  @media (max-width:1240px){.nav-cta{display:none}}
+  .menu>li>a:hover{color:var(--blue)}
+  .menu .has>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 7px}
+  .sub{position:absolute;top:100%;left:0;min-width:290px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 44px -22px rgba(15,39,66,.35);padding:8px;list-style:none;display:none}
+  .menu li:hover>.sub,.menu li:focus-within>.sub{display:block}
+  .sub a{display:block;padding:8px 12px;border-radius:8px;font-size:.88rem}
+  .sub a:hover{background:var(--tint);color:var(--blue-dark)}
+  .sub .sub-head{font-weight:600;color:var(--blue-dark)}
+  .sub .indent a{padding-left:24px;font-size:.85rem}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:2px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-yellow{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+  .btn-yellow:hover{filter:brightness(.95)}
+  .btn-line{background:#fff;color:var(--blue-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{background:linear-gradient(160deg,var(--blue-logo),var(--blue) 60%,#0090c4);color:#fff;padding:72px 0 80px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(255,222,89,.18)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative;z-index:1}
+  .hero h1{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:clamp(2.5rem,5.4vw,4.1rem);line-height:1.02}
+  .hero .tags{margin:18px 0 10px;font-weight:600;color:var(--yellow);font-size:1.05rem}
+  .hero p.lede{font-size:1.1rem;opacity:.95}
+  .test{margin-top:30px;background:#fff;color:var(--ink);border-radius:var(--radius);padding:22px 24px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 24px 50px -30px rgba(0,0,0,.45)}
+  .test p{font-weight:600;max-width:420px}
+  .hero-card{background:#fff;color:var(--text);border-radius:var(--radius);padding:28px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5);border-top:6px solid var(--yellow)}
+  .hero-card h2{font-size:1.45rem;margin-bottom:12px}
+  .hero-card p{font-size:.95rem;margin-bottom:10px}
+  .hero-card p:last-child{margin:0;font-weight:600;color:var(--blue-dark)}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:38px}
+  .head h2{font-size:clamp(2rem,3.8vw,2.9rem);margin-top:8px}
+  .head p{color:var(--muted);margin-top:12px}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* course tiles */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .tiles .tile:first-child{grid-column:span 2;aspect-ratio:auto}
+  .tile{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--tint)}
+  .tile img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .tile:hover img{transform:scale(1.05)}
+  .tile span{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.95);color:var(--ink);font-weight:700;border-radius:10px;padding:9px 12px;font-size:.92rem}
+
+  /* learn */
+  .learn{background:var(--tint)}
+  .learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .learn p{margin-bottom:14px}
+  .focus{background:#fff;border-radius:var(--radius);padding:26px;border:1px solid var(--line)}
+  .focus h3{font-size:1.25rem;margin-bottom:14px}
+  .focus ul{list-style:none;display:grid;gap:12px;margin-bottom:18px}
+  .focus li{padding-left:30px;position:relative}
+  .focus li::before{content:"";position:absolute;left:0;top:.2em;width:20px;height:20px;border-radius:50%;background:var(--yellow)}
+  .focus li::after{content:"";position:absolute;left:7px;top:.42em;width:5px;height:9px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+  .claim{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.3rem;color:var(--blue-dark);margin:6px 0 18px}
+
+  /* bootcamp */
+  .boot-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .boot-grid img{border-radius:var(--radius);box-shadow:0 26px 50px -30px rgba(15,39,66,.5)}
+  .checks{list-style:none;display:grid;gap:10px;margin:20px 0}
+  .checks li{display:flex;gap:10px;align-items:flex-start}
+  .checks li i{flex:none;width:22px;height:22px;border-radius:6px;background:var(--blue);position:relative;margin-top:2px}
+  .checks li i::after{content:"";position:absolute;left:8px;top:4px;width:5px;height:10px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
+  .price{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:700;border-radius:10px;padding:10px 16px;margin-bottom:20px}
+
+  /* cambridge */
+  .cam{background:var(--ink);color:#d6e8f4}
+  .cam .head h2{color:#fff}
+  .cam .eyebrow{color:var(--yellow)}
+  .cam-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
+  .cam p{margin-bottom:14px}
+  .stats{display:grid;gap:12px}
+  .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;color:#fff}
+  .stat i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--yellow);position:relative}
+  .stat i::after{content:"";position:absolute;left:9px;top:5px;width:6px;height:11px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+  .cam .cta{color:var(--yellow);font-weight:600;margin-top:6px}
+
+  /* classes */
+  .classes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .cls{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.25s}
+  .cls:hover{border-color:var(--blue);box-shadow:0 20px 40px -26px rgba(15,39,66,.4)}
+  .cls img{aspect-ratio:16/10;object-fit:cover;width:100%}
+  .cls div{padding:20px 22px 24px}
+  .cls h3{font-family:"Baloo 2",sans-serif;font-size:1.18rem;line-height:1.15;color:var(--ink);margin-bottom:8px}
+  .cls p{font-size:.92rem}
+
+  /* testimonials */
+  .happy{background:linear-gradient(180deg,var(--tint),#fff)}
+  .happy-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .video{position:relative;display:block;border-radius:var(--radius);overflow:hidden;box-shadow:0 26px 50px -30px rgba(15,39,66,.55)}
+  .video img{width:100%;aspect-ratio:16/9;object-fit:cover}
+  .video .play{position:absolute;inset:0;display:grid;place-items:center}
+  .video .play b{width:76px;height:76px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .video .play b::after{content:"";border-left:22px solid var(--ink);border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+  .happy p{margin-bottom:14px}
+
+  /* blog */
+  .blog-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+  .posts{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .post{border:1px solid var(--line);border-radius:14px;padding:20px;background:#fff;transition:.2s;display:flex;flex-direction:column;gap:10px}
+  .post:hover{border-color:var(--blue)}
+  .post time{font-size:.8rem;color:var(--muted)}
+  .post h3{font-size:1rem;color:var(--ink);line-height:1.35}
+
+  /* contact */
+  .contact{background:var(--blue);color:#fff}
+  .contact .head h2{color:#fff}
+  .contact .eyebrow{color:var(--yellow)}
+  .c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .c-card{background:#fff;color:var(--text);border-radius:var(--radius);padding:24px}
+  .c-card h3{font-family:"Baloo 2",sans-serif;font-size:1.2rem;color:var(--ink);margin-bottom:10px}
+  .c-card a{color:var(--blue-dark);font-weight:600}
+  .c-card .big{font-size:1.15rem}
+  .c-card dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.93rem}
+  .c-card dt{font-weight:600;color:var(--ink)}
+  .wa{margin-top:22px;font-weight:600;color:var(--yellow)}
+
+  footer{padding:28px 0;font-size:.84rem;color:var(--muted);border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .foot img{height:48px;width:48px;border-radius:8px}
+  .foot a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;padding:10px 16px;border:2px solid var(--blue);border-radius:999px;font-weight:600;color:var(--blue-dark);font-size:.9rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(330px,calc(100vw - 32px));max-height:70vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px -24px rgba(15,39,66,.45);padding:10px}
+    .mnav .panel a{display:block;padding:7px 10px;border-radius:8px;font-size:.9rem}
+    .mnav .panel a:hover{background:var(--tint)}
+    .mnav .panel .top{font-weight:700;color:var(--ink)}
+    .mnav .panel .lv2{padding-left:22px}
+    .mnav .panel .lv3{padding-left:34px;font-size:.85rem}
+    .hero-grid,.learn-grid,.boot-grid,.cam-grid,.happy-grid{grid-template-columns:1fr}
+    .tiles{grid-template-columns:repeat(2,1fr)}
+    .classes{grid-template-columns:1fr 1fr}
+    .posts{grid-template-columns:1fr 1fr}
+    .c-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .phones{display:none}
+    .nav{height:70px}
+    .logo img{height:52px;width:52px}
+    .nav-cta{display:none}
+    .hero{padding:44px 0 56px}
+    .test .btn{width:100%}
+    section{padding:62px 0}
+    .tiles{gap:10px}
+    .tile span{font-size:.8rem;padding:7px 9px;left:8px;right:8px;bottom:8px}
+    .classes,.posts,.c-grid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Yes! La Academia · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="social">
+      <a href="https://www.facebook.com/YesLaAcademia" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/yeslaacademia/?hl=es" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://es.linkedin.com/company/yes-la-academia" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.youtube.com/user/YesAcademia" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <div class="phones"><a href="tel:+34910160934">Fijo: 910 160 934</a><a href="tel:+34692175578">Móvil: 692 175 578</a></div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://inglesmadrid.es/" class="logo" aria-label="Yes! La Academia"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/logo-2021-2022.png" alt="Yes! La Academia"></a>
+    <ul class="menu">
+      <li><a href="https://inglesmadrid.es/">Inicio</a></li>
+      <li class="has"><a href="https://inglesmadrid.es/academia-ingles/">Inglés</a>
+        <ul class="sub">
+          <li><a href="https://inglesmadrid.es/academia-ingles/clases-ingles-adultos/">Inglés para adultos</a></li>
+          <li><a href="https://inglesmadrid.es/academia-ingles/clases-ingles-para-ninos/">Inglés para niños</a></li>
+          <li><a href="https://inglesmadrid.es/academia-ingles/clases-particulares-ingles/">Clases particulares</a></li>
+          <li><a href="https://inglesmadrid.es/academia-ingles/clases-conversacion-ingles/">Conversación en inglés</a></li>
+          <li><a href="https://inglesmadrid.es/academia-ingles/clases-ingles-online/">Clases Online</a></li>
+          <li><a href="https://inglesmadrid.es/academia-ingles/clases-ingles-empresas/">Inglés para empresas</a></li>
+        </ul>
+      </li>
+      <li class="has"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/">Preparación exámenes inglés</a>
+        <ul class="sub">
+          <li><a href="https://inglesmadrid.es/academia-ingles/cursos-intensivos-ingles/">Intensivos de exámenes Cambridge</a></li>
+          <li><a class="sub-head" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/">Preparación Exámenes Cambridge</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/b1-preliminary/">Preparación Examen B1 Preliminary (PET)</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/c2-proficiency/">Preparación Examen C2 Proficiency (CPE)</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/b2-first/">Preparación Examen First B2 (FCE)</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/c1-advanced/">Preparación Examen Advanced C1 (CAE)</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/ielts/">Preparación IELTS</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/cambridge-express/">Preparación Examen Cambridge Express</a></li>
+          <li class="indent"><a href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/aptis/">Preparación Examen Aptis</a></li>
+          <li><a href="https://inglesmadrid.es/toefl/">Preparación Examen TOEFL</a></li>
+          <li><a href="https://inglesmadrid.es/toeic/">Preparación Examen TOEIC</a></li>
+        </ul>
+      </li>
+      <li><a href="https://inglesmadrid.es/clases-de-apoyo-escolar/">Clases de apoyo</a></li>
+      <li class="has"><a href="https://inglesmadrid.es/otros-idiomas/">Otros Idiomas</a>
+        <ul class="sub">
+          <li><a href="https://inglesmadrid.es/otros-idiomas/clases-frances/">Clases de Francés</a></li>
+          <li><a href="https://inglesmadrid.es/otros-idiomas/clases-aleman/">Clases de Alemán</a></li>
+          <li><a href="https://inglesmadrid.es/otros-idiomas/clases-italiano/">Clases de Italiano</a></li>
+          <li><a href="https://inglesmadrid.es/otros-idiomas/clases-chino/">Clases de Chino</a></li>
+        </ul>
+      </li>
+      <li><a href="https://inglesmadrid.es/quienes-somos/">Quiénes somos</a></li>
+      <li><a href="https://inglesmadrid.es/blog/">Blog</a></li>
+      <li><a href="https://inglesmadrid.es/contacto/">Contacto</a></li>
+    </ul>
+    <a href="tel:+34910160934" class="btn btn-blue btn-sm nav-cta">910 160 934</a>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a class="top" href="https://inglesmadrid.es/">Inicio</a>
+        <a class="top" href="https://inglesmadrid.es/academia-ingles/">Inglés</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/clases-ingles-adultos/">Inglés para adultos</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/clases-ingles-para-ninos/">Inglés para niños</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/clases-particulares-ingles/">Clases particulares</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/clases-conversacion-ingles/">Conversación en inglés</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/clases-ingles-online/">Clases Online</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/clases-ingles-empresas/">Inglés para empresas</a>
+        <a class="top" href="https://inglesmadrid.es/preparacion-examenes-ingles/">Preparación exámenes inglés</a>
+        <a class="lv2" href="https://inglesmadrid.es/academia-ingles/cursos-intensivos-ingles/">Intensivos de exámenes Cambridge</a>
+        <a class="lv2" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/">Preparación Exámenes Cambridge</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/b1-preliminary/">Preparación Examen B1 Preliminary (PET)</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/c2-proficiency/">Preparación Examen C2 Proficiency (CPE)</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/b2-first/">Preparación Examen First B2 (FCE)</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/c1-advanced/">Preparación Examen Advanced C1 (CAE)</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/ielts/">Preparación IELTS</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/cambridge-express/">Preparación Examen Cambridge Express</a>
+        <a class="lv3" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/aptis/">Preparación Examen Aptis</a>
+        <a class="lv2" href="https://inglesmadrid.es/toefl/">Preparación Examen TOEFL</a>
+        <a class="lv2" href="https://inglesmadrid.es/toeic/">Preparación Examen TOEIC</a>
+        <a class="top" href="https://inglesmadrid.es/clases-de-apoyo-escolar/">Clases de apoyo</a>
+        <a class="top" href="https://inglesmadrid.es/otros-idiomas/">Otros Idiomas</a>
+        <a class="lv2" href="https://inglesmadrid.es/otros-idiomas/clases-frances/">Clases de Francés</a>
+        <a class="lv2" href="https://inglesmadrid.es/otros-idiomas/clases-aleman/">Clases de Alemán</a>
+        <a class="lv2" href="https://inglesmadrid.es/otros-idiomas/clases-italiano/">Clases de Italiano</a>
+        <a class="lv2" href="https://inglesmadrid.es/otros-idiomas/clases-chino/">Clases de Chino</a>
+        <a class="top" href="https://inglesmadrid.es/quienes-somos/">Quiénes somos</a>
+        <a class="top" href="https://inglesmadrid.es/blog/">Blog</a>
+        <a class="top" href="https://inglesmadrid.es/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Inglés que se adapta a cada alumno.</h1>
+        <p class="tags">Niños · Adolescentes · Adultos · Cambridge · Apoyo escolar</p>
+        <p class="lede">Grupos reducidos y seguimiento personalizado en Tetuán.</p>
+        <div class="test">
+          <p>Contáctanos y te hacemos una prueba de nivel gratuita y sin compromiso</p>
+          <a href="https://inglesmadrid.es/contacto/" class="btn btn-yellow">Conoce tu nivel</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2 class="disp">Academia de Inglés en Madrid – 17 Años Enseñando Idiomas a Niños y Adultos</h2>
+        <p>En Yes! La Academia, llevamos 17 años enseñando inglés a niños y adultos en Tetuán, Madrid. Nuestras clases de inglés son flexibles, divertidas e interactivas, impartidas por profesionales altamente cualificados.</p>
+        <p>Nos especializamos en la preparación de exámenes Cambridge, incluyendo First, PET, Advanced, IELTS, Trinity y Proficiency, para que aprobar sea más fácil y divertido.</p>
+        <p>Además, ofrecemos clases de fonética inglesa, chino, italiano, francés, y apoyo escolar para reforzar tus conocimientos en otros idiomas.</p>
+        <p>¡Haz el test de nivel y empieza a aprender inglés de manera efectiva y entretenida!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUESTROS CURSOS -->
+  <section id="cursos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nuestros</span>
+        <h2 class="disp">Cursos</h2>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/clases-conversacion-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/conversacion.jpg" alt="clases conversacion" loading="lazy"><span>Conversación en Inglés</span></a>
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/clases-ingles-empresas/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/empresas.jpg" alt="clases ingles empresas" loading="lazy"><span>Inglés para Empresas</span></a>
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/cursos-intensivos-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/intensivas-1.jpg" alt="curso intensivo ingles madrid" loading="lazy"><span>Intensivos de Inglés</span></a>
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/clases-ingles-para-ninos/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/ninos.jpg" alt="clases ingles niños" loading="lazy"><span>Inglés para Niños</span></a>
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/clases-ingles-online/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/online.jpg" alt="clases ingles online" loading="lazy"><span>Clases Online</span></a>
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/clases-particulares-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/particulares.jpg" alt="clases particulares ingles" loading="lazy"><span>Clases Particulares</span></a>
+        <a class="tile" href="https://inglesmadrid.es/academia-ingles/clases-ingles-adultos/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/adultos.jpg" alt="clases ingles adultos" loading="lazy"><span>Inglés para Adultos</span></a>      </div>
+    </div>
+  </section>
+
+  <!-- APRENDE -->
+  <section class="learn">
+    <div class="wrap learn-grid">
+      <div>
+        <h2 class="disp" style="font-size:clamp(2rem,3.8vw,2.8rem);margin-bottom:18px">Aprende inglés de forma definitiva</h2>
+        <p>Te ofrecemos una amplia variedad de cursos de inglés adaptados a tu nivel y objetivos. Contamos con profesores nativos y con experiencia, clases dinámicas y una metodología moderna que garantiza el mejor aprovechamiento de tu tiempo, esfuerzo y dinero.</p>
+        <p>Con nosotros podrás mejorar tu inglés de forma rápida y efectiva, ya sea para tus estudios, tu carrera profesional o tus viajes.</p>
+      </div>
+      <div class="focus">
+        <h3 class="disp">Nos enfocamos en cada aspecto de tu aprendizaje:</h3>
+        <ul>
+          <li>Preparación de exámenes oficiales de inglés (Cambridge, TOEFL, IELTS…).</li>
+          <li>Refuerzo de tus puntos débiles con el idioma.</li>
+          <li>Desarrollo y perfeccionamiento de las habilidades ya adquiridas.</li>
+        </ul>
+        <p class="claim">Elige YES! La Academia y alcanza el mejor resultado.</p>
+        <a href="https://inglesmadrid.es/contacto/" class="btn btn-blue">APÚNTATE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOTCAMP -->
+  <section id="bootcamp">
+    <div class="wrap boot-grid">
+      <a href="https://inglesmadrid.es/clases-de-ingles-de-verano/"><img src="https://inglesmadrid.es/wp-content/uploads/2025/09/Blue-and-White-Modern-Coding-Boot-Camp-Facebook-Cover-2-1024x577.png" alt="Business Bootcamp" loading="lazy"></a>
+      <div>
+        <h2 class="disp" style="font-size:clamp(1.9rem,3.6vw,2.6rem)">Domina el inglés de negocios en solo 4 sábados</h2>
+        <p style="margin-top:14px">¿Quieres comunicarte con confianza en reuniones, presentaciones y llamadas profesionales en inglés? Nuestro Bootcamp intensivo de Business English está diseñado para mejorar tu fluidez y seguridad oral en situaciones reales de trabajo.</p>
+        <ul class="checks">
+          <li><i></i>Grupos reducidos (máx. 6 alumnos) para atención personalizada</li>
+          <li><i></i>Profes expertos en Business English</li>
+          <li><i></i>Material exclusivo incluido</li>
+          <li><i></i>Simulaciones prácticas: reuniones, presentaciones y negociaciones</li>
+          <li><i></i>Desayuno incluido ☕🥐</li>
+        </ul>
+        <div class="price">💸 Precio: 160 € – Plazas limitadas</div><br>
+        <a href="https://inglesmadrid.es/contacto/" class="btn btn-blue">MÁS INFORMACIÓN</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMBRIDGE -->
+  <section class="cam" id="cambridge">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Cursos 2026-2027</span>
+        <h2 class="disp">Preparación de exámenes Cambridge en Madrid</h2>
+      </div>
+      <div class="cam-grid">
+        <div>
+          <p>En YES! La Academia somos especialistas en preparación de exámenes de Cambridge con más de 15 años de experiencia ayudando a estudiantes de todas las edades a aprobar el PET, FCE, CAE y CPE.</p>
+          <p>Nuestra metodología combina práctica intensiva de speaking, listening, reading y writing, simulacros de examen y correcciones personalizadas para que llegues con seguridad al día de la prueba.</p>
+          <p class="cta">👉 Prepárate con nosotros y consigue tu certificado de Cambridge.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><i></i><span>Más del 95% de aprobados en convocatorias anteriores.</span></div>
+          <div class="stat"><i></i><span>Clases dinámicas con profesores expertos en exámenes oficiales.</span></div>
+          <div class="stat"><i></i><span>Cursos intensivos de 1 mes, 32 horas de clase.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASES -->
+  <section id="clases">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="disp">Clases</h2>
+      </div>
+      <div class="classes">
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/clases-ingles-para-ninos/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/ninos.jpg" alt="clases ingles niños" loading="lazy"><div><h3>INGLÉS PARA NIÑOS</h3><p>Tus hijos aprenderán inglés divirtiéndose. Ofrecemos clases para niños de entre 5 a 17 años. Si quieres que tus hijos aprendan inglés y que estén rodeados por el idioma durante toda la hora de clase, no dudes en apuntarlos a los cursos de inglés para niños.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/clases-ingles-adultos/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/adultos.jpg" alt="clases ingles adultos" loading="lazy"><div><h3>INGLÉS PARA ADULTOS</h3><p>Aprende inglés en todas sus facetas: listenings, lecturas, gramática, speaking. En estos cursos hablarás aunque no quieras, nuestro objetivo es que te lances a hablar sin miedo. Todos los niveles y edades.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/clases-ingles-empresas/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/empresas.jpg" alt="clases ingles empresas" loading="lazy"><div><h3>INGLÉS PARA EMPRESAS</h3><p>Si tu empresa busca profesores para que impartan clases de idiomas en vuestras instalaciones, mira todo lo que podemos ofreceros.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/preparacion-examenes-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2022/01/cambrid.jpg" alt="Exámenes de Cambridge y TOEFL" loading="lazy"><div><h3>EXÁMENES DE CAMBRIDGE y TOEFL</h3><p>Hoy en día para demostrar tu nivel de inglés necesitas un certificado oficial internacional. Prepárate para el PET, FCE, CAE, CPE, IELTS, TRINITY, TOEIC, TOEFL.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/preparacion-examenes-ingles/cambridge/"><img src="https://inglesmadrid.es/wp-content/uploads/2022/01/cambridge_exp.jpg" alt="Exámenes de Cambridge, curso express" loading="lazy"><div><h3>EXÁMENES DE CAMBRIDGE (curso express)</h3><p>Este curso está pensado para aquellos que ya conocen la dinámica de los exámenes y quieren aprobar en 3 o 4 meses. Trabajarás con exámenes reales desde el primer día de clase. Estudia y aprueba el FCE, CAE, PET, APTIS, IELTS, etc.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/clases-conversacion-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/conversacion.jpg" alt="clases conversacion" loading="lazy"><div><h3>CLASES DE CONVERSACIÓN EN INGLÉS</h3><p>Muchas veces los alumnos quieren soltarse y perder el miedo, por ello hemos creado este curso para que te animes a hablar. Además haremos énfasis en la fonética para que tu interlocutor nativo te entienda a la perfección.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/cursos-intensivos-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/intensivas.jpg" alt="curso intensivo ingles madrid" loading="lazy"><div><h3>INGLÉS INTENSIVO</h3><p>Si no tienes tiempo y quieres darle un empujón fuerte a tu inglés nuestros cursos intensivos son para ti. Estudia rápido y sube de nivel en tres meses. Grupos super reducidos para que aprender sea más fácil y dinámico.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/clases-particulares-ingles/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/particulares.jpg" alt="clases particulares ingles" loading="lazy"><div><h3>CLASES PARTICULARES DE INGLÉS</h3><p>¿Quieres ir a tu ritmo?, ¿necesitas flexibilidad horaria?, entonces la mejor opción son clases individuales. Opta por bonos de 6, 8, 10, 15 y 20 horas, tus horas no vencen.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/otros-idiomas/"><img src="https://inglesmadrid.es/wp-content/uploads/2022/01/idiomas.jpg" alt="academia idiomas" loading="lazy"><div><h3>APRENDE ITALIANO, FRANCÉS, CHINO Y ALEMÁN</h3><p>Estudia Italiano, Francés, Chino y Alemán para mejorar tu curriculum o por pura diversión. Grupos reducidos, desde principiantes hasta avanzados.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/clases-de-apoyo-escolar/"><img src="https://inglesmadrid.es/wp-content/uploads/2022/01/apoyo.jpg" alt="Apoyo escolar" loading="lazy"><div><h3>APOYO ESCOLAR</h3><p>Ofrecemos apoyo escolar en todas las asignaturas y para todas las edades. Clases individuales o en grupos pequeños. De 2 a 3 profesores por aula, especialistas en inglés, lengua y matemáticas.</p></div></a>
+        <a class="cls" href="https://inglesmadrid.es/academia-ingles/clases-ingles-online/"><img src="https://inglesmadrid.es/wp-content/uploads/2021/12/online.jpg" alt="clases ingles online" loading="lazy"><div><h3>CLASES DE INGLÉS ONLINE</h3><p>Aprende inglés sin moverte de casa pero con las mismas garantías. Las 3 horas de clase se hacen en versión online, tú con tu material, el profe, que estará presencialmente, y el resto de tus compañeros en total interacción.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALUMNOS FELICES -->
+  <section class="happy">
+    <div class="wrap happy-grid">
+      <a class="video" href="https://youtu.be/rV1Dyns_hKo" target="_blank" rel="noopener" aria-label="Ver el vídeo de testimonios en YouTube">
+        <img src="https://i.ytimg.com/vi/rV1Dyns_hKo/hqdefault.jpg" alt="Vídeo de testimonios de alumnos" loading="lazy">
+        <span class="play"><b></b></span>
+      </a>
+      <div>
+        <h2 class="disp" style="font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:16px">ALUMNOS FELICES, RESULTADOS REALES</h2>
+        <p>Nada habla mejor de nosotros que la experiencia de nuestros propios estudiantes. En YES! La Academia contamos con cientos de alumnos que han mejorado su inglés, aprobado sus exámenes de Cambridge y alcanzado sus metas personales y profesionales.</p>
+        <p>👉 Mira el vídeo y escucha directamente los testimonios reales de alumnos satisfechos que confiaron en nuestra academia de inglés en Madrid.</p>
+        <a href="https://inglesmadrid.es/contacto/" class="btn btn-blue">CONTACTA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" style="padding-top:20px">
+    <div class="wrap">
+      <div class="blog-head">
+        <h2 class="disp" style="font-size:clamp(1.9rem,3.4vw,2.5rem)">Blog</h2>
+        <a href="https://inglesmadrid.es/blog/" class="btn btn-line btn-sm">Ver todos</a>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://inglesmadrid.es/sin-categoria/ingles-para-ninos-y-adolescentes-10-claves-de-un-programa-que-motiva-de-verdad-2/"><time>12 de octubre de 2026</time><h3>Inglés para niños y adolescentes: 10 claves de un programa que motiva de verdad</h3></a>
+        <a class="post" href="https://inglesmadrid.es/uncategorized/preparacion-cambridge-en-madrid-como-estudiar-con-estructura-y-confianza-3/"><time>11 de octubre de 2026</time><h3>Preparación Cambridge en Madrid: cómo estudiar con estructura y confianza</h3></a>
+        <a class="post" href="https://inglesmadrid.es/uncategorized/apoyo-escolar-personalizado-cuando-la-ayuda-general-ya-no-basta-y-que-hacer-hoy/"><time>10 de octubre de 2026</time><h3>Apoyo escolar personalizado: cuándo la ayuda general ya no basta (y qué hacer hoy)</h3></a>
+        <a class="post" href="https://inglesmadrid.es/uncategorized/ingles-para-adultos-en-madrid-opciones-flexibles-para-avanzar-a-tu-ritmo-3/"><time>9 de octubre de 2026</time><h3>Inglés para adultos en Madrid: opciones flexibles para avanzar a tu ritmo</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contacto</span>
+        <h2 class="disp">Lazaga 9, esq. San Germán Metro Tetuán-Cuzco</h2>
+      </div>
+      <div class="c-grid">
+        <div class="c-card">
+          <h3>Teléfonos</h3>
+          <p class="big"><a href="tel:+34910160934">Fijo: 910 160 934</a></p>
+          <p class="big"><a href="tel:+34692175578">Móvil: 692 175 578</a></p>
+          <p style="margin-top:10px"><a href="mailto:info@inglesmadrid.es">info@inglesmadrid.es</a></p>
+        </div>
+        <div class="c-card">
+          <h3>Horario</h3>
+          <dl><dt>Mañanas</dt><dd>10.00 – 13.00</dd><dt>Tardes</dt><dd>16.00 – 22.00</dd></dl>
+        </div>
+        <div class="c-card">
+          <h3>Atención al público</h3>
+          <dl><dt>Lunes a jueves</dt><dd>16.30 a 21.00</dd><dt>Viernes</dt><dd>Solo telefónica</dd></dl>
+          <p style="margin-top:8px">Fin de semana cerrado</p>
+        </div>
+      </div>
+      <p class="wa">Tenemos whatsapp en ambos teléfonos.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="https://inglesmadrid.es/wp-content/uploads/2021/12/logo-2021-2022.png" alt="Yes! La Academia">
+    <span>©2025 Yes! La Academia. Academia de inglés en Madrid. Clases de inglés para niños y adultos. Todos los derechos reservados. | <a href="https://inglesmadrid.es/politica-privacidad/" target="_blank" rel="noopener">Política de privacidad.</a></span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34910160934" class="btn btn-blue">Llamar</a>
+  <a href="https://wa.me/34692175578" class="btn btn-line">WhatsApp</a>
+</div>
+</body>
+</html>

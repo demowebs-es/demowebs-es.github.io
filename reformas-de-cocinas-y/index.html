@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Reformas de Cocinas y Baños · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#fa6334; --orange-dark:#e04e20; --blue:#106cd8; --blue-dark:#0d57ad; --navy:#13206b;
+    --ink:#1d2333; --text:#3d4352; --muted:#6b7183; --line:#e6e9f0; --tint:#f5f8fd; --warm:#fff5f1; --white:#fff;
+    --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  h1,h2,h3{font-family:Montserrat,system-ui,sans-serif;color:var(--ink);line-height:1.15}
+
+  .demo{background:var(--navy);color:#d7dcf5;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .topbar{background:var(--tint);border-bottom:1px solid var(--line);font-size:.84rem;color:var(--muted)}
+  .topbar .wrap{display:flex;justify-content:space-between;gap:16px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+  .topbar a{color:var(--blue-dark);font-weight:600}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+  .nav .logo img{height:38px;width:auto}
+  .menu{display:flex;gap:4px;list-style:none}
+  .menu a{display:block;white-space:nowrap;padding:8px 9px;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--ink)}
+  .menu a:hover{background:var(--tint);color:var(--blue)}
+  .menu a.on{color:var(--orange)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--orange);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-or{background:var(--orange);color:#fff}
+  .btn-or:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+  .btn-bl{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn-bl:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--orange-dark)}
+  .btn-line:hover{background:var(--warm)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:64px 0 76px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.7rem);font-weight:800;margin:12px 0 18px;letter-spacing:-.01em}
+  .hero h1 u{text-decoration:none;color:var(--orange);box-shadow:inset 0 -.14em 0 rgba(250,99,52,.25)}
+  .hero p.lead{font-size:1.08rem;max-width:560px}
+  .contact-card{margin-top:30px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:var(--radius);padding:24px;box-shadow:0 24px 50px -30px rgba(19,32,107,.35)}
+  .contact-card h2{font-size:1.15rem;margin-bottom:4px}
+  .contact-card .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .contact-card .mail{display:inline-block;margin-top:14px;color:var(--blue-dark);font-weight:600;font-size:.95rem;word-break:break-all}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.9}
+  .hero-media{position:relative}
+  .hero-media img{border-radius:22px;width:100%;max-width:520px;margin-left:auto;aspect-ratio:580/660;object-fit:cover;box-shadow:0 30px 60px -30px rgba(19,32,107,.45)}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .fact h3{font-size:1rem;color:var(--blue-dark);margin-bottom:4px}
+  .fact p{font-size:.9rem}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:38px}
+  .head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:800;margin-top:8px}
+  .head p{color:var(--muted);margin-top:10px}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .svc + .svc{margin-top:88px;padding-top:88px;border-top:1px solid var(--line)}
+  .svc.rev .svc-media{order:2}
+  .svc-media img{border-radius:20px;width:100%;aspect-ratio:550/400;object-fit:cover}
+  .svc h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;margin:8px 0 6px}
+  .svc .sub{color:var(--blue-dark);font-weight:600}
+  .svc .kick{margin-top:22px;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+  .svc h3{font-size:1.18rem;margin:4px 0 10px}
+  .svc .list-t{margin-top:20px;font-weight:700;color:var(--ink);font-size:.95rem}
+  .chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chips li{background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.88rem;font-weight:500;color:var(--ink)}
+  .chips li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+
+  /* gallery */
+  .gallery-sec{background:var(--tint)}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gallery a{display:block;border-radius:14px;overflow:hidden}
+  .gallery img{width:100%;aspect-ratio:910/720;object-fit:cover;transition:transform .4s}
+  .gallery a:hover img{transform:scale(1.04)}
+  .more{margin-top:28px;text-align:center}
+
+  /* values */
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .value{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff;transition:.25s}
+  .value:hover{border-color:var(--orange);box-shadow:0 18px 40px -26px rgba(19,32,107,.35)}
+  .value .num{font-family:Montserrat,sans-serif;color:var(--orange);font-weight:800;font-size:1.1rem}
+  .value h3{font-size:1.15rem;margin:6px 0 10px}
+  .value p{font-size:.94rem}
+
+  /* restructure band */
+  .band{background:var(--navy);color:#e6e9f7;padding:84px 0}
+  .band .inner{max-width:860px}
+  .band h2{color:#fff;font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;margin:8px 0 18px}
+  .band p{font-size:1.06rem}
+  .band .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .band .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+
+  /* furniture */
+  .krosi{display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;border:1px solid var(--line);border-radius:var(--radius);padding:34px 38px;background:var(--warm)}
+  .krosi h2{font-size:1.6rem;font-weight:800}
+  .krosi p{margin-top:6px}
+  .krosi img{width:300px;height:auto}
+
+  footer{background:var(--ink);color:#c5cad8;padding:64px 0 28px;font-size:.92rem}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:32px}
+  footer h3{color:#fff;font-size:1rem;margin-bottom:12px}
+  footer a:hover{color:#fff}
+  footer ul{list-style:none;display:grid;gap:6px}
+  .flogo{background:#fff;border-radius:10px;padding:12px 14px;display:inline-block}
+  .flogo img{height:30px;width:auto}
+  .fbottom{margin-top:44px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.84rem;color:#9aa1b4}
+
+  .callbar{display:none}
+
+  @media (max-width:1180px){
+    .menu{display:none}
+  }
+  @media (max-width:960px){
+    .hero-grid,.svc{grid-template-columns:1fr;gap:34px}
+    .svc.rev .svc-media{order:0}
+    .hero-media img{max-width:100%;aspect-ratio:4/3;margin:0}
+    .values{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .krosi{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar{display:none}
+    .nav{height:66px}
+    .nav .logo img{height:30px}
+    .nav-cta{display:none}
+    .hero{padding:40px 0 52px}
+    section{padding:60px 0}
+    .svc + .svc{margin-top:56px;padding-top:56px}
+    .gallery{grid-template-columns:1fr 1fr;gap:10px}
+    .facts{grid-template-columns:1fr}
+    .contact-card .row .btn,.band .row .btn{width:100%}
+    .krosi{padding:26px 22px}
+    .krosi img{width:100%;max-width:300px}
+    .fgrid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Reformas de Cocinas y Baños · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Avenida Emperatriz Isabel 7, Madrid</span>
+    <a href="tel:+34663860211">+34 663 86 02 11</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.reformascocinasbanos.com/" aria-label="Reformas de Cocinas y Baños"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Logo-Reforma-Cocinas-Banos-2.fw_.png" alt="Reformas de Cocinas y Baños"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.reformascocinasbanos.com/">Inicio</a></li>
+      <li><a href="https://www.reformascocinasbanos.com/reformas-de-cocinas-en-madrid/">Reforma de Cocinas</a></li>
+      <li><a href="https://www.reformascocinasbanos.com/reformas-de-banos-en-madrid/">Reforma de Baños</a></li>
+      <li><a href="https://www.reformascocinasbanos.com/reformas-de-pisos-en-madrid/">Reforma de Pisos</a></li>
+      <li><a href="https://www.reformascocinasbanos.com/galeria/">Galería</a></li>
+      <li><a href="https://www.reformascocinasbanos.com/sobre-nosotros/">Nosotros</a></li>
+      <li><a href="https://www.reformascocinasbanos.com/contacto/">Contacto</a></li>
+    </ul>
+    <a href="tel:+34663860211" class="btn btn-or btn-sm nav-cta">+34 663 86 02 11</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Reformas de <u>Cocinas y Baños</u></h1>
+        <p class="lead">Somos una empresa de Madrid especializada exclusivamente en reformas de cocinas y baños. También realizamos cualquier tipo de pequeñas reformas en pisos y casas. Cubrimos todas las localidades y municipios de Madrid.</p>
+
+        <div class="contact-card" id="contacto">
+          <h2>Contacte con nosotros</h2>
+          <div class="row">
+            <a href="tel:+34663860211" class="btn btn-or">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+              <span class="tel">+34 663 86 02 11</span>
+            </a>
+            <a href="https://wa.me/34663860211" target="_blank" rel="noopener" class="btn btn-line">WhatsApp</a>
+          </div>
+          <a class="mail" href="mailto:info@reformascocinasbanos.com">info@reformascocinasbanos.com</a>
+        </div>
+
+        <div class="facts">
+          <div class="fact"><h3>Experiencia</h3><p>Más de 20 años nos dedicamos a las reformas de cocinas, baños y otras habitaciones.</p></div>
+          <div class="fact"><h3>Precio y calidad</h3><p>Realizamos trabajos profesionales y de calidad a precios razonables.</p></div>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reforma-Cocinas-Banos-Madrid.jpg" alt="Reforma de cocinas y baños en Madrid">
+      </div>
+    </div>
+  </div>
+
+  <section id="servicios">
+    <div class="wrap">
+      <article class="svc">
+        <div class="svc-media"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reforma-de-Cocinas-en-Madrid.jpg" alt="Reforma de Cocinas en Madrid" loading="lazy"></div>
+        <div>
+          <h2>Reforma de Cocinas en Madrid</h2>
+          <p class="sub">Obtén tu presupuesto al instante</p>
+          <p class="kick">Sabemos que...</p>
+          <h3>La Cocina es una de las estancias más importantes de una casa.</h3>
+          <p>Por eso realizaremos una reforma completa de tu cocina. Contamos con los mejores materiales del mercado a un precio económico.</p>
+          <p class="list-t">Nuestros servicios:</p>
+          <ul class="chips">
+            <li>Desmontaje de muebles</li><li>Desescombro</li><li>Tabiques</li><li>Instalación de Fontanería</li><li>Instalación de Electricidad</li><li>Alicatado y Solado</li><li>Techos y pladur</li><li>Instalación de nuevo mobiliario</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="svc rev">
+        <div class="svc-media"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reforma-Banos-Madrid.jpg" alt="Reforma de Baños en Madrid" loading="lazy"></div>
+        <div>
+          <h2>Reforma de Baños en Madrid</h2>
+          <p class="sub">Obtén tu presupuesto sin compromiso</p>
+          <p class="kick">¿Quieres tener un baño nuevo?</p>
+          <h3>Cuenta con nosotros para realizar la reforma de tu baño.</h3>
+          <p>Somos la opción más rápida y económica en reformas de baños, destacando en calidad, seriedad, limpieza y profesionalidad en toda la Comunidad de Madrid.</p>
+          <p class="list-t">Nuestros servicios:</p>
+          <ul class="chips">
+            <li>Desmontaje de muebles</li><li>Desescombro</li><li>Tabiques</li><li>Instalación de Fontanería</li><li>Instalación de Electricidad</li><li>Alicatado y Solado</li><li>Azulejos</li><li>Instalación de bañera o ducha</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-media"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reforma-de-Pisos-en-Madrid.jpg" alt="Reforma de Pisos en Madrid" loading="lazy"></div>
+        <div>
+          <h2>Reformas pequeñas en pisos y casas en Madrid</h2>
+          <p class="sub">La rapidez junto con la calidad, el precio y la garantía, hacen que nuestro nombre crezca día tras día.</p>
+          <p class="kick">¿Necesitas hacer una reforma pequeña?</p>
+          <h3>Nosotros realizamos cualquier tipo de reforma sea pequeña o grande.</h3>
+          <p>Realizamos distintos tipos de reformas según vuestra necesidad, adaptándonos a la modificación que desees realizar y a tus objetivos, nueva distribución de habitaciones, pintura o cambio de puertas y ventanas.</p>
+          <p class="list-t">Nuestros servicios:</p>
+          <ul class="chips">
+            <li>Albañilería</li><li>Pintura</li><li>Montaje de tarima y parquet</li><li>Trabajos de pladur</li><li>Cambio de puertas</li><li>Cambio de ventanas</li><li>Fontanería</li><li>Electricidad</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="gallery-sec" id="galeria">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Galería de fotos</span>
+        <h2>¡Algunos de nuestros trabajos realizados!</h2>
+      </div>
+      <div class="gallery">
+        <a href="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-3.jpg" target="_blank" rel="noopener"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-3.jpg" alt="Reforma de baño" loading="lazy"></a>
+        <a href="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-5.jpg" target="_blank" rel="noopener"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-5.jpg" alt="Reforma de baño" loading="lazy"></a>
+        <a href="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-6.jpg" target="_blank" rel="noopener"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-6.jpg" alt="Reforma de baño" loading="lazy"></a>
+        <a href="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos.jpg" target="_blank" rel="noopener"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos.jpg" alt="Reforma de baño" loading="lazy"></a>
+        <a href="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-2.jpg" target="_blank" rel="noopener"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reformas-de-Banos-2.jpg" alt="Reforma de baño" loading="lazy"></a>
+        <a href="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reforma-de-Cocinas-Madrid-1.jpg" target="_blank" rel="noopener"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Reforma-de-Cocinas-Madrid-1.jpg" alt="Reforma de cocina" loading="lazy"></a>
+      </div>
+      <div class="more"><a href="https://www.reformascocinasbanos.com/galeria/" class="btn btn-bl">Galería</a></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="values">
+        <article class="value">
+          <span class="num">01</span>
+          <h3>Profesionalidad</h3>
+          <p>Nuestro trabajo es realizado con la máxima seriedad. Somos profesionales en lo que hacemos. Ofrecemos a nuestros clientes la máxima confianza, seguridad y garantía.</p>
+        </article>
+        <article class="value">
+          <span class="num">02</span>
+          <h3>Competitividad</h3>
+          <p>Cuando se trata de reformas de cocinas y baños en Madrid, no tenemos competencia. Brindamos resultados de máxima calidad con precios inmejorables.</p>
+        </article>
+        <article class="value">
+          <span class="num">03</span>
+          <h3>Satisfacción</h3>
+          <p>En pocos días, dependiendo del trabajo que vayamos a realizar, podrás disfrutar de tu estancia reformada. De esta forma quedarás más que satisfecho con nuestro trabajo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="inner">
+        <h2>Reestructuración de viviendas</h2>
+        <p>Dale una nueva distribución a tu vivienda quitando o poniendo tabiques para incluir las estancias que necesitas. Amplía tu baño, haz una cocina abierta al salón, incluye un nuevo dormitorio, etc. Son muchas las opciones que ofrecemos. Te asesoramos y planificamos a tu lado una nueva redistribución de la vivienda para que se adapte a tu estilo y necesidades.</p>
+        <div class="row">
+          <a href="tel:+34663860211" class="btn btn-or"><span class="tel">+34 663 86 02 11</span></a>
+          <a href="https://wa.me/34663860211" target="_blank" rel="noopener" class="btn btn-line">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="krosi">
+        <div>
+          <h2>¿Necesitas Muebles?</h2>
+          <p>Le recomendamos nuestra tienda de confianza Krosi Decor</p>
+        </div>
+        <a href="https://krosidecor.es/" target="_blank" rel="noopener" aria-label="Krosi Decor"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2021/08/logo-email.fw_.png" alt="Krosi Decor" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="flogo" href="https://www.reformascocinasbanos.com/"><img src="https://www.reformascocinasbanos.com/wp-content/uploads/2022/11/Logo-Reforma-Cocinas-Banos-2.fw_.png" alt="Reformas de Cocinas y Baños"></a>
+      </div>
+      <div>
+        <h3>Te esperamos en nuestra oficina</h3>
+        <p>Avenida Emperatriz Isabel 7<br>28019 Madrid</p>
+      </div>
+      <div>
+        <h3>Contacte con nosotros</h3>
+        <ul>
+          <li><a href="mailto:info@reformascocinasbanos.com">info@reformascocinasbanos.com</a></li>
+          <li><a href="tel:+34663860211">+34 663 86 02 11</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nuestros Servicios</h3>
+        <ul>
+          <li><a href="https://www.reformascocinasbanos.com/reformas-de-cocinas-en-madrid/">Reforma de Cocinas</a></li>
+          <li><a href="https://www.reformascocinasbanos.com/reformas-de-banos-en-madrid/">Reforma de Baños</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbottom">Reformas de Cocinas y Baños · Copyright 2002</div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34663860211" class="btn btn-or">663 86 02 11</a>
+  <a href="https://wa.me/34663860211" target="_blank" rel="noopener" class="btn btn-line">WhatsApp</a>
+</div>
+
+</body>
+</html>

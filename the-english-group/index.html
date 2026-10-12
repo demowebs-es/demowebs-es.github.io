@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The English Group · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#20409a; --blue-dark:#162d6e; --red:#ec1921; --red-dark:#c4121a;
+    --ink:#141b33; --text:#3a4256; --muted:#667089; --line:#e2e6f0; --tint:#f3f5fb; --white:#fff;
+    --radius:16px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .disp{font-family:Lexend,system-ui,sans-serif;color:var(--ink);line-height:1.1;font-weight:700}
+  .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--red)}
+  .demo{background:var(--ink);color:#c9d2ee;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:16px}
+  .logo img{height:54px;width:auto}
+  .menu{display:flex;align-items:center;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 8px;font-weight:600;font-size:.86rem;color:var(--ink);border-radius:8px;white-space:nowrap}
+  @media (max-width:1240px){.nav-cta{display:none}}
+  .menu>li>a:hover{color:var(--red)}
+  .menu .has>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 7px}
+  .sub{position:absolute;top:100%;left:0;min-width:300px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:0 0 12px 12px;box-shadow:0 22px 44px -22px rgba(20,27,51,.35);padding:8px;list-style:none;display:none}
+  .menu li:hover>.sub,.menu li:focus-within>.sub{display:block}
+  .sub a{display:block;padding:8px 12px;border-radius:8px;font-size:.88rem}
+  .sub a:hover{background:var(--tint);color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:8px;font-weight:600;font-size:.93rem;transition:.2s;border:2px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-blue{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--blue);border-color:var(--blue)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:9px 16px;font-size:.84rem}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--blue) url("https://english-group.com/wp-content/uploads/2020/11/The-English-Group-Slider-03.jpg") 70% 30%/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,45,110,.92),rgba(32,64,154,.62) 55%,rgba(32,64,154,.15))}
+  .hero .wrap{position:relative;padding-top:96px;padding-bottom:110px}
+  .hero h1{font-family:Lexend,sans-serif;font-weight:700;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;max-width:720px}
+  .hero h1 small{display:block;font-size:.42em;font-weight:500;margin-top:14px;opacity:.95;line-height:1.3}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+
+  /* strip */
+  .strip{position:relative;margin-top:-56px;z-index:2}
+  .strip-box{background:#fff;border-radius:var(--radius);box-shadow:0 26px 50px -28px rgba(20,27,51,.45);overflow:hidden}
+  .modes{display:grid;grid-template-columns:repeat(3,1fr)}
+  .mode{padding:20px 24px;border-right:1px solid var(--line)}
+  .mode:last-child{border-right:0}
+  .mode small{display:block;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .mode b{font-family:Lexend,sans-serif;color:var(--ink);font-size:1.08rem;font-weight:600}
+  .langs{display:grid;grid-template-columns:repeat(6,1fr);background:var(--blue)}
+  .langs a{color:#fff;text-align:center;padding:14px 8px;font-family:Lexend,sans-serif;font-weight:600;font-size:.98rem;border-right:1px solid rgba(255,255,255,.14);transition:.2s}
+  .langs a:last-child{border-right:0;background:#2f56c4}
+  .langs a:hover{background:var(--red)}
+
+  section{padding:88px 0}
+
+  /* offer cards */
+  .offer{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:20px}
+  .oc{position:relative;border-radius:var(--radius);overflow:hidden;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--ink) center/cover no-repeat;transition:transform .25s}
+  .oc:hover{transform:translateY(-3px)}
+  .oc::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,27,51,0) 25%,rgba(20,27,51,.85))}
+  .oc>*{position:relative}
+  .oc .in{padding:24px}
+  .oc small{display:block;font-size:.82rem;opacity:.9}
+  .oc h3{font-family:Lexend,sans-serif;font-size:1.45rem;font-weight:700;line-height:1.15;margin:4px 0 14px}
+  .oc .more{display:inline-block;background:#fff;color:var(--ink);font-weight:600;font-size:.84rem;padding:7px 14px;border-radius:6px}
+  .oc:hover .more{background:var(--red);color:#fff}
+  .oc-exams{grid-row:span 2;background-image:url("https://english-group.com/wp-content/uploads/2025/09/idiomas-1.jpg")}
+  .oc-exams h3 span{display:block}
+  .oc-kids{background-image:url("https://english-group.com/wp-content/uploads/2025/09/ingles-madrid-A.jpg");background-position:center bottom;background-size:auto 200%;background-color:#3a6b2a}
+  .oc-kids::before,.oc-adults::before{background:linear-gradient(180deg,rgba(20,27,51,0) 10%,rgba(20,27,51,.8))}
+  .oc-kids .tag{background:var(--red)}
+  .oc-adults{background-image:url("https://english-group.com/wp-content/uploads/2025/09/ingles-madrid-B.jpg");background-position:center top;background-size:auto 200%;background-color:#ddd}
+  .oc-biz{grid-column:span 2;background-image:url("https://english-group.com/wp-content/uploads/2025/09/clases-de-ingles-empresas-madrid.jpg");background-position:right center}
+
+  /* welcome */
+  .welcome{background:var(--tint)}
+  .w-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .w-grid h2{font-size:clamp(2.2rem,4.4vw,3.2rem);color:var(--blue)}
+  .w-grid h2 small{display:block;font-size:.45em;color:var(--ink);font-weight:600;margin-top:6px}
+  .bar{display:flex;align-items:center;gap:10px;margin:18px 0 22px}
+  .bar i{height:2px;width:56px;background:var(--blue)}
+  .bar b{width:10px;height:10px;border-radius:50%;background:var(--red)}
+  .w-grid p{margin-bottom:14px;font-size:1.02rem}
+  .w-grid strong{color:var(--ink)}
+  .w-grid img{border-radius:var(--radius)}
+
+  /* experiences */
+  .exp{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .ex{border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;background:var(--blue);color:#fff;min-height:430px}
+  .ex .ph{height:200px;background:center/cover no-repeat}
+  .ex .in{padding:24px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .ex small{font-weight:600;font-size:.86rem;opacity:.9}
+  .ex h3{font-family:Lexend,sans-serif;font-size:1.55rem;line-height:1.15;font-weight:700}
+  .ex .btns{display:flex;gap:10px;margin-top:auto;padding-top:14px;flex-wrap:wrap}
+  .ex-ib{background:var(--ink) url("https://english-group.com/wp-content/uploads/2020/10/Cursos-extensivos-de-ingles-para-ninos-y-juniors-examenes-Cambridge.jpg") center/cover no-repeat;position:relative;text-align:center;justify-content:center}
+  .ex-ib::before{content:"";position:absolute;inset:0;background:rgba(22,45,110,.82)}
+  .ex-ib .in{position:relative;justify-content:center;align-items:center}
+  .ex-ib h3{font-size:2.2rem}
+  .ex-ib .btns{margin-top:12px;justify-content:center}
+
+  /* why */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .why-grid h2{font-size:clamp(2rem,3.8vw,2.8rem);margin-bottom:24px}
+  .why{list-style:none;display:grid;gap:14px}
+  .why li{display:flex;gap:14px;align-items:flex-start}
+  .why li i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--red);position:relative;margin-top:1px}
+  .why li i::after{content:"";position:absolute;left:9px;top:5px;width:6px;height:11px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
+  .why strong{color:var(--ink)}
+  .fun{font-family:Lexend,sans-serif;font-weight:700;color:var(--blue);font-size:1.25rem;margin-top:24px}
+  .why-grid img{border-radius:var(--radius);box-shadow:0 26px 50px -30px rgba(20,27,51,.5)}
+
+  /* british council band */
+  .bc{position:relative;background:var(--blue) url("https://english-group.com/wp-content/uploads/2025/08/curso-en-el-extranjero.jpg") 75% 30%/cover no-repeat;padding:110px 0}
+  .bc::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,45,110,.85),rgba(22,45,110,.35) 60%,rgba(22,45,110,0))}
+  .bc .card{position:relative;background:#fff;border-radius:var(--radius);padding:34px;max-width:430px;border-left:6px solid var(--red)}
+  .bc h2{font-size:clamp(1.7rem,3vw,2.2rem);margin:8px 0 22px}
+
+  /* footer */
+  footer{background:var(--tint);border-top:1px solid var(--line);padding:56px 0 24px;font-size:.92rem}
+  .f-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:40px;align-items:start}
+  .f-grid .lg{height:72px;width:auto}
+  .soc{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
+  .soc a{color:var(--blue);font-weight:600}
+  .soc a:hover{text-decoration:underline}
+  .certs{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .certs img{height:84px;width:auto;mix-blend-mode:multiply}
+  .f-grid h3{font-family:Lexend,sans-serif;color:var(--ink);font-size:1.1rem;margin-bottom:10px}
+  .f-grid address{font-style:normal;margin-bottom:10px}
+  .f-grid .c a{display:block;color:var(--blue);font-weight:600}
+  .eu{margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+  .eu img{max-height:70px;width:auto;mix-blend-mode:multiply}
+  .legal{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:.84rem}
+  .legal a{text-decoration:underline}
+
+  .float{position:fixed;right:18px;bottom:18px;z-index:55;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+  .float .wa-bubble{background:#fff;border:1px solid var(--line);box-shadow:0 14px 30px -14px rgba(0,0,0,.35);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--ink);display:flex;gap:10px;align-items:center}
+  .float .wa-bubble b{background:#25d366;color:#fff;border-radius:999px;padding:6px 12px;font-size:.8rem}
+  .callbar{display:none}
+
+  @media (max-width:1100px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;padding:9px 16px;border:2px solid var(--blue);border-radius:8px;font-weight:600;color:var(--blue);font-size:.9rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(330px,calc(100vw - 32px));max-height:70vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 50px -24px rgba(20,27,51,.45);padding:10px}
+    .mnav .panel a{display:block;padding:7px 10px;border-radius:8px;font-size:.9rem}
+    .mnav .panel a:hover{background:var(--tint)}
+    .mnav .panel .top{font-weight:700;color:var(--ink)}
+    .mnav .panel .lv2{padding-left:22px}
+    .offer{grid-template-columns:1fr 1fr}
+    .oc-exams{grid-row:auto;grid-column:span 2}
+    .oc-biz{grid-column:span 2}
+    .exp{grid-template-columns:1fr 1fr}
+    .ex-ib{grid-column:span 2;min-height:340px}
+    .w-grid,.why-grid,.f-grid{grid-template-columns:1fr}
+    .langs{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:68px}
+    .logo img{height:44px}
+    .nav-cta{display:none}
+    .hero .wrap{padding-top:60px;padding-bottom:96px}
+    .hero .row .btn{width:100%}
+    .modes{grid-template-columns:1fr}
+    .mode{border-right:0;border-bottom:1px solid var(--line);padding:14px 18px}
+    .langs a{font-size:.88rem;padding:12px 4px}
+    section{padding:60px 0}
+    .offer,.exp{grid-template-columns:1fr}
+    .oc-exams,.oc-biz,.ex-ib{grid-column:auto}
+    .oc{min-height:220px}
+    .bc{padding:64px 0;background-position:80% 30%}
+    .bc .card{padding:26px 22px}
+    .certs img{height:64px}
+    .float{display:none}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para The English Group · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://english-group.com/" class="logo" aria-label="The English Group"><img src="https://english-group.com/wp-content/uploads/2020/09/Logo-The-English-Group.png" alt="The English Group"></a>
+    <ul class="menu">
+      <li><a href="https://english-group.com/">Inicio</a></li>
+      <li class="has"><a href="https://english-group.com/cursos-ingles-para-ninos/">Niños</a>
+        <ul class="sub">
+          <li><a href="https://english-group.com/cursos-ingles-para-ninos/">Inglés para niños de 3 a 6 años</a></li>
+          <li><a href="https://english-group.com/cursos-extensivos-de-ingles-para-ninos-y-adolescentes/">Inglés para niños y adolescentes de 7 a 17 años</a></li>
+          <li><a href="https://english-group.com/cursos-extensivos-de-ingles-para-ninos-y-adolescentes-examenes-cambridge-fce-cae/">Inglés – Preparación para Exámenes Cambridge</a></li>
+          <li><a href="https://english-group.com/campamento-urbano-de-verano-en-ingles/">Campamento Urbano de Verano en inglés</a></li>
+          <li><a href="https://english-group.com/estancias-linguisticas-en-el-extranjero-para-ninos-y-juniors/">Estancias Lingüísticas en el Extranjero</a></li>
+        </ul>
+      </li>
+      <li class="has"><a href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos/">Adultos</a>
+        <ul class="sub">
+          <li><a href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos/">Cursos Extensivos de Inglés</a></li>
+          <li><a href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos-examenes-cambridge/">Inglés – Preparación para Exámenes de Cambridge</a></li>
+          <li><a href="https://english-group.com/cursos-one-to-one-para-adultos/">Cursos One to One</a></li>
+          <li><a href="https://english-group.com/cursos-intensivos-para-adultos/">Cursos Intensivos de Octubre a Junio</a></li>
+          <li><a href="https://english-group.com/preparacion-para-linguaskill-y-aptis-esol/">Preparación Linguaskill &amp; Aptis ESOL</a></li>
+          <li><a href="https://english-group.com/preparacion-de-entrevista-de-trabajo-y-orientacion-laboral/">Orientación Laboral</a></li>
+          <li><a href="https://english-group.com/cursos-intensivos-de-verano-para-adultos/">Cursos Intensivos de Verano</a></li>
+          <li><a href="https://english-group.com/estancias-linguisticas-en-el-extranjero-para-adultos/">Estancias Lingüísticas en el Extranjero</a></li>
+        </ul>
+      </li>
+      <li class="has"><a href="https://english-group.com/spanish-classes/">Otros idiomas</a>
+        <ul class="sub">
+          <li><a href="https://english-group.com/spanish-classes/">Spanish Classes</a></li>
+          <li><a href="https://english-group.com/cursos-frances-zona-arturo-soria-ciudad-lineal/">Cursos de Francés</a></li>
+          <li><a href="https://english-group.com/cursos-aleman/">Cursos de Alemán</a></li>
+          <li><a href="https://english-group.com/clases-de-italiano-zona-arturo-soria-ciudad-lineal/">Cursos de Italiano</a></li>
+          <li><a href="https://english-group.com/cursos-chino/">Cursos de Chino</a></li>
+        </ul>
+      </li>
+      <li><a href="https://english-group.com/cursos-de-idiomas-para-empresas/">Empresas</a></li>
+      <li><a href="https://english-group.com/clases-de-idiomas-online/">Online</a></li>
+      <li><a href="https://english-group.com/igcse-a-levels-ib-zona-arturo-soria-ciudad-lineal-madrid/">IGCSE, A-LEVELS &amp; IB</a></li>
+      <li><a href="https://english-group.com/blog/">Blog</a></li>
+      <li><a href="https://english-group.com/contacto/">Contacto</a></li>
+    </ul>
+    <a href="https://english-group.com/test-de-nivel/" class="btn btn-red btn-sm nav-cta">Test de nivel</a>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a class="top" href="https://english-group.com/">Inicio</a>
+        <a class="top" href="https://english-group.com/cursos-ingles-para-ninos/">Niños</a>
+        <a class="lv2" href="https://english-group.com/cursos-ingles-para-ninos/">Inglés para niños de 3 a 6 años</a>
+        <a class="lv2" href="https://english-group.com/cursos-extensivos-de-ingles-para-ninos-y-adolescentes/">Inglés para niños y adolescentes de 7 a 17 años</a>
+        <a class="lv2" href="https://english-group.com/cursos-extensivos-de-ingles-para-ninos-y-adolescentes-examenes-cambridge-fce-cae/">Inglés – Preparación para Exámenes Cambridge</a>
+        <a class="lv2" href="https://english-group.com/campamento-urbano-de-verano-en-ingles/">Campamento Urbano de Verano en inglés</a>
+        <a class="lv2" href="https://english-group.com/estancias-linguisticas-en-el-extranjero-para-ninos-y-juniors/">Estancias Lingüísticas en el Extranjero</a>
+        <a class="top" href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos/">Adultos</a>
+        <a class="lv2" href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos/">Cursos Extensivos de Inglés</a>
+        <a class="lv2" href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos-examenes-cambridge/">Inglés – Preparación para Exámenes de Cambridge</a>
+        <a class="lv2" href="https://english-group.com/cursos-one-to-one-para-adultos/">Cursos One to One</a>
+        <a class="lv2" href="https://english-group.com/cursos-intensivos-para-adultos/">Cursos Intensivos de Octubre a Junio</a>
+        <a class="lv2" href="https://english-group.com/preparacion-para-linguaskill-y-aptis-esol/">Preparación Linguaskill &amp; Aptis ESOL</a>
+        <a class="lv2" href="https://english-group.com/preparacion-de-entrevista-de-trabajo-y-orientacion-laboral/">Orientación Laboral</a>
+        <a class="lv2" href="https://english-group.com/cursos-intensivos-de-verano-para-adultos/">Cursos Intensivos de Verano</a>
+        <a class="lv2" href="https://english-group.com/estancias-linguisticas-en-el-extranjero-para-adultos/">Estancias Lingüísticas en el Extranjero</a>
+        <a class="top" href="https://english-group.com/spanish-classes/">Otros idiomas</a>
+        <a class="lv2" href="https://english-group.com/spanish-classes/">Spanish Classes</a>
+        <a class="lv2" href="https://english-group.com/cursos-frances-zona-arturo-soria-ciudad-lineal/">Cursos de Francés</a>
+        <a class="lv2" href="https://english-group.com/cursos-aleman/">Cursos de Alemán</a>
+        <a class="lv2" href="https://english-group.com/clases-de-italiano-zona-arturo-soria-ciudad-lineal/">Cursos de Italiano</a>
+        <a class="lv2" href="https://english-group.com/cursos-chino/">Cursos de Chino</a>
+        <a class="top" href="https://english-group.com/cursos-de-idiomas-para-empresas/">Empresas</a>
+        <a class="top" href="https://english-group.com/clases-de-idiomas-online/">Online</a>
+        <a class="top" href="https://english-group.com/igcse-a-levels-ib-zona-arturo-soria-ciudad-lineal-madrid/">IGCSE, A-LEVELS &amp; IB</a>
+        <a class="top" href="https://english-group.com/blog/">Blog</a>
+        <a class="top" href="https://english-group.com/contacto/">Contacto</a>
+        <a class="top" href="https://english-group.com/test-de-nivel/">Test de nivel</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1>Academia de idiomas <small>en Arturo Soria (Ciudad Lineal), Madrid</small></h1>
+      <div class="row">
+        <a href="tel:+34915101030" class="btn btn-red">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          91 510 10 30
+        </a>
+        <a href="https://english-group.com/test-de-nivel/" class="btn btn-ghost">Test de nivel</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-box">
+        <div class="modes">
+          <div class="mode"><small>Preparación</small><b>Exámenes Oficiales</b></div>
+          <div class="mode"><small>Clases</small><b>Presenciales y Online</b></div>
+          <div class="mode"><small>&nbsp;</small><b>Particulares / Empresa</b></div>
+        </div>
+        <div class="langs">
+          <a href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos/">Inglés</a>
+          <a href="https://english-group.com/cursos-frances-zona-arturo-soria-ciudad-lineal/">Francés</a>
+          <a href="https://english-group.com/cursos-aleman/">Alemán</a>
+          <a href="https://english-group.com/clases-de-italiano-zona-arturo-soria-ciudad-lineal/">Italiano</a>
+          <a href="https://english-group.com/cursos-chino/">Chino</a>
+          <a href="https://english-group.com/spanish-classes/">Spanish classes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="cursos">
+    <div class="wrap offer">
+      <a class="oc oc-exams" href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos-examenes-cambridge/">
+        <div class="in"><small>Exámenes Oficiales</small><h3><span>Cambridge</span><span>Linguaskill | Aptis</span></h3><span class="more">Más info</span></div>
+      </a>
+      <a class="oc oc-kids" href="https://english-group.com/cursos-extensivos-de-ingles-para-ninos-y-adolescentes/">
+        <div class="in"><small>Clases para</small><h3>Niños y Adolescentes</h3><span class="more">Más info</span></div>
+      </a>
+      <a class="oc oc-adults" href="https://english-group.com/cursos-extensivos-de-ingles-para-adultos/">
+        <div class="in"><small>Clases para</small><h3>Adultos</h3><span class="more">Más info</span></div>
+      </a>
+      <a class="oc oc-biz" href="https://english-group.com/cursos-de-idiomas-para-empresas/">
+        <div class="in"><small>Cursos de idiomas para</small><h3>Empresas</h3><span class="more">Más info</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="welcome">
+    <div class="wrap w-grid">
+      <div>
+        <h2 class="disp">Bienvenidos <small>a The English Group</small></h2>
+        <div class="bar"><i></i><b></b><i></i></div>
+        <p>The English Group es un centro con <strong>20 años de experiencia</strong> acreditado por el British Council.</p>
+        <p>Nuestro equipo docente está formado de <strong>profesores nativos con calificaciones profesionales</strong> que les habilitan para ejercer la enseñanza de idiomas en grupos reducidos 7 alumnos máximo.</p>
+      </div>
+      <img src="https://english-group.com/wp-content/uploads/2025/09/montaje-idiomas-en-madrid-590x460.jpg" alt="Alumnos de The English Group" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap exp">
+      <div class="ex">
+        <div class="ph" style="background-image:url('https://english-group.com/wp-content/uploads/2020/10/Cursos-de-ingles.jpg')"></div>
+        <div class="in">
+          <small>Experiencias</small>
+          <h3>Estancias Lingüísticas en el Extranjero</h3>
+          <div class="btns">
+            <a href="https://english-group.com/estancias-linguisticas-en-el-extranjero-para-ninos-y-juniors/" class="btn btn-red btn-sm">Niños</a>
+            <a href="https://english-group.com/estancias-linguisticas-en-el-extranjero-para-adultos/" class="btn btn-red btn-sm">Adultos</a>
+          </div>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ph" style="background-image:url('https://english-group.com/wp-content/uploads/2025/08/ingles-ninos.jpg')"></div>
+        <div class="in">
+          <small>English Camp</small>
+          <h3>Campamento urbano en inglés</h3>
+          <div class="btns"><a href="https://english-group.com/campamento-urbano-de-verano-en-ingles/" class="btn btn-red btn-sm">Más info</a></div>
+        </div>
+      </div>
+      <div class="ex ex-ib">
+        <div class="in">
+          <h3>IGCSE, A-LEVELS &amp; IB</h3>
+          <b>Grupos reducidos</b>
+          <span>Para alumnos de International Bachelor (IB)<br>Bachiller Británico</span>
+          <div class="btns"><a href="https://english-group.com/igcse-a-levels-ib-zona-arturo-soria-ciudad-lineal-madrid/" class="btn btn-red btn-sm">Más info</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap why-grid">
+      <div>
+        <h2 class="disp">¿Por qué elegirnos?</h2>
+        <ul class="why">
+          <li><i></i><span><strong>Grupos reducidos</strong> (7 máx.) y atención personalizada.</span></li>
+          <li><i></i><span><strong>Profesores nativos y cualificados</strong>.</span></li>
+          <li><i></i><span><strong>98% de aprobados</strong> en convocatorias recientes con nuestra entidad de certificación.</span></li>
+          <li><i></i><span><strong>Mock exams sin coste</strong> y ruta de estudio clara.</span></li>
+          <li><i></i><span><strong>Presencial y online</strong> con materiales de última edición.</span></li>
+        </ul>
+        <p class="fun">¡Aprender y divertirse está garantizado!</p>
+      </div>
+      <img src="https://english-group.com/wp-content/uploads/2025/09/The-English-Group-Madrid-500x271.jpg" alt="The English Group Madrid" loading="lazy">
+    </div>
+  </section>
+
+  <div class="bc">
+    <div class="wrap">
+      <div class="card">
+        <span class="eyebrow">BRITISH COUNCIL</span>
+        <h2 class="disp">98% aprobados con nuestra entidad de certificación British Council</h2>
+        <a href="https://english-group.com/contacto/" class="btn btn-red">Matricúlate ahora</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <img class="lg" src="https://english-group.com/wp-content/uploads/2020/09/Logo-The-English-Group-3.png" alt="The English Group">
+        <div class="soc">
+          <a href="https://www.facebook.com/englishgroupmadrid" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/TheEnglishGroupMadrid/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/english-group-madrid/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:info@english-group.com">Email</a>
+        </div>
+      </div>
+      <div class="certs">
+        <img src="https://english-group.com/wp-content/uploads/2025/10/logo-cambridge-assessment-english-exams-aptis.jpg" alt="Cambridge Assessment English Exams - Aptis" loading="lazy">
+        <img src="https://english-group.com/wp-content/uploads/2025/10/logos-cambridge-linguaskill.jpg" alt="Logo Cambridge Assessment Linguaskill" loading="lazy">
+      </div>
+      <div class="c">
+        <h3>Contacto</h3>
+        <address>C/ General Aranaz 49 bajo<br>28027 Madrid</address>
+        <a href="tel:+34915101030">91 510 10 30</a>
+        <a href="tel:+34606451176">606 451 176</a>
+        <a href="mailto:info@english-group.com">info@english-group.com</a>
+      </div>
+    </div>
+    <div class="eu"><img src="https://english-group.com/wp-content/uploads/2025/09/logos-financiado-por-la-union-europea.png" alt="Financiado por la UE. Gobierno de España. Plan de Recuperación, Transformación y Resiliencia." loading="lazy"></div>
+    <div class="legal">
+      <span>Copyright © 2025 - The English Group</span>
+      <span><a href="https://english-group.com/aviso-legal/" target="_blank" rel="noopener">Aviso Legal</a> - <a href="https://english-group.com/politica-de-cookies/" target="_blank" rel="noopener">Política de Cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="float">
+  <a class="wa-bubble" href="https://wa.me/34606451176" target="_blank" rel="noopener">Hola, ¿te podemos ayudar? <b>Abrir chat</b></a>
+</div>
+
+<div class="callbar">
+  <a href="tel:+34915101030" class="btn btn-red">Llamar</a>
+  <a href="https://wa.me/34606451176" class="btn btn-line">Abrir chat</a>
+</div>
+</body>
+</html>

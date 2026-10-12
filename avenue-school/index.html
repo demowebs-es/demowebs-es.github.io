@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Avenue School · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#393b48; --ink-2:#2c2e39; --coral:#db5b5b; --teal:#84d7d8; --sun:#f2b517; --sage:#89bcb1; --rose:#d89aa2;
+    --text:#4a4c58; --muted:#6b6d78; --line:#e7e6ea; --tint:#f5f5f5; --white:#fff; --radius:16px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Karla,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Raleway,sans-serif;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:var(--coral)}
+  h1,h2,h3{font-family:Raleway,sans-serif;color:var(--ink)}
+
+  .demo{background:var(--ink-2);color:#e3e1ea;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:78px}
+  .nav .logo img{height:48px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a{display:inline-flex;align-items:center;gap:6px;padding:10px 13px;font-family:Raleway,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border-radius:8px}
+  .menu > li > a:hover{color:var(--coral)}
+  .menu .has > a::after{content:"";width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 2px}
+  .menu .bolt svg{width:13px;height:13px;fill:var(--sun)}
+  .sub{position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -22px rgba(57,59,72,.45);padding:8px;list-style:none;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+  .menu > li:hover .sub,.menu > li:focus-within .sub{opacity:1;visibility:visible;transform:none}
+  .sub a{display:block;padding:9px 12px;border-radius:8px;font-size:.95rem}
+  .sub a:hover{background:var(--tint);color:var(--coral)}
+  .social{display:flex;gap:8px}
+  .social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--tint);transition:.2s}
+  .social a:hover{background:var(--coral)}
+  .social a:hover svg{fill:#fff}
+  .social svg{width:15px;height:15px;fill:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:var(--teal) url("https://www.avenueschool.es/wp-content/uploads/2022/05/Avenue-Fondo-Cursos-intensivos_HOME-scaled.jpg") center/cover no-repeat;padding:70px 0 84px}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .hero-art img{width:100%;max-width:520px;margin:0 auto;filter:drop-shadow(0 10px 24px rgba(0,0,0,.12))}
+  .hero-card{background:rgba(255,255,255,.94);border-radius:22px;padding:40px 38px;box-shadow:0 30px 60px -30px rgba(57,59,72,.55)}
+  .hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.08;font-weight:800;margin:12px 0 18px;letter-spacing:-.01em}
+  .hero .q{font-size:1.15rem;color:var(--ink);font-weight:500;margin-bottom:26px;line-height:1.45}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-family:Raleway,sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;transition:.2s;border:2px solid var(--ink);cursor:pointer;white-space:nowrap}
+  .btn svg{width:17px;height:17px;flex:none}
+  .btn-ink{background:var(--ink);color:#fff}
+  .btn-ink:hover{background:var(--coral);border-color:var(--coral)}
+  .btn-line{background:transparent;color:var(--ink)}
+  .btn-line:hover{background:var(--ink);color:#fff}
+  .btn-white{background:#fff;color:var(--ink);border-color:#fff}
+  .btn-white:hover{background:var(--sun);border-color:var(--sun)}
+  .btn-coral{background:var(--coral);border-color:var(--coral);color:#fff}
+
+  section{padding:90px 0}
+
+  /* hola */
+  .hola-grid{display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:center;max-width:960px;margin:0 auto}
+  .hola-grid img{width:220px;height:220px}
+  .hola h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:14px}
+  .hola p{font-size:1.12rem;margin-bottom:26px;max-width:620px}
+
+  /* features */
+  .features{background:var(--tint)}
+  .fgrid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .feat{background:#fff;border-radius:var(--radius);padding:30px 24px;border-top:5px solid var(--c);box-shadow:0 18px 40px -32px rgba(57,59,72,.5)}
+  .feat .ic{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 22%,#fff);margin-bottom:18px}
+  .feat .ic svg{width:28px;height:28px;stroke:var(--ink)}
+  .feat h3{font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+  .feat p{font-size:.98rem}
+  .feat.free{background:var(--ink);color:#fff;border-top-color:var(--sun)}
+  .feat.free h3{color:#fff}
+  .feat.free .big{font-family:Raleway,sans-serif;font-size:2.6rem;font-weight:800;color:var(--sun);line-height:1;margin:6px 0 8px}
+  .feat.free .ic{background:rgba(255,255,255,.12)}
+  .feat.free .ic svg{stroke:#fff}
+
+  /* experience */
+  .exp{position:relative;color:#fff;text-align:center;background:#2c2e39 url("https://www.avenueschool.es/wp-content/uploads/2016/09/aprender-ingles-verano-avenue.jpg") center/cover no-repeat;padding:110px 0}
+  .exp::before{content:"";position:absolute;inset:0;background:rgba(44,46,57,.6)}
+  .exp .wrap{position:relative}
+  .exp img{width:min(440px,100%);margin:0 auto 18px}
+  .exp p{font-size:1.18rem;max-width:640px;margin:0 auto}
+  .exp p + p{margin-top:6px}
+  .exp .btn{margin-top:30px}
+
+  /* kids */
+  .kids{background:var(--ink);color:#e9e8ee}
+  .kids-grid{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+  .kids .badge{width:120px;height:120px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;text-align:center;font-family:Raleway,sans-serif;font-weight:800;line-height:1}
+  .kids .badge b{font-size:2.6rem;display:block}
+  .kids .badge small{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+  .kids h2{color:#fff;font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800}
+  .kids .lead{color:var(--teal);font-weight:700;margin:6px 0 12px;font-size:1.08rem}
+  .kids p{max-width:640px}
+
+  /* dudas */
+  .dudas{padding:0}
+  .dudas-grid{display:grid;grid-template-columns:1fr 1fr;min-height:440px}
+  .dudas-ph{background:url("https://www.avenueschool.es/wp-content/uploads/2016/09/avenue-school-zaragoza-clase-alumnos.jpg") center/cover no-repeat}
+  .dudas-tx{padding:70px 56px;display:flex;flex-direction:column;justify-content:center;background:color-mix(in srgb,var(--teal) 28%,#fff)}
+  .dudas h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800}
+  .dudas .lead{font-family:Raleway,sans-serif;font-weight:700;color:var(--coral);font-size:1.25rem;margin:4px 0 16px}
+  .dudas p{font-size:1.08rem;margin-bottom:26px;max-width:520px}
+
+  /* centros */
+  .centros .head{text-align:center;max-width:720px;margin:0 auto 40px}
+  .centros h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;margin-top:8px}
+  .centros .head p{color:var(--muted);font-size:1.1rem;margin-top:8px}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:20px;align-items:stretch}
+  .centro{border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;background:#fff;border-top:5px solid var(--c)}
+  .centro h3{font-size:1.15rem;font-weight:800;margin-bottom:14px}
+  .centro ul{list-style:none;display:grid;gap:10px}
+  .centro li a,.centro li span{display:inline-flex;gap:10px;align-items:center;color:var(--ink)}
+  .centro li a:hover{color:var(--coral);text-decoration:underline}
+  .centro svg{width:18px;height:18px;flex:none;stroke:var(--coral)}
+  .centro .btn{margin-top:20px;width:100%}
+  .map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:320px}
+  .map iframe{width:100%;height:100%;min-height:320px;border:0;display:block}
+
+  footer{background:var(--ink-2);color:#cfcdd8;padding:44px 0;font-size:.92rem}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  .foot img{height:46px;width:auto}
+  footer .social a{background:rgba(255,255,255,.1)}
+  footer .social svg{fill:#fff}
+
+  .callbar{display:none}
+
+  @media (max-width:1000px){
+    .menu,.nav-right .social{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink)}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav summary svg{width:22px;height:22px}
+    .mnav .panel{position:absolute;right:0;top:56px;width:min(300px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px -24px rgba(57,59,72,.55);padding:10px}
+    .mnav .panel a{display:block;padding:10px 12px;border-radius:8px;font-family:Raleway,sans-serif;font-weight:700;color:var(--ink)}
+    .mnav .panel a:hover{background:var(--tint)}
+    .mnav .panel .s a{font-family:Karla,sans-serif;font-weight:500;padding-left:26px}
+    .mnav .panel .social{padding:8px 12px 4px}
+    .mnav .panel .social a{padding:0}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-art img{max-width:380px}
+    .fgrid4{grid-template-columns:1fr 1fr}
+    .cgrid{grid-template-columns:1fr 1fr}
+    .map{grid-column:1/-1}
+  }
+  @media (max-width:720px){
+    .wrap{padding:0 16px}
+    .nav{min-height:68px}
+    .nav .logo img{height:40px}
+    .hero{padding:36px 0 48px}
+    .hero-card{padding:28px 22px}
+    .hero-card .btn{width:100%}
+    section{padding:60px 0}
+    .hola-grid{grid-template-columns:1fr;gap:24px;text-align:center}
+    .hola-grid img{width:150px;height:150px;margin:0 auto}
+    .hola .btn{width:100%}
+    .fgrid4{grid-template-columns:1fr}
+    .exp{padding:76px 0}
+    .exp .btn{width:100%}
+    .kids-grid{grid-template-columns:1fr;gap:20px;text-align:left}
+    .kids .btn{width:100%}
+    .dudas-grid{grid-template-columns:1fr}
+    .dudas-ph{min-height:220px}
+    .dudas-tx{padding:44px 16px}
+    .dudas .btn{width:100%}
+    .cgrid{grid-template-columns:1fr}
+    .foot{flex-direction:column;text-align:center}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 6px;font-size:.74rem;letter-spacing:.06em;flex-direction:column;gap:2px;line-height:1.2}
+    .callbar .btn span{font-family:Karla,sans-serif;letter-spacing:0;text-transform:none;font-size:.9rem;font-weight:700}
+    body{padding-bottom:84px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Avenue School · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.avenueschool.es/" aria-label="Avenue School"><img src="https://www.avenueschool.es/wp-content/uploads/2022/04/Logo_Avenue_School_.Dark_.svg" alt="Logo Avenue School" width="180" height="60"></a>
+    <div class="nav-right">
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="https://www.avenueschool.es/academia/">Academia</a></li>
+          <li class="has"><a href="#cursos">Cursos</a>
+            <ul class="sub">
+              <li><a href="https://www.avenueschool.es/ingles-para-ninos/">Inglés para Niños</a></li>
+              <li><a href="https://www.avenueschool.es/ingles-para-adultos/">Inglés para Adultos</a></li>
+              <li><a href="https://www.avenueschool.es/certificados-oficiales-cambridge/">Certificados Cambridge</a></li>
+              <li><a href="https://www.avenueschool.es/cursos-intensivos/">Intensivos</a></li>
+            </ul>
+          </li>
+          <li><a class="bolt" href="https://www.avenueschool.es/cursos-intensivos/"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Intensivos</a></li>
+          <li><a href="https://www.avenueschool.es/contacto/">Contacto</a></li>
+        </ul>
+        <details class="mnav">
+          <summary aria-label="Abrir menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+          <div class="panel">
+            <a href="https://www.avenueschool.es/academia/">Academia</a>
+            <a href="#cursos">Cursos</a>
+            <div class="s">
+              <a href="https://www.avenueschool.es/ingles-para-ninos/">Inglés para Niños</a>
+              <a href="https://www.avenueschool.es/ingles-para-adultos/">Inglés para Adultos</a>
+              <a href="https://www.avenueschool.es/certificados-oficiales-cambridge/">Certificados Cambridge</a>
+              <a href="https://www.avenueschool.es/cursos-intensivos/">Intensivos</a>
+            </div>
+            <a href="https://www.avenueschool.es/contacto/">Contacto</a>
+            <div class="social">
+              <a href="https://www.facebook.com/avenueschool/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+              <a href="https://www.instagram.com/avenueschool/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2.2c-2.7 0-3 0-4 .1-3.6.2-5.5 2-5.7 5.7-.1 1-.1 1.4-.1 4s0 3 .1 4c.2 3.6 2 5.5 5.7 5.7 1 .1 1.4.1 4 .1s3 0 4-.1c3.6-.2 5.5-2 5.7-5.7.1-1 .1-1.4.1-4s0-3-.1-4c-.2-3.6-2-5.5-5.7-5.7-1-.1-1.3-.1-4-.1zm0 1.8c2.6 0 2.9 0 4 .1 2.6.1 3.8 1.3 3.9 3.9.1 1 .1 1.3.1 4s0 2.9-.1 4c-.1 2.6-1.3 3.8-3.9 3.9-1 .1-1.4.1-4 .1s-2.9 0-4-.1c-2.6-.1-3.8-1.3-3.9-3.9-.1-1-.1-1.4-.1-4s0-2.9.1-4C4.2 5.4 5.4 4.2 8 4.1c1 0 1.4-.1 4-.1z"/></svg></a>
+            </div>
+          </div>
+        </details>
+      </nav>
+      <div class="social">
+        <a href="https://www.facebook.com/avenueschool/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+        <a href="https://www.instagram.com/avenueschool/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2.2c-2.7 0-3 0-4 .1-3.6.2-5.5 2-5.7 5.7-.1 1-.1 1.4-.1 4s0 3 .1 4c.2 3.6 2 5.5 5.7 5.7 1 .1 1.4.1 4 .1s3 0 4-.1c3.6-.2 5.5-2 5.7-5.7.1-1 .1-1.4.1-4s0-3-.1-4c-.2-3.6-2-5.5-5.7-5.7-1-.1-1.3-.1-4-.1zm0 1.8c2.6 0 2.9 0 4 .1 2.6.1 3.8 1.3 3.9 3.9.1 1 .1 1.3.1 4s0 2.9-.1 4c-.1 2.6-1.3 3.8-3.9 3.9-1 .1-1.4.1-4 .1s-2.9 0-4-.1c-2.6-.1-3.8-1.3-3.9-3.9-.1-1-.1-1.4-.1-4s0-2.9.1-4C4.2 5.4 5.4 4.2 8 4.1c1 0 1.4-.1 4-.1z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <a class="hero-art" href="https://www.avenueschool.es/cursos-intensivos/"><img src="https://www.avenueschool.es/wp-content/uploads/2022/05/Avenue-Cursos-intensivos.png" alt="Avenue - Cursos intensivos de inglés B1 B2 C1"></a>
+      <div class="hero-card">
+        <span class="eyebrow">Avenue School</span>
+        <h1>¡Tu academia de inglés en Zaragoza!</h1>
+        <p class="q">¿Quieres conseguir tu título de inglés, pero no tienes mucho tiempo?</p>
+        <a href="https://www.avenueschool.es/cursos-intensivos/" class="btn btn-ink">¡Te ayudamos! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 14a4 4 0 0 0 7 0M9 9.5h.01M15 9.5h.01"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOLA -->
+  <section class="hola">
+    <div class="wrap hola-grid">
+      <img src="https://www.avenueschool.es/wp-content/uploads/2022/04/Imagotipo-Avenue-1-200x200.png" alt="Avenue School - Imagotipo" width="200" height="200">
+      <div>
+        <h2>Hola ¿qué estás buscando?</h2>
+        <p>Si lo que quieres es aprender o mejorar tu inglés en Zaragoza somos lo que estás buscando. Además te preparamos para que obtengas tu título oficial.</p>
+        <a href="https://www.avenueschool.es/academia/" class="btn btn-ink">Conócenos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="cursos">
+    <div class="wrap fgrid4">
+      <article class="feat" style="--c:var(--teal)">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c2 .6 3.2 2.4 3.5 5.2"/></svg></span>
+        <h3>Todos los niveles</h3>
+        <p>Preparamos desde el nivel más básico al más alto. No importa lo que estés buscando, lo tenemos: técnicas, preparación de CV´s, clases de conversación o lo que tú necesites.</p>
+      </article>
+      <article class="feat" style="--c:var(--coral)">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 8h6M7 11h6M7 14h4"/><circle cx="17" cy="11" r="2"/><path d="m16 13-1 6 2-1 2 1-1-6"/></svg></span>
+        <h3>Exámenes oficiales</h3>
+        <p>Nuestra meta es que nuestros alumnos puedan presentarse a cualquier examen oficial. Certificados de Cambridge: YLE, KET, PET, FCE, CAE y PCE, E.O.I., Instituto de Idiomas.</p>
+      </article>
+      <article class="feat" style="--c:var(--sage)">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 11v9H3.5v-9zM7 11l4-8a2.5 2.5 0 0 1 2.5 2.5V9h5.5a2 2 0 0 1 2 2.3l-1.2 7a2 2 0 0 1-2 1.7H7"/></svg></span>
+        <h3>Clases dinámicas</h3>
+        <p>Organizamos clases muy activas en las que nuestros alumnos son los protagonistas de lo que ocurre en ellas. ¡Nos gusta que participen y saquen el máximo partido a la clase!</p>
+      </article>
+      <article class="feat free">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></span>
+        <h3>Matrícula gratuita</h3>
+        <div class="big">¡¡0€!!</div>
+        <p>Aprovecha esta oportunidad</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="exp">
+    <div class="wrap">
+      <img src="https://www.avenueschool.es/wp-content/uploads/2016/09/ingles-experience-verano-avenue01.png" alt="ingles-experience-verano-avenue01">
+      <p>Una experiencia única en el extranjero, disfrutando de un auténtico ambiente anglosajón.</p>
+      <p>Conociendo su cultura y aprendiendo tanto su lenguaje como sus costumbres.</p>
+      <a href="https://www.avenueschool.es/contacto/" class="btn btn-white">Descúbrela</a>
+    </div>
+  </section>
+
+  <!-- KIDS -->
+  <section class="kids">
+    <div class="wrap kids-grid">
+      <div class="badge" aria-hidden="true"><span><b>5</b><small>años</small></span></div>
+      <div>
+        <h2>Niños a partir de 5 años</h2>
+        <p class="lead">Cómo disfrutan los más peques en Avenue</p>
+        <p>Utilizamos un método enfocado únicamente para los más pequeños. Nuestra filosofía es que aprendan de la manera más natural y divertida, utilizando una serie de juegos, canciones y actividades específicas para cada edad.</p>
+      </div>
+      <a href="https://www.avenueschool.es/ingles-para-ninos/" class="btn btn-white">Más información <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- DUDAS -->
+  <section class="dudas">
+    <div class="dudas-grid">
+      <div class="dudas-ph" role="img" aria-label="Clase en Avenue School Zaragoza"></div>
+      <div class="dudas-tx">
+        <h2>¿Tienes alguna duda?</h2>
+        <p class="lead">¡Pregúntanos!</p>
+        <p>¿Necesitas clases personalizadas o algo muy específico? Contacta con nosotros, te resolveremos cualquier cuestión que tengas y te ayudaremos a encontrar la mejor manera de aprender inglés. ¡Escríbenos!</p>
+        <div><a href="https://www.avenueschool.es/contacto/" class="btn btn-ink">Contactar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENTROS -->
+  <section class="centros" id="centros">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Elige el tuyo y aprende inglés con nosotros</span>
+        <h2>¡Tenemos dos centros en Zaragoza!</h2>
+      </div>
+      <div class="cgrid">
+        <article class="centro" style="--c:var(--coral)">
+          <h3>Avenue School Centro</h3>
+          <ul>
+            <li><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Doctor Cerrada 24</span></li>
+            <li><a href="tel:+34876019490"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>876 019 490</a></li>
+            <li><a href="mailto:info@avenueschool.es"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>info@avenueschool.es</a></li>
+          </ul>
+          <a href="tel:+34876019490" class="btn btn-ink">876 019 490</a>
+        </article>
+        <article class="centro" style="--c:var(--teal)">
+          <h3>Avenue School Romareda</h3>
+          <ul>
+            <li><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Condes de Aragón 16</span></li>
+            <li><a href="tel:+34976364608"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>976 364 608</a></li>
+            <li><a href="mailto:romareda@avenueschool.es"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>romareda@avenueschool.es</a></li>
+          </ul>
+          <a href="tel:+34976364608" class="btn btn-ink">976 364 608</a>
+        </article>
+        <div class="map">
+          <iframe src="https://www.google.com/maps/d/embed?mid=1xReTeNKVjw0TikTJceIA-mTkGI-AK6w0&amp;hl=es&amp;ehbc=2E312F" loading="lazy" title="Mapa de los centros de Avenue School en Zaragoza"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="https://www.avenueschool.es/wp-content/uploads/2022/04/Logo_Avenue_School_Light.svg" alt="logo avenue school" width="180" height="60">
+    <span>Copyright © 2022 Avenue School. Todos los derechos reservados.</span>
+    <div class="social">
+      <a href="https://www.facebook.com/avenueschool/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+      <a href="https://www.instagram.com/avenueschool/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2.2c-2.7 0-3 0-4 .1-3.6.2-5.5 2-5.7 5.7-.1 1-.1 1.4-.1 4s0 3 .1 4c.2 3.6 2 5.5 5.7 5.7 1 .1 1.4.1 4 .1s3 0 4-.1c3.6-.2 5.5-2 5.7-5.7.1-1 .1-1.4.1-4s0-3-.1-4c-.2-3.6-2-5.5-5.7-5.7-1-.1-1.3-.1-4-.1zm0 1.8c2.6 0 2.9 0 4 .1 2.6.1 3.8 1.3 3.9 3.9.1 1 .1 1.3.1 4s0 2.9-.1 4c-.1 2.6-1.3 3.8-3.9 3.9-1 .1-1.4.1-4 .1s-2.9 0-4-.1c-2.6-.1-3.8-1.3-3.9-3.9-.1-1-.1-1.4-.1-4s0-2.9.1-4C4.2 5.4 5.4 4.2 8 4.1c1 0 1.4-.1 4-.1z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34876019490" class="btn btn-ink">Centro <span>876 019 490</span></a>
+  <a href="tel:+34976364608" class="btn btn-coral">Romareda <span>976 364 608</span></a>
+</div>
+
+</body>
+</html>
