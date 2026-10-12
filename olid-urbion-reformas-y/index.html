@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Olid Urbión Reformas y Limpiezas · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#10375a; --navy-dark:#091c33; --blue:#517298; --steel:#4a6178; --soft:#b5bccb;
+    --ink:#0f2236; --text:#3b4a5a; --muted:#66768a; --line:#dfe5ee; --tint:#f3f6fa; --white:#fff;
+    --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Mulish,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Raleway,sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  h1,h2,h3{font-family:Raleway,sans-serif;color:var(--ink);line-height:1.15}
+
+  .demo{background:var(--navy-dark);color:#c9d3e2;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:18px}
+  .logo img{height:52px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 12px;font-family:Raleway,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;color:var(--ink);border-radius:8px}
+  .menu > li > a:hover{background:var(--tint);color:var(--navy)}
+  .menu .has-sub > a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px}
+  .sub{display:none;position:absolute;top:100%;left:0;min-width:300px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 22px 44px -24px rgba(9,28,51,.4);padding:8px;list-style:none}
+  .has-sub:hover .sub,.has-sub:focus-within .sub{display:block}
+  .sub a{display:block;padding:8px 12px;border-radius:7px;font-size:.84rem;font-weight:600;color:var(--text)}
+  .sub a:hover{background:var(--tint);color:var(--navy)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.92rem;transition:.2s;border:1.5px solid var(--navy);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-dark);border-color:var(--navy-dark)}
+  .btn-line{background:#fff;color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.85rem}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  .mob-menu{display:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--navy-dark)}
+  .hero-bg{position:absolute;inset:0;background:url("https://olidurbion.com/wp-content/uploads/2019/04/reforma-integral-vivienda-valladolid.jpg") center/cover no-repeat;opacity:.38}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,28,51,.92) 0%,rgba(16,55,90,.65) 60%,rgba(16,55,90,.25) 100%)}
+  .hero .wrap{position:relative;z-index:1;padding-top:90px;padding-bottom:96px}
+  .hero .eyebrow{color:var(--soft)}
+  .hero h1{color:#fff;font-weight:800;font-size:clamp(2.2rem,5vw,3.8rem);max-width:760px;margin:14px 0 14px;letter-spacing:-.01em}
+  .hero .lead{font-size:1.15rem;max-width:620px;color:#dbe3ee}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08);border-color:#fff}
+  .tel{font-variant-numeric:tabular-nums;opacity:.85;font-weight:600}
+
+  /* slides as cards */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:-54px;position:relative;z-index:2}
+  .duo-card{display:grid;grid-template-columns:150px 1fr;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 50px -30px rgba(9,28,51,.5);border:1px solid var(--line)}
+  .duo-card img{width:100%;height:100%;object-fit:cover;min-height:140px}
+  .duo-card div{padding:22px 24px}
+  .duo-card h2{font-size:1.02rem;letter-spacing:.04em;color:var(--navy)}
+  .duo-card p{font-size:.94rem;margin-top:6px}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:38px}
+  .head h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px;font-size:1.05rem}
+
+  /* intro */
+  .intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .intro img{border-radius:var(--radius);width:100%;max-width:420px}
+  .intro p{font-size:1.05rem}
+  .intro p a{color:var(--navy);font-weight:700;text-decoration:underline;text-decoration-color:var(--soft);text-underline-offset:3px}
+
+  /* portfolio */
+  .portfolio{background:var(--tint)}
+  .works{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .work{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:.25s;display:flex;flex-direction:column}
+  .work:hover{transform:translateY(-3px);box-shadow:0 20px 40px -26px rgba(9,28,51,.45)}
+  .work img{aspect-ratio:3/2;object-fit:cover;width:100%}
+  .work div{padding:16px 18px 18px}
+  .work h3{font-size:1rem}
+  .work .cats{font-size:.82rem;color:var(--blue);margin-top:4px;font-weight:600}
+  .work .cats a:hover{text-decoration:underline}
+
+  /* reform services tiles */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{position:relative;border-radius:var(--radius);overflow:hidden;min-height:230px;display:flex;align-items:flex-end;color:#fff;background:var(--navy-dark)}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.4s}
+  .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,28,51,0) 30%,rgba(9,28,51,.9) 100%)}
+  .tile span{position:relative;z-index:1;padding:20px;font-family:Raleway,sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.04em;line-height:1.3}
+  .tile:hover img{transform:scale(1.05)}
+
+  /* about */
+  .about{background:var(--navy);color:#dbe3ee}
+  .about .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about h2{color:#fff;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.5rem);margin:10px 0 10px}
+  .about .eyebrow{color:var(--soft)}
+  .about .kicker{font-family:Raleway,sans-serif;font-weight:700;color:#fff;font-size:1.12rem;margin-bottom:14px}
+  .about .since{display:flex;align-items:baseline;gap:14px;border-left:3px solid var(--soft);padding-left:20px}
+  .about .since b{font-family:Raleway,sans-serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;color:#fff;line-height:1}
+  .about .since span{font-size:1rem;color:var(--soft);font-weight:600}
+  .about .btn{margin-top:26px;background:#fff;color:var(--navy);border-color:#fff}
+  .about .btn:hover{background:var(--tint)}
+
+  /* services lists */
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .svc-card img{aspect-ratio:16/9;object-fit:cover;width:100%}
+  .svc-card .body{padding:22px 24px 24px}
+  .svc-card h3{font-size:1.05rem;letter-spacing:.02em;margin-bottom:6px}
+  .svc-card .note{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+  .svc-card ul{list-style:none;display:grid;gap:8px;margin-top:10px}
+  .svc-card li{font-size:.93rem;padding-left:26px;position:relative}
+  .svc-card li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:50%;background:var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310375a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/10px no-repeat;border:1px solid var(--soft)}
+
+  .clean{background:var(--tint)}
+  .clean .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .clean p{font-size:1.04rem}
+  .clean img{border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;width:100%}
+  .clean .btn{margin-top:24px}
+
+  /* values */
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .value{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;transition:.25s}
+  .value:hover{border-color:var(--blue);box-shadow:0 18px 40px -28px rgba(9,28,51,.4)}
+  .value .ic{width:48px;height:48px;border-radius:12px;background:var(--tint);color:var(--navy);display:grid;place-items:center;margin-bottom:14px}
+  .value h3{font-size:.95rem;letter-spacing:.12em}
+  .value p{font-size:.93rem;margin-top:8px}
+
+  /* contact */
+  .contact{background:var(--navy-dark);color:#cfd8e5}
+  .contact .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .ccard{background:rgba(255,255,255,.04);border:1px solid rgba(181,188,203,.25);border-radius:var(--radius);padding:30px}
+  .ccard h2{color:#fff;font-size:1.1rem;letter-spacing:.06em;margin-bottom:18px}
+  .ccard ul{list-style:none;display:grid;gap:12px}
+  .ccard li{display:flex;gap:12px;align-items:center;font-size:1rem}
+  .ccard li svg{color:var(--soft);flex:none}
+  .ccard a:hover{color:#fff;text-decoration:underline}
+  .ccard .big{font-family:Raleway,sans-serif;font-weight:800;font-size:1.35rem;color:#fff}
+
+  footer{background:var(--navy-dark);border-top:1px solid rgba(181,188,203,.2);padding:26px 0;font-size:.84rem;color:#9fb0c6}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .sitemap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:44px 0 32px;border-bottom:1px solid rgba(181,188,203,.2)}
+  .sitemap h3{color:#fff;font-size:.8rem;letter-spacing:.14em;margin-bottom:12px}
+  .sitemap ul{list-style:none;display:grid;gap:6px}
+  .sitemap a{font-size:.86rem}
+  .sitemap img{height:46px;width:auto;background:#fff;border-radius:6px;padding:4px 8px}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mob-menu{display:block}
+    .works,.tiles{grid-template-columns:1fr 1fr}
+    .svc{grid-template-columns:1fr 1fr}
+    .values{grid-template-columns:1fr 1fr}
+    .sitemap{grid-template-columns:1fr 1fr}
+  }
+  .mob-menu summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1.5px solid var(--line);border-radius:999px;font-weight:700;font-size:.85rem;color:var(--ink)}
+  .mob-menu summary::-webkit-details-marker{display:none}
+  .mob-menu[open] .panel{display:block}
+  .mob-menu .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);max-height:75vh;overflow:auto;padding:10px 20px 20px}
+  .mob-menu .panel > ul{list-style:none}
+  .mob-menu .panel > ul > li > a{display:block;padding:12px 0;font-family:Raleway,sans-serif;font-weight:800;font-size:.9rem;color:var(--ink);border-bottom:1px solid var(--line)}
+  .mob-menu .panel ul ul{list-style:none;padding:6px 0 8px 14px}
+  .mob-menu .panel ul ul a{display:block;padding:6px 0;font-size:.86rem;color:var(--text)}
+
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .nav{height:68px}
+    .logo img{height:40px}
+    .nav-cta .btn{display:none}
+    .hero .wrap{padding-top:56px;padding-bottom:84px}
+    .hero .row .btn{width:100%}
+    .duo{grid-template-columns:1fr;margin-top:-44px}
+    .duo-card{grid-template-columns:110px 1fr}
+    .duo-card div{padding:16px 18px}
+    section{padding:64px 0}
+    .intro,.about .grid,.clean .grid{grid-template-columns:1fr;gap:30px}
+    .intro img{max-width:260px}
+    .works,.tiles,.svc,.values,.contact .cards{grid-template-columns:1fr}
+    .tile{min-height:180px}
+    .ccard{padding:24px 20px}
+    .sitemap{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Olid Urbión Reformas y Limpiezas · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://olidurbion.com/" aria-label="Olid Urbión Reformas y Limpiezas"><img src="https://olidurbion.com/wp-content/uploads/2019/10/Logotipo-Olid-Urbi%C3%B3n.png" alt="Olid Urbión Reformas y Limpiezas Logo"></a>
+    <ul class="menu">
+      <li><a href="https://olidurbion.com/">INICIO</a></li>
+      <li class="has-sub"><a href="https://olidurbion.com/reformas/">REFORMAS</a>
+        <ul class="sub">
+          <li><a href="https://olidurbion.com/reformas/reformas-integrales-de-viviendas/">REFORMAS INTEGRALES DE VIVIENDAS</a></li>
+          <li><a href="https://olidurbion.com/reformas/reformas-de-locales-comerciales/">REFORMAS DE LOCALES COMERCIALES</a></li>
+          <li><a href="https://olidurbion.com/reformas/reformas-en-comunidades/">REFORMAS EN COMUNIDADES</a></li>
+          <li><a href="https://olidurbion.com/reformas/instalacion-y-reparacion-de-pavimentos/">INSTALACIÓN Y REPARACIÓN DE PAVIMENTOS</a></li>
+          <li><a href="https://olidurbion.com/reformas/carpinteria-a-medida/">CARPINTERÍA A MEDIDA</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="https://olidurbion.com/servicios-de-limpieza/">SERVICIOS DE LIMPIEZA</a>
+        <ul class="sub">
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpiezas-generales/">LIMPIEZAS GENERALES</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-para-particulares/">LIMPIEZA DE VIVIENDAS</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-oficinas/">LIMPIEZA DE OFICINAS</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/mantenimiento-y-limpieza-de-comunidades/">MANTENIMIENTO Y LIMPIEZA DE COMUNIDADES</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-naves-industriales/">LIMPIEZA DE NAVES INDUSTRIALES</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-cristales/">LIMPIEZA DE CRISTALES</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/pulido-y-abrillantado-de-suelos/">PULIDO Y ABRILLANTADO DE SUELOS</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-garages/">LIMPIEZA DE GARAJES</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-piscinas/">LIMPIEZA DE PISCINAS</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/tratamiento-de-solares-de-hormigon/">TRATAMIENTO DE SOLERAS DE HORMIGÓN</a></li>
+        </ul>
+      </li>
+      <li><a href="https://olidurbion.com/trabajos-realizados/">PROYECTOS REALIZADOS</a></li>
+      <li><a href="https://olidurbion.com/blog/">BLOG</a></li>
+      <li><a href="https://olidurbion.com/contacto/">CONTACTO</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+34983212964" class="btn btn-navy btn-sm"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>983 212 964</a>
+      <details class="mob-menu">
+        <summary aria-label="Menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Menú</summary>
+        <div class="panel">
+          <ul>
+            <li><a href="https://olidurbion.com/">INICIO</a></li>
+            <li><a href="https://olidurbion.com/reformas/">REFORMAS</a>
+              <ul>
+                <li><a href="https://olidurbion.com/reformas/reformas-integrales-de-viviendas/">REFORMAS INTEGRALES DE VIVIENDAS</a></li>
+                <li><a href="https://olidurbion.com/reformas/reformas-de-locales-comerciales/">REFORMAS DE LOCALES COMERCIALES</a></li>
+                <li><a href="https://olidurbion.com/reformas/reformas-en-comunidades/">REFORMAS EN COMUNIDADES</a></li>
+                <li><a href="https://olidurbion.com/reformas/instalacion-y-reparacion-de-pavimentos/">INSTALACIÓN Y REPARACIÓN DE PAVIMENTOS</a></li>
+                <li><a href="https://olidurbion.com/reformas/carpinteria-a-medida/">CARPINTERÍA A MEDIDA</a></li>
+              </ul>
+            </li>
+            <li><a href="https://olidurbion.com/servicios-de-limpieza/">SERVICIOS DE LIMPIEZA</a>
+              <ul>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpiezas-generales/">LIMPIEZAS GENERALES</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-para-particulares/">LIMPIEZA DE VIVIENDAS</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-oficinas/">LIMPIEZA DE OFICINAS</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/mantenimiento-y-limpieza-de-comunidades/">MANTENIMIENTO Y LIMPIEZA DE COMUNIDADES</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-naves-industriales/">LIMPIEZA DE NAVES INDUSTRIALES</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-cristales/">LIMPIEZA DE CRISTALES</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/pulido-y-abrillantado-de-suelos/">PULIDO Y ABRILLANTADO DE SUELOS</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-garages/">LIMPIEZA DE GARAJES</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-piscinas/">LIMPIEZA DE PISCINAS</a></li>
+                <li><a href="https://olidurbion.com/servicios-de-limpieza/tratamiento-de-solares-de-hormigon/">TRATAMIENTO DE SOLERAS DE HORMIGÓN</a></li>
+              </ul>
+            </li>
+            <li><a href="https://olidurbion.com/trabajos-realizados/">PROYECTOS REALIZADOS</a></li>
+            <li><a href="https://olidurbion.com/blog/">BLOG</a></li>
+            <li><a href="https://olidurbion.com/contacto/">CONTACTO</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg" role="img" aria-label="reforma vivienda"></div>
+    <div class="wrap">
+      <span class="eyebrow">Olid Urbión</span>
+      <h1>REFORMAS Y LIMPIEZAS EN VALLADOLID</h1>
+      <p class="lead"><strong>EMPRESA DE REFORMAS Y LIMPIEZA.</strong> Empresa multiservicios para particulares y empresas en Valladolid.</p>
+      <div class="row">
+        <a href="tel:+34983212964" class="btn btn-navy" style="background:#fff;color:var(--navy);border-color:#fff">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="tel">983 212 964</span>
+        </a>
+        <a href="https://olidurbion.com/contacto/" class="btn btn-line">CONTACTO</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap duo">
+    <a class="duo-card" href="https://olidurbion.com/reformas/">
+      <img src="https://olidurbion.com/wp-content/uploads/2019/04/proyecto-reforma.jpg" alt="reforma integral" loading="lazy">
+      <div><h2>REFORMAS INTEGRALES EN VALLADOLID</h2><p>Especializados en reformas de viviendas, de locales comerciales y de comunidades</p></div>
+    </a>
+    <a class="duo-card" href="https://olidurbion.com/servicios-de-limpieza/">
+      <img src="https://olidurbion.com/wp-content/uploads/2019/10/Limpieza-profesional-para-particulares-en-Valladolid.jpg" alt="Servicio de limpieza profesional en Valladolid por la empresa Olid Urbión" loading="lazy">
+      <div><h2>EMPRESA DE LIMPIEZA EN VALLADOLID</h2><p>Limpieza para particulares, oficinas, locales y comunidades.</p></div>
+    </a>
+  </div>
+
+  <!-- INTRO -->
+  <section id="empresa">
+    <div class="wrap intro">
+      <img src="https://olidurbion.com/wp-content/uploads/2019/04/olid-urbion-reformas-valladolid.png" alt="Olid Urbión Reformas y Limpiezas Logo" loading="lazy">
+      <div>
+        <div class="head" style="margin-bottom:18px"><h2>OLID URBIÓN</h2></div>
+        <p>Olid Urbión es una empresa de Valladolid que ofrece una amplia cartera de servicios relacionados con las reformas, la limpieza y el sector inmobiliario. Estamos especializados en <a href="https://olidurbion.com/reformas/reformas-integrales-de-viviendas/">reformas integrales de viviendas</a>, <a href="https://olidurbion.com/reformas/reformas-de-locales-comerciales/">reformas de locales comerciales</a> y <a href="https://olidurbion.com/reformas/reformas-en-comunidades/">reformas en comunidades</a>. Podemos proporcionarle desde trabajos de desescombro, rozas, albañilería, pladur, electricidad, fontanería, calefacción, escayola, carpintería metálica, puertas de paso, pavimentos, pintura, reparación de tejados y fachadas hasta servicios de limpieza completamente personalizados para viviendas, comunidades o empresas. Damos servicio en toda la provincia de Valladolid y alrededores.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="proyectos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Proyectos realizados</span>
+      </div>
+      <div class="works">
+        <article class="work">
+          <a href="https://olidurbion.com/portfolio-items/reforma-de-cocina/"><img src="https://olidurbion.com/wp-content/uploads/2019/05/reforma-cocina-de-madera-en-valladolid-800x533.jpg" alt="reforma cocina de madera en vivienda de valladolid" loading="lazy"></a>
+          <div><h3><a href="https://olidurbion.com/portfolio-items/reforma-de-cocina/">Reforma de cocina</a></h3>
+          <p class="cats"><a href="https://olidurbion.com/categoria_portfolio/reformas-integrales/">Reformas integrales</a>, <a href="https://olidurbion.com/categoria_portfolio/cocinas/">Cocinas</a></p></div>
+        </article>
+        <article class="work">
+          <a href="https://olidurbion.com/portfolio-items/reforma-integral-de-bano/"><img src="https://olidurbion.com/wp-content/uploads/2019/05/ban%CC%83o-de-ceramica-sanchez-800x533.jpg" alt="reforma de baño en vivienda de valladolid" loading="lazy"></a>
+          <div><h3><a href="https://olidurbion.com/portfolio-items/reforma-integral-de-bano/">Reforma integral de baño</a></h3>
+          <p class="cats"><a href="https://olidurbion.com/categoria_portfolio/banos/">Baños</a></p></div>
+        </article>
+        <article class="work">
+          <a href="https://olidurbion.com/portfolio-items/reforma-integral-de-salon/"><img src="https://olidurbion.com/wp-content/uploads/2019/05/salon_f5ef16f662126bab42fa05de96476879-800x533.jpg" alt="reforma integral de salón diáfano en valladolid" loading="lazy"></a>
+          <div><h3><a href="https://olidurbion.com/portfolio-items/reforma-integral-de-salon/">Reforma integral de salón</a></h3>
+          <p class="cats"><a href="https://olidurbion.com/categoria_portfolio/reformas-integrales/">Reformas integrales</a></p></div>
+        </article>
+        <article class="work">
+          <a href="https://olidurbion.com/portfolio-items/reforma-de-vestidor-a-medida/"><img src="https://olidurbion.com/wp-content/uploads/2019/05/vestidor-de-madera-800x536.jpg" alt="Reforma de vestidor en madera en valladolid" loading="lazy"></a>
+          <div><h3><a href="https://olidurbion.com/portfolio-items/reforma-de-vestidor-a-medida/">Reforma de vestidor a medida</a></h3>
+          <p class="cats"><a href="https://olidurbion.com/categoria_portfolio/carpinteria-a-medida/">Carpintería a medida</a></p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFORM TILES -->
+  <section id="reformas">
+    <div class="wrap">
+      <div class="tiles">
+        <a class="tile" href="https://olidurbion.com/reformas/reformas-integrales-de-viviendas/"><img src="https://olidurbion.com/wp-content/uploads/2019/04/reforma-integral-vivienda-valladolid-1024x683.jpg" alt="" loading="lazy"><span>REFORMAS INTEGRALES DE VIVIENDAS</span></a>
+        <a class="tile" href="https://olidurbion.com/reformas/reformas-de-locales-comerciales/"><img src="https://olidurbion.com/wp-content/uploads/2019/04/reformas-locales-comerciales-1024x683.jpg" alt="" loading="lazy"><span>REFORMAS DE LOCALES COMERCIALES</span></a>
+        <a class="tile" href="https://olidurbion.com/reformas/reformas-en-comunidades/"><img src="https://olidurbion.com/wp-content/uploads/2019/04/reforma-fachadas-1024x683.jpg" alt="" loading="lazy"><span>REFORMAS EN COMUNIDADES DE VECINOS</span></a>
+        <a class="tile" href="https://olidurbion.com/reformas/carpinteria-a-medida/"><img src="https://olidurbion.com/wp-content/uploads/2019/04/reformas-viviendas-1024x682.jpg" alt="" loading="lazy"><span>PAVIMENTOS Y CARPINTERÍA A MEDIDA</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">Tu empresa de reformas en Valladolid</span>
+        <h2>Más de 25 años en el sector de la construcción hablan a nuestro favor</h2>
+        <div class="since"><b>Desde 1991</b></div>
+      </div>
+      <div>
+        <p>Desde 1991, buscamos ofrecer la mejor relación calidad precio y nos esforzamos e ilusionamos con cada uno de nuestros proyectos como si fuese el primero porque nos encanta lo que hacemos y eso se nota. Pero te recomendamos que visites el portfolio de proyectos y trabajos realizados, que hablan por sí solos, así como las opiniones de nuestros clientes en Google. No hay mejor recompensa que un cliente satisfecho que te recomienda.</p>
+        <a class="btn" href="https://olidurbion.com/trabajos-realizados/">PROYECTOS DE REFORMAS REALIZADOS</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="svc">
+        <article class="svc-card">
+          <img src="https://olidurbion.com/wp-content/uploads/2024/03/reformas-valladolid.jpg" alt="Mejor época del año para reformar" loading="lazy">
+          <div class="body">
+            <h3>NUESTROS SERVICIOS DE REFORMAS</h3>
+            <ul>
+              <li>Reformas integrales de viviendas</li>
+              <li>Reformas de locales comerciales</li>
+              <li>Reformas en comunidades de vecinos</li>
+              <li>Instalación y reparación de pavimentos</li>
+              <li>Carpintería a medida</li>
+            </ul>
+          </div>
+        </article>
+        <article class="svc-card">
+          <img src="https://olidurbion.com/wp-content/uploads/2019/10/Limpieza-de-cristales-valladolid-Olid-Urbi%C3%B3n.jpg" alt="limpieza cristales valladolid" loading="lazy">
+          <div class="body">
+            <h3>Servicios de limpieza para particulares</h3>
+            <ul>
+              <li>Limpiezas generales. Especializados en limpiezas después de obra y limpiezas para alquiler de viviendas.</li>
+              <li>Limpiezas de viviendas</li>
+              <li>Limpiezas de cristales</li>
+              <li>Pulido y abrillantado de suelos</li>
+              <li>Limpiezas de comunidades</li>
+              <li>Limpieza de garajes</li>
+              <li>Limpieza de piscinas</li>
+            </ul>
+          </div>
+        </article>
+        <article class="svc-card">
+          <img src="https://olidurbion.com/wp-content/uploads/2019/04/empresa-limpieza-oficinas-valladolid-1024x683.jpg" alt="empresa limpieza oficinas valladolid" loading="lazy">
+          <div class="body">
+            <h3>SERVICIOS DE LIMPIEZA PARA EMPRESAS</h3>
+            <ul>
+              <li>Limpieza de oficinas</li>
+              <li>Limpieza de locales comerciales</li>
+              <li>Limpiezas de naves industriales</li>
+              <li>Limpiezas de cristales</li>
+              <li>Pulido y abrillantado de suelos</li>
+              <li>Limpieza de soleras de hormigón</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLEANING -->
+  <section class="clean" id="limpieza">
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">Empresa de limpiezas en Valladolid</span>
+        <div class="head" style="margin-bottom:18px"><h2>Servicios de limpieza para particulares, comunidades y empresas</h2></div>
+        <p>Ofrecemos servicios de limpieza integrales: limpiezas generales, limpieza de viviendas, mantenimiento y limpieza de comunidades, limpieza de oficinas, limpieza de locales comerciales, limpieza de naves industriales y limpiezas para después de obra. También ofrecemos servicios puntuales de limpieza de cristales, pulido y abrillantado de suelo, limpieza de garajes, limpieza de piscinas y tratamiento de soleras de hormigón.</p>
+        <a class="btn btn-navy" href="https://olidurbion.com/categoria_portfolio/limpiezas/">PROYECTOS DE LIMPIEZAS REALIZADOS</a>
+      </div>
+      <img src="https://olidurbion.com/wp-content/uploads/2019/10/limpiezas-valladolid-Olid-Urbi%C3%B3n.jpg" alt="" loading="lazy">
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="valores">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Olid Urbión</span><h2>NUESTROS VALORES</h2></div>
+      <div class="values">
+        <article class="value">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span>
+          <h3>CALIDAD</h3>
+          <p>Trabajamos con los mejores profesionales y materiales para garantizar unos resultados excelentes.</p>
+        </article>
+        <article class="value">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span>
+          <h3>PROFESIONALIDAD</h3>
+          <p>Profesionalidad y seriedad como seña de identidad. Nuestra experiencia de más de 25 años nos avala: empresa en activo desde 1991.</p>
+        </article>
+        <article class="value">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M10 21v-3h4v3"/></svg></span>
+          <h3>SERVICIO INTEGRAL</h3>
+          <p>Nuestro equipo está formado por profesionales de todas las especialidades del sector de la construcción, pudiendo ofrecer a nuestros clientes un servicio integral.</p>
+        </article>
+        <article class="value">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></span>
+          <h3>INNOVACIÓN</h3>
+          <p>Estamos a la última en cuanto a novedades en técnicas, materiales, eficiencia energética y tendencias de diseño.</p>
+        </article>
+        <article class="value">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <h3>PUNTUALIDAD</h3>
+          <p>Cumplimos plazos y todos sabemos lo importante que es esto cuando eliges a los profesionales que se van a encargar de realizar tu reforma.</p>
+        </article>
+        <article class="value">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3zM18.5 15l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1zM5.5 15l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7.7-1.6z"/></svg></span>
+          <h3>LIMPIEZA</h3>
+          <p>Los distintos profesionales tienen cuidado durante todo el proceso y se realiza una limpieza fin de obra, dejando tu casa o negocio listo para disfrutar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <div class="wrap cards">
+      <div class="ccard">
+        <h2>EMPRESA DE REFORMAS EN VALLADOLID</h2>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a class="big" href="tel:+34983212964">983 212 964</a></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:reformas@olidurbion.com">reformas@olidurbion.com</a></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>L-V 10:00-14:00 y 17:00-20:00</li>
+        </ul>
+      </div>
+      <div class="ccard">
+        <h2>SERVICIOS DE LIMPIEZA EN VALLADOLID</h2>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a class="big" href="tel:+34983212964">983 212 964</a></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:limpiezas@olidurbion.com">limpiezas@olidurbion.com</a></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>L-V 10:00-14:00 y 17:00-20:00</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="sitemap">
+      <div><img src="https://olidurbion.com/wp-content/uploads/2019/10/Logotipo-Olid-Urbi%C3%B3n-300x100.png" alt="Logotipo de la empresa de Reformas y Limpiezas en Valladolid Olid Urbión" loading="lazy"></div>
+      <div>
+        <h3><a href="https://olidurbion.com/reformas/">REFORMAS</a></h3>
+        <ul>
+          <li><a href="https://olidurbion.com/reformas/reformas-integrales-de-viviendas/">Reformas integrales de viviendas</a></li>
+          <li><a href="https://olidurbion.com/reformas/reformas-de-locales-comerciales/">Reformas de locales comerciales</a></li>
+          <li><a href="https://olidurbion.com/reformas/reformas-en-comunidades/">Reformas en comunidades</a></li>
+          <li><a href="https://olidurbion.com/reformas/instalacion-y-reparacion-de-pavimentos/">Instalación y reparación de pavimentos</a></li>
+          <li><a href="https://olidurbion.com/reformas/carpinteria-a-medida/">Carpintería a medida</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3><a href="https://olidurbion.com/servicios-de-limpieza/">SERVICIOS DE LIMPIEZA</a></h3>
+        <ul>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpiezas-generales/">Limpiezas generales</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-para-particulares/">Limpieza de viviendas</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-oficinas/">Limpieza de oficinas</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/mantenimiento-y-limpieza-de-comunidades/">Mantenimiento y limpieza de comunidades</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-naves-industriales/">Limpieza de naves industriales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>&nbsp;</h3>
+        <ul>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-cristales/">Limpieza de cristales</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/pulido-y-abrillantado-de-suelos/">Pulido y abrillantado de suelos</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-garages/">Limpieza de garajes</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/limpieza-de-piscinas/">Limpieza de piscinas</a></li>
+          <li><a href="https://olidurbion.com/servicios-de-limpieza/tratamiento-de-solares-de-hormigon/">Tratamiento de soleras de hormigón</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot" style="padding-top:22px">
+      <span>©2019 Olid Urbión Servicios Generales</span>
+      <nav>
+        <a href="https://olidurbion.com/aviso-legal/">Aviso Legal</a>
+        <a href="https://olidurbion.com/politica-privacidad/">Política de privacidad</a>
+        <a href="https://olidurbion.com/uso-de-cookies/">Uso de cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983212964" class="btn btn-navy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>983 212 964</a>
+  <a href="https://olidurbion.com/contacto/" class="btn btn-line">CONTACTO</a>
+</div>
+
+</body>
+</html>
