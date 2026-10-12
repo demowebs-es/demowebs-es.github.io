@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bufete Prida · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#dc3212; --red-dark:#b82a0f; --red-tint:#fdf1ee; --ink:#252525; --text:#434344; --muted:#646464;
+    --line:#e6e5e5; --tint:#f7f6f5; --white:#fff; --radius:12px; --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700}
+  svg{flex:none}
+
+  .demo{background:var(--ink);color:#d6d4d2;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top bar */
+  .top{background:var(--tint);border-bottom:1px solid var(--line);font-size:.86rem}
+  .top .wrap{display:flex;justify-content:flex-end;gap:24px;height:38px;align-items:center}
+  .top a{display:inline-flex;align-items:center;gap:7px;color:var(--muted)}
+  .top a:hover{color:var(--red)}
+  .top svg{color:var(--red)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
+  .nav .logo img{height:62px;width:auto}
+  .menu{display:flex;gap:6px;list-style:none}
+  .menu a{display:block;padding:10px 14px;font-size:.84rem;font-weight:500;letter-spacing:.08em;color:var(--ink);border-radius:6px;position:relative}
+  .menu a::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--red);transform:scaleX(0);transition:.2s}
+  .menu a:hover::after,.menu a.on::after{transform:scaleX(1)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:4px;font-weight:500;font-size:.95rem;transition:.2s;border:2px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-line{background:#fff;color:var(--red)}
+  .btn-line:hover{background:var(--red-tint)}
+  .btn-sm{padding:10px 18px;font-size:.88rem}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,var(--tint) 100%);border-bottom:1px solid var(--line)}
+  .hero::after{content:"";position:absolute;right:-180px;top:-120px;width:520px;height:520px;border-radius:50%;border:70px solid var(--red-tint);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1;padding-top:96px;padding-bottom:104px}
+  .hero-in{max-width:760px}
+  .hero h1{font-family:"Roboto Slab",Georgia,serif;font-weight:700;color:var(--ink);font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;margin:14px 0 26px}
+  .hero h1 span{color:var(--red)}
+  .hero p{font-size:clamp(1.05rem,1.6vw,1.2rem);font-weight:300;color:var(--text);max-width:680px}
+  .hero p strong{font-weight:500;color:var(--ink)}
+  .hero p a{color:var(--red);font-weight:500;border-bottom:1px solid rgba(220,50,18,.35)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+
+  /* contact */
+  section{padding:88px 0}
+  .head{margin-bottom:38px}
+  .head h2{font-family:"Roboto Slab",Georgia,serif;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--ink);margin-top:8px;line-height:1.2}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;transition:.25s;position:relative}
+  .card:hover{border-color:var(--red);box-shadow:0 22px 44px -28px rgba(37,37,37,.35)}
+  .card .ic{width:52px;height:52px;border-radius:50%;background:var(--red-tint);color:var(--red);display:grid;place-items:center;margin-bottom:18px}
+  .card h3{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+  .card p{font-size:1.12rem;color:var(--ink);font-weight:500;line-height:1.5;word-break:break-word}
+  .card .go{margin-top:14px;font-size:.88rem;color:var(--red);font-weight:500}
+
+  /* cta band */
+  .band{background:var(--ink);color:#fff;padding:64px 0}
+  .band .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  .band h2{font-family:"Roboto Slab",Georgia,serif;font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:700;letter-spacing:.02em}
+  .band .row{display:flex;flex-wrap:wrap;gap:12px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .band .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+
+  footer{background:#1b1b1b;color:#b6b6b6;padding:56px 0 0;font-size:.92rem}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1.4fr 1fr;gap:36px;align-items:start}
+  .flogo{background:#fff;border-radius:8px;padding:8px 12px;display:inline-block}
+  .flogo img{height:48px;width:auto}
+  footer h4{color:#fff;font-size:.8rem;letter-spacing:.18em;font-weight:500;margin-bottom:14px}
+  footer ul{list-style:none;display:grid;gap:9px}
+  footer li{display:flex;gap:10px;align-items:flex-start}
+  footer li svg{color:var(--red);margin-top:3px}
+  footer a:hover{color:#fff}
+  .fbot{margin-top:48px;border-top:1px solid rgba(255,255,255,.1);padding:20px 0;font-size:.82rem}
+
+  .callbar{display:none}
+
+  @media (max-width:900px){
+    .nav{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:4px;row-gap:2px}
+    .menu{order:3;width:100%;justify-content:center;border-top:1px solid var(--line);padding-top:4px}
+    .menu a{padding:9px 8px;font-size:.74rem;letter-spacing:.04em}
+    .menu a::after{left:8px;right:8px}
+    .cards{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .top{display:none}
+    .nav .logo img{height:50px}
+    .nav-cta{display:none}
+    .hero .wrap{padding-top:56px;padding-bottom:64px}
+    .hero::after{width:300px;height:300px;border-width:44px;right:-140px;top:-90px}
+    .hero .row .btn,.band .row .btn{width:100%}
+    section{padding:60px 0}
+    .fgrid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Bufete Prida · demo no oficial</div>
+
+<div class="top">
+  <div class="wrap">
+    <a href="mailto:bufeteprida@ical.es"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>bufeteprida@ical.es</a>
+    <a href="tel:+34987216200"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>987 216 200</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.bufeteprida.es/" aria-label="Bufete Prida"><img src="https://de.cdn-website.com/06626b75df164160aba822c69e3a8035/DESKTOP/png/bufetepridalogo.png" alt="Bufete Prida logo" width="202" height="77"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.bufeteprida.es/">INICIO</a></li>
+      <li><a href="https://www.bufeteprida.es/servicios-de-abogacia">SERVICIOS DE ABOGACÍA</a></li>
+      <li><a href="https://www.bufeteprida.es/contacto">CONTACTO</a></li>
+    </ul>
+    <a href="tel:+34987216200" class="btn btn-red btn-sm nav-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      987 216 200
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-in">
+        <span class="eyebrow">Bufete Prida · León</span>
+        <h1>Despacho de abogados en <span>León</span></h1>
+        <p>Bienvenido a nuestra página web. Somos <a href="https://www.bufeteprida.es/servicios-de-abogacia"><strong>Bufete Prida</strong></a>, un <strong>despacho de abogados</strong> de exitosa trayectoria en el sector. Resolvemos todo tipo de casos legales y asumimos una eficaz defensa para sus juicios y procedimientos penales. Contacte con nosotros, estamos situados en <a href="https://www.bufeteprida.es/contacto">León</a>.</p>
+        <div class="row">
+          <a href="tel:+34987216200" class="btn btn-red">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            987 216 200
+          </a>
+          <a href="https://www.bufeteprida.es/servicios-de-abogacia" class="btn btn-line">SERVICIOS DE ABOGACÍA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contacto</span>
+        <h2>CONTACTA CON NOSOTROS</h2>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <h3>Dirección</h3>
+          <p>Avenida Palencia, 5 - 2.°, dcha<br>24009 (León)</p>
+        </div>
+        <a class="card" href="tel:+34987216200">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <h3>Teléfono</h3>
+          <p>987 216 200</p>
+        </a>
+        <a class="card" href="mailto:bufeteprida@ical.es">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <h3>E-mail</h3>
+          <p>bufeteprida@ical.es</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <h2>Despacho de abogados en León</h2>
+      <div class="row">
+        <a href="tel:+34987216200" class="btn btn-red">987 216 200</a>
+        <a href="mailto:bufeteprida@ical.es" class="btn btn-line">bufeteprida@ical.es</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><a class="flogo" href="https://www.bufeteprida.es/"><img src="https://de.cdn-website.com/06626b75df164160aba822c69e3a8035/DESKTOP/png/bufetepridalogo.png" alt="Bufete Prida logo" width="202" height="77"></a></div>
+      <div>
+        <h4>CONTACTA CON NOSOTROS</h4>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+34987216200">987 216 200</a></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:bufeteprida@ical.es">bufeteprida@ical.es</a></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Avenida Palencia, 5 - 2.°, dcha, 24009 (León) ES</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>ENLACES LEGALES</h4>
+        <ul>
+          <li><a href="https://www.bufeteprida.es/aviso-legal">Aviso Legal</a></li>
+          <li><a href="https://www.bufeteprida.es/politica-de-privacidad">Política de Privacidad</a></li>
+          <li><a href="https://www.bufeteprida.es/politica-de-cookies">Política de Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">© 2025 JOSÉ ÁLVAREZ-PRIDA DE PAZ Todos los derechos reservados</div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34987216200" class="btn btn-red">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    Teléfono
+  </a>
+  <a href="mailto:bufeteprida@ical.es" class="btn btn-line">E-mail</a>
+</div>
+</body>
+</html>

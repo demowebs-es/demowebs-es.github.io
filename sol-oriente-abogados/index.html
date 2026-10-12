@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sol Oriente Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#75000a; --wine-dark:#55000a; --red:#e3000f; --ink:#252525; --text:#454545; --muted:#757575;
+    --line:#e6e1e1; --tint:#f5f5f5; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Raleway,sans-serif;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);font-weight:700}
+
+  .demo{background:var(--ink);color:#e9dada;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top strip */
+  .strip{background:var(--wine);color:#fff;font-size:.86rem}
+  .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:38px}
+  .strip a{display:inline-flex;align-items:center;gap:8px;opacity:.95}
+  .strip a:hover{opacity:1;text-decoration:underline}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+  .nav .logo img{height:44px;width:auto}
+  .menu{display:flex;gap:6px;list-style:none;font-family:Raleway,sans-serif;font-weight:600;font-size:.95rem}
+  .menu a{padding:10px 14px;border-radius:999px;color:var(--ink);transition:.2s}
+  .menu a:hover{background:var(--tint);color:var(--wine)}
+  .menu a.on{color:var(--wine)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-family:Raleway,sans-serif;font-weight:700;font-size:.93rem;transition:.2s;border:1.5px solid var(--wine);cursor:pointer;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-wine{background:var(--wine);color:#fff}
+  .btn-wine:hover{background:var(--wine-dark);border-color:var(--wine-dark)}
+  .btn-line{background:#fff;color:var(--wine)}
+  .btn-line:hover{background:var(--tint)}
+
+  /* hero */
+  .hero{position:relative;background:var(--tint);border-bottom:1px solid var(--line)}
+  .hero-img{width:100%;height:340px;object-fit:cover;object-position:center 40%}
+  .hero-card{position:relative;margin:-110px auto 0;max-width:860px;background:#fff;border-radius:var(--radius);border-top:4px solid var(--wine);box-shadow:0 30px 60px -34px rgba(37,37,37,.45);padding:40px 44px 36px;text-align:center}
+  .hero h1{font-family:Raleway,sans-serif;font-weight:700;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.1;color:var(--wine);letter-spacing:-.01em}
+  .hero .row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+  .hero-pad{height:64px}
+  .tel{font-variant-numeric:tabular-nums}
+
+  section{padding:92px 0}
+  h2{font-family:Raleway,sans-serif;font-weight:700;font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.15;color:var(--wine);margin-top:8px}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .about p{font-size:1.06rem;margin-top:18px;max-width:560px}
+  .about p strong{color:var(--ink);font-weight:500}
+  .about p a.inl{color:var(--wine);font-weight:500;border-bottom:1px solid rgba(117,0,10,.35)}
+  .about .cta{margin-top:28px}
+  .about figure{border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 50px -30px rgba(37,37,37,.5)}
+  .about figure img{width:100%;aspect-ratio:600/403;object-fit:cover}
+  .hours{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:10px 16px;border-radius:999px;background:var(--tint);color:var(--ink);font-size:.92rem;font-weight:500}
+  .hours svg{color:var(--wine)}
+
+  /* photo band */
+  .band{height:300px;background:url("https://de.cdn-website.com/6fe2fb44c9824d65b6aa8cb842f2fab9/DESKTOP/jpg/sol-oriente-abogados-persona-escribiendo.jpg") center/cover no-repeat;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  /* location */
+  .loc{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:stretch}
+  .map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:420px;background:var(--tint)}
+  .map iframe{width:100%;height:100%;min-height:420px;border:0;display:block}
+  .info{display:grid;gap:14px;align-content:start}
+  .info .item{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:16px 18px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+  .info .ic{width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--wine)}
+  .info h3{font-family:Raleway,sans-serif;font-size:1rem;color:var(--wine);font-weight:700}
+  .info p{font-size:.97rem;color:var(--ink)}
+  .info a{color:var(--ink);border-bottom:1px solid rgba(117,0,10,.3)}
+  .info a:hover{color:var(--wine)}
+  .note{background:var(--wine);color:#fff;border-radius:var(--radius);padding:18px 20px;display:flex;gap:12px;align-items:center;font-family:Raleway,sans-serif;font-weight:700;font-size:1.02rem}
+
+  /* footer */
+  footer{background:var(--ink);color:#d8d8d8;padding:56px 0 0;font-size:.93rem}
+  .foot{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:36px}
+  .foot .flogo{background:#fff;border-radius:10px;padding:12px 16px;display:inline-block}
+  .foot .flogo img{height:34px;width:auto}
+  .foot h4{font-family:Raleway,sans-serif;font-size:.8rem;letter-spacing:.16em;color:#fff;margin-bottom:14px}
+  .foot p{margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+  .foot p svg{flex:none;margin-top:4px;color:#ff6b73}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .copy{margin-top:44px;border-top:1px solid rgba(255,255,255,.12);padding:18px 0;font-size:.8rem;color:#b6b6b6}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .about,.loc{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+    .foot>div:first-child{grid-column:1/-1}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .strip .wrap{justify-content:center}
+    .strip .mail{display:none}
+    .nav{height:auto;padding:14px 0;flex-direction:column;gap:10px}
+    .nav .logo img{height:32px}
+    .menu{gap:2px;font-size:.9rem}
+    .menu a{padding:8px 12px}
+    .hero-img{height:190px}
+    .hero-card{margin:-50px 12px 0;padding:28px 20px 24px}
+    .hero .row .btn{width:100%}
+    .hero-pad{height:44px}
+    section{padding:60px 0}
+    .band{height:180px}
+    .map,.map iframe{min-height:300px}
+    .foot{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Sol Oriente Abogados · demo no oficial</div>
+
+<div class="strip">
+  <div class="wrap">
+    <a class="mail" href="mailto:abogados@soloriente.es"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>abogados@soloriente.es</a>
+    <a href="tel:+34923281268"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">923 281 268</span></a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.solorienteabogados.com/" aria-label="Sol Oriente Abogados"><img src="https://de.cdn-website.com/6fe2fb44c9824d65b6aa8cb842f2fab9/DESKTOP/png/sol-oriente-abogados-logo.png" alt="Sol Oriente Abogados logo" width="722" height="108"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.solorienteabogados.com/">Inicio</a></li>
+      <li><a href="https://www.solorienteabogados.com/que-hacemos">Qué hacemos</a></li>
+      <li><a href="https://www.solorienteabogados.com/contacto">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-img" src="https://de.cdn-website.com/6fe2fb44c9824d65b6aa8cb842f2fab9/DESKTOP/jpg/sol-oriente-abogados-banner.jpg" alt="Sol Oriente Abogados banner">
+    <div class="wrap">
+      <div class="hero-card">
+        <h1>Bufete de abogados en Salamanca</h1>
+        <div class="row">
+          <a href="tel:+34923281268" class="btn btn-wine">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span class="tel">923 281 268</span>
+          </a>
+          <a href="mailto:abogados@soloriente.es" class="btn btn-line">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            abogados@soloriente.es
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-pad"></div>
+  </div>
+
+  <!-- QUIÉNES SOMOS -->
+  <section id="quienes-somos">
+    <div class="wrap about">
+      <div>
+        <h2>Quiénes somos</h2>
+        <p>Somos un bufete de abogados integrado por <strong>Abel Sánchez Martín</strong>, <strong>Esther Rodríguez Villamil</strong> y <strong>Elvira Hernández Hernández</strong>. En <a class="inl" href="https://www.solorienteabogados.com/que-hacemos">Sol Oriente Abogados</a> nuestro horario de consulta es de lunes a jueves de 17:00 a 20:00 h. Estamos ubicados en <strong>Salamanca</strong>. Contamos con la experiencia y los conocimientos necesarios para asesorarle y ofrecerle un excelente servicio en el campo jurídico.</p>
+        <div class="cta"><a href="https://www.solorienteabogados.com/contacto" class="btn btn-wine">Le esperamos.</a></div>
+      </div>
+      <figure><img src="https://de.cdn-website.com/6fe2fb44c9824d65b6aa8cb842f2fab9/DESKTOP/jpg/sol-oriente-abogados-mazo.jpg" alt="Sol Oriente Abogados mazo" width="600" height="403"></figure>
+    </div>
+  </section>
+
+  <div class="band" role="img" aria-label="Sol Oriente Abogados abogado firmando"></div>
+
+  <!-- UBICACIÓN -->
+  <section id="ubicacion" style="background:var(--tint)">
+    <div class="wrap">
+      <h2 style="margin-bottom:34px">Ubicación</h2>
+      <div class="loc">
+        <div class="map">
+          <iframe title="Mapa: Calle Bermejeros, 18 - 20, 37001 Salamanca" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?hl=es&amp;q=Calle%20Bermejeros%2C%2018%2C%2037001%20Salamanca&amp;z=16&amp;output=embed"></iframe>
+        </div>
+        <div class="info">
+          <div class="item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+            <div><h3>Dirección</h3><p>Calle Bermejeros, 18 - 20<br>37001, Salamanca, SALAMANCA</p></div>
+          </div>
+          <div class="item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <div><h3>Teléfono</h3><p><a class="tel" href="tel:+34923281268">923 281 268</a></p></div>
+          </div>
+          <div class="item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
+            <div><h3>Fax</h3><p class="tel">923 281 269</p></div>
+          </div>
+          <div class="item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div><h3>Email</h3><p><a href="mailto:abogados@soloriente.es">abogados@soloriente.es</a></p></div>
+          </div>
+          <div class="note">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Consultas previa Cita
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="flogo" href="https://www.solorienteabogados.com/" aria-label="Sol Oriente Abogados"><img src="https://de.cdn-website.com/6fe2fb44c9824d65b6aa8cb842f2fab9/DESKTOP/png/sol-oriente-abogados-logo-2.png" alt="Sol Oriente Abogados logo"></a>
+    </div>
+    <div>
+      <h4>CONTACTA CON NOSOTROS</h4>
+      <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a class="tel" href="tel:+34923281268">923 281 268</a></p>
+      <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:abogados@soloriente.es">abogados@soloriente.es</a></p>
+      <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Calle Bermejeros, 18 - 20, 37001 Salamanca, SALAMANCA</p>
+    </div>
+    <div>
+      <h4>ENLACES LEGALES</h4>
+      <p><a href="https://www.solorienteabogados.com/aviso-legal">Aviso Legal</a></p>
+      <p><a href="https://www.solorienteabogados.com/politica-de-privacidad">Política de Privacidad</a></p>
+      <p><a href="https://www.solorienteabogados.com/politica-de-cookies">Política de Cookies</a></p>
+    </div>
+  </div>
+  <div class="wrap copy">© 2025 SOL ORIENTE ABOGADOS C.B. Todos los derechos reservados</div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34923281268" class="btn btn-wine"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Teléfono</a>
+  <a href="mailto:abogados@soloriente.es" class="btn btn-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+</div>
+
+</body>
+</html>

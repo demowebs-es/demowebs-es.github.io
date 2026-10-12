@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bufete Iglesias · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Questrial&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2E3092; --navy-dark:#212372; --red:#88191C; --bright:#ED1C24; --teal:#4F8A7E;
+    --ink:#1f2033; --text:#3d3e4f; --muted:#6b6c7a; --line:#e7e1d3; --paper:#FAF5EB; --tint:#f4f1ea;
+    --white:#fff; --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Questrial,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;font-size:16.5px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .serif{font-family:Fraunces,Georgia,serif}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+  .tel{font-variant-numeric:tabular-nums}
+
+  .demo{background:var(--ink);color:#d9d9ea;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* strip */
+  .strip{background:var(--navy);color:#fff;font-size:.86rem}
+  .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:38px;flex-wrap:wrap}
+  .strip .r{display:flex;gap:20px}
+  .strip a,.strip span{display:inline-flex;align-items:center;gap:7px}
+  .strip a:hover{text-decoration:underline}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px}
+  .nav .logo img{width:190px;height:76px;object-fit:cover}
+  .menu{display:flex;gap:2px;list-style:none;font-size:.93rem;align-items:center}
+  .menu a{padding:9px 12px;border-radius:999px;color:var(--ink);transition:.2s;white-space:nowrap}
+  .menu a:hover{background:var(--tint);color:var(--navy)}
+  .menu a.on{color:var(--navy);font-weight:700}
+  .menu a.more{border:1.5px solid var(--line)}
+  details.mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-family:inherit;font-weight:700;font-size:.95rem;transition:.2s;border:1.5px solid var(--navy);cursor:pointer;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-dark);border-color:var(--navy-dark)}
+  .btn-line{background:#fff;color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-red{background:var(--red);border-color:var(--red);color:#fff}
+  .btn-red:hover{background:#6d1215}
+  .link{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-weight:700;font-size:.92rem;border-bottom:1.5px solid rgba(46,48,146,.25);padding-bottom:2px}
+  .link:hover{border-color:var(--navy)}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--paper),#fff);padding:64px 0 76px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(2.8rem,6vw,4.6rem);line-height:1;color:var(--navy);letter-spacing:-.015em}
+  .hero .tag{font-size:clamp(1.15rem,2vw,1.4rem);color:var(--ink);margin-top:18px;max-width:520px;line-height:1.45}
+  .hero .facts{margin-top:28px;display:grid;gap:10px;font-size:1rem;color:var(--ink)}
+  .hero .facts div{display:flex;gap:12px;align-items:center}
+  .hero .facts svg{color:var(--red);flex:none}
+  .hero .facts a{border-bottom:1px solid rgba(46,48,146,.3)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .hero-media{position:relative}
+  .hero-media img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--radius);box-shadow:0 30px 60px -34px rgba(31,32,51,.55)}
+  .quote{position:relative;margin:-64px 22px 0;background:#fff;border-radius:var(--radius);border-left:4px solid var(--red);padding:22px 24px;box-shadow:0 20px 44px -28px rgba(31,32,51,.5)}
+  .quote p{font-family:Fraunces,Georgia,serif;font-size:1.25rem;line-height:1.35;color:var(--navy);font-weight:500}
+  .quote .link{margin-top:12px}
+
+  section{padding:92px 0}
+  .head{max-width:760px;margin-bottom:42px}
+  .head h2,h2.h{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.12;color:var(--navy);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .card:hover{border-color:rgba(46,48,146,.35);box-shadow:0 22px 44px -30px rgba(31,32,51,.45)}
+  .card .ph{aspect-ratio:16/9;object-fit:cover;width:100%;background:var(--tint)}
+  .card .bd{padding:24px 24px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .card h3{font-family:Fraunces,Georgia,serif;font-size:1.28rem;line-height:1.2;color:var(--navy);font-weight:600}
+  .card p{font-size:.96rem}
+  .card .foot{margin-top:auto;padding-top:6px}
+  .card.feature{grid-column:span 2;flex-direction:row}
+  .card.feature .ph{width:46%;aspect-ratio:auto;flex:none}
+  .card.full{grid-column:1/-1}
+  .card.full .ph{width:34%;max-height:300px}
+  .card.full .bd{justify-content:center}
+  .card.dark{background:var(--navy);border-color:var(--navy);color:#e6e7f6}
+  .card.dark h3{color:#fff}
+  .card.dark .link{color:#fff;border-color:rgba(255,255,255,.4)}
+  .card .lines{display:grid;gap:6px;font-size:.96rem}
+  .card .lines b{font-weight:700;color:var(--red);letter-spacing:.06em;font-size:.8rem}
+  .card.dark .lines b{color:#ffb3b5}
+  .card .lines a{border-bottom:1px solid rgba(255,255,255,.35)}
+  .badge{background:#fff;padding:18px 22px;border-bottom:1px solid var(--line)}
+  .badge img{height:72px;width:auto;margin:0 auto}
+
+  /* about */
+  .about{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .about p{margin-top:16px}
+  .about .big{font-family:Fraunces,Georgia,serif;font-size:1.3rem;line-height:1.45;color:var(--ink);margin-top:0}
+  .about figure img{border-radius:var(--radius);width:100%;aspect-ratio:748/494;object-fit:cover;box-shadow:0 24px 50px -32px rgba(31,32,51,.5)}
+  .ticks{list-style:none;display:grid;gap:12px;margin-top:22px}
+  .ticks li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.96rem;color:var(--ink)}
+  .ticks svg{flex:none;color:var(--red);margin-top:3px}
+
+  /* areas */
+  .areas-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px}
+  .areas-intro p{margin-top:12px}
+  .areas-intro .lead{font-size:1.12rem;color:var(--ink)}
+  .call{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .area{border:1px solid var(--line);border-radius:12px;padding:20px 22px;background:#fff;position:relative}
+  .area::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:3px;background:var(--red)}
+  .area h3{font-size:1.02rem;color:var(--navy);font-weight:700;margin-bottom:4px}
+  .area p{font-size:.95rem}
+
+  /* credentials */
+  .cred{background:var(--navy);color:#e6e7f6}
+  .cred-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:28px}
+  .cbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:30px}
+  .cbox h3{font-family:Fraunces,Georgia,serif;font-size:1.9rem;line-height:1.05;color:#fff;font-weight:600}
+  .cbox .sm{color:#c9cbef;margin-top:8px}
+  .cbox p.l{margin-top:16px}
+  .cbox a.link{color:#fff;border-color:rgba(255,255,255,.4);margin-top:18px}
+  .lawyer{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:center}
+  .lawyer img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.2)}
+  .lawyer .who{font-family:Fraunces,Georgia,serif;font-size:1.35rem;color:#fff;line-height:1.2}
+  .lawyer .who small{display:block;font-family:Questrial,sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#ffb3b5;margin-bottom:4px}
+  .lawyer ul{list-style:none;margin-top:10px;display:grid;gap:4px;font-size:.95rem}
+  .std{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+  .std div{border-top:2px solid rgba(255,255,255,.25);padding-top:16px;font-size:.96rem}
+  .std img{width:56px;height:40px;object-fit:cover;border-radius:6px;margin-bottom:12px}
+
+  /* pay */
+  .pay{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+  .pay img{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover}
+  .pay p{margin-top:16px;font-size:1.05rem}
+  .pay strong{color:var(--red)}
+
+  /* form */
+  .contact{background:var(--paper);border-top:1px solid var(--line)}
+  .cgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+  .cinfo{display:grid;gap:12px;margin-top:24px}
+  .cinfo div{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink)}
+  .cinfo svg{color:var(--red);flex:none}
+  .cinfo a{border-bottom:1px solid rgba(46,48,146,.3)}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);border-top:4px solid var(--navy);box-shadow:0 24px 50px -30px rgba(31,32,51,.4)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d9d2c1;border-radius:10px;font:inherit;font-size:.97rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(46,48,146,.25);border-color:var(--navy)}
+  .card-form .btn{width:100%;margin-top:4px}
+  .card-form .fine{font-size:.8rem;color:var(--muted);margin-top:14px;line-height:1.5}
+  .form-ok{display:none;background:var(--tint);border-radius:10px;padding:12px;font-size:.88rem;margin-top:12px;color:var(--ink)}
+
+  /* site map */
+  .sitemap{padding:72px 0}
+  .groups{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 36px}
+  .groups h3{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+  .groups ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .groups a{display:inline-block;padding:7px 13px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;color:var(--ink);transition:.2s}
+  .groups a:hover{border-color:var(--navy);color:var(--navy)}
+
+  footer{background:var(--ink);color:#cfd0e0;padding:40px 0;font-size:.92rem}
+  .fgrid{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .fgrid .flogo{background:#fff;border-radius:10px;padding:6px 10px}
+  .fgrid .flogo img{width:170px;height:68px;object-fit:cover}
+  .fgrid .fl{display:flex;flex-wrap:wrap;gap:8px 22px}
+  .fgrid a:hover{color:#fff;text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1100px){
+    .menu .hide-md{display:none}
+  }
+  @media (max-width:980px){
+    .hero-grid,.about-grid,.areas-intro,.cred-grid,.pay,.cgrid{grid-template-columns:1fr}
+    .svc{grid-template-columns:1fr 1fr}
+    .card.feature{grid-column:1/-1}
+    .areas{grid-template-columns:1fr 1fr}
+    .groups{grid-template-columns:1fr 1fr}
+    .std{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .menu{display:none}
+    details.mnav{display:block;position:relative}
+    details.mnav summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1.5px solid var(--line);border-radius:999px;font-weight:700;color:var(--navy)}
+    details.mnav summary::-webkit-details-marker{display:none}
+    details.mnav ul{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid var(--line);border-radius:12px;list-style:none;padding:8px;min-width:230px;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+    details.mnav a{display:block;padding:10px 12px;border-radius:8px;color:var(--ink)}
+    details.mnav a:hover{background:var(--tint)}
+  }
+  @media (max-width:680px){
+    body{font-size:16px;padding-bottom:74px}
+    .wrap{padding:0 16px}
+    .strip .wrap{justify-content:center;padding:6px 16px}
+    .strip .r{gap:14px}
+    .strip .mail{display:none}
+    .nav{height:70px}
+    .nav .logo img{width:150px;height:60px}
+    .hero{padding:40px 0 56px}
+    .hero .row .btn{width:100%}
+    .quote{margin:-40px 12px 0}
+    section{padding:62px 0}
+    .svc,.areas,.groups{grid-template-columns:1fr}
+    .card.feature{flex-direction:column}
+    .card.feature .ph{width:100%;aspect-ratio:16/9}
+    .cbox{padding:24px 20px}
+    .lawyer{grid-template-columns:1fr}
+    .call .btn{width:100%}
+    .card-form{padding:24px 20px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Bufete Iglesias · demo no oficial</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span class="addr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>C/ Gran Vía 28, 3º D SALAMANCA.</span>
+    <div class="r">
+      <a href="tel:+34923219309"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">923219309</span></a>
+      <a class="mail" href="mailto:iglesiasbufete@hotmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>iglesiasbufete@hotmail.com</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.abogadossalamanca.org" aria-label="Bufete Iglesias"><img src="https://static.wixstatic.com/media/cf8af8_4d3594e87eba4ee7bd981971482e13ea~mv2.jpg/v1/fill/w_300,h_300,al_c,q_85/cf8af8_4d3594e87eba4ee7bd981971482e13ea~mv2.jpg" alt="Bufete Iglesias abogados Salamanca" width="300" height="300"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.abogadossalamanca.org">Inicio</a></li>
+      <li><a href="https://www.abogadossalamanca.org/quienes-somos">Especialistas en Familia</a></li>
+      <li><a href="https://www.abogadossalamanca.org/contactenos">Servicios jurídicos</a></li>
+      <li class="hide-md"><a href="https://www.abogadossalamanca.org/atencion-urgente">Atención Urgente</a></li>
+      <li class="hide-md"><a href="https://www.abogadossalamanca.org/honorarios">Honorarios</a></li>
+      <li class="hide-md"><a href="https://www.abogadossalamanca.org/blog-1">Blog</a></li>
+      <li><a class="more" href="#secciones">Más secciones</a></li>
+    </ul>
+    <details class="mnav">
+      <summary><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menú</summary>
+      <ul>
+        <li><a href="https://www.abogadossalamanca.org">Inicio</a></li>
+        <li><a href="https://www.abogadossalamanca.org/quienes-somos">Especialistas en Familia</a></li>
+        <li><a href="https://www.abogadossalamanca.org/contactenos">Servicios jurídicos</a></li>
+        <li><a href="https://www.abogadossalamanca.org/atencion-urgente">Atención Urgente</a></li>
+        <li><a href="https://www.abogadossalamanca.org/honorarios">Honorarios</a></li>
+        <li><a href="https://www.abogadossalamanca.org/blog-1">Blog</a></li>
+        <li><a href="#secciones">Más secciones</a></li>
+      </ul>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Abogados Salamanca</span>
+        <h1>Bufete Iglesias</h1>
+        <p class="tag">Somos especialistas en escuchar a nuestros clientes y defender sus derechos.</p>
+        <div class="facts">
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>C/ Gran Vía 28, 3º D SALAMANCA.</div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg>fax <span class="tel">923495311</span></div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:iglesiasbufete@hotmail.com">iglesiasbufete@hotmail.com</a></div>
+        </div>
+        <div class="row">
+          <a href="tel:+34923219309" class="btn btn-navy">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            TFONO <span class="tel">923219309</span>
+          </a>
+          <a href="https://www.abogadossalamanca.org/contactenos" class="btn btn-line">Más información</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="https://static.wixstatic.com/media/cf8af8_e5419db0055942ea94ac662cd05d011af000.jpg/v1/fill/w_1000,h_625,al_c,q_80/cf8af8_e5419db0055942ea94ac662cd05d011af000.jpg" alt="Bufete Iglesias" width="1000" height="625">
+        <div class="quote">
+          <p>La defensa de sus derechos es nuestra prioridad personal y profesional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="svc">
+        <article class="card feature">
+          <img class="ph" src="https://static.wixstatic.com/media/cf8af8_0b9a08a668634577af9786ba92e5ea31f000.jpg/v1/fill/w_900,h_600,al_c,q_80/cf8af8_0b9a08a668634577af9786ba92e5ea31f000.jpg" alt="Bufete Iglesias abogados de familia">
+          <div class="bd">
+            <span class="eyebrow">Bufete Iglesias</span>
+            <h3>Abogados de familia</h3>
+            <p>Nuestra vocación personal nos ha dirigido a la especialidad de abogados de la familia y sus problemas. Escuchar, atender, aconsejar con honestidad y defender los derechos de nuestros clientes</p>
+            <div class="foot"><a class="link" href="https://www.abogadossalamanca.org/quienes-somos">Más Información →</a></div>
+          </div>
+        </article>
+
+        <article class="card dark">
+          <div class="bd">
+            <h3>MATRIMONIAL</h3>
+            <div class="lines">
+              <span>C/ GRAN VIA 28, 3ºd Salamanca</span>
+              <b>CITA:</b>
+              <a href="mailto:iglesiasbufete@hotmail.com">iglesiasbufete@hotmail.com</a>
+              <a class="tel" href="tel:+34923219309">TFONO 923219309</a>
+            </div>
+            <div class="foot"><a class="link" href="https://www.abogadossalamanca.org/matrimonial">Más información →</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="bd">
+            <h3>DESAHUCIOS Y ALQUILERES</h3>
+            <p>Tratamos sus problemas de alquiler con la máxima preferencia y urgencia</p>
+            <div class="foot"><a class="link" href="https://www.abogadossalamanca.org/desahucios">Información →</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="bd">
+            <h3>Atención penal alcoholemias. Juicios rápidos.</h3>
+            <p>Si por alguna circunstancia no has podido evitar un problema penal por alcoholemias, somos especialistas en la atención urgente y en los juicios rápidos derivados de la misma. En muchos casos hay errores o circunstancias que permiten una defensa de los derechos que corresponden.</p>
+            <div class="foot"><a class="link" href="https://www.abogadossalamanca.org/alcoholemias">Mas información →</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge"><img src="https://static.wixstatic.com/media/cf8af8_35e90d4b600745e6b26f9d93f1a28e14~mv2.jpg/v1/fill/w_536,h_164,al_c,q_80/cf8af8_35e90d4b600745e6b26f9d93f1a28e14~mv2.jpg" alt="Administrador Fincas Colegiado"></div>
+          <div class="bd">
+            <h3>Vivienda, Comunidades de Propietarios, Propiedad horizontal, responsabilidad civil, obras defectuosas.</h3>
+            <p>Trabajamos de cerca con los clientes para brindar excelentes servicios legales que se adapten a sus necesidades específicas siendo especialistas titulados y colegiados en gestión de Propiedad Horizontal.</p>
+            <div class="foot"><a class="link" href="https://www.abogadossalamanca.org/vivienda">MAS INFORMACION →</a></div>
+          </div>
+        </article>
+
+        <article class="card feature full">
+          <img class="ph" src="https://static.wixstatic.com/media/90a441_d7c005f4de0f47a5b96550adaf7995fa~mv2.jpg/v1/fill/w_700,h_394,al_c,q_80/image.jpg" alt="Abogados especialistas en herencias">
+          <div class="bd">
+            <h3>ABOGADOS ESPECIALISTAS EN HERENCIAS</h3>
+            <div class="foot"><a class="link" href="https://www.abogadossalamanca.org/herencias">Información →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESDE 1993 -->
+  <section class="about" id="despacho">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">Desde 1993</span>
+        <h2 class="h">BUFETE IGLESIAS, EN SALAMANCA, CON AMPLIA EXPERIENCIA DESDE 1993.</h2>
+        <p class="big" style="margin-top:20px">Bufete familiar, con amplia experiencia desde 1993. Miles de personas de toda España y otros países han confiado en estos años en nuestros servicios.</p>
+        <p>La titular del despacho, María Jesús Iglesias García, es Profesora tutora de prácticas de la Escuela de Práctica Jurídica de Salamanca, tutora de prácticas de la Universidad de Salamanca y de la Universidad Católica de Ávila. Ha colaborado con la Universidad de Nantes (Francia) en la formación jurídica de alumnos franceses en España. Profesora del ISDE (INSTITUTO SUPERIOR DERECHO Y ECONOMÍA).</p>
+        <p>Fruto de esa experiencia y desarrollo, llevamos varios años colaborando con la de Salamanca en la formación práctica en Bufetes y despachos, de alumnos de 5º de Derecho y nuevo grado en derecho, y asesorando a particulares, empresas y organismos públicos de Salamanca, y del resto de España e interviniendo en Tribunales y Juzgados de toda España.</p>
+      </div>
+      <div>
+        <figure><img src="https://static.wixstatic.com/media/90a441_3f4fcca2ca8142638dabe2712fb16f76~mv2.jpg/v1/fill/w_900,h_594,al_c,q_85/90a441_3f4fcca2ca8142638dabe2712fb16f76~mv2.jpg" alt="Bufete Iglesias" width="900" height="594"></figure>
+        <ul class="ticks">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Tutores de formación práctica de abogados de la Universidad de Salamanca y de la Universidad Católica de Ávila.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Convenio de Colaboración con la Universidad de Nantes (Francia).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁREAS -->
+  <section id="areas">
+    <div class="wrap">
+      <div class="areas-intro">
+        <div>
+          <span class="eyebrow">Áreas del derecho</span>
+          <h2 class="h">Si usted está interesado en servicios de asesoramiento jurídico y abogados, por favor, llámenos.</h2>
+          <div class="call">
+            <a href="tel:+34923219309" class="btn btn-red"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>TFONO <span class="tel">923219309</span></a>
+          </div>
+        </div>
+        <div>
+          <p class="lead">Será un placer aplicar nuestra experiencia a su situación concreta. En SALAMANCA ABOGADOS BUFETE IGLESIAS, estamos especializados en las áreas más importantes del derecho:</p>
+          <p>matrimonios, separaciones y divorcios, familia, herencias, sucesiones, propiedad horizontal, obras defectuosas, tráfico, accidentes... Contamos con divisiones asesoras en el campo del Derecho Penal, Administrativo y Laboral.</p>
+          <p>Bufete-despacho familiar con amplia experiencia, especializado en el trato personal y confidencial de problemas legales.</p>
+        </div>
+      </div>
+
+      <div class="areas">
+        <div class="area"><h3>Derecho de familia:</h3><p>matrimonio, separaciones, divorcios, sucesiones, incapacidades, herencias. Aplicamos técnicas de mediación familiar.</p></div>
+        <div class="area"><h3>Filiación, paternidad y maternidad.</h3></div>
+        <div class="area"><h3>Construcciones y obras defectuosas.</h3></div>
+        <div class="area"><h3>Propiedad Horizontal.</h3><p>Administración de Comunidades (profesional colegiado).</p></div>
+        <div class="area"><h3>Tráfico y Seguridad vial.</h3></div>
+        <div class="area"><h3>Derecho civil.</h3><p>Propiedad, servidumbres.</p></div>
+        <div class="area"><h3>Divisiones especializadas en Derecho Penal, Administrativo y Laboral</h3><p>para atención integral de todos los problemas jurídicos de nuestros clientes.</p></div>
+        <div class="area"><h3>DEPARTAMENTO de reclamación de deudas,</h3><p>especialidad en procedimientos monitorios. Costes mínimos para empresas y autónomos en sus reclamaciones de cantidad.</p></div>
+        <div class="area"><h3>Experiencia en intervención ante el Tribunal Supremo y Tribunal Constitucional.</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLEGIADOS -->
+  <section class="cred" id="letrado">
+    <div class="wrap">
+      <div class="cred-grid">
+        <a class="cbox" href="https://www.abogadossalamanca.org/quienes-somos" style="display:block">
+          <h3>BUFETE IGLESIAS</h3>
+          <p class="sm">(profesionales colegiados en el Ilustre Colegio de Abogados de Salamanca)</p>
+          <p class="l">Matrimonios, separaciones y divorcios, familia, herencias, sucesiones, propiedad horizontal, obras defectuosas, tráfico, accidentes...</p>
+        </a>
+        <div class="cbox lawyer">
+          <img src="https://static.wixstatic.com/media/90a441_f311623b32a04c7fb429c79ad568022e~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80/90a441_f311623b32a04c7fb429c79ad568022e~mv2.jpg" alt="Bufete Iglesias">
+          <div>
+            <div class="who"><small>Letrado Director:</small>María Jesús Iglesias García</div>
+            <ul>
+              <li>Despacho profesional desde 1993.</li>
+              <li>Colegiado 1845 ICASAL</li>
+              <li>Licenciado en Derecho Universidad Salamanca 1987</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="std">
+        <div><img src="https://static.wixstatic.com/media/90a441_e439802c7b18476d8b844fecdaa72989~mv2.jpg/v1/fill/w_160,h_114,al_c,q_80/90a441_e439802c7b18476d8b844fecdaa72989~mv2.jpg" alt="">Acceso a toda la normativa y jurisprudencia comunitarias y del Tribunal Europeo de Derechos Humanos.</div>
+        <div><img src="https://static.wixstatic.com/media/90a441_ed8384a1635e40bdb558271d1f8a7560~mv2.jpg/v1/fill/w_160,h_114,al_c,q_80/90a441_ed8384a1635e40bdb558271d1f8a7560~mv2.jpg" alt="">El Bufete toma en consideración todos los estándares de calidad y eficacia exigidos por la CEPEJ (Comisión Europea para la Eficacia de la Justicia) en sus recopilaciones informativas bianuales.</div>
+        <div><img src="https://static.wixstatic.com/media/90a441_b3c2f99b5f65471d8af715eda38b1a74~mv2.jpg/v1/fill/w_160,h_114,al_c,q_80/90a441_b3c2f99b5f65471d8af715eda38b1a74~mv2.jpg" alt="">Aplicamos en el despacho los más modernos sistemas tecnológicos e informáticos para el tratamiento y examen de la legislación y jurisprudencia aplicables a cada caso.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILIDADES DE PAGO -->
+  <section id="pago">
+    <div class="wrap pay">
+      <img src="https://static.wixstatic.com/media/90a441_8731780d4bf84cf7a3d1a53108b71b6c~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80/90a441_8731780d4bf84cf7a3d1a53108b71b6c~mv2.jpg" alt="Facilidades de pago" width="800" height="600">
+      <div>
+        <span class="eyebrow">Bufete Iglesias</span>
+        <h2 class="h">FACILIDADES DE PAGO</h2>
+        <p>En abogados Salamanca, Bufete Iglesias, somos plenamente conscientes de las dificultades económicas que vienen atenazando a empresas y familias.</p>
+        <p>Por este motivo, si nos lo solicita, <strong>aplicamos un calendario mensual de pagos, sin intereses, hasta 36 meses</strong>, para que la necesidad de defensa jurídica y de atención por abogado no afecte negativamente a los planes económicos fundamentalmente familiares.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap cgrid">
+      <div>
+        <img src="https://static.wixstatic.com/media/cf8af8_4d3594e87eba4ee7bd981971482e13ea~mv2.jpg/v1/fill/w_300,h_300,al_c,q_85/cf8af8_4d3594e87eba4ee7bd981971482e13ea~mv2.jpg" alt="Bufete Iglesias abogados Salamanca" width="150" height="150" style="border-radius:12px;border:1px solid var(--line)">
+        <div class="cinfo">
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>C/ Gran Vía 28, 3º D SALAMANCA.</div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a class="tel" href="tel:+34923219309">TFONO 923219309</a></div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg><span class="tel">fax 923495311</span></div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:iglesiasbufete@hotmail.com">iglesiasbufete@hotmail.com</a></div>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="field"><label for="n">Su nombre: *</label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="e">Su dirección de correo electrónico: *</label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="m">Escriba el mensaje: *</label><textarea id="m" rows="5" required></textarea></div>
+        <button class="btn btn-navy" type="submit">Enviar</button>
+        <p class="fine">* Para enviar un mensaje es necesario proporcionar una dirección de correo electrónico válida. No se preocupe, su dirección no será publicada y nadie la podrá ver.</p>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- TODAS LAS SECCIONES -->
+  <section class="sitemap" id="secciones">
+    <div class="wrap">
+      <div class="groups">
+        <div>
+          <h3>Familia</h3>
+          <ul>
+            <li><a href="https://www.abogadossalamanca.org/quienes-somos">Especialistas en Familia</a></li>
+            <li><a href="https://www.abogadossalamanca.org/abogados-de-familia">Abogados de familia</a></li>
+            <li><a href="https://www.abogadossalamanca.org/matrimonial">Matrimonial</a></li>
+            <li><a href="https://www.abogadossalamanca.org/divorcios">Divorcios</a></li>
+            <li><a href="https://www.abogadossalamanca.org/matrimonio-homosexual">Matrimonio homosexual</a></li>
+            <li><a href="https://www.abogadossalamanca.org/mediacion-familiar">Mediación familiar</a></li>
+            <li><a href="https://www.abogadossalamanca.org/paternidad-y-maternidad">Paternidad y maternidad</a></li>
+            <li><a href="https://www.abogadossalamanca.org/incapacidad">Incapacidad</a></li>
+            <li><a href="https://www.abogadossalamanca.org/nombre-y-apellidos">Nombre y apellidos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Herencias</h3>
+          <ul>
+            <li><a href="https://www.abogadossalamanca.org/herencias">Herencias</a></li>
+            <li><a href="https://www.abogadossalamanca.org/consejos-herencias-testamentos">Consejos herencias testamentos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Vivienda y alquiler</h3>
+          <ul>
+            <li><a href="https://www.abogadossalamanca.org/vivienda">Vivienda</a></li>
+            <li><a href="https://www.abogadossalamanca.org/alquiler">Alquiler</a></li>
+            <li><a href="https://www.abogadossalamanca.org/desahucios">Desahucios</a></li>
+            <li><a href="https://www.abogadossalamanca.org/comunidades-propietarios">Comunidades Propietarios</a></li>
+            <li><a href="https://www.abogadossalamanca.org/administrador-fincas">Administrador Fincas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Penal y tráfico</h3>
+          <ul>
+            <li><a href="https://www.abogadossalamanca.org/atencion-urgente">Atención Urgente</a></li>
+            <li><a href="https://www.abogadossalamanca.org/asistencia-penal">Asistencia Penal</a></li>
+            <li><a href="https://www.abogadossalamanca.org/alcoholemias">Alcoholemias</a></li>
+            <li><a href="https://www.abogadossalamanca.org/trafico-y-seguridad-vial">Tráfico y Seguridad Vial</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Civil, laboral y banca</h3>
+          <ul>
+            <li><a href="https://www.abogadossalamanca.org/civil">Civil</a></li>
+            <li><a href="https://www.abogadossalamanca.org/despidos">Despidos</a></li>
+            <li><a href="https://www.abogadossalamanca.org/preferentes">Preferentes</a></li>
+            <li><a href="https://www.abogadossalamanca.org/clausulas-suelo">Cláusulas suelo</a></li>
+            <li><a href="https://www.abogadossalamanca.org/dni">DNI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>El despacho</h3>
+          <ul>
+            <li><a href="https://www.abogadossalamanca.org">Inicio</a></li>
+            <li><a href="https://www.abogadossalamanca.org/contactenos">Servicios jurídicos</a></li>
+            <li><a href="https://www.abogadossalamanca.org/tic">TIC</a></li>
+            <li><a href="https://www.abogadossalamanca.org/honorarios">Honorarios</a></li>
+            <li><a href="https://www.abogadossalamanca.org/igualas-abogados">Igualas abogados</a></li>
+            <li><a href="https://www.abogadossalamanca.org/facilidades-pago">Facilidades pago</a></li>
+            <li><a href="https://www.abogadossalamanca.org/el-coste-de-la-justicia">El coste de la Justicia</a></li>
+            <li><a href="https://www.abogadossalamanca.org/dias-habiles">Días hábiles</a></li>
+            <li><a href="https://www.abogadossalamanca.org/noticias">Noticias</a></li>
+            <li><a href="https://www.abogadossalamanca.org/blog-1">Blog</a></li>
+            <li><a href="https://www.abogadossalamanca.org/premio-foro-europa-2001">Premio Foro Europa 2001</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <a class="flogo" href="https://www.abogadossalamanca.org" aria-label="Bufete Iglesias"><img src="https://static.wixstatic.com/media/cf8af8_4d3594e87eba4ee7bd981971482e13ea~mv2.jpg/v1/fill/w_200,h_200,al_c,q_85/cf8af8_4d3594e87eba4ee7bd981971482e13ea~mv2.jpg" alt="Bufete Iglesias abogados Salamanca"></a>
+    <div class="fl">
+      <span>C/ Gran Vía 28, 3º D SALAMANCA.</span>
+      <a class="tel" href="tel:+34923219309">TFONO 923219309</a>
+      <span class="tel">fax 923495311</span>
+      <a href="mailto:iglesiasbufete@hotmail.com">iglesiasbufete@hotmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34923219309" class="btn btn-navy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>TFONO</a>
+  <a href="mailto:iglesiasbufete@hotmail.com" class="btn btn-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>CITA</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

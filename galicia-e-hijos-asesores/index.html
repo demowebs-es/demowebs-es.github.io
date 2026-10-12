@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Galicia E Hijos Asesores SL · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000; --text:#3d3d3d; --muted:#6e6e6e; --grey:#767676; --soft:#ababab; --line:#d5d5d5; --tint:#f4f4f4; --tint2:#e5e5e5; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,.brand{font-family:"League Spartan",Roboto,sans-serif;color:var(--ink)}
+  .eyebrow{font-family:"League Spartan",sans-serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+  .demo{background:#111;color:#cfcfcf;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
+  .brand{font-weight:800;font-size:1.25rem;letter-spacing:-.01em;line-height:1.05}
+  .menu{display:flex;gap:4px;list-style:none}
+  .menu a{display:block;padding:9px 13px;border-radius:8px;font-weight:500;color:var(--text)}
+  .menu a:hover,.menu a.on{color:var(--ink);background:var(--tint)}
+  .nav-ctas{display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.95rem;transition:.2s;border:1.5px solid var(--ink);cursor:pointer;font-family:"League Spartan",Roboto,sans-serif;letter-spacing:.02em;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#2a2a2a}
+  .btn-line{background:#fff;color:var(--ink)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.88rem}
+  .tel{font-variant-numeric:tabular-nums}
+  .burger{display:none}
+
+  /* hero */
+  .hero{background:var(--ink);color:#fff;padding:84px 0 0;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 10%,rgba(255,255,255,.09),transparent 45%),radial-gradient(circle at 10% 90%,rgba(255,255,255,.06),transparent 40%)}
+  .hero .wrap{position:relative}
+  .hero .eyebrow{color:var(--soft)}
+  .hero h1{color:#fff;font-weight:800;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;letter-spacing:-.02em;margin:16px 0 18px;max-width:900px}
+  .hero p.lead{font-size:clamp(1.15rem,2vw,1.45rem);color:var(--line);font-weight:300}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 56px}
+  .hero .btn-dark{background:#fff;color:var(--ink);border-color:#fff}
+  .hero .btn-dark:hover{background:var(--tint2)}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .hero .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .map{position:relative;border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;height:340px;background:var(--tint2);border:1px solid #222;border-bottom:0}
+  .map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(1)}
+
+  section{padding:92px 0}
+  .head{max-width:760px;margin-bottom:34px}
+  .head h2{font-weight:800;font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.08;margin-top:10px;letter-spacing:-.01em}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .about .quote{font-family:"League Spartan",sans-serif;font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.2;color:var(--ink);border-left:4px solid var(--ink);padding-left:20px}
+  .about .txt p+p{margin-top:16px}
+  .about .txt strong{color:var(--ink)}
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+  .values div{background:var(--tint);border-radius:10px;padding:16px;font-family:"League Spartan",sans-serif;font-weight:700;color:var(--ink);text-align:center}
+  .about .row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+
+  /* servicios */
+  .serv{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .serv-card{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px}
+  .serv-card .ic{width:62px;height:62px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center}
+  .serv-card h3{font-size:1.6rem;font-weight:800;margin-bottom:10px}
+  .serv-card p+p{margin-top:12px}
+
+  /* form */
+  .form-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+  .form-grid .intro p{font-size:1.15rem;margin-top:14px}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(0,0,0,.35);border-top:4px solid var(--ink)}
+  .card-form p.req{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field.full{grid-column:1/-1}
+  .field label{display:block;font-size:.84rem;font-weight:500;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cfcfcf;border-radius:9px;font:inherit;font-size:.96rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(0,0,0,.18);border-color:var(--ink)}
+  .checks{margin:16px 0 20px;display:grid;gap:10px}
+  .check{display:flex;gap:10px;font-size:.86rem;color:var(--muted);line-height:1.45;align-items:flex-start}
+  .check input{margin-top:3px;accent-color:#000;flex:none}
+  .check a{text-decoration:underline;color:var(--ink)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.88rem;margin-top:12px}
+
+  /* contact */
+  .contact{background:var(--ink);color:#e9e9e9}
+  .contact h2{color:#fff}
+  .contact .eyebrow{color:var(--soft)}
+  .c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .c-item{display:flex;flex-direction:column;gap:12px;border:1px solid #2c2c2c;border-radius:var(--radius);padding:26px;transition:.2s}
+  a.c-item:hover{border-color:#777;background:#0d0d0d}
+  .c-item .ic{width:48px;height:48px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center}
+  .c-item h3{color:#fff;font-size:1.3rem;font-weight:700}
+  .c-item span{color:var(--soft)}
+  .hours{margin-top:22px;border:1px solid #2c2c2c;border-radius:var(--radius);padding:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .hours div{display:flex;flex-direction:column;gap:4px}
+  .hours b{font-family:"League Spartan",sans-serif;color:#fff;font-size:1.1rem}
+  .hours span{color:var(--line);font-variant-numeric:tabular-nums}
+
+  footer{background:#0b0b0b;color:var(--soft);padding:26px 0;font-size:.86rem;border-top:1px solid #1f1f1f}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;align-items:center}
+  .foot ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px}
+  .foot a:hover{color:#fff}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu{display:none}
+    .burger{display:block;position:relative}
+    .burger summary{list-style:none;cursor:pointer;padding:10px 16px;border:1.5px solid var(--ink);border-radius:999px;font-weight:700;font-family:"League Spartan",sans-serif}
+    .burger summary::-webkit-details-marker{display:none}
+    .burger .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(260px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 50px -24px rgba(0,0,0,.4);padding:8px}
+    .burger .panel a{display:block;padding:10px 12px;border-radius:8px;font-weight:500}
+    .burger .panel a:hover{background:var(--tint)}
+    .about-grid,.form-grid{grid-template-columns:1fr;gap:32px}
+  }
+  @media (max-width:680px){
+    body{padding-bottom:76px}
+    .wrap{padding:0 16px}
+    .nav{height:68px}
+    .brand{font-size:1.05rem}
+    .nav-ctas{display:none}
+    .hero{padding-top:56px}
+    .hero .row .btn,.about .row .btn{width:100%}
+    .map{height:260px}
+    section{padding:64px 0}
+    .values{grid-template-columns:1fr}
+    .serv-card{grid-template-columns:1fr;padding:24px}
+    .fields{grid-template-columns:1fr}
+    .card-form{padding:24px 18px}
+    .c-grid,.hours{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.92rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Galicia E Hijos Asesores SL · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://www.galiciaehijosasesores.net/" class="brand">Galicia E Hijos Asesores SL</a>
+    <ul class="menu">
+      <li><a class="on" href="#inicio">Inicio</a></li>
+      <li><a href="#Formulario">Formulario</a></li>
+      <li><a href="#Servicios">Servicios</a></li>
+      <li><a href="#informacion">Información</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="tel:+34983399664" class="btn btn-dark btn-sm"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">983 39 96 64</span></a>
+      <a href="https://maps.google.com/maps?q=8+Bajo+Izquierda+Calle+Hostiero%2C+Valladolid%2C+VALLADOLID+47004%2C+ESPA%C3%91A" target="_blank" rel="noopener" class="btn btn-line btn-sm">Cómo llegar</a>
+    </div>
+    <details class="burger">
+      <summary>Menú</summary>
+      <nav class="panel">
+        <a href="#inicio">Inicio</a>
+        <a href="#Formulario">Formulario</a>
+        <a href="#Servicios">Servicios</a>
+        <a href="#informacion">Información</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero" id="inicio">
+    <div class="wrap">
+      <h1>Galicia E Hijos Asesores SL</h1>
+      <p class="lead">Nuestra meta: tu satisfacción.</p>
+      <div class="row">
+        <a href="tel:+34983399664" class="btn btn-dark"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Llámanos <span class="tel">983 39 96 64</span></a>
+        <a href="https://maps.google.com/maps?q=8+Bajo+Izquierda+Calle+Hostiero%2C+Valladolid%2C+VALLADOLID+47004%2C+ESPA%C3%91A" target="_blank" rel="noopener" class="btn btn-line">Cómo llegar</a>
+      </div>
+      <div class="map"><iframe title="Mapa: Calle Hostiero 8, Valladolid" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Calle%20Hostiero%208%2C%2047004%20Valladolid&z=15&output=embed"></iframe></div>
+    </div>
+  </div>
+
+  <!-- QUIENES SOMOS -->
+  <section class="about" id="informacion">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">Información</span>
+        <div class="head" style="margin-bottom:24px"><h2>Quiénes somos</h2></div>
+        <p class="quote">La claridad, el trato personal y la responsabilidad son fundamentales en nuestra forma de trabajar.</p>
+      </div>
+      <div class="txt">
+        <p>Prestar un servicio amplio y de calidad nos ha hecho dignos de la confianza de nuestros clientes. En <strong>Galicia E Hijos Asesores SL</strong> procuramos mimar cada servicio.</p>
+        <p>Somos Galicia E Hijos Asesores SL, en Valladolid, tu más inteligente opción cuando se trata de asesorías de empresas. Nuestra forma de conseguir la excelencia es poniendo al servicio de quienes nos visitan nuestro gran recorrido en el sector.</p>
+        <p>En Galicia E Hijos Asesores SL apostamos por progresar en cada servicio.</p>
+        <div class="row">
+          <a href="https://maps.google.com/maps?q=8+Bajo+Izquierda+Calle+Hostiero%2C+Valladolid%2C+VALLADOLID+47004%2C+ESPA%C3%91A" target="_blank" rel="noopener" class="btn btn-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Ven a visitarnos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="serv" id="Servicios">
+    <div class="wrap">
+      <div class="head"><h2>Servicios</h2></div>
+      <div class="serv-card">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+        <div>
+          <h3>Asesorías de empresas</h3>
+          <p>Déjanos ser tu servicio de asesorías de empresas en Valladolid. Disponemos de las más avanzadas técnicas, las metodologías y el personal más experto.</p>
+          <p>¿Precisas de un servicio de asesorías de empresas con todas las garantías? Llama a Galicia E Hijos Asesores SL. Echa un ojo a nuestra selección. Contacta con nosotros para obtener más información.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section id="Formulario">
+    <div class="wrap form-grid">
+      <div class="intro">
+        <span class="eyebrow">Formulario</span>
+        <div class="head" style="margin-bottom:0"><h2>Contacta con nosotros</h2></div>
+        <p>Si necesitas más información puedes utilizar el formulario de contacto, te responderemos a la mayor brevedad.</p>
+      </div>
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <p class="req">"*" señala los campos obligatorios.</p>
+        <div class="fields">
+          <div class="field"><label for="n">Nombre*</label><input id="n" required autocomplete="name"></div>
+          <div class="field"><label for="t">Teléfono</label><input id="t" type="tel" autocomplete="tel"></div>
+          <div class="field full"><label for="e">Email*</label><input id="e" type="email" required autocomplete="email"></div>
+          <div class="field full"><label for="m">Mensaje*</label><textarea id="m" rows="5" required></textarea></div>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox"><span>Autorizo a contactarme por email o por cualquier medio con fines comerciales.</span></label>
+          <label class="check"><input type="checkbox" required><span>He leído y aceptado la <a href="https://www.galiciaehijosasesores.net/pol%C3%ADtica-de-privacidad" target="_blank" rel="noopener">Política de Privacidad</a>*</span></label>
+        </div>
+        <button class="btn btn-dark" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Contacta con nosotros</span></div>
+      <div class="c-grid">
+        <a class="c-item" href="tel:+34983399664">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <h3>Llámanos</h3><span class="tel">983 39 96 64</span>
+        </a>
+        <a class="c-item" href="mailto:galicia@es-eu.net">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+          <h3>Escríbenos</h3><span>galicia@es-eu.net</span>
+        </a>
+        <a class="c-item" href="https://maps.google.com/maps?q=8+Bajo+Izquierda+Calle+Hostiero%2C+Valladolid%2C+VALLADOLID+47004%2C+ESPA%C3%91A" target="_blank" rel="noopener">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <h3>Visítanos</h3><span>Calle Hostiero, 8, Bajo Izquierda. 47004 Valladolid</span>
+        </a>
+      </div>
+      <div class="hours">
+        <div><b>Lun - Juev</b><span>09:00 - 14:00</span><span>17:00 - 20:00</span></div>
+        <div><b>Viernes</b><span>09:00 - 14:00</span></div>
+        <div><b>Sáb - Dom</b><span>Cerrado</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Galicia E Hijos Asesores SL · Todos los derechos reservados</span>
+    <ul>
+      <li><a href="https://www.galiciaehijosasesores.net/aviso-legal">Aviso Legal</a></li>
+      <li><a href="https://www.galiciaehijosasesores.net/pol%C3%ADtica-de-privacidad">Política de Privacidad</a></li>
+      <li><a href="https://www.galiciaehijosasesores.net/pol%C3%ADtica-de-cookies">Política de Cookies</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983399664" class="btn btn-dark">Llámanos</a>
+  <a href="mailto:galicia@es-eu.net" class="btn btn-line">Escríbenos</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

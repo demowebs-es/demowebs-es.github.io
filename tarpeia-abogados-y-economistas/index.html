@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tarpeia Abogados y Economistas · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1e3d6e; --navy-dark:#142a4d; --navy-deep:#0f1f3a; --red:#c40e0e; --red-dark:#a00b0b;
+    --ink:#161922; --text:#3d4350; --muted:#6b7280; --line:#e3eaf1; --tint:#f4f7fb; --white:#fff;
+    --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Lato,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .serif{font-family:"Libre Baskerville",Georgia,serif}
+  .eyebrow{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:900}
+
+  .demo{background:var(--navy-deep);color:#c9d3e4;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+  .nav .logo img{height:54px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 12px;font-weight:700;font-size:.9rem;color:var(--navy);border-radius:8px}
+  .menu>li>a:hover{background:var(--tint)}
+  .menu .has-sub>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px}
+  .sub{position:absolute;top:100%;left:0;min-width:280px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:0 0 10px 10px;box-shadow:0 20px 40px -20px rgba(15,31,58,.35);list-style:none;padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+  .menu>li:hover .sub,.menu>li:focus-within .sub{opacity:1;visibility:visible;transform:none}
+  .sub a{display:block;padding:9px 12px;border-radius:7px;font-size:.88rem;color:var(--text)}
+  .sub a:hover{background:var(--tint);color:var(--navy)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:6px;font-weight:700;font-size:.92rem;transition:.2s;border:2px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap;letter-spacing:.02em}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-white{background:#fff;color:var(--ink);border-color:#fff}
+  .btn-white:hover{background:var(--tint)}
+  .btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .btn-navy:hover{background:var(--navy-dark)}
+  .btn-sm{padding:10px 16px;font-size:.86rem}
+  .btn svg{flex:none}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--navy-deep) url(https://www.tarpeia.es/wp-content/uploads/2019/11/equipo116-1.jpg) center 30%/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,31,58,.94) 0%,rgba(20,42,77,.82) 45%,rgba(20,42,77,.35) 100%)}
+  .hero .wrap{position:relative;padding-top:110px;padding-bottom:120px}
+  .hero-in{max-width:640px}
+  .hero h1{font-family:"Libre Baskerville",Georgia,serif;font-weight:700;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.12;margin:16px 0 20px}
+  .hero h2{font-size:clamp(1.05rem,1.6vw,1.22rem);font-weight:400;line-height:1.6;color:#e4eaf4}
+  .hero .team{font-family:"Libre Baskerville",Georgia,serif;font-style:italic;color:#c9d3e4;margin-top:16px;font-size:1rem;padding-left:16px;border-left:3px solid var(--red)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero .eyebrow{color:#ff8b8b}
+
+  section{padding:96px 0}
+  .head{max-width:760px;margin:0 auto 48px;text-align:center}
+  .head h2{font-family:"Libre Baskerville",Georgia,serif;font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.2;color:var(--navy);margin-top:10px}
+  .head p{color:var(--muted);margin-top:16px;font-size:1.04rem}
+
+  /* areas */
+  #areas{background:var(--tint)}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .area{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px 26px;transition:.25s;position:relative;overflow:hidden}
+  .area::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:.3s}
+  .area:hover{box-shadow:0 22px 44px -26px rgba(15,31,58,.4);border-color:#cfdbea}
+  .area:hover::before{transform:scaleX(1)}
+  .area img{width:58px;height:58px;margin-bottom:16px}
+  .area h3{font-family:"Libre Baskerville",Georgia,serif;font-size:1.35rem;color:var(--navy)}
+  .area .tag{color:var(--red);font-weight:700;font-size:.9rem;margin:2px 0 12px}
+  .area p{font-size:.95rem;flex:1}
+  .area .more{margin-top:18px;font-weight:700;font-size:.86rem;color:var(--navy);display:inline-flex;align-items:center;gap:8px}
+  .area .more::after{content:"→";color:var(--red);transition:.2s}
+  .area:hover .more::after{transform:translateX(4px)}
+
+  /* values */
+  .values{position:relative;color:#fff;background:var(--navy-deep) url(https://www.tarpeia.es/wp-content/uploads/2019/09/fondo-valores3.jpg) center/cover no-repeat}
+  .values::before{content:"";position:absolute;inset:0;background:rgba(15,31,58,.9)}
+  .values .wrap{position:relative}
+  .values .head h2{color:#fff}
+  .values .head p{color:#c9d3e4}
+  .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden}
+  .val{background:rgba(15,31,58,.82);padding:32px 30px}
+  .val .n{font-family:"Libre Baskerville",Georgia,serif;color:#ff8b8b;font-size:.95rem}
+  .val h3{font-size:1.14rem;margin:6px 0 10px;color:#fff;font-weight:700}
+  .val p{font-size:.93rem;color:#c9d3e4}
+  .val p+p{margin-top:10px}
+  .values .cta{text-align:center;margin-top:42px}
+
+  /* band */
+  .band{position:relative;color:#fff;background:var(--navy) url(https://www.tarpeia.es/wp-content/uploads/2019/10/equipo86.jpg) center/cover no-repeat;padding:0}
+  .band::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(196,14,14,.93),rgba(160,11,11,.8))}
+  .band .wrap{position:relative;display:flex;align-items:center;justify-content:space-between;gap:28px;padding-top:56px;padding-bottom:56px}
+  .band h2{font-family:"Libre Baskerville",Georgia,serif;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.3;font-weight:700;max-width:720px}
+
+  /* clients */
+  .clients{padding:72px 0}
+  .clients .head{margin-bottom:30px}
+  .clients .head h2{font-size:1.25rem;font-style:italic;font-weight:400;color:var(--muted)}
+  .logos{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;align-items:center}
+  .logos li{list-style:none;display:grid;place-items:center;padding:10px;border:1px solid var(--line);border-radius:10px;height:96px;background:#fff}
+  .logos img{max-height:62px;width:auto;filter:grayscale(1);opacity:.75;transition:.25s}
+  .logos li:hover img{filter:none;opacity:1}
+
+  /* blog */
+  .blog{background:var(--tint)}
+  .posts{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .post{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .post:hover{box-shadow:0 22px 44px -26px rgba(15,31,58,.4)}
+  .post .ph{aspect-ratio:4/3;overflow:hidden;background:var(--line)}
+  .post .ph img{width:100%;height:100%;object-fit:cover;transition:.4s}
+  .post:hover .ph img{transform:scale(1.04)}
+  .post .body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .post time{font-size:.78rem;color:var(--red);font-weight:700;letter-spacing:.06em}
+  .post h3{font-size:.95rem;line-height:1.4;color:var(--navy);margin:8px 0 14px;flex:1;font-weight:900}
+  .post .more{font-size:.84rem;font-weight:700;color:var(--navy)}
+  .post .more::after{content:" →";color:var(--red)}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  .info{background:var(--navy);color:#fff;border-radius:var(--radius);padding:36px 32px}
+  .info h2{font-family:"Libre Baskerville",Georgia,serif;font-size:1.6rem;margin-bottom:22px}
+  .info dl{display:grid;gap:18px}
+  .info dt{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:#ff8b8b;font-weight:900}
+  .info dd{font-size:1.02rem;margin-top:3px}
+  .info dd a{text-decoration:underline;text-underline-offset:3px}
+  .info .hours{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(255,255,255,.25);padding-bottom:6px}
+  .info .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .card-form{background:#fff;border-radius:var(--radius);padding:34px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(15,31,58,.45);border-top:4px solid var(--red)}
+  .card-form h2{font-family:"Libre Baskerville",Georgia,serif;font-size:1.7rem;color:var(--navy);margin-bottom:18px}
+  .opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;border:0}
+  .opts legend{font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+  .opt{position:relative}
+  .opt input{position:absolute;opacity:0;width:1px;height:1px}
+  .opt span{display:inline-block;padding:8px 14px;border:1.5px solid var(--line);border-radius:999px;font-size:.86rem;cursor:pointer;transition:.15s;background:#fff}
+  .opt input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+  .opt input:focus-visible+span{outline:2px solid var(--red);outline-offset:2px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cfd8e4;border-radius:8px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(30,61,110,.25);border-color:var(--navy)}
+  .check{display:flex;gap:10px;font-size:.86rem;align-items:flex-start;margin:6px 0 18px}
+  .check input{margin-top:4px;accent-color:var(--navy);flex:none}
+  .check a{text-decoration:underline;color:var(--navy)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:8px;padding:12px;font-size:.88rem;margin-top:12px;color:var(--navy)}
+  .form-note{font-size:.84rem;color:var(--muted);text-align:center;margin-top:14px;font-style:italic}
+
+  /* footer */
+  footer{background:var(--navy-deep);color:#b8c4d8;padding:64px 0 0;font-size:.92rem}
+  .fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:14px}
+  footer .flogo{height:40px;width:auto;margin-bottom:16px}
+  footer ul{list-style:none;display:grid;gap:8px}
+  footer ul a:hover,footer .fbot a:hover{color:#fff}
+  footer ul a::before{content:"›";color:var(--red);font-weight:900;margin-right:8px}
+  .social{display:flex;gap:10px;margin-top:16px}
+  .social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;color:#fff}
+  .social a:hover{background:var(--red);border-color:var(--red)}
+  .fbot{margin-top:52px;border-top:1px solid rgba(255,255,255,.12);padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.84rem}
+  .fbot nav{display:flex;flex-wrap:wrap;gap:18px}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;border:1.5px solid var(--line);border-radius:8px;font-weight:700;color:var(--navy);font-size:.88rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(320px,calc(100vw - 32px));max-height:75vh;overflow:auto;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:10px;box-shadow:0 24px 50px -20px rgba(15,31,58,.4);padding:10px}
+    .mnav .panel a{display:block;padding:9px 12px;border-radius:7px;font-size:.92rem}
+    .mnav .panel a:hover{background:var(--tint)}
+    .mnav .panel .grp{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:900;padding:10px 12px 4px}
+    .mnav .panel .ind{padding-left:22px}
+    .areas{grid-template-columns:1fr 1fr}
+    .vgrid{grid-template-columns:1fr 1fr}
+    .posts{grid-template-columns:1fr 1fr}
+    .logos{grid-template-columns:repeat(3,1fr)}
+    .contact-grid{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav .logo img{height:42px}
+    .nav-cta{display:none}
+    .hero .wrap{padding-top:64px;padding-bottom:72px}
+    .hero::before{background:rgba(15,31,58,.86)}
+    .hero .row .btn{width:100%}
+    section{padding:64px 0}
+    .areas,.vgrid,.posts,.fgrid,.two{grid-template-columns:1fr}
+    .logos{grid-template-columns:1fr 1fr}
+    .band .wrap{flex-direction:column;align-items:flex-start}
+    .band .btn,.values .cta .btn,.info .row .btn{width:100%}
+    .card-form{padding:26px 20px}
+    .info{padding:30px 22px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Tarpeia Abogados y Economistas · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.tarpeia.es/" aria-label="Tarpeia Abogados en León"><img src="https://www.tarpeia.es/wp-content/uploads/2019/09/Tarpeia-abogado-logo-horizontal.png" alt="Tarpeia Abogados en León" width="245" height="68"></a>
+    <ul class="menu">
+      <li><a href="https://www.tarpeia.es/">Home</a></li>
+      <li class="has-sub"><a href="https://www.tarpeia.es/tarpeia-bufete-de-abogados/">Nosotros</a>
+        <ul class="sub">
+          <li><a href="https://www.tarpeia.es/tarpeia-bufete-de-abogados/">Empresa</a></li>
+          <li><a href="https://www.tarpeia.es/equipo-tarpeia-abogados/">Equipo</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="#areas">Áreas de especialización</a>
+        <ul class="sub">
+          <li><a href="https://www.tarpeia.es/abogados-laboralistas-en-leon/">Abogados Laboralistas</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-de-familia-en-leon/">Abogados de Familia</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-herencias-leon/">Abogados de Herencias</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-de-derecho-administrativo/">Abogados de Derecho Administrativo</a></li>
+          <li><a href="https://www.tarpeia.es/abogado-penalista-leon/">Abogados Penalistas</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-civiles-leon/">Abogados Civiles</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.tarpeia.es/noticias-juridicas/">Blog</a></li>
+      <li><a href="https://www.tarpeia.es/contacto/">Contacto</a></li>
+    </ul>
+    <a href="tel:+34987045477" class="btn btn-red btn-sm nav-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      987 045 477
+    </a>
+    <details class="mnav">
+      <summary aria-label="Menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <div class="panel">
+        <a href="https://www.tarpeia.es/">Home</a>
+        <div class="grp">Nosotros</div>
+        <a class="ind" href="https://www.tarpeia.es/tarpeia-bufete-de-abogados/">Empresa</a>
+        <a class="ind" href="https://www.tarpeia.es/equipo-tarpeia-abogados/">Equipo</a>
+        <div class="grp">Áreas de especialización</div>
+        <a class="ind" href="https://www.tarpeia.es/abogados-laboralistas-en-leon/">Abogados Laboralistas</a>
+        <a class="ind" href="https://www.tarpeia.es/abogados-de-familia-en-leon/">Abogados de Familia</a>
+        <a class="ind" href="https://www.tarpeia.es/abogados-herencias-leon/">Abogados de Herencias</a>
+        <a class="ind" href="https://www.tarpeia.es/abogados-de-derecho-administrativo/">Abogados de Derecho Administrativo</a>
+        <a class="ind" href="https://www.tarpeia.es/abogado-penalista-leon/">Abogados Penalistas</a>
+        <a class="ind" href="https://www.tarpeia.es/abogados-civiles-leon/">Abogados Civiles</a>
+        <a href="https://www.tarpeia.es/noticias-juridicas/">Blog</a>
+        <a href="https://www.tarpeia.es/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-in">
+        <span class="eyebrow">Tarpeia Abogados · León</span>
+        <h1>Tu Despacho de Abogados en León</h1>
+        <h2>Despacho de abogados multidisciplinar, donde la experiencia, la atención personalizada y el compromiso con el cliente son nuestra seña de identidad.</h2>
+        <p class="team">Equipo de abogados laboralistas, de familia, de herencias, penalistas, administrativo y civil.</p>
+        <div class="row">
+          <a href="#contacto" class="btn btn-red">Asesórate con los mejores profesionales</a>
+          <a href="tel:+34987045477" class="btn btn-ghost">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            987 045 477
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AREAS -->
+  <section id="areas">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Áreas de especialización</span>
+        <h2>Áreas de especialización en nuestro Despacho de Abogados en León</h2>
+      </div>
+      <div class="areas">
+        <a class="area" href="https://www.tarpeia.es/abogados-laboralistas-en-leon/">
+          <img src="https://www.tarpeia.es/wp-content/uploads/2019/09/servicios-laboral3.png" alt="Servicios Tarpeia Laboral" width="70" height="70">
+          <h3>Laboral</h3>
+          <p class="tag">Abogados laboralistas</p>
+          <p>Despidos, conflictos individuales y colectivos, ERE, FOGASA, indemnizaciones, incapacidades laborales, desempleo y reclamación de pensiones.</p>
+          <span class="more">Abogados Laboralistas</span>
+        </a>
+        <a class="area" href="https://www.tarpeia.es/abogados-de-familia-en-leon/">
+          <img src="https://www.tarpeia.es/wp-content/uploads/2019/09/servicios-familia4.png" alt="Servicios Tarpeia Familia" width="70" height="70">
+          <h3>Familia</h3>
+          <p class="tag">Abogados de familia</p>
+          <p>Divorcios, mediación familiar, divorcio express, pensión compensatoria, pensión de alimentos y custodia.</p>
+          <span class="more">Abogados de Familia</span>
+        </a>
+        <a class="area" href="https://www.tarpeia.es/abogados-herencias-leon/">
+          <img src="https://www.tarpeia.es/wp-content/uploads/2019/09/servicios-herencias.png" alt="Servicios Tarpeia Herencias" width="70" height="70">
+          <h3>Herencias</h3>
+          <p class="tag">Abogados Herencias</p>
+          <p>Declaración de herederos, impuesto de sucesiones y testamentos.</p>
+          <span class="more">Abogados de Herencias</span>
+        </a>
+        <a class="area" href="https://www.tarpeia.es/abogados-de-derecho-administrativo/">
+          <img src="https://www.tarpeia.es/wp-content/uploads/2019/09/servicios-administrativo.png" alt="Servicios Tarpeia Administrativo" width="70" height="70">
+          <h3>Administrativo</h3>
+          <p class="tag">Abogados Derecho Administrativo</p>
+          <p>Recursos administrativos, infracciones y sanciones, expropiación, subvención y ayudas públicas y derecho urbanístico.</p>
+          <span class="more">Abogados de Derecho Administrativo</span>
+        </a>
+        <a class="area" href="https://www.tarpeia.es/abogado-penalista-leon/">
+          <img src="https://www.tarpeia.es/wp-content/uploads/2019/09/servicios-penal.png" alt="Servicios Tarpeia Penal" width="70" height="70">
+          <h3>Penal</h3>
+          <p class="tag">Abogados Penalistas</p>
+          <p>Asistencia al detenido, recurso de apelación y casación.</p>
+          <span class="more">Abogados Penalistas</span>
+        </a>
+        <a class="area" href="https://www.tarpeia.es/abogados-civiles-leon/">
+          <img src="https://www.tarpeia.es/wp-content/uploads/2019/09/servicios-civil.png" alt="Servicios Tarpeia Civil" width="70" height="70">
+          <h3>Civil</h3>
+          <p class="tag">Abogados civiles</p>
+          <p>Abogados accidentes de tráfico, procedimiento monitorio, reclamación judicial de deuda, derecho de consumidores, cláusula suelo y gastos de hipoteca.</p>
+          <span class="more">Abogados Civiles</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" style="color:#ff8b8b">Nosotros</span>
+        <h2>¿Por qué confiar en nuestro Despacho de Abogados en León?</h2>
+        <p>Nuestra experiencia es la base, nuestros valores es lo que hace de Tarpeia Abogados un despacho diferente, un despacho en el que confiar. Trabajamos con empresas, autónomos y particulares. Somos tu Bufete de Abogados.</p>
+      </div>
+      <div class="vgrid">
+        <div class="val">
+          <span class="n">01</span>
+          <h3>Experiencia del equipo</h3>
+          <p>Nuestro despacho de abogados en León cuenta con un equipo de profesionales que atesoran una dilatada experiencia en distintas áreas del derecho.</p>
+        </div>
+        <div class="val">
+          <span class="n">02</span>
+          <h3>Personalización de cada caso</h3>
+          <p>Para nuestro bufete de abogados resolver con éxito los problemas del cliente es la prioridad. Por ello, escuchamos sus necesidades, analizamos las opciones y aportamos la mejor solución para sus intereses.</p>
+        </div>
+        <div class="val">
+          <span class="n">03</span>
+          <h3>Cercanía</h3>
+          <p>Queremos que el cliente sea el centro de nuestro trabajo. Les explicamos cada paso, cada gestión y cada avance de manera que se sientan parte del proceso y de la toma de decisiones. Queremos ganarnos su confianza día a día a base de trabajo y esfuerzo.</p>
+        </div>
+        <div class="val">
+          <span class="n">04</span>
+          <h3>Confidencialidad</h3>
+          <p>Para Tarpeia Abogados la confianza depositada por los clientes resulta fundamental.</p>
+          <p>Entendemos que la privacidad ha de constituir un valor fundamental a la hora de tratar cada asunto que se nos encomienda.</p>
+        </div>
+        <div class="val">
+          <span class="n">05</span>
+          <h3>Eficacia y fiabilidad</h3>
+          <p>Los profesionales de Tarpeia trabajamos en equipo para tener la seguridad de emplear los mejores recursos y la mejor experiencia en cada caso. Además, apostamos por una formación continua que garantiza la capacidad técnica de nuestro despacho.</p>
+        </div>
+        <div class="val">
+          <span class="n">06</span>
+          <h3>Honestidad y Confianza</h3>
+          <p>Ganarnos la confianza de nuestros clientes exige actuar con honestidad en todo momento.</p>
+          <p>Esa es y será siempre una máxima para Tarpeia Abogados.</p>
+        </div>
+      </div>
+      <div class="cta"><a href="https://www.tarpeia.es/contacto/" class="btn btn-white">CONÓCENOS</a></div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <section class="band">
+    <div class="wrap">
+      <h2>¿Quieres saber cómo reclamar los gastos de hipoteca?</h2>
+      <a href="#contacto" class="btn btn-white">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        CONTACTAR
+      </a>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients">
+    <div class="wrap">
+      <div class="head"><h2>Algunos de Nuestros Clientes</h2></div>
+      <ul class="logos">
+        <li><img src="https://www.tarpeia.es/wp-content/uploads/2016/08/inmovil-logo.png" alt="Cliente - Inmovil logo" loading="lazy"></li>
+        <li><img src="https://www.tarpeia.es/wp-content/uploads/2016/08/ipd-logo.png" alt="Cliente - ipd logo" loading="lazy"></li>
+        <li><img src="https://www.tarpeia.es/wp-content/uploads/2016/08/casaleon-logo.png" alt="Cliente - Casa León" loading="lazy"></li>
+        <li><img src="https://www.tarpeia.es/wp-content/uploads/2016/08/hormigones-baquero-logo.png" alt="Cliente - Hormigones Baquero" loading="lazy"></li>
+        <li><img src="https://www.tarpeia.es/wp-content/uploads/2016/08/clientes-WALLYBOO.png" alt="Cliente - Wallyboo" loading="lazy"></li>
+        <li><img src="https://www.tarpeia.es/wp-content/uploads/2016/08/mussa-logo.png" alt="Cliente - Mussa Marketing" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Blog</span>
+        <h2>Mantente informado en el Blog de Tarpeia</h2>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://www.tarpeia.es/abogados-laboralistas-en-leon/la-pre/">
+          <div class="ph"><img src="https://www.tarpeia.es/wp-content/uploads/2023/12/complemento-mater-960x682.jpg" alt="" loading="lazy"></div>
+          <div class="body"><time datetime="2023-12-16">16/12/2023</time><h3>LA PRESCRIPCIÓN DEL COMPLEMENTO DE MATERNIDAD</h3><span class="more">Leer más</span></div>
+        </a>
+        <a class="post" href="https://www.tarpeia.es/abogados-laboralistas-en-leon/el-contrato-de-trabajo-tras-la-declaracion-en-situacion-de-incapacidad-permanente/">
+          <div class="ph"><img src="https://www.tarpeia.es/wp-content/uploads/2023/06/trabajo-960x750.jpg" alt="" loading="lazy"></div>
+          <div class="body"><time datetime="2023-06-13">13/06/2023</time><h3>EL CONTRATO DE TRABAJO TRAS LA DECLARACIÓN EN SITUACIÓN DE INCAPACIDAD PERMANENTE</h3><span class="more">Leer más</span></div>
+        </a>
+        <a class="post" href="https://www.tarpeia.es/abogados-laboralistas-en-leon/la-incapacidad-permanente-y-sus-grados/">
+          <div class="ph"><img src="https://www.tarpeia.es/wp-content/uploads/2023/05/Incapcacidad-Permanente-960x750.jpg" alt="" loading="lazy"></div>
+          <div class="body"><time datetime="2023-05-25">25/05/2023</time><h3>LA INCAPACIDAD PERMANENTE Y SUS GRADOS.</h3><span class="more">Leer más</span></div>
+        </a>
+        <a class="post" href="https://www.tarpeia.es/abogados-civiles-leon/extincion-del-condominio-tributacion/">
+          <div class="ph"><img src="https://www.tarpeia.es/wp-content/uploads/2023/03/euro-g1fbea0d1c_1280-960x750.jpg" alt="" loading="lazy"></div>
+          <div class="body"><time datetime="2023-03-08">08/03/2023</time><h3>LA TRIBUTACIÓN DE LA EXTINCIÓN DEL CONDOMINIO.</h3><span class="more">Leer más</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div class="info">
+        <h2>Encuéntranos en León:</h2>
+        <dl>
+          <div><dt>Dirección</dt><dd>Calle Colón, nº 4, 1º A.<br>León</dd></div>
+          <div><dt>teléfono/fax</dt><dd><a href="tel:+34987045477">987 045 477</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:tarpeia@tarpeia.es">tarpeia@tarpeia.es</a></dd></div>
+          <div><dt>Horario</dt>
+            <dd class="hours"><span>Lunes - Viernes</span><span>9:00 - 14:00</span></dd>
+            <dd>Tardes, con cita previa</dd>
+          </div>
+        </dl>
+        <div class="row">
+          <a href="tel:+34987045477" class="btn btn-red">987 045 477</a>
+          <a href="mailto:tarpeia@tarpeia.es" class="btn btn-ghost">tarpeia@tarpeia.es</a>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <h2>¿En qué podemos ayudarte?</h2>
+        <fieldset class="opts">
+          <label class="opt"><input type="checkbox" name="area" value="Laboral"><span>Laboral</span></label>
+          <label class="opt"><input type="checkbox" name="area" value="Familia"><span>Familia</span></label>
+          <label class="opt"><input type="checkbox" name="area" value="Herencias"><span>Herencias</span></label>
+          <label class="opt"><input type="checkbox" name="area" value="Penal"><span>Penal</span></label>
+          <label class="opt"><input type="checkbox" name="area" value="Administrativo"><span>Administrativo</span></label>
+          <label class="opt"><input type="checkbox" name="area" value="Civil"><span>Civil</span></label>
+          <label class="opt"><input type="checkbox" name="area" value="Otro"><span>Otro</span></label>
+        </fieldset>
+        <div class="two">
+          <div class="field"><label for="n">Nombre</label><input id="n" required autocomplete="name"></div>
+          <div class="field"><label for="e">Email</label><input id="e" type="email" required autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="m">Mensaje</label><textarea id="m" rows="5"></textarea></div>
+        <label class="check"><input type="checkbox" required><span><a href="https://www.tarpeia.es/politica-privacidad/" target="_blank" rel="noopener">Acepto la política de privacidad</a></span></label>
+        <button class="btn btn-red" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        <p class="form-note">teléfono/fax: 987 045 477 · tarpeia@tarpeia.es</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <img class="flogo" src="https://www.tarpeia.es/wp-content/uploads/2019/11/home_tarpeia4_footer_logo___.png" alt="Logo Tarpeia" width="232" height="47">
+        <p>Despacho de abogados multidisciplinar, donde la experiencia, la atención personalizada y el compromiso con el cliente son nuestra seña de identidad.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/TarpeiaAbogados-100630288030710/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+          <a href="https://www.linkedin.com/company/tarpeia-abogados" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Encuéntranos en León:</h4>
+        <p>Calle Colón, nº 4, 1º A.<br>León<br>teléfono/fax: <a href="tel:+34987045477">987 045 477</a><br><a href="mailto:tarpeia@tarpeia.es">tarpeia@tarpeia.es</a></p>
+        <p style="margin-top:12px">Lunes - Viernes 9:00 - 14:00<br>Tardes, con cita previa</p>
+      </div>
+      <div>
+        <h4>Estamos especializados en…</h4>
+        <ul>
+          <li><a href="https://www.tarpeia.es/abogados-laboralistas-en-leon/">Laboral</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-de-familia-en-leon/">Familia</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-herencias-leon/">Herencias</a></li>
+          <li><a href="https://www.tarpeia.es/abogado-penalista-leon/">Penal</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-de-derecho-administrativo/">Administrativo</a></li>
+          <li><a href="https://www.tarpeia.es/abogados-civiles-leon/">Civil</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tu despacho de Abogados en León</h4>
+        <ul>
+          <li><a href="https://www.tarpeia.es/tarpeia-bufete-de-abogados/">La Empresa</a></li>
+          <li><a href="https://www.tarpeia.es/equipo-tarpeia-abogados/">Equipo</a></li>
+          <li><a href="https://www.tarpeia.es/noticias-juridicas/">Blog</a></li>
+          <li><a href="https://www.tarpeia.es/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2019 Tarpeia Abogados</span>
+      <nav>
+        <a href="https://www.tarpeia.es/politica-privacidad/">Política de privacidad</a>
+        <a href="https://www.tarpeia.es/aviso-legal/">Aviso legal</a>
+        <a href="https://www.tarpeia.es/politica-de-cookies-ue/">Política de cookies (UE)</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34987045477" class="btn btn-red">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    987 045 477
+  </a>
+  <a href="#contacto" class="btn btn-navy">Contacto</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+  document.querySelectorAll('.mnav .panel a').forEach(function(a){ a.addEventListener('click', function(){ a.closest('details').removeAttribute('open'); }); });
+</script>
+</body>
+</html>

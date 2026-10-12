@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Frutos Ramos Asesores · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#960A26; --wine-dark:#760820; --slate:#2e3141; --slate-2:#353849; --indigo:#4c5c96; --indigo-dark:#3f4e85;
+    --ink:#23252f; --text:#41444f; --muted:#6b6e7a; --line:#e6e4ea; --tint:#f6f5f8; --white:#fff;
+    --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;font-size:1.04rem;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:Raleway,system-ui,sans-serif;color:var(--ink);line-height:1.15}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Raleway,sans-serif;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wine);font-weight:800}
+
+  .demo{background:#1f212c;color:#c8c9d4;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:var(--slate);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:Raleway,sans-serif;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem}
+  .brand img{height:46px;width:auto}
+  .menu{display:flex;gap:2px;list-style:none}
+  .menu a{display:block;padding:8px 9px;border-radius:7px;font-size:.85rem;white-space:nowrap;font-weight:600;color:#d9dae3}
+  .menu a:hover{background:rgba(255,255,255,.08);color:#fff}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.97rem;transition:.2s;border:1.5px solid var(--wine);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-wine{background:var(--wine);color:#fff}
+  .btn-wine:hover{background:var(--wine-dark);border-color:var(--wine-dark)}
+  .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.07)}
+  .btn-ghost{background:#fff;color:var(--slate);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--wine);color:var(--wine)}
+  .btn-sm{padding:9px 18px;font-size:.88rem}
+
+  /* hero */
+  .hero{background:radial-gradient(1200px 500px at 85% 10%,rgba(76,92,150,.55),transparent 60%),linear-gradient(160deg,var(--slate) 0%,#24263a 100%);color:#fff;padding:84px 0 92px}
+  .hero-grid{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+  .hero .logo{width:170px}
+  .hero h1{color:#fff;font-weight:800;font-size:clamp(2.3rem,5.2vw,3.9rem);letter-spacing:-.01em;margin-bottom:18px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+  .hero .tags span{font-family:Raleway,sans-serif;font-size:.74rem;letter-spacing:.16em;font-weight:800;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28)}
+  .hero .tags span.hl{background:var(--wine);border-color:var(--wine)}
+  .hero p{color:#d6d8e4;font-size:1.15rem;max-width:620px}
+  .hero p + p{margin-top:4px;font-style:italic;color:#fff}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+  section{padding:88px 0}
+  .alt{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  /* intro */
+  .intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+  .intro .ph{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -36px rgba(46,49,65,.6)}
+  .intro p{font-size:1.1rem;margin-bottom:14px}
+  .intro p a{color:var(--wine);font-weight:600;text-decoration:underline}
+  .contact-card{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .cc{border:1px solid var(--line);border-radius:10px;padding:16px;background:#fff;font-style:normal;font-size:.95rem}
+  .cc b{display:block;font-family:Raleway,sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);margin-bottom:4px}
+  .cc a{color:var(--ink);font-weight:600}
+  .cc a:hover{color:var(--wine)}
+
+  /* service blocks */
+  .svc{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:start}
+  .svc.noimg{grid-template-columns:1fr}
+  .svc .ph{border-radius:var(--radius);overflow:hidden;position:sticky;top:100px;background:#fff;border:1px solid var(--line)}
+  .svc .ph.sm{padding:28px;display:grid;place-items:center}
+  .svc h2{font-weight:800;font-size:clamp(1.8rem,3.2vw,2.5rem);margin:8px 0 16px}
+  .svc .intro-p{font-size:1.08rem;margin-bottom:12px;max-width:760px}
+  .svc .label{font-family:Raleway,sans-serif;font-weight:800;color:var(--slate);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin:24px 0 12px}
+  .list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+  .list li{position:relative;padding-left:20px;font-size:.98rem;line-height:1.5}
+  .list li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--wine);border-radius:2px}
+  .list.one{grid-template-columns:1fr}
+  .list.one li{padding:14px 16px 14px 36px;background:#fff;border:1px solid var(--line);border-radius:10px}
+  .list.one li::before{left:16px;top:1.25em}
+  .list b{color:var(--ink)}
+  .groups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .group{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff}
+  .group h3{font-size:1rem;font-weight:800;color:var(--wine);margin-bottom:10px}
+  .group .list{grid-template-columns:1fr;gap:8px}
+  .group .list li{font-size:.94rem}
+  .free{margin-top:26px;display:flex;gap:14px;align-items:flex-start;background:var(--slate);color:#fff;border-radius:10px;padding:18px 20px;font-weight:600}
+  .free svg{flex:none;color:#f0a3b3;margin-top:3px}
+  .lead-b{font-weight:600;color:var(--ink);font-size:1.12rem;margin-bottom:12px}
+  .svc p b,.svc p strong{color:var(--ink)}
+  .svc p u{text-decoration-color:var(--wine);text-underline-offset:3px}
+
+  /* more */
+  .head{max-width:720px;margin-bottom:36px}
+  .head h2{font-weight:800;font-size:clamp(1.8rem,3.2vw,2.5rem);margin-top:8px}
+  .more{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .more a{display:block;border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff;transition:.2s;position:relative}
+  .more a:hover{border-color:var(--wine);box-shadow:0 18px 40px -26px rgba(46,49,65,.45)}
+  .more h3{font-size:1.15rem;font-weight:800;margin-bottom:6px}
+  .more span{color:var(--wine);font-weight:600}
+  .more span::after{content:" →"}
+
+  /* contact band */
+  .band{background:var(--slate);color:#fff;padding:80px 0}
+  .band h2{color:#fff;font-weight:800;font-size:clamp(1.8rem,3.2vw,2.5rem);margin:8px 0 28px}
+  .band .eyebrow{color:#f0a3b3}
+  .bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .bi{background:var(--slate-2);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:20px;font-size:1rem;color:#d9dae3}
+  .bi b{display:block;font-family:Raleway,sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#f0a3b3;margin-bottom:6px}
+  .bi a{color:#fff;font-weight:600}
+  .bi a:hover{text-decoration:underline}
+
+  /* legal */
+  .legal details{border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+  .legal summary{cursor:pointer;list-style:none;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .legal summary::-webkit-details-marker{display:none}
+  .legal summary h2{font-size:1.4rem;font-weight:800}
+  .legal summary .pl{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--wine);color:var(--wine);display:grid;place-items:center;font-weight:700;flex:none;transition:.2s}
+  .legal details[open] summary .pl{transform:rotate(45deg)}
+  .legal .body{padding:0 24px 28px;font-size:.93rem;color:var(--muted);max-width:900px}
+  .legal .body h3{font-size:1rem;font-weight:800;color:var(--ink);margin:22px 0 8px}
+  .legal .body p{margin-bottom:10px}
+
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.86rem;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+  .foot a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1100px){ .menu{display:none} }
+  @media (min-width:1101px){ .brand .bt{display:none} }
+  .brand{white-space:nowrap}
+  @media (max-width:980px){
+    .hero-grid,.intro,.svc{grid-template-columns:1fr}
+    .hero .logo{width:120px}
+    .svc .ph{position:static;max-width:340px}
+    .groups,.more{grid-template-columns:1fr 1fr}
+    .bgrid{grid-template-columns:1fr 1fr}
+    .contact-card{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:64px}
+    .brand img{height:38px}
+    .nav .btn{display:none}
+    .hero{padding:52px 0 60px}
+    .hero-grid{gap:28px}
+    .hero .logo{width:96px}
+    .hero .row .btn{width:100%}
+    section{padding:60px 0}
+    .list,.groups,.more,.bgrid,.contact-card{grid-template-columns:1fr}
+    .svc .ph{max-width:100%}
+    .legal summary{padding:18px}
+    .legal .body{padding:0 18px 22px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:76px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Frutos Ramos Asesores · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#inicio"><img src="logo-ga-inv.png" alt="Gestoría Asesoría"><span class="bt">Frutos Ramos Asesores</span></a>
+    <ul class="menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#asesoriaFiscalContable">Asesoría Fiscal Contable</a></li>
+      <li><a href="#asesoriaLaboral">Asesoría Laboral</a></li>
+      <li><a href="#gestoriaAdministrativa">Gestoría Administrativa</a></li>
+      <li><a href="#asesoriaJuridica">Asesoría Jurídica</a></li>
+      <li><a href="#asesoriaAgraria">Asesoría Agraria</a></li>
+      <li><a href="#avisoLegal">Aviso legal</a></li>
+    </ul>
+    <a href="tel:+34983320912" class="btn btn-wine btn-sm">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      983 32 09 12
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <img class="logo" src="logo-ga-inv.png" alt="Gestoría Asesoría">
+      <div>
+        <h1>Frutos Ramos Asesores</h1>
+        <div class="tags">
+          <span>ASESORAMIENTO GLOBAL DE EMPRESAS</span>
+          <span class="hl">ESPECIALIZADOS EN FISCALIDAD AGRARIA</span>
+        </div>
+        <p>Un servicio personalizado para asesorarte en todos los campos que afectan a tu empresa.</p>
+        <p>Profesionalidad, eficacia y eficiencia a tu servicio.</p>
+        <div class="row">
+          <a href="tel:+34983320912" class="btn btn-wine">Tfn. 983 32 09 12</a>
+          <a href="mailto:asesoria@gestoriafrutos.es" class="btn btn-line">asesoria@gestoriafrutos.es</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section id="introduccion">
+    <div class="wrap intro">
+      <div class="ph"><img src="manos.png" width="387" height="370" alt="Confianza"></div>
+      <div>
+        <p>Te ofrecemos Asesoramiento Fiscal, Contable, Laboral, Asesoramiento Jurídico, Gestoría Administrativa, Auditoría Medioambiental, Asesoría Agraria. Gabinete especializado en agricultura y sus necesidades, Ingeniería Agraria y Seguros.</p>
+        <p>Con un gabinete especializado en <a href="#asesoriaAgraria">Asesoría Agraria</a> y tramitación de subvenciones de Mejora y Subvenciones de Incorporación.</p>
+        <address class="contact-card">
+          <div class="cc"><b>Dirección</b>C/ Estrecha nº 2, 1º A<br>47.003 Valladolid</div>
+          <div class="cc"><b>Teléfono</b>Tfn.- <a href="tel:+34983320912">983 32 09 12</a><br>Fax.- 983 32 09 13</div>
+          <div class="cc"><b>Email</b><a href="mailto:asesoria@gestoriafrutos.es">asesoria@gestoriafrutos.es</a></div>
+        </address>
+      </div>
+    </div>
+  </section>
+
+  <!-- FISCAL Y CONTABLE -->
+  <section id="asesoriaFiscalContable" class="alt">
+    <div class="wrap svc">
+      <div class="ph"><img src="libroscontables.png" width="501" height="400" alt="Libros Contables"></div>
+      <div>
+        <span class="eyebrow">Asesoría Fiscal Contable</span>
+        <h2>Asesoría Fiscal y Contable</h2>
+        <p class="intro-p">Contamos con personal altamente cualificado, Economistas, para asesorar, resolver y atender las necesidades de cada cliente, independientemente del régimen tributario en el que esté.</p>
+        <p class="label">Servicios:</p>
+        <ul class="list">
+          <li>Creación de todo tipo de empresas (SL, SA, Cooperativas, SAT).</li>
+          <li>Alta Fiscal de Autónomos, Sociedades Civiles y Comunidades de Bienes.</li>
+          <li>Estudio, asesoramiento e inicio de actividades empresariales.</li>
+          <li>Estudio, asesoramiento y planificación fiscal.</li>
+          <li>Estudios periódicos de la situación económico-fiscal.</li>
+          <li>Confección y presentación de todas las declaraciones fiscales de empresas y particulares.</li>
+          <li>Contabilidad oficial. Balances, Cuenta de Pérdidas y Ganancias ...</li>
+          <li>Confección de los libros de registro obligatorios.</li>
+          <li>Registro Mercantil. Inscripción, presentación de libros, Cuentas Anuales, modificación de Escrituras ...</li>
+          <li>Intervención ante los órganos de Gestión de la Administración Tributaria.</li>
+          <li>Intervención ante los Servicios de la Inspección Tributaria.</li>
+          <li>Recursos administrativos, económicos-administrativos y Contenciosos.</li>
+          <li><b>SERVICIOS INTEGRALES PARA EMPRESAS Y PARTICULARES.</b></li>
+        </ul>
+        <p class="free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Servicio gratuito para cualquier consulta, en las distintas especialidades mercantil, tributaria y contable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABORAL -->
+  <section id="asesoriaLaboral">
+    <div class="wrap svc noimg">
+      <div>
+        <span class="eyebrow">Asesoría Laboral</span>
+        <h2>Asesoría Laboral</h2>
+        <p class="intro-p">Contamos con personal altamente cualificado para asesorar, Laboralistas y Abogados, resolver y atender las necesidades de cada cliente.</p>
+        <p class="label">Servicios:</p>
+        <ul class="list" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+          <li>Alta de Empresa y obtención de documentación laboral.</li>
+          <li>Libro de Visitas y Calendario Laboral.</li>
+          <li>Contratos de Trabajo.</li>
+          <li>Sistema Red.</li>
+          <li>Altas, bajas e Incidencias. Parte de accidente.</li>
+          <li>Alta en el Régimen Especial de Trabajadores Autónomos.</li>
+          <li>Alta en el Régimen Especial de Empleadas de Hogar.</li>
+          <li>Alta en el Régimen Especial de la Agricultura.</li>
+          <li>Liquidaciones de Seguros Sociales. TCs</li>
+          <li>Nóminas.</li>
+          <li>Certificados de Retención.</li>
+          <li>Despidos, Liquidaciones y Finiquitos.</li>
+          <li>Permisos de Trabajo y de Residencia Extranjeros.</li>
+          <li>Costes Laborales.</li>
+          <li>Subvenciones al empleo.</li>
+          <li>Aplazamiento de Deudas a la Seguridad Social.</li>
+          <li>Conciliaciones ante el SMAC.</li>
+          <li>Intervención ante los Órganos de la Inspección Laboral.</li>
+          <li>Expedientes de Jubilación y Pensiones.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GESTORIA -->
+  <section id="gestoriaAdministrativa" class="alt">
+    <div class="wrap svc">
+      <div class="ph"><img src="contrato.png" width="220" height="280" alt="Contrato" style="width:100%"></div>
+      <div>
+        <span class="eyebrow">Gestoría Administrativa</span>
+        <h2>Gestoría Administrativa</h2>
+        <p class="intro-p">Contamos con personal altamente cualificado, Gestor Administrativo y Abogados, para asesorar, resolver y atender las necesidades de cada cliente. La estructura del área de Gestoría nos permite llevar a cabo la realización de todo tipo de gestiones ante los distintos organismos de la administración pública.</p>
+        <p class="label">Servicios:</p>
+        <div class="groups">
+          <div class="group">
+            <h3>Automóviles:</h3>
+            <ul class="list">
+              <li>Matriculaciones, transferencias y bajas de turismos y motos.</li>
+              <li>Matriculaciones, transferencias, inscripción en el registro de maquinaria y bajas de Vehículos y Maquinaria Agrícola.</li>
+              <li>Matriculaciones, transferencias y bajas de vehículos industriales.</li>
+              <li>Otros documentos de Tráfico.</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Transporte:</h3>
+            <ul class="list">
+              <li>Tarjetas de Transportes.</li>
+              <li>Visados.</li>
+              <li>Otros documentos.</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Documentos Notariales:</h3>
+            <ul class="list">
+              <li>Compra-Venta de Inmueble.</li>
+              <li>Constitución y cancelación de hipotecas.</li>
+              <li>Herencias y Donaciones.</li>
+              <li>Contrato de Arrendamiento.</li>
+              <li>Otros documentos Notariales.</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Patentes y Marcas:</h3>
+            <ul class="list">
+              <li>Informes Previos de situación Registral.</li>
+              <li>Nombres Comerciales, Marcas y Rótulos.</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Turismo:</h3>
+            <ul class="list">
+              <li>Altas de Establecimientos de Hostelería.</li>
+              <li>Libros de Precios y Libros de Inspección.</li>
+              <li>Hojas de Reclamaciones y Certificaciones.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Servicio gratuito para cualquier consulta, en las distintas especialidades de Gestoría Administrativa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JURIDICO -->
+  <section id="asesoriaJuridica">
+    <div class="wrap svc">
+      <div class="ph"><img src="codigocivil.png" width="520" height="734" alt="Código Civil"></div>
+      <div>
+        <span class="eyebrow">Asesoría Jurídica</span>
+        <h2>Asesoramiento Jurídico</h2>
+        <p class="intro-p">Contamos con personal altamente cualificado, Abogados, para asesorar, resolver y atender las necesidades de cada cliente. La estructura del área de Asesoramiento Jurídico nos permite atender todo tipo de cuestiones jurídicas.</p>
+        <p class="label">Servicios:</p>
+        <ul class="list">
+          <li>Derecho Penal.</li>
+          <li>Derecho Civil.</li>
+          <li>Derecho Laboral.</li>
+          <li>Derecho Familia.</li>
+          <li>Escritos.</li>
+          <li>Recursos ante las distintas Administraciones Públicas.</li>
+          <li>Contratos, en sus distintas modalidades.</li>
+          <li>Reclamaciones.</li>
+          <li>Asesoramiento y Asistencia en Juicios.</li>
+        </ul>
+        <p class="free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Servicio gratuito para cualquier consulta, en las distintas especialidades de Asesoramiento Jurídico.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGRARIA -->
+  <section id="asesoriaAgraria" class="alt">
+    <div class="wrap svc">
+      <div class="ph sm"><img src="agrofrutos.gif" width="143" height="180" alt="Agrofrutos"></div>
+      <div>
+        <span class="eyebrow">Especializados en fiscalidad agraria</span>
+        <h2>Asesoría Agraria</h2>
+        <p class="lead-b">La Agricultura y la Ganadería llevan un Régimen Especial tanto en lo Fiscal como en lo Laboral.</p>
+        <p class="intro-p"><b>En este sector son imprescindibles las Subvenciones, pero para obtenerlas hay que tener muchas cosas en cuenta (fiscalidad, PAC...) que hay que planificar con tiempo.</b> Por eso es necesario tener un <b><u>Asesoramiento Global</u></b>, por personas que conozcan muy bien este sector. Periódicamente informamos de todo lo que influye en el sector, Subvenciones, cambios en la legislación fiscal y contable ...</p>
+        <p class="intro-p">Contamos con <b>personal altamente cualificado y con experiencia</b> en el sector (Economistas, Laboralistas, Ingenieros Agrícolas y Abogados), para darte ese Asesoramiento Global y atender las necesidades de cada explotación.</p>
+        <p class="label">Servicios:</p>
+        <ul class="list one">
+          <li><b>Asesoría Fiscal y Contable</b>: Estudio, asesoramiento y planificación del tipo de empresa y del régimen fiscal más favorable. Estudios periódicos de la situación económico-fiscal. Realización de todos los modelos obligatorios. Intervención ante los Servicios de la Inspección Tributaria, ...</li>
+          <li><b>Asesoría Laboral</b>: Alta en el Régimen Especial de la Agricultura, Liquidaciones de Seguros Sociales, TCs1/2, Contratación, Permisos de Trabajo de Extranjeros, ...</li>
+          <li><b>Subvenciones Agrarias</b>: Asesoramiento y tramitación de Expedientes de Mejora e Incorporación, Subvenciones de Achatarramiento ...</li>
+          <li><b>Ingeniería Agraria</b>: Asesoramiento Técnico, Proyectos de Naves y Pozos, Peritaciones, Tasaciones ...</li>
+          <li><b>Auditoría Medioambiental Agraria</b>: Evaluación de Impacto Medioambiental, Informes Medioambientales, Autorización Ambiental Integrada, ...</li>
+        </ul>
+        <p class="free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Servicio gratuito para cualquier consulta, en las distintas especialidades de la Actividad Agrícola Ganadera.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAS -->
+  <section id="four">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Frutos Ramos Asesores</span>
+        <h2>Más ...</h2>
+      </div>
+      <div class="more">
+        <a href="http://www.gestoriafrutos.es/quienesSomos.html"><h3>Quiénes Somos</h3><span>Más sobre Frutos Ramos Asesores</span></a>
+        <a href="http://www.gestoriafrutos.es/localizacion.html"><h3>Localización</h3><span>Estamos en ...</span></a>
+        <a href="http://www.gestoriafrutos.es/subvencionesAgrarias.html"><h3>Subvenciones Agrarias</h3><span>Información sobre subvenciones Agrarias</span></a>
+        <a href="http://www.gestoriafrutos.es/consejosFiscales.html"><h3>Consejos Fiscales</h3><span>Consejos fiscales</span></a>
+        <a href="http://www.gestoriafrutos.es/enlacesInteres.html"><h3>Enlaces de interés</h3><span>Información de interés ...</span></a>
+        <a href="http://www.gestoriafrutos.es/anuncios.html"><h3>Anuncios de clientes</h3><span>Anuncios ...</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <div class="band" id="contacto">
+    <div class="wrap">
+      <span class="eyebrow">Frutos Ramos Asesores</span>
+      <h2>Información de contacto</h2>
+      <div class="bgrid">
+        <div class="bi"><b>Frutos Ramos Asesores</b>C/ Estrecha nº 2, 1º A<br>47.003 Valladolid</div>
+        <div class="bi"><b>Teléfono</b><a href="tel:+34983320912">983 32 09 12</a></div>
+        <div class="bi"><b>Fax</b>983 32 09 13 (Fax)</div>
+        <div class="bi"><b>Email</b><a href="mailto:asesoria@gestoriafrutos.es">asesoria@gestoriafrutos.es</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVISO LEGAL -->
+  <section id="avisoLegal" class="legal">
+    <div class="wrap">
+      <details>
+        <summary><h2>Aviso Legal</h2><span class="pl">+</span></summary>
+        <div class="body">
+          <p>&copy; Copyright de FRUTOS RAMOS ASESORES SL, C/ Estrecha Nº 2, 1º A, 47.003, Valladolid, Tel.: 983 320912 Fax: 983 320913, Correo-e: asesoria@gestoriafrutos.es.</p>
+          <p>FRUTOS RAMOS ASESORES SL no recopila datos personales sin su autorización.</p>
+
+          <h3>1. Información legal y aceptación</h3>
+          <p>FRUTOS RAMOS ASESORES SL con domicilio social en C/ Estrecha Nº 2, 1º A, 47.003, Valladolid, y con C.I.F. número B 47.571.047, está inscrita en el Registro Mercantil de Valladolid en el Tomo 1198, Folio 172, Hoja 17902, Inscripción 1ª, Fecha 01/01/2.006.<br>
+          Las presentes disposiciones regulan el uso del servicio del portal de Internet (en adelante, el “Portal”) que FRUTOS RAMOS ASESORES SL pone a disposición de los usuarios de Internet.</p>
+          <p>El acceso a este sitio web o su utilización en cualquier forma implica la aceptación de todas y cada una de las presentes condiciones generales de uso. En consecuencia, será responsabilidad de todo visitante o usuario la atenta lectura de las condiciones generales de uso vigentes en cada una de las ocasiones en que acceda a este sitio web.</p>
+          <p>El acceso a determinados contenidos ofrecidos a través de este sitio web puede encontrarse sometido a ciertas condiciones particulares propias que, según los casos, sustituyen, completan y/o modifican estas condiciones generales. Por tanto, con anterioridad al acceso y/o utilización de dichos contenidos, el usuario ha de leer atentamente también las correspondientes condiciones particulares.</p>
+          <p>FRUTOS RAMOS ASESORES SL se reserva el derecho a realizar cambios en la web sin previo aviso, con el objeto de actualizar, corregir, modificar, añadir, cancelar o eliminar los contenidos o el diseño de la web. Los servicios y contenidos de la web son susceptibles de actualizarse periódicamente y debido a que la actualización de la información no es inmediata, le sugerimos que compruebe siempre la vigencia y exactitud de la información, servicios y contenidos recogidos aquí.</p>
+          <p>Las condiciones y términos de utilización que se recogen en el presente Aviso Legal pueden cambiar, por lo que le proponemos que revise estos términos cuando visite de nuevo la web o solicite un nuevo servicio.</p>
+
+          <h3>2. Condiciones de utilización</h3>
+          <p>La utilización de este sitio web deberá obedecer al contenido de este Aviso Legal, a las disposiciones legales aplicables y a las exigencias de la moral y las buenas costumbres generalmente aceptadas, así como a las de orden público. Salvo autorización previa y expresa de FRUTOS RAMOS ASESORES SL los usuarios únicamente podrán utilizar los contenidos para uso propio y personal, absteniéndose de realizar cualquier acto que, directa o indirectamente, suponga una explotación comercial de ellos.</p>
+          <p>En particular, a título meramente enunciativo y no exhaustivo, se considerará terminantemente prohibido el uso del sitio web con los siguientes fines o consecuencias:</p>
+          <p>Cuando, en cualquier forma se violen o menoscaben derechos y libertades fundamentales.<br>
+          Cuando induzcan, inciten o promuevan actuaciones delictivas, denigratorias, difamatorias, infamantes, violentas o, en general, contrarias a la ley, la moral, las buenas costumbres o el orden público.<br>
+          Cuando se encuentren protegidos por cualesquiera derechos de propiedad intelectual o industrial pertenecientes a terceros, salvo previa y expresa autorización de su legítimo titular.<br>
+          Constituyan publicidad ilícita, engañosa o desleal, o competencia desleal.<br>
+          Cuando se vulnere el derecho al honor, a la intimidad personal y familiar o a la propia imagen de las personas.<br>
+          Cuando se pueda difundir cualquier tipo de virus informático, archivos defectuosos, o cualquier otro software o programa informático que pueda provocar daños o no, alteraciones autorizadas de los contenidos o sistemas de cualquier clase accesibles a través del sitio "web".<br>
+          FRUTOS RAMOS ASESORES SL se reserva el derecho de excluir al usuario del servicio activo, sin previo aviso, en caso de que lleve a cabo alguna de las actividades anteriores y a ejercitar las acciones legales que considere oportunas. En cualquier caso, FRUTOS RAMOS ASESORES SL no tiene obligación de controlar los contenidos transmitidos, difundidos o puestos a disposición de terceros por los usuarios, salvo los supuestos en que así lo exija la legislación vigente o cuando sea requerido por una autoridad judicial o administrativa competente.</p>
+          <p>Cualquier anuncio o comentario, opinión, declaración o recomendación realizado dentro de los servicios activos pertenecerán exclusivamente a los usuarios que expresen dichos puntos de vista y en ningún caso se entenderá que provienen de FRUTOS RAMOS ASESORES SL manteniéndose ésta indemne y libre de cargas ante cualquier reclamación que surgiera por la utilización de estos servicios activos por un usuario en la manera en que se prohíbe en este contrato o en la ley.</p>
+
+          <h3>3. Propiedad intelectual e industrial</h3>
+          <p>Todos los contenidos del Portal, entendiendo por tales a título meramente enunciativo los signos distintivos, textos, fotografías, software, tecnología y demás contenidos, tanto audiovisuales como sonoros son propiedad industrial e intelectual de FRUTOS RAMOS ASESORES SL o de terceros. Su utilización, reproducción, distribución, comunicación pública, transformación o cualquier otra acción semejante, está totalmente prohibida salvo autorización expresa por escrito de su creador o propietario de los derechos.</p>
+          <p>En todo caso, FRUTOS RAMOS ASESORES SL declara su respeto a los derechos de propiedad intelectual e industrial de terceros; por ello, si considera que este sitio pudiera estar violando sus derechos, rogamos se ponga en contacto con FRUTOS RAMOS ASESORES SL a través de asesoria@gestoriafrutos.es.</p>
+
+          <h3>4. Publicidad</h3>
+          <p>En la web se insertará aquella publicidad de FRUTOS RAMOS ASESORES SL o de terceras empresas anunciantes que consideremos pueda ser de su interés. Sin embargo, y en lo que respecta a la publicidad de terceros, FRUTOS RAMOS ASESORES SL no puede controlar la apariencia de dicha publicidad, ni la calidad y adecuación de los productos o servicios a que esta se refiera, por lo que no responderá de ningún daño que se pudiera generar al usuario por dichas causas atribuibles a terceros.</p>
+          <p>Sin perjuicio de lo establecido en la Política de Privacidad, FRUTOS RAMOS ASESORES SL se compromete a no facilitar información de los usuarios a los anunciantes, salvo datos estadísticos anónimos sobre la utilización de la web, con la finalidad de que se pueda mejorar el servicio y ofrecer productos conforme a las expectativas de los usuarios.</p>
+          <p>No obstante, FRUTOS RAMOS ASESORES SL informa de que los anunciantes y proveedores, por medio de cookies, pueden tener la posibilidad de obtener información sobre los usuarios, los usos que hacen de los servicios y sus movimientos a través de la red. Por no tener vinculación con los usos que de dicha información pueda realizar la empresa anunciante, FRUTOS RAMOS ASESORES SL no se hace responsable de la recogida de información por dichas empresas.</p>
+          <p>“CLIENTE” puede utilizar cookies cuando un usuario navega por sus sitios y páginas web. Las cookies que se puedan utilizar en los sitios y páginas web de FRUTOS RAMOS ASESORES SL se asocian únicamente con el navegador de un ordenador determinado (un usuario anónimo), y no proporcionan por sí mismas ningún dato personal del usuario. Las cookies sirven solo para fines exclusivamente internos, como son las estadísticas de acceso a este sitio web. Las cookies utilizadas no pueden leer los archivos cookie creados por otros proveedores o sitios web. El Usuario tiene la posibilidad de configurar su navegador para ser avisado en pantalla de la recepción de cookies y para impedir la instalación de cookies en su disco duro. La información detallada sobre las cookies aparece en el apartado “POLÍTICA DE COOKIES”.</p>
+
+          <h3>5. Links o Hiperenlaces.</h3>
+          <p>Desde esta web, FRUTOS RAMOS ASESORES SL le proporciona o puede proporcionarle el acceso a otras páginas web que considera pueden ser de su interés. El objeto de dichos enlaces es meramente el facilitar la búsqueda de los recursos que le puedan interesar en Internet. No obstante, dichas páginas no pertenecen a FRUTOS RAMOS ASESORES SL, ni hace una revisión de sus contenidos, por ello, no se hace responsable de los mismos, del funcionamiento de la página enlazada o de los posibles daños que puedan derivarse del acceso o uso de la misma. Asimismo, FRUTOS RAMOS ASESORES SL, se muestra plenamente respetuosa con los derechos de propiedad intelectual o industrial que correspondan o puedan corresponder a terceras personas, sobre las páginas web a las que se refieran los citados enlaces. Por tal motivo, si considera que el establecimiento de los citados enlaces pudiera estar violando sus derechos, rogamos se ponga en contacto con FRUTOS RAMOS ASESORES SL a través de ESTA DIRECCIÓN DE CORREO ELECTRÓNICO.</p>
+          <p>Con carácter general se autoriza el enlace de páginas web o de direcciones de correo electrónico a la web, excepción hecha de aquellos supuestos en los que, expresamente FRUTOS RAMOS ASESORES SL manifieste lo contrario. Adicionalmente, y en todo caso para entender aplicable esta autorización general, dichos enlaces deberán respetar, necesariamente, la siguiente condición: el establecimiento del enlace no supondrá, por sí mismo, ningún tipo de acuerdo, contrato, patrocinio ni recomendación por parte de FRUTOS RAMOS ASESORES SL de la página que realiza el enlace.<br>
+          No obstante lo anterior, en cualquier momento FRUTOS RAMOS ASESORES SL podrá retirar la autorización mencionada en el párrafo anterior, sin necesidad de alegar causa alguna. En tal caso, la página que haya realizado el enlace deberá proceder a su inmediata supresión, tan pronto como reciba la notificación de la revocación de la autorización por parte de FRUTOS RAMOS ASESORES SL.</p>
+
+          <h3>6. Responsabilidad del Usuario</h3>
+          <p>El usuario se compromete a utilizar los servicios de la web de acuerdo con los términos expresados en el presente Aviso Legal, siendo responsable de su uso correcto.<br>
+          El usuario que actúe contra la imagen, buen nombre o reputación de FRUTOS RAMOS ASESORES SL, así como quien utilice ilícita o fraudulentamente los diseños, logos o contenidos de la web y/o atente en cualquier forma contra los derechos de propiedad intelectual e industrial de la web o de los contenidos y servicios de la misma, será responsable frente a FRUTOS RAMOS ASESORES SL de su actuación.</p>
+
+          <h3>7. Responsabilidad del “CLIENTE”</h3>
+          <p>FRUTOS RAMOS ASESORES SL ha creado la web para la promoción de sus productos y/o servicios, pero no puede controlar la utilización del mismo de forma distinta a la prevista en el presente Aviso Legal; por lo tanto, el acceso y uso correcto de la información contenida en la web son responsabilidad de quien realiza estas acciones, no siendo responsable FRUTOS RAMOS ASESORES SL por el uso incorrecto, ilícito o negligente que del mismo pudiere hacer el usuario.</p>
+          <p>FRUTOS RAMOS ASESORES SL facilita todos los contenidos de su web, bajo determinadas condiciones de buena fe, y se esforzará en la medida de lo posible para que los mismos estén actualizados y vigentes; no obstante, FRUTOS RAMOS ASESORES SL no puede asumir responsabilidad alguna respecto al uso o acceso que realicen los usuarios fuera del ámbito al que se dirige la web, cuya responsabilidad final recaerá sobre el usuario. Asimismo FRUTOS RAMOS ASESORES SL no puede controlar los contenidos que no hayan sido elaborados por ella o por terceros cumpliendo su encargo por lo que, no responderá en ningún caso de los daños, contenidos e indisponibilidades técnicas que pudieran causarse por parte de dichos terceros.<br>
+          FRUTOS RAMOS ASESORES SL se compromete a aplicar en la medida de lo posible, las medidas oportunas a su alcance para intentar garantizar al usuario la ausencia de virus, gusanos, troyanos, spam, etc.… en su web. No obstante, estas medidas no son 100% infalibles y, por ello, FRUTOS RAMOS ASESORES SL no puede asegurar totalmente la ausencia de dichos elementos indeseables. En consecuencia, FRUTOS RAMOS ASESORES SL no será responsable de los daños que los mismos pudieran producir al usuario.<br>
+          FRUTOS RAMOS ASESORES SL pone los medios necesarios a su alcance para la continuidad de esta web y realizará sus mejores esfuerzos para que el mismo no sufra interrupciones, pero no puede garantizar la ausencia de fallos tecnológicos, ni la permanente disponibilidad de la web y de los servicios contenidos en él, en consecuencia no se asume responsabilidad alguna por los daños y perjuicios que puedan generarse por la falta de disponibilidad y por los fallos en el acceso ocasionados por desconexiones, averías, sobrecargas o caídas de la red no imputables a FRUTOS RAMOS ASESORES SL.</p>
+
+          <h3>8. Protección de datos personales</h3>
+          <p>Este sitio Web, se compromete en el cumplimiento de la Ley Orgánica 15/1999 de 13 de diciembre, de Protección de Datos de Carácter Personal (LOPD) y con su Reglamento de Desarrollo, Real Decreto 1720/2007 de 21 de diciembre (RDLOPD), manteniendo una política de privacidad sobre los datos personales en el uso que de ellos dé FRUTOS RAMOS ASESORES SL.</p>
+          <p>Los datos recabados a través de la web, mediante formulario o enlaces al correo electrónico, serán tratados con las finalidades de gestión de clientes potenciales, contactos y acciones de comunicación comercial e incorporados a un fichero automatizado de datos de carácter personal del que es responsable FRUTOS RAMOS ASESORES SL quien tratará los datos de forma confidencial y exclusivamente con la finalidad de gestionar la relación con sus clientes. Los datos serán conservados en los ficheros de FRUTOS RAMOS ASESORES SL con el fin de realizar un seguimiento comercial y mantener al USUARIO informado sobre los servicios y productos que le puedan ser de su interés por correo postal, telefónicamente o mediante cualquier otro medio electrónico que haya facilitado el USUARIO.</p>
+          <p>FRUTOS RAMOS ASESORES SL se compromete al cumplimiento de su obligación de secreto de los datos de carácter personal y de su deber de guardarlos y adoptará las medidas necesarias para evitar su alteración, pérdida, tratamiento o acceso no autorizado, habida cuenta en todo momento del estado de la tecnología, cumple con las medidas de seguridad técnica y organizativa.<br>
+          El usuario consiente expresamente en la cesión de sus datos personales a FRUTOS RAMOS ASESORES SL únicamente con las finalidades antes mencionadas.</p>
+          <p>El usuario podrá ejercitar los derechos de acceso, rectificación, cancelación y oposición dirigiéndose al titular del fichero en C/ Estrecha Nº 2, 1º A, 47.003, Valladolid; o bien enviando un correo electrónico a la dirección: asesoria@gestoriafrutos.es.</p>
+          <p>Asimismo, el usuario podrá revocar en cualquier momento el consentimiento prestado para la cesión de sus datos. Dicha revocación se llevará a cabo mediante petición escrita dirigida a FRUTOS RAMOS ASESORES SL en C/ Estrecha Nº 2, 1º A, 47.003, Valladolid; o bien enviando un correo electrónico a la dirección: asesoria@gestoriafrutos.es.</p>
+          <p>En el caso de cancelación y revocación por parte del interesado de su consentimiento expreso para el tratamiento de sus datos de carácter personal, FRUTOS RAMOS ASESORES SL podrá resolver la prestación del servicio que fuera en el caso en el que dichos datos fueran necesarios para una óptima prestación del servicio.</p>
+          <p>FRUTOS RAMOS ASESORES SL adopta los niveles de seguridad requeridos por la legislación vigente.</p>
+
+          <h3>9. Legislación aplicable y jurisdicción</h3>
+          <p>Para toda cuestión litigiosa o que incumba al sitio web de FRUTOS RAMOS ASESORES SL será de aplicación la legislación española, siendo competentes para la resolución de todos los conflictos derivados o relacionados con el uso del presente sitio "web", los Juzgados y Tribunales de Valladolid (España). El presente Aviso Legal se rige en todos y cada uno de sus extremos por la ley española.</p>
+          <p>FRUTOS RAMOS ASESORES SL 2.015 Aviso Legal.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; Copyright de FRUTOS RAMOS ASESORES SL</span>
+    <a href="#avisoLegal">Aviso legal</a>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983320912" class="btn btn-wine">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    983 32 09 12</a>
+  <a href="mailto:asesoria@gestoriafrutos.es" class="btn btn-ghost">Email</a>
+</div>
+</body>
+</html>
