@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Queen's Gate School · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#b61b2d; --red-dark:#8f1423; --ink:#1e1915; --text:#3b3531; --muted:#6f6762;
+    --line:#ece4e1; --tint:#faf5f3; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Poppins,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:"Abril Fatface",Georgia,serif;font-weight:400;color:var(--ink);line-height:1.15}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:600}
+
+  .demo{background:var(--ink);color:#e6cfd2;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .topbar{background:var(--red);color:#fff;font-size:.82rem}
+  .topbar .wrap{display:flex;justify-content:flex-end;gap:20px;padding-top:7px;padding-bottom:7px;flex-wrap:wrap;font-weight:500}
+  .topbar a:hover{text-decoration:underline}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:18px}
+  .nav .logo{flex:none}
+  .nav .logo img{height:56px;width:auto}
+  .menu{display:flex;gap:2px;align-items:center;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:9px 10px;font-weight:500;font-size:.8rem;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover,.menu>li:focus-within>a{color:var(--red);background:var(--tint)}
+  .menu .sub{display:none;position:absolute;top:100%;right:0;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -20px rgba(30,25,21,.35);padding:8px;list-style:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:8px 12px;border-radius:8px;font-size:.9rem}
+  .menu .sub a:hover{background:var(--tint);color:var(--red)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.92rem;transition:.2s;border:2px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-line{background:#fff;color:var(--red)}
+  .btn-line:hover{background:var(--tint)}
+  .btn svg{flex:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:linear-gradient(90deg,rgba(30,25,21,.88) 0%,rgba(30,25,21,.7) 55%,rgba(30,25,21,.35) 100%),url(https://academiadeidiomasvalladolid.com/wp-content/uploads/2020/07/Queens-Gate-School-academia-idiomas-valladolid-2.jpg) center/cover;padding:96px 0 104px}
+  .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+  .hero h1{color:#fff;font-size:clamp(2.6rem,6vw,4.4rem);margin-bottom:14px}
+  .hero h2{color:#fff;font-family:Poppins,sans-serif;font-weight:600;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.35;max-width:620px}
+  .hero .bar{width:64px;height:3px;background:var(--red);margin:26px 0}
+  .hero p{color:#ece4e1;max-width:620px}
+  .hero p em{color:#fff}
+  .hero p a{color:#fff;border-bottom:1px solid rgba(255,255,255,.55)}
+  .hero p a:hover{border-color:#fff}
+  .hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.1)}
+  .seal{justify-self:center;background:#fff;border-radius:50%;padding:18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+  .seal img{width:200px;height:200px}
+
+  .claim{background:var(--tint);border-bottom:1px solid var(--line);padding:34px 0;text-align:center}
+  .claim p{font-size:clamp(1.15rem,2.4vw,1.55rem);color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
+  .claim b{color:var(--red)}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin:0 auto 44px;text-align:center}
+  .head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-top:10px}
+  .head p{color:var(--muted);margin-top:14px}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .box{border:1px solid var(--line);border-radius:var(--radius);padding:32px;background:#fff;border-top:4px solid var(--red)}
+  .box h3{font-size:1.45rem;margin-bottom:12px}
+  .box p+p{margin-top:10px}
+  .box strong{color:var(--ink)}
+  .box .btn{margin-top:20px}
+
+  .mods{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .mod{border-radius:var(--radius);padding:28px 24px;color:#fff;display:flex;flex-direction:column;gap:10px;min-height:330px;background:var(--ink)}
+  .mod.m1{background:linear-gradient(180deg,rgba(30,25,21,.55),rgba(30,25,21,.85)),url(https://academiadeidiomasvalladolid.com/wp-content/uploads/2021/05/cursos-generales.jpg) center/cover}
+  .mod.m2{background:linear-gradient(180deg,rgba(182,27,45,.7),rgba(143,20,35,.92)),url(https://academiadeidiomasvalladolid.com/wp-content/uploads/2021/05/cursos-intensivos.jpg) center/cover}
+  .mod.m3{background:var(--red)}
+  .mod.m4{background:var(--ink)}
+  .mod h3{color:#fff;font-size:1.35rem}
+  .mod p{font-size:.94rem;color:rgba(255,255,255,.9)}
+  .mod .btn{margin-top:auto;background:#fff;border-color:#fff;color:var(--ink);white-space:normal;text-align:center}
+  .mod .btn:hover{background:rgba(255,255,255,.88)}
+
+  .cert{background:var(--tint)}
+  .exams{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .ex{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .ex .lvl{display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:.8rem;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+  .ex h3{font-size:1.3rem;margin-bottom:8px}
+  .ex h3 a:hover{color:var(--red)}
+  .wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .note{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;border-left:4px solid var(--red)}
+  .note h3{font-size:1.3rem;margin-bottom:8px}
+  .note h3 a:hover{color:var(--red)}
+  .center{text-align:center;margin-top:34px}
+
+  .why{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .w{border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;text-align:center}
+  .w .n{width:46px;height:46px;border-radius:50%;background:var(--tint);color:var(--red);display:grid;place-items:center;margin:0 auto 14px;font-family:"Abril Fatface",serif;font-size:1.2rem}
+  .w h3{font-family:Poppins,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:6px}
+  .w p{font-size:.9rem;color:var(--muted)}
+  .goal{margin-top:38px;text-align:center;font-size:1.2rem;color:var(--ink)}
+  .goal b{color:var(--red)}
+
+  .reviews{background:var(--ink);color:#fff}
+  .reviews .head h2{color:#fff}
+  .score{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:18px;color:#e6dcd8}
+  .score .big{font-family:"Abril Fatface",serif;font-size:2.6rem;color:#fff;line-height:1}
+  .score .st{color:#f4b400;letter-spacing:2px;font-size:1.2rem}
+  .score a{font-weight:600;color:#fff;border-bottom:1px solid rgba(255,255,255,.5)}
+  .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(300px,360px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;-webkit-overflow-scrolling:touch}
+  .strip::-webkit-scrollbar{height:8px}
+  .strip::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25);border-radius:8px}
+  .rev{scroll-snap-align:start;background:#fff;color:var(--text);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px;max-height:460px;overflow:auto}
+  .rev-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .rev-h b{color:var(--ink);font-size:.95rem}
+  .stars{color:#f4b400;letter-spacing:1px;flex:none}
+  .stars i{font-style:normal;color:#ddd}
+  .rec{font-size:.78rem;color:var(--muted)}
+  .rev-t p{font-size:.9rem}
+  .rev-t p+p{margin-top:6px}
+  .reply{background:var(--tint);border-radius:10px;padding:12px 14px;font-size:.84rem}
+  .reply p:first-child{font-weight:700;color:var(--red)}
+  .strip-src{margin-top:8px;text-align:center;font-size:.85rem;color:#cbbfbb}
+
+  .blog{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .post{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .post img{width:100%;aspect-ratio:16/10;object-fit:cover}
+  .post .pb{padding:22px}
+  .post time{font-size:.8rem;color:var(--red);font-weight:600}
+  .post h3{font-family:Poppins,sans-serif;font-weight:700;font-size:1.08rem;margin:6px 0 10px;line-height:1.35}
+  .post h3 a:hover{color:var(--red)}
+  .post p{font-size:.9rem;color:var(--muted)}
+
+  .contact{background:var(--tint)}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .info{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .info h3{font-size:1.4rem;margin-bottom:12px}
+  .info h3+*{margin-bottom:6px}
+  .info .blk+.blk{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .info a{color:var(--red);font-weight:600}
+  .info .soc{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+  .ready{background:var(--red);color:#fff;border-radius:var(--radius);padding:30px;margin-bottom:24px}
+  .ready h2{color:#fff;font-size:1.9rem;margin-bottom:10px}
+  .ready p{color:#f6dfe2}
+  .ready .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .ready .btn{background:#fff;border-color:#fff;color:var(--red)}
+  .ready .btn.alt{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(30,25,21,.35);border-top:4px solid var(--red)}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #ddd2ce;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(182,27,45,.25);border-color:var(--red)}
+  .check{display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;margin:6px 0 18px}
+  .check input{margin-top:4px;accent-color:var(--red)}
+  .check a{text-decoration:underline;color:var(--red)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+  .map{margin-top:24px}
+  .map h3{font-size:1.25rem;margin-bottom:10px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;font-size:.85rem;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .foot nav{display:flex;gap:16px;flex-wrap:wrap}
+  .foot nav a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1400px){ .nav .btn{display:none} .menu>li>a{white-space:nowrap;padding:9px 8px;font-size:.76rem} }
+  @media (max-width:1240px){
+    .menu{display:none}
+    .mods{grid-template-columns:1fr 1fr}
+    .why{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:900px){
+    .hero-grid,.two,.cgrid{grid-template-columns:1fr}
+    .seal{display:none}
+    .exams{grid-template-columns:1fr 1fr}
+    .wide{grid-template-columns:1fr}
+    .blog{grid-template-columns:1fr 1fr}
+    .why{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .wrap{justify-content:center;gap:14px}
+    .nav{height:70px}
+    .nav .logo img{height:46px}
+    .nav .btn{display:none}
+    .hero{padding:56px 0 64px;background-position:30% center}
+    .hero .row .btn{width:100%}
+    .mods,.exams,.blog,.why{grid-template-columns:1fr}
+    .mod{min-height:0}
+    .box,.info,.card-form,.ready{padding:24px 20px}
+    section{padding:60px 0}
+    .strip{grid-auto-columns:85%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 6px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Queen's Gate School · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="tel:+34983398066">983 39 80 66</a>
+    <a href="mailto:admin@queensgateschool.com">admin@queensgateschool.com</a>
+    <a href="https://www.facebook.com/QueensGateSchoolValladolid/" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.instagram.com/queensgateschoolv/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://academiadeidiomasvalladolid.com/" aria-label="Queen's Gate School"><img src="https://academiadeidiomasvalladolid.com/wp-content/uploads/2021/08/queens-gate-schooll-logo.png" alt="Queen's Gate School"></a>
+    <ul class="menu">
+      <li><a href="https://academiadeidiomasvalladolid.com/academia-ingles-valladolid/">Inglés</a></li>
+      <li><a href="https://academiadeidiomasvalladolid.com/academia-frances-valladolid/">Francés</a></li>
+      <li><a href="https://academiadeidiomasvalladolid.com/cursos-intensivos/">Cursos Intensivos</a></li>
+      <li><a href="https://academiadeidiomasvalladolid.com/cursos-intensivos-ingles-verano/">Cursos Intensivos de inglés en verano</a></li>
+      <li><a href="https://academiadeidiomasvalladolid.com/cursos-idiomas-online/">Cursos online</a></li>
+      <li><a href="https://academiadeidiomasvalladolid.com/examenes/">Certificados oficiales ▾</a>
+        <ul class="sub">
+          <li><a href="https://academiadeidiomasvalladolid.com/examenes/cambridge/">Cambridge</a></li>
+          <li><a href="https://academiadeidiomasvalladolid.com/examenes/toeic/">TOEIC</a></li>
+          <li><a href="https://academiadeidiomasvalladolid.com/examenes/toefl/">TOEFL</a></li>
+          <li><a href="https://academiadeidiomasvalladolid.com/examenes/ielts/">IELTS</a></li>
+        </ul>
+      </li>
+      <li><a href="https://academiadeidiomasvalladolid.com/blog/">Blog</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="tel:+34983398066" class="btn btn-red">983 39 80 66</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Queen's Gate School</h1>
+        <h2>Academia de idiomas en Valladolid con más de 10 años de resultados</h2>
+        <div class="bar"></div>
+        <p><em>En Queen’s Gate School ofrecemos clases de idiomas para todas las edades y niveles. Nuestro objetivo es sencillo: ayudarte a aprender idiomas de forma clara, práctica y eficaz.</em></p>
+        <p style="margin-top:12px">Somos un centro de idiomas en Valladolid con <strong>años de experiencia formando a estudiantes, profesionales y empresas</strong>. Muchos alumnos han pasado por nuestras aulas para mejorar su nivel de <a href="https://academiadeidiomasvalladolid.com/academia-ingles-valladolid/">inglés</a>, <a href="https://academiadeidiomasvalladolid.com/academia-frances-valladolid/">francés</a> y <a href="https://academiadeidiomasvalladolid.com/cursos-espanol-valladolid/">español</a>, preparar los exámenes oficiales de <a href="https://academiadeidiomasvalladolid.com/examenes/ielts/">IELTS</a>, <a href="https://academiadeidiomasvalladolid.com/examenes/cambridge/">CAMBRIDGE</a>, <a href="https://academiadeidiomasvalladolid.com/examenes/toefl/">TOEFL</a> y <a href="https://academiadeidiomasvalladolid.com/examenes/toeic/">TOEIC</a> o empezar desde cero.</p>
+        <div class="row">
+          <a href="tel:+34983398066" class="btn btn-red">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            983 39 80 66</a>
+          <a href="#contacto" class="btn btn-line">Contacta con nosotros</a>
+        </div>
+      </div>
+      <div class="seal"><img src="https://academiadeidiomasvalladolid.com/wp-content/uploads/2020/07/Queens-Gate-School-academia-idiomas-valladolid.png" alt="Queen's Gate School: academia idiomas Valladolid"></div>
+    </div>
+  </div>
+
+  <div class="claim"><div class="wrap"><p>Aquí no solo estudias gramática: <b>Aprendes a comunicarte.</b></p></div></div>
+
+  <!-- PILARES -->
+  <section>
+    <div class="wrap two">
+      <article class="box">
+        <h3>Profesores nativos y metodología contrastada</h3>
+        <p>Uno de los pilares de Queen’s Gate School es nuestro equipo de <strong>profesores nativos y bilingües</strong> con amplia experiencia en la enseñanza de idiomas.</p>
+        <p>Nuestra metodología combina <strong>gramática, práctica continua y seguimiento personalizado.</strong> El objetivo es que cada alumno avance a su ritmo y gane confianza al comunicarse en inglés o francés.</p>
+      </article>
+      <article class="box">
+        <h3>Más de una década formando alumnos en Valladolid</h3>
+        <p>Durante estos años hemos formado a <strong>niños, jóvenes y adultos</strong> que querían aprender inglés o francés, preparar un examen oficial o mejorar sus oportunidades profesionales.</p>
+        <p>Nuestro mayor aval son los alumnos que han conseguido sus objetivos y siguen confiando en nuestra academia.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section class="cert" style="padding-top:80px">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Inglés · Francés</span>
+        <h2>Cursos de inglés y francés en nuestra academia de idiomas</h2>
+        <p>En Queen’s Gate School ofrecemos cursos de inglés y francés en Valladolid para diferentes edades y niveles, con clases prácticas y grupos reducidos.</p>
+      </div>
+      <div class="two">
+        <article class="box">
+          <h3>Clases de inglés para todos los niveles: niños, jóvenes y adultos</h3>
+          <p>Nuestras clases de inglés en Valladolid están dirigidas a niños, jóvenes y adultos. Los grupos se organizan por nivel para facilitar el aprendizaje y la participación.</p>
+          <p>Trabajamos conversación, comprensión y gramática de forma equilibrada para que los alumnos mejoren su inglés con seguridad y confianza.</p>
+          <a href="https://academiadeidiomasvalladolid.com/academia-ingles-valladolid/" class="btn btn-red">Quiero mejorar mi inglés</a>
+        </article>
+        <article class="box">
+          <h3>Clases de francés con profesores nativos</h3>
+          <p>También ofrecemos clases de francés en Valladolid impartidas por profesores nativos.</p>
+          <p>Las clases se adaptan al nivel de cada alumno y se centran en el uso práctico del idioma, ayudando a mejorar la pronunciación y la comunicación desde el primer momento.</p>
+          <a href="https://academiadeidiomasvalladolid.com/academia-frances-valladolid/" class="btn btn-red">Empieza con el francés hoy</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDADES -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Modalidades</span>
+        <h2>Modalidades de aprendizaje en Queen’s Gate School</h2>
+        <p>Cada alumno tiene su ritmo y su disponibilidad. Por eso ofrecemos varias formas de aprender en nuestra academia de idiomas en Valladolid.</p>
+      </div>
+      <div class="mods">
+        <article class="mod m1">
+          <h3>En el aula, con todo el equipo</h3>
+          <p>Aprende en el aula con profesores y compañeros en nuestra academia de idiomas en la calle Gamazo, 12. Practica el idioma en un entorno dinámico, participativo y agradable.</p>
+          <a href="https://academiadeidiomasvalladolid.com/cursos-presenciales/" class="btn">Quiero clases presenciales</a>
+        </article>
+        <article class="mod m2">
+          <h3>Online, pero con profesor de verdad</h3>
+          <p>Puedes estudiar desde casa con nuestras clases online desde el salón de tu casa, manteniendo la misma calidad que las clases presenciales, pero al alcance de todos.</p>
+          <a href="https://academiadeidiomasvalladolid.com/cursos-idiomas-online/" class="btn">Quiero clases online</a>
+        </article>
+        <article class="mod m3">
+          <h3>Intensivo, máximo avance, mínimo tiempo</h3>
+          <p>Si necesitas avanzar rápido porque no dispones de tiempo o para la preparación de exámenes oficiales, los cursos intensivos de inglés o francés son la mejor opción.</p>
+          <a href="https://academiadeidiomasvalladolid.com/cursos-intensivos/" class="btn">Ver cursos intensivos</a>
+        </article>
+        <article class="mod m4">
+          <h3>Generales, adaptados a todas las necesidades y niveles</h3>
+          <p>Perfectos para aprender idiomas durante todo el año con una progresión clara y constante.</p>
+          <a href="https://academiadeidiomasvalladolid.com/cursos-generales/" class="btn">Ver cursos generales</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICADOS -->
+  <section class="cert" id="certificados">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Certificados oficiales</span>
+        <h2>Preparación de certificados oficiales</h2>
+        <p>Conseguir un certificado oficial abre puertas: universidades, empresas y procesos de selección lo exigen cada vez más. En Queen's Gate School te preparamos para superar los exámenes con garantías.</p>
+      </div>
+      <div class="exams">
+        <article class="ex"><span class="lvl">B2</span><h3><a href="https://academiadeidiomasvalladolid.com/examenes/cambridge/">B2 First</a></h3><p>El certificado más demandado en el mercado laboral y requisito en muchos grados universitarios.</p></article>
+        <article class="ex"><span class="lvl">C1</span><h3><a href="https://academiadeidiomasvalladolid.com/examenes/cambridge/">C1 Advanced</a></h3><p>Nivel exigido en masters, oposiciones y empresas con proyección internacional.</p></article>
+        <article class="ex"><span class="lvl">C2</span><h3><a href="https://academiadeidiomasvalladolid.com/examenes/cambridge/">C2 Proficiency</a></h3><p>El nivel más alto del sistema Cambridge, equivalente al dominio nativo del idioma.</p></article>
+        <div class="wide">
+          <article class="note">
+            <h3><a href="https://academiadeidiomasvalladolid.com/examenes/cambridge/">Exámenes Cambridge</a></h3>
+            <p>Preparamos los certificados Cambridge más solicitados (B2, C1, C2), con un programa específico para cada nivel y enfocado en aprobar.</p>
+            <p style="margin-top:10px">El programa cubre las cuatro destrezas del examen: <strong>speaking, listening, reading y writing</strong>. Trabajamos con materiales oficiales Cambridge, simulacros de examen reales y corrección detallada para que el día del examen no haya sorpresas.</p>
+          </article>
+          <article class="note">
+            <h3><a href="https://academiadeidiomasvalladolid.com/examenes/">IELTS, TOEFL y TOEIC</a></h3>
+            <p>Si tu objetivo es estudiar o trabajar fuera de España, también te preparamos para las <strong>certificaciones internacionales</strong> más reconocidas. Empezamos desde donde estás y trabajamos a tu ritmo hasta el día del examen.</p>
+          </article>
+        </div>
+      </div>
+      <div class="center"><a href="https://academiadeidiomasvalladolid.com/examenes/" class="btn btn-red">Consigue tu certificado oficial</a></div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <h2>¿Por qué elegir Queen's Gate School?</h2>
+        <p>Hay muchas academias de idiomas en Valladolid. Lo que nos diferencia es lo que ocurre dentro del aula.</p>
+      </div>
+      <div class="why">
+        <article class="w"><span class="n">1</span><h3>Profesores nativos y bilingües</h3><p>con formación pedagógica real, no solo hablantes del idioma</p></article>
+        <article class="w"><span class="n">2</span><h3>Grupos reducidos</h3><p>para que tengas tiempo de práctica oral, correcciones y atención directa</p></article>
+        <article class="w"><span class="n">3</span><h3>Más de 10 años de experiencia</h3><p>formando a estudiantes, profesionales y empresas</p></article>
+        <article class="w"><span class="n">4</span><h3>Preparación específica</h3><p>Para Cambridge, IELTS, TOEFL y TOEIC, no clases generales adaptadas</p></article>
+        <article class="w"><span class="n">5</span><h3>Presencial y online</h3><p>Con la misma calidad en ambas modalidades</p></article>
+      </div>
+      <p class="goal">Nuestro objetivo es claro: <b>que aprendas idiomas con confianza y consigas resultados.</b></p>
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section class="reviews">
+    <div class="wrap">
+      <div class="head">
+        <h2>Lo que opinan los alumnos de Queen’s Gate School</h2>
+        <div class="score">
+          <span class="big">4.7</span>
+          <div><span class="st">★★★★★</span><br>Excelente · Basado en 150 opiniones</div>
+          <a href="https://search.google.com/local/reviews?placeid=ChIJA7Hb4LQSRw0R04mzHwQA_6s" target="_blank" rel="noopener">Queen's Gate School</a>
+        </div>
+      </div>
+      <div class="strip">
+<article class="rev"><div class="rev-h"><b>Begoña García</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Finalmente conseguí el objetivo principal por el que me apunté al curso, que era aprobar el C1, pero después de todo, no me quedo con eso, me quedo con la cantidad de cosas que he aprendido con ella. Eso vale mas que cualquier certificado. Si no hubiera aprobado, mi agradecimiento hubiera sido el mismo.</p><p>Gracias por todo Pilar, ha sido un placer ser tu alumna y lo seguiré siendo.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Sofía Antorán Gutiérrez</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Pilar es una profesora estupenda que se preocupa por sus alumnos y se vuelca en ayudarlos siempre que puede. En el tiempo que he estado en la academia, no ha habido una sola clase en la que faltara el buen humor o los gestos amables. Con esto, solo puedo decir: gracias. Gracias por ayudarme a aprobar el C1 de Cambridge! Aún me cuesta creer que lo haya conseguido tan rápido. Muchas gracias por todos los recursos que ofrecéis a los alumnos y por vuestra atención y simpatía.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Marta Moreno Freyre De Andrade</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Buenos profesores y buena formación orientada a los examenes, aprobé el B2 con ellos y estoy muy agradecida</p></div></article>
+<article class="rev"><div class="rev-h"><b>Ignacio Arias Barroso</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>He preparado el examen Advanced C1 de Cambridge en esta academia y la experiencia ha sido muy buena. Muy contento con la forma de estructurar la preparación en un intensvio durante dos meses con material que se ajusta mucho al examen y con gran dedicación por parte de los profesores implicados Pilar, Victoria y Carlos.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Nacho M</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>La mejor academia para preparar cualquier idioma. Llevo un par de años en francés y estoy muy contento con la profe y con la academia.</p></div></article>
+<article class="rev"><div class="rev-h"><b>David Alfageme</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>He aprobado el C1 de Cambridge gracias a Queens Gate School y no puedo estar más agradecido. La preparación ha sido excelente, muy enfocada al examen y con materiales de gran calidad.</p><p>Los profesores son muy profesionales, cercanos y saben exactamente en qué hay que insistir para sacar el título. El seguimiento es muy personalizado y el ambiente en clase es muy motivador.</p><p>Sin duda, recomiendo esta academia a cualquiera que quiera obtener un título oficial de Cambridge con garantías.</p></div></article>
+<article class="rev"><div class="rev-h"><b>SERGIO MONTOYA DIEZ</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Excelente calidad y trato muy profesional, estoy encantado con ellos y lo recomiendo encarecidamente es el lugar indicado si buscas cercanía y un trato exquisito.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Luis Ángel Estébanez Gómez</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Magnífico lugar.</p></div></article>
+<article class="rev"><div class="rev-h"><b>sagrario garcia</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>De los mejores sitios donde aprender ingles en Valladolid.</p><p>Muy buena gente. Gracias por vuestro buen hacer.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Vanesa Pereira Sanjilan</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Es un sitio muy bueno y la gente majísima 100/</p></div></article>
+<article class="rev"><div class="rev-h"><b>Cristina Polo</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Estudié en Queen's Gate School tanto el B2 de inglés como el C1 porque tenían cursos intensivos con horarios muy flexibles. No tengo más que buenas palabras para todos sus profesores, muy implicados con el aprendizaje y con cada alumno en particular. En mi caso saqué los dos exámenes rápido y sin problema gracias a ellos, se lo recomiendo a todo el mundo que me pregunta!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Isa Aregar</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Pilar es una excelente profesora, que se involucra mucho en dar sus clases y preparar a conciencia tanto el material como los exámenes. Gracias a ella he logrado el b2 y el c1. ¡¡Totalmente recomendable!!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Verónica Sanz Reguera</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Llevo desde los 18 años preparándome todos los exámenes con ellos y es 100% efectivo. Además que se adaptan en todo lo que pueden a las necesidades de sus alumnos. Todos los profes son maravillosos, pero con los que yo más he tratado son Carlos, Victoria y Pilar, los tres grandísimos profesionales y muy buenas persianas.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Lucía Hernández Domingo</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Muy buena academia, muy implicados con sus alumnos, Pilar es una profesora fantástica que me ha acompañado en mi camino hacia el título de Cambridge en cada momento. 100% recomendada como academia y por supuesto como profesores.</p></div></article>
+<article class="rev"><div class="rev-h"><b>pekypetalo</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>He conseguido sacar el C2 de inglés gracias a sus clases y materiales. Hace años saqué el C1 en Queen’s Gate, y al saber que ofrecían clases online, no dudé en volver a prepararme con ellos.</p><p>Pilar es una auténtica fuente de sabiduría, te prepara específicamente para superar el examen y además su cariño y dedicación es inigualable. Es una profesional excepcional pero sobre todo una bellísima persona, que pese a haber pasado años sin verte, recuerda no solo tu nombre si no también situaciones de tu vida personal, ya que muestra gran interés por cada alumno.</p><p>Recomiendo al 100% los intensivos de esta academia.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Isabel Merino</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Academia de inglés 100% recomendada. Con cursos intensivos, flexibilidad horaria, ofreciendo clases de mañana y tarde y con posibilidad de conectarse online. Es, sin duda alguna, la mejor academia de inglés a la que he acudido nunca. Muy agradecida con ellos y especialmente con Pilar, una magnífica docente.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Violeta</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Excepcional. Sin duda, la mejor academia de Valladolid. Pilar es una fuera de serie</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Diana</p><p>Sin duda, tus palabras nos alegran mucho. Es un orgullo saber que nuestros alumnos nos valoran tan positivamente.</p><p>¡Muchas gracias por confiar en nosotros, y que siga todo yendo igual de bien!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Daniel Galindo</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Me recomendaron esta academia ya que ofrecen la posibilidad de hacer el aprendizaje online y no puedo estar más agradecido con la decisión. Quiero destacar la implicación y pasión de las docentes con su trabajo, especialmente el de Pilar y Victoria que me han acompañado en todo el proceso del curso intensivo y han hecho todo lo que ha estado en su mano por darle siempre lo mejor a sus alumnos.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Clara Sánchez</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Una academia de 10. Fui a clases de intensivo online para preparar el B2 y fue todo un acierto. Aprobé con nota en tan solo 2 meses. Gracias a Pilar y su equipo por tanta profesionalidad y por hacerlo tan fácil</p></div></article>
+<article class="rev"><div class="rev-h"><b>Guillermo Andrés Nieto</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Me apunté al intensivo del C1 de inglés por recomendación de varios amigos y conocidos con el objetivo de obtener la certificación de Cambridge. No se equivocaban; no sé cómo serán el resto de academias de inglés en Valladolid, pero no pude tomar una mejor decisión. Formación inmejorable, flexible, cercana...Pilar y sus compañeras son grandes profesionales y te preparan en todos los aspectos necesarios para afrontar el examen sin ningún tipo de problema. ¡100% recomendado!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Jose Perez</b><span class="stars" aria-label="1 de 5">★<i>★★★★</i></span></div><div class="rev-t"><p>Muy desagradable con mis hijos. Le pongo un uno porque no puedo poner un 0. Muy muy mal</p></div></article>
+<article class="rev"><div class="rev-h"><b>Laura vaca</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Aprobé ayer el c1 gracias al trabajo de esta academia, el trato es inmejorable y las clases son las más completas a las que he ido en un curso de inglés, todo el que quiera aprobar tendría que apuntarse aquí!!!!!</p></div></article>
+<article class="rev"><div class="rev-h"><b>claudia piñera</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Fui a esta academia porque no conocía a ninguna aquí en Valladolid…Y un acierto, de hecho, no paro de recomendárselo a todos mis amigos. Cuenta con grandes profesionales que te ayudan 100% a conseguir tus objetivos, siempre dando facilidades y, además, con un ambiente en las clases súper ameno y agradable. Muy agradecida por el trato y sobre todo, por haber tenido a Pilar como profe!!😬🤓.</p><p>Si quieres sacarte un título o aprender inglés rápido y bien (pero de verdad, no como te enseñan en el cole🥸) este es tu sitio!!!!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Victor Sanz</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Han pasado ya 7 años desde que fui por primera vez. He vuelto recientemente para continuar mi mejora del inglés y nada ha cambiado. Una academia fabulosa para aprender, con propiedad, desde las bases, y con una gran calidad de aprendizaje. Pilar es un amor y hace que todo sea más fácil. El resto de profesores también están a la altura, cada uno en su correspondiente área. ¡Totalmente recomendable!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Hugo García</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Me inscribí a esta academia para el examen del c1 de cambridge sin haber hecho antes el b2. Pilar me recomendó un cursillo en verano para reforzar un poco el inglés y luego empecé con el intensivo. Tanto Pilar como Victoria y Carlos son muy buenos profesores. El trato es muy cercano y te hacen querer aprender y mejorar. Muy recomendable.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Elisa Martín</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Me preparé el B2 y el C1 de Cambridge aquí, es sin duda la mejor academia de Valladolid. Tienen tanto modalidad online como presencial, y distintos horarios. Tanto Pilar, como el resto de profesores, son excepcionales. Aprendes como en ningún otro lugar. Te dan siempre un trato personalizado y su método de enseñanza nunca falla ¡Lo recomiendo 100%!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Rocio de Andrés</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>100% recomendable para sacar exámenes de Cambridge. Pilar es una buenísima profesora. Se aprende mucho y salimos con mucho nivel</p></div></article>
+<article class="rev"><div class="rev-h"><b>Gonzalo Hernández Gajate</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>I have been going to Queen's Gate for many years. Undoubtedly, the best English academy in Valladolid.</p><p>Pilar is a very good teacher. I was lucky to prepare for three official Cambridge exams, totally recommended!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Candelas Ramos</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Pilar es de las mejores profesoras de inglés que podrás encontrar! ❤️</p></div></article>
+<article class="rev"><div class="rev-h"><b>luis alcolea</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Una gran académica con un trato buenísimo y fácil. He aprendido muchísimo inglés muy útil para el trabajo.</p></div></article>
+<article class="rev"><div class="rev-h"><b>María Cruz J Cavallotti</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Muy buena academia, con excelentes profesores. A destacar su maravilloso trato humano y paciencia! Un 10!</p></div></article>
+<article class="rev"><div class="rev-h"><b>jesus burriel</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Una academia excelente, me ayudaron a preparar el C1 mediante su modalidad online y conseguí mediante el curso intensivo aprobarlo en 3 meses, muchas gracias a los maravillosos docentes del centro.</p></div></article>
+<article class="rev"><div class="rev-h"><b>San Marco</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>La mejor academia de Valladolid</p><p>Pilar, acompañada de todo su equipo, trabaja a fondo para que consigas todos tus retos en el camino del aprendizaje del inglés desde hace ya años. Experiencia, flexibilidad y variedad de oferta, pues cualquier edad y nivel es pertinente para acudir a este mítico centro vallisoletano!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Lourdes García Muñoz</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Me recomendó una amiga esta academia de inglés. Después de muchas malas experiencias, decidí darles una oportunidad. He hecho el curso intensivo online desde Madrid y estoy muy sorprendida con los resultados. Pilar nos ha proporcionado todos los materiales para prepararnos el C1, ha hecho las clases muy amenas y participativas, y se me ha pasado siempre el tiempo volando. El resto del profesorado también ha sido muy profesional. Un éxito rotundo. Sin duda se lo voy a recomendar a todas mis amigas, por fin tengo una academia de inglés de confianza!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Victoria Martin</b><span class="stars" aria-label="1 de 5">★<i>★★★★</i></span></div><div class="rev-t"><p>De lo que era a lo que es... ha perdido todo el nivel y el servicio que ofrecía... para dar un tema en nivel B2 estas 2 meses, la verdad que una decepción total</p></div></article>
+<article class="rev"><div class="rev-h"><b>Ines Sanagustín Revilla</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>La experiencia de clases online ha sido increible. Me prepare el C1 y con en intensivo pude conseguirlo super rapido. Pilar se ha preocupado en todo momento de nosotros!! Gracias!!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Natalia Peñas</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Sin duda ha sido una de mejores academias con las que he estudiado inglés.</p><p>Tanto la directora como los profesores Victoria y Carlos se preocupan por nuestro aprendizaje y que obtengamos unos buenos resultados en nuestros exámenes.</p><p>Lo más importante es que contaré con ellos para seguir estudiando y mejorando mi inglés.</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Natalia!</p><p>Nos alegramos mucho de que tu experiencia en la academia haya sido tan satisfactoria. Ya sabes donde tienes tu casa.</p><p>¡Estamos a tu lado para lo que necesites!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Natalia Manzaneque</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>He estudiado francés varios cursos en esta escuela de idiomas y la verdad es que estoy muy contenta con el método de aprendizaje impartido. He tenido profesores nativos y no nativos y en ambos casos la experiencia ha sido positiva. Las clases eran amenas y participativas, los profesores se preocupaban mucho de nuestro aprendizaje y el nivel que se exigía era el adecuado.</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Natalia!</p><p>Sin duda es un orgullo para nosotros contar con feedback positivo. ¡Ya sabes que tienes tu casa en Calle Gamazo 12!</p><p>Keep it up!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Ángel Miguel</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Genial. Necesitaba las clases para presentarme al Advance de Cambridge muy rápido y se adaptaron a mis horarios. Muy exigentes, muy buen trato y se aprende mucho y muy bien. Los profesores súper súper majos y atentos. Muy recomendado.</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Ángel!</p><p>Desde luego que progresaste con éxito. Todos tus logros han sido fruto de tu enorme trabajo. Nos has hecho el trabajo fácil.</p><p>¡Gracias por confiar en nosotros!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Juan Perez</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Muy buenos profesores y metodología. Hacemos clases online con ellos y son muy amenas. Vale la pensa dar unas clases a la semana para no perder nunca el nivel.</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Juan!</p><p>Nos alegramos de que estés aprovechando tanto las clases 😉</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Winter</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>No puedo dejar de recomendar el trabajo que hacen. Hay pasión por la enseñanza y eso se nota. Llevaba más de dos décadas sin estudiar de forma sistemática y han conseguido hacerlo sencillo. Las clases, presenciales u online, son igual de eficaces, además de resultar amenas, divertidas y muy útiles. Salí del intensivo con confianza y la sensación de ir bien preparado al examen, y los resultados acompañaron. ¡Gracias por todo!</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Winter!</p><p>Nuestros cursos intensivos tratamos de que sean prácticos, eficientes y efectivos. Sin duda tu trabajo ha tenido su recompensa.</p><p>¡Enhorabuena por la parte que te toca, y gracias por confiar en nosotros!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Henar Pérez Garrido</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Academia 100% recomendable. Grandes profesionales y un trato muy personalizado. Preparé los exámenes del B2 y C1 con los cursos intensivos de Pilar y la experiencia fue mucho más que satisfactoria.</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Henar!</p><p>Es una suerte contar con alumnas como tú. Tu esfuerzo ha tenido su resultado, ¡enhorabuena!</p><p>¡Gracias por confiar en nosotros!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Fernando Alonso</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Tras dos meses de clases de inglés online puedo decir que lo estoy notando muchísimo y estoy mejorando y perferccionando mi inglés a buen ritmo. No soy de Valladolid, pero los profesores organizan muy buenas clases con videollamadas y estoy encantadísimo con la metodología que ofrecen. Lo recomiendo muchísimo!</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Fernando!</p><p>Tenerte en Valencia y que, sin embargo, no notes la distancia, es un gusto para nosotros. Esperamos que sigas aprendiendo mucho en la academia.</p><p>¡Tienes ya tu casa en Valladolid!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Patricia Luneznik</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Clases amenas y eficaces, adaptadas a todos los niveles. Se preocupan por cumplir tus objetivos, mejorar tu nivel y aprendizaje. Sin duda, una gran experiencia que volvería a repetir, totalmente recomendable.</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Patricia!</p><p>Dar clase a gente que lo pone todo tan fácil nos hace el trabajo muy sencillo.</p><p>¡Es un gusto tenerte entre nuestras alumnas!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Iñaki Gonzalez</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Decidí empezar mis clases de inglés online para poder compaginarlo con mi trabajo. Y estoy encantado desde el primer momento.</p><p>Trabajamos la gramática inglesa con Susana, donde se nota que le gusta la educación por la pasión que le pone en cada clase. Siempre está dispuesta a ayudarnos en el horario de clase como fuera de ella. Seguidamente el speaking lo perfecciónanos con Carlos, donde aparte de ser un tío majísimo, hablamos de temas de actualidad, donde podemos expresar nuestras opiniones y puntos de vista, sin duda es la manera ideal de aprender.</p><p>¡Muchas gracias por todo!</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Iñaki!</p><p>Eres uno más en la familia de Queen’s Gate School. Tanto Susana como Carlos tienen una suerte de tenerte como alumno.</p><p>Contar con vosotros como empresa es un lujo para nosotros. ¡Estamos a vuestro lado siempre que lo necesitéis!</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>Jamil</b><span class="stars" aria-label="5 de 5">★★★★★<i></i></span></div><div class="rev-t"><p>Una academia profesional y agradable, personalmente he conocido a dos profesores y la experiencia ha sido agradable 🙂</p></div><div class="reply"><p>Respuesta del propietario:</p><p>¡Muchas gracias, Jamil!</p><p>Esperamos que la experencia con nosotros siga siendo tan satisfactoria.</p><p>Un saludo,</p><p>Queen’s Gate School</p></div></article>
+<article class="rev"><div class="rev-h"><b>César Bonilla Muñoz</b><span class="rec">recommends</span></div><div class="rev-t"><p>Recomiendo sus clases de inglés y francés. Son muy profesionales, y sus clases son muy utiles y muy entretenidas.</p></div></article>
+<article class="rev"><div class="rev-h"><b>Juan Hernanz Fernández</b><span class="rec">recommends</span></div><div class="rev-t"><p>Muy contento con el trato, la calidad del servicio y con los resultados que estoy obteniendo. Estoy en el intensivo del C1 y no hay manera más eficaz para aprender y de una manera tan entretenida. La profesora (y directora) de la academia; Pilar, se involucra mucho con el alumno. Gran acierto!</p></div></article>
+<article class="rev"><div class="rev-h"><b>Adrián Hernández Pascual</b><span class="rec">recommends</span></div><div class="rev-t"><p>Trato muy personal y con resultados. Fue un completo acierto!</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Blog</span>
+        <h2>Blog de Queen’s Gate School</h2>
+      </div>
+      <div class="blog">
+        <article class="post">
+          <a href="https://academiadeidiomasvalladolid.com/wish-y-if-onlly/"><img src="https://academiadeidiomasvalladolid.com/wp-content/uploads/2026/09/wish-if-only-400x250.jpg" alt="Wish y if only: diferencias, usos y ejemplos para expresar deseos en inglés" loading="lazy"></a>
+          <div class="pb"><time>30 Sep 2026</time><h3><a href="https://academiadeidiomasvalladolid.com/wish-y-if-onlly/">Wish y if only: diferencias, usos y ejemplos para expresar deseos en inglés</a></h3>
+          <p>Hay una frase que casi todos los estudiantes hispanohablantes intentan decir en algún momento: ojalá hablara mejor inglés. Y ahí llega el problema, porque el inglés no tiene una palabra equivalente a "ojalá". Tiene dos estructuras que se reparten ese significado, wish...</p></div>
+        </article>
+        <article class="post">
+          <a href="https://academiadeidiomasvalladolid.com/will-o-going-to/"><img src="https://academiadeidiomasvalladolid.com/wp-content/uploads/2026/09/will-o-going-to-400x250.jpg" alt="Will o going to: cuándo usar cada forma de futuro" loading="lazy"></a>
+          <div class="pb"><time>30 Sep 2026</time><h3><a href="https://academiadeidiomasvalladolid.com/will-o-going-to/">Will o going to: cuándo usar cada forma de futuro</a></h3>
+          <p>Hay una pregunta que aparece en casi todas las clases de inglés, sin importar el nivel: will o going to, ¿cuál toca aquí? Los dos se traducen al español con el mismo "voy a" o el mismo "iré", y esa coincidencia es justo la que despista. En inglés, sin embargo, no son...</p></div>
+        </article>
+        <article class="post">
+          <div class="pb"><time>28 Ago 2026</time><h3><a href="https://academiadeidiomasvalladolid.com/pronombres-demostrativos-ingles/">This, that, these, those: los pronombres demostrativos en inglés que usas cada día</a></h3>
+          <p>¿Cuántas veces has señalado algo en una tienda y has dicho "this" cuando en realidad debías decir "these"? Es uno de los errores más frecuentes entre los hispanohablantes, y casi siempre nace de la misma confusión: no tener claro cuándo usar cada uno de los pronombres...</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap cgrid">
+      <div>
+        <div class="ready">
+          <h2>¿Listo para empezar?</h2>
+          <p>Si quieres mejorar tu inglés o francés, preparar un certificado oficial o simplemente saber qué curso encaja contigo, estamos aquí para ayudarte.</p>
+          <div class="row">
+            <a href="https://academiadeidiomasvalladolid.com/contacto/" class="btn">Contacta con nosotros</a>
+            <a href="https://academiadeidiomasvalladolid.com/cursos-idiomas-online/" class="btn alt">Ver todos los cursos</a>
+          </div>
+        </div>
+        <div class="info">
+          <div class="blk">
+            <h3>Nosotros</h3>
+            <p>Telf: <a href="tel:+34983398066">983 39 80 66</a></p>
+            <p><a href="mailto:admin@queensgateschool.com">admin@queensgateschool.com</a></p>
+            <p>C/ Gamazo, 12 2º izda. 47004 Valladolid</p>
+          </div>
+          <div class="blk">
+            <h3>Horarios</h3>
+            <p><strong>De Lunes a Viernes</strong></p>
+            <p>Mañanas 9.30 a 14.00</p>
+            <p>Tardes 16.00 a 22.00</p>
+            <p><strong>Sábados:</strong> de 9.00 a 14.00</p>
+          </div>
+          <div class="blk map">
+            <h3>Cómo llegar a tu academia de idiomas en Valladolid</h3>
+            <p><a href="https://g.page/QueensGateSchoolValladolid" target="_blank" rel="noopener">C/ Gamazo, 12 2º izda. 47004 Valladolid</a></p>
+            <div class="soc">
+              <a href="https://www.instagram.com/queensgateschoolv/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+              <a href="https://www.facebook.com/QueensGateSchoolValladolid/" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="field"><label for="n">*Nombre</label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="e">*Email</label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="t">*Teléfono</label><input id="t" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="m">*Mensaje</label><textarea id="m" rows="5" required></textarea></div>
+        <label class="check"><input type="checkbox" required><span>Acepto la <a href="https://academiadeidiomasvalladolid.com/privacidad/" target="_blank" rel="noopener">política de privacidad</a></span></label>
+        <button class="btn btn-red" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© QUEEN'S GATE SCHOOL</span>
+    <nav>
+      <a href="https://academiadeidiomasvalladolid.com/legal/">Aviso legal</a>
+      <a href="https://academiadeidiomasvalladolid.com/privacidad/">Privacidad</a>
+      <a href="https://academiadeidiomasvalladolid.com/cookies/">Cookies</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="https://academiadeidiomasvalladolid.com/contacto/" class="btn btn-line">Contáctanos</a>
+  <a href="tel:+34983398066" class="btn btn-red">+34 983 39 80 66</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

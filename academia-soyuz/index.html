@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Academia Soyuz · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#0048a8; --blue-dark:#003380; --navy:#0b1f45; --red:#ea1a22; --red-dark:#bf2034;
+    --ink:#14213d; --text:#3a4152; --muted:#6b7385; --line:#e3e8f1; --tint:#f3f6fb; --white:#fff;
+    --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .ost{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+  .eyebrow{font-family:Oswald,sans-serif;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:500}
+
+  .demo{background:var(--navy);color:#c9d6f0;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top bar */
+  .top{background:var(--red);color:#fff;font-size:.82rem}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:40px;flex-wrap:wrap;padding-top:4px;padding-bottom:4px}
+  .top .l,.top .r{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .top a:hover{text-decoration:underline}
+  .top form{display:flex;align-items:center;background:rgba(255,255,255,.16);border-radius:999px;padding:2px 4px 2px 12px}
+  .top input{background:transparent;border:0;color:#fff;font:inherit;width:150px;outline:none}
+  .top input::placeholder{color:#ffe1e2}
+  .top button{background:#fff;color:var(--red-dark);border:0;border-radius:999px;padding:3px 10px;font:inherit;font-weight:500;cursor:pointer}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:16px}
+  .nav .logo img{height:62px;width:auto}
+  .menu{display:flex;gap:4px;align-items:center;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 12px;font-family:Oswald,sans-serif;text-transform:uppercase;font-size:.95rem;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover{color:var(--blue)}
+  .menu ul{display:none;position:absolute;top:100%;left:0;min-width:250px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -20px rgba(0,0,0,.3);list-style:none;padding:8px}
+  .menu li:hover>ul,.menu li:focus-within>ul{display:block}
+  .menu ul a{display:block;padding:8px 10px;font-size:.9rem;border-radius:6px}
+  .menu ul a:hover{background:var(--tint);color:var(--blue)}
+  .menu .shop>a{background:var(--blue);color:#fff;margin-left:6px}
+  .menu .shop>a:hover{background:var(--blue-dark);color:#fff}
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;border:1.5px solid var(--blue);color:var(--blue);border-radius:8px;padding:8px 14px;font-family:Oswald,sans-serif;text-transform:uppercase}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);padding:10px 16px 18px;max-height:75vh;overflow:auto}
+  .mnav .panel a{display:block;padding:9px 4px;border-bottom:1px solid var(--line);color:var(--ink)}
+  .mnav .panel a.sub{padding-left:18px;font-size:.92rem;color:var(--muted)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 22px;border-radius:999px;font-weight:500;font-size:.95rem;transition:.2s;border:1.5px solid transparent;cursor:pointer;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+  .btn-red{background:var(--red-dark);color:#fff}
+  .btn-red:hover{background:var(--red)}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark)}
+  .btn-line{border-color:currentColor;color:#fff}
+  .btn-line:hover{background:rgba(255,255,255,.1)}
+  .btn-ghost{border-color:var(--blue);color:var(--blue);background:#fff}
+  .btn-ghost:hover{background:var(--tint)}
+  .btn-sm{padding:9px 16px;font-size:.85rem}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--navy) url("https://www.soyuzvalladolid.com/wp-content/uploads/2018/08/rusia.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(0,40,100,.94) 0%,rgba(0,58,140,.85) 48%,rgba(0,72,168,.35) 100%)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;padding-top:76px;padding-bottom:80px;align-items:center}
+  .hero .kicker{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.18em;color:#ffd0d2;font-size:.95rem}
+  .hero h1{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:700;font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.02;margin:12px 0 18px}
+  .hero h1 span{display:block;color:#ff6b70}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font-size:.92rem;color:#d9e4f7}
+  .hero .meta a:hover{text-decoration:underline}
+  .cards{display:grid;gap:16px}
+  .hcard{border-radius:var(--radius);padding:24px 26px;border:1px solid rgba(255,255,255,.28);background:rgba(0,40,110,.55);backdrop-filter:blur(6px)}
+  .hcard.alt{background:rgba(90,110,220,.55)}
+  .hcard h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:1.6rem;line-height:1.1}
+  .hcard h3{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:400;font-size:1.05rem;color:#ffd0d2;margin:4px 0 10px}
+  .hcard p{font-size:.95rem;color:#e6eefc}
+  .hcard ul{list-style:none;margin:12px 0 16px;display:grid;gap:4px;font-size:.93rem}
+  .hcard li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff6b70;margin-right:10px;vertical-align:middle}
+  .hcard ul a{font-weight:500}
+  .hcard ul a:hover{text-decoration:underline}
+
+  /* slides as tiles */
+  .tiles{background:var(--tint);padding:56px 0}
+  .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .tile{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .tile img{width:100%;height:210px;object-fit:cover}
+  .tile .b{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .tile h3{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:1.35rem;color:var(--blue);line-height:1.15}
+  .tile .s{font-family:Oswald,sans-serif;text-transform:uppercase;color:var(--red-dark);letter-spacing:.06em}
+  .tile p{font-size:.93rem}
+  .tile .btn{align-self:flex-start;margin-top:auto}
+
+  section{padding:84px 0}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+  .head h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:clamp(1.9rem,3.4vw,2.6rem);color:var(--ink);line-height:1.1;margin-top:6px}
+  .head p{color:var(--muted);margin-top:6px}
+
+  /* books */
+  .books{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .book{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;background:#fff;transition:.25s}
+  .book:hover{border-color:var(--blue);box-shadow:0 18px 40px -26px rgba(0,30,80,.45)}
+  .book .im{aspect-ratio:1/1;background:var(--tint);display:grid;place-items:center;overflow:hidden}
+  .book .im img{width:100%;height:100%;object-fit:cover}
+  .book .b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .book h3{font-family:Oswald,sans-serif;font-weight:500;font-size:1.02rem;color:var(--ink);line-height:1.25}
+  .book .price{font-family:Oswald,sans-serif;color:var(--blue);font-size:1.2rem;font-weight:600}
+  .book p{font-size:.82rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .book .btn{align-self:flex-start;margin-top:auto}
+
+  /* courses */
+  .courses{background:var(--tint)}
+  .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .course{background:#fff;border-radius:var(--radius);border:1px solid var(--line);padding:28px;border-top:4px solid var(--blue)}
+  .course img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:14px}
+  .course h3 a{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:1.35rem;color:var(--ink)}
+  .course h3 a:hover{color:var(--blue)}
+  .course ul{list-style:none;margin-top:12px;display:grid;gap:8px}
+  .course li{padding-left:18px;position:relative;font-size:.95rem}
+  .course li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+
+  /* visit band */
+  .visit{position:relative;color:#fff;background:var(--blue) url("https://www.soyuzvalladolid.com/wp-content/uploads/2018/08/academia-ruso.jpg") center/cover;padding:80px 0;text-align:center}
+  .visit::before{content:"";position:absolute;inset:0;background:rgba(0,48,128,.86)}
+  .visit .wrap{position:relative}
+  .visit h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.1;max-width:820px;margin:0 auto}
+  .visit p{margin:14px auto 26px;color:#dbe6fa;font-size:1.08rem;max-width:620px}
+
+  /* matricula */
+  .enrol{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .box{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:#fff}
+  .box.hl{background:var(--navy);color:#fff;border:0}
+  .box h3{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:1.45rem;line-height:1.15;color:var(--ink)}
+  .box.hl h3{color:#fff}
+  .tag{display:inline-block;background:var(--red);color:#fff;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+  .pills span{background:var(--tint);color:var(--blue);border-radius:999px;padding:8px 16px;font-weight:500;font-size:.92rem}
+  .box ul{list-style:none;margin:14px 0 20px;display:grid;gap:8px}
+  .box.hl li{padding-left:18px;position:relative;color:#dbe4f5}
+  .box.hl li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+  .note{margin-top:22px;padding:22px 26px;border-radius:var(--radius);background:#fff4f4;border:1px solid #f6c9cb;color:var(--ink)}
+  .note strong{color:var(--red-dark)}
+
+  /* why */
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .why .box h3 a:hover{color:var(--blue)}
+  .why .box ul li{padding-left:22px;position:relative}
+  .why .box ul li::before{content:"✓";position:absolute;left:0;color:var(--red-dark);font-weight:700}
+  .why .box p{margin-top:14px;font-weight:500;color:var(--ink)}
+  .why h4{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:500;color:var(--blue);margin-top:4px;letter-spacing:.04em}
+
+  /* news */
+  .news{background:var(--tint)}
+  .ngrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .post{display:grid;grid-template-columns:200px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .post img{width:100%;height:100%;object-fit:cover;min-height:200px}
+  .post .b{padding:22px}
+  .post time{font-size:.82rem;color:var(--red-dark);font-weight:500}
+  .post h3{font-family:Oswald,sans-serif;font-size:1.3rem;color:var(--ink);margin:4px 0 8px;line-height:1.2}
+  .post h3 a:hover{color:var(--blue)}
+  .post p{font-size:.93rem}
+
+  /* perks */
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:34px 0}
+  .perk{display:flex;gap:14px;align-items:center}
+  .perk .ic{width:46px;height:46px;border-radius:50%;background:var(--tint);color:var(--blue);display:grid;place-items:center;flex:none}
+  .perk b{display:block;color:var(--ink);font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:500;letter-spacing:.03em}
+  .perk span{font-size:.9rem;color:var(--muted)}
+
+  /* footer */
+  footer{background:var(--navy);color:#c3cfe6;padding:64px 0 0;font-size:.92rem}
+  .fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:36px}
+  footer h4{font-family:Oswald,sans-serif;text-transform:uppercase;color:#fff;font-weight:500;letter-spacing:.06em;margin-bottom:14px}
+  footer .flogo{background:#fff;border-radius:10px;padding:10px 14px;display:inline-block;margin-bottom:16px}
+  footer .flogo img{height:52px;width:auto}
+  footer ul{list-style:none;display:grid;gap:6px}
+  footer a:hover{color:#fff;text-decoration:underline}
+  footer .sub{padding-left:12px;opacity:.85}
+  .contact-lines{display:grid;gap:8px;margin-top:16px}
+  .contact-lines a{color:#fff;font-weight:500}
+  .ff .field{margin-bottom:10px}
+  .ff label.sr{position:absolute;left:-9999px}
+  .ff input[type=email],.ff textarea{width:100%;padding:11px 13px;border-radius:9px;border:1px solid #2c4475;background:#132a57;color:#fff;font:inherit}
+  .ff input::placeholder,.ff textarea::placeholder{color:#9fb0d1}
+  .ff .opts{display:grid;gap:6px;margin:6px 0 12px;font-size:.85rem}
+  .ff .opts label{display:flex;gap:8px;align-items:flex-start}
+  .ff .opts input{accent-color:var(--red);margin-top:3px}
+  .form-ok{display:none;background:#132a57;border-radius:9px;padding:10px 12px;font-size:.84rem;margin-top:10px;color:#fff}
+  .legal{border-top:1px solid #23396a;margin-top:48px;padding:20px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.84rem}
+  .legal nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+
+  .callbar{display:none}
+
+  @media (max-width:1040px){
+    .menu{display:none}
+    .mnav{display:block}
+    .books{grid-template-columns:repeat(3,1fr)}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    .tiles .grid,.cgrid{grid-template-columns:1fr 1fr}
+    .enrol,.why,.ngrid{grid-template-columns:1fr}
+    .books{grid-template-columns:1fr 1fr}
+    .perks{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .top .wrap{justify-content:center}
+    .top .r{display:none}
+    .top .l{gap:2px 14px;justify-content:center;font-size:.78rem}
+    .nav{height:70px}
+    .nav .logo img{height:50px}
+    .hero .wrap{padding-top:46px;padding-bottom:52px}
+    .hero .row .btn{flex:1 1 100%}
+    .tiles .grid,.cgrid{grid-template-columns:1fr}
+    .books{grid-template-columns:1fr 1fr;gap:12px}
+    .book .b{padding:12px}
+    .book h3{font-size:.92rem}
+    .book p{display:none}
+    .post{grid-template-columns:1fr}
+    .post img{height:200px}
+    section{padding:60px 0}
+    .box{padding:24px 20px}
+    .fgrid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Academia Soyuz · demo no oficial</div>
+
+<div class="top">
+  <div class="wrap">
+    <div class="l">
+      <a href="mailto:info@soyuzvalladolid.com">info@soyuzvalladolid.com</a>
+      <span>10:30 a 13:30 - 17:30 a 20:00</span>
+    </div>
+    <div class="r">
+      <a href="https://www.soyuzvalladolid.com/tienda/">Tienda online</a>
+      <a href="https://www.soyuzvalladolid.com/contacto/">Contacto</a>
+      <a href="https://www.soyuzvalladolid.com/mi-cuenta/">Regístrate</a>
+      <form method="get" action="https://www.soyuzvalladolid.com/" role="search">
+        <input type="search" name="s" placeholder="Buscar en la tienda" aria-label="Buscar en la tienda">
+        <input type="hidden" name="post_type" value="product">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.soyuzvalladolid.com/" aria-label="Soyuz Valladolid"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/logo-soyuz-valladolid-academia-ruso.png" alt="Soyuz Valladolid - Academia de Ruso, Japones e inglés en Valladolid."></a>
+    <ul class="menu">
+      <li><a href="https://www.soyuzvalladolid.com/">Inicio</a></li>
+      <li><a href="https://www.soyuzvalladolid.com/academia-ruso-valladolid/">Academia</a></li>
+      <li><a href="https://www.soyuzvalladolid.com/cursos-ruso/">Ruso</a>
+        <ul>
+          <li><a href="https://www.soyuzvalladolid.com/cursos-ruso/adultos/">Curso de ruso para adultos</a></li>
+          <li><a href="https://www.soyuzvalladolid.com/cursos-ruso/ninos-jovenes/">Cursos de ruso para niños y jóvenes</a></li>
+          <li><a href="https://www.soyuzvalladolid.com/cursos-ruso/empresas/">Cursos de ruso para empresas</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.soyuzvalladolid.com/japones/">Japonés</a></li>
+      <li><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/">Inglés</a>
+        <ul>
+          <li><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/para-adultos/">Nuestros cursos para adultos</a></li>
+          <li><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/cursos-de-ingles-para-ninos/">Cursos de inglés para niños</a></li>
+          <li><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/cursos-de-ingles-para-empresas/">Cursos de inglés para empresas</a></li>
+        </ul>
+      </li>
+      <li class="shop"><a href="https://www.soyuzvalladolid.com/tienda/">Tienda online</a></li>
+    </ul>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a href="https://www.soyuzvalladolid.com/">Inicio</a>
+        <a href="https://www.soyuzvalladolid.com/academia-ruso-valladolid/">Academia</a>
+        <a href="https://www.soyuzvalladolid.com/cursos-ruso/">Ruso</a>
+        <a class="sub" href="https://www.soyuzvalladolid.com/cursos-ruso/adultos/">Curso de ruso para adultos</a>
+        <a class="sub" href="https://www.soyuzvalladolid.com/cursos-ruso/ninos-jovenes/">Cursos de ruso para niños y jóvenes</a>
+        <a class="sub" href="https://www.soyuzvalladolid.com/cursos-ruso/empresas/">Cursos de ruso para empresas</a>
+        <a href="https://www.soyuzvalladolid.com/japones/">Japonés</a>
+        <a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/">Inglés</a>
+        <a class="sub" href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/para-adultos/">Nuestros cursos para adultos</a>
+        <a class="sub" href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/cursos-de-ingles-para-ninos/">Cursos de inglés para niños</a>
+        <a class="sub" href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/cursos-de-ingles-para-empresas/">Cursos de inglés para empresas</a>
+        <a href="https://www.soyuzvalladolid.com/tienda/">Tienda online</a>
+        <a href="https://www.soyuzvalladolid.com/contacto/">Contacto</a>
+        <a href="https://www.soyuzvalladolid.com/mi-cuenta/">Regístrate</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Ven a conocer</span>
+        <h1>Única academia de ruso <span>en Valladolid Soyuz</span></h1>
+        <div class="row">
+          <a href="https://www.soyuzvalladolid.com/cursos-ruso/" class="btn btn-red">Ver cursos</a>
+          <a href="tel:+34664453276" class="btn btn-line">Llamar · 664 453 276</a>
+        </div>
+        <div class="meta">
+          <span>Calle Cardenal Mendoza nº10 esquina con C/ Reyes nº1, Valladolid (47002)</span>
+          <span>10:30 a 13:30 - 17:30 a 20:00</span>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="hcard">
+          <h2>Tienda online</h2>
+          <h3>Libros de ruso</h3>
+          <p>+320 títulos. Envío a toda España. Stock en Valladolid.</p>
+          <ul>
+            <li>Gramática y libros de texto</li>
+            <li>Lecturas y cultura rusa</li>
+            <li>Material para niños y profesores</li>
+          </ul>
+          <a href="https://www.soyuzvalladolid.com/tienda/" class="btn btn-red btn-sm">Comprar ahora</a>
+        </div>
+        <div class="hcard alt">
+          <h2>Academia</h2>
+          <h3>Clases de idiomas</h3>
+          <p>Grupos reducidos. Profesores nativos. Adultos y niños.</p>
+          <ul>
+            <li><a href="https://www.soyuzvalladolid.com/cursos-ruso/">Ruso · niveles A0 a C1</a></li>
+            <li><a href="https://www.soyuzvalladolid.com/japones/">Japonés · todos los niveles</a></li>
+            <li><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/">Inglés · preparación oficial</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDES -->
+  <div class="tiles">
+    <div class="wrap grid">
+      <article class="tile">
+        <img src="https://www.soyuzvalladolid.com/wp-content/uploads/2019/02/cartelJapones-scaled.jpg" alt="Aprende japonés" loading="lazy">
+        <div class="b">
+          <h3>Aprende japonés</h3>
+          <span class="s">Infórmate</span>
+          <a href="https://www.soyuzvalladolid.com/japones/" class="btn btn-blue btn-sm">Ver cursos</a>
+        </div>
+      </article>
+      <article class="tile">
+        <img src="https://www.soyuzvalladolid.com/wp-content/uploads/2018/08/ingles.jpg" alt="Academia de ingles y ruso en Valladolid" loading="lazy">
+        <div class="b">
+          <h3>Dale un empujón a tu inglés</h3>
+          <span class="s">Adultos y niños</span>
+          <p>Calidad, flexibilidad y TÚ: estos son los protagonistas para dar un empujón a tu inglés. Profesores bilingües y nativos comprometidos con tus objetivos. (Algunos son examinadores oficiales).</p>
+          <a href="https://www.soyuzvalladolid.com/academia-ruso-valladolid/" class="btn btn-blue btn-sm">Ver cursos</a>
+        </div>
+      </article>
+      <article class="tile">
+        <img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/Кот-герань-и-чемодан.jpg" alt="Libros de ruso" loading="lazy" style="object-position:center 30%">
+        <div class="b">
+          <h3>Tienda online</h3>
+          <span class="s">Libros de ruso</span>
+          <p>Libros de lectura - Aprendizaje de idioma - Para profesionales<br>Libros de gramática - Fonética</p>
+          <a href="https://www.soyuzvalladolid.com/tienda/" class="btn btn-blue btn-sm">Ver todos los libros</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- BOOKS -->
+  <section id="libros">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <h2>Libros destacados</h2>
+          <p>Los más comprados por nuestros alumnos</p>
+        </div>
+        <a href="https://www.soyuzvalladolid.com/tienda/" class="btn btn-blue">Ir a la tienda</a>
+      </div>
+      <div class="books">
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/samolet-uchebnik-russkogo-jazyka-dlja-inostrannykh-uchaschikhsja-elementarnyj-uroven/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/09/самолёт-370x370.jpg" alt="Samolet: uchebnik russkogo jazyka dlja inostrannykh uchaschikhsja. Elementarnyj uroven" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/samolet-uchebnik-russkogo-jazyka-dlja-inostrannykh-uchaschikhsja-elementarnyj-uroven/">Samolet: uchebnik russkogo jazyka dlja inostrannykh uchaschikhsja. Elementarnyj uroven</a></h3>
+            <span class="price">45,00 €</span>
+            <p lang="ru">Авторы: Т.В. Кортава, В.В. Частных, Ю.М. Рыжих, И.И. Жабоклицкая, А.А. Толстых, О.О. Шувалова. Учебник «Самолёт» предназначен для иностранцев, начинающих изучать русский язык. Он рассчитан на 180–200 академических часов аудиторной работы с преподавателем. Цель учебника – формирование языковой и коммуникативной компетенции во всех видах речевой деятельности в объёме Элементарного уровня (А1+). Он может использоваться как на […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/samolet-uchebnik-russkogo-jazyka-dlja-inostrannykh-uchaschikhsja-elementarnyj-uroven/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/samolet-rabochaja-tetrad-elementarnyj-uroven-a0-a1/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/09/самолёт-рабочая-тетрадь-370x370.jpg" alt="Samolet: rabochaja tetrad. Elementarnyj uroven A0-A1+" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/samolet-rabochaja-tetrad-elementarnyj-uroven-a0-a1/">Samolet: rabochaja tetrad. Elementarnyj uroven A0-A1+</a></h3>
+            <span class="price">20,00 €</span>
+            <p lang="ru">Авторы: Т.В. Кортава, В.В. Частных, Ю.М. Рыжих, И.И. Жабоклицкая, А.А. Толстых, О.О. Шувалова. Рабочая тетрадь к учебнику «Самолет» предназначена для иностранных учащихся, начинающих изучать русский язык. Является дополнением к учебнику и может использоваться как на занятиях с преподавателем в качестве дополнительного материала, так и для самостоятельной работы учащихся. Аудио- и видеоматериалы доступны через QR-код. К […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/samolet-rabochaja-tetrad-elementarnyj-uroven-a0-a1/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/po-russki-legko-3-uchebnoe-posobie-po-razvitiju-rechi/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/09/по-русски-легко-3-370x370.jpg" alt="Po-russki – legko! 3 / Uchebnoe posobie po razvitiju rechi" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/po-russki-legko-3-uchebnoe-posobie-po-razvitiju-rechi/">Po-russki – legko! 3 / Uchebnoe posobie po razvitiju rechi</a></h3>
+            <span class="price">38,00 €</span>
+            <p lang="en">Autora: Ekaterina Guskova. The manual is aimed at students who already speak Russian at levels A1 and A2 and want to systematize and deepen their lexical and grammatical skills in a variety of communicative situations. This is a communicative-oriented course that will allow foreign students to master lexical and grammatical material on the topics “Profession […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/po-russki-legko-3-uchebnoe-posobie-po-razvitiju-rechi/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/practical-russian-grammar-exercises-for-level-b1-b2-kniga-2/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/Практическая-грамматика-В1-В2.-Книга-2-370x370.png" alt="Practical Russian Grammar. Exercises for level B1-B2. Kniga 2" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/practical-russian-grammar-exercises-for-level-b1-b2-kniga-2/">Practical Russian Grammar. Exercises for level B1-B2. Kniga 2</a></h3>
+            <span class="price">27,00 €</span>
+            <a href="https://www.soyuzvalladolid.com/tienda/practical-russian-grammar-exercises-for-level-b1-b2-kniga-2/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/rossija-pod-stuk-koljos/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/Россия-под-стук-колёс-370x200.jpg" alt="Rossija pod stuk koljos" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/rossija-pod-stuk-koljos/">Rossija pod stuk koljos</a></h3>
+            <span class="price">25,00 €</span>
+            <p>Rossija pod stuk koljos E. S. Stremova, A.V. Tananina, V.A. Leontyeva, A.V. Trepalina, V. N. Gornova El libro de texto está diseñado para estudiantes que continúan estudiando ruso y han dominado con éxito el nivel B1. Junto con Max, un estudiante extranjero, viajarán en tren a través de Rusia, desde Vladivostok hasta Veliky Novgorod, escucharán […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/rossija-pod-stuk-koljos/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/po-russki-legko2-uchebnoe-posobie-po-razvitiju-rechi/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/По-русски-легко-2-370x370.jpg" alt="Po-russki – legko! 2 Uchebnoe posobie po razvitiju rechi" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/po-russki-legko2-uchebnoe-posobie-po-razvitiju-rechi/">Po-russki – legko!2 Uchebnoe posobie po razvitiju rechi</a></h3>
+            <span class="price">35,00 €</span>
+            <p>Po-russki – legko! 2 El curso presentado en el libro de texto está dirigido al desarrollo de las habilidades del habla oral de aquellos que acaban de comenzar a aprender ruso. El material de aprendizaje presentado en el libro de texto cumple con los requisitos del nivel elemental (A2) de hablar ruso. Los materiales para […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/po-russki-legko2-uchebnoe-posobie-po-razvitiju-rechi/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/zdravstvuj-rossija-elementarnyj-uroven-%d0%b00-%d0%b01/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/zdravstvuj-rssija-elementarnyj-uroven-А0–А1-370x370.jpg" alt="Zdravstvuj, Rossija! Elementarnyj uroven (А0–А1+)" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/zdravstvuj-rossija-elementarnyj-uroven-%d0%b00-%d0%b01/">Zdravstvuj, Rossija! Elementarnyj uroven (А0–А1+)</a></h3>
+            <span class="price">35,00 €</span>
+            <p>O.E. Chubarova, E.K. Stoletova, Y.S. Kapitanova, O.N. Butskaya El libro de texto es la parte principal del complejo educativo Hello, Russia! Nivel elemental (A0-A1+)”, dirigido a estudiantes que están empezando a estudiar ruso como lengua extranjera. Este complejo educativo se puede recomendar para clases en facultades preparatorias de universidades humanitarias, en cursos de ruso como […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/zdravstvuj-rossija-elementarnyj-uroven-%d0%b00-%d0%b01/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+        <article class="book">
+          <a class="im" href="https://www.soyuzvalladolid.com/tienda/po-russki-legko-uchebnoe-posobie-po-razvitiju-rechi/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/Гуськова_обл-370x370.jpg" alt="Po-russki – legko! Uchebnoe posobie po razvitiju rechi" loading="lazy"></a>
+          <div class="b">
+            <h3><a href="https://www.soyuzvalladolid.com/tienda/po-russki-legko-uchebnoe-posobie-po-razvitiju-rechi/">Po-russki – legko! Uchebnoe posobie po razvitiju rechi</a></h3>
+            <span class="price">32,00 €</span>
+            <p>El ruso-fácil. Libro de texto para el desarrollo del lenguaje oral El curso presentado en el libro está dirigido a desarrollar las habilidades de habla oral y está dirigido a aquellos que comenzaron a estudiar ruso recientemente. El curso tiene en cuenta las necesidades comunicativas básicas de los estudiantes en las situaciones actuales de la […]</p>
+            <a href="https://www.soyuzvalladolid.com/tienda/po-russki-legko-uchebnoe-posobie-po-razvitiju-rechi/" class="btn btn-red btn-sm">Ver</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses" id="cursos">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow">Academia de ruso, japonés e inglés</span>
+          <h2>Nuestros cursos</h2>
+        </div>
+      </div>
+      <div class="cgrid">
+        <article class="course">
+          <img src="https://www.soyuzvalladolid.com/wp-content/uploads/2018/08/icono-ruso.png" alt="" loading="lazy">
+          <h3><a href="https://www.soyuzvalladolid.com/cursos-ruso/">Cursos de Ruso</a></h3>
+          <ul>
+            <li>Cursos generales (adultos)</li>
+            <li>Cursos para niños y jóvenes</li>
+            <li>Curso para empresas</li>
+          </ul>
+        </article>
+        <article class="course">
+          <img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/japon.png" alt="" loading="lazy">
+          <h3><a href="https://www.soyuzvalladolid.com/japones/">Cursos de Japonés</a></h3>
+          <ul>
+            <li>Cursos generales (adultos)</li>
+            <li>Cursos para niños y jóvenes</li>
+            <li>Curso para empresas</li>
+          </ul>
+        </article>
+        <article class="course">
+          <img src="https://www.soyuzvalladolid.com/wp-content/uploads/2018/08/icono-ingles.png" alt="" loading="lazy">
+          <h3><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/">Cursos de Inglés</a></h3>
+          <ul>
+            <li>Cursos generales (adultos y niños)</li>
+            <li>Preparación de exámenes oficiales (KET, PET, First, Advanced)</li>
+            <li>Inglés ACTIVO (lectura, conversación y audición)</li>
+            <li>Curso para empresas</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <div class="visit">
+    <div class="wrap">
+      <h2>Única academia ruso, japonés e inglés en Valladolid</h2>
+      <p>Ven a conocer tu nueva academia SOYUZ en la C/ Cardenal Mendoza Nº 10 (esquina con C/Reyes).</p>
+      <a href="https://www.soyuzvalladolid.com/contacto/" class="btn btn-red">Contactar</a>
+    </div>
+  </div>
+
+  <!-- ENROLMENT -->
+  <section id="matricula">
+    <div class="wrap">
+      <div class="enrol">
+        <div class="box">
+          <h3>Se abre el plazo de matrícula para los nuevos grupos de ruso 4 de septiembre</h3>
+          <div class="pills">
+            <span>Grupos de 1 hora y media a la semana</span>
+            <span>Grupos de 2h a la semana</span>
+            <span>Grupos de 3h a la semana</span>
+          </div>
+        </div>
+        <div class="box hl">
+          <span class="tag">¡Nuevo!</span>
+          <h3>Club de lectura: 2 veces al mes (viernes o sábado) – 1 hora</h3>
+          <ul>
+            <li>Imprescindible tener nivel A1</li>
+            <li>Precio: 25€/mes (libro incluido)</li>
+            <li>Grupos pequeños, plazas limitadas</li>
+          </ul>
+          <a href="tel:+34664453276" class="btn btn-red">Llamar</a>
+        </div>
+      </div>
+      <div class="note">
+        <strong>Nuestro primer intensivo (INGLÉS) empieza la 3ª semana de Septiembre, y hasta el 17 de Septiembre la matrícula es gratis.</strong>
+        ¡No te lo pierdas, solo hay 8 plazas!
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section style="padding-top:0">
+    <div class="wrap why">
+      <div class="box">
+        <h3><a href="https://www.soyuzvalladolid.com/cursos-ruso/">¡Hoy en día saber RUSO marca la diferencia!</a></h3>
+        <ul>
+          <li>Más de 300 millones de personas en el mundo hablan la lengua rusa.</li>
+          <li>Mejorará tus oportunidades laborales</li>
+          <li>Te permitirá conocer la verdadera Rusia y su fascinante cultura</li>
+        </ul>
+        <p>El método utilizado se adaptará a tus necesidades.</p>
+        <ul>
+          <li>Cursos generales (adultos y niños)</li>
+          <li>Preparación de examen oficial TRKI</li>
+          <li>Curso para empresas</li>
+          <li>Escuela para niños bilingües todos los sábados</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/">¡Dale un empujón a tu inglés!</a></h3>
+        <ul>
+          <li>Clases de inglés con profesores bilingües y nativos comprometidos con tus objetivos. (Algunos son examinadores oficiales).</li>
+          <li>Aulas y tecnología necesaria.</li>
+          <li>Flexibilidad de horarios, adaptándonos a tus necesidades.</li>
+          <li>Programas personalizados para el alumno.</li>
+          <li>Para que los grupos sean homogéneos, los alumnos realizarán una prueba de nivel antes de entrar.</li>
+          <li>Grupos de inglés entre 4 y 8 alumnos (máximo).</li>
+          <li>Preparación para exámenes oficiales de inglés.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news" id="noticias">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow">No te pierdas todas las novedades</span>
+          <h2>Todas las noticias</h2>
+        </div>
+      </div>
+      <div class="ngrid">
+        <article class="post">
+          <a href="https://www.soyuzvalladolid.com/nuevo-curso-de-japones/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2019/02/cartelJapones-scaled-570x570.jpg" alt="¡Nuevo! Curso de japonés" loading="lazy"></a>
+          <div class="b">
+            <time>16 septiembre, 2025</time>
+            <h3><a href="https://www.soyuzvalladolid.com/nuevo-curso-de-japones/">¡Nuevo! Curso de japonés</a></h3>
+            <p>¿Te atreves con el japonés? Para niños y adultos. Profesora nativa. Clases particulares. Grupos pequeños.</p>
+          </div>
+        </article>
+        <article class="post">
+          <a href="https://www.soyuzvalladolid.com/curso-intersivo-ingles-fin-de-semana/"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2021/08/InglesFinSemana1_page-0001-570x570.jpg" alt="Curso intensivo inglés fin de semana" loading="lazy"></a>
+          <div class="b">
+            <time>16 septiembre, 2025</time>
+            <h3><a href="https://www.soyuzvalladolid.com/curso-intersivo-ingles-fin-de-semana/">Curso intensivo inglés fin de semana</a></h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERKS -->
+  <div class="wrap perks">
+    <div class="perk"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Pago 100% seguro</b><span>Stripe y PayPal</span></div></div>
+    <div class="perk"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><div><b>Envío a toda España</b><span>Estándar y con seguimiento</span></div></div>
+    <div class="perk"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><b>Recogida en tienda</b><span>Cardenal Mendoza nº10, Valladolid</span></div></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <span class="flogo"><img src="https://www.soyuzvalladolid.com/wp-content/uploads/2026/01/logo-soyuz-valladolid-academia-ruso.png" alt="Academia SOYUZ Valladolid"></span>
+      <h4>Academia en Valladolid<br><span style="color:#ff8a8e">Ruso, Japonés e Inglés</span></h4>
+      <p>Soyuz Valladolid es el único centro de estudios especializado en el idioma ruso en Valladolid. Está dirigido por una nativa y licenciada en Filología Rusa por la Universidad Estatal de Lomonosov de Moscú, en el departamento de ruso para extranjeros.</p>
+      <div class="contact-lines">
+        <span>Calle Cardenal Mendoza nº10 esquina con C/ Reyes nº1, Valladolid (47002)</span>
+        <a href="tel:+34664453276">(+34) 664 45 32 76</a>
+        <a href="mailto:info@soyuzvalladolid.com">info@soyuzvalladolid.com</a>
+        <a href="https://wa.me/34664453276?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20libros%20de%20ruso.">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4>Academia</h4>
+      <ul>
+        <li><a href="https://www.soyuzvalladolid.com/">Inicio</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/academia-ruso-valladolid/">Academia</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/cursos-ruso/">Ruso</a></li>
+        <li class="sub"><a href="https://www.soyuzvalladolid.com/cursos-ruso/adultos/">Curso de ruso para adultos</a></li>
+        <li class="sub"><a href="https://www.soyuzvalladolid.com/cursos-ruso/ninos-jovenes/">Cursos de ruso para niños y jóvenes</a></li>
+        <li class="sub"><a href="https://www.soyuzvalladolid.com/cursos-ruso/empresas/">Cursos de ruso para empresas</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/japones/">Japonés</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/">Inglés</a></li>
+        <li class="sub"><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/para-adultos/">Nuestros cursos para adultos</a></li>
+        <li class="sub"><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/cursos-de-ingles-para-ninos/">Cursos de inglés para niños</a></li>
+        <li class="sub"><a href="https://www.soyuzvalladolid.com/academia-de-ingles-en-valladolid/cursos-de-ingles-para-empresas/">Cursos de inglés para empresas</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/tienda/">Tienda online</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/libros-de-texto-de-ruso/">Libros de texto</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/comprar-libros-de-ruso-de-gramatica/">Gramática</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/practica-oral-de-ruso/">Práctica oral</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/test-y-autoevaluacion-de-ruso/">Test y autoevaluación</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/fonetica/">Fonética</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/comprar-libros-de-ruso-de-cultura-rusa/">Cultura rusa</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/libros-de-texto-de-ruso-para-ninos/">Libros de texto para niños</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/comprar-libros-de-ruso-lecturas/">Lecturas</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/material-multimedia-de-ruso/">Material multimedia</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/libros-de-texto-especializados-de-ruso/">Libros de texto especializados</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/comprar-libros-de-ruso-juegos/">Juegos</a></li>
+        <li><a href="https://www.soyuzvalladolid.com/categoria/libros-de-ruso-para-el-profesorado/">Libros para el profesorado</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Pregúntanos</h4>
+      <form class="ff" onsubmit="return demoSubmit(this)">
+        <div class="field"><label class="sr" for="fe">Email</label><input id="fe" type="email" placeholder="Email" required autocomplete="email"></div>
+        <div class="field"><label class="sr" for="fq">Pregunta</label><textarea id="fq" rows="5" placeholder="Pregunta"></textarea></div>
+        <div class="opts">
+          <label><input type="checkbox" name="priv" value="Acepto la política de privacidad">Acepto la política de privacidad</label>
+          <label><input type="checkbox" name="priv" value="No acepto la política de privacidad">No acepto la política de privacidad</label>
+        </div>
+        <button class="btn btn-red" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <nav>
+      <a href="https://www.soyuzvalladolid.com/aviso-legal-y-condiciones-de-uso/">Aviso legal</a>
+      <a href="https://www.soyuzvalladolid.com/politica-de-privacidad/">Política de privacidad</a>
+      <a href="https://www.soyuzvalladolid.com/politica-de-cookies/">Política de cookies</a>
+      <a href="https://www.soyuzvalladolid.com/condiciones-de-uso/">Condiciones de uso</a>
+    </nav>
+    <a href="https://www.soyuzvalladolid.com/tienda/">Tienda</a>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34664453276" class="btn btn-red">664 453 276</a>
+  <a href="https://wa.me/34664453276?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20libros%20de%20ruso." class="btn btn-ghost">WhatsApp</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

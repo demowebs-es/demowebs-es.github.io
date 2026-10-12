@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Country Cottage · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#3d9c5e; --green-dark:#2d7a48; --green-tint:#eef7f1; --lilac:#c592d0; --lilac-dark:#a86fb5;
+    --ink:#212121; --text:#444; --muted:#6c6f6a; --line:#e3ece6; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .script{font-family:Caveat,cursive;font-weight:700}
+  .eyebrow{font-family:Montserrat,sans-serif;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:600}
+
+  .demo{background:var(--ink);color:#cfe6d6;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .top{background:var(--green);color:#fff;font-size:.84rem}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:38px;flex-wrap:wrap}
+  .top .l{display:flex;gap:18px;flex-wrap:wrap}
+  .top .soc{display:flex;gap:14px}
+  .top a:hover{text-decoration:underline}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px}
+  .nav .logo img{height:58px;width:auto}
+  .menu{display:flex;list-style:none;gap:2px;align-items:center}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 12px;font-family:Caveat,cursive;font-size:1.35rem;font-weight:700;color:var(--green-dark)}
+  .menu>li>a:hover{color:var(--lilac-dark)}
+  .menu ul{display:none;position:absolute;top:100%;left:0;min-width:280px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px -20px rgba(0,0,0,.3);list-style:none;padding:8px}
+  .menu li:hover>ul,.menu li:focus-within>ul{display:block}
+  .menu ul a{display:block;padding:8px 10px;font-size:.9rem;border-radius:8px}
+  .menu ul a:hover{background:var(--green-tint);color:var(--green-dark)}
+  .menu ul a.sub{padding-left:24px;font-size:.86rem;color:var(--muted)}
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;border:1.5px solid var(--green);color:var(--green-dark);border-radius:999px;padding:7px 16px;font-family:Montserrat,sans-serif;font-weight:600;font-size:.88rem}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);padding:10px 16px 18px;max-height:75vh;overflow:auto}
+  .mnav .panel a,.mnav .panel span{display:block;padding:9px 4px;border-bottom:1px solid var(--line);color:var(--ink)}
+  .mnav .panel span{font-weight:600;color:var(--green-dark)}
+  .mnav .panel a.sub{padding-left:16px;font-size:.92rem;color:var(--muted)}
+  .mnav .panel a.sub2{padding-left:30px;font-size:.88rem;color:var(--muted)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid transparent;cursor:pointer;font-family:Montserrat,sans-serif;white-space:nowrap}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{background:var(--green-dark)}
+  .btn-lilac{background:var(--lilac);color:#fff}
+  .btn-lilac:hover{background:var(--lilac-dark)}
+  .btn-line{border-color:var(--green);color:var(--green-dark);background:#fff}
+  .btn-line:hover{background:var(--green-tint)}
+  .btn-sm{padding:9px 16px;font-size:.84rem}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:#2b3a30 url("https://thecountrycottage.es/wp-content/uploads/country-cottage-slide1.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,40,26,.86),rgba(20,40,26,.55) 60%,rgba(20,40,26,.2))}
+  .hero .wrap{position:relative;padding-top:96px;padding-bottom:120px}
+  .hero h1{font-family:Caveat,cursive;font-weight:700;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;max-width:760px}
+  .hero p{font-size:1.12rem;max-width:560px;margin:18px 0 28px;color:#eef6f0}
+  .cta-strip{position:relative;z-index:2;margin-top:-56px}
+  .cta-strip .box{background:var(--green);color:#fff;border-radius:var(--radius);padding:26px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 24px 40px -24px rgba(0,0,0,.45)}
+  .cta-strip small{display:block;text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:600;opacity:.9}
+  .cta-strip strong{font-family:Montserrat,sans-serif;font-size:1.3rem}
+  .cta-strip .btn{font-size:1.2rem;padding:14px 28px}
+
+  section{padding:88px 0}
+  .head{text-align:center;max-width:720px;margin:0 auto 44px}
+  .head h2{font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);color:var(--green-dark);line-height:1.15;margin-top:8px}
+  .head p{color:var(--muted);margin-top:10px}
+
+  /* intro */
+  .intro{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .intro h2{font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--green-dark);line-height:1.2}
+  .intro p{margin-top:16px;font-size:1.05rem}
+  .intro .badges{display:flex;gap:28px;align-items:center;margin-top:30px;flex-wrap:wrap}
+  .intro .badges img{height:64px;width:auto}
+  .mapcard{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--green-tint);padding:28px;display:grid;gap:12px}
+  .mapcard h3{font-family:Montserrat,sans-serif;color:var(--ink);font-size:1.1rem}
+  .mapcard p{font-size:1rem}
+  .mapcard .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+
+  /* testimonials */
+  .reviews{background:linear-gradient(180deg,#fff,var(--green-tint))}
+  .rgrid{columns:3 300px;column-gap:20px}
+  .rev{break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 18px;margin-bottom:20px}
+  .rev q{display:block;font-family:Caveat,cursive;font-size:1.45rem;line-height:1.2;color:var(--green-dark);quotes:"“" "”"}
+  .rev cite{display:block;font-style:normal;font-size:.84rem;color:var(--muted);margin-top:12px;font-weight:600}
+  .reviews .more{text-align:center;margin-top:16px}
+
+  /* values */
+  .values{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:start}
+  .values .lead h2{font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--green-dark)}
+  .values .lead p{margin:14px 0 24px}
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;background:var(--green-tint);border-radius:22px;padding:22px}
+  .val{background:#fff;border-radius:var(--radius);padding:24px}
+  .val .ic{width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin-bottom:12px}
+  .val h3{font-family:Montserrat,sans-serif;font-size:1.02rem;color:var(--ink);line-height:1.3;margin-bottom:8px}
+  .val p{font-size:.9rem}
+
+  /* courses */
+  .courses{background:#fafcfa}
+  .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .course{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .course:hover{border-color:var(--green);box-shadow:0 20px 40px -26px rgba(0,0,0,.35)}
+  .course img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .course .b{padding:20px 22px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .course h3{font-family:Montserrat,sans-serif;font-size:1.05rem;color:var(--ink);line-height:1.3}
+  .course .btn{align-self:flex-start;margin-top:auto}
+
+  /* word + events */
+  .duo{display:grid;grid-template-columns:.8fr 1.6fr;gap:28px;align-items:start}
+  .word{background:var(--green-tint);border-radius:var(--radius);padding:24px;text-align:center}
+  .word h2{font-family:Montserrat,sans-serif;font-size:1.3rem;color:var(--green-dark);margin-bottom:16px}
+  .word img{border-radius:10px;width:100%;aspect-ratio:3/2;object-fit:cover}
+  .word .w{font-family:Caveat,cursive;font-weight:700;font-size:2.2rem;color:var(--ink);margin-top:12px;line-height:1}
+  .word .t{color:var(--lilac-dark);font-style:italic}
+  .egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ev{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .ev img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .ev .b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .ev h3{font-family:Montserrat,sans-serif;font-size:.98rem;color:var(--ink);line-height:1.3}
+  .ev .btn{align-self:flex-start;margin-top:auto}
+  .duo .sh{margin-bottom:18px}
+  .duo .sh h2{font-family:Montserrat,sans-serif;font-size:1.6rem;color:var(--green-dark)}
+  .duo .sh p{color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-size:.76rem;font-weight:600}
+
+  /* team */
+  .team{background:var(--green-tint)}
+  .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .member{background:#fff;border-radius:var(--radius);overflow:hidden;text-align:center;border:1px solid var(--line)}
+  .member img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .member .b{padding:16px 14px 20px}
+  .member h3{font-family:Caveat,cursive;font-size:1.9rem;color:var(--green-dark);line-height:1}
+  .member p{font-size:.86rem;color:var(--muted);margin:4px 0 12px}
+
+  /* news */
+  .news{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .news a{border:1px solid var(--line);border-radius:var(--radius);padding:22px;font-family:Montserrat,sans-serif;font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:12px;transition:.2s}
+  .news a:hover{border-color:var(--green);color:var(--green-dark)}
+  .news a::after{content:"›";font-size:1.6rem;color:var(--green)}
+  .socials{display:flex;justify-content:center;gap:12px;margin-top:28px}
+
+  footer{background:#1f2a22;color:#c9d6cc;padding:60px 0 0;font-size:.94rem}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;align-items:start}
+  footer h4{font-family:Montserrat,sans-serif;color:#fff;margin-bottom:12px;font-size:1rem}
+  footer .flogo{background:#fff;border-radius:10px;padding:10px 14px;display:inline-block}
+  footer .flogo img{height:52px;width:auto}
+  footer a{color:#fff}
+  footer a:hover{text-decoration:underline}
+  footer dl{display:grid;gap:4px}
+  footer dt{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:#9fb5a6;margin-top:8px}
+  .legal{border-top:1px solid #33443a;margin-top:44px;padding:20px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.84rem}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block}
+    .tgrid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:900px){
+    .intro,.values,.duo{grid-template-columns:1fr}
+    .cgrid{grid-template-columns:1fr 1fr}
+    .news{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .top .wrap{justify-content:center;padding-top:4px;padding-bottom:4px}
+    .top .l{justify-content:center;gap:2px 14px;font-size:.8rem}
+    .nav{height:72px}
+    .nav .logo img{height:46px}
+    .hero .wrap{padding-top:56px;padding-bottom:96px}
+    .hero .btn{width:100%}
+    .cta-strip .box{padding:22px 20px}
+    .cta-strip .btn{width:100%}
+    section{padding:60px 0}
+    .vgrid{grid-template-columns:1fr;padding:14px}
+    .rgrid{columns:auto;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+    .rev{flex:0 0 86%;margin:0;scroll-snap-align:start}
+    .cgrid,.egrid{grid-template-columns:1fr}
+    .tgrid{gap:12px}
+    .member h3{font-size:1.6rem}
+    .fgrid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para The Country Cottage · demo no oficial</div>
+
+<div class="top">
+  <div class="wrap">
+    <div class="l">
+      <a href="mailto:infoacademia@thecountrycottage.es">infoacademia@thecountrycottage.es</a>
+      <a href="tel:+34983304730">983 30 47 30</a>
+    </div>
+    <div class="soc">
+      <a href="https://www.facebook.com/thecountrycottagevalladolid/">Facebook</a>
+      <a href="https://www.instagram.com/thecountrycottagevalladolid/">Instagram</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://thecountrycottage.es/" aria-label="The Country Cottage"><img src="https://thecountrycottage.es/wp-content/uploads/academia-country-cottage-logo-2.png" alt="Academia de inglés en Valladolid – The Country Cottage"></a>
+    <ul class="menu">
+      <li><a href="https://thecountrycottage.es/quienes-somos/">Quiénes somos</a>
+        <ul>
+          <li><a href="https://thecountrycottage.es/quienes-somos/">Quiénes somos</a></li>
+          <li><a href="https://thecountrycottage.es/nuestra-filosofia/">Nuestra filosofía</a></li>
+          <li><a href="https://thecountrycottage.es/equipo/">Equipo</a></li>
+        </ul>
+      </li>
+      <li><a href="https://thecountrycottage.es/cursos-y-horarios/">Cursos y actividades</a>
+        <ul>
+          <li><a href="https://thecountrycottage.es/cursos-y-horarios/">Cursos por niveles y horarios</a></li>
+          <li><a href="https://thecountrycottage.es/examenes-cambridge/">Preparación exámenes de Cambridge</a></li>
+          <li><a class="sub" href="https://thecountrycottage.es/examenes-cambridge/preparacion-b2-first/">Preparación B2 First</a></li>
+          <li><a class="sub" href="https://thecountrycottage.es/examenes-cambridge/preparacion-c1-advanced/">Preparación C1 Advanced</a></li>
+          <li><a class="sub" href="https://thecountrycottage.es/examenes-cambridge/">Otros niveles …</a></li>
+          <li><a class="sub" href="https://thecountrycottage.es/fechas-examenes-cambridge-valladolid/">Fechas de exámenes de Cambridge en Valladolid</a></li>
+          <li><a href="https://thecountrycottage.es/ingles-fuera-del-aula/">Inglés fuera del aula</a></li>
+          <li><a href="https://thecountrycottage.es/ingles-para-profesores/">Inglés para profesores</a></li>
+          <li><a href="https://thecountrycottage.es/english-chat/">English chat</a></li>
+          <li><a href="https://thecountrycottage.es/profesores-auxiliares-en-colegios-language-assistants/">Clases de auxiliar de conversación para colegios</a></li>
+        </ul>
+      </li>
+      <li><a href="https://thecountrycottage.es/palabra-del-dia/">Palabra del día</a></li>
+      <li><a href="https://thecountrycottage.es/whats-new/">What’s new?</a>
+        <ul>
+          <li><a href="https://thecountrycottage.es/whats-new/">Noticias</a></li>
+          <li><a href="https://thecountrycottage.es/eventos/">Eventos</a></li>
+        </ul>
+      </li>
+      <li><a href="https://thecountrycottage.es/localizacion-y-contacto/">Localización y contacto</a></li>
+    </ul>
+    <details class="mnav">
+      <summary>Menu</summary>
+      <div class="panel">
+        <span>Quiénes somos</span>
+        <a class="sub" href="https://thecountrycottage.es/quienes-somos/">Quiénes somos</a>
+        <a class="sub" href="https://thecountrycottage.es/nuestra-filosofia/">Nuestra filosofía</a>
+        <a class="sub" href="https://thecountrycottage.es/equipo/">Equipo</a>
+        <span>Cursos y actividades</span>
+        <a class="sub" href="https://thecountrycottage.es/cursos-y-horarios/">Cursos por niveles y horarios</a>
+        <a class="sub" href="https://thecountrycottage.es/examenes-cambridge/">Preparación exámenes de Cambridge</a>
+        <a class="sub2" href="https://thecountrycottage.es/examenes-cambridge/preparacion-b2-first/">Preparación B2 First</a>
+        <a class="sub2" href="https://thecountrycottage.es/examenes-cambridge/preparacion-c1-advanced/">Preparación C1 Advanced</a>
+        <a class="sub2" href="https://thecountrycottage.es/examenes-cambridge/">Otros niveles …</a>
+        <a class="sub2" href="https://thecountrycottage.es/fechas-examenes-cambridge-valladolid/">Fechas de exámenes de Cambridge en Valladolid</a>
+        <a class="sub" href="https://thecountrycottage.es/ingles-fuera-del-aula/">Inglés fuera del aula</a>
+        <a class="sub" href="https://thecountrycottage.es/ingles-para-profesores/">Inglés para profesores</a>
+        <a class="sub" href="https://thecountrycottage.es/english-chat/">English chat</a>
+        <a class="sub" href="https://thecountrycottage.es/profesores-auxiliares-en-colegios-language-assistants/">Clases de auxiliar de conversación para colegios</a>
+        <a href="https://thecountrycottage.es/palabra-del-dia/">Palabra del día</a>
+        <span>What’s new?</span>
+        <a class="sub" href="https://thecountrycottage.es/whats-new/">Noticias</a>
+        <a class="sub" href="https://thecountrycottage.es/eventos/">Eventos</a>
+        <a href="https://thecountrycottage.es/localizacion-y-contacto/">Localización y contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1>¡Únete a la familia The Country Cottage y aprende inglés sintiéndote como en casa!</h1>
+      <p>Profesores nativos y grupos reducidos para potenciar al máximo tu inglés de forma amena y divertida</p>
+      <a href="https://thecountrycottage.es/quienes-somos/" class="btn btn-green">Descubre más sobre nosotros</a>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <div class="wrap">
+      <div class="box">
+        <div>
+          <small>¿Quieres empezar a aprender inglés de verdad?</small>
+          <strong>Llámanos y conoce todas nuestras opciones</strong>
+        </div>
+        <a href="tel:+34983304730" class="btn btn-lilac">983 30 47 30 ›</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section>
+    <div class="wrap intro">
+      <div>
+        <h2>Academia de inglés en Valladolid centro - The Country Cottage</h2>
+        <p>Somos una academia de inglés de toda la vida con un enfoque innovador, donde aprenderás al máximo nivel sintiéndote como en casa. La confianza de nuestros alumnos satisfechos es nuestra mejor presentación.</p>
+        <div class="badges">
+          <a href="https://fecei.org/"><img src="https://thecountrycottage.es/wp-content/uploads/logo-fecei-retina.png" alt="FECEI" loading="lazy"></a>
+          <a href="https://aclid.es/the-country-cottage-valladolid/"><img src="https://thecountrycottage.es/wp-content/uploads/logo_aclid_small.png" alt="ACLID" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="mapcard">
+        <span class="eyebrow">¿Dónde estamos?</span>
+        <h3>C/ Núñez de Arce 16, 47002 Valladolid</h3>
+        <div class="row">
+          <a href="https://www.google.com/maps/search/?api=1&query=The+Country+Cottage+N%C3%BA%C3%B1ez+de+Arce+16+Valladolid" class="btn btn-green btn-sm">Abrir en Maps</a>
+          <a href="tel:+34983304730" class="btn btn-line btn-sm">983 30 47 30</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" style="padding-top:20px">
+    <div class="wrap">
+      <div class="rgrid">
+        <figure class="rev"><q>Un sitio increíble y muy acogedor en el que puedes aprender mucho inglés en muy buena compañía.</q><cite>Estela, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Un trocito de Inglaterra en Valladolid!! Profesores nativos altamente cualificados y muy cercanos con el alumno.</q><cite>Ana, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Es una academia muy buena y en la que puedes aprender mucho inglés. Además es muy acogedora y los alumnos se conocen entre todos. La recomiendo sí o sí.</q><cite>Nacho, alumno de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Los mejores profesores de Inglés en Valladolid. Nativos y con una gran experiencia en preparación de exámenes oficiales.</q><cite>María, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Aprendes inglés de manera muy divertida con gente muy agradable, desde luego la recomiendo.</q><cite>Silvia, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Es muy acogedora, aprendes mucho inglés en compañía de gente muy agradable y te ayudan a preparte para los exámenes de Cambridge. Muy divertida y de lo mejor!! Veniros ya de ya!!</q><cite>Eva, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Los profesores son muy amables y simpáticos, las clases son muy entretenidas. Recomendable 100%</q><cite>Guillermo, alumno de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Es increíble esta academia y me gusta mucho</q><cite>REYGAP, alumno de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Gran formación y mucha cercanía y confianza con los profesores!</q><cite>Arturo, alumno de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Grupos pequeños y enseñanza muy cercana y de calidad. Los alumnos se sienten muy a gusto y como madre da mucha tranquilidad</q><cite>Laura, madre de alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Muy buenos profesores, enseñan muy bien y hacen que las clases sean muy divertidas. Explican muy bien cuando no entiendes las cosas.</q><cite>Lucía, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Una muy buena academia de inglés, sobretodo se especifican en el acento inglés, pero es muy buena academia, con gente simpática y muy agradable</q><cite>Gisela, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Muy contento con esta academia y los resultados que estoy obteniendo, los profesores están muy preparados y son muy amables, se notan los años de experiencia que tienen en preparar a sus alumnos para todos los exámenes.</q><cite>Álvaro, alumno de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Muy buenos profesores, hablan todo el rato en inglés y si no entiendes algo te lo dicen al instante y tienen un perritooo (si tienes alergia al pelo de animal lo sacan y no está en tú clase) example: i had a ten un my notes. De locossss</q><cite>Ángela, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Muy buena academia, son nativos los profesores asique hablan solo inglés y aprendes mucho de esta forma y también son muy buenos los profesores, porque si tienes alguna duda te la resolverán sin problema, la recomiendo mucho.</q><cite>Laura, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>A mis niñas (1 y 2 primaria) les encanta ir. Aprenden mucho y con buen acento. El ambiente es muy familiar y siempre están dispuestos a ayudar. Todo un descubrimiento, estamos encantados con Gemma&amp;family ;-)</q><cite>Beatriz, madre de alumnas de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Superprofesionales. Estupendos en todo. Se aprende mogollón con ellos y los niños van encantados.</q><cite>María, madre de alumnos de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Mi hija Lucía, está encantada. Aprende inglés de una forma divertida. Grupos pequeños y trato familiar. Muy muy recomendable.</q><cite>Lu, alumna de The Country Cottage</cite></figure>
+        <figure class="rev"><q>Llevo muchos años yendo a esta academia y siempre me han tratado como a uno de la familia y enseñado con los mejores profesores. La recomiendo muchísimo tanto para principiantes como para los que quieren avanzar a más nivel.</q><cite>Nico, alumno de The Country Cottage</cite></figure>
+      </div>
+      <div class="more"><a class="btn btn-line" href="https://www.google.com/search?q=the+country+cottage&amp;oq=the+country+cottage&amp;aqs=chrome..69i57j35i39j0l2j69i60l2.3379j1j7&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0xd4712b231b0266d:0x2d361efa8b3c6d30,1,,,">Ver más opiniones en Google &gt;&gt;</a></div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section>
+    <div class="wrap values">
+      <div class="lead">
+        <h2>Lo que nos define</h2>
+        <p>El genuino carácter de The Country Cottage lo definen nuestros valores y es el secreto de nuestro éxito entre los alumnos.</p>
+        <a href="https://thecountrycottage.es/nuestra-filosofia/" class="btn btn-green">Nuestra filosofía</a>
+      </div>
+      <div class="vgrid">
+        <div class="val">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+          <h3>Profesores nativos y altamente cualificados</h3>
+          <p>Nuestro profesorado está formado por instructores nativos con una alta cualificación preparados para sacar el máximo potencial en tu aprendizaje del idioma.</p>
+        </div>
+        <div class="val">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5"/></svg></span>
+          <h3>Grupos reducidos de máximo 6 personas</h3>
+          <p>Trabajamos siempre con grupos reducidos para evitar la masificación y poder brindar a todos nuestros alumnos una atención personalizada y de la máxima calidad.</p>
+        </div>
+        <div class="val">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></span>
+          <h3>Ambiente cercano, familiar y divertido</h3>
+          <p>Para nosotros es fundamental que cada alumno se sienta cómodo en nuestro ambiente distendido y familiar. Lo principal para nosotros es el aprendizaje pero creemos que un entorno ameno y divertido es un gran aliado para facilitarlo.</p>
+        </div>
+        <div class="val">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg></span>
+          <h3>Enseñanza según el Currículum Británico</h3>
+          <p>Seguimos la Metodología Comunicativa ESL (Communicative ESL Methodology) combinada con el Currículum Británico (British National Curriculum), el sistema de enseñanza que emplean los colegios del Reino Unido para asegurar la calidad y consistencia del aprendizaje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses" id="cursos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Nuestros cursos de inglés</h2>
+        <p>Enfocados a tu aprendizaje, con trato personal y cercano</p>
+      </div>
+      <div class="cgrid">
+        <article class="course">
+          <a href="https://thecountrycottage.es/examenes-cambridge/"><img src="https://thecountrycottage.es/wp-content/uploads/elementor/thumbs/country-cottage-aula-2-ofu27dtegon4y4d2icgiaau692z0ygiq6kz2eupz54.jpg" alt="country-cottage-aula-2" loading="lazy"></a>
+          <div class="b"><h3>Preparar exámenes de Cambridge en Valladolid</h3><a href="https://thecountrycottage.es/examenes-cambridge/" class="btn btn-green btn-sm">Learn more ›</a></div>
+        </article>
+        <article class="course">
+          <a href="https://thecountrycottage.es/cursos-y-horarios/"><img src="https://thecountrycottage.es/wp-content/uploads/elementor/thumbs/cursos-primaria-secundaria-2-oetz1kmdr8apdk4fcu607hzxm5f1xpm1xiecngsbag.jpg" alt="cursos-primaria-secundaria-2" loading="lazy"></a>
+          <div class="b"><h3>Cursos por niveles y horarios</h3><a href="https://thecountrycottage.es/cursos-y-horarios/" class="btn btn-green btn-sm">Learn more ›</a></div>
+        </article>
+        <article class="course">
+          <a href="https://thecountrycottage.es/ingles-fuera-del-aula/"><img src="https://thecountrycottage.es/wp-content/uploads/elementor/thumbs/pub-quiz-oetxcceukqhb3z25vvdvag80ll7bjhjhugkq9lkilk.jpg" alt="pub-quiz" loading="lazy"></a>
+          <div class="b"><h3>Inglés fuera del aula</h3><a href="https://thecountrycottage.es/ingles-fuera-del-aula/" class="btn btn-green btn-sm">Learn more ›</a></div>
+        </article>
+        <article class="course">
+          <a href="https://thecountrycottage.es/ingles-para-profesores/"><img src="https://thecountrycottage.es/wp-content/uploads/elementor/thumbs/country-cottage-exterior-academia-ofu231s6y6pjeunpth0fse7nn4c3gpba94ogqx5bu0.jpg" alt="country-cottage-exterior-academia" loading="lazy"></a>
+          <div class="b"><h3>Inglés para profesores</h3><a href="https://thecountrycottage.es/ingles-para-profesores/" class="btn btn-green btn-sm">Learn more ›</a></div>
+        </article>
+        <article class="course">
+          <a href="https://thecountrycottage.es/english-chat/"><img src="https://thecountrycottage.es/wp-content/uploads/elementor/thumbs/english-chat-ofu5hz4cq6zhr03o0lvzvdhsd6g63pbkhk2g5mvu3s.jpg" alt="english-chat" loading="lazy"></a>
+          <div class="b"><h3>English chat</h3><a href="https://thecountrycottage.es/english-chat/" class="btn btn-green btn-sm">Learn more ›</a></div>
+        </article>
+        <article class="course">
+          <a href="https://thecountrycottage.es/profesores-auxiliares-en-colegios-language-assistants/"><img src="https://thecountrycottage.es/wp-content/uploads/elementor/thumbs/language-assistants-ofu5ddorbcp0zmryumdnoj8ntd3kgz2t6t8zoxp4iw.jpg" alt="language-assistants" loading="lazy"></a>
+          <div class="b"><h3>Clases de auxiliar de conversación para colegios</h3><a href="https://thecountrycottage.es/profesores-auxiliares-en-colegios-language-assistants/" class="btn btn-green btn-sm">Learn more ›</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORD + EVENTS -->
+  <section>
+    <div class="wrap duo">
+      <div class="word">
+        <h2>La palabra del día</h2>
+        <a href="https://thecountrycottage.es/portfolio/cool-as-a-cucumber/"><img src="https://thecountrycottage.es/wp-content/uploads/WhatsApp-Image-2023-04-24-at-12.35.23-615x410.jpeg" alt="Cool as a cucumber" loading="lazy"></a>
+        <div class="w"><a href="https://thecountrycottage.es/portfolio/cool-as-a-cucumber/">Cool as a cucumber</a></div>
+        <a class="t" href="https://thecountrycottage.es/portfolio-category/idiom/">idiom</a>
+      </div>
+      <div>
+        <div class="sh">
+          <h2>Eventos</h2>
+          <p>Los eventos de The Country Cottage</p>
+        </div>
+        <div class="egrid">
+          <article class="ev">
+            <a href="https://thecountrycottage.es/event/the-happy-cottage/"><img src="https://thecountrycottage.es/wp-content/uploads/WhatsApp-Image-2023-04-14-at-09.37.19-1-766x1024.jpeg" alt="The Happy Cottage" loading="lazy"></a>
+            <div class="b"><h3>The Happy Cottage</h3><a href="https://thecountrycottage.es/event/the-happy-cottage/" class="btn btn-line btn-sm">Ver evento</a></div>
+          </article>
+          <article class="ev">
+            <a href="https://thecountrycottage.es/event/beer-tasting-cata-de-cerveza/"><img src="https://thecountrycottage.es/wp-content/uploads/Post-de-Instagram-Cerveza-fotografia-jarras-fondo-negro-1-1024x1024.png" alt="Beer tasting (‘Cata de cerveza’)" loading="lazy"></a>
+            <div class="b"><h3>Beer tasting (‘Cata de cerveza’)</h3><a href="https://thecountrycottage.es/event/beer-tasting-cata-de-cerveza/" class="btn btn-line btn-sm">Ver evento</a></div>
+          </article>
+          <article class="ev">
+            <a href="https://thecountrycottage.es/event/pub-quiz-24-de-mayo-2019/"><img src="https://thecountrycottage.es/wp-content/uploads/pub-quiz-4.jpg" alt="Pub Quiz – 24 de mayo de 2019" loading="lazy"></a>
+            <div class="b"><h3>Pub Quiz – 24 de mayo de 2019</h3><a href="https://thecountrycottage.es/event/pub-quiz-24-de-mayo-2019/" class="btn btn-line btn-sm">Ver evento</a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="equipo">
+    <div class="wrap">
+      <div class="head">
+        <h2>El equipo de The Country Cottage</h2>
+        <p>Conoce a nuestros profesores</p>
+      </div>
+      <div class="tgrid">
+        <article class="member"><a href="https://thecountrycottage.es/team/gemma/"><img src="https://thecountrycottage.es/wp-content/uploads/team-gemma.jpg" alt="Gemma" loading="lazy"></a><div class="b"><h3>Gemma</h3><p>Directora The Country Cottage</p><a href="https://thecountrycottage.es/team/gemma/" class="btn btn-line btn-sm">Learn more</a></div></article>
+        <article class="member"><a href="https://thecountrycottage.es/team/rebeca/"><img src="https://thecountrycottage.es/wp-content/uploads/team-rebeca.jpg" alt="Rebeca" loading="lazy"></a><div class="b"><h3>Rebeca</h3><p>Profesora The Country Cottage</p><a href="https://thecountrycottage.es/team/rebeca/" class="btn btn-line btn-sm">Learn more</a></div></article>
+        <article class="member"><a href="https://thecountrycottage.es/team/brendan/"><img src="https://thecountrycottage.es/wp-content/uploads/brendan.jpg" alt="Brendan" loading="lazy"></a><div class="b"><h3>Brendan</h3><p>Profesor The Country Cottage</p><a href="https://thecountrycottage.es/team/brendan/" class="btn btn-line btn-sm">Learn more</a></div></article>
+        <article class="member"><a href="https://thecountrycottage.es/team/wilf/"><img src="https://thecountrycottage.es/wp-content/uploads/team-wilfred.jpg" alt="Wilf" loading="lazy"></a><div class="b"><h3>Wilf</h3><p>Equipo The Country Cottage</p><a href="https://thecountrycottage.es/team/wilf/" class="btn btn-line btn-sm">Learn more</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <h2>What’s new?</h2>
+      </div>
+      <div class="news">
+        <a href="https://thecountrycottage.es/2022/12/01/pyjama-party/">Pyjama Party!</a>
+        <a href="https://thecountrycottage.es/2022/11/25/random-acts-of-kindness-advent-calendars/">Random Acts of Kindness Advent Calendars</a>
+        <a href="https://thecountrycottage.es/2022/06/29/end-of-the-academic-year/">End of the Academic Year</a>
+      </div>
+      <div class="socials">
+        <a class="btn btn-line btn-sm" href="https://es-la.facebook.com/thecountrycottagevalladolid/">Facebook</a>
+        <a class="btn btn-line btn-sm" href="https://www.instagram.com/thecountrycottagevalladolid/">Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <span class="flogo"><img src="https://thecountrycottage.es/wp-content/uploads/academia-country-cottage-logo-2.png" alt="Academia de inglés en Valladolid – The Country Cottage"></span>
+    </div>
+    <div>
+      <h4>¿Dónde estamos?</h4>
+      <p>C/ Núñez de Arce 16, 47002 Valladolid</p>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <dl>
+        <dt>Teléfono</dt><dd><a href="tel:+34983304730">983 30 47 30</a></dd>
+        <dt>E-mail:</dt><dd><a href="mailto:infoacademia@thecountrycottage.es">infoacademia@thecountrycottage.es</a></dd>
+      </dl>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>Academia de inglés en Valladolid – The Country Cottage</span>
+    <a href="https://thecountrycottage.es/politica-de-privacidad/">Aviso legal y Política de privacidad</a>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983304730" class="btn btn-green">983 30 47 30</a>
+  <a href="mailto:infoacademia@thecountrycottage.es" class="btn btn-line">E-mail</a>
+</div>
+</body>
+</html>

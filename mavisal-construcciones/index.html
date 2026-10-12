@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mavisal Construcciones · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#ff5e14; --orange-dark:#e04d08; --navy:#040f28; --navy-2:#1a233a; --text:#3d4555; --muted:#6c7383;
+    --line:#e7e9ee; --tint:#f6f7f9; --warm:#fff5ef; --white:#fff; --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:Roboto,system-ui,sans-serif;color:var(--navy)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:Roboto,sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--orange)}
+
+  .demo{background:var(--navy);color:#ffc7ad;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top bar */
+  .topbar{background:var(--navy-2);color:#cfd5e2;font-size:.84rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:42px}
+  .topbar .l,.topbar .r{display:flex;align-items:center;gap:20px}
+  .topbar a{display:inline-flex;align-items:center;gap:7px}
+  .topbar a:hover{color:#fff}
+  .topbar svg{color:var(--orange)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
+  .nav .logo img{height:62px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a,.menu > li > span{display:flex;align-items:center;gap:4px;padding:10px 13px;font-family:Roboto,sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);text-transform:capitalize;border-radius:8px}
+  .menu > li > span{cursor:default}
+  .menu > li > a:hover,.menu > li:hover > span{color:var(--orange)}
+  .menu .sub{position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--orange);border-radius:0 0 10px 10px;box-shadow:0 18px 40px -20px rgba(4,15,40,.3);padding:8px;list-style:none;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
+  .menu > li:hover .sub,.menu > li:focus-within .sub{opacity:1;visibility:visible;transform:none}
+  .menu .sub a{display:block;padding:9px 12px;border-radius:7px;font-size:.92rem}
+  .menu .sub a:hover{background:var(--warm);color:var(--orange-dark)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:6px;font-family:Roboto,sans-serif;font-weight:700;font-size:.95rem;transition:.2s;border:2px solid var(--orange);cursor:pointer;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-or{background:var(--orange);color:#fff}
+  .btn-or:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+  .btn-line{background:#fff;color:var(--orange-dark)}
+  .btn-line:hover{background:var(--warm)}
+  .btn-sm{padding:10px 16px;font-size:.88rem}
+  .tel{font-variant-numeric:tabular-nums}
+
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;color:var(--navy)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);padding:6px 16px 18px}
+  .mnav a,.mnav .grp{display:block;padding:10px 0;border-bottom:1px solid var(--line);font-family:Roboto,sans-serif;font-weight:700;color:var(--navy);text-transform:capitalize}
+  .mnav .subl a{font-family:"Open Sans",sans-serif;font-weight:400;padding-left:14px;text-transform:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--navy) url("https://mavisal.es/wp-content/uploads/2021/11/mavisal-obras-y-reformas-en-salamanca.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(4,15,40,.9) 0%,rgba(4,15,40,.66) 55%,rgba(4,15,40,.3) 100%)}
+  .hero .wrap{position:relative;padding-top:110px;padding-bottom:120px}
+  .hero h1{color:#fff;font-weight:900;font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.06;max-width:780px}
+  .hero h1 em{font-style:normal;color:var(--orange)}
+  .hero p{font-size:1.15rem;margin-top:20px;color:#dfe4ee}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08);border-color:#fff}
+
+  /* features */
+  .feats{position:relative;margin-top:-56px;z-index:2}
+  .feats-grid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:var(--radius);box-shadow:0 26px 50px -30px rgba(4,15,40,.45);overflow:hidden}
+  .feat{display:flex;align-items:center;gap:16px;padding:26px 24px;border-right:1px solid var(--line)}
+  .feat:last-child{border-right:0}
+  .feat img{width:52px;height:52px;object-fit:contain;flex:none}
+  .feat h3{font-size:1.02rem;line-height:1.3}
+
+  /* about */
+  section{padding:96px 0}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .about-img{position:relative}
+  .about-img img{width:100%;aspect-ratio:5/4;object-fit:contain}
+  .about-img .badge{position:absolute;right:-18px;bottom:-22px;background:var(--orange);color:#fff;border-radius:var(--radius);padding:18px 22px;font-family:Roboto,sans-serif;font-weight:900;font-size:2.4rem;line-height:1;box-shadow:0 18px 30px -18px rgba(255,94,20,.7)}
+  .about h2{font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.18;margin:12px 0 18px}
+  .about h2 strong{color:var(--orange)}
+  .about p{font-size:1.02rem}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+  .pillar{background:var(--tint);border-radius:10px;padding:20px}
+  .pillar h3{font-size:1.05rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .pillar h3 svg{color:var(--orange)}
+  .pillar p{font-size:.93rem}
+
+  /* services */
+  .services{background:var(--tint)}
+  .head{max-width:760px;margin-bottom:40px}
+  .head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;margin-top:12px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .svc{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:.25s}
+  .svc:hover{border-color:var(--orange);box-shadow:0 22px 44px -28px rgba(4,15,40,.35);transform:translateY(-3px)}
+  .svc .ph{aspect-ratio:16/10;overflow:hidden;background:var(--warm);position:relative}
+  .svc .ph img{width:100%;height:100%;object-fit:contain;padding:16px 16px 22px}
+  .svc .num{position:absolute;left:16px;bottom:-1px;background:var(--orange);color:#fff;font-family:Roboto,sans-serif;font-weight:900;padding:6px 12px;border-radius:6px 6px 0 0;font-size:.95rem}
+  .svc .bd{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .svc h3{font-size:1.2rem;margin-bottom:8px}
+  .svc p{font-size:.94rem;flex:1}
+  .svc .more{margin-top:16px;color:var(--orange-dark);font-family:Roboto,sans-serif;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+
+  /* contact */
+  .contact{position:relative;background:var(--navy) url("https://mavisal.es/wp-content/uploads/2021/07/fondo-servicios-mavisal-reformas-y-construcciones.jpg") center/cover no-repeat;color:#fff}
+  .contact::before{content:"";position:absolute;inset:0;background:rgba(4,15,40,.88)}
+  .contact .wrap{position:relative}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .contact h2{color:#fff;font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.15;margin:12px 0 22px}
+  .clist{display:grid;gap:12px;margin-top:6px}
+  .citem{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:14px 16px;transition:.2s}
+  a.citem:hover{background:rgba(255,255,255,.12)}
+  .citem .ic{width:40px;height:40px;border-radius:50%;background:var(--orange);display:grid;place-items:center;flex:none}
+  .citem small{display:block;color:#aab3c5;font-size:.8rem}
+  .citem b{font-family:Roboto,sans-serif;font-size:1.05rem}
+  .social{display:flex;gap:10px;margin-top:18px;align-items:center}
+  .social a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:.2s}
+  .social a:hover{background:var(--orange);border-color:var(--orange)}
+  .social span{font-family:Roboto,sans-serif;font-weight:700;margin-right:6px}
+
+  .card-form{background:#fff;color:var(--text);border-radius:var(--radius);padding:30px;border-top:4px solid var(--orange);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .field{margin-bottom:12px}
+  .field input,.field textarea{width:100%;padding:13px 14px;border:1px solid #d9dde5;border-radius:8px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(255,94,20,.3);border-color:var(--orange)}
+  .check{display:flex;gap:10px;font-size:.86rem;color:var(--muted);align-items:center;margin:4px 0 18px}
+  .check input{accent-color:var(--orange)}
+  .check a{text-decoration:underline;color:var(--orange-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--warm);border-radius:8px;padding:12px;font-size:.88rem;margin-top:12px;color:var(--navy)}
+
+  /* projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .proj{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;background:#ddd;display:flex;align-items:flex-end}
+  .proj img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .proj::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,15,40,0) 35%,rgba(4,15,40,.9) 100%)}
+  .proj .bd{position:relative;z-index:1;padding:20px;color:#fff}
+  .proj h3{color:#fff;font-size:1.08rem;line-height:1.3}
+  .proj .more{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#ffb48f;font-family:Roboto,sans-serif;font-weight:700;font-size:.9rem}
+  .proj:hover img{transform:scale(1.05)}
+  .thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:22px}
+  .thumbs a{border-radius:10px;overflow:hidden;aspect-ratio:1;background:#ddd;position:relative}
+  .thumbs img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .thumbs a:hover img{transform:scale(1.07)}
+  .proj-foot{display:flex;justify-content:center;margin-top:34px}
+
+  /* testimonials */
+  .testi{background:var(--tint)}
+  .rating{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;margin-top:16px;font-size:.92rem}
+  .stars{color:#fbbc04;letter-spacing:2px}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+  .t-card{background:#fff;border-radius:var(--radius);padding:26px;border:1px solid var(--line)}
+  .t-card .who{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .t-card b{font-family:Roboto,sans-serif;color:var(--navy)}
+  .t-card p{font-size:.94rem}
+
+  /* blog */
+  .b-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .post{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;background:#fff;transition:.25s}
+  .post:hover{box-shadow:0 22px 44px -28px rgba(4,15,40,.35)}
+  .post .ph{aspect-ratio:16/10;background:#eee;overflow:hidden}
+  .post .ph img{width:100%;height:100%;object-fit:cover}
+  .post .bd{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.8rem;color:var(--muted);margin-bottom:10px}
+  .meta .cat{background:var(--warm);color:var(--orange-dark);font-weight:600;padding:2px 9px;border-radius:999px}
+  .post h3{font-size:1.1rem;line-height:1.35;flex:1}
+  .post .more{margin-top:14px;color:var(--orange-dark);font-family:Roboto,sans-serif;font-weight:700}
+
+  /* inmobiliaria strip */
+  .inmo{padding:0 0 70px}
+  .inmo-box{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:var(--warm);border:1px solid #ffd9c6;border-radius:var(--radius);padding:22px 26px}
+  .inmo-box p{font-family:Roboto,sans-serif;font-weight:700;color:var(--navy);font-size:1.1rem}
+
+  footer{background:var(--navy);color:#b9c1d3;padding:64px 0 0;font-size:.92rem}
+  .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+  footer img{height:40px;width:auto;margin-bottom:16px}
+  footer h3{color:#fff;font-size:1.05rem;margin-bottom:14px}
+  footer ul{list-style:none;display:grid;gap:8px}
+  footer a:hover{color:#fff}
+  .f-social{display:flex;gap:10px;margin-bottom:12px}
+  .f-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center}
+  .f-social a:hover{background:var(--orange)}
+  .f-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:48px;padding:20px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.84rem}
+  .f-bottom a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1040px){
+    .menu,.nav-cta{display:none}
+    .mnav{display:block}
+    .feats-grid{grid-template-columns:1fr 1fr}
+    .feat:nth-child(2){border-right:0}
+    .feat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .svc-grid,.b-grid,.t-grid{grid-template-columns:1fr 1fr}
+    .proj-grid{grid-template-columns:1fr 1fr}
+    .thumbs{grid-template-columns:repeat(3,1fr)}
+    .f-grid{grid-template-columns:1fr 1fr}
+    .topbar .r{display:none}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar{display:none}
+    .nav{height:72px}
+    .nav .logo img{height:50px}
+    .hero .wrap{padding-top:64px;padding-bottom:96px}
+    .hero .row .btn{width:100%}
+    .feats-grid{grid-template-columns:1fr}
+    .feat{border-right:0;border-bottom:1px solid var(--line);padding:18px 20px}
+    .feat:last-child{border-bottom:0}
+    section{padding:64px 0}
+    .about-img .badge{right:12px;bottom:-16px;font-size:1.9rem}
+    .pillars,.svc-grid,.b-grid,.t-grid,.f-grid{grid-template-columns:1fr}
+    .proj{aspect-ratio:3/4}
+    .proj .bd{padding:14px}
+    .proj h3{font-size:.92rem}
+    .card-form{padding:24px 18px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr 52px;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 6px;font-size:.86rem;gap:6px}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Mavisal Construcciones · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="l">
+      <a href="tel:+34923135786"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">923 135 786</span></a>
+      <a href="mailto:hola@mavisal.es"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>hola@mavisal.es</a>
+    </div>
+    <div class="r">
+      <a href="https://www.instagram.com/mavisalreformas" target="_blank" rel="noopener" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/mavisalConstrucciones" target="_blank" rel="noopener" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://mavisal.es" aria-label="Mavisal"><img src="https://mavisal.es/wp-content/uploads/2019/07/logo-mavisal.png" alt="Mavisal" width="130" height="90"></a>
+    <ul class="menu">
+      <li><a href="https://mavisal.es/sobre-nosotros/">sobre nosotros</a></li>
+      <li><span>Servicios <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+        <ul class="sub">
+          <li><a href="https://mavisal.es/obra-nueva/">Obra nueva</a></li>
+          <li><a href="https://mavisal.es/reformas/">Reformas</a></li>
+          <li><a href="https://mavisal.es/especialistas-en-piedra/">Especialistas en piedra</a></li>
+          <li><a href="https://mavisal.es/reforma-cocinas-y-banos/">Reforma cocinas y baños</a></li>
+          <li><a href="https://mavisal.es/obra-civil/">Obra civil</a></li>
+        </ul>
+      </li>
+      <li><a href="https://mavisal.es/trabajos-realizados/">Proyectos</a></li>
+      <li><a href="https://mavisal.es/blog/">blog</a></li>
+      <li><a href="https://mavisal.es/contacto/">contacto</a></li>
+    </ul>
+    <a href="tel:+34675895211" class="btn btn-or btn-sm nav-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">675 895 211</span></a>
+    <details class="mnav">
+      <summary aria-label="Menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="panel">
+        <a href="https://mavisal.es/sobre-nosotros/">sobre nosotros</a>
+        <span class="grp">Servicios</span>
+        <div class="subl">
+          <a href="https://mavisal.es/obra-nueva/">Obra nueva</a>
+          <a href="https://mavisal.es/reformas/">Reformas</a>
+          <a href="https://mavisal.es/especialistas-en-piedra/">Especialistas en piedra</a>
+          <a href="https://mavisal.es/reforma-cocinas-y-banos/">Reforma cocinas y baños</a>
+          <a href="https://mavisal.es/obra-civil/">Obra civil</a>
+        </div>
+        <a href="https://mavisal.es/trabajos-realizados/">Proyectos</a>
+        <a href="https://mavisal.es/blog/">blog</a>
+        <a href="https://mavisal.es/contacto/">contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <h1>Construcciones MaViSal: <em>Obras y Reformas en Salamanca</em></h1>
+      <p>Solicita presupuesto sin compromiso.</p>
+      <div class="row">
+        <a href="tel:+34675895211" class="btn btn-or"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">675 895 211</span></a>
+        <a href="#contacto" class="btn btn-line">Contacta con nosotros</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="feats">
+    <div class="wrap">
+      <div class="feats-grid">
+        <div class="feat"><img src="https://mavisal.es/wp-content/uploads/2021/08/presupuesto-cerrado.png" alt=""><h3>Presupuesto sin compromiso</h3></div>
+        <div class="feat"><img src="https://mavisal.es/wp-content/uploads/2021/08/materiales-de-calidad.png" alt=""><h3>Materiales de máxima calidad</h3></div>
+        <div class="feat"><img src="https://mavisal.es/wp-content/uploads/2021/08/compromiso-con-los-plazos.png" alt=""><h3>Compromiso con los plazos</h3></div>
+        <div class="feat"><img src="https://mavisal.es/wp-content/uploads/2021/08/seguridad-en-obra.png" alt=""><h3>Seguridad en obra garantizada</h3></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="quienes-somos">
+    <div class="wrap about-grid">
+      <div class="about-img">
+        <img src="https://mavisal.es/wp-content/uploads/2021/06/presentacion-mavisal-portada.jpg" alt="Mavisal, empresa de construcción en Salamanca" loading="lazy">
+      </div>
+      <div>
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Somos <strong>MaViSal</strong>, empresa constructora de <strong>Salamanca</strong> con más de 40 años de experiencia en el sector de la construcción</h2>
+        <p>Somos una empresa familiar formada por dos generaciones de profesionales de la construcción, curtidos en obra. Ofrecemos servicios de obras y reformas de alta calidad en Salamanca capital y en toda la provincia.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Excelentes acabados</h3>
+            <p>Nos esmeramos al máximo para ofrecer resultados inmejorables a todos nuestros trabajos.</p>
+          </div>
+          <div class="pillar">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Clientes satisfechos</h3>
+            <p>La satisfacción del cliente es nuestra máxima prioridad, tanto en pequeñas reformas como en grandes obras.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nuestros servicios</span>
+        <h2>Soluciones integrales para construcciones, reformas y rehabilitación de edificios</h2>
+      </div>
+      <div class="svc-grid">
+        <a class="svc" href="https://mavisal.es/obra-nueva/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2021/07/servicios-obra-nueva-1.png" alt="Obra nueva" loading="lazy"><span class="num">01</span></div>
+          <div class="bd"><h3>Obra nueva</h3><p>Construimos sobre plano viviendas, naves y otro tipo de edificios. Nos encargamos de todo el proyecto, desde el principio.</p><span class="more">Ver más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="https://mavisal.es/reformas/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2021/07/servicios-reformas-general.png" alt="Reformas" loading="lazy"><span class="num">02</span></div>
+          <div class="bd"><h3>Reformas</h3><p>Llevamos a cabo reformas integrales o parciales de pisos, edificios, chalets, casas rústicas, naves y locales comerciales.</p><span class="more">Ver más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="https://mavisal.es/reformas/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2021/07/servicios-reforma-bano.png" alt="Rehabilitación de fachadas y cubiertas" loading="lazy"><span class="num">03</span></div>
+          <div class="bd"><h3>Rehabilitación</h3><p>Nos encargamos de rehabilitar y remodelar fachadas y cubiertas de vivienda, edificios y naves.</p><span class="more">Ver más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="https://mavisal.es/especialistas-en-piedra/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2021/07/servicios-revestimiento-piedra-1.png" alt="Especialistas en revestimiento de fachadas en piedra" loading="lazy"><span class="num">04</span></div>
+          <div class="bd"><h3>Especialistas en piedra</h3><p>Nuestros especialistas aplican la técnica de piedra en seco para proyectos de decoración o mampostería.</p><span class="more">Ver más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="https://mavisal.es/obra-civil/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2021/12/mavisal-servicios-obra-civil.png" alt="Servicio de construcción de obra civil" loading="lazy"><span class="num">05</span></div>
+          <div class="bd"><h3>Obra civil</h3><p>Ofrecemos servicios de construcción y reformas para administraciones e instituciones públicas.</p><span class="more">Ver más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="svc" href="https://mavisal.es/reforma-cocinas-y-banos/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2021/07/servicios-reforma-cocina.png" alt="Servicio de reforma de cocinas" loading="lazy"><span class="num">06</span></div>
+          <div class="bd"><h3>Baños y cocinas</h3><p>Estamos especializados en reformar baños y cocina: desde un cambio de bañera hasta una reforma integral.</p><span class="more">Ver más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="proyectos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Proyectos destacados</span>
+        <h2>Aquí tienes una muestra de nuestro trabajo</h2>
+      </div>
+      <div class="proj-grid">
+        <a class="proj" href="https://mavisal.es/proyectos/transformacion-de-local-en-apartamento-tipo-loft/">
+          <img src="https://mavisal.es/wp-content/uploads/2025/11/WhatsApp-Image-2025-10-25-at-10.32.43_11zon.jpeg" alt="Transformación de local en apartamento tipo loft" loading="lazy">
+          <div class="bd"><h3>Transformación de local en apartamento tipo loft</h3><span class="more">Ver proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="proj" href="https://mavisal.es/proyectos/construccion-de-cocheras-y-apartamento/">
+          <img src="https://mavisal.es/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-25-at-13.24.30-1_11zon.jpeg" alt="Construcción de Cocheras y apartamento" loading="lazy">
+          <div class="bd"><h3>Construcción de Cocheras y apartamento</h3><span class="more">Ver proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="proj" href="https://mavisal.es/proyectos/construccion-de-merendero-de-estilo-rustico/">
+          <img src="https://mavisal.es/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-29-at-19.38.47-1_11zon.jpeg" alt="Construcción de merendero de estilo rústico" loading="lazy">
+          <div class="bd"><h3>Construcción de merendero de estilo rústico</h3><span class="more">Ver proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+        <a class="proj" href="https://mavisal.es/proyectos/construccion-de-vivienda-unifamiliar-2/">
+          <img src="https://mavisal.es/wp-content/uploads/2025/10/IMG_20250926_193623-scaled.jpg" alt="Construcción de vivienda unifamiliar" loading="lazy">
+          <div class="bd"><h3>Construcción de vivienda unifamiliar</h3><span class="more">Ver proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </a>
+      </div>
+      <div class="thumbs">
+        <a href="https://mavisal.es/proyectos/rehabilitacion-de-fachada/" title="Rehabilitación de fachada"><img src="https://mavisal.es/wp-content/uploads/2020/05/rehabilitacion-fachada-finalizada.jpg" alt="Rehabilitación de fachada" loading="lazy"></a>
+        <a href="https://mavisal.es/proyectos/reforma-integral-de-bano/" title="Reforma integral de baño"><img src="https://mavisal.es/wp-content/uploads/2020/05/bano-portada.jpg" alt="Reforma integral de baño" loading="lazy"></a>
+        <a href="https://mavisal.es/proyectos/cambio-plato-de-ducha/" title="Cambio plato de ducha"><img src="https://mavisal.es/wp-content/uploads/2020/05/ducha-portada.jpg" alt="Cambio plato de ducha" loading="lazy"></a>
+        <a href="https://mavisal.es/proyectos/bodega-rustica/" title="Bodega rústica"><img src="https://mavisal.es/wp-content/uploads/2020/05/bodega-portada.jpg" alt="Bodega rústica" loading="lazy"></a>
+        <a href="https://mavisal.es/proyectos/adaptacion-de-centro-de-formacion/" title="Adaptación de centro de formación"><img src="https://mavisal.es/wp-content/uploads/2020/05/rreforma-local-portada.jpg" alt="Adaptación de centro de formación" loading="lazy"></a>
+        <a href="https://mavisal.es/proyectos/construccion-de-vivienda-unifamiliar/" title="Construcción de vivienda unifamiliar"><img src="https://mavisal.es/wp-content/uploads/2020/06/proyecto-vivienda-unifamiliar-exterior.jpg" alt="Construcción de vivienda unifamiliar" loading="lazy"></a>
+      </div>
+      <div class="proj-foot"><a href="https://mavisal.es/trabajos-realizados/" class="btn btn-line">Ver todos los proyectos</a></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Contacta con nosotros</span>
+        <h2>¿Quieres un presupuesto? ¿Necesitas más información?</h2>
+        <div class="clist">
+          <a class="citem" href="tel:+34675895211"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Contáctanos:</small><b class="tel">675 895 211</b></span></a>
+          <a class="citem" href="tel:+34923135786"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Contáctanos:</small><b class="tel">923 135 786</b></span></a>
+          <a class="citem" href="mailto:hola@mavisal.es"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><small>Contáctanos:</small><b>hola@mavisal.es</b></span></a>
+          <div class="citem"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small>Estamos en:</small><b>Paseo del Rollo 96 1ºC<br>37003, Salamanca</b></span></div>
+        </div>
+        <div class="social">
+          <span>Síguenos en redes</span>
+          <a href="https://www.facebook.com/mavisalConstrucciones" target="_blank" rel="noopener" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.instagram.com/mavisalreformas/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="field"><input type="text" placeholder="Nombre" aria-label="Nombre" autocomplete="name"></div>
+        <div class="field"><input type="email" placeholder="Email" aria-label="Email" autocomplete="email"></div>
+        <div class="field"><textarea rows="5" placeholder="¿En qué podemos ayudarte?" aria-label="¿En qué podemos ayudarte?"></textarea></div>
+        <label class="check"><input type="checkbox" required><span>Aceptar <a href="https://mavisal.es/politica-de-privacidad-y-aviso-legal/" target="_blank" rel="noopener">política de privacidad</a></span></label>
+        <button class="btn btn-or" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi" id="testimonios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Testimonios</span>
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="rating"><span class="stars">★★★★★</span><span>La evaluación general en <b>Google</b> es <b>5.0</b> de 5, en base a <b>4 reseñas</b></span></div>
+      </div>
+      <div class="t-grid">
+        <div class="t-card">
+          <div class="who"><b>vanesa holgado</b><span class="stars">★★★★★</span></div>
+          <p>Realización de reforma de vivienda completa en plazo. Acabados perfectos con gran interés por los pequeños detalles. Trabajos de albañilería, fontanería y electricidad. Realización de porche con acabado antiguo y solado de exterior imitación pizarra. Totalmente recomendable. Excelentes profesionales y personas.</p>
+        </div>
+        <div class="t-card">
+          <div class="who"><b>Mari carmen Martinez</b><span class="stars">★★★★★</span></div>
+          <p>Excelentes profesionales, se amoldan a la necesidad del cliente. Tanto el trabajo en interiores como en exteriores es excepcional. Alicatadado y solado perfecto. A resaltar el trabajo de piedra en exterior dejando un acabado impresionante. En mi caso rehabilitaron una casa antigua y han conservado su encanto, mejorando la distribución y haciendo de la casa un verdadero lugar de descanso. Totalmente aconsejables por su trato cercano y profesionalidad</p>
+        </div>
+        <div class="t-card">
+          <div class="who"><b>M.M</b><span class="stars">★★★★★</span></div>
+          <p>Empresa de lo más serio y formal que te puedas encontrar, rápidos y muy profesionales. Totalmente recomendables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog" id="blog">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nuestro blog</span>
+        <h2>Lee nuestras últimas entradas</h2>
+      </div>
+      <div class="b-grid">
+        <a class="post" href="https://mavisal.es/todo-lo-que-necesitas-para-ahorrar-agua-en-casa/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2020/11/ahorrar-agua.jpg" alt="consejos para ahorrar agua" loading="lazy"></div>
+          <div class="bd"><div class="meta"><span class="cat">Ahorro Agua</span><span class="cat">Energía</span><span>26/11/2020</span></div><h3>Todo lo que necesitas para ahorrar agua en casa</h3><span class="more">Leer más</span></div>
+        </a>
+        <a class="post" href="https://mavisal.es/que-sistema-de-climatizacion-es-mas-ventajoso-en-mi-vivienda/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2020/07/mejor-sistema-de-climatizacion-para-el-hogar.png" alt="" loading="lazy"></div>
+          <div class="bd"><div class="meta"><span class="cat">Climatización</span><span class="cat">Domótica</span><span class="cat">Energía</span><span>02/07/2020</span></div><h3>¿Qué sistema de climatización es más ventajoso en mi vivienda?</h3><span class="more">Leer más</span></div>
+        </a>
+        <a class="post" href="https://mavisal.es/viviendas-sostenibles-e-inteligentes/">
+          <div class="ph"><img src="https://mavisal.es/wp-content/uploads/2020/06/vivienda-sostenible.png" alt="" loading="lazy"></div>
+          <div class="bd"><div class="meta"><span class="cat">Domótica</span><span class="cat">Energía</span><span>23/06/2020</span></div><h3>Viviendas sostenibles e inteligentes</h3><span class="more">Leer más</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INMOBILIARIA -->
+  <div class="inmo">
+    <div class="wrap">
+      <div class="inmo-box">
+        <p>🏠 Visita nuestra web de inmobiliaria</p>
+        <a href="https://www.inmobiliariamavisal.es" target="_blank" rel="noopener" class="btn btn-or btn-sm">Visitar web</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap f-grid">
+    <div>
+      <img src="https://mavisal.es/wp-content/uploads/2021/07/logo-blanco-mavisal-1024x172.png" alt="Mavisal" width="238" height="40">
+      <p>Construcciones MaViSal. Llevamos a cabo obras y reformas en Salamanca y provincia. Más de 40 años de experiencia nos avalan. Comprometidos con el trabajo bien hecho. Pide presupuesto sin compromiso.</p>
+    </div>
+    <div>
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="https://mavisal.es/obra-nueva/">Obra nueva</a></li>
+        <li><a href="https://mavisal.es/reformas/">Reformas</a></li>
+        <li>Interiorismo y decoración</li>
+        <li><a href="https://mavisal.es/reforma-cocinas-y-banos/">Reforma cocinas y baños</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contáctanos</h3>
+      <ul>
+        <li>Paseo del Rollo 96 1ºC<br>37003, Salamanca</li>
+        <li><a href="mailto:hola@mavisal.es">hola@mavisal.es</a></li>
+        <li><a href="tel:+34675895211" class="tel">675 895 211</a></li>
+        <li><a href="tel:+34923135786" class="tel">923 135 786</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Síguenos en redes</h3>
+      <div class="f-social">
+        <a href="https://www.facebook.com/mavisalConstrucciones" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+        <a href="https://www.instagram.com/mavisalreformas/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+      </div>
+      <ul>
+        <li><a href="https://empresas.habitissimo.es/pro/reformas-mayordomo" target="_blank" rel="noopener">mavisal</a></li>
+        <li><a href="https://www.prontopro.es/sa/salamanca/reformas-integrales#pro-interview" target="_blank" rel="noopener">Entrevista para pronto pro</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap f-bottom">
+    <span>© 2026 Mavisal</span>
+    <span><a href="https://mavisal.es/politica-de-privacidad-y-aviso-legal/">Política de privacidad</a> · <a href="https://mavisal.es/contacto/">Contáctanos</a></span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34675895211" class="btn btn-or"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">675 895 211</span></a>
+  <a href="tel:+34923135786" class="btn btn-line"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">923 135 786</span></a>
+  <a href="mailto:hola@mavisal.es" class="btn btn-line" aria-label="hola@mavisal.es"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

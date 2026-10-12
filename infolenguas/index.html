@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Infolenguas · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1a5b9c; --blue-dark:#115172; --orange:#f5a623; --orange-dark:#d98a0b;
+    --navy:#1e3a8a; --green:#2d9a63; --amber:#e67e22;
+    --ink:#1d2b3a; --text:#3d4a57; --muted:#6b7785; --line:#e3e9f0; --tint:#f0f4f8; --white:#fff;
+    --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"PT Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,h4{font-family:Raleway,system-ui,sans-serif;color:var(--ink);line-height:1.15}
+  .eyebrow{font-family:Raleway,sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-dark);font-weight:700}
+
+  .demo{background:var(--blue-dark);color:#cfe0ee;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .topbar{border-bottom:1px solid var(--line);font-size:.84rem;color:var(--muted)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+  .topbar .info{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .topbar a:hover{color:var(--blue)}
+  .topbar .social{display:flex;gap:12px;align-items:center}
+  .topbar .social a{font-weight:700;color:var(--blue)}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:18px}
+  .nav .logo img{height:58px;width:auto}
+  .menu{display:flex;gap:4px;align-items:center;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 12px;font-family:Raleway,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover,.menu>li:focus-within>a{color:var(--blue);background:var(--tint)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:300px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -20px rgba(17,81,114,.35);padding:8px;list-style:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:8px 12px;border-radius:8px;font-size:.92rem}
+  .menu .sub a:hover{background:var(--tint);color:var(--blue)}
+  .caret{font-size:.6rem;margin-left:4px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-family:Raleway,sans-serif;font-weight:700;font-size:.92rem;transition:.2s;border:2px solid var(--blue);cursor:pointer;white-space:nowrap}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-orange{background:var(--orange);border-color:var(--orange);color:#1d2b3a}
+  .btn-orange:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+  .btn-line{background:#fff;color:var(--blue)}
+  .btn-line:hover{background:var(--tint)}
+  .btn svg{flex:none}
+
+  /* hero */
+  .hero{background:linear-gradient(160deg,var(--blue-dark) 0%,var(--blue) 70%);color:#fff;padding:76px 0 84px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:60px solid rgba(245,166,35,.16)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;position:relative;z-index:1}
+  .hero h1{color:#fff;font-size:clamp(2.3rem,5vw,3.7rem);font-weight:800;margin:14px 0 18px}
+  .hero .eyebrow{color:var(--orange)}
+  .hero p.lead{font-size:1.12rem;color:#e3edf6;max-width:600px}
+  .hero p.small{font-size:.95rem;color:#b9d0e3;margin-top:12px}
+  .hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08)}
+  .since{background:#fff;color:var(--text);border-radius:var(--radius);padding:30px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45);border-top:5px solid var(--orange)}
+  .since .yr{font-family:Raleway,sans-serif;font-weight:800;color:var(--blue);font-size:1rem;letter-spacing:.04em}
+  .since .yr b{display:block;font-size:3.6rem;line-height:1;color:var(--blue-dark)}
+  .since .yr span{display:block;color:var(--ink);font-size:1.15rem;margin-top:4px}
+  .since h3{font-size:.95rem;margin:20px 0 10px;color:var(--orange-dark);text-transform:uppercase;letter-spacing:.1em}
+  .since ul{list-style:none;display:grid;gap:8px}
+  .since li{padding-left:26px;position:relative;font-weight:700;color:var(--ink)}
+  .since li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:50%;background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/10px no-repeat}
+  .since .btn{margin-top:22px}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin:0 auto 44px;text-align:center}
+  .head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:800;margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+  .langs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .langs span{background:var(--tint);color:var(--blue-dark);font-weight:700;padding:6px 16px;border-radius:999px;font-size:.92rem}
+
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .f{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;transition:.25s}
+  .f:hover{border-color:var(--blue);box-shadow:0 18px 40px -26px rgba(17,81,114,.45)}
+  .f h3{font-size:1.12rem;font-weight:700;margin-bottom:8px}
+  .f p{font-size:.97rem}
+
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .slide{border-radius:var(--radius);padding:28px;background:var(--tint);border:1px solid var(--line)}
+  .slide h3{font-size:1.2rem;margin-bottom:12px;color:var(--blue-dark)}
+  .slide p,.slide li{font-size:.97rem}
+  .slide ul{list-style:none;display:grid;gap:6px}
+  .slide li{padding-left:16px;position:relative}
+  .slide li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+  .slide .lnk{display:inline-block;margin-top:16px;font-weight:700;color:var(--blue);border-bottom:2px solid var(--orange)}
+
+  .courses{background:var(--tint)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{border-radius:18px;padding:30px 28px;color:#fff;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;box-shadow:0 24px 50px -30px rgba(0,0,0,.5)}
+  .card::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.12)}
+  .card.c1{background:linear-gradient(160deg,#1e3a8a,#172e6e)}
+  .card.c2{background:linear-gradient(160deg,#2d9a63,#21794c)}
+  .card.c3{background:linear-gradient(160deg,#e67e22,#c9681a)}
+  .card h3{color:#fff;font-size:1.4rem;font-weight:800}
+  .card p{font-size:.98rem;color:rgba(255,255,255,.92)}
+  .pill{align-self:flex-start;background:#fff;color:var(--ink);font-weight:700;font-size:.82rem;padding:5px 14px;border-radius:999px}
+  .pill.ghost{background:rgba(255,255,255,.18);color:#fff}
+  .price{align-self:flex-start;background:#fff;color:#c9681a;font-family:Raleway,sans-serif;font-weight:800;font-size:1.35rem;padding:6px 18px;border-radius:999px}
+  .card .btn{margin-top:auto;background:#fff;border-color:#fff;color:var(--ink)}
+  .card .btn:hover{background:rgba(255,255,255,.88)}
+
+  .cam{display:grid;grid-template-columns:1.4fr .6fr;gap:40px;align-items:center}
+  .cam img{width:100%;max-width:620px}
+  .stat{text-align:center}
+  .ring{width:150px;height:150px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;background:conic-gradient(var(--blue) 0 91%,var(--line) 91% 100%)}
+  .ring b{width:126px;height:126px;border-radius:50%;background:#fff;display:grid;place-items:center;font-family:Raleway,sans-serif;font-size:2.2rem;color:var(--blue-dark)}
+  .stat p{font-weight:700;color:var(--ink);max-width:220px;margin:0 auto}
+  .auth{margin-top:34px;text-align:center;font-size:1.15rem;background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .auth b{color:var(--blue)}
+
+  .acc{max-width:880px;margin:0 auto;display:grid;gap:14px}
+  details{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden}
+  details[open]{border-color:var(--blue);box-shadow:0 18px 40px -28px rgba(17,81,114,.45)}
+  summary{cursor:pointer;list-style:none;padding:20px 24px;font-family:Raleway,sans-serif;font-weight:800;color:var(--ink);display:flex;justify-content:space-between;gap:16px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.5rem;color:var(--orange-dark);flex:none}
+  details[open] summary::after{content:"−"}
+  .acc-body{padding:0 24px 22px}
+  .acc-body p{margin-bottom:8px}
+  .acc-body h4{font-size:1rem;margin:14px 0 8px;color:var(--blue-dark)}
+  .acc-body ul{list-style:none;display:grid;gap:6px}
+  .acc-body li{padding-left:18px;position:relative}
+  .acc-body li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+
+  .band{background:var(--blue-dark);color:#fff;text-align:center;padding:80px 0}
+  .band h2{color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:.04em}
+  .band .row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .band .data{margin-top:26px;color:#b9d0e3;display:flex;justify-content:center;gap:8px 24px;flex-wrap:wrap}
+
+  footer{padding:30px 0;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .foot nav{display:flex;gap:18px;flex-wrap:wrap}
+  .foot nav a{text-decoration:underline}
+  .foot img{height:40px;width:auto}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .hero-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:900px){
+    .feat,.three,.cards{grid-template-columns:1fr 1fr}
+    .cam{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .info .addr,.topbar .social span{display:none}
+    .nav{height:72px}
+    .nav .logo img{height:46px}
+    .nav .btn{display:none}
+    .hero{padding:48px 0 56px}
+    .hero .row .btn{width:100%}
+    .since{padding:24px 20px}
+    .feat,.three,.cards{grid-template-columns:1fr}
+    section{padding:60px 0}
+    summary{padding:18px}
+    .acc-body{padding:0 18px 18px}
+    .band .row .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 6px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Infolenguas · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="info">
+      <span>+info:</span>
+      <a href="tel:+34983454206">983 45 42 06</a> / <a href="tel:+34629733938">629 73 39 38</a>
+      <a href="mailto:info@infolenguas.com">info@infolenguas.com</a>
+      <a class="addr" href="https://www.infolenguas.com/valladolid/contacto/">Pasaje de La Marquesina, 14</a>
+    </div>
+    <div class="social">
+      <span>Follow us</span>
+      <a href="https://www.facebook.com/Infolenguas-idiomas-252331106399/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+      <a href="https://twitter.com/infolenguas" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
+      <a href="https://instagram.com/infolenguas_valladolid" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <a href="https://www.linkedin.com/company/9227736" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.infolenguas.com/" aria-label="Infolenguas Idiomas"><img src="https://www.infolenguas.com/wp-content/uploads/2021/10/cropped-LOGO-INFOLENGUAS-1.jpg" alt="Infolenguas Idiomas"></a>
+    <ul class="menu">
+      <li><a href="https://www.infolenguas.com/">INICIO</a></li>
+      <li><a href="#cursos">CURSOS DE IDIOMAS<span class="caret">▼</span></a>
+        <ul class="sub">
+          <li><a href="https://www.infolenguas.com/cursos-para-seniors-50/">Seniors +50</a></li>
+          <li><a href="https://www.infolenguas.com/cambridge-english/">Cambridge English</a></li>
+          <li><a href="https://www.infolenguas.com/cambridge-english-linguaskill/">Cambridge English: prueba multinivel Linguaskill</a></li>
+          <li><a href="https://www.infolenguas.com/cursos-de-idiomas/">Cursos generales de idiomas</a></li>
+          <li><a href="https://www.infolenguas.com/cursos-preparacion-examenes-oficiales/">Preparación exámenes oficiales</a></li>
+          <li><a href="https://www.infolenguas.com/ingles-frances-para-ninos-jovenes/">Niños y jóvenes</a></li>
+          <li><a href="https://www.infolenguas.com/cursos-acreditacion-opositores-maestros/">Acreditación opositores y maestros</a></li>
+          <li><a href="https://www.infolenguas.com/cursos-en-el-extranjero/">Cursos en el extranjero</a></li>
+          <li><a href="https://www.infolenguas.com/spanish-courses-in-valladolid/">Spanish courses in Valladolid</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.infolenguas.com/cursos-para-empresas/">EMPRESAS<span class="caret">▼</span></a>
+        <ul class="sub">
+          <li><a href="https://www.infolenguas.com/cursos-para-empresas/">Cursos para empresas</a></li>
+          <li><a href="https://www.infolenguas.com/interpretes/">Intérpretes</a></li>
+          <li><a href="https://www.infolenguas.com/traducciones/">Traducciones</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.infolenguas.com/spanish-online/">SPANISH ONLINE</a></li>
+      <li><a href="https://www.infolenguas.com/contacto/">CONTACTO</a></li>
+    </ul>
+    <a href="tel:+34983454206" class="btn btn-blue">983 45 42 06</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Inglés · Francés · Italiano</span>
+        <h1>Aprende idiomas de forma fácil y divertida</h1>
+        <p class="lead">Cursos de Inglés, Francés e Italiano para todas las edades y niveles. Clases dinámicas, personalizadas y adaptadas a tu ritmo para aprender de forma natural.</p>
+        <p class="small">También ofrecemos servicios para empresas, traducciones y formación a medida.</p>
+        <div class="row">
+          <a href="tel:+34983454206" class="btn btn-orange">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            983 45 42 06</a>
+          <a href="tel:+34629733938" class="btn btn-line">629 73 39 38</a>
+        </div>
+      </div>
+      <aside class="since">
+        <div class="yr">Desde <b>1984</b><span>especialistas en idiomas</span></div>
+        <h3>Lo que nos diferencia:</h3>
+        <ul>
+          <li>Atención Individualizada</li>
+          <li>Máximo 6 alumnos/grupo</li>
+          <li>Profesorado nativo, titulado y especializado</li>
+          <li>La más moderna tecnología en la enseñanza de idiomas</li>
+          <li>Prioridad por el lenguaje oral</li>
+        </ul>
+        <a href="https://www.infolenguas.com/contacto/" class="btn btn-blue">+info</a>
+      </aside>
+    </div>
+  </div>
+
+  <!-- CURSO 2026/2027 -->
+  <section id="curso">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Infolenguas</span>
+        <h2>Nuevo Curso Académico 2026/2027 🚀</h2>
+        <div class="langs"><span>Idiomas disponibles:</span><span>Inglés</span><span>Francés</span><span>Italiano</span></div>
+      </div>
+      <div class="feat">
+        <article class="f"><h3>Modalidad flexible 💻🏫</h3><p>Presencial u online, para que elijas la forma que mejor se adapte a tu ritmo.</p></article>
+        <article class="f"><h3>Grupos reducidos 👥</h3><p>Máximo 6 alumnos por grupo, garantizando atención personalizada y aprendizaje eficaz.</p></article>
+        <article class="f"><h3>Enfoque integral 📚</h3><p>Trabajamos las 4 destrezas: comprensión y expresión, tanto oral como escrita.</p></article>
+        <article class="f"><h3>Exámenes oficiales 🏅</h3><p>Preparación para Cambridge, DELF y otros títulos reconocidos internacionalmente.</p></article>
+        <article class="f"><h3>Metodología personalizada ✨</h3><p>Total flexibility: adaptamos las clases a tu nivel y disponibilidad.</p></article>
+        <article class="f"><h3>Todos los niveles 📈</h3><p>A1 · A2 · B1 · B2 · C1. Desde iniciación hasta avanzado, tenemos tu nivel cubierto.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTACADOS -->
+  <section class="courses" id="cursos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Cursos de idiomas</span>
+        <h2>Nuestros cursos destacados ✨</h2>
+      </div>
+      <div class="cards">
+        <article class="card c1">
+          <h3>Maestros, Profesores, Opositores</h3>
+          <p>Acreditación Lingüística en Inglés y Francés</p>
+          <span class="pill">B2 · C1</span>
+          <p>Convocatorias 2027</p>
+          <a href="https://www.infolenguas.com/cursos-acreditacion-opositores-maestros/" class="btn">Saber más</a>
+        </article>
+        <article class="card c2">
+          <h3>Inglés · Francés · Italiano</h3>
+          <span class="pill ghost">CURSO ACADÉMICO 2026/2027</span>
+          <span class="pill">De Octubre a Junio</span>
+          <p>Niveles: de A1 a C2</p>
+          <p>Preparación exámenes oficiales</p>
+          <a href="https://www.infolenguas.com/contacto/" class="btn">Saber más</a>
+        </article>
+        <article class="card c3">
+          <h3>Seniors +50</h3>
+          <span class="pill ghost">Aprende a tu ritmo</span>
+          <p>Diferentes niveles, de iniciación a avanzado</p>
+          <p>1h 30' / semana</p>
+          <span class="price">48 €/mes</span>
+          <a href="https://www.infolenguas.com/cursos-para-seniors-50/" class="btn">Saber más</a>
+        </article>
+      </div>
+
+      <div class="three" style="margin-top:22px">
+        <article class="slide" style="background:#fff">
+          <h3>Preparación exámenes oficiales</h3>
+          <p>Somos Centro Autorizado para la preparación de los exámenes de Cambridge English</p>
+          <p style="margin-top:8px">Todos nuestros cursos están adaptados al <strong>“Marco Común Europeo de Referencia para las lenguas (CEFR)”</strong></p>
+          <p style="margin-top:8px">Obtendrás un certificado que acreditará tu nivel adquirido en infolenguas</p>
+          <a class="lnk" href="https://www.infolenguas.com/cursos-preparacion-examenes-oficiales/">exámenes oficiales</a>
+        </article>
+        <article class="slide" style="background:#fff">
+          <h3>Material interactivo</h3>
+          <ul>
+            <li>Con ejercicios de distintos niveles</li>
+            <li>Con actividades personalizadas</li>
+            <li>Con ejemplos de exámenes</li>
+          </ul>
+          <a class="lnk" href="https://www.infolenguas.com/contacto/">+ info</a>
+        </article>
+        <article class="slide" style="background:#fff">
+          <h3>Seniors +50</h3>
+          <p>CURSOS DE INGLÉS Y FRANCÉS PARA SENIORS (+50 AÑOS)</p>
+          <a class="lnk" href="https://www.infolenguas.com/cursos-para-seniors-50/">Seniors +50</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMBRIDGE -->
+  <section id="cambridge">
+    <div class="wrap">
+      <div class="cam">
+        <img src="https://www.infolenguas.com/wp-content/uploads/2021/10/EXAM_PREP_CEN.jpg" alt="Cambridge English Exam Preparation Centre">
+        <div class="stat">
+          <div class="ring"><b>91%</b></div>
+          <p>Más de un 90% de aprobados en las últimas convocatorias</p>
+        </div>
+      </div>
+      <p class="auth">Somos <b>Centro Autorizado</b> para la preparación de los exámenes de <b>Cambridge English</b></p>
+    </div>
+  </section>
+
+  <!-- ACORDEON -->
+  <section class="courses" id="detalle">
+    <div class="wrap">
+      <div class="acc">
+        <details open>
+          <summary>CURSOS GENERALES E INTENSIVOS INGLES /FRANCES PREPARACION EXAMENES OFICIALES</summary>
+          <div class="acc-body">
+            <p><strong>✨ CURSO 2026/2027✨</strong></p>
+            <p>Adaptado a tu nivel y a tu disponibilidad horaria ⏰.</p>
+            <p>Prepárate para las próximas convocatorias (consulta fechas disponibles 📅).</p>
+            <h4>¿Por qué elegirnos?</h4>
+            <ul>
+              <li>👥 Grupos reducidos: máximo 6 alumnos.</li>
+              <li>🎓 Profesorado nativo y titulado, con amplia experiencia en preparación de exámenes.</li>
+              <li>🎧 Enfoque práctico: prioridad al listening y speaking.</li>
+              <li>🤝 Tutorías personalizadas para potenciar tus resultados.</li>
+              <li>🏅 Acceso a la nueva prueba multinivel de Cambridge: Linguaskill.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>CURSOS DE INGLÉS Y FRANCÉS PARA SENIORS (+50 AÑOS)</summary>
+          <div class="acc-body">
+            <p>Clases diseñadas para aprender sin prisas 🕰️, en un ambiente cercano, motivador y ameno 🤝.</p>
+            <p>Practica el idioma en situaciones reales: viajes ✈️, ocio 🎶 y conversación cotidiana 💬.</p>
+            <h4>✨ Lo que nos hace diferentes:</h4>
+            <ul>
+              <li>Sesiones semanales de 1h 30’</li>
+              <li>Precio accesible: 48 €/mes 💶</li>
+              <li>Grupos reducidos para garantizar tu participación</li>
+              <li>Profesorado especializado en adultos y seniors</li>
+              <li>Metodología práctica: foco en conversación 🗣️ y comprensión auditiva 🎧</li>
+              <li>Ritmo adaptado: sin presión de exámenes, aprende a tu paso</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>CURSOS DE INGLÉS Y FRANCÉS PARA NIÑOS Y JÓVENES</summary>
+          <div class="acc-body">
+            <p><strong>Método interactivo Living Language 🌟</strong></p>
+            <p>Habla desde el primer día con profesores expertos en la enseñanza a niños y jóvenes.</p>
+            <p>Clases dinámicas, participativas y divertidas para aprender de forma natural.</p>
+            <h4>Lo que nos diferencia:</h4>
+            <ul>
+              <li>Programas adaptados a la edad y nivel de cada alumno 🎯</li>
+              <li>Clases 100% en inglés o francés con inmersión lingüística</li>
+              <li>Actividades lúdicas e interactivas con abundantes recursos visuales 🖼️</li>
+              <li>Grupos reducidos: 6–8 alumnos de la misma edad y nivel</li>
+              <li>Evaluaciones periódicas para seguir la evolución</li>
+              <li>Preparación para exámenes internacionales (Cambridge YLE, DELF Prim/Junior)</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <div class="band" id="contacto">
+    <div class="wrap">
+      <h2>YOUR WAY TO SUCCESS</h2>
+      <div class="row">
+        <a href="tel:+34983454206" class="btn btn-orange">983 45 42 06</a>
+        <a href="tel:+34629733938" class="btn btn-line">629 73 39 38</a>
+        <a href="https://www.infolenguas.com/contacto/" class="btn btn-line">contacto</a>
+      </div>
+      <div class="data">
+        <a href="mailto:info@infolenguas.com">info@infolenguas.com</a>
+        <a href="https://www.infolenguas.com/valladolid/contacto/">Pasaje de La Marquesina, 14</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Infolenguas idiomas Valladolid. All rights reserved.</span>
+    <nav>
+      <a href="https://www.infolenguas.com/contacto/">Contacto</a>
+      <a href="https://www.infolenguas.com/work-with-us/">Work with us</a>
+      <a href="https://www.infolenguas.com/faq-preguntas-frecuentes/">FAQ: nuestra escuela</a>
+      <a href="https://www.infolenguas.com/faq-preguntas-frecuentes-cambridge-english/">FAQ: Cambridge English</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983454206" class="btn btn-blue">983 45 42 06</a>
+  <a href="tel:+34629733938" class="btn btn-line">629 73 39 38</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Reformas Integrales Madrid Centro · Propuesta de rediseño</title>
+<link rel="icon" href="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/cropped-FAVICON.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#BC0000; --red-dark:#8f0000; --ink:#161616; --text:#3b3b3b; --muted:#6b6b6b;
+    --line:#e8e4e1; --tint:#f7f4f2; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,h4{font-family:Nunito,Inter,sans-serif;color:var(--ink);line-height:1.15;font-weight:900}
+  .eyebrow{font-family:Nunito,sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:900}
+  p+p{margin-top:14px}
+  strong{color:var(--ink)}
+
+  .demo{background:var(--ink);color:#f0c8c8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:16px}
+  .nav .logo img{height:40px;width:auto}
+  .menu{display:flex;gap:26px;font-weight:600;font-size:.94rem;color:var(--ink);align-items:center}
+  .menu a:hover{color:var(--red)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:.95rem;transition:.2s;border:2px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-line{background:#fff;color:var(--red)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.88rem}
+  .num{font-variant-numeric:tabular-nums;font-weight:700;opacity:.9}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:64px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .hero h1{font-size:clamp(2.5rem,5.2vw,4rem);margin:12px 0 18px}
+  .hero .lead{font-size:1.15rem;color:var(--text);max-width:540px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero-img{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -34px rgba(0,0,0,.45)}
+
+  /* services strip */
+  .chips{background:var(--ink);padding:26px 0}
+  .chips .eyebrow{color:#ff8f8f;display:block;margin-bottom:12px}
+  .chips ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .chips a{display:block;padding:8px 14px;border-radius:999px;border:1px solid #444;color:#eee;font-size:.88rem;font-weight:500}
+  .chips a:hover{border-color:var(--red);background:var(--red)}
+
+  section{padding:88px 0}
+  .head{max-width:780px;margin-bottom:34px}
+  .head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:10px}
+  .head p{margin-top:14px;color:var(--muted);font-size:1.05rem}
+  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start}
+  .split.rev{grid-template-columns:.9fr 1.1fr}
+  .split img{border-radius:var(--radius)}
+  .prose{font-size:1.02rem}
+  .quote{margin:30px 0;padding:22px 26px;border-left:5px solid var(--red);background:var(--tint);border-radius:0 var(--radius) var(--radius) 0;font-family:Nunito,sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);line-height:1.35}
+  .quote p{margin:0}
+
+  .alt{background:var(--tint)}
+
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;transition:.25s}
+  .card:hover{border-color:var(--red);box-shadow:0 18px 40px -28px rgba(0,0,0,.35)}
+  .card .ic{width:48px;height:48px;margin-bottom:14px}
+  .card h3{font-size:1.25rem;margin-bottom:12px}
+  .card p{font-size:.95rem}
+  .card p+p{margin-top:10px}
+  .why .card:first-child{grid-column:span 1}
+
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc .card{display:flex;flex-direction:column}
+  .svc .card h3 a:hover{color:var(--red)}
+  .svc .go{margin-top:auto;padding-top:16px;color:var(--red);font-weight:600;font-size:.9rem}
+
+  .cta-band{background:var(--red);color:#fff;padding:64px 0;text-align:center}
+  .cta-band h4{color:#fff;font-size:clamp(1.5rem,2.8vw,2.1rem);max-width:820px;margin:0 auto}
+  .cta-band .btn{background:#fff;color:var(--red);border-color:#fff;margin-top:26px}
+  .cta-band .btn:hover{background:var(--tint)}
+  .cta-band p{max-width:820px;margin:22px auto 0;color:#ffe3e3}
+
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+  .gallery img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover}
+
+  .callout{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:28px}
+
+  /* contact */
+  .contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+  .phone-card{border-radius:var(--radius);overflow:hidden;max-width:320px}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(0,0,0,.35);border-top:5px solid var(--red)}
+  .card-form h2{font-size:1.8rem;margin-bottom:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #dcd6d2;border-radius:10px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(188,0,0,.25);border-color:var(--red)}
+  .card-form .btn{width:100%;margin-top:6px}
+  .form-ok{display:none;background:var(--tint);border-radius:10px;padding:12px;font-size:.88rem;margin-top:12px}
+
+  footer{background:var(--ink);color:#cfcfcf;padding:50px 0 28px;font-size:.88rem}
+  .foot{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+  .foot .logo{width:150px;background:#fff;border-radius:12px;padding:12px}
+  .foot ul{list-style:none;columns:3;column-gap:28px}
+  .foot li{margin-bottom:8px;break-inside:avoid}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .foot-bottom{margin-top:30px;padding-top:18px;border-top:1px solid #333;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu{display:none}
+    .hero-grid,.split,.split.rev,.contact,.foot{grid-template-columns:1fr}
+    .why,.svc{grid-template-columns:1fr 1fr}
+    .foot ul{columns:2}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:66px}
+    .nav .logo img{height:28px}
+    .nav-cta{display:none}
+    .hero{padding:40px 0 52px}
+    .hero .row .btn{width:100%;white-space:normal}
+    section{padding:60px 0}
+    .why,.svc,.gallery,.grid2{grid-template-columns:1fr}
+    .grid2{gap:0}
+    .card-form{padding:24px 18px}
+    .cta-band .btn,.callout .btn{white-space:normal;text-align:center}
+    .foot ul{columns:1}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Reformas Integrales Madrid Centro · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://reformasintegralesmadridcentro.com/" aria-label="Reformas integrales en Madrid Centro"><img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/reformas-integrales-en-madrid-centro.png" alt="Reformas integrales en Madrid Centro"></a>
+    <nav class="menu">
+      <a href="https://reformasintegralesmadridcentro.com/">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="https://reformasintegralesmadridcentro.com/blog/">Blog</a>
+      <a href="https://reformasintegralesmadridcentro.com/contacto/">Contacto</a>
+    </nav>
+    <a href="tel:+34624026062" class="btn btn-red btn-sm nav-cta">☎️ <span class="num">624 02 60 62</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Reformas Integrales Madrid Centro</span>
+        <h1>Reformas integrales Madrid</h1>
+        <p class="lead">Los tiempos cambian, evolucionan al igual que la tecnología, las técnicas o la toma de decisiones de los clientes, las reformas también</p>
+        <div class="row">
+          <a href="tel:+34624026062" class="btn btn-red">☎️ LLÁMANOS E INFÓRMATE GRATIS</a>
+          <a href="tel:+34624026062" class="btn btn-line"><span class="num">624 02 60 62</span></a>
+        </div>
+      </div>
+      <div class="hero-img"><img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-01.jpg" alt="reformas integrales en madrid centro"></div>
+    </div>
+  </div>
+
+  <nav class="chips" id="servicios" aria-label="Servicios">
+    <div class="wrap">
+      <span class="eyebrow">Servicios</span>
+      <ul>
+        <li><a href="https://reformasintegralesmadridcentro.com/reformas-de-pisos/">Reformas de pisos</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/reformas-de-banos/">Reformas de baños</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/cerrajeros/">Cerrajeros</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/pintores/">Pintores</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/fontaneros/">Fontaneros</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/electricistas/">Electricistas</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/instalaciones-electricas/">Instalaciones eléctricas</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/carpinteros/">Carpinteros</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/transportes-y-mudanzas-en-madrid-centro/">Transportes y mudanzas</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/carpinteria-de-aluminio/">Carpintería de aluminio</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/puertas-acorazadas/">Puertas acorazadas</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/cajas-fuertes/">Cajas fuertes Madrid</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/decoracion-e-interiorismo-madrid/">Decoración e interiorismo</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- CONÓCENOS -->
+  <section>
+    <div class="wrap split">
+      <div>
+        <div class="head"><span class="eyebrow">Conócenos</span><h2>Reformas Integrales Madrid Centro. Conócenos</h2></div>
+        <div class="prose">
+          <p>Somos una empresa con una visión audaz y fresca en el mundo de las reformas integrales en el centro de Madrid. Nos enorgullece ofrecer un enfoque completamente diferente y original para transformar tus espacios en lugares de ensueño.</p>
+          <p>En reformas integrales en Madrid centro, no solo somos expertos en reformas de pisos y locales comerciales, sino que también nos apasiona el arte de crear espacios únicos que reflejen la personalidad y el estilo de vida de nuestros clientes.</p>
+          <p>Nuestra filosofía se basa en la creencia de que cada proyecto es <strong>una oportunidad para crear algo extraordinario.</strong> Entendemos que tu hogar o negocio es un reflejo de tu identidad y queremos ayudarte a expresarla plenamente a través de nuestros diseños innovadores.</p>
+          <p>En Madrid Reformas Integrales, nos dedicamos a ofrecer un <strong>servicio integral y de alta calidad.</strong> Comenzamos cada proyecto con un enfoque consultivo, escuchando atentamente tus ideas, necesidades y expectativas.</p>
+        </div>
+        <div class="quote"><p>Si estás buscando una empresa de reformas integrales en el centro de Madrid que marque la diferencia, no busques más. En Madrid Reformas Integrales, nos enorgullece ofrecer un enfoque fresco, original y personalizado para transformar tus espacios en lugares llenos de vida y belleza.</p></div>
+        <div class="prose">
+          <p>Variaciones económicas, ajustes, y años de pandemia en los que la economía española ha sufrido un duro revés y aún más en sectores como el nuestro, donde el consumo sufrió un duro frenazo por lo que había que adaptarse más que nunca a la situación y a los clientes de reformas integrales Madrid, ya que estas nuevas dimensiones han favorecido la aparición de un nuevo consumidor.</p>
+        </div>
+      </div>
+      <div style="display:grid;gap:18px">
+        <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-03.jpg" alt="reformas integrales en madrid centro">
+        <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-02.jpg" alt="reformas integrales en madrid centro">
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="head"><h2>Servicio de reformas integrales Madrid contamos con los mejores profesionalidades y calidades</h2></div>
+      <div class="prose" style="max-width:860px">
+        <p>Es por esta circunstancia por lo que nuestros precios están perfectamente ajustados, además de concebidos en el mundo real, con sus costes reales de mercado además de disfrutar de la mejor garantía recibe <strong>el mejor de los servicios</strong> de reformas integrales Madrid.</p>
+        <p>Como empresa de reformas Madrid, nos hemos reinventado, como todos y cada uno de los españoles por lo que nuestros servicios de reformas integrales Madrid centro y zonas limítrofes están basados en el buen hacer de nuestros empleados y en la <strong>transparencia</strong>, respetando la <strong>legalidad fiscal y social</strong> además de proteger y cuidar a nuestros trabajadores velando por su <strong>seguridad</strong> y la de nuestros clientes.</p>
+        <p>Al fin y al cabo, nuestros trabajadores son los mejores embajadores de nuestro trabajo. Nuestra empresa de reformas de pisos Madrid, con sus <strong>técnicas y conocimiento</strong> consigue lo que más valoramos nosotros, su confianza y satisfacción como resultado final tras nuestro trabajo.</p>
+        <p>Por eso si estás pensando en realizar la reforma en tu vivienda, negocio o comunidad de vecinos y no sabes qué hacer para buscar y lograr encontrar a la mejor empresa en relación calidad-precio del mercado, no te preocupes porque si estás leyendo estas líneas es que lo has encontrado.</p>
+        <p>Nosotros nos ponemos manos a la obra con cualquier reforma integral o rehabilitación de inmuebles, sea cual sea su tipo, en cuanto usted nos explique y se ponga en contacto con nuestros profesionales.</p>
+      </div>
+      <div class="quote" style="max-width:860px"><p>Te ofrecemos múltiples posibilidades para que contactes con nosotros y disfrutes de los mejores servicios sin esfuerzo y sin que esto suponga un extra más en el precio de tu reforma.</p></div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <h2>¿Por qué elegirnos como la mejor empresa de reformas en Madrid Centro?</h2>
+        <p>Con una sólida reputación basada en años de experiencia como empresa constructora en Madrid y un enfoque centrado en el cliente, ofrecemos una gama de servicios excepcionales que te permitirán transformar tus espacios de manera única y original.</p>
+      </div>
+      <div class="why">
+        <article class="card">
+          <img class="ic" src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/cropped-FAVICON.png" alt="">
+          <h3>Por Experiencia</h3>
+          <p>En Madrid Reformas Integrales, contamos con una <strong>amplia experiencia</strong> en el sector de las reformas integrales.</p>
+          <p>Nuestro equipo de profesionales ha trabajado en numerosos proyectos, desde renovaciones de pisos, reformas de baños, cocinas, y muchos más.</p>
+          <p>Estamos familiarizados con los desafíos y las soluciones que se requieren en cada tipo de proyecto, lo que nos permite ofrecer resultados de calidad y satisfacción garantizada.</p>
+        </article>
+        <article class="card">
+          <img class="ic" src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/cropped-FAVICON.png" alt="">
+          <h3>Por atención especializada</h3>
+          <p>Valoramos la importancia de <strong>escuchar a nuestros clientes y comprender sus necesidades</strong> individuales. Reformas integrales Madrid, te ofrecemos una atención personalizada desde el primer contacto hasta la finalización del proyecto.</p>
+          <p>Nuestro equipo de expertos está <strong>siempre disponible</strong> para responder a tus preguntas, asesorarte y <strong>ofrecerte soluciones</strong> a medida.</p>
+          <p>Nos enorgullece establecer <strong>relaciones sólidas</strong> y duraderas con nuestros clientes, basadas en la confianza y la comunicación abierta.</p>
+        </article>
+        <article class="card">
+          <img class="ic" src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/cropped-FAVICON.png" alt="">
+          <h3>Por coordinación y trabajo en equipo</h3>
+          <p>En Madrid Reformas Integrales, creemos en el poder del trabajo en equipo. Nuestro equipo <strong>está formado por expertos de distintos</strong> oficios, como fontaneros, electricistas, decoradores y pintores, lo que nos permite trabajar de manera colaborativa para asegurar que cada proyecto sea abordado desde diferentes perspectivas y se obtengan los mejores resultados.</p>
+          <p>Nos complementamos mutuamente, aprovechando <strong>nuestras fortalezas individuales</strong> para crear diseños innovadores y ejecuciones impecables.</p>
+        </article>
+        <article class="card">
+          <img class="ic" src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/cropped-FAVICON.png" alt="">
+          <h3>Por precios altamente competitivos</h3>
+          <p>Sabemos que el presupuesto es un <strong>factor importante</strong> al elegir una empresa de reformas integrales. En Madrid Reformas Integrales, nos esforzamos por ofrecer <strong>precios competitivos sin comprometer la calidad</strong> de nuestro trabajo.</p>
+          <p>Trabajamos de manera eficiente, optimizando los recursos y utilizando proveedores confiables para obtener los mejores precios en materiales y servicios.</p>
+          <p>Nos aseguramos de que cada dinero invertido se refleje en <strong>resultados excepcionales</strong>.</p>
+        </article>
+        <article class="card">
+          <img class="ic" src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/cropped-FAVICON.png" alt="">
+          <h3>Por nuestra variedad de servicios</h3>
+          <p>En Madrid Reformas Integrales, nos enorgullece ofrecer una amplia gama de servicios para <strong>satisfacer todas tus necesidades</strong> de renovación.</p>
+          <p>Desde el <strong>diseño arquitectónico y la planificación</strong> hasta la gestión de proyectos y la ejecución detallada, cubrimos todos los aspectos de las reformas integrales.</p>
+          <p>Ya sea que desees renovar tu piso, tu oficina o tu local comercial, nuestro equipo tiene la experiencia y la creatividad para hacerlo todo posible.</p>
+        </article>
+        <div style="border-radius:var(--radius);overflow:hidden;display:flex;align-items:center"><img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-04.jpg" alt="reformas integrales en madrid centro" style="width:100%;height:auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ HACEMOS -->
+  <section class="alt">
+    <div class="wrap">
+      <div class="head">
+        <h2>¿Qué hacemos en Reformas integrales Madrid Centro?</h2>
+        <p>Si estás buscando transformar tu hogar en un espacio de ensueño, has llegado al lugar indicado.</p>
+        <p>Estos son nuestros servicios:</p>
+      </div>
+      <div class="svc">
+        <article class="card">
+          <h3><a href="https://reformasintegralesmadridcentro.com/reformas-de-pisos/">Reformas de Piso en Madrid Centro</a></h3>
+          <p>Nuestro equipo de expertos en reformas de pisos se encargará de transformar cada rincón de tu piso, maximizando su potencial y creando espacios funcionales y estéticamente atractivos.</p>
+          <p>Ya sea que necesites renovar el suelo, las paredes, los techos o redistribuir los espacios, nuestro equipo está capacitado para llevar a cabo cualquier desafío que se presente.</p>
+          <p>Nos enorgullece <strong>ofrecerte soluciones innovadoras</strong> y <strong>personalizadas</strong> que reflejen tu estilo y satisfagan tus necesidades.</p>
+        </article>
+        <article class="card">
+          <h3><a href="https://reformasintegralesmadridcentro.com/reformas-de-banos/">Reformas de Baños en Madrid Centro</a></h3>
+          <p>Un baño es mucho más que una simple estancia de la casa. Es un lugar donde relajarse, recargar energías y mimarte.</p>
+          <p>Nuestro equipo de diseñadores y expertos en reformas de baños te ayudará a <strong>crear el oasis perfecto dentro de tu hogar.</strong></p>
+          <p>Desde la selección de materiales hasta la instalación de plomería y accesorios, cuidaremos cada detalle para lograr un <strong>espacio moderno, funcional y acogedor.</strong></p>
+        </article>
+        <article class="card">
+          <h3>Reformas de Cocinas en Madrid Centro</h3>
+          <p>La cocina es el corazón del hogar, el lugar donde se crean sabores y se comparten momentos especiales.</p>
+          <p>Si sueñas con una cocina renovada, adaptada a tus necesidades y con un diseño único, nuestro equipo de profesionales en reformas de cocina está listo para hacerlo realidad.</p>
+          <p>Desde el diseño inicial hasta la instalación de electrodomésticos y encimeras, <strong>nos encargaremos de cada paso</strong> para que puedas disfrutar de una cocina que combine estilo y funcionalidad a la perfección.</p>
+        </article>
+        <article class="card">
+          <h3><a href="https://reformasintegralesmadridcentro.com/fontaneros/">Fontanería en Madrid Centro</a></h3>
+          <p>Nuestros fontaneros <strong>altamente calificados</strong> están disponibles para resolver cualquier problema relacionado con la fontanería en tu piso.</p>
+          <p>Ya sea una fuga en las tuberías, la instalación de nuevas conexiones o la reparación de grifos, puedes confiar en nuestro equipo para ofrecerte <strong>soluciones rápidas y duraderas</strong>. Nos comprometemos a garantizar un sistema de fontanería eficiente y libre de problemas.</p>
+        </article>
+        <article class="card">
+          <h3><a href="https://reformasintegralesmadridcentro.com/electricistas/">Electricidad en Madrid Centro</a></h3>
+          <p>La seguridad eléctrica es fundamental en cualquier hogar. Nuestros electricistas certificados te ofrecerán servicios de instalación, mantenimiento y reparación eléctrica, garantizando que tu sistema eléctrico funcione de manera <strong>óptima y segura.</strong></p>
+          <p>Ya sea que necesites una nueva instalación, actualizar el cableado existente o resolver cualquier problema eléctrico, nuestro equipo está preparado para ayudarte.</p>
+        </article>
+        <article class="card">
+          <h3><a href="https://reformasintegralesmadridcentro.com/carpinteria-de-aluminio/">Carpintería de aluminio y PVC en Madrid Centro</a></h3>
+          <p>La carpintería de aluminio ofrece una excelente combinación de <strong>belleza, durabilidad y eficiencia energética.</strong></p>
+          <p>Nuestros carpinteros especializados en aluminio pueden crear ventanas, puertas y cerramientos a medida que se adapten perfectamente a tu estilo y necesidades. Trabajamos con los <strong>mejores materiales y técnicas</strong> de instalación para garantizar resultados excepcionales.</p>
+        </article>
+        <article class="card">
+          <h3><a href="https://reformasintegralesmadridcentro.com/pintores/">Pintores en Madrid Centro</a></h3>
+          <p>Nuestro equipo de pintores profesionales se encargará de dar el toque final a tu proyecto de reforma integral. Ya sea que desees un cambio de color en tus paredes o aplicar técnicas de pintura decorativa, nuestros expertos en pintura te ofrecerán un <strong>acabado impecable y duradero.</strong></p>
+          <p>Utilizamos <strong>productos de alta calidad</strong> y técnicas avanzadas para garantizar resultados que superen tus expectativas.</p>
+        </article>
+      </div>
+      <div class="prose" style="max-width:860px;margin-top:34px">
+        <p>En nuestra empresa de reformas integrales en Madrid Centro, nos enorgullece ofrecer un servicio integral, desde la planificación hasta la ejecución, con un enfoque centrado en la calidad, la eficiencia y la satisfacción del cliente.</p>
+        <p>No importa el tamaño de tu proyecto, estamos aquí para ayudarte a crear el hogar de tus sueños.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="wrap">
+      <h4>Contáctanos hoy mismo y descubre cómo podemos convertir tus ideas en realidad. ¡Tu nueva vida en tu nuevo hogar te espera!</h4>
+      <a href="tel:+34624026062" class="btn">☎️ LLÁMANOS E INFÓRMATE GRATIS · <span class="num">624 02 60 62</span></a>
+      <p>Como le hemos comentado con anterioridad, <strong style="color:#fff">nos adaptamos a cada presupuesto</strong> sin ningún tipo de problema y sin que esto mengue un ápice la calidad de nuestro servicio, gracias a materiales de construcción de la mejor calidad al mejor precio que obtenemos de proveedores.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap split rev">
+      <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2016/05/reformas-integrales-en-madrid-centro-3-300x300.jpg" alt="reformas integrales en madrid centro" style="max-width:360px;width:100%">
+      <div>
+        <div class="quote" style="margin-top:0"><p>Cumple tus sueños y convierte tu vivienda en el lugar que siempre has soñado</p></div>
+        <p class="prose">Déjalo todo en nuestras manos, en las de nuestros profesionales y usted, simplemente ocúpese de disfrutar con los suyos de los mejores resultados de una de las empresas líderes en las reformas integrales y pintura de fachadas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPRESAS -->
+  <section class="alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Empresas y negocios</span>
+        <h2>Reformas integrales para empresas y negocios en Madrid</h2>
+        <h3 style="font-size:1.25rem;margin-top:14px;font-weight:800">Cambia totalmente la imagen de tu negocio o empresa con nuestro servicio de reformas integrales Madrid centro</h3>
+      </div>
+      <div class="prose" style="max-width:860px">
+        <p>Nuestro equipo de profesionales en reformas integrales Madrid se encargará de realizar un servicio <strong>minucioso, competitivo y de calidad</strong>, por lo que nada quedará al azar, cubriéndote servicios en edificios particulares, hoteles, locales comerciales o industriales. No decimos NO a ningún trabajo que usted nos pueda ofrecer.</p>
+      </div>
+      <div class="quote" style="max-width:860px"><p><b>¡Haznos llegar tu idea!</b> no lo dude y nuestros profesionales harán que se cumpla.</p></div>
+      <div class="prose" style="max-width:860px">
+        <p>Olvídate por completo de todos y cada uno de los posibles contratiempos o preocupaciones y deja que un técnico se encargue de todos los pormenores que puedan suceder.</p>
+        <p><strong>Nunca fallamos</strong> a la hora de finalizar una reforma integral cumpliendo todos los plazos sin excepciones. Siempre, por descontado, cumplimos con éxito rotundo los tiempos establecidos con el cliente.</p>
+      </div>
+      <div class="callout">
+        <a href="tel:+34624026062" class="btn btn-red">¡Llámenos! y solicite presupuesto GRATUITO</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTA -->
+  <section>
+    <div class="wrap split">
+      <div>
+        <div class="head"><h2>Una empresa de reformas en Madrid Centro experta</h2></div>
+        <div class="prose">
+          <p>Realizar un cambio de suelo o pintar las paredes, cambiar las ventanas, añadir puntos de luz, modificar la distribución de un piso, son el tipo de situaciones en que es muy importante contar con una <strong>empresa de reformas integrales Madrid</strong>, que con total garantía nos asegure el éxito de la obra, tanto por su ejecución, cumplimiento de plazos establecidos y el mejor precio garantizado.</p>
+          <p>Para todas estas situaciones y muchas otras que se pueden presentar a lo largo del periodo de uso de una vivienda, no dude en contactar con nuestra empresa de profesionales en reformas integrales Madrid, la obra que necesite realizar se llevará a cabo en el plazo más corto, <em>eliminando al máximo las molestias</em> que puedan producirse, manteniendo continuamente la limpieza de la zona y evitando manchar otras zonas de la casa, con pulcritud, eficacia, con <strong>personal experto, atento y educado</strong>, y cuidando todos los detalles.</p>
+        </div>
+      </div>
+      <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-05.jpg" alt="reformas integrales en madrid centro">
+    </div>
+  </section>
+
+  <!-- VENTANAS -->
+  <section class="alt">
+    <div class="wrap split rev">
+      <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-07.jpg" alt="reformas integrales en madrid centro">
+      <div>
+        <div class="head"><h2>Una reforma muy habitual en Madrid Centro: Cambio de ventanas</h2></div>
+        <div class="prose">
+          <p>Si sus ventanas necesitan una renovación por ser antiguas, o que el material del que están fabricadas está deteriorado o gastado, con cierres defectuosos que no garantizan <strong>aislamiento térmico ni acústico</strong>, por ser modelos que no se adaptan a la estética del ambiente, contacte con nuestra empresa de reformas.</p>
+          <p>Un <em>experto</em> se desplazará a su vivienda, comprobará los huecos, realizará las medidas exactas para su encargo, tomará nota de la solicitud del cliente, tipo de ventanas, modelo y color, y le orientará sobre la mejor solución que asegure aislamiento y elegancia en el ambiente.</p>
+          <p>En muy pocos días, y con una pequeña obra, <strong>sus ventanas quedarán perfectas</strong>, y habrá conseguido ese cambio que aporte <strong>belleza, distinción y funcionalidad en su hogar</strong>.</p>
+          <p>En cocinas y baños trabajamos todos los estilos y tendencias, ofreciéndole las mejores calidades y precios.</p>
+        </div>
+        <div class="callout"><a href="tel:+34624026062" class="btn btn-red">☎️ LLÁMANOS E INFÓRMATE GRATIS</a></div>
+        <p class="prose" style="margin-top:22px">Ponte en contacto con nuestra empresa de reformas integrales Madrid para asegurarse de una obra con acabados perfectos, aprovechando al máximo el espacio y la luz para que utilice cada metro de su cocina, baño o aseo, con todas las soluciones estéticas, funcionales y de ahorro energético que darán a su vida otra dimensión de calidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESIONALES Y PARTICULARES -->
+  <section>
+    <div class="wrap">
+      <div class="head"><h2>Servicio a profesionales y particulares</h2></div>
+      <div class="split">
+        <div class="prose">
+          <p>Para la realización de las obras en <em>pisos o locales comerciales</em>, nuestra empresa de reformas integrales Madrid cuenta con <strong>los profesionales más cualificados</strong> en albañilería, cerrajería, pintura, electricidad, calefacción y gas, continuamente formados y con las homologaciones y requerimientos exigidos por los reglamentos vigentes.</p>
+          <p>Podemos ofrecer un servicio especializado de profesionales del interiorismo en caso de ser necesario por el alcance de las reformas, ofreciendo el mejor consejo profesional para la aplicación de todos los estilos decorativos, ya sea moderno o tradicional, rústico o minimalista, según la localización y el uso de la vivienda o local a reformar, personalizando de acuerdo a los gustos y necesidades del cliente.</p>
+          <div class="quote"><p>En nuestros proyectos se tienen en cuenta los aspectos decorativos pero también de <em>funcionalidad y uso del espacio</em>, como de ahorro energético.</p></div>
+          <p>La pintura de su piso o local comercial dará un toque de distinción y belleza que podrá comprobar una vez que se haya realizado la obra; el cambio que conlleva una pintura bien aplicada y con la adecuada elección de colores en función del estilo y uso de la estancia es realmente determinante.</p>
+          <p>Nuestra empresa de reformas cuenta con los profesionales pintores más expertos, que le orientarán en cuanto al tipo de pintura más adecuada, su calidad y textura, de las marcas de prestigio existentes en el mercado y de las tendencias más actuales, cuidando los detalles más mínimos, con limpieza y acabados perfectos.</p>
+          <div class="quote"><p>En obras de reformas integrales Madrid de viviendas o locales <strong>tramitamos las licencias oportunas</strong> en los ayuntamientos, para que todo el proceso esté adecuado a la normativa requerida, sin ningún problema ni pérdida de tiempo para nuestros clientes.</p></div>
+        </div>
+        <div style="display:grid;gap:18px">
+          <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-06.jpg" alt="reformas integrales en madrid centro">
+          <img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/refromas-integrales-madrid-08.jpg" alt="reformas integrales en madrid centro">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="alt" id="contacto">
+    <div class="wrap contact">
+      <div>
+        <a href="tel:+34624026062" class="phone-card" style="display:block"><img src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2016/06/reformas-integales-madrid-centro.png" alt="Empresa de reformas integrales en Madrid centro"></a>
+        <div class="callout"><a href="tel:+34624026062" class="btn btn-red">☎️ <span class="num">624 02 60 62</span></a></div>
+      </div>
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <h2>Solicita información</h2>
+        <div class="grid2">
+          <div class="field"><label for="n">Nombre*</label><input id="n" required autocomplete="name"></div>
+          <div class="field"><label for="e">Email*</label><input id="e" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="t">Teléfono*</label><input id="t" type="tel" required autocomplete="tel"></div>
+          <div class="field"><label for="c">Ciudad*</label><input id="c" required autocomplete="address-level2"></div>
+        </div>
+        <div class="field"><label for="a">Asunto</label><input id="a"></div>
+        <div class="field"><label for="m">Mensaje</label><textarea id="m" rows="5"></textarea></div>
+        <button class="btn btn-red" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <img class="logo" src="https://reformasintegralesmadridcentro.com/wp-content/uploads/2023/06/reformas-integrales-en-madrid-centro-vertical.png" alt="Reformas integrales en Madrid Centro">
+      <ul>
+        <li><a href="https://reformasintegralesmadridcentro.com/">Reformas integrales Madrid</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/reformas-de-pisos/">Reformas de pisos en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/reformas-de-banos/">Reformas de baños en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/cerrajeros/">Cerrajeros en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/pintores/">Pintores en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/fontaneros/">Fontaneros en Madrid Centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/electricistas/">Electricistas en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/instalaciones-electricas/">Instalaciones eléctricas en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/carpinteros/">Carpinteros Madrid</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/carpinteria-de-aluminio/">Carpintería de aluminio Madrid</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/puertas-acorazadas/">Puertas acorazadas Madrid</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/cajas-fuertes/">Cajas fuertes Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/transportes-y-mudanzas-en-madrid-centro/">Transportes y mudanzas en Madrid centro</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/decoracion-e-interiorismo-madrid/">Decoración e interiorismo Madrid</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/blog/">Blog</a></li>
+        <li><a href="https://reformasintegralesmadridcentro.com/contacto/">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Reformas Integrales en Madrid Centro</span>
+      <span style="display:flex;gap:16px;flex-wrap:wrap">
+        <a href="https://reformasintegralesmadridcentro.com/aviso-legal/">Aviso legal</a>
+        <a href="https://reformasintegralesmadridcentro.com/politica-de-privacidad/">Política de Privacidad</a>
+        <a href="https://reformasintegralesmadridcentro.com/politica-de-cookies/">Política de cookies</a>
+        <a href="https://reformasintegralesmadridcentro.com/mas-informacion-sobre-las-cookies/">Más información sobre las cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34624026062" class="btn btn-red">☎️ Llámanos</a>
+  <a href="#contacto" class="btn btn-line">Solicita información</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>
