@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gestoría Velasco · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#CE5200; --accent-dark:#a84300; --olive:#6D705E; --ink:#222; --text:#333333;
+    --muted:#6D705E; --line:#e4e2db; --tint:#f6f5f1; --white:#fff; --radius:12px; --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:17px}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .demo{background:var(--ink);color:#e9d2c2;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+  .brand{font-family:Anton,Impact,sans-serif;font-size:1.6rem;letter-spacing:.02em;color:var(--ink);line-height:1}
+  .brand span{color:var(--accent)}
+  .menu{display:flex;align-items:center;gap:26px;list-style:none;font-weight:600;font-size:.97rem}
+  .menu a{padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+  .menu a:hover,.menu a.on{color:var(--accent);border-color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.95rem;transition:.2s;border:1.5px solid var(--accent);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-acc{background:var(--accent);color:#fff}
+  .btn-acc:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+  .btn-line{background:#fff;color:var(--accent-dark)}
+  .btn-line:hover{background:var(--tint)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:84px 0 92px}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(circle at 85% 20%,rgba(206,82,0,.45),transparent 45%),
+    radial-gradient(circle at 10% 110%,rgba(109,112,94,.55),transparent 50%)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero h1{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(3rem,7.4vw,5.4rem);line-height:1;letter-spacing:.01em;margin:16px 0 14px}
+  .hero .sub{font-size:clamp(1.15rem,2.2vw,1.45rem);color:#f3a46f;font-weight:600}
+  .hero p.lead{margin-top:22px;color:#e8e6df;font-size:1.08rem;max-width:600px}
+  .hero .eyebrow{color:#f3a46f}
+  .calls{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .call{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:14px 20px;transition:.2s;min-width:240px}
+  .call:hover{background:rgba(255,255,255,.12);border-color:var(--accent)}
+  .call .ic{width:42px;height:42px;border-radius:50%;background:var(--accent);display:grid;place-items:center;flex:none}
+  .call small{display:block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#cfccc2;font-weight:600}
+  .call b{font-size:1.22rem;font-variant-numeric:tabular-nums;font-weight:700}
+  .hero figure{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.2);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+  .hero figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:38px}
+  .head h2{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(2rem,4vw,2.8rem);line-height:1.05;color:var(--ink);margin-top:8px;letter-spacing:.01em}
+  .head p{margin-top:12px;color:var(--text)}
+
+  /* services */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .svc{display:flex;gap:18px;padding:22px 22px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:.25s}
+  .svc:hover{border-color:#d9c3b4;box-shadow:0 18px 40px -26px rgba(34,34,34,.35)}
+  .svc .ic{width:46px;height:46px;border-radius:12px;background:var(--tint);color:var(--accent);display:grid;place-items:center;flex:none}
+  .svc h3{font-size:1.14rem;line-height:1.25;color:var(--ink);font-weight:700;margin-bottom:4px}
+  .svc p{font-size:.97rem}
+  .svc a.more{display:inline-block;margin-top:8px;font-weight:700;font-size:.9rem;color:var(--accent-dark);border-bottom:2px solid var(--accent)}
+
+  /* detail */
+  .detail{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .acc{display:grid;gap:12px}
+  details{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:Anton,Impact,sans-serif;font-size:1.4rem;color:var(--ink);letter-spacing:.01em}
+  summary::-webkit-details-marker{display:none}
+  summary .pm{width:34px;height:34px;border-radius:50%;background:var(--tint);color:var(--accent);display:grid;place-items:center;flex:none;transition:.2s}
+  details[open] summary .pm{transform:rotate(45deg);background:var(--accent);color:#fff}
+  .dbody{padding:0 24px 26px}
+  .dbody > p{max-width:820px;margin-bottom:18px}
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+  .cols h4{font-size:1.02rem;color:var(--ink);margin-bottom:4px}
+  .cols p{font-size:.95rem;margin-bottom:8px}
+  ul.dots{list-style:none;display:grid;gap:6px}
+  ul.dots li{position:relative;padding-left:16px;font-size:.95rem;line-height:1.45}
+  ul.dots li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .lbl{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);font-weight:700;margin:6px 0 6px}
+  ul.models{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px 22px}
+  ul.models li{font-size:.92rem;line-height:1.45;padding:10px 12px;background:var(--tint);border-radius:8px}
+  ul.models b{color:var(--accent-dark)}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about p{margin-bottom:14px}
+  .about .pic{border-radius:16px;overflow:hidden}
+  .about .pic img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .about .quote{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1.5rem;line-height:1.2;color:var(--ink);border-left:4px solid var(--accent);padding-left:16px;margin:22px 0 0}
+
+  /* offices */
+  .offices{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .office{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .office h3{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1.7rem;color:var(--ink);letter-spacing:.01em;margin-bottom:14px}
+  .office dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:.98rem}
+  .office dt{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);font-weight:700;padding-top:3px}
+  .office dd a{font-weight:600;color:var(--accent-dark);overflow-wrap:anywhere}
+  .office dd a:hover{text-decoration:underline}
+  .office .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .visit{margin-top:34px;text-align:center}
+  .visit p{font-family:Anton,Impact,sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.1;color:var(--ink)}
+
+  footer{background:var(--ink);color:#cfccc2;padding:30px 0;font-size:.9rem}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+  .foot .brand{color:#fff;font-size:1.25rem}
+  .foot nav{display:flex;flex-wrap:wrap;gap:18px}
+  .foot nav a:hover{color:#fff}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;gap:40px}
+    .about{grid-template-columns:1fr;gap:32px}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .nav{height:auto;padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px}
+    .menu{gap:18px;font-size:.92rem;flex-wrap:wrap}
+    .hero{padding:52px 0 60px}
+    .calls{flex-direction:column}
+    .call{min-width:0}
+    .grid,.offices,.visit{grid-template-columns:1fr}
+    .svc{padding:18px}
+    summary{font-size:1.2rem;padding:18px}
+    .dbody{padding:0 18px 22px}
+    ul.models{grid-template-columns:1fr}
+    .office{padding:22px}
+    .office dl{grid-template-columns:1fr;gap:2px}
+    .office dd{margin-bottom:8px}
+    .office .row .btn{flex:1}
+    section{padding:60px 0}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 6px;font-size:.86rem;gap:6px}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ph" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M12 5v14M5 12h14"/></symbol>
+</svg>
+
+<div class="demo">Propuesta de rediseño para Gestoría Velasco · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="http://velascobernal.es/" class="brand" aria-label="Gestoría Velasco">Gestoría <span>Velasco</span></a>
+    <ul class="menu">
+      <li><a href="http://velascobernal.es/" class="on">Inicio</a></li>
+      <li><a href="#quienes-somos">Quiénes somos</a></li>
+      <li><a href="#servicios">Nuestros servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Medina del Campo · Valladolid</span>
+        <h1>Gestoría Velasco</h1>
+        <p class="sub">Gestoría en Medina del Campo y Valladolid</p>
+        <p class="lead">Con una experiencia de más de 70 años «Gestoría Velasco» ofrece a nuestros clientes una gestión personalizada y eficaz, integrando de forma coordinada los servicios tanto de gestoría administrativa, como en asesoría fiscal, laboral y jurídica. También somos expertos en el área inmobiliaria.</p>
+        <div class="calls">
+          <a class="call" href="tel:+34983800246">
+            <span class="ic"><svg width="20" height="20" style="color:#fff"><use href="#ph"/></svg></span>
+            <span><small>Medina del Campo</small><b>983 80 02 46</b></span>
+          </a>
+          <a class="call" href="tel:+34983370629">
+            <span class="ic"><svg width="20" height="20" style="color:#fff"><use href="#ph"/></svg></span>
+            <span><small>Valladolid</small><b>983 37 06 29</b></span>
+          </a>
+        </div>
+      </div>
+      <figure><img src="locales.jpg" alt="Fachada de Gestoría Velasco" width="750" height="375"></figure>
+    </div>
+  </div>
+
+  <!-- SERVICIOS (resumen de Quiénes somos) -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nuestros servicios</span>
+        <h2>Servicios</h2>
+        <p>Le esperamos para poder ayudarle a realizar cualquier trámite en Medina del Campo y Valladolid.</p>
+      </div>
+      <div class="grid">
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+          <div><h3>Gestoría</h3><p>Gestiones Tráfico, Transportes, Certificados, Renovación Permisos de Conducir, Permisos de Armas etc…</p><a class="more" href="#d-gestoria">Ver servicios</a></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+          <div><h3>Registros</h3><p>Gestiones en el Registro Mercantil, Registro Propiedad y formalización de Escrituras.</p></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M14 10h2M8 14h2M14 14h2M8 18h2M14 18h2"/></svg></span>
+          <div><h3>Asesoría Fiscal</h3><p>Contabilidades, Declaraciones sobre la Renta y Patrimonio, Declaraciones Tributarias, de IVA, Pagos Fraccionados y Retenciones, y cualquier gestión con la Agencia Tributaria.</p><a class="more" href="#d-fiscal">Ver servicios</a></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+          <div><h3>Asesoría Laboral</h3><p>Nóminas y Seguros Sociales, Altas, bajas y variaciones laborales, Inscripción de Empresas en la Seguridad Social, Mutualidades, Contratos de Trabajo, Declaraciones IRPF e Inspecciones Laborales, etc…</p><a class="more" href="#d-laboral">Ver servicios</a></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg></span>
+          <div><h3>Gabinete Jurídico</h3><p>Civil, Penal, Laboral y Mercantil.</p><a class="more" href="#d-juridico">Ver servicios</a></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-7h6v7"/></svg></span>
+          <div><h3>Inmobiliaria</h3><p>Alquileres, Ventas y Compras.</p><a class="more" href="#d-inmobiliaria">Ver servicios</a></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
+          <div><h3>Herencias</h3><p>Tramitación, Testamentos, Sucesiones, Donaciones e Impuestos.</p></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>
+          <div><h3>Registro de Sociedades</h3><p>Constitución e inscripción de una sociedad, altas, permisos y licencias y solicitud de subvenciones.</p></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+          <div><h3>Extranjería</h3><p>Permisos de trabajo y residencia, expedientes de nacionalidad, permisos de extranjería, fiscalidad.</p></div>
+        </article>
+        <article class="svc">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></svg></span>
+          <div><h3>Propiedad Intelectual industrial</h3><p>Cualquier trámite.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLE (páginas internas) -->
+  <section class="detail" id="detalle">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nuestros servicios</span>
+        <h2>Servicios en detalle</h2>
+      </div>
+      <div class="acc">
+        <details id="d-gestoria" open>
+          <summary>Gestoría <span class="pm"><svg width="16" height="16"><use href="#plus"/></svg></span></summary>
+          <div class="dbody">
+            <p>Gestoría Velasco cuenta con un equipo profesional cualificado para resolver cualquier trámite ante una administración pública. Nuestro equipo de trabajo cuenta con gestores administrativos, además de contar con un programa de formación continua, exclusiva e innovadora prestada y regulada por el colegio oficial de gestores administrativos de Castilla y León.</p>
+            <p>Nuestra meta es encontrar la solución óptima que encaje y se pueda adaptar a las necesidades de cada cliente.</p>
+            <div class="cols">
+              <div>
+                <h4>Servicios Administrativos</h4>
+                <p>Gestoría Velasco ofrece asesoramiento profesional en el área administrativa.</p>
+                <ul class="dots">
+                  <li>Asesoramiento y representación ante la Administración.</li>
+                  <li>Reclamaciones contra la Administración.</li>
+                  <li>Gestiones de Tráfico.</li>
+                  <li>Tarjetas de Transportes, renovación, tramitación y recursos.</li>
+                  <li>Procesos Contencioso-Administrativo.</li>
+                  <li>Autorizaciones y Licencias.</li>
+                  <li>Convenios con la Administración.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Gestores de Tráfico</h4>
+                <p>Gestoría Velasco realiza todo tipo de trámites en la gestión del tráfico.</p>
+                <ul class="dots">
+                  <li>Informes de Vehículos.</li>
+                  <li>Cambio Titularidad de Vehículos.</li>
+                  <li>Matriculación de Vehículos.</li>
+                  <li>Transferencia de Vehículos.</li>
+                  <li>Duplicados Documentación.</li>
+                  <li>Bajas de Vehículos.</li>
+                  <li>Tarjetas de Transporte.</li>
+                  <li>Trámites de importación de vehículos.</li>
+                  <li>Revisión y duplicados de permisos de circulación.</li>
+                  <li>Pago y liquidación de impuestos de matriculación.</li>
+                  <li>Duplicación de tarjetas de ITV.</li>
+                  <li>Petición de certificados.</li>
+                  <li>Reclamación de Multas.</li>
+                  <li>Inscripción y bajas de vehículos agrícolas.</li>
+                  <li>Permiso Internacional y Canje.</li>
+                  <li>Contratos de Compra-Venta de vehículos.</li>
+                  <li>Asesoramiento completo al vendedor como al comprador en el inicio y finalización de la compra.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Herencias</h4>
+                <p>Gestoría Velasco resuelve cualquier problema que puedan surgir en el proceso de la herencia.</p>
+                <ul class="dots">
+                  <li>Certificados de defunción.</li>
+                  <li>Últimas Voluntades.</li>
+                  <li>Testamentos.</li>
+                  <li>Liquidación de Impuesto de Sucesiones.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details id="d-fiscal">
+          <summary>Asesoría Fiscal <span class="pm"><svg width="16" height="16"><use href="#plus"/></svg></span></summary>
+          <div class="dbody">
+            <p>Gestoría Velasco cuenta con un departamento de Asesoría Fiscal integrado por un equipo profesional cualificado para resolver cualquier trámite, bien sea una persona física o jurídica. Nuestro equipo de trabajo cuenta con formación especializada en área fiscal para poder asesorar a nuestros clientes en materia de impuestos, tributos y tasas, con una formación continua y adaptada a la complejidad y actualización de las leyes.</p>
+            <div class="cols">
+              <div>
+                <h4>Gestores fiscales</h4>
+                <p>Gestoría Velasco busca la mejor solución de ahorro para sus clientes.</p>
+                <ul class="dots">
+                  <li>Realizamos todo tipo de gestiones ante la Administración y Hacienda Pública.</li>
+                  <li>Creaciones de empresas. Asesoramiento jurídico previo a la formación de la empresa en materia fiscal.</li>
+                  <li>Asesoramiento fiscal.</li>
+                  <li>Asesoramiento contable.</li>
+                  <li>Declaración sobre la Renta y Patrimonio.</li>
+                  <li>Declaraciones Tributarias. Tributación estatal, autonómica y local.</li>
+                  <li>Declaración del Impuesto del Valor Añadido (I.V.A.).</li>
+                  <li>Pagos Fraccionados.</li>
+                  <li>Retenciones.</li>
+                  <li>Declaraciones extraordinarias.</li>
+                  <li>Impuesto de Sociedades.</li>
+                  <li>Impuestos especiales.</li>
+                  <li>Impuesto de donaciones y sucesiones.</li>
+                  <li>Gestionamos Inspecciones Tributarias.</li>
+                  <li>Regímenes especiales.</li>
+                  <li>Tributación del Impuesto de Actividades Económicas (I.A.E.).</li>
+                  <li>Tributación del Impuesto de Bienes e Inmuebles (I.B.I.).</li>
+                  <li>Reclamaciones económico-administrativas.</li>
+                  <li>Recursos ante la agencia tributaria.</li>
+                  <li>Realizamos cualquier consulta de nuestros clientes ante la Dirección General de Tributos.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Autónomos</h4>
+                <p>En Gestoría Velasco buscamos la mejor solución para que los autónomos puedan desarrollar su negocio en el día a día. Aportamos el valor a tu proyecto, desde el área administrativa, fiscal, laboral, para que todos tus esfuerzos vayan a parar a lo que realmente es importante para vosotros, vuestro negocio.</p>
+                <ul class="dots">
+                  <li>Realizamos todo tipo de gestiones ante la Agencia Tributaria.</li>
+                </ul>
+              </div>
+            </div>
+            <p class="lbl" style="margin-top:22px">Impuestos</p>
+            <ul class="models">
+              <li><b>Modelo 036</b> · Declaración censal de alta, modificación y baja en el censo de Empresarios, Profesionales y Retenedores.</li>
+              <li><b>Modelo 100</b> · Declaración del Impuesto sobre la Renta de las Personas Físicas.</li>
+              <li><b>Modelo 111</b> · Retenciones e ingresos a cuenta. Rendimientos del trabajo y de actividades económicas, premios y determinadas ganancias patrimoniales e imputaciones de Renta.</li>
+              <li><b>Modelo 115</b> · Retenciones e ingresos a cuenta. Rentas o rendimientos procedentes del arrendamiento o subarrendamiento de inmuebles urbanos.</li>
+              <li><b>Modelo 130</b> · Pago fraccionado. Estimación directa para empresarios y profesionales.</li>
+              <li><b>Modelo 131</b> · Pago fraccionado. Estimación objetiva para empresarios y profesionales.</li>
+              <li><b>Modelo 180</b> · Retenciones e ingresos a cuenta. Rendimientos procedentes del arrendamiento de inmuebles Urbanos.</li>
+              <li><b>Modelo 190</b> · Resumen anual de retenciones e ingresos a cuenta. Rendimientos del trabajo de determinadas actividades económicas, premios y determinadas imputaciones de renta.</li>
+              <li><b>Modelo 303</b> · Impuesto sobre el Valor Añadido.</li>
+              <li><b>Modelo 310</b> · Régimen Simplificado de IVA. Declaración Ordinaria.</li>
+              <li><b>Modelo 311</b> · Régimen Simplificado de IVA. Declaración Final.</li>
+              <li><b>Modelo 347</b> · Declaración anual operaciones con terceras personas.</li>
+              <li><b>Modelo 390</b> · Declaración resumen anual I.V.A.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="d-laboral">
+          <summary>Asesoría Laboral <span class="pm"><svg width="16" height="16"><use href="#plus"/></svg></span></summary>
+          <div class="dbody">
+            <div class="cols">
+              <div>
+                <h4>Gestión Laboral</h4>
+                <p>En Gestoría Velasco damos asesoramiento Laboral y de la Seguridad Social a empresas y autónomos.</p>
+              </div>
+            </div>
+            <ul class="dots" style="columns:2 280px;column-gap:28px;display:block">
+              <li>Nóminas y Seguros Sociales.</li>
+              <li>Altas, bajas y variaciones laborales.</li>
+              <li>Inscripción de Empresas en la Seguridad Social.</li>
+              <li>Mutualidades.</li>
+              <li>Contratos de Trabajo.</li>
+              <li>Declaraciones IRPF.</li>
+              <li>Inspecciones Laborales etc.</li>
+              <li>Negociaciones y defensa de sus intereses en el ámbito laboral.</li>
+              <li>Negociación de salarios e indemnizaciones.</li>
+              <li>Redacción de contratos de trabajo.</li>
+              <li>Elaboración de contratos, prórrogas y variaciones.</li>
+              <li>Extinción de contratos.</li>
+              <li>Expedición de certificado de retenciones a trabajadores.</li>
+              <li>Comunicaciones a la seguridad social, altas y bajas de trabajadores.</li>
+              <li>Confección modelos 100 y 190.</li>
+              <li>Convenios colectivos.</li>
+              <li>Indemnizaciones y liquidaciones.</li>
+              <li>Despidos, Derechos, Sanciones y Conciliaciones.</li>
+              <li>Incapacidades.</li>
+              <li>Todo tipo de consultas laborales.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="d-juridico">
+          <summary>Gabinete Jurídico <span class="pm"><svg width="16" height="16"><use href="#plus"/></svg></span></summary>
+          <div class="dbody">
+            <p>Gestoría Velasco cuenta con un equipo de profesionales en las principales áreas del derecho a su disposición.</p>
+            <ul class="dots" style="columns:3 180px;column-gap:28px;display:block">
+              <li>Derecho Penal.</li>
+              <li>Derecho Civil.</li>
+              <li>Derecho de Familia.</li>
+              <li>Derecho Laboral.</li>
+              <li>Derecho Administrativo.</li>
+              <li>Derecho Mercantil.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="d-inmobiliaria">
+          <summary>Inmobiliaria <span class="pm"><svg width="16" height="16"><use href="#plus"/></svg></span></summary>
+          <div class="dbody">
+            <p>Gestoría Velasco te asesora en el alquiler, compra o venta de tu negocio.</p>
+            <ul class="dots" style="columns:4 120px;column-gap:28px;display:block">
+              <li>Compra</li>
+              <li>Venta</li>
+              <li>Alquileres</li>
+              <li>Tasaciones</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
+  <section id="quienes-somos">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Quiénes somos</span>
+        <div class="head" style="margin-bottom:22px"><h2>Sobre nosotros</h2></div>
+        <p>Nuestro objetivo es ofrecer servicios de alta calidad técnica, con un trato muy personalizado y adaptado a las necesidades de cada cliente, siendo nuestros trazos diferenciales, entre otros, el alto grado de especialización del equipo humano que integra nuestro despacho, nuestra amplia experiencia, nuestras garantías de éxito y solvencia ante cualquier contingencia.</p>
+        <p>Contamos con una plantilla altamente cualificada que pone a su disposición toda la pericia que le ha sido otorgada por la experiencia de años de trabajo en el sector.</p>
+        <p>Somos gestores administrativos, profesionales titulados, libres e independientes y tenemos capacidad para informar, aconsejar, asesorar a cualquier persona física o jurídica para realizar cualquier clase de trámites con la Administración y cualquier tipo de actuación que mantenga relación con órganos locales, autonómicos y estatales.</p>
+      </div>
+      <div class="pic"><img src="despachos.jpg" alt="Oficina de Gestoría Velasco" width="1024" height="683" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="detail" id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contacto</span>
+        <h2>Contacto</h2>
+      </div>
+      <div class="offices">
+        <div class="office">
+          <h3>Gestoría en Medina del Campo</h3>
+          <dl>
+            <dt>Dirección</dt><dd>C/Padilla, 20 Bajo</dd>
+            <dt>Teléfono</dt><dd><a href="tel:+34983800246">983 80 02 46</a> · <a href="tel:+34983800286">983 80 02 86</a></dd>
+            <dt>Fax</dt><dd>983 80 32 18</dd>
+            <dt>E-mail</dt><dd><a href="mailto:gestoriavelasco@telefonica.net">gestoriavelasco@telefonica.net</a></dd>
+          </dl>
+          <div class="row">
+            <a href="tel:+34983800246" class="btn btn-acc"><svg width="16" height="16"><use href="#ph"/></svg>Llamar</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Velasco+Bernal+Asesores+SL+Medina+del+Campo" target="_blank" rel="noopener" class="btn btn-line">Mapa</a>
+          </div>
+        </div>
+        <div class="office">
+          <h3>Gestoría en Valladolid</h3>
+          <dl>
+            <dt>Dirección</dt><dd>C/Santiago, 13 1ºA</dd>
+            <dt>Teléfono</dt><dd><a href="tel:+34983370629">983 37 06 29</a> · <a href="tel:+34983377711">983 37 77 11</a></dd>
+            <dt>E-mail</dt><dd><a href="mailto:gestoriavalladolid@velascobernal.es">gestoriavalladolid@velascobernal.es</a><br><a href="mailto:asesoriavalladolid@velascobernal.es">asesoriavalladolid@velascobernal.es</a></dd>
+          </dl>
+          <div class="row">
+            <a href="tel:+34983370629" class="btn btn-acc"><svg width="16" height="16"><use href="#ph"/></svg>Llamar</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Velasco+Bernal+Asesores+Legales+Y+Tributarios+SL+Valladolid" target="_blank" rel="noopener" class="btn btn-line">Mapa</a>
+          </div>
+        </div>
+      </div>
+      <div class="visit">
+        <p>Esperamos su visita en Medina del Campo o Valladolid.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand">Gestoría <span style="color:var(--accent)">Velasco</span></span>
+    <nav>
+      <a href="http://velascobernal.es/sobre-nosotros/">Quiénes somos</a>
+      <a href="#servicios">Nuestros servicios</a>
+      <a href="http://velascobernal.es/contacto/">Contacto</a>
+    </nav>
+    <span>All rights reserved © Gestoría Velasco</span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983800246" class="btn btn-acc"><svg width="15" height="15"><use href="#ph"/></svg>Medina del Campo</a>
+  <a href="tel:+34983370629" class="btn btn-line"><svg width="15" height="15"><use href="#ph"/></svg>Valladolid</a>
+</div>
+
+</body>
+</html>
