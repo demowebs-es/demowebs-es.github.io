@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sunny Academy · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#08bbb8; --teal-dark:#069996; --navy:#1e2b50; --coral:#e26b6b; --sun:#fcdd34; --blue:#2a76bc;
+    --text:#45506a; --muted:#727b90; --line:#e6eaf0; --tint:#f3fbfb; --cream:#fffbea; --white:#fff;
+    --radius:16px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Poppins,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-dark);font-weight:700}
+  h2,h3,h4{color:var(--navy);line-height:1.15}
+
+  .demo{background:var(--navy);color:#c9d3ea;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:16px}
+  .nav .logo img{height:70px;width:70px}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a,.menu > li > span{display:block;padding:10px 13px;font-size:.84rem;font-weight:600;color:var(--navy);border-radius:8px;cursor:pointer;text-transform:uppercase;letter-spacing:.02em}
+  .menu > li > a:hover,.menu > li > span:hover{background:var(--tint);color:var(--teal-dark)}
+  .menu .sub{position:absolute;left:0;top:100%;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px -20px rgba(30,43,80,.35);padding:8px;min-width:260px;list-style:none;display:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:8px 12px;border-radius:7px;font-size:.88rem;color:var(--navy)}
+  .menu .sub a:hover{background:var(--tint);color:var(--teal-dark)}
+  .nav-cta{display:flex;gap:8px}
+  .mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:2px solid var(--teal);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-teal{background:var(--teal);color:#fff}
+  .btn-teal:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
+  .btn-line{background:#fff;color:var(--navy);border-color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sun{background:var(--sun);border-color:var(--sun);color:var(--navy)}
+  .btn-sun:hover{background:#f4cf12;border-color:#f4cf12}
+  .btn-sm{padding:9px 16px;font-size:.84rem}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--cream),#fff 70%);padding:56px 0 40px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tags span{font-size:.8rem;font-weight:600;padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--navy)}
+  .tags span:first-child{background:var(--teal);border-color:var(--teal);color:#fff}
+  .hero h1{font-weight:800;font-size:clamp(2.6rem,5.6vw,4.3rem);line-height:1;margin:22px 0 10px;color:var(--navy);letter-spacing:-.02em}
+  .hero h1 .sun{color:var(--blue)}
+  .hero .claim{font-size:1.35rem;font-weight:600;color:var(--coral)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9}
+  .promo{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -32px rgba(30,43,80,.55)}
+  .promo img{width:100%;aspect-ratio:1690/700;object-fit:cover;object-position:center}
+
+  .slides{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
+  .slide{border-radius:var(--radius);padding:28px 30px;color:#fff;min-height:180px;display:flex;flex-direction:column;justify-content:center}
+  .slide b{display:block;font-size:1.5rem;font-weight:800;line-height:1.15}
+  .slide .s2{font-size:1.1rem;font-weight:600;opacity:.95}
+  .slide p{margin-top:10px;font-size:.95rem;opacity:.95}
+  .slide.en{background:linear-gradient(135deg,var(--navy),#2b3f73)}
+  .slide.it{background:linear-gradient(90deg,rgba(18,110,170,.92) 0%,rgba(18,110,170,.6) 55%,rgba(18,110,170,0) 100%),url("https://www.sunnyacademy.es/wp-content/uploads/2022/03/Aprender_italiano.png") right center/cover no-repeat}
+
+  section{padding:84px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:8px}
+  .head p{color:var(--muted);margin-top:12px;font-size:1.04rem}
+
+  /* precio */
+  .price{background:var(--navy);color:#fff;padding:56px 0}
+  .price .wrap{display:grid;grid-template-columns:1.2fr auto auto;gap:36px;align-items:center}
+  .price .eyebrow{color:var(--sun)}
+  .price h2{color:#fff;font-weight:800;font-size:clamp(1.7rem,3.2vw,2.4rem);margin-top:6px}
+  .price .tag{display:flex;align-items:baseline;gap:10px;background:var(--sun);color:var(--navy);border-radius:var(--radius);padding:16px 26px;transform:rotate(-2deg)}
+  .price .tag small{font-weight:700;font-size:.8rem;letter-spacing:.1em}
+  .price .tag strong{font-size:3rem;font-weight:800;line-height:1}
+  .price .tag span{font-weight:600;font-size:1.2rem}
+  .price .mat{font-weight:700;color:var(--sun);font-size:1.15rem}
+
+  /* features */
+  .feat-a .top{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .fcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;text-align:center}
+  .fcard img{width:64px;height:64px;margin:0 auto 14px}
+  .fcard h3{font-size:1rem;font-weight:700;letter-spacing:.03em}
+  .fcard p{font-size:.93rem;margin-top:8px}
+  .fcard p strong{color:var(--navy)}
+  .feat-a .mini{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:22px}
+  .mini div{background:var(--tint);border-radius:14px;padding:20px 16px;text-align:center;font-size:.86rem;color:var(--navy)}
+  .mini img{width:46px;height:46px;margin:0 auto 10px}
+  .feat-b{display:none}
+
+  /* por qué */
+  .why{background:var(--tint)}
+  .why-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:start}
+  .why h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem)}
+  .why .intro{font-size:1.05rem;margin:16px 0 24px}
+  .blocks{display:grid;gap:14px}
+  .block{background:#fff;border-radius:14px;padding:20px 22px;border-left:4px solid var(--coral)}
+  .block h3{font-size:1.05rem;color:var(--coral);font-weight:700}
+  .block p{font-size:.94rem;margin-top:6px}
+  .why .close{margin-top:22px;font-weight:600;color:var(--navy)}
+  .exam{background:var(--navy);color:#dfe5f3;border-radius:var(--radius);padding:30px 28px;position:sticky;top:100px}
+  .exam h3{color:var(--sun);font-size:1.05rem;letter-spacing:.04em;font-weight:700;margin-bottom:14px}
+  .exam p{font-size:.93rem;margin-bottom:12px}
+  .exam ul{list-style:none;display:grid;gap:8px;margin:16px 0 18px}
+  .exam li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;color:#fff;font-weight:500}
+  .exam li svg{flex:none;margin-top:3px;color:var(--teal)}
+
+  /* ambiente */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .gallery img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px}
+
+  /* cursos */
+  .adapt{background:var(--cream)}
+  .courses{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .course{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:.25s;display:block}
+  .course:hover{transform:translateY(-3px);box-shadow:0 24px 44px -28px rgba(30,43,80,.5)}
+  .course img{width:100%;aspect-ratio:1;object-fit:cover}
+  .course .bd{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .course h3{font-size:1.15rem;font-weight:700;color:var(--teal-dark)}
+  .course span{font-size:.74rem;font-weight:700;letter-spacing:.1em;color:var(--navy);border:1.5px solid var(--navy);border-radius:999px;padding:6px 12px;white-space:nowrap}
+
+  /* opiniones */
+  .reviews{background:var(--teal)}
+  .reviews .head h2{color:#fff}
+  .gscore{background:#fff;border-radius:12px;padding:8px 12px;display:inline-block;margin-top:18px}
+  .r-grid{columns:3 320px;column-gap:20px}
+  .r{break-inside:avoid;background:#fff;border-radius:var(--radius);padding:20px 22px 22px;margin-bottom:20px}
+  .r img{width:auto;max-width:100%;height:62px;margin-bottom:10px}
+  .r p{font-size:.93rem;color:var(--navy)}
+
+  /* contacto */
+  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(30,43,80,.4);border-top:5px solid var(--teal)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:5px}
+  .field label span,.check b{color:var(--coral)}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d6dce6;border-radius:10px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(8,187,184,.3);border-color:var(--teal)}
+  .checks{margin:6px 0 18px;display:grid;gap:12px}
+  .checks .lab{font-size:.78rem;font-weight:600;color:var(--navy)}
+  .check{display:flex;gap:10px;font-size:.8rem;color:var(--muted);line-height:1.45;align-items:flex-start}
+  .check input{margin-top:3px;accent-color:var(--teal);flex:none}
+  .check a{text-decoration:underline;color:var(--teal-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:10px;padding:12px;font-size:.86rem;margin-top:12px;color:var(--navy)}
+  .side{display:grid;gap:18px}
+  .hours{background:var(--navy);color:#dfe5f3;border-radius:var(--radius);padding:26px}
+  .hours h3{color:var(--sun);font-size:.95rem;letter-spacing:.1em;margin-bottom:12px}
+  .hours p{font-size:.92rem;margin-bottom:10px}
+  .hours strong{color:#fff}
+  .ways{display:grid;gap:12px}
+  .way{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:.2s}
+  a.way:hover{border-color:var(--teal)}
+  .way .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--tint);color:var(--teal-dark);flex:none}
+  .way h4{font-size:.95rem}
+  .way p{font-size:.88rem;color:var(--muted)}
+
+  /* footer */
+  footer{background:#17213e;color:#b7c1d8;padding:60px 0 0;font-size:.9rem}
+  footer h5{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+  .f-grid{display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:32px}
+  .f-brand img{width:80px;height:80px;border-radius:12px;background:#fff;margin-bottom:16px}
+  .f-brand ul,.f-grid ul{list-style:none;display:grid;gap:8px}
+  .f-grid a:hover{color:#fff}
+  .f-col h5 + ul + h5{margin-top:22px}
+  .f-social{display:flex;gap:8px}
+  .f-social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);color:#fff}
+  .f-social a:hover{background:var(--teal);border-color:var(--teal)}
+  .copy{margin-top:46px;border-top:1px solid rgba(255,255,255,.12);padding:20px 0;font-size:.82rem}
+
+  .callbar{display:none}
+
+  @media (max-width:1100px){
+    .menu,.nav-cta{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--navy);color:var(--navy);font-weight:600;font-size:.88rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(320px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 44px -20px rgba(30,43,80,.4);padding:8px;max-height:72vh;overflow:auto}
+    .mnav .panel a{display:block;padding:9px 14px;border-radius:8px;color:var(--navy);font-weight:500;font-size:.93rem}
+    .mnav .panel a.top{font-weight:700;text-transform:uppercase;font-size:.86rem}
+    .mnav .panel a:hover{background:var(--tint)}
+    .mnav .panel .grp{font-size:.72rem;letter-spacing:.16em;color:var(--teal-dark);padding:12px 14px 4px;font-weight:700;text-transform:uppercase}
+    .hero-grid{grid-template-columns:1fr}
+    .price .wrap{grid-template-columns:1fr auto}
+    .price .mat{grid-column:1/-1}
+    .feat-a .mini{grid-template-columns:repeat(3,1fr)}
+    .why-grid{grid-template-columns:1fr}
+    .exam{position:static}
+    .contact-grid{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr 1fr 1fr}
+    .f-brand{grid-column:1/-1}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav .logo img{height:58px;width:58px}
+    .hero{padding:36px 0 28px}
+    .hero .row .btn{width:100%}
+    .slides{grid-template-columns:1fr}
+    .slide.it{background:linear-gradient(90deg,rgba(18,110,170,.95) 0%,rgba(18,110,170,.8) 70%,rgba(18,110,170,.5) 100%),url("https://www.sunnyacademy.es/wp-content/uploads/2022/03/Aprender_italiano.png") 70% center/cover no-repeat}
+    section{padding:60px 0}
+    .price .wrap{grid-template-columns:1fr;gap:20px}
+    .price .tag{justify-self:start}
+    .feat-a{display:none}
+    .feat-b{display:grid;grid-template-columns:1fr;gap:14px}
+    .feat-b .fcard{text-align:left;display:grid;grid-template-columns:56px 1fr;gap:4px 14px;padding:20px}
+    .feat-b .fcard img{width:56px;height:56px;margin:0;grid-row:span 2}
+    .feat-b .fcard p{margin-top:0}
+    .gallery{grid-template-columns:1fr 1fr}
+    .courses{grid-template-columns:1fr}
+    .card-form{padding:24px 18px}
+    .f-grid{grid-template-columns:1fr 1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Sunny Academy · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://www.sunnyacademy.es/" class="logo" aria-label="Sunny Academy"><img src="https://www.sunnyacademy.es/wp-content/uploads/2017/12/Sunny-Academy-academia-de-idiomas-madrid-1-150x150.png" alt="Sunny Academy" width="70" height="70"></a>
+    <ul class="menu">
+      <li><a href="https://www.sunnyacademy.es/">Home</a></li>
+      <li><a href="https://www.sunnyacademy.es/la-academia/">La academia</a></li>
+      <li><span tabindex="0">Inglés ▾</span>
+        <ul class="sub">
+          <li><a href="https://www.sunnyacademy.es/ingles/curso-ingles-madrid/">Cursos de inglés</a></li>
+          <li><a href="https://www.sunnyacademy.es/ingles/preparacion-examenes-ingles/">Preparación exámenes oficiales</a></li>
+          <li><a href="https://www.sunnyacademy.es/ingles/cursos-intensivos/">Cursos intensivos</a></li>
+          <li><a href="https://www.sunnyacademy.es/cursos-super-intensivos/">Cursos superintensivos</a></li>
+          <li><a href="https://www.sunnyacademy.es/curso-ingles-erasmus/">Curso inglés para viajes y Erasmus</a></li>
+          <li><a href="https://www.sunnyacademy.es/curso-ingles-online-madrid/">Cursos de inglés online</a></li>
+          <li><a href="https://www.sunnyacademy.es/ingles/cursos-ingles-madrid/cursos-de-ingles-para-ninos-y-jovenes/">Inglés para niños y jóvenes</a></li>
+          <li><a href="https://www.sunnyacademy.es/ingles/cursos-ingles-madrid/cursos-intensivos-ingles-verano/">Intensivos de verano</a></li>
+        </ul>
+      </li>
+      <li><span tabindex="0">Italiano ▾</span>
+        <ul class="sub">
+          <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/">Cursos de italiano</a></li>
+          <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/preparacion-examenes-italiano/">Preparación exámenes oficiales</a></li>
+          <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/curso-italiano-erasmus-madrid/">Curso Italiano Erasmus</a></li>
+          <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/cursos-intensivos-italiano/">Cursos intensivos</a></li>
+          <li><a href="https://www.sunnyacademy.es/cursos-de-italiano-online/">Cursos de italiano online</a></li>
+          <li><a href="https://www.sunnyacademy.es/intensivos-de-italiano-en-verano/">Intensivos de verano</a></li>
+        </ul>
+      </li>
+      <li><span tabindex="0">Empresas ▾</span>
+        <ul class="sub">
+          <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/curso-de-italiano-empresas/">Italiano para empresas</a></li>
+          <li><a href="https://www.sunnyacademy.es/ingles/curso-de-ingles-para-empresas/">Inglés para empresas</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.sunnyacademy.es/blog-2/">Blog</a></li>
+      <li><a href="https://www.sunnyacademy.es/contacto/">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+34910270234" class="btn btn-teal btn-sm">Llámanos</a>
+    </div>
+    <details class="mnav">
+      <summary><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Menú</summary>
+      <div class="panel">
+        <a class="top" href="https://www.sunnyacademy.es/">Home</a>
+        <a class="top" href="https://www.sunnyacademy.es/la-academia/">La academia</a>
+        <div class="grp">Inglés</div>
+        <a href="https://www.sunnyacademy.es/ingles/curso-ingles-madrid/">Cursos de inglés</a>
+        <a href="https://www.sunnyacademy.es/ingles/preparacion-examenes-ingles/">Preparación exámenes oficiales</a>
+        <a href="https://www.sunnyacademy.es/ingles/cursos-intensivos/">Cursos intensivos</a>
+        <a href="https://www.sunnyacademy.es/cursos-super-intensivos/">Cursos superintensivos</a>
+        <a href="https://www.sunnyacademy.es/curso-ingles-erasmus/">Curso inglés para viajes y Erasmus</a>
+        <a href="https://www.sunnyacademy.es/curso-ingles-online-madrid/">Cursos de inglés online</a>
+        <a href="https://www.sunnyacademy.es/ingles/cursos-ingles-madrid/cursos-de-ingles-para-ninos-y-jovenes/">Inglés para niños y jóvenes</a>
+        <a href="https://www.sunnyacademy.es/ingles/cursos-ingles-madrid/cursos-intensivos-ingles-verano/">Intensivos de verano</a>
+        <div class="grp">Italiano</div>
+        <a href="https://www.sunnyacademy.es/cursos-italiano-madrid/">Cursos de italiano</a>
+        <a href="https://www.sunnyacademy.es/cursos-italiano-madrid/preparacion-examenes-italiano/">Preparación exámenes oficiales</a>
+        <a href="https://www.sunnyacademy.es/cursos-italiano-madrid/curso-italiano-erasmus-madrid/">Curso Italiano Erasmus</a>
+        <a href="https://www.sunnyacademy.es/cursos-italiano-madrid/cursos-intensivos-italiano/">Cursos intensivos</a>
+        <a href="https://www.sunnyacademy.es/cursos-de-italiano-online/">Cursos de italiano online</a>
+        <a href="https://www.sunnyacademy.es/intensivos-de-italiano-en-verano/">Intensivos de verano</a>
+        <div class="grp">Empresas</div>
+        <a href="https://www.sunnyacademy.es/cursos-italiano-madrid/curso-de-italiano-empresas/">Italiano para empresas</a>
+        <a href="https://www.sunnyacademy.es/ingles/curso-de-ingles-para-empresas/">Inglés para empresas</a>
+        <a class="top" href="https://www.sunnyacademy.es/blog-2/">Blog</a>
+        <a class="top" href="https://www.sunnyacademy.es/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="tags"><span>Inglés · Italiano</span><span>Presencial y Online</span></div>
+          <h1><span class="sun">Sunny</span> Academy</h1>
+          <p class="claim">¡La academia que se adapta a ti!</p>
+          <div class="row">
+            <a href="#contacto" class="btn btn-teal">Contacto</a>
+            <a href="tel:+34910270234" class="btn btn-line"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Llámanos <span class="tel">910 270 234</span></a>
+          </div>
+        </div>
+        <a class="promo" href="#contacto" aria-label="Inscripciones abiertas curso 2026-27"><img src="https://www.sunnyacademy.es/wp-content/uploads/2026/09/slide-1.2.-26.png" alt="Inscripciones abiertas, curso 2026-27. 45 € de descuento hasta el 30 de septiembre. Grupos reducidos, profesores nativos, clases comunicativas." width="1920" height="700"></a>
+      </div>
+      <div class="slides">
+        <div class="slide en">
+          <b>Aprender inglés</b>
+          <span class="s2">Nunca fue tan fácil</span>
+          <p>Cursos de inglés general e intensivos<br>Preparación de exámenes oficiales</p>
+        </div>
+        <div class="slide it">
+          <b>Descubre el encanto</b>
+          <span class="s2">de hablar italiano</span>
+          <p>Adéntrate en la cultura y en la tradición italiana<br>con nuestros cursos y diviértete aprendiendo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRECIO -->
+  <div class="price">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Clases presenciales y online.</span>
+        <h2>Aprende Inglés e Italiano al mejor precio</h2>
+      </div>
+      <div class="tag"><small>DESDE</small><strong>70€</strong><span>/ mes</span></div>
+      <p class="mat">¡Material incluido!</p>
+    </div>
+  </div>
+
+  <!-- VENTAJAS -->
+  <section>
+    <div class="wrap">
+      <div class="feat-a">
+        <div class="top">
+          <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Mejor-precio-80x80.png" alt="" width="64" height="64"><h3>MEJOR PRECIO DEL MERCADO</h3><p>¿Por qué pagar más? En Sunny Academy tenemos cursos desde tan solo 7€ la hora con MATERIAL INCLUIDO!</p></article>
+          <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Profesores-nativos--80x80.png" alt="" width="64" height="64"><h3>PROFESORES NATIVOS</h3><p><strong>Profesores nativos, jóvenes y titulados</strong> estarán a tu completa disposición para ayudarte a mejorar donde más lo necesites.</p></article>
+          <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Clases-comunicativas-80x80.png" alt="" width="64" height="64"><h3>MÉTODO COMUNICATIVO</h3><p><strong>Método actual, dinámico y personalizado</strong>, enfocado en la <strong>comunicación</strong> real desde el primer día. Una fórmula que funciona, y nuestros alumnos lo confirman.</p></article>
+        </div>
+        <div class="mini">
+          <div><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Grupos-reducidos-80x80.png" alt="" width="46" height="46">Más tiempo y espacio en clases con 4/5 personas (máx. 8)</div>
+          <div><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/cohete-80x80.png" alt="" width="46" height="46"><strong>98% de aprobados en exámenes oficiales</strong> en más de 500 alumnos!</div>
+          <div><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Flexibilidad-80x80.png" alt="" width="46" height="46">Si no puedes acudir a una clase no te preocupes, en Sunny recuperas las horas perdidas</div>
+          <div><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/certificado-80x80.png" alt="" width="46" height="46">Certificado Erasmus en tan solo 4 meses</div>
+          <div><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Plataforma-digital-80x80.png" alt="" width="46" height="46">Plataforma digital con resumen de clases y material interactivo</div>
+        </div>
+      </div>
+      <div class="feat-b">
+        <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Mejor-precio-80x80.png" alt="" width="56" height="56"><h3>MEJOR PRECIO DEL MERCADO</h3><p>Desde 7€ la hora con MATERIAL incluido y la flexibilidad de recuperar las clases perdidas!</p></article>
+        <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Grupos-reducidos-80x80.png" alt="" width="56" height="56"><h3>GRUPOS REDUCIDOS</h3><p>Más tiempo y espacio en clases con 4/5 personas (máx. 8). ¡Un ambiente ideal!</p></article>
+        <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Clases-comunicativas-80x80.png" alt="" width="56" height="56"><h3>MÉTODO COMUNICATIVO</h3><p><strong>Método actual y dinámico</strong>, enfocado en la <strong>comunicación</strong> real desde el primer día. Una fórmula que funciona, y nuestros alumnos lo confirman.</p></article>
+        <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Profesores-nativos--80x80.png" alt="" width="56" height="56"><h3>PROFESORES</h3><p>Solo profesores NATIVOS, JÓVENES y CERTIFICADOS estarán a tu completa disposición para ayudarte a mejorar donde más lo necesites.</p></article>
+        <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/Flexibilidad-80x80.png" alt="" width="56" height="56"><h3>ESPECIALISTAS EN EXÁMENES OFICIALES</h3><p><strong>98% de aprobados en exámenes oficiales</strong> en más de 500 alumnos!</p></article>
+        <article class="fcard"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/certificado-80x80.png" alt="" width="56" height="56"><h3>CERTIFICADO ERASMUS INCLUIDO</h3><p>Obtén tu Certificado Erasmus en tan solo 4 meses con nuestros cursos, está incluido en el precio!</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ -->
+  <section class="why">
+    <div class="wrap why-grid">
+      <div>
+        <h2>¿Por qué Sunny Academy?</h2>
+        <p class="intro">Sunny Academy es una academia de inglés e italiano en el centro de Madrid. Desde hace más de 10 años ayudamos a nuestros estudiantes a alcanzar sus objetivos gracias a un modelo de enseñanza actual, dinámico y personalizado.</p>
+        <div class="blocks">
+          <div class="block"><h3>Formación a tu medida, con resultados reales</h3><p>Estamos especializados tanto en cursos generales como en la preparación de exámenes oficiales: Cambridge, Aptis, CILS, PLIDA y certificados para programas Erasmus.</p></div>
+          <div class="block"><h3>Profesores nativos y clases que inspiran</h3><p>Nos diferenciamos por nuestro equipo de profesores nativos, jóvenes y cualificados, por nuestras clases en grupos reducidos y por una metodología centrada en la comunicación real desde el primer día.</p></div>
+          <div class="block"><h3>98% de éxito y un ambiente que marca la diferencia</h3><p>Y lo mejor: nuestros alumnos nos avalan, con un 98% de aprobados en exámenes oficiales y cientos de opiniones positivas que destacan la calidad de nuestras clases, el ambiente familiar y la pasión de nuestros profesores.</p></div>
+        </div>
+        <p class="close">En Sunny Academy tú decides tus metas, y nosotros te ayudamos a conseguirlas.</p>
+      </div>
+      <aside class="exam">
+        <h3>ESPECIALISTAS EN PREPARACIÓN DE EXÁMENES</h3>
+        <p>En Sunny Academy te preparamos para obtener certificaciones oficiales de inglés e italiano con un equipo de docentes expertos y examinadores acreditados.</p>
+        <p>Nuestro enfoque es 100% práctico, personalizado y actualizado a las últimas tipologías de examen y enfocado en lo que realmente necesitas para presentarte al examen con más confianza.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Simulacros reales de examen</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Práctica intensiva de speaking y writing</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Feedback personalizado</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Seguimiento continuo del progreso</li>
+        </ul>
+        <p>Tanto si necesitas un título oficial para el trabajo, estudios o Erasmus, como si es un reto personal, nosotros te acompañamos paso a paso.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- AMBIENTE -->
+  <section id="ambiente">
+    <div class="wrap">
+      <div class="head center">
+        <h2>Un ambiente familiar</h2>
+        <p>En Sunny tendrás el espacio ideal para aprender un idioma, en grupos reducidos de 4/5 personas, estarás como en casa</p>
+      </div>
+      <div class="gallery">
+        <img src="https://www.sunnyacademy.es/wp-content/uploads/2019/12/1-1-768x513.jpg" alt="Aula de Sunny Academy" loading="lazy" width="768" height="513">
+        <img src="https://www.sunnyacademy.es/wp-content/uploads/2019/12/2-1-768x513.jpg" alt="Aula de Sunny Academy" loading="lazy" width="768" height="513">
+        <img src="https://www.sunnyacademy.es/wp-content/uploads/2017/04/4-768x513.jpg" alt="Sunny Academy" loading="lazy" width="768" height="513">
+        <img src="https://www.sunnyacademy.es/wp-content/uploads/2017/04/5-768x513.jpg" alt="Sunny Academy" loading="lazy" width="768" height="513">
+        <img src="https://www.sunnyacademy.es/wp-content/uploads/2017/04/8-768x513.jpg" alt="Sunny Academy" loading="lazy" width="768" height="513">
+        <img src="https://www.sunnyacademy.es/wp-content/uploads/2019/12/7-768x513.jpg" alt="Aula de Sunny Academy" loading="lazy" width="768" height="513">
+      </div>
+    </div>
+  </section>
+
+  <!-- NOS ADAPTAMOS -->
+  <section class="adapt">
+    <div class="wrap">
+      <div class="head center">
+        <h2>Nos adaptamos a ti</h2>
+        <p>Tanto si necesitas un curso intensivo o si prefieres ir poco a poco, si tu problema es el tiempo, la flexibilidad es nuestra característica principal. En Sunny Academy, ¡nos adaptamos a ti!</p>
+      </div>
+      <div class="courses">
+        <a class="course" href="https://www.sunnyacademy.es/ingles/cursos-ingles-madrid/"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/CLASES_INGLES2-705x705.jpg" alt="Cursos de inglés" loading="lazy" width="705" height="705"><div class="bd"><h3>Cursos de inglés</h3><span>VIEW COURSE</span></div></a>
+        <a class="course" href="https://www.sunnyacademy.es/cursos-italiano/"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/CURSOS_ITALIANO-1-705x705.jpg" alt="Cursos de italiano" loading="lazy" width="705" height="705"><div class="bd"><h3>Cursos de italiano</h3><span>VIEW COURSE</span></div></a>
+        <a class="course" href="https://www.sunnyacademy.es/espanol-para-extranjeros/"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/CURSOS_ESPANOL-705x705.jpg" alt="Spanish Courses" loading="lazy" width="705" height="705"><div class="bd"><h3>Spanish Courses</h3><span>VIEW COURSE</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section class="reviews" id="opiniones">
+    <div class="wrap">
+      <div class="head center">
+        <h2>¿Qué opinan nuestros alumnos sobre nosotros?</h2>
+        <span class="gscore"><img src="https://www.sunnyacademy.es/wp-content/uploads/2024/05/Schermata-2024-05-20-alle-10.27.12.png" alt="Sunny Academy, 4,9 estrellas, 74 reseñas. Academia de idiomas en Madrid" width="252" height="98"></span>
+      </div>
+      <div class="r-grid">
+        <figure class="r"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/resena5.png" alt="Reseña de Google" width="287" height="85" loading="lazy"><p>Por circunstancias personales, he estado solo un mes con el intensivo de inglés, pero no he podido acabar más agradecida. Darío te da todas las facilidades posibles para que no tengas ningún problema con las clases y Gen es una magnífica profesora. El ser pocos alumnos en cada curso creo que es fundamental para que las clases sean amenas y productivas. Sin duda, academia 100% recomendable. Thank you for all your help, guys!!!</p></figure>
+        <figure class="r"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/resena6-2.png" alt="Reseña de Google" width="253" height="83" loading="lazy"><p>Sunny Academy es una academia increíble… Llevaba varios años detrás del C1 de inglés y no conseguía sacármelo, realicé un curso intensivo y me dieron todas las claves… Thank you guys so much! ¡Muy muy recomendable! Highly Recommended!</p></figure>
+        <figure class="r"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/resena2-1.png" alt="Reseña de Google" width="258" height="85" loading="lazy"><p>Necesitaba tener un certificado B1 en italiano para poder irme de Erasmus porque me lo exigía la universidad. No sabía absolutamente nada, y en sólo tres meses me enseñaron lo necesario y logré pasar el examen. Me encanta esta academia porque las clases se hacen muy amenas, los profesores son jóvenes y saben adaptar la clase para que el idioma te resulte atractivo y sea menos complicado aprenderlo. Recomiendo esta academia al 100%</p></figure>
+        <figure class="r"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/resena1.png" alt="Reseña de Google" width="286" height="86" loading="lazy"><p>Magnífica academia de inglés en pleno centro de Madrid. Las clases son dinámicas y el ambiente es muy agradable. Gen es una estupenda profesora, te hace sentir cómoda desde el principio, y te ayuda a ganar confianza con el inglés. Sin lugar a dudas, la mejor profesora de inglés que he tenido nunca. Darío igualmente muy profesional, resolutivo y amable. 100% recomendable! Muchas gracias chic@s!</p></figure>
+        <figure class="r"><img src="https://www.sunnyacademy.es/wp-content/uploads/2023/12/resena7.png" alt="Reseña de Google" width="259" height="85" loading="lazy"><p>He hecho un curso de italiano intensivo A1 y he de decir que estoy encantada. Silvia ha hecho una excelente labor como docente y este primer acercamiento a la lengua ha sido para mí muy ameno y lo he disfrutado enormemente. Sin duda lo recomiendo.</p></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <h2>¡Tus metas están más cerca que nunca!</h2>
+        <p>No esperes más, escríbenos sin compromiso</p>
+      </div>
+      <div class="contact-grid">
+        <form class="card-form" onsubmit="return demoSubmit(this)">
+          <div class="field"><label for="n">Nombre y apellidos <span>*</span></label><input id="n" required autocomplete="name"></div>
+          <div class="field"><label for="i">Qué idioma quieres aprender (inglés, italiano, español) <span>*</span></label><input id="i" required></div>
+          <div class="field"><label for="l">Nivel (principiante, intermedio, avanzado) <span>*</span></label><input id="l" required></div>
+          <div class="field"><label for="e">Tu correo electrónico <span>*</span></label><input id="e" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="m">Tu mensaje <span>*</span></label><textarea id="m" rows="5" required></textarea></div>
+          <div class="checks">
+            <span class="lab">Consentimiento</span>
+            <label class="check"><input type="checkbox"><span>Consiento el uso de mis datos personales para recibir información comercial de su entidad.</span></label>
+            <span class="lab">Consentimiento <b>*</b></span>
+            <label class="check"><input type="checkbox" required><span>Consiento el uso de mis datos para los fines indicados en la política de privacidad «<a href="https://www.sunnyacademy.es/legal/sus-datos-seguros/" target="_blank" rel="noopener">SUS DATOS SEGUROS</a>» <b>*</b></span></label>
+          </div>
+          <button class="btn btn-teal" type="submit">Enviar</button>
+          <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        </form>
+
+        <div class="side">
+          <div class="hours">
+            <h3>HORARIOS SECRETARÍA</h3>
+            <p><strong>Octubre a Junio:</strong><br>Lunes a Jueves de 10:00 a 13:30 y de 17:00 a 21:00.<br>Viernes de 16:00 a 20:00.</p>
+            <p><strong>Julio y Septiembre:</strong><br>Lunes a Jueves de 10:00 a 13:30 y de 17:00 a 20:00.</p>
+            <p><strong>Agosto</strong>: cerrado</p>
+          </div>
+          <div class="ways">
+            <a class="way" href="https://wa.me/34634284765" target="_blank" rel="noopener"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg></span><div><h4>Envía un WhatsApp</h4><p>634 284 765</p></div></a>
+            <a class="way" href="tel:+34910270234"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><h4>Llámanos</h4><p>910 270 234</p></div></a>
+            <a class="way" href="mailto:info@sunnyacademy.es"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span><div><h4>Envía un email</h4><p>info@sunnyacademy.es</p></div></a>
+            <div class="way"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><h4>Acércate sin cita previa</h4><p>Carrera de San Jerónimo 16, 2º Izda<br>28014, Madrid, España</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap f-grid">
+    <div class="f-brand">
+      <img src="https://www.sunnyacademy.es/wp-content/uploads/2017/12/Sunny-Academy-academia-de-idiomas-madrid-1-150x150.png" alt="Sunny Academy" width="80" height="80">
+      <ul>
+        <li>Carrera de San Jerónimo 16, 2º Izda<br>28014, Madrid, España</li>
+        <li><a href="tel:+34910270234">91 027 02 34</a></li>
+        <li><a href="tel:+34634284765">+34 634 284 765</a></li>
+        <li><a href="mailto:info@sunnyacademy.es">info@sunnyacademy.es</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Cursos principales</h5>
+      <ul>
+        <li><a href="https://www.sunnyacademy.es/ingles/curso-ingles-madrid/">Curso de inglés</a></li>
+        <li><a href="https://www.sunnyacademy.es/ingles/cursos-intensivos/">Cursos intensivos de inglés</a></li>
+        <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/">Curso de italiano</a></li>
+        <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/curso-italiano-erasmus-madrid/">Curso de italiano Erasmus</a></li>
+      </ul>
+      <h5 style="margin-top:22px">CURSOS PARA EMPRESAS</h5>
+      <ul>
+        <li><a href="https://www.sunnyacademy.es/ingles/curso-de-ingles-para-empresas/">Curso de inglés para empresas</a></li>
+        <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/curso-de-italiano-empresas/">Curso de italiano para empresas</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Exámenes oficiales</h5>
+      <ul>
+        <li><a href="https://www.sunnyacademy.es/ingles/curso-ingles-examenes/preliminary-english-test-pet/">Preliminary English Test (PET)</a></li>
+        <li><a href="https://www.sunnyacademy.es/ingles/curso-ingles-examenes/first-certificate-exam-fce/">First Certificate Exam (FCE)</a></li>
+        <li><a href="https://www.sunnyacademy.es/ingles/preparacion-examenes-ingles/curso-cae-madrid/">Certificate in Advanced English (CAE)</a></li>
+        <li><a href="https://www.sunnyacademy.es/ingles/aptis/">Aptis</a></li>
+        <li><a href="https://www.sunnyacademy.es/ingles/curso-ingles-examenes/toeic/">TOEIC</a></li>
+        <li><a href="https://www.sunnyacademy.es/cursos-italiano-madrid/preparacion-examenes-italiano/">Exámenes oficiales de italiano</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Otros cursos</h5>
+      <ul>
+        <li><a href="https://www.sunnyacademy.es/cursos-de-frances-online/examenes-frances-erasmus-2/">Curso de francés Erasmus</a></li>
+        <li><a href="https://www.sunnyacademy.es/cursos-espanol-extranjeros-madrid/">Español para extranjeros</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>SÍGUENOS</h5>
+      <div class="f-social">
+        <a href="https://twitter.com/sunny_academy" target="_blank" rel="noopener" aria-label="Twitter"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6.8l-4.6-6.1L5.2 22H2.4l7-8L2 2h7l4.2 5.6zm-1 18h1.6L7 3.7H5.3z"/></svg></a>
+        <a href="https://www.facebook.com/sunnyacademy.madrid?ref=hl" target="_blank" rel="noopener" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-4 0-5 3-5 5v2H6v4h3v11h5V12h3.5l.5-4z"/></svg></a>
+        <a href="https://www.instagram.com/sunny_academy/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+      </div>
+      <h5 style="margin-top:22px">Legales</h5>
+      <ul>
+        <li><a href="https://www.sunnyacademy.es/legal/politica-de-cookies/">Política de cookies</a></li>
+        <li><a href="https://www.sunnyacademy.es/legal/politica-de-proteccion-de-datos/">Política de protección de datos</a></li>
+        <li><a href="https://www.sunnyacademy.es/legal/sus-datos-seguros/">Sus datos seguros</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy"><div class="wrap">Copyright © 2019 Sunny Academy | All Rights Reserved</div></div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34910270234" class="btn btn-teal">Llámanos</a>
+  <a href="https://wa.me/34634284765" class="btn btn-line" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

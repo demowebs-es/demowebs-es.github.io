@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IC Idiomas · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b2f5b; --navy-dark:#082345; --cyan:#00aeef; --cyan-dark:#0090c7; --orange:#ffaa00;
+    --ink:#14233a; --text:#3b4656; --muted:#6b7686; --line:#e3e9f0; --tint:#f3f8fc; --white:#fff;
+    --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);font-weight:700}
+  h2,h3{color:var(--ink);line-height:1.15}
+
+  .demo{background:var(--navy-dark);color:#bcd3ea;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top bar */
+  .topbar{background:var(--tint);border-bottom:1px solid var(--line);font-size:.84rem}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:46px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+  .tb-left{display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:var(--navy);font-weight:600}
+  .tb-left a{display:inline-flex;align-items:center;gap:7px}
+  .tb-left a:hover{color:var(--cyan-dark)}
+  .social{display:flex;gap:8px}
+  .social a{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--navy)}
+  .social a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .tb-right{display:flex;gap:8px}
+  .pill{display:inline-flex;align-items:center;padding:7px 14px;border-radius:6px;font-weight:700;font-size:.78rem;color:#fff;letter-spacing:.03em}
+  .pill-cyan{background:#00aaff}.pill-cyan:hover{background:#0077cc}
+  .pill-orange{background:var(--orange)}.pill-orange:hover{background:#cc7700}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+  .nav .logo img{height:62px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a,.menu > li > span{display:block;padding:10px 12px;font-size:.86rem;font-weight:600;color:var(--navy);border-radius:8px;cursor:pointer}
+  .menu > li > a:hover,.menu > li > span:hover{background:var(--tint);color:var(--cyan-dark)}
+  .menu .sub{position:absolute;right:0;top:100%;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -20px rgba(11,47,91,.35);padding:8px;min-width:220px;list-style:none;display:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:9px 12px;border-radius:7px;font-size:.88rem;color:var(--navy)}
+  .menu .sub a:hover{background:var(--tint)}
+  .mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.93rem;transition:.2s;border:2px solid var(--cyan);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-cyan{background:var(--cyan);color:#fff}
+  .btn-cyan:hover{background:var(--cyan-dark);border-color:var(--cyan-dark)}
+  .btn-navy{background:var(--navy);border-color:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-dark)}
+  .btn-line{background:#fff;color:var(--navy);border-color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--navy) url("https://idiomasic.com/img/slides/escuela-idiomas-madrid.jpg") center bottom/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,35,69,.92) 0%,rgba(11,47,91,.75) 45%,rgba(11,47,91,.15) 100%)}
+  .hero .wrap{position:relative;padding-top:96px;padding-bottom:104px}
+  .hero .eyebrow{color:#7fd8f7}
+  .hero h1{font-weight:800;font-size:clamp(2.3rem,5.2vw,3.9rem);line-height:1.05;margin:14px 0 14px;max-width:640px;letter-spacing:-.01em}
+  .hero .sub-h{font-size:1.2rem;color:#d6e6f5;font-weight:500}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9;font-weight:600}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:40px}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px;font-size:1.04rem}
+
+  /* slides as cards */
+  .offer{padding:0;margin-top:-56px;position:relative;z-index:2}
+  .offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .ocard{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 22px 44px -30px rgba(11,47,91,.45);display:flex;flex-direction:column;transition:.25s}
+  .ocard:hover{transform:translateY(-3px);border-color:var(--cyan)}
+  .ocard .ph{aspect-ratio:16/9;background:center/cover no-repeat}
+  .ocard .bd{padding:20px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .ocard .tag{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-dark);font-weight:700}
+  .ocard h3{font-size:1.08rem;font-weight:700}
+  .ocard p{font-size:.92rem;color:var(--muted)}
+  .ocard .more{margin-top:auto;padding-top:12px;font-weight:700;font-size:.9rem;color:var(--navy);display:inline-flex;gap:6px;align-items:center}
+  .ocard:hover .more{color:var(--cyan-dark)}
+
+  /* inscripciones */
+  .insc{padding:56px 0 0}
+  .insc-box{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px}
+  .insc-box .k em{font-style:normal;font-size:.76rem;letter-spacing:.2em;color:var(--cyan-dark);font-weight:700;display:block}
+  .insc-box .k b{font-size:1.35rem;color:var(--navy);font-weight:800}
+  .schools{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+  .schools a{padding:10px 18px;border-radius:999px;background:#fff;border:1.5px solid var(--navy);color:var(--navy);font-weight:600;font-size:.9rem}
+  .schools a:hover{background:var(--navy);color:#fff}
+  .insc-banner{margin:34px auto 0;max-width:600px}
+
+  /* intro + counters */
+  .rot{display:inline-grid;vertical-align:bottom;color:var(--cyan)}
+  .rot > span{grid-area:1/1;opacity:0;animation:rot 8s infinite}
+  .rot > span:nth-child(2){animation-delay:2s}
+  .rot > span:nth-child(3){animation-delay:4s}
+  .rot > span:nth-child(4){animation-delay:6s}
+  .rot.slow > span{animation-duration:14s}
+  .rot.slow > span:nth-child(2){animation-delay:3.5s}
+  .rot.slow > span:nth-child(3){animation-delay:7s}
+  .rot.slow > span:nth-child(4){animation-delay:10.5s}
+  @keyframes rot{0%{opacity:0;transform:translateY(8px)}3%,21%{opacity:1;transform:none}24%,100%{opacity:0;transform:translateY(-8px)}}
+  @media (prefers-reduced-motion:reduce){.rot > span{animation:none}.rot > span:first-child{opacity:1}}
+  .intro p.lead{font-size:1.1rem;max-width:820px;margin:18px auto 0;text-align:center}
+  .counters{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px}
+  .counter{text-align:center;padding:26px 16px;border-radius:var(--radius);border:1px solid var(--line);background:#fff}
+  .counter strong{display:block;font-size:2.5rem;font-weight:800;color:var(--navy);line-height:1}
+  .counter strong small{color:var(--cyan);font-size:1.6rem}
+  .counter span{display:block;font-weight:700;color:var(--ink);margin-top:10px}
+  .counter p{font-size:.86rem;color:var(--cyan-dark);margin-top:2px}
+
+  /* services */
+  .services{background:var(--tint)}
+  .svc-grid{display:grid;grid-template-columns:1fr 300px 1fr;gap:36px;align-items:center}
+  .svc{display:grid;gap:22px}
+  .svc article{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 22px}
+  .svc .ic{width:46px;height:46px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;margin-bottom:14px}
+  .svc h3{font-size:1rem;letter-spacing:.06em;font-weight:800}
+  .svc p{font-size:.94rem;margin-top:6px}
+  .svc-img{justify-self:center}
+
+  /* online band */
+  .online{background:linear-gradient(120deg,var(--navy) 0%,#0d4c86 100%);color:#fff;padding:64px 0}
+  .online .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+  .online h2{color:#fff;font-weight:700;font-size:clamp(1.5rem,2.8vw,2.1rem)}
+  .online h2 strong{color:#7fd8f7}
+  .online p{color:#d6e6f5;margin-top:8px;font-size:1.05rem}
+
+  /* calidad */
+  .video{max-width:900px;margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -30px rgba(11,47,91,.5);background:#000}
+  .video video{width:100%;display:block;aspect-ratio:16/9}
+  .quality p.lead{max-width:780px;margin:30px auto 0;text-align:center;font-size:1.06rem}
+  .script{font-family:"Shadows Into Light",cursive;color:var(--navy);font-size:2rem;text-align:center;margin-top:22px;line-height:1.2}
+  .script span{background:linear-gradient(transparent 62%,rgba(0,174,239,.28) 62%)}
+
+  /* process */
+  .process{display:grid;grid-template-columns:repeat(3,1fr) 1.6fr;gap:22px;align-items:end;margin-top:56px}
+  .step{text-align:center}
+  .step > img{width:150px;height:150px;border-radius:50%;object-fit:cover;margin:0 auto;border:4px solid #fff;box-shadow:0 0 0 2px var(--cyan)}
+  .step strong{display:block;margin-top:14px;color:var(--navy);font-weight:800;font-size:1.05rem}
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .mosaic a{display:block;border-radius:10px;overflow:hidden;aspect-ratio:1}
+  .step .mosaic img{width:100%;height:100%;object-fit:cover;transition:.3s;border-radius:0;border:0;box-shadow:none;margin:0}
+  .mosaic a:hover img{transform:scale(1.05)}
+  .step.big strong{margin-top:14px}
+
+  /* profesor */
+  .teacher{display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:center}
+  .teacher img{border-radius:var(--radius);box-shadow:0 26px 50px -30px rgba(11,47,91,.5)}
+  .teacher h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.5rem)}
+  .teacher h2 strong{color:var(--cyan)}
+  .teacher p{margin:16px 0 26px;font-size:1.04rem}
+
+  /* testimonials */
+  .testis{position:relative;background:var(--navy) url("https://idiomasic.com/img/escuela-academia-ingles-madrid.jpg") center/cover no-repeat}
+  .testis::before{content:"";position:absolute;inset:0;background:rgba(8,35,69,.88)}
+  .testis .wrap{position:relative}
+  .testis .head h2{color:#fff}
+  .t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .t{background:#fff;border-radius:var(--radius);padding:26px 26px 22px;display:flex;flex-direction:column}
+  .t blockquote{font-size:.98rem;color:var(--ink);flex:1}
+  .t blockquote::before{content:"“";display:block;font-size:3.2rem;line-height:.7;color:var(--cyan);font-weight:800;margin-bottom:6px}
+  .t .who{display:flex;gap:14px;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .t .who img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+  .t .who b{display:block;color:var(--ink);font-size:.95rem}
+  .t .who i{color:#3d85c6;font-size:.86rem}
+
+  /* closing */
+  .closing{text-align:center;padding:80px 0}
+  .closing h2{font-weight:700;font-size:clamp(1.5rem,3vw,2.2rem);max-width:820px;margin:0 auto}
+  .closing p{margin-top:14px;color:var(--navy);font-size:1.1rem}
+
+  /* footer */
+  footer{background:var(--navy-dark);color:#b9cde2;padding:64px 0 0;font-size:.92rem}
+  footer h4{color:#fff;font-size:1.2rem;font-weight:700}
+  footer h5{color:#fff;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+  .f-grid{display:grid;grid-template-columns:2.2fr 1fr;gap:48px}
+  .f-intro p{margin-top:10px;max-width:720px}
+  .f-intro .lnk{display:inline-flex;gap:6px;align-items:center;color:#7fd8f7;font-weight:700;margin-top:10px}
+  .f-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px;padding-top:30px;border-top:1px solid rgba(255,255,255,.12)}
+  .f-cols ul{list-style:none;display:grid;gap:8px}
+  .f-cols a:hover,.f-contact a:hover{color:#fff}
+  .f-contact .phone{display:block;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:4px}
+  .f-contact ul{list-style:none;display:grid;gap:10px;margin-top:16px}
+  .f-contact ul b{color:#fff}
+  .f-contact .social{margin-top:18px}
+  .f-contact .social a{background:transparent;border-color:rgba(255,255,255,.25);color:#fff}
+  .copy{margin-top:48px;border-top:1px solid rgba(255,255,255,.12);padding:20px 0;font-size:.82rem}
+  .copy .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .copy img{height:32px;width:auto}
+  .copy a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--navy);color:var(--navy);font-weight:700;font-size:.88rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav[open] .panel{display:block}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(300px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 44px -20px rgba(11,47,91,.4);padding:8px;max-height:70vh;overflow:auto}
+    .mnav .panel a{display:block;padding:11px 14px;border-radius:8px;color:var(--navy);font-weight:600;font-size:.95rem}
+    .mnav .panel a:hover{background:var(--tint)}
+    .mnav .panel .grp{font-size:.72rem;letter-spacing:.16em;color:var(--muted);padding:12px 14px 4px;font-weight:700}
+    .offer-grid{grid-template-columns:1fr 1fr}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .svc-img{grid-column:1/-1;grid-row:1;max-width:260px}
+    .process{grid-template-columns:repeat(3,1fr)}
+    .step.big{grid-column:1/-1}
+    .counters{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .topbar .tb-right,.topbar .social{display:none}
+    .tb-left{gap:12px;font-size:.8rem}
+    .nav{height:70px}
+    .nav .logo img{height:50px}
+    .hero .wrap{padding-top:60px;padding-bottom:96px}
+    .hero::before{background:linear-gradient(180deg,rgba(8,35,69,.9),rgba(11,47,91,.7))}
+    .hero .row .btn{width:100%}
+    section{padding:64px 0}
+    .offer-grid{grid-template-columns:1fr}
+    .insc-box{grid-template-columns:1fr;padding:24px 20px}
+    .schools{justify-content:flex-start}
+    .svc-grid{grid-template-columns:1fr}
+    .process{grid-template-columns:1fr 1fr 1fr;gap:12px}
+    .step > img{width:92px;height:92px}
+    .step strong{font-size:.92rem}
+    .mosaic{grid-template-columns:1fr 1fr}
+    .teacher{grid-template-columns:1fr;gap:28px}
+    .teacher .btn{width:100%}
+    .t-grid{grid-template-columns:1fr}
+    .online .btn{width:100%}
+    .f-grid{grid-template-columns:1fr;gap:34px}
+    .f-cols{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para IC Idiomas · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">
+      <a href="tel:+34910638426"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>910638426</a>
+      <a href="mailto:ic.info@idiomasic.com"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>ic.info@idiomasic.com</a>
+    </div>
+    <div class="social" aria-label="Redes sociales">
+      <a href="https://www.facebook.com/icidiomas/" target="_blank" rel="noopener" aria-label="Facebook" title="Sigue a IC Idiomas en facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-4 0-5 3-5 5v2H6v4h3v11h5V12h3.5l.5-4z"/></svg></a>
+      <a href="https://x.com/IC_idiomas" target="_blank" rel="noopener" aria-label="X" title="Sigue a IC Idiomas en Twitter"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6.8l-4.6-6.1L5.2 22H2.4l7-8L2 2h7l4.2 5.6zm-1 18h1.6L7 3.7H5.3z"/></svg></a>
+      <a href="https://www.instagram.com/icidiomas/" target="_blank" rel="noopener" aria-label="Instagram" title="Sigue a IC Idiomas en Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+      <a href="https://www.linkedin.com/school/icidiomas/" target="_blank" rel="noopener" aria-label="LinkedIn" title="Conecta con IC Idiomas en LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a>
+    </div>
+    <div class="tb-right">
+      <a href="https://idiomasic.com/campus-virtual" target="_blank" rel="noopener" class="pill pill-cyan">CLASES ONLINE</a>
+      <a href="https://panel.idiomasic.com/" target="_blank" rel="noopener" class="pill pill-orange">PLATAFORMA IC</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://idiomasic.com/" class="logo" aria-label="IC Idiomas"><img src="https://idiomasic.com/img/logo.png" alt="IC Idiomas" width="93" height="62"></a>
+    <ul class="menu">
+      <li><a href="https://idiomasic.com/">INICIO</a></li>
+      <li><a href="https://idiomasic.com/clases-idiomas-empresas">Clases a empresas</a></li>
+      <li><a href="https://idiomasic.com/business-english-madrid">Business English</a></li>
+      <li><a href="https://idiomasic.com/clases-empresa-otros-idiomas-madrid">Otros idiomas</a></li>
+      <li><a href="https://icedusolutions.com/">Programas Educativos</a></li>
+      <li><a href="https://icedusolutions.com/">Colegios</a></li>
+      <li><a href="https://idiomasic.com/noticias">BLOG</a></li>
+      <li><span tabindex="0">CONTACTO ▾</span>
+        <ul class="sub">
+          <li><a href="https://idiomasic.com/contactar">Contactar con nosotros</a></li>
+          <li><a href="https://idiomasic.com/cv-icidiomas">Trabajar con nosotros</a></li>
+        </ul>
+      </li>
+    </ul>
+    <details class="mnav">
+      <summary><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Menú</summary>
+      <div class="panel">
+        <a href="https://idiomasic.com/">INICIO</a>
+        <a href="https://idiomasic.com/clases-idiomas-empresas">Clases a empresas</a>
+        <a href="https://idiomasic.com/business-english-madrid">Business English</a>
+        <a href="https://idiomasic.com/clases-empresa-otros-idiomas-madrid">Otros idiomas</a>
+        <a href="https://icedusolutions.com/">Programas Educativos</a>
+        <a href="https://icedusolutions.com/">Colegios</a>
+        <a href="https://idiomasic.com/noticias">BLOG</a>
+        <div class="grp">CONTACTO</div>
+        <a href="https://idiomasic.com/contactar">Contactar con nosotros</a>
+        <a href="https://idiomasic.com/cv-icidiomas">Trabajar con nosotros</a>
+        <div class="grp">ACCESOS</div>
+        <a href="https://idiomasic.com/campus-virtual" target="_blank" rel="noopener">CLASES ONLINE</a>
+        <a href="https://panel.idiomasic.com/" target="_blank" rel="noopener">PLATAFORMA IC</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Madrid</span>
+      <h1>¿Necesitas aprender un idioma?</h1>
+      <p class="sub-h">Inglés, Francés, Alemán &amp; Español.</p>
+      <div class="row">
+        <a href="#home-intro" class="btn btn-cyan">¡Descubre IC Idiomas!</a>
+        <a href="tel:+34910638426" class="btn btn-ghost"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Llamar <span class="tel">91 063 84 26</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFERTA (slides) -->
+  <div class="offer">
+    <div class="wrap offer-grid">
+      <a class="ocard" href="https://idiomasic.com/extraescolares-idiomas-madrid">
+        <div class="ph" style="background-image:url('https://idiomasic.com/img/empresa-extraescolares-madrid.jpg')" role="img" aria-label="Extraescolares en Madrid"></div>
+        <div class="bd"><span class="tag">Madrid</span><h3>Extraescolares de Idiomas</h3><p>Inglés, Francés &amp; Alemán</p><span class="more">¡Más Información! →</span></div>
+      </a>
+      <a class="ocard" href="https://idiomasic.com/actividades-extraescolares.html">
+        <div class="ph" style="background-image:url('https://idiomasic.com/img/empresa-extraescolares-ludico-deportivas.jpg')" role="img" aria-label="Extraescolares Lúdico - Deportivas"></div>
+        <div class="bd"><span class="tag">Madrid</span><h3>Extraescolares Lúdico - Deportivas</h3><p>Amplio abanico de actividades</p><span class="more">¡Más Información! →</span></div>
+      </a>
+      <a class="ocard" href="#home-intro">
+        <div class="ph" style="background-image:url('https://idiomasic.com/img/slides/academia-idiomas-madrid.jpg')" role="img" aria-label="Academia de inglés en Madrid"></div>
+        <div class="bd"><span class="tag">Domina un idioma</span><h3>Ámbito educativo y empresarial</h3><p>Diseñamos y programamos los cursos que mejor se adaptan a las necesidades de cada uno.</p><span class="more">¡Descubre IC Idiomas! →</span></div>
+      </a>
+      <a class="ocard" href="#home-intro">
+        <div class="ph" style="background-image:url('https://idiomasic.com/img/slides/academia-ingles-madrid.jpg')" role="img" aria-label="Escuela de idiomas Madrid"></div>
+        <div class="bd"><span class="tag">Exámenes oficiales</span><h3>CAMBRIDGE, TRINITY, ETC.</h3><p>Ofrecemos cursos preparatorios para la obtención de títulos oficiales y reconocidos mundialmente.</p><span class="more">¡Descubre IC Idiomas! →</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- INSCRIPCIONES -->
+  <div class="insc" id="home-intro">
+    <div class="wrap">
+      <div class="insc-box">
+        <div class="k"><em>INSCRIPCIONES</em><b>Accede a los colegios</b></div>
+        <div class="schools">
+          <a href="https://idiomasic.com/inscripciones-sagrada-familia.html" target="_blank" rel="noopener">Sagrada Familia</a>
+          <a href="https://idiomasic.com/inscripciones-san-agustin.html" target="_blank" rel="noopener">San Agustín</a>
+          <a href="https://idiomasic.com/inscripciones-nazaret-madrid.html" target="_blank" rel="noopener">Jesús María</a>
+          <a href="https://idiomasic.com/inscripciones-nuestra-senora-loreto.html" target="_blank" rel="noopener">Nª Sra. Loreto</a>
+          <a href="https://idiomasic.com/inscripciones-caridad-cobre.html" target="_blank" rel="noopener">Nª Sra. Caridad C.</a>
+        </div>
+      </div>
+      <picture class="insc-banner">
+        <source media="(min-width: 700px)" srcset="https://idiomasic.com/img/academia-de-ingles-en-madrid.png">
+        <source media="(min-width: 480px)" srcset="https://idiomasic.com/img/academia-de-ingles-en-madrid-480.png">
+        <img src="https://idiomasic.com/img/academia-de-ingles-en-madrid-320.png" alt="Abierta inscripción online. Somos Centro Oficial Examinador de la Universidad de Cambridge &amp; Trinity College" style="margin:34px auto 0;max-width:600px;width:100%">
+      </picture>
+    </div>
+  </div>
+
+  <!-- INTRO + CIFRAS -->
+  <section class="intro">
+    <div class="wrap">
+      <div class="head center" style="margin-bottom:0">
+        <h2>¡Habla el <span class="rot"><span>inglés</span><span>francés</span><span>alemán</span><span>español</span></span> como siempre soñaste!</h2>
+      </div>
+      <p class="lead">Nuestra escuela de idiomas en Madrid les ofrece clases y cursos de idiomas personalizados tanto a principiantes como a profesionales a través de profesores altamente cualificados, ya sean nativos o bilingües. Además en <b>IC Idiomas</b> estamos comprometidos con la enseñanza de idiomas cuyo objetivo es ofrecer un aprendizaje eficaz.</p>
+      <div class="counters">
+        <div class="counter"><strong>10000<small>+</small></strong><span>Alumnos felices</span><p>Ellos no pueden estar equivocados</p></div>
+        <div class="counter"><strong>500<small>+</small></strong><span>Cursos impartidos</span><p>Mucho más por venir</p></div>
+        <div class="counter"><strong>100<small>+</small></strong><span>Profesores</span><p>Nativos o bilingües</p></div>
+        <div class="counter"><strong>3000<small>+</small></strong><span>Horas impartidas</span><p>Nuestra experiencia nos avala</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services">
+    <div class="wrap svc-grid">
+      <div class="svc">
+        <article>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M12 3 2 8h20z"/></svg></span>
+          <h3>CLASES</h3>
+          <p>Somos un centro especializado en la enseñanza de idiomas tanto en el ámbito educativo como empresarial. ¡Y ahora puedes tener nuestras clases online!</p>
+        </article>
+        <article>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg></span>
+          <h3>EXÁMENES OFICIALES</h3>
+          <p>Trinity College London, University of Cambridge (KET, PET, FIRST CERTIFICATE, ADVANCED, PROFICIENCY, YLE)</p>
+        </article>
+      </div>
+      <img class="svc-img" src="https://idiomasic.com/img/escuela-de-idiomas-madrid.png" alt="Escuela de idiomas Madrid IC Idiomas" width="300" height="295">
+      <div class="svc">
+        <article>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 3-3 7-7 9M13 21l4.5-10 4.5 10M14.5 18h6"/></svg></span>
+          <h3>BUSINESS ENGLISH</h3>
+          <p>Ofrecemos cursos especializados en comunicación o negocios, diseñados a la medida de nuestros clientes en base a sus necesidades.</p>
+        </article>
+        <article>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+          <h3>CURSOS</h3>
+          <p>Con nuestros cursos mejorarás de una forma efectiva tu nivel de idiomas de cara a tu formación personal o profesional.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONLINE -->
+  <div class="online">
+    <div class="wrap">
+      <div>
+        <h2>¿Necesitas aprender INGLÉS ONLINE? <strong>¡Te podemos ayudar!</strong></h2>
+        <p>Nuestro CAMPUS VIRTUAL está adaptado para cualquier nivel e idioma</p>
+      </div>
+      <a href="https://idiomasic.com/cursos-idiomas-online-madrid" target="_blank" rel="noopener" class="btn btn-cyan">Más información</a>
+    </div>
+  </div>
+
+  <!-- CALIDAD -->
+  <section class="quality" id="calidad">
+    <div class="wrap">
+      <div class="head center"><span class="eyebrow">IC Idiomas</span><h2>Filosofía de calidad</h2></div>
+      <div class="video">
+        <video controls muted playsinline preload="metadata" poster="https://idiomasic.com/img/slides/escuela-idiomas-madrid.jpg">
+          <source src="https://idiomasic.com/video/clases-idiomas-empresas-madrid.mp4" type="video/mp4">
+          Su navegador no puede reproducir este formato de video
+        </video>
+      </div>
+      <p class="lead">Impartimos clases y cursos de todos los niveles adaptados a las necesidades de nuestros alumnos / empresas, elaborando planes de estudios adecuados a cada nivel, sector, objetivo o necesidad.</p>
+      <p class="script"><span>Tu escuela de idiomas en Madrid</span></p>
+
+      <div class="process">
+        <div class="step"><img src="https://idiomasic.com/img/academia-de-ingles-madrid.png" alt="Academia de idiomas en Madrid"><strong>Clases</strong></div>
+        <div class="step"><img src="https://idiomasic.com/img/idiomas-madrid.png" alt="Idiomas en Madrid"><strong>Exámenes</strong></div>
+        <div class="step"><img src="https://idiomasic.com/img/escuela-idiomas-empresas-madrid.png" alt="Idiomas para empresas en Madrid"><strong>Cursos</strong></div>
+        <div class="step big">
+          <div class="mosaic">
+            <a href="https://idiomasic.com/contactar"><img src="https://idiomasic.com/img/escuela-de-idiomas-en-madrid.png" alt="Escuela de idiomas en Madrid"></a>
+            <a href="https://idiomasic.com/contactar"><img src="https://idiomasic.com/img/idiomas-madrid-mad.png" alt="Escuela de idiomas Madrid"></a>
+            <a href="https://idiomasic.com/business-english-madrid"><img src="https://idiomasic.com/img/academia-madrid-idiomas.png" alt="Academia idiomas Madrid"></a>
+            <a href="https://idiomasic.com/clases-extraescolares-ingles-madrid"><img src="https://idiomasic.com/img/mejor-escuela-madrid-idiomas.png" alt="Escuela de inglés Madrid"></a>
+          </div>
+          <strong>Y mucho más...</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESOR -->
+  <section style="padding-top:0">
+    <div class="wrap teacher">
+      <img src="https://idiomasic.com/img/profesores-escuela-academia-idiomas-madrid.png" alt="Profesores escuela de idiomas Madrid" width="800" height="800" loading="lazy">
+      <div>
+        <h2>¿Necesitas un <strong>profesor</strong> en Madrid?</h2>
+        <p>Nuestro objetivo y especialidad es encontrar el profesor perfecto para las necesidades de cada cliente enfocado a la materia y nivel del alumno. Mantenga un registro de su progreso de aprendizaje para mejorar la expresión oral y vocabulario con nuestros planes de aprendizaje.</p>
+        <a href="https://idiomasic.com/contactar" class="btn btn-navy">¡Contactar!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testis" id="opiniones">
+    <div class="wrap">
+      <div class="t-grid">
+        <figure class="t">
+          <blockquote>Pude experimentar la formación en inglés avanzado para nuestro equipo. Profesores de gran calidad, muy profesionales y atentos a las necesidades. Una experiencia personalizada y motivadora que recomiendo especialmente.</blockquote>
+          <figcaption class="who"><img src="https://idiomasic.com/img/cliente-business.png" alt="" loading="lazy"><div><b>Pedro Gutierrez Pérez</b><i>Responsable RR.HH</i></div></figcaption>
+        </figure>
+        <figure class="t">
+          <blockquote>Excelente campus online. Me di cuenta de lo importante que es tener un verdadero profesor que nos impartiese las clases virtualmente. Gracias IC Idiomas por su profesionalidad, amabilidad y apoyo.</blockquote>
+          <figcaption class="who"><img src="https://idiomasic.com/img/business-english-clases.png" alt="" loading="lazy"><div><b>Pilar Santos Molina</b><i>Responsable de selección</i></div></figcaption>
+        </figure>
+        <figure class="t">
+          <blockquote>Gracias a sus clases de formación para empresas en Tu escuela de idiomas, hemos podido crecer en el extranjero desde Madrid.</blockquote>
+          <figcaption class="who"><img src="https://idiomasic.com/img/jorge.jpg" alt="" loading="lazy"><div><b>Jorge Sánchez Mosquete</b><i>CEO netbulb</i></div></figcaption>
+        </figure>
+        <figure class="t">
+          <blockquote>Nuestros profesores son unas excelentes personas y grandes profesionales que han sabido enseñarnos el inglés con metodologías muy divertidas. ¡Gracias!</blockquote>
+          <figcaption class="who"><img src="https://idiomasic.com/img/alumna.png" alt="" loading="lazy"><div><b>Carolina Lozano Calvo</b><i>Alumna</i></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <div class="closing">
+    <div class="wrap">
+      <h2><b>IC Idiomas</b> es el lugar donde el aprendizaje de una lengua significa más que <span class="rot slow"><span>estudiar</span><span>enseñar</span><span>aprender</span><span>examinar</span></span> un idioma.</h2>
+      <p><b>IC Idiomas</b>. Tu escuela de idiomas en Madrid</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap f-grid">
+    <div class="f-intro">
+      <h4>IC Idiomas | Formación Lingüística para Empresas</h4>
+      <p>Soluciones a medida para potenciar la competitividad de sus equipos en el mercado global. Aumente la productividad y abra nuevas oportunidades de negocio a través de una comunicación eficaz. Solicite una propuesta personalizada para su empresa.</p>
+      <a class="lnk" href="https://idiomasic.com/contactar">Contactar →</a>
+      <div class="f-cols">
+        <div>
+          <h5>Nuestros Servicios</h5>
+          <ul>
+            <li><a href="https://idiomasic.com/clases-idiomas-empresas">Clases de idiomas para empresas</a></li>
+            <li><a href="https://idiomasic.com/business-english-madrid">Business English</a></li>
+            <li><a href="https://idiomasic.com/clases-empresa-otros-idiomas-madrid">Otros Idiomas</a></li>
+            <li><a href="https://idiomasic.com/cursos-idiomas-online-madrid">Cursos de idiomas online</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Cursos de idiomas</h5>
+          <ul>
+            <li><a href="https://idiomasic.com/curso-ingles-madrid">Curso de inglés</a></li>
+            <li><a href="https://idiomasic.com/curso-frances-madrid">Curso de francés</a></li>
+            <li><a href="https://idiomasic.com/curso-aleman-madrid">Curso de alemán</a></li>
+            <li><a href="https://idiomasic.com/curso-espanol-madrid">Curso de español</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Te puede interesar</h5>
+          <ul>
+            <li><a href="https://idiomasic.com/noticias">Noticias</a></li>
+            <li><a href="https://icedusolutions.com/">Programas educativos</a></li>
+            <li><a href="#calidad">Por qué elegirnos</a></li>
+            <li><a href="https://idiomasic.com/contactar">Contactar</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="f-contact">
+      <h5>CONTACTAR</h5>
+      <a href="tel:+34910638426" class="phone">91 063 84 26</a>
+      <p>Lunes - Viernes | 9:00 am. a 17:00 pm.</p>
+      <ul>
+        <li><b>Dirección:</b> <a href="https://maps.app.goo.gl/eUBYtHZDWmPmL8TJ9" target="_blank" rel="noopener">Calle Cardenal Siliceo 29</a></li>
+        <li><b>Email:</b> <a href="mailto:ic.info@idiomasic.com">ic.info@idiomasic.com</a></li>
+      </ul>
+      <div class="social">
+        <a href="https://www.facebook.com/icidiomas/" target="_blank" rel="noopener" aria-label="Facebook" title="Síguenos en facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-4 0-5 3-5 5v2H6v4h3v11h5V12h3.5l.5-4z"/></svg></a>
+        <a href="https://x.com/IC_idiomas" target="_blank" rel="noopener" aria-label="X" title="Síguenos en Twitter"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6.8l-4.6-6.1L5.2 22H2.4l7-8L2 2h7l4.2 5.6zm-1 18h1.6L7 3.7H5.3z"/></svg></a>
+        <a href="https://www.instagram.com/icidiomas/" target="_blank" rel="noopener" aria-label="Instagram" title="Síguenos en Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/school/icidiomas/" target="_blank" rel="noopener" aria-label="LinkedIn" title="Síguenos en LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="copy">
+    <div class="wrap">
+      <a href="https://idiomasic.com/" aria-label="IC Idiomas"><img src="https://idiomasic.com/img/logo-footer.png" alt="IC Idiomas" width="67" height="32"></a>
+      <span>© Copyright 2025. Todos los derechos reservados | <a href="https://idiomasic.com/aviso-legal" target="_blank" rel="noopener">Aviso Legal</a> | <a href="https://idiomasic.com/politica-cookies.html" target="_blank" rel="noopener">Cookies</a> | <a href="https://idiomasic.com/politica-de-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34910638426" class="btn btn-cyan">Llamar</a>
+  <a href="https://idiomasic.com/contactar" class="btn btn-line">Contactar</a>
+</div>
+
+</body>
+</html>

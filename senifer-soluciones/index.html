@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Senifer Soluciones · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#006E47; --green-dark:#00553a; --lime:#BCD643; --lime-soft:#f3f8dc; --slate:#3c4547;
+    --text:#3f4749; --muted:#6b7375; --line:#e3e6e2; --tint:#f5f7f4; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Lato,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .dosis{font-family:Dosis,system-ui,sans-serif}
+  .eyebrow{font-family:Dosis,sans-serif;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:700}
+
+  .demo{background:var(--slate);color:#dfe5d0;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top strip */
+  .strip{background:var(--green);color:#e8f2d2;font-size:.86rem}
+  .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:40px;flex-wrap:wrap}
+  .strip a:hover{color:#fff}
+  .social{display:flex;gap:6px}
+  .social a{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12)}
+  .social a:hover{background:var(--lime);color:var(--green-dark)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+  .brand{display:flex;align-items:center;gap:18px}
+  .brand img{height:58px;width:auto}
+  .tagline{display:flex;gap:18px;font-family:Dosis,sans-serif;font-weight:700;font-size:.82rem;line-height:1.15;color:var(--slate);letter-spacing:.06em;padding-left:18px;border-left:1px solid var(--line)}
+  .tagline span{color:var(--green);display:block}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 12px;font-family:Dosis,sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.08em;color:var(--slate);border-radius:8px}
+  .menu > li > a:hover,.menu > li:focus-within > a{color:var(--green);background:var(--tint)}
+  .menu .has > a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px}
+  .sub{position:absolute;top:100%;left:0;min-width:250px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -20px rgba(0,0,0,.25);padding:8px;list-style:none;display:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .sub a{display:block;padding:8px 12px;border-radius:8px;font-size:.88rem;font-family:Dosis,sans-serif;font-weight:600;letter-spacing:.05em;color:var(--slate)}
+  .sub a:hover{background:var(--lime-soft);color:var(--green)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.95rem;transition:.2s;border:2px solid var(--green);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{background:var(--green-dark);border-color:var(--green-dark)}
+  .btn-line{background:#fff;color:var(--green)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-lime{background:var(--lime);border-color:var(--lime);color:var(--green-dark)}
+  .btn-lime:hover{background:#cde35a;border-color:#cde35a}
+
+  /* mobile menu */
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--green)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);padding:10px 16px 18px;max-height:75vh;overflow:auto}
+  .mnav .panel > a,.mnav .grp > span{display:block;padding:11px 4px;font-family:Dosis,sans-serif;font-weight:700;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+  .mnav .grp div{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;padding:6px 4px 10px;border-bottom:1px solid var(--line)}
+  .mnav .grp div a{font-size:.86rem;padding:6px 0;color:var(--green);font-family:Dosis,sans-serif;font-weight:600;letter-spacing:.04em}
+
+  /* hero */
+  .hero{position:relative;background:#e9ebe8 url("https://www.senifersoluciones.es/img/cover-984x250.jpg") right center/auto 100% no-repeat;border-bottom:1px solid var(--line);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#eef0ed 0%,#eef0ed 52%,rgba(238,240,237,.85) 62%,rgba(238,240,237,0) 78%)}
+  .hero .wrap{position:relative;padding-top:84px;padding-bottom:88px}
+  .hero h1{font-family:Dosis,sans-serif;font-weight:700;font-size:clamp(2.3rem,4.8vw,3.8rem);line-height:1.05;color:var(--slate);letter-spacing:.02em;max-width:620px;text-transform:uppercase;margin-top:14px}
+  .hero h1 span{display:block;font-weight:500;color:var(--green)}
+  .hero .facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px;color:var(--slate);font-size:1rem}
+  .hero .facts b{color:var(--green)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .tel{font-variant-numeric:tabular-nums;font-weight:400;opacity:.9}
+
+  /* about */
+  section{padding:92px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head h2{font-family:Dosis,sans-serif;font-weight:700;font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.1;color:var(--slate);margin-top:10px;letter-spacing:.03em}
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+  .about-grid p{font-size:1.04rem;margin-bottom:18px}
+  .about-grid p.lead{font-size:1.14rem;color:var(--slate)}
+  .quote{background:var(--lime-soft);border-left:4px solid var(--lime);border-radius:0 var(--radius) var(--radius) 0;padding:22px 24px;color:var(--slate)}
+  .quote strong{color:var(--green)}
+  .photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -34px rgba(0,0,0,.45)}
+
+  .values{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .values-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .values p{font-size:1.04rem}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{font-family:Dosis,sans-serif;font-weight:700;letter-spacing:.1em;font-size:.9rem;padding:9px 16px;border-radius:999px;background:#fff;border:1.5px solid var(--green);color:var(--green)}
+  .chip.l{background:var(--green);color:#fff}
+
+  /* tarifas */
+  .rates{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .rate{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;background:#fff;transition:.25s;position:relative;overflow:hidden}
+  .rate::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--lime)}
+  .rate:hover{border-color:var(--green);box-shadow:0 18px 40px -26px rgba(0,0,0,.35);transform:translateY(-2px)}
+  .rate h3{font-family:Dosis,sans-serif;font-weight:700;letter-spacing:.1em;font-size:1rem;color:var(--slate);text-transform:uppercase}
+  .rate .price{display:flex;align-items:flex-end;gap:10px;margin:14px 0 18px;color:var(--green);font-family:Dosis,sans-serif}
+  .rate .price b{font-size:3.6rem;line-height:.9;font-weight:600}
+  .rate .price small{font-size:.95rem;font-weight:600;letter-spacing:.08em;line-height:1.2;text-transform:uppercase}
+  .rate .more{margin-top:auto;font-weight:700;color:var(--green);font-size:.92rem;display:inline-flex;align-items:center;gap:6px}
+  .rates-foot{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+  /* contact band */
+  .band{background:var(--green);color:#fff;padding:80px 0}
+  .band-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+  .band h2{font-family:Dosis,sans-serif;font-weight:700;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;letter-spacing:.03em}
+  .band .eyebrow{color:var(--lime)}
+  .band ul{list-style:none;display:grid;gap:12px;margin-top:22px;font-size:1.05rem}
+  .band li{display:flex;gap:12px;align-items:flex-start}
+  .band li svg{flex:none;margin-top:4px;color:var(--lime)}
+  .band .row{display:flex;flex-direction:column;gap:12px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .band .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+  footer{padding:34px 0;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+  .foot img{height:46px}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+  .foot nav a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .tagline{display:none}
+    .menu > li > a{padding:10px 8px;font-size:.86rem}
+  }
+  @media (max-width:900px){
+    .menu{display:none}
+    .mnav{display:block}
+    .about-grid,.values-grid,.band-grid{grid-template-columns:1fr;gap:36px}
+    .rates{grid-template-columns:1fr 1fr}
+    .hero{background-size:auto 100%;background-position:78% center}
+    .hero::before{background:linear-gradient(90deg,#eef0ed 0%,rgba(238,240,237,.94) 60%,rgba(238,240,237,.6) 100%)}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .strip .addr{display:none}
+    .nav{height:70px}
+    .brand img{height:46px}
+    .hero .wrap{padding-top:48px;padding-bottom:56px}
+    .hero .row .btn{width:100%}
+    .rates{grid-template-columns:1fr}
+    .rates-foot .btn,.band .row .btn{width:100%}
+    section{padding:64px 0}
+    .band{padding:60px 0}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:76px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Senifer Soluciones · demo no oficial</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span class="addr">Carretera de Rueda, 19. 47008, Valladolid · <a href="tel:+34983016886">983 01 68 86</a></span>
+    <div class="social">
+      <a href="https://www.facebook.com/senifersoluciones" aria-label="Síguenos en Facebook" title="Síguenos en Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+      <a href="https://www.linkedin.com/company/senifer-soluciones" aria-label="Síguenos en Linkedin" title="Síguenos en Linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a>
+      <a href="https://twitter.com/SENIFERSolucion" aria-label="Síguenos en Twitter" title="Síguenos en Twitter"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.5h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9.1L.9 2.5h7l4.8 6.4zm-1.2 18h1.9L7.1 4.4H5.1z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <a href="https://www.senifersoluciones.es" aria-label="Senifer Soluciones"><img src="https://www.senifersoluciones.es/img/SENIFER-logo.png" alt="Senifer Soluciones"></a>
+      <div class="tagline"><p>ASESORÍA<span>EMPRESARIAL</span></p><p>ADMINISTRACIÓN<span>DE FINCAS</span></p></div>
+    </div>
+    <ul class="menu">
+      <li class="has"><a href="https://www.senifersoluciones.es/index.php">SOLUCIONES</a>
+        <ul class="sub">
+          <li><a href="https://www.senifersoluciones.es/administracion-comunidades-valladolid.php">COMUNIDADES DE VECINOS</a></li>
+          <li><a href="https://www.senifersoluciones.es/gestoria-autonomos-valladolid.php">AUTÓNOMOS</a></li>
+          <li><a href="https://www.senifersoluciones.es/gestoria-pymes-valladolid.php">PYMES</a></li>
+          <li><a href="https://www.senifersoluciones.es/emprendedores.php">EMPRENDEDORES</a></li>
+          <li><a href="https://www.senifersoluciones.es/particulares.php">PARTICULARES</a></li>
+          <li><a href="https://www.senifersoluciones.es/trabajadores.php">TRABAJADORES</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.senifersoluciones.es/mision-vision-valores.php">MISIÓN</a></li>
+      <li class="has"><a href="https://www.senifersoluciones.es/servicios.php">SERVICIOS</a>
+        <ul class="sub">
+          <li><a href="https://www.senifersoluciones.es/administracion-comunidades-valladolid.php">ADMINISTRACIÓN DE FINCAS</a></li>
+          <li><a href="https://www.senifersoluciones.es/area-laboral-valladolid.php">ÁREA LABORAL</a></li>
+          <li><a href="https://www.senifersoluciones.es/area-fiscal-valladolid.php">ÁREA FISCAL</a></li>
+          <li><a href="https://www.senifersoluciones.es/area-contable-valladolid.php">ÁREA CONTABLE</a></li>
+          <li><a href="https://www.senifersoluciones.es/subvenciones-valladolid.php">SUBVENCIONES</a></li>
+          <li><a href="https://www.senifersoluciones.es/consultas-tramitaciones-valladolid.php">CONSULTAS TRAMITACIONES</a></li>
+          <li><a href="https://www.senifersoluciones.es/declaracion-renta-valladolid.php">DECLARACIONES RENTA</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.senifersoluciones.es/empleo.php">EMPLEO</a></li>
+      <li><a href="https://senifersoluciones.es/noticiasgestoriasvalladolid/">NOTICIAS</a></li>
+      <li><a href="https://www.senifersoluciones.es/contactar.php">CONTACTAR</a></li>
+      <li><a href="https://www.senifersoluciones.es/clientes.php">CLIENTES</a></li>
+    </ul>
+    <details class="mnav">
+      <summary aria-label="Menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="panel">
+        <div class="grp"><span>SOLUCIONES</span><div>
+          <a href="https://www.senifersoluciones.es/administracion-comunidades-valladolid.php">COMUNIDADES DE VECINOS</a>
+          <a href="https://www.senifersoluciones.es/gestoria-autonomos-valladolid.php">AUTÓNOMOS</a>
+          <a href="https://www.senifersoluciones.es/gestoria-pymes-valladolid.php">PYMES</a>
+          <a href="https://www.senifersoluciones.es/emprendedores.php">EMPRENDEDORES</a>
+          <a href="https://www.senifersoluciones.es/particulares.php">PARTICULARES</a>
+          <a href="https://www.senifersoluciones.es/trabajadores.php">TRABAJADORES</a>
+        </div></div>
+        <a href="https://www.senifersoluciones.es/mision-vision-valores.php">MISIÓN</a>
+        <div class="grp"><span>SERVICIOS</span><div>
+          <a href="https://www.senifersoluciones.es/administracion-comunidades-valladolid.php">ADMINISTRACIÓN DE FINCAS</a>
+          <a href="https://www.senifersoluciones.es/area-laboral-valladolid.php">ÁREA LABORAL</a>
+          <a href="https://www.senifersoluciones.es/area-fiscal-valladolid.php">ÁREA FISCAL</a>
+          <a href="https://www.senifersoluciones.es/area-contable-valladolid.php">ÁREA CONTABLE</a>
+          <a href="https://www.senifersoluciones.es/subvenciones-valladolid.php">SUBVENCIONES</a>
+          <a href="https://www.senifersoluciones.es/consultas-tramitaciones-valladolid.php">CONSULTAS TRAMITACIONES</a>
+          <a href="https://www.senifersoluciones.es/declaracion-renta-valladolid.php">DECLARACIONES RENTA</a>
+        </div></div>
+        <a href="https://www.senifersoluciones.es/empleo.php">EMPLEO</a>
+        <a href="https://senifersoluciones.es/noticiasgestoriasvalladolid/">NOTICIAS</a>
+        <a href="https://www.senifersoluciones.es/contactar.php">CONTACTAR</a>
+        <a href="https://www.senifersoluciones.es/clientes.php">CLIENTES</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Asesoría empresarial · Administración de fincas</span>
+      <h1>Aportamos soluciones <span>para que pueda centrarse en su negocio</span></h1>
+      <div class="facts">
+        <span><b>983 01 68 86</b></span>
+        <span>Carretera de Rueda, 19. 47008, Valladolid</span>
+      </div>
+      <div class="row">
+        <a href="tel:+34983016886" class="btn btn-green">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          Llamar <span class="tel">983 01 68 86</span>
+        </a>
+        <a href="#tarifas" class="btn btn-line">Tarifas básicas</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="senifer">
+    <div class="wrap about-grid">
+      <div>
+        <div class="head" style="margin-bottom:26px">
+          <h2>SENIFER SOLUCIONES</h2>
+        </div>
+        <p class="lead">Con una sólida experiencia en el mercado laboral de más de 10 años, ampliada con una extensa formación en distintas materias del entorno empresarial y con conocimiento de empresas de distintos tamaños, sectores y con distintos modos de organización, en SENIFER SOLUCIONES se quiere aportar dicha experiencia y conocimientos a su entorno, tanto de empresas como de particulares, con el claro objetivo de dar soluciones apropiadas con un asesoramiento personalizado, apoyando en aquellas materias específicas que dichos grupos, por su dedicación a otras materias, no pueden acometer.</p>
+        <div class="quote">
+          <p style="margin:0">La empresa <strong>SENIFER SOLUCIONES</strong> es la "solucionadora", la entidad de apoyo para aquellas tareas del día a día que influyen en la actividad empresarial o cotidiana, pero para las que los profesionales o personas a las que se dirige no llevan a cabo porque están especializados en su negocio o actividad, en sus clientes, y no pueden dedicarles el tiempo necesario para optimizar la gestión de su negocio, profesional a tu profesión, <strong>SENIFER SOLUCIONES es profesional del resto de tareas.</strong></p>
+        </div>
+      </div>
+      <div class="photo"><img src="https://www.senifersoluciones.es/images/cuadro.png" alt="Soluciones" width="1889" height="1791" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="wrap values-grid">
+      <div class="chips" aria-hidden="true">
+        <span class="chip l">TRANSPARENCIA</span><span class="chip">INFORMACIÓN</span><span class="chip">COMUNICACIÓN</span><span class="chip l">COMPROMISO</span><span class="chip">RESPETO</span><span class="chip">FORMALIDAD</span><span class="chip l">SERIEDAD</span><span class="chip">EFICIENCIA</span><span class="chip">CALIDAD EXCELENTE</span><span class="chip l">DISCRECIÓN</span><span class="chip">CONFIDENCIALIDAD</span>
+      </div>
+      <p>SENIFER SOLUCIONES nace con la vocación de ofrecer un servicio diferenciado basado en la TRANSPARENCIA, la INFORMACIÓN, la COMUNICACIÓN, el COMPROMISO, el RESPETO, la FORMALIDAD, la SERIEDAD y la EFICIENCIA en todos los procesos y procedimientos con el cliente, con utilización de los más recientes avances tecnológicos para dar mejor solución del modo más eficaz y eficiente bajo los criterios de prestar servicio personalizado de CALIDAD EXCELENTE y aprovechando los recursos legales para optimizar la gestión de cada cliente, todo ello bajo los criterios de DISCRECIÓN y CONFIDENCIALIDAD. Cada uno se ha de encargar de aquello que es experto y no entorpecer la dedicación al negocio en tareas que SENIFER SOLUCIONES puede gestionar eficazmente.</p>
+    </div>
+  </section>
+
+  <!-- TARIFAS -->
+  <section id="tarifas">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Tarifas</span>
+        <h2>Tarifas básicas</h2>
+      </div>
+      <div class="rates">
+        <a class="rate" href="https://www.senifersoluciones.es/autonomos.php">
+          <h3>Tarifa autónomos</h3>
+          <div class="price"><b>28</b><small>desde<br>€/mes</small></div>
+          <span class="more">+Info <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="rate" href="https://www.senifersoluciones.es/pymes.php">
+          <h3>Tarifa sociedades</h3>
+          <div class="price"><b>65</b><small>desde<br>€/mes</small></div>
+          <span class="more">+Info <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="rate" href="https://senifersoluciones.es/comunidades.php">
+          <h3>Administración de fincas</h3>
+          <div class="price"><b>1,90</b><small>desde<br>€/mes propietario</small></div>
+          <span class="more">+Info <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+      <div class="rates-foot">
+        <a href="https://www.senifersoluciones.es/tarifas-basicas.php" class="btn btn-green">+Info · Tarifas básicas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT BAND -->
+  <div class="band">
+    <div class="wrap band-grid">
+      <div>
+        <span class="eyebrow">Contactar</span>
+        <h2>SENIFER SOLUCIONES, S.L.</h2>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Carretera de Rueda, 19. 47008, Valladolid</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span><b>T:</b> <a href="tel:+34983016886">983 01 68 86</a> &nbsp; <b>M:</b> <a href="tel:+34656256442">656 25 64 42</a></span></li>
+        </ul>
+      </div>
+      <div class="row">
+        <a href="tel:+34983016886" class="btn btn-lime">Llamar <span class="tel">983 01 68 86</span></a>
+        <a href="https://www.senifersoluciones.es/contactar.php" class="btn btn-line">Contactar</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="https://www.senifersoluciones.es/img/SENIFER-logo.png" alt="Senifer Soluciones">
+    <span>© 2026 SENIFER SOLUCIONES</span>
+    <nav>
+      <a href="https://www.senifersoluciones.es/avisolegal.php">Aviso Legal</a>
+      <a href="https://www.senifersoluciones.es/politicadeprivacidad.php">Política de Privacidad</a>
+      <a href="https://www.senifersoluciones.es/politicadecookies.php">Política de Cookies</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983016886" class="btn btn-green">Llamar</a>
+  <a href="https://www.senifersoluciones.es/contactar.php" class="btn btn-line">Contactar</a>
+</div>
+
+</body>
+</html>

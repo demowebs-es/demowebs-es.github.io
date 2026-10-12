@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Asesoría Gabriel Paniagua · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#B30A1D; --red-dark:#8f0817; --ink:#0b0b0b; --coal:#161616; --stone:#B3ADAD; --grey:#999999;
+    --text:#3a3a3a; --muted:#6c6767; --line:#e7e3e3; --tint:#f6f4f4; --white:#fff; --radius:12px; --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Montserrat,sans-serif;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700}
+
+  .demo{background:#2a2a2a;color:var(--stone);font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:1px solid #222}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:16px}
+  .nav .logo img{height:64px;width:64px;object-fit:cover}
+  .menu{display:flex;gap:4px;list-style:none}
+  .menu a{display:block;padding:9px 14px;font-family:Montserrat,sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;color:#fff;border-radius:8px}
+  .menu a:hover{color:var(--red);background:#1b1b1b}
+  .nav-ctas{display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums;opacity:.85;font-weight:500}
+
+  /* hero */
+  .hero{background:var(--ink);color:#fff;padding:64px 0 76px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;bottom:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(179,10,29,.28),rgba(179,10,29,0) 70%)}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero h1{font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(2.3rem,5vw,3.8rem);line-height:1.04;letter-spacing:-.01em;margin:14px 0 22px}
+  .hero h1 span{color:var(--red)}
+  .hero p.lead{font-size:1.1rem;color:#d9d5d5;max-width:560px}
+  .hero p.lead strong{color:#fff}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero .logo-big{justify-self:end;width:100%;max-width:380px;border-radius:var(--radius);box-shadow:0 30px 70px -30px rgba(179,10,29,.45)}
+
+  .banner{background:var(--ink);border-top:1px solid #222}
+  .banner img{width:100%;max-width:807px;margin:0 auto;height:auto}
+
+  /* offer */
+  .offer{background:var(--red);color:#fff}
+  .offer .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:26px;padding-bottom:26px;flex-wrap:wrap}
+  .offer p{font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(1rem,2vw,1.2rem);letter-spacing:.02em;line-height:1.35}
+  .offer p span{display:block;color:#ffd9dd;font-size:.9em}
+  .offer .btn{background:#fff;color:var(--red);border-color:#fff}
+  .offer .btn:hover{background:#ffeef0}
+
+  /* areas */
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:38px}
+  .head h2{font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.12;color:var(--ink);margin-top:10px}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .area{border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;background:#fff;transition:.25s;display:flex;gap:16px;align-items:flex-start}
+  .area:hover{border-color:var(--red);box-shadow:0 18px 40px -26px rgba(0,0,0,.3)}
+  .area .num{font-family:Montserrat,sans-serif;font-weight:800;color:var(--red);font-size:1.05rem;min-width:28px}
+  .area h3{font-size:1.05rem;color:var(--ink);font-weight:600;line-height:1.35}
+
+  /* contact */
+  .contact{background:var(--tint);border-top:1px solid var(--line)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;border-top:4px solid var(--red)}
+  .card h3{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:.14em;font-size:.9rem;color:var(--ink);margin-bottom:18px}
+  .card ul{list-style:none;display:grid;gap:14px}
+  .card li{display:flex;gap:12px;align-items:flex-start;font-size:1rem}
+  .card li svg{flex:none;margin-top:4px;color:var(--red)}
+  .card li small{display:block;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .card li a{color:var(--ink);font-weight:600}
+  .card li a:hover{color:var(--red)}
+  .cta-card{background:var(--ink);color:#fff;border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column;justify-content:center}
+  .cta-card h2{font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.12;margin-bottom:24px}
+  .cta-card .row{display:flex;flex-direction:column;gap:12px}
+
+  footer{background:var(--ink);color:var(--grey);padding:28px 0;font-size:.84rem}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .foot img{height:48px;width:48px;object-fit:cover}
+  .foot .legal{color:var(--red);letter-spacing:.12em;font-weight:600}
+
+  .callbar{display:none}
+
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero .logo-big{display:none}
+    .areas{grid-template-columns:1fr 1fr}
+    .contact-grid{grid-template-columns:1fr}
+    .nav-ctas{display:none}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:auto;padding-top:10px;padding-bottom:10px;flex-wrap:wrap;justify-content:center;gap:6px}
+    .nav .logo img{height:52px;width:52px}
+    .menu{width:100%;justify-content:center;gap:0}
+    .menu a{padding:8px 10px;font-size:.74rem}
+    .hero{padding:44px 0 54px}
+    .hero .row .btn,.offer .btn,.cta-card .btn{width:100%}
+    .areas{grid-template-columns:1fr}
+    section{padding:62px 0}
+    .card,.cta-card{padding:24px 20px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(11,11,11,.97);border-top:1px solid #2a2a2a;box-shadow:0 -8px 24px -12px rgba(0,0,0,.4)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Asesoría Gabriel Paniagua · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="http://asesoriagpaniagua.com/index.html" class="logo" aria-label="Asesoría Gabriel Paniagua"><img src="logo.jpg" alt="Asesoría Gabriel Paniagua" width="400" height="400"></a>
+    <ul class="menu">
+      <li><a href="http://asesoriagpaniagua.com/empresa.html">LA EMPRESA</a></li>
+      <li><a href="http://asesoriagpaniagua.com/servicios.html">SERVICIOS</a></li>
+      <li><a href="http://asesoriagpaniagua.com/contacto.html">CONTACTO</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="tel:+34976744200" class="btn btn-red btn-sm">Tlf 976 74 42 00</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Zaragoza</span>
+        <h1>Asesoría <span>Gabriel Paniagua</span></h1>
+        <p class="lead"><strong>Asesoría Gabriel Paniagua</strong> proporciona a sus clientes un trato personalizado y les garantiza seguridad y confianza para el logro de sus necesidades y objetivos.</p>
+        <div class="row">
+          <a href="tel:+34976744200" class="btn btn-red">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            Tlf <span class="tel">976 74 42 00</span>
+          </a>
+          <a href="tel:+34696568206" class="btn btn-line">Móvil <span class="tel">696 568 206</span></a>
+        </div>
+      </div>
+      <img class="logo-big" src="logo.jpg" alt="" width="400" height="400">
+    </div>
+  </div>
+
+  <div class="banner"><img src="banner.jpg" alt="Asesoría Gabriel Paniagua" width="807" height="140"></div>
+
+  <!-- OFFER -->
+  <div class="offer">
+    <div class="wrap">
+      <p>APROVECHE NUESTRAS OFERTAS EN DECLARACIÓN DE LA RENTA <span>¡NOS ACERCAMOS A USTED!</span></p>
+      <a href="tel:+34976744200" class="btn">Llamar 976 74 42 00</a>
+    </div>
+  </div>
+
+  <!-- AREAS -->
+  <section id="especialidades">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">AGP</span>
+        <h2>AGP está especializada en:</h2>
+      </div>
+      <div class="areas">
+        <article class="area"><span class="num">01</span><h3>Administración de Fincas</h3></article>
+        <article class="area"><span class="num">02</span><h3>Negociación Bancaria</h3></article>
+        <article class="area"><span class="num">03</span><h3>Fiscal-Laboral-Contable</h3></article>
+        <article class="area"><span class="num">04</span><h3>Escrituras y Herencias</h3></article>
+        <article class="area"><span class="num">05</span><h3>Impuestos</h3></article>
+        <article class="area"><span class="num">06</span><h3>Asesoría de Empresas y Particulares</h3></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="oficina">
+    <div class="wrap contact-grid">
+      <div class="card">
+        <h3>OFICINA</h3>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span>C/Jorge Guillén 26, Local - ZARAGOZA</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span><small>Tlf</small><a href="tel:+34976744200">976 74 42 00</a></span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg><span><small>Móvil</small><a href="tel:+34696568206">696 568 206</a></span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><a href="mailto:gabriel@asesoriagpaniagua.com">gabriel@asesoriagpaniagua.com</a></span></li>
+        </ul>
+      </div>
+      <div class="cta-card">
+        <h2>Contacte con nosotros sin compromiso</h2>
+        <div class="row">
+          <a href="tel:+34976744200" class="btn btn-red">Tlf <span class="tel">976 74 42 00</span></a>
+          <a href="tel:+34696568206" class="btn btn-line">Móvil <span class="tel">696 568 206</span></a>
+          <a href="mailto:gabriel@asesoriagpaniagua.com" class="btn btn-line">gabriel@asesoriagpaniagua.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="logo.jpg" alt="Asesoría Gabriel Paniagua">
+    <span>Asesoría Gabriel Paniagua · Zaragoza</span>
+    <span class="legal">AVISO LEGAL</span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34976744200" class="btn btn-red">Llamar</a>
+  <a href="tel:+34696568206" class="btn btn-line">Móvil</a>
+</div>
+
+</body>
+</html>

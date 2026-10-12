@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Asesoría Merchán · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#669900; --green-dark:#4d7400; --lime:#AFCB05; --grey:#6E6E6E; --ink:#2b2b2b; --text:#3d3d3d; --muted:#6b6b6b;
+    --line:#e3e6dc; --tint:#f5f7ef; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700}
+
+  .demo{background:var(--ink);color:#d9e6a6;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px}
+  .logo{display:block;width:96px;height:58px;overflow:hidden;position:relative;flex:none;border-radius:4px}
+  .logo img{position:absolute;max-width:none;width:404px;left:-12px;top:-5px}
+  .menu{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+  .menu a{font-size:.88rem;font-weight:500;color:var(--ink);padding:8px 11px;border-radius:999px;transition:.2s}
+  .menu a:hover{background:var(--tint);color:var(--green-dark)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--green);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{background:var(--green-dark);border-color:var(--green-dark)}
+  .btn-line{background:#fff;color:var(--green-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:68px 0 80px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.02;color:var(--ink);margin:14px 0 14px}
+  .tagline{display:inline-block;background:var(--green);color:#fff;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:4px}
+  .welcome{margin-top:30px;padding-left:18px;border-left:3px solid var(--lime)}
+  .welcome p{font-size:1.08rem;max-width:540px}
+  .welcome strong{color:var(--ink);display:block;letter-spacing:.02em}
+  .welcome .sig{font-size:.86rem;font-weight:700;color:var(--green-dark);margin-top:10px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .hero-side{display:grid;gap:18px}
+  .hero-photo{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(0,0,0,.4)}
+  .hero-photo img{width:100%;height:auto}
+  .side-row{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:stretch}
+  .hours{background:var(--grey);color:#fff;border-radius:var(--radius);padding:20px 22px}
+  .hours h2{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);font-weight:700}
+  .hours p{margin-top:8px;font-size:1rem;font-weight:500}
+  .badge{display:block;width:160px;height:96px;overflow:hidden;position:relative;border-radius:var(--radius);border:1px solid var(--line);background:#fff}
+  .badge img{position:absolute;max-width:none;width:733px;left:-550px;top:-12px}
+
+  /* sections */
+  section{padding:92px 0}
+  .head{max-width:720px;margin-bottom:40px}
+  .head h2{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.1;color:var(--ink);margin-top:10px}
+
+  .dept{display:grid;grid-template-columns:320px 1fr;gap:44px;align-items:start;padding:40px 0;border-top:1px solid var(--line)}
+  .dept:first-of-type{border-top:0;padding-top:0}
+  .dept figure{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+  .dept figure img{width:100%;height:auto}
+  .dept .num{font-family:Cinzel,Georgia,serif;color:var(--green);font-size:1.1rem;font-weight:700}
+  .dept h3{font-family:Cinzel,Georgia,serif;font-size:1.7rem;color:var(--ink);line-height:1.15;margin:2px 0 10px}
+  .dept .intro{font-size:1.05rem;color:var(--ink)}
+  .dept .intro b{display:block;font-size:.78rem;letter-spacing:.12em;color:var(--green-dark);margin-bottom:4px}
+  .dept ul{list-style:none;display:grid;gap:10px;margin-top:20px}
+  .dept li{padding-left:20px;position:relative;font-size:.97rem}
+  .dept li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:2px;background:var(--lime)}
+  .areas{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:22px}
+  .areas div{background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.9rem;line-height:1.5}
+  .areas div strong{display:block;color:var(--green-dark);font-size:.8rem;letter-spacing:.08em;margin-bottom:3px}
+  .note{margin-top:18px;font-weight:600;color:var(--ink)}
+
+  /* ubicacion */
+  .alt{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .loc{display:grid;grid-template-columns:1.4fr .6fr;gap:32px;align-items:center}
+  .map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#fff}
+  .map img{width:100%;height:auto}
+  .addr{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .addr p{font-size:1.05rem;color:var(--ink)}
+  .addr .city{font-weight:700;letter-spacing:.06em}
+  .addr .btn{margin-top:18px;width:100%}
+
+  /* instalaciones */
+  .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .gallery img{width:100%;height:100%;object-fit:cover;border-radius:10px;aspect-ratio:700/385}
+  .gallery img:nth-child(1),.gallery img:nth-child(2){grid-column:span 3}
+  .gallery img:nth-child(n+3){grid-column:span 2}
+
+  /* contacto */
+  .contact{background:var(--grey);color:#fff}
+  .contact .head h2{color:#fff}
+  .contact .eyebrow{color:var(--lime)}
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .person{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:28px}
+  .person .tag{display:inline-block;background:var(--lime);color:#2b2b2b;font-size:.74rem;font-weight:700;letter-spacing:.1em;padding:5px 10px;border-radius:4px}
+  .person h3{font-size:1.15rem;margin-top:16px;letter-spacing:.03em}
+  .person p{color:#e4e4e4;font-size:.95rem}
+  .person a.mail{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:#fff;font-weight:600;border-bottom:1.5px solid var(--lime);padding-bottom:2px;word-break:break-all}
+  .phones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+  .phones .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .phones .fax{color:#e4e4e4;font-size:.95rem}
+
+  footer{border-top:4px solid var(--lime);background:#3a3a3a;color:#cfcfcf;padding:30px 0;font-size:.86rem}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot strong{color:#fff}
+  .foot .logo{width:80px;height:48px}
+  .foot .logo img{width:337px;left:-10px;top:-4px}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu a{padding:8px 8px;font-size:.84rem}
+  }
+  @media (max-width:980px){
+    .menu{display:none}
+    .hero-grid{grid-template-columns:1fr}
+    .dept{grid-template-columns:240px 1fr;gap:28px}
+    .loc{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:72px}
+    .hero{padding:40px 0 56px}
+    .hero .row .btn{width:100%}
+    .side-row{grid-template-columns:1fr}
+    .badge{justify-self:start}
+    section{padding:64px 0}
+    .dept{grid-template-columns:1fr;gap:20px}
+    .dept figure{max-width:260px}
+    .gallery{grid-template-columns:1fr 1fr;gap:10px}
+    .gallery img:nth-child(n){grid-column:span 1}
+    .gallery img:nth-child(1){grid-column:span 2}
+    .people{grid-template-columns:1fr}
+    .phones .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Asesoría Merchán · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="logo" aria-label="Asesoría Merchán"><img src="cabecera.png" alt="Asesoría Merchán"></a>
+    <nav class="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#juridica">Jurídica</a>
+      <a href="#laboral">Laboral</a>
+      <a href="#fiscal">Fiscal</a>
+      <a href="#contable">Contable</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#instalaciones">Instalaciones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="tel:+34923211832" class="btn btn-green" style="padding:10px 18px;font-size:.86rem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span class="tel">923 211 832</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Joaquín Merchán Bermejo</span>
+        <h1>Asesoría Merchán</h1>
+        <span class="tagline">Jurídica · Laboral · Fiscal y contable</span>
+        <div class="welcome">
+          <p><strong>ASESORÍA MERCHÁN LE DA LA BIENVENIDA,</strong>asegurándole una atención personal en la defensa integral de sus intereses.</p>
+          <p class="sig">Joaquín Merchán Bermejo</p>
+        </div>
+        <div class="row">
+          <a href="tel:+34923211832" class="btn btn-green">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span class="tel">923 211 832</span>
+          </a>
+          <a href="#contacto" class="btn btn-line">Contacto</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-photo"><img src="home.jpg" alt="Asesoría Merchán" width="600" height="402"></div>
+        <div class="side-row">
+          <div class="hours">
+            <h2>Horario de atención al público</h2>
+            <p>Lunes a viernes: de 9:00 h. a 14:00 h.</p>
+          </div>
+          <span class="badge"><img src="cabecera.png" alt="Graduado Social. Experto en Relaciones Laborales y Recursos Humanos"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPARTAMENTOS -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Asesoría Merchán</span>
+        <h2>Jurídica, laboral, fiscal y contable</h2>
+      </div>
+
+      <article class="dept" id="juridica">
+        <figure><img src="juridica.jpg" alt="Jurídica" width="400" height="391" loading="lazy"></figure>
+        <div>
+          <span class="num">01</span>
+          <h3>Jurídica</h3>
+          <p class="intro"><b>EL DEPARTAMENTO JURÍDICO DE LA ASESORÍA MERCHÁN</b>ofrece asistencia profesional en todos los campos en los que se desglosa el Derecho, dando respuesta a sus necesidades y atendiéndole de manera integral en la solución de asuntos de diversa índole.</p>
+          <p style="margin-top:16px">Nuestras áreas de actuación son amplias, ocupándonos de todo tipo de asuntos jurídicos, ya sean:</p>
+          <div class="areas">
+            <div><strong>LABORALES</strong>trabajadores/as, empresas, expediente de regulación de empleo, etc.</div>
+            <div><strong>CIVILES</strong>separaciones, divorcios, herencias, contratos, derecho inmobiliario, etc.</div>
+            <div><strong>MERCANTILES</strong>derecho de sociedades, contratos mercantiles, derecho concursal, etc.</div>
+            <div><strong>ADMINISTRATIVOS</strong>contencioso-administrativo, administraciones públicas</div>
+            <div><strong>PENALES</strong>todo tipo de delitos y faltas, violencia de género, delitos contra la seguridad del tráfico, etc.</div>
+          </div>
+          <p class="note">asegurando en todos ellos una dedicación absoluta y una atención al cliente personalizada y cercana.</p>
+        </div>
+      </article>
+
+      <article class="dept" id="laboral">
+        <figure><img src="laboral.jpg" alt="Laboral" width="400" height="391" loading="lazy"></figure>
+        <div>
+          <span class="num">02</span>
+          <h3>Laboral</h3>
+          <p class="intro"><b>EL DEPARTAMENTO LABORAL DE LA ASESORÍA MERCHÁN</b>le ofrece asesoramiento laboral permanente a empresas y particulares.</p>
+          <ul>
+            <li>Efectuamos todo tipo de trámites y gestiones ante la Seguridad Social.</li>
+            <li>Elaboración de contratos Laborales, confección de nóminas y correspondientes seguros sociales, así como el IRPF.</li>
+            <li>Afiliación a los diferentes regímenes: general, autónomos, agrícola, convenios especiales.</li>
+            <li>Gestionamos Recursos Humanos, creando valor para la empresa, desde y para las personas.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="dept" id="fiscal">
+        <figure><img src="fiscal.jpg" alt="Fiscal" width="400" height="391" loading="lazy"></figure>
+        <div>
+          <span class="num">03</span>
+          <h3>Fiscal</h3>
+          <p class="intro"><b>EL DEPARTAMENTO FISCAL DE LA ASESORÍA MERCHÁN</b>le ofrece Asesoramiento fiscal y mercantil permanente a empresas y particulares.</p>
+          <ul>
+            <li>Trámites y gestiones ante la Agencia Tributaria.</li>
+            <li>Confección y presentación de todo tipo de declaraciones tributarias, como IVA, IRPF, Impuesto de Sociedades.</li>
+            <li>Defensa de los intereses de empresas y particulares, tanto presencial como mediante recursos, ante la Inspección y órganos de gestión y recaudación, así como ante los tribunales, tanto administrativos como jurisdiccionales.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="dept" id="contable">
+        <figure><img src="contable.jpg" alt="Contable" width="400" height="391" loading="lazy"></figure>
+        <div>
+          <span class="num">04</span>
+          <h3>Contable</h3>
+          <p class="intro"><b>EL DEPARTAMENTO CONTABLE DE LA ASESORÍA MERCHÁN</b>le ofrece asesoramiento contable permanente a empresas y particulares.</p>
+          <ul>
+            <li>Supervisión y control contable tanto de personas físicas como de sociedades.</li>
+            <li>Contabilidad personas físicas.</li>
+            <li>Contabilidad y elaboración de libros y cuentas anuales para su presentación en el Registro Mercantil (sociedades)</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- UBICACION -->
+  <section class="alt" id="ubicacion">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Ubicación</span>
+        <h2>Salamanca</h2>
+      </div>
+      <div class="loc">
+        <a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Plaza+Poeta+Iglesias+18+37001+Salamanca" target="_blank" rel="noopener" aria-label="Plaza Poeta Iglesias 18-19, 37001 Salamanca"><img src="mapa_SA.png" alt="Asesoría Merchán. Plaza Poeta Iglesias 18-19. 37001 Salamanca" width="710" height="407" loading="lazy"></a>
+        <div class="addr">
+          <span class="eyebrow">Asesoría Merchán</span>
+          <p style="margin-top:10px">Plaza Poeta Iglesias 18-19, 1º A<br>37001 <span class="city">SALAMANCA</span></p>
+          <a href="tel:+34923211832" class="btn btn-green"><span class="tel">923 211 832</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALACIONES -->
+  <section id="instalaciones">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Instalaciones</span>
+        <h2>Instalaciones</h2>
+      </div>
+      <div class="gallery">
+        <img src="instal_3.jpg" alt="Instalaciones de Asesoría Merchán" width="700" height="385" loading="lazy">
+        <img src="instal_4.jpg" alt="Instalaciones de Asesoría Merchán" width="700" height="385" loading="lazy">
+        <img src="instal_1.jpg" alt="Instalaciones de Asesoría Merchán" width="700" height="385" loading="lazy">
+        <img src="instal_2.jpg" alt="Instalaciones de Asesoría Merchán" width="700" height="385" loading="lazy">
+        <img src="instal_5.jpg" alt="Instalaciones de Asesoría Merchán" width="700" height="385" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contacto</span>
+        <h2>Contacto</h2>
+      </div>
+      <div class="people">
+        <div class="person">
+          <span class="tag">ASESORÍA JURÍDICA</span>
+          <h3>JOAQUÍN MERCHÁN BERMEJO</h3>
+          <p>Graduado Social. Abogado</p>
+          <a class="mail" href="mailto:joaquin@asesoriamerchan.com">joaquin@asesoriamerchan.com</a>
+        </div>
+        <div class="person">
+          <span class="tag">ASESORÍA LABORAL, FISCAL Y CONTABLE</span>
+          <h3>LUCÍA GARCÍA DE DIOS</h3>
+          <a class="mail" href="mailto:lucia@asesoriamerchan.com">lucia@asesoriamerchan.com</a>
+        </div>
+      </div>
+      <div class="phones">
+        <a href="tel:+34923211832" class="btn btn-green">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="tel">923 211 832</span>
+        </a>
+        <span class="fax">Fax: 923 211 832</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="logo" style="border-radius:3px"><img src="cabecera.png" alt="Asesoría Merchán"></span>
+    <span><strong>923 211 832</strong> · Fax: 923 211 832</span>
+    <span>Plaza Poeta Iglesias 18-19, 1º A · 37001 <strong>SALAMANCA</strong></span>
+    <span>Todos los derechos reservados. © Asesoría Merchán</span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34923211832" class="btn btn-green">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    923 211 832
+  </a>
+  <a href="#contacto" class="btn btn-line">Contacto</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Madrid English School · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nova+Round&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#2b2b2b; --char2:#1f1f1f; --yellow:#f6d64a; --yellow-l:#fbe57e; --yellow-d:#e8c53d; --lime:#ccff66;
+    --purple:#990099; --blue:#0000cc; --wa:#25b14a; --text:#3a3a3a; --muted:#6b6b6b;
+    --line:#ece8da; --tint:#fbf8ec; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .round{font-family:"Nova Round",Inter,sans-serif}
+  .eyebrow{display:inline-block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--purple)}
+  .eyebrow a:hover{text-decoration:underline}
+
+  .demo{background:#111;color:#d9d3b8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{background:var(--char)}
+  .brand{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0 16px}
+  .logo{font-family:"Nova Round",sans-serif;color:#fff;font-size:1.9rem;line-height:1.1;display:block}
+  .logo span{color:var(--lime)}
+  .logo small{display:block;font-family:Inter,sans-serif;font-size:.8rem;color:#d8d8d8;margin-top:4px;letter-spacing:.01em}
+  .head-ctas{display:flex;gap:10px}
+  nav.main{background:linear-gradient(180deg,var(--yellow-l),var(--yellow-d));position:sticky;top:0;z-index:50;box-shadow:0 4px 14px -6px rgba(0,0,0,.45)}
+  nav.main .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:54px}
+  .menu{display:flex;list-style:none;align-items:center}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:15px 14px;font-family:"Nova Round",sans-serif;font-size:1rem;color:#333}
+  .menu > li > a:hover,.menu > li > a.on{background:rgba(255,255,255,.45)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;background:#fff;list-style:none;min-width:290px;padding:8px 0;border-top:3px solid var(--char);box-shadow:0 18px 40px -16px rgba(0,0,0,.35)}
+  .menu li:hover > .sub,.menu li:focus-within > .sub{display:block}
+  .menu .sub a{display:block;padding:8px 18px;font-size:.9rem;color:#333}
+  .menu .sub a:hover{background:var(--tint);color:var(--purple)}
+  .search{display:flex}
+  .search input{border:1px solid rgba(0,0,0,.12);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:.86rem;width:190px}
+  .search-ok{display:none;font-size:.78rem;color:#333;margin-left:10px;max-width:260px;line-height:1.3}
+  .mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid transparent;cursor:pointer;font-family:inherit;text-align:center}
+  .btn svg{flex:none}
+  .btn-wa{background:var(--wa);color:#fff}
+  .btn-wa:hover{background:#1e9a3f}
+  .btn-y{background:var(--yellow);color:#222;border-color:var(--yellow-d)}
+  .btn-y:hover{background:var(--yellow-d)}
+  .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .btn-dark{background:var(--char);color:#fff}
+  .btn-dark:hover{background:#000}
+  .btn-ghost{background:#fff;color:#222;border-color:#d9d2b5}
+  .btn-ghost:hover{border-color:var(--char)}
+  .btn-sm{padding:9px 16px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums}
+
+  /* hero */
+  .hero{background:var(--char);color:#fff;padding:56px 0 72px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;background:linear-gradient(90deg,var(--yellow),var(--lime))}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .hero h1{font-family:"Nova Round",sans-serif;font-weight:400;font-size:clamp(2.2rem,4.6vw,3.5rem);line-height:1.08}
+  .hero h1 span{display:block;color:var(--lime)}
+  .hero p{color:#dcdcdc;margin-top:20px;font-size:1.03rem;max-width:560px}
+  .hero .open{display:inline-block;margin-top:18px;background:var(--yellow);color:#222;font-weight:700;font-size:.86rem;letter-spacing:.04em;padding:8px 14px;border-radius:8px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero-img{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.8);border:6px solid #fff;transform:rotate(1.2deg)}
+
+  section{padding:84px 0}
+  .head{max-width:760px;margin-bottom:36px}
+  .head h2{font-family:"Nova Round",sans-serif;font-weight:400;font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.15;color:#222;margin-top:8px}
+  .head p{color:var(--muted);margin-top:12px}
+  .alt{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .dark{background:var(--char);color:#e5e5e5}
+  .dark .head h2{color:#fff}
+  .dark .eyebrow{color:var(--lime)}
+
+  /* offer */
+  .offer{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .offer article{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:16px;transition:.25s;border-top:4px solid var(--yellow)}
+  .offer article:hover{box-shadow:0 20px 40px -26px rgba(0,0,0,.35);transform:translateY(-2px)}
+  .offer h3{font-size:1rem;color:#222;font-weight:600;line-height:1.45;flex:1}
+  .offer a{align-self:flex-start;font-weight:600;font-size:.88rem;color:var(--blue);display:inline-flex;gap:6px}
+  .offer a:hover{text-decoration:underline}
+
+  /* malta strip */
+  .malta{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px;margin-top:28px}
+  .malta img{width:120px;border-radius:8px}
+  .malta h3{font-family:"Nova Round",sans-serif;font-weight:400;font-size:1.5rem;color:#222}
+  .malta p{margin:6px 0 12px}
+  .malta .links{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.92rem}
+  .malta .links a{color:var(--blue);font-weight:500}
+  .malta .links a:hover{text-decoration:underline}
+
+  /* course cards */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .course{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .course .img{aspect-ratio:16/8;background:#eee;overflow:hidden}
+  .course .img img{width:100%;height:100%;object-fit:cover}
+  .course .body{padding:26px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .course h3{font-family:"Nova Round",sans-serif;font-weight:400;font-size:1.45rem;color:#222;line-height:1.2}
+  .course .sub{font-weight:700;color:#222;font-size:.92rem;letter-spacing:.02em}
+  .course ul{list-style:none;display:grid;gap:7px}
+  .course li{padding-left:20px;position:relative;font-size:.95rem}
+  .course li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--yellow-d)}
+  .price{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+  .price div{background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.85rem;color:var(--muted)}
+  .price b{display:block;font-size:1.25rem;color:#222;font-variant-numeric:tabular-nums}
+  .note{font-size:.88rem;color:var(--muted)}
+  .abroad{font-size:.78rem;letter-spacing:.06em;font-weight:700;color:var(--purple);text-transform:uppercase;border-top:1px dashed var(--line);padding-top:12px;margin-top:auto}
+
+  /* intensivos */
+  .modes{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;margin-bottom:30px}
+  .modes img{width:300px;border-radius:10px}
+  .mode-sum{display:grid;gap:12px}
+  .mode-sum p{background:#fff;border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:10px;padding:14px 16px;font-size:.95rem}
+  .mode-sum b{color:var(--purple)}
+  .course.mode .tag{display:inline-block;background:var(--char);color:var(--lime);font-family:"Nova Round",sans-serif;padding:4px 12px;border-radius:999px;font-size:.85rem;align-self:flex-start}
+  .course.mode blockquote{font-size:.93rem;color:#444;background:var(--tint);border-radius:10px;padding:14px 16px}
+
+  /* malta grid */
+  .malta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:start}
+  .ticks{list-style:none;display:grid;gap:10px}
+  .ticks li{padding-left:28px;position:relative}
+  .ticks li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:50%;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23222' stroke-width='4'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/10px no-repeat}
+  .dark .ticks li::before{background-color:var(--lime)}
+  .logo-card{background:#fff;border-radius:var(--radius);padding:24px;display:grid;gap:16px;justify-items:center;text-align:center}
+  .logo-card img{max-width:260px}
+
+  /* one to one */
+  .oto{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
+  .oto .lead a{color:var(--blue);font-weight:600}
+  .table{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .table div{display:flex;justify-content:space-between;gap:16px;padding:14px 18px;border-top:1px solid var(--line);font-size:.95rem}
+  .table div:first-child{border-top:0}
+  .table b{color:#222;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .table small{display:block;color:var(--muted);font-size:.82rem}
+  .home-visit{margin-top:16px;background:var(--char);color:var(--lime);border-radius:10px;padding:14px 18px;font-weight:600;font-size:.9rem;letter-spacing:.03em}
+
+  /* empresas */
+  .biz{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .biz .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+  .biz .opts div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:.92rem}
+  .biz .opts b{display:block;font-family:"Nova Round",sans-serif;font-weight:400;color:var(--purple);font-size:1.05rem}
+  .biz p{margin-bottom:12px}
+  .biz img{border-radius:var(--radius)}
+  .cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .cities span{background:var(--yellow);color:#222;border-radius:999px;padding:5px 12px;font-size:.84rem;font-weight:600}
+
+  /* summer */
+  .camp{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .camp-price{background:#fff;color:var(--text);border-radius:var(--radius);padding:26px;border-top:5px solid var(--yellow)}
+  .camp-price .k{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--purple)}
+  .camp-price .big{font-family:"Nova Round",sans-serif;font-size:2.6rem;color:#222;line-height:1.1;margin:6px 0 2px}
+  .camp-price .w{font-weight:600;color:#222;margin-bottom:12px}
+  .camp p{margin-bottom:12px}
+  .camp a.u{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+  .camp .why{font-family:"Nova Round",sans-serif;font-size:1.2rem;color:#fff;margin:18px 0}
+  .camp .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+
+  /* footer */
+  footer{background:var(--char2);color:#bdbdbd;padding:52px 0 28px;font-size:.9rem}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+  footer h4{font-family:"Nova Round",sans-serif;font-weight:400;color:#fff;font-size:1.15rem;margin-bottom:10px}
+  footer ul{list-style:none;display:grid;gap:5px}
+  footer a{color:var(--lime)}
+  footer a:hover{text-decoration:underline}
+  .fbot{border-top:1px solid #333;margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu > li > a{padding:15px 9px;font-size:.92rem}
+    .search input{width:140px}
+    .hero-grid,.two,.malta-grid,.oto,.biz,.camp{grid-template-columns:1fr}
+    .offer{grid-template-columns:1fr 1fr}
+    .modes{grid-template-columns:1fr}
+    .modes img{width:100%;max-width:420px}
+    .hero-img{max-width:560px}
+  }
+  @media (max-width:780px){
+    .wrap{padding:0 16px}
+    .head-ctas{display:none}
+    .logo{font-size:1.6rem}
+    .menu,.search-desk{display:none}
+    .mnav{display:block;width:100%}
+    .mnav summary{list-style:none;cursor:pointer;color:#222;font-family:"Nova Round",sans-serif;padding:14px 0;display:flex;align-items:center;justify-content:space-between}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav ul{list-style:none;padding:0 0 12px;max-height:70vh;overflow:auto}
+    .mnav li a{display:block;color:#222;padding:8px 0;border-top:1px solid rgba(0,0,0,.08);font-size:.95rem}
+    .mnav li.g{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#6d5a00;font-weight:700;padding:12px 0 2px}
+    .mnav li.s a{padding-left:14px;font-size:.9rem}
+    .mnav .search{margin:10px 0 4px;flex-wrap:wrap}
+    .mnav .search input{width:100%}
+    .mnav .search-ok{margin:6px 0 0}
+    .hero{padding:40px 0 52px}
+    .hero .row .btn{width:100%}
+    .hero-img{transform:none}
+    section{padding:60px 0}
+    .offer{grid-template-columns:1fr}
+    .malta{grid-template-columns:1fr;padding:22px}
+    .biz .opts{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr}
+    .camp .row .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Madrid English School · demo no oficial</div>
+
+<header>
+  <div class="wrap brand">
+    <a class="logo" href="https://www.madridenglishschool.es/index.html">Madrid<span>EnglishSchool</span><small>Cursos de inglés para todos los niveles.</small></a>
+    <div class="head-ctas">
+      <a href="https://wa.me/34646705930" class="btn btn-wa btn-sm" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        WhatsApp</a>
+      <a href="tel:+34646705930" class="btn btn-line btn-sm"><span class="tel">646 705 930</span></a>
+    </div>
+  </div>
+</header>
+
+<nav class="main" aria-label="Menú principal">
+  <div class="wrap">
+    <ul class="menu">
+      <li><a class="on" href="https://www.madridenglishschool.es/index.html">Inicio</a></li>
+      <li><a href="https://www.madridenglishschool.es/malta-summer-camp.html">Inglés en Malta ▾</a>
+        <ul class="sub">
+          <li><a href="https://www.madridenglishschool.es/malta-summer-camp.html">Summer Camp in Malta (10 a 17 años)</a></li>
+          <li><a href="https://www.madridenglishschool.es/ingles-adultos-malt.html">Inglés para adultos en Malta</a></li>
+          <li><a href="https://www.madridenglishschool.es/curso-familiar-adultosninos.html">Curso familiar. Adultos+niño(s)</a></li>
+          <li><a href="https://www.madridenglishschool.es/ingles-ninos-extranjeros.html">Inglés para niños en Malta</a></li>
+          <li><a href="https://www.madridenglishschool.es/learn-english-in-maltaotras-opciones-en-malta.html">Otras opciones en Malta</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.madridenglishschool.es/academia-de-ingles-chamrtin.html">Clases de inglés ▾</a>
+        <ul class="sub">
+          <li><a href="https://www.madridenglishschool.es/academia-de-ingles-chamrtin.html">1-Cursos regulares de inglés</a></li>
+          <li><a href="https://www.madridenglishschool.es/clases-ingles-sabados.html">2-Inglés los sábados</a></li>
+          <li><a href="https://www.madridenglishschool.es/intensivo-ingles.html">3-Cursos intensivos de inglés</a></li>
+          <li><a href="https://www.madridenglishschool.es/english-in-malta.html">4-English in Malta</a></li>
+          <li><a href="https://www.madridenglishschool.es/english-abroad.html">5-Inglés en otros países</a></li>
+          <li><a href="https://www.madridenglishschool.es/ingles-para-ninos-1.html">6-Inglés para niños 1</a></li>
+          <li><a href="https://www.madridenglishschool.es/ingles-ninos-adolescentes.html">7-Inglés para niños 2</a></li>
+          <li><a href="https://www.madridenglishschool.es/clases-particulares-ingles.html">8-Clases particulares de inglés</a></li>
+          <li><a href="https://www.madridenglishschool.es/ingles-minigrupos.html">9-Minigrupos de inglés</a></li>
+          <li><a href="https://www.madridenglishschool.es/idiomas-empresas-ingles.html">10-Cursos de inglés para empresas</a></li>
+          <li><a href="https://www.madridenglishschool.es/summer-camp-malta.html">12-Summer Camp in Malta (10-17 años)</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.madridenglishschool.es/contacto.html">Contacto</a></li>
+      <li><a href="https://www.madridenglishschool.es/mini-lecciones.html">BLOG</a></li>
+    </ul>
+    <form class="search search-desk" onsubmit="return demoSubmit(this)" role="search">
+      <input type="text" name="req" placeholder="Buscar" aria-label="Buscar">
+      <span class="search-ok">Demo: en la versión final el formulario se conecta al email del negocio.</span>
+    </form>
+    <details class="mnav">
+      <summary>Menú <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <ul>
+        <li><a href="https://www.madridenglishschool.es/index.html">Inicio</a></li>
+        <li class="g">Inglés en Malta</li>
+        <li class="s"><a href="https://www.madridenglishschool.es/malta-summer-camp.html">Summer Camp in Malta (10 a 17 años)</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/ingles-adultos-malt.html">Inglés para adultos en Malta</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/curso-familiar-adultosninos.html">Curso familiar. Adultos+niño(s)</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/ingles-ninos-extranjeros.html">Inglés para niños en Malta</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/learn-english-in-maltaotras-opciones-en-malta.html">Otras opciones en Malta</a></li>
+        <li class="g">Clases de inglés</li>
+        <li class="s"><a href="https://www.madridenglishschool.es/academia-de-ingles-chamrtin.html">1-Cursos regulares de inglés</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/clases-ingles-sabados.html">2-Inglés los sábados</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/intensivo-ingles.html">3-Cursos intensivos de inglés</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/english-in-malta.html">4-English in Malta</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/english-abroad.html">5-Inglés en otros países</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/ingles-para-ninos-1.html">6-Inglés para niños 1</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/ingles-ninos-adolescentes.html">7-Inglés para niños 2</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/clases-particulares-ingles.html">8-Clases particulares de inglés</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/ingles-minigrupos.html">9-Minigrupos de inglés</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/idiomas-empresas-ingles.html">10-Cursos de inglés para empresas</a></li>
+        <li class="s"><a href="https://www.madridenglishschool.es/summer-camp-malta.html">12-Summer Camp in Malta (10-17 años)</a></li>
+        <li><a href="https://www.madridenglishschool.es/contacto.html">Contacto</a></li>
+        <li><a href="https://www.madridenglishschool.es/mini-lecciones.html">BLOG</a></li>
+      </ul>
+      <form class="search" onsubmit="return demoSubmit(this)" role="search">
+        <input type="text" name="req" placeholder="Buscar" aria-label="Buscar">
+        <span class="search-ok">Demo: en la versión final el formulario se conecta al email del negocio.</span>
+      </form>
+    </details>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Learn English! <span>¡Aprende inglés!</span></h1>
+        <p>Gracias por visitar nuestra escuela de inglés. En la web encontrarás información detallada de cursos, precios y horarios de cursos de inglés. Si tienes cualquier duda, por favor, contacta con nosotros. En caso de que precises horarios o niveles distintos para tus clases de inglés, háznoslo saber.</p>
+        <span class="open">ABRIMOS CURSOS NUEVOS DE INGLÉS DURANTE TODO EL AÑO.</span>
+        <div class="row">
+          <a href="https://wa.me/34646705930" class="btn btn-wa" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+            Haz click aquí ahora y consulta por WhatsApp</a>
+          <a href="tel:+34646705930" class="btn btn-line">Llamar <span class="tel">646 705 930</span></a>
+        </div>
+      </div>
+      <div class="hero-img"><img src="https://www.madridenglishschool.es/_frame/learn-english-2-2.jpg" alt="Learn English. Cursos generales de inglés"></div>
+    </div>
+  </div>
+
+  <!-- OFERTA -->
+  <section id="oferta">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Clases de inglés</span>
+        <h2>AMPLIA Y VARIADA OFERTA EN CURSOS DE INGLÉS</h2>
+      </div>
+      <div class="offer">
+        <article><h3>Cursos de inglés extensivos a lo largo del año (excepto julio y agosto).</h3><a href="https://www.madridenglishschool.es/academia-de-ingles-chamrtin.html">información cursos entre semana →</a></article>
+        <article><h3>Cursos intensivos de inglés con profesores nativos americanos y británicos.</h3><a href="https://www.madridenglishschool.es/intensivo-ingles.html">información cursos intensivos →</a></article>
+        <article><h3>Cursos específicos para niños en inglés.</h3><a href="https://www.madridenglishschool.es/ingles-para-ninos-1.html">información clases para niños →</a></article>
+        <article><h3>Cursos de refuerzo de inglés para PRIMARIA, ESO y BACHILLERATO.</h3><a href="https://www.madridenglishschool.es/ingles-ninos-adolescentes.html">información refuerzo en inglés →</a></article>
+        <article><h3>Clases particulares de inglés.</h3><a href="https://www.madridenglishschool.es/clases-particulares-ingles.html">información clases particulares →</a></article>
+        <article><h3>Clases particulares compartidas (minigrupos).</h3><a href="https://www.madridenglishschool.es/ingles-minigrupos.html">minigrupos →</a></article>
+      </div>
+
+      <div class="malta">
+        <a href="https://wa.me/34646705930" target="_blank" rel="noopener"><img src="https://www.madridenglishschool.es/_media/img/medium/logo-malta-linguaestudio-whatsapp.jpg" alt="Learn English in Malta · Lingua Estudio"></a>
+        <div>
+          <h3>Learn English in Malta</h3>
+          <p>Hemos seleccionado las mejores escuelas en Malta que es, sin duda, el mejor destino europeo para aprender inglés.</p>
+          <div class="links">
+            <a href="https://www.linguatravel.es/summer-camp-malta.html" target="_blank" rel="noopener">Visita nuestra web dedicada</a>
+            <a href="https://wa.me/34646705930" target="_blank" rel="noopener">Visita el perfil de nuestro agente en Malta</a>
+            <a href="https://www.madridenglishschool.es/contacto.html">Contacta con nosotros</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS REGULARES -->
+  <section class="alt" id="regulares">
+    <div class="wrap">
+      <div class="two">
+        <article class="course">
+          <div class="img"><img src="https://www.madridenglishschool.es/_media/img/large/aplicacion-tic-profesores-ingles.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <span class="eyebrow"><a href="https://www.madridenglishschool.es/academia-de-ingles-chamrtin.html">Cursos regulares de inglés</a></span>
+            <h3>DOS DÍAS POR SEMANA (1,5h+1,5h)</h3>
+            <p>Matricularse y aprender inglés con nosotros es muy sencillo. Para inscribirte primero comprobaremos tu nivel de inglés. Después, tan solo es necesario rellenar una ficha y abonar la matrícula y ya puedes empezar.</p>
+            <p class="sub">CLASES DE INGLÉS ENTRE SEMANA.</p>
+            <ul>
+              <li>Cursos de 3 horas semanales. DOS días alternos, UNA HORA y MEDIA cada día.</li>
+              <li>Profesores nativos americanos o británicos.</li>
+            </ul>
+            <div class="price">
+              <div>PRECIO: <b>84 euros al mes.</b></div>
+              <div>Matrícula: <b>35 euros</b></div>
+              <div><b>Material incluido</b></div>
+            </div>
+            <p class="note">-No es necesario esperar al comienzo del mes, puedes empezar en cualquier momento.<br>-Abrimos cursos durante todo el año.</p>
+            <p class="abroad">COMPLETA TU APRENDIZAJE CON UN CURSO EN EL EXTRANJERO.</p>
+          </div>
+        </article>
+        <article class="course">
+          <div class="img"><img src="https://www.madridenglishschool.es/_media/img/small/imagen-curso-ingles.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <span class="eyebrow"><a href="https://www.madridenglishschool.es/clases-ingles-sabados.html">Inglés los sábados</a></span>
+            <h3>DOS HORAS CADA SÁBADO (2h)</h3>
+            <p>Matricularse y aprender inglés con nosotros es muy sencillo. Para inscribirte primero comprobaremos tu nivel de inglés. Después, tan solo es necesario rellenar una ficha y abonar la matrícula y ya puedes empezar.</p>
+            <p class="sub">CLASES DE INGLÉS SÁBADOS POR LA MAÑANA.</p>
+            <ul>
+              <li>Cursos de 2 horas CADA SÁBADO.</li>
+              <li>Profesores nativos americanos o británicos.</li>
+            </ul>
+            <div class="price">
+              <div>PRECIO: <b>60 euros al mes.</b></div>
+              <div>Matrícula: <b>35 euros</b></div>
+              <div><b>Material incluido</b></div>
+            </div>
+            <p class="note">-No es necesario esperar al comienzo del mes, puedes empezar en cualquier momento.<br>-Abrimos cursos durante todo el año.</p>
+            <p class="abroad">COMPLETA TU APRENDIZAJE CON UN CURSO EN EL EXTRANJERO.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTENSIVOS -->
+  <section id="intensivos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><a href="https://www.madridenglishschool.es/intensivo-ingles.html">Cursos intensivos de inglés</a></span>
+        <h2>DOS MODALIDADES:</h2>
+      </div>
+      <div class="modes">
+        <img src="https://www.madridenglishschool.es/_media/img/large/curso-ingles-intensivo-verano-zaragoza.jpg" alt="Inglés intensivo verano" loading="lazy">
+        <div class="mode-sum">
+          <p style="border:0;background:none;padding:0">Hemos preparado cursos intensivos en dos modalidades que cubren todas las necesidades:</p>
+          <p><b>-MODALIDAD A:</b> para aprender, para poder comunicarte por fin, con el objeto de que entiendas de una vez. Profesores nativos con clases en inglés que sacarán lo que llevas tiempo aprendiendo.</p>
+          <p><b>-MODALIDAD B:</b> para aprender la gramática de verdad (que, en realidad, es muy fácil), con el fin de que nunca más se vuelva a tener problemas en clase y se sigan las clases en el colegio o instituto con seguridad.</p>
+        </div>
+      </div>
+      <div class="two">
+        <article class="course mode">
+          <div class="body">
+            <span class="tag">MODALIDAD A:</span>
+            <h3>Curso intensivo lengua y comunicación.</h3>
+            <ul>
+              <li>Clases con profesores nativos americanos y británicos.</li>
+              <li>Uso del inglés, conversación, clase en inglés. Solo se recurre al español cuando la comunicación se ha hecho imposible.</li>
+              <li>2 horas diarias de lunes a viernes.</li>
+              <li>Julio (también agosto, según demanda).</li>
+            </ul>
+            <div class="price">
+              <div><b>Precio 260 euros.</b></div>
+              <div><b>Matrícula gratuita.</b></div>
+              <div><b>Material incluido.</b></div>
+            </div>
+            <p class="note">Los participantes en los intensivos pueden acceder a los cursos regulares 2018/2019 también sin pagar matrícula en septiembre.</p>
+            <blockquote>Es, en definitiva, un curso especialmente preparado para poner en práctica de manera activa el uso del inglés. Los estudiantes participantes en estos cursos experimentan un salto muy sustancial en sus competencias comunicativas. Quedan realmente muy satisfechos, según sus propias apreciaciones.</blockquote>
+            <p class="abroad">COMPLEMENTA TU PREPARACIÓN CON UN CURSO EN EL EXTRANJERO.</p>
+            <a class="btn btn-y btn-sm" style="align-self:flex-start" href="https://wa.me/34646705930" target="_blank" rel="noopener">Ver plazas libres</a>
+          </div>
+        </article>
+        <article class="course mode">
+          <div class="body">
+            <span class="tag">MODALIDAD B:</span>
+            <h3>Curso intensivo gramática y redacción.</h3>
+            <ul>
+              <li>Profesor especializado en enseñar la gramática para tener, por fin, éxito en las clases de ESO, Bachillerato...</li>
+              <li>Enseñanza y uso de la gramática de forma teórico-práctica, práctica de conversación incluida, clase en español con práctica en inglés.</li>
+              <li>2 horas diarias de lunes a viernes.</li>
+              <li>Julio (también agosto, según demanda).</li>
+            </ul>
+            <div class="price">
+              <div><b>Precio 260 euros.</b></div>
+              <div><b>Matrícula gratuita.</b></div>
+              <div><b>Material incluido.</b></div>
+            </div>
+            <p class="note">Los participantes en los intensivos pueden acceder a los cursos regulares 2018/2019 también sin pagar matrícula en septiembre.</p>
+            <blockquote>Es, por tanto, un curso especialmente preparado para enseñar, por fin, a tener éxito en las clases del colegio, instituto, etc. Los estudiantes se percatan de la sencillez del inglés en las facetas en las que venían fallando hasta ahora. Nuestra experiencia es que alumnos que venían suspendiendo el inglés o con rendimiento bajo, pasan a sacar buenas notas tras el curso intensivo.</blockquote>
+            <p class="abroad">COMPLEMENTA TU PREPARACIÓN CON UN CURSO EN EL EXTRANJERO.</p>
+            <a class="btn btn-y btn-sm" style="align-self:flex-start" href="https://wa.me/34646705930" target="_blank" rel="noopener">Ver plazas libres</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MALTA -->
+  <section class="dark" id="malta">
+    <div class="wrap malta-grid">
+      <div>
+        <div class="head">
+          <span class="eyebrow"><a href="https://www.madridenglishschool.es/english-in-malta.html">English in Malta</a></span>
+          <h2>TODO TIPO DE CURSOS EN MALTA</h2>
+          <p style="color:#cfcfcf">Hemos seleccionado las seis mejores academias de inglés en Malta que ofrecen amplios servicios de clases de inglés, alojamientos, actividades...</p>
+        </div>
+        <ul class="ticks">
+          <li>Cursos para adultos, adolescentes o niños todo el año.</li>
+          <li>Summer Camp para niños y adolescentes entre 10 y 17 años.</li>
+          <li>Cursos especializados en Business English y preparación de exámenes oficiales FIRST, ADVANCED...</li>
+          <li>Cursos para familias (Cada vez más demandados. Vacaciones útiles); los adultos a unas clases y los hijos a otras.</li>
+          <li>Alojamiento en hoteles.</li>
+          <li>Alojamiento con familias.</li>
+          <li>Alojamientos en residencia (Summer Camp).</li>
+          <li>Alojamiento en apartamentos compartidos.</li>
+        </ul>
+      </div>
+      <div class="logo-card">
+        <img src="https://www.madridenglishschool.es/_media/img/medium/logotipo-learn-english-in-malta-3x5.jpg" alt="Learn English in Malta · Lingua Estudio" loading="lazy">
+        <a class="btn btn-dark" href="https://www.linguatravel.es/summer-camp-malta.html" target="_blank" rel="noopener">Más...</a>
+        <a class="btn btn-wa" href="https://wa.me/34646705930" target="_blank" rel="noopener">Haz click aquí ahora y consulta por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIÑOS -->
+  <section class="alt" id="ninos">
+    <div class="wrap">
+      <div class="two">
+        <article class="course">
+          <div class="img" style="aspect-ratio:auto;background:#fff;display:grid;place-items:center;padding:18px"><img src="https://www.madridenglishschool.es/_media/img/small/ninos.jpg" alt="" loading="lazy" style="width:auto;max-height:180px;object-fit:contain"></div>
+          <div class="body">
+            <span class="eyebrow"><a href="https://www.madridenglishschool.es/ingles-para-ninos-1.html">Inglés para niños 1</a></span>
+            <h3>CURSOS REGULARES DE INGLÉS PARA NIÑOS (2h/semana).</h3>
+            <p class="sub">Gramática y conversación.</p>
+            <ul>
+              <li>Cursos en los que se trabaja y se completa al cien por cien la gramática que ven en su asignatura de inglés, apoyando siempre con conversación.</li>
+              <li>Cursos de inglés de DOS horas semanales, Distribuidas en Dos días alternos, UNA hora cada día.</li>
+            </ul>
+            <div class="price">
+              <div>PRECIO: <b>60 EUROS AL MES</b></div>
+              <div>MATRÍCULA: <b>35 EUROS</b></div>
+              <div><b>Material incluido.</b></div>
+            </div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="img" style="aspect-ratio:auto;background:#fff;display:grid;place-items:center;padding:18px"><img src="https://www.madridenglishschool.es/_media/img/small/ninos.jpg" alt="" loading="lazy" style="width:auto;max-height:180px;object-fit:contain"></div>
+          <div class="body">
+            <span class="eyebrow"><a href="https://www.madridenglishschool.es/ingles-ninos-adolescentes.html">Inglés para niños 2</a></span>
+            <h3>CURSOS REGULARES DE INGLÉS PARA NIÑOS (2h/semana).</h3>
+            <p class="sub">Gramática y conversación.</p>
+            <ul>
+              <li>Cursos en los que se apoya en la gramática, pero con especial atención a la conversación: que los niños hablen.</li>
+              <li>Cursos de inglés de DOS horas semanales, Distribuidas en Dos días alternos, UNA hora cada día.</li>
+            </ul>
+            <div class="price">
+              <div>PRECIO: <b>60 EUROS AL MES</b></div>
+              <div>MATRÍCULA: <b>35 EUROS</b></div>
+              <div><b>Material incluido.</b></div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div style="text-align:center;margin-top:30px"><a class="btn btn-wa" href="https://wa.me/34646705930" target="_blank" rel="noopener">Haz click aquí ahora y consulta por WhatsApp</a></div>
+    </div>
+  </section>
+
+  <!-- ONE TO ONE -->
+  <section id="particulares">
+    <div class="wrap oto">
+      <div>
+        <div class="head" style="margin-bottom:20px">
+          <span class="eyebrow"><a href="https://www.madridenglishschool.es/clases-particulares-ingles.html">Clases particulares de inglés</a></span>
+          <h2>ENGLISH ONE-TO-ONE CLASSES</h2>
+        </div>
+        <p class="lead">Clases particulares de inglés individuales. Consulta clases particulares compartidas en <a href="https://www.madridenglishschool.es/ingles-minigrupos.html">MINIGRUPOS</a></p>
+        <img src="https://www.madridenglishschool.es/_media/img/large/one-to-one2.png" alt="One student + one teacher = success, improvement, garanty, achievements" loading="lazy" style="max-width:360px;margin-top:22px">
+      </div>
+      <div>
+        <ul class="ticks" style="grid-template-columns:1fr 1fr;margin-bottom:22px">
+          <li>Profesores nativos.</li>
+          <li>Clases de 55 minutos por sesión.</li>
+          <li>Turnos de mañana y tarde.</li>
+          <li>Desde nivel Inicial.</li>
+          <li>Preparación de exámenes oficiales.</li>
+          <li>Business English.</li>
+          <li>Material.</li>
+        </ul>
+        <div class="table">
+          <div><span>PRECIOS: De una a cinco sesiones por semana:</span><b>25 euros por hora.</b></div>
+          <div><span>Seis o más sesiones por semana:</span><b>23 euros por hora.</b></div>
+          <div><span>Pack multi-idioma * (40 sesiones al mes)<small>*40 clases al mes, compatibles entre los diferentes idiomas que se imparten en la escuela (máximo dos idiomas).</small></span><b>850 €/mes*</b></div>
+          <div><span>Matrícula:</span><b>40 €</b></div>
+        </div>
+        <p class="home-visit">POSIBILIDAD DE ENVÍO DE LOS PROFESORES A DOMICILIO, EMPRESA, etc.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPRESAS -->
+  <section class="alt" id="empresas">
+    <div class="wrap biz">
+      <div>
+        <div class="head" style="margin-bottom:10px">
+          <span class="eyebrow"><a href="https://www.madridenglishschool.es/idiomas-empresas-ingles.html">Cursos de inglés para empresas</a></span>
+          <h2>CURSOS DE INGLÉS PARA EMPRESAS DESDE 1995</h2>
+        </div>
+        <p class="sub" style="font-weight:700;color:#222;margin-top:14px">DOS POSIBILIDADES:</p>
+        <div class="opts">
+          <div><b>PRIMERA:</b>su empresa está cerca de nuestra escuela.</div>
+          <div><b>SEGUNDA:</b>su empresa no está cerca de nuestra escuela.</div>
+        </div>
+        <p>En ambos casos, contacte con nosotros y transmítanos sus necesidades, no se arrepentirá. Prepararemos con inmediatez un presupuesto a su medida.</p>
+        <p>La mayoría de nuestros clientes son de largo recorrido. Nos son fieles durante años.</p>
+        <p>Profesores nativos americanos o británicos, que se dedican profesionalmente a la enseñanza del inglés. No son simples nativos, son profesores.</p>
+        <p>Nuestros precios: ofrecemos precios muy competitivos en clases de inglés, quizás haya escuelas algo más baratas, pero no con nuestras prestaciones.</p>
+        <p style="margin-bottom:6px">Impartimos clases de inglés para empresas en Madrid, Barcelona, Bilbao, San Sebastián, Valencia y Zaragoza.</p>
+        <div class="cities"><span>Madrid</span><span>Barcelona</span><span>Bilbao</span><span>San Sebastián</span><span>Valencia</span><span>Zaragoza</span></div>
+      </div>
+      <img src="https://www.madridenglishschool.es/_media/img/medium/executive-language-tutors-corporate-training-services.jpg" alt="" loading="lazy">
+    </div>
+  </section>
+
+  <!-- SUMMER CAMP -->
+  <section class="dark" id="summer-camp">
+    <div class="wrap camp">
+      <div>
+        <div class="head" style="margin-bottom:18px">
+          <span class="eyebrow"><a href="https://www.madridenglishschool.es/summer-camp-malta.html">Summer Camp in Malta (10-17 años)</a></span>
+          <h2>SUMMER CAMP EN MALTA</h2>
+        </div>
+        <p>Para niños y adolescentes de 10 a 17 años de edad.</p>
+        <p>Disponible en junio (desde que termina el colegio o el instituto), julio y agosto.</p>
+        <p>Contratación desde una semana, aunque recomendamos un mínimo de dos semanas y lo adecuado es, al menos, un mes</p>
+        <p>Malta es el mejor destino europeo para aprender inglés. Rechace opiniones negativas de quien no conoce Malta. Contacte con <a class="u" href="https://wa.me/34646705930" target="_blank" rel="noopener">nuestro agente (profesor de nuestra escuela en Madrid)</a> quien resolverá todas sus dudas.</p>
+        <p class="why">¿Por qué Malta? Por su inglés, por su clima, por sus precios, por la profesionalidad de sus escuelas, por su seguridad...</p>
+        <div class="row">
+          <a class="btn btn-y" href="https://wa.me/34646705930" target="_blank" rel="noopener">CONTACTE CON NUESTRO AGENTE</a>
+          <a class="btn btn-line" href="https://www.linguatravel.es/summer-camp-malta.html" target="_blank" rel="noopener">O VISITE NUESTRA WEB ESPECIALIZADA</a>
+        </div>
+      </div>
+      <div class="camp-price">
+        <span class="k">EJEMPLO DE PRECIO, según tarifa 2018:</span>
+        <p class="big">2.100 euros</p>
+        <p class="w">4 semanas</p>
+        <ul class="ticks">
+          <li>20 sesiones de inglés por semana.</li>
+          <li>Alojamiento.</li>
+          <li>Pensión completa.</li>
+          <li>Desplazamientos internos cotidianos.</li>
+          <li>Actividades diarias.</li>
+          <li>Actividades de fin de semana.</li>
+        </ul>
+        <img src="https://www.madridenglishschool.es/_media/img/medium/logotipo-learn-english-in-malta-3x5.jpg" alt="Learn English in Malta · Lingua Estudio" loading="lazy" style="max-width:200px;margin:20px auto 0">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>Contacto</h4>
+        <p>Madrid English School<br><a href="mailto:info@MadridEnglishSchool.com">info@MadridEnglishSchool.com</a></p>
+        <p style="margin-top:10px"><a href="https://www.madridenglishschool.es/contacto.html">Contacto</a> · <a href="tel:+34646705930">646 705 930</a> · <a href="https://wa.me/34646705930" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+      <div>
+        <h4>Ayuda &amp; Apoyo</h4>
+        <ul>
+          <li>Cursos regulares de inglés</li>
+          <li>Intensivos de inglés</li>
+          <li>Inglés en el extranjero</li>
+          <li>Inglés para niños</li>
+          <li>Urban Summer Camps</li>
+          <li>Summer Camp in Malta</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Créditos</h4>
+        <ul>
+          <li>Cursos comunicativos de inglés</li>
+          <li>Clases gramaticales de inglés</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© Madrid English School. Todos los derechos reservados.</span>
+      <a href="https://www.madridenglishschool.es/_tos.html">Términos y Condiciones</a>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="https://wa.me/34646705930" class="btn btn-wa" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="tel:+34646705930" class="btn btn-ghost">Llamar 646 705 930</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.search-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

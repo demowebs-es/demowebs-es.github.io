@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aserfix · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E00000; --red-dark:#BD0000; --red-deep:#700000; --yellow:#FFEA00; --ink:#171717; --dark:#222222;
+    --text:#333333; --muted:#666666; --line:#e6e6e6; --tint:#f5f5f5; --white:#fff; --radius:10px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .cond{font-family:"Roboto Condensed",Arial,sans-serif}
+  .eyebrow{font-family:"Roboto Condensed",Arial,sans-serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700}
+
+  .demo{background:var(--ink);color:#d9d9d9;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo img{height:46px;width:auto;display:block}
+  .logo span{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:1.65rem;letter-spacing:.04em;color:var(--ink);text-transform:lowercase}
+  .menu{display:flex;gap:24px;list-style:none;font-family:"Roboto Condensed",Arial,sans-serif;text-transform:uppercase;font-size:.95rem;letter-spacing:.04em}
+  .menu a{padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+  .menu a:hover,.menu a.on{color:var(--red);border-color:var(--red)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 26px;border-radius:4px;font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;transition:.2s;border:2px solid var(--red);cursor:pointer;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn-dark:hover{background:var(--red);border-color:var(--red)}
+  .nav .btn{padding:10px 18px;font-size:.85rem}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:#111 url("https://www.aserfix.es/images/page-1_slide01.jpg") center/cover no-repeat;padding:110px 0 120px}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.92) 0%,rgba(10,10,10,.6) 60%,rgba(10,10,10,.25) 100%)}
+  .hero .wrap{position:relative}
+  .hero .brandmark{width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;margin-bottom:26px;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+  .hero .brandmark img{width:66px;height:auto}
+  .hero h1{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.08;max-width:820px;margin:12px 0 0}
+  .hero h1 em{font-style:normal;color:var(--yellow)}
+  .hero .eyebrow{color:var(--yellow)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+  .tel{font-variant-numeric:tabular-nums}
+
+  /* slides as statements */
+  .statements{background:var(--ink);color:#fff}
+  .st-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .st{padding:38px 28px 40px;border-right:1px solid rgba(255,255,255,.08);position:relative}
+  .st:last-child{border-right:0}
+  .st .n{font-family:"Roboto Condensed",Arial,sans-serif;font-size:2.6rem;font-weight:700;color:var(--red);line-height:1}
+  .st h5{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:400;font-style:italic;font-size:1rem;color:#cfcfcf;margin:14px 0 6px}
+  .st h2{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:1.3rem;line-height:1.25}
+
+  section{padding:90px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head h2,.h2{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.12;color:var(--ink);margin-top:8px}
+
+  /* features */
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .f{border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;background:#fff;transition:.25s;border-top:3px solid var(--red)}
+  .f:hover{box-shadow:0 18px 40px -26px rgba(0,0,0,.35)}
+  .f img{width:48px;height:auto;display:block;margin-bottom:18px}
+  .f h3{font-family:"Roboto Condensed",Arial,sans-serif;font-size:1.2rem;letter-spacing:.06em;color:var(--ink);margin-bottom:8px}
+  .f p{font-size:.95rem}
+  .f strong{color:var(--ink)}
+
+  /* dark two columns */
+  .dark{background:#333333;color:#e8e8e8}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .two h3{font-family:"Roboto Condensed",Arial,sans-serif;font-size:2rem;color:#fff;line-height:1.1}
+  .two h3::after{content:"";display:block;width:54px;height:3px;background:var(--red);margin-top:14px}
+  .two h4{font-family:"Roboto Condensed",Arial,sans-serif;font-style:italic;font-weight:400;font-size:1.18rem;color:#fff;margin:22px 0 14px;line-height:1.45}
+  .two p{color:#cfcfcf}
+  .two p strong,.two h4 strong{color:var(--yellow);font-weight:700}
+  .two .btn{margin-top:26px}
+
+  /* quotes */
+  .quotes{background:var(--tint)}
+  .q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .q{background:#fff;border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;gap:16px;border:1px solid var(--line)}
+  .q h3{font-family:"Roboto Condensed",Arial,sans-serif;font-size:1.3rem;line-height:1.25;color:var(--ink)}
+  .q blockquote{font-family:"Roboto Condensed",Arial,sans-serif;font-style:italic;font-size:1.08rem;color:var(--text);padding-left:16px;border-left:3px solid var(--red)}
+  .q cite{font-style:normal;font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;color:var(--red-dark);letter-spacing:.06em;text-transform:uppercase;font-size:.86rem;margin-top:auto}
+  .q .btn{align-self:flex-start}
+
+  /* services */
+  .svc-top{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:start}
+  .svc-top .big{font-size:1.1rem;color:var(--ink);margin:18px 0 26px}
+  .list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+  .list li{position:relative;padding:12px 0 12px 26px;border-bottom:1px solid var(--line);font-size:.98rem;color:var(--ink)}
+  .list li::before{content:"";position:absolute;left:0;top:1.15em;width:10px;height:10px;background:var(--red);clip-path:polygon(0 100%,50% 0,100% 100%)}
+
+  /* contact band */
+  .contact{background:var(--ink);color:#fff}
+  .c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .c{border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:24px 22px;display:flex;flex-direction:column;gap:10px}
+  .c .ic{width:44px;height:44px;border-radius:50%;background:var(--red);display:grid;place-items:center}
+  .c b{font-family:"Roboto Condensed",Arial,sans-serif;font-size:1.25rem;font-weight:700}
+  .c small{color:#bdbdbd;font-size:.85rem}
+  .c a:hover{color:var(--yellow)}
+  .map{margin-top:24px;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+  .map iframe{display:block;width:100%;height:300px;border:0}
+  .map-h{font-family:"Roboto Condensed",Arial,sans-serif;font-size:1.1rem;margin-top:36px;letter-spacing:.06em;text-transform:uppercase;color:var(--yellow)}
+
+  footer{background:#111;color:#a7a7a7;padding:46px 0 30px;font-size:.9rem}
+  .f-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:30px}
+  footer h5{font-family:"Roboto Condensed",Arial,sans-serif;color:#fff;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+  footer .fl{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  footer .fl img{width:50px;height:auto;background:#fff;border-radius:6px;padding:4px}
+  footer .fl span{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;color:#fff;font-size:1.3rem;letter-spacing:.04em}
+  footer ul{list-style:none;display:grid;gap:6px}
+  footer a:hover{color:#fff}
+  footer .legal a{text-decoration:underline}
+  .search{display:flex;margin-top:14px;max-width:260px}
+  .search input{flex:1;min-width:0;padding:9px 12px;border:1px solid #444;background:#1c1c1c;color:#fff;border-radius:4px 0 0 4px;font:inherit}
+  .search button{border:0;background:var(--red);color:#fff;padding:0 12px;border-radius:0 4px 4px 0;cursor:pointer}
+  .form-ok{display:none;font-size:.8rem;color:var(--yellow);margin-top:8px;max-width:260px}
+  .yt{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:#fff}
+  .yt svg{color:var(--red)}
+
+  .callbar{display:none}
+
+  @media (max-width:1000px){
+    .menu{display:none}
+    .st-grid{grid-template-columns:1fr 1fr}
+    .st:nth-child(2){border-right:0}
+    .st:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.08)}
+    .feat{grid-template-columns:1fr 1fr}
+    .q-grid{grid-template-columns:1fr}
+    .svc-top{grid-template-columns:1fr;gap:28px}
+    .c-grid{grid-template-columns:1fr 1fr}
+    .f-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:66px}
+    .logo img{height:38px}
+    .nav .btn{display:none}
+    .hero{padding:60px 0 70px}
+    .hero .row .btn{width:100%}
+    .st-grid{grid-template-columns:1fr}
+    .st{border-right:0;border-bottom:1px solid rgba(255,255,255,.08);padding:28px 4px}
+    .feat{grid-template-columns:1fr}
+    .two{grid-template-columns:1fr;gap:48px}
+    .list{grid-template-columns:1fr}
+    .c-grid{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr}
+    section{padding:62px 0}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 6px;font-size:.84rem;gap:6px;letter-spacing:.02em}
+    .callbar .btn-dark{text-transform:none}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Aserfix · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://www.aserfix.es/" class="logo" aria-label="aserfix"><img src="https://www.aserfix.es/images/brand_img.png" alt="aserfix"><span>aserfix</span></a>
+    <ul class="menu">
+      <li><a href="https://www.aserfix.es/" class="on">Inicio</a></li>
+      <li><a href="https://www.aserfix.es/aserfix.html">Quiénes Somos</a></li>
+      <li><a href="https://www.aserfix.es/servicios-aserfix.html">Nuestros Servicios</a></li>
+      <li><a href="https://www.aserfix.es/videos-aserfix.html">Juan Úbeda TV</a></li>
+      <li><a href="https://www.aserfix.es/contacto-aserfix.html">Contacto</a></li>
+    </ul>
+    <a href="tel:+34983391011" class="btn btn-red"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">983 39 10 11</span></a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="brandmark"><img src="https://www.aserfix.es/images/brand_img.png" alt="aserfix"></div>
+      <span class="eyebrow">aserfix · Pasaje La Marquesina, 26 Valladolid</span>
+      <h1>Consultoría <em>Grandes Patrimonios</em>, Nuevos Proyectos y Soluciones Empresariales</h1>
+      <div class="row">
+        <a href="tel:+34983391011" class="btn btn-red"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>T: <span class="tel">983 39 10 11</span></a>
+        <a href="https://www.aserfix.es/contacto-aserfix.html" class="btn btn-ghost">Contacto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDER TEXTS -->
+  <div class="statements">
+    <div class="wrap st-grid">
+      <div class="st"><span class="n">1</span><h5>Conseguimos que ganes pasta divirtiéndote</h5><h2>Ni te imaginas lo que podemos hacer por ti</h2></div>
+      <div class="st"><span class="n">2</span><h5>...tenemos como objetivo fundamental</h5><h2>la tranquilidad de nuestros clientes, nuestros amigos</h2></div>
+      <div class="st"><span class="n">3</span><h5>Si quieres ser feliz debes conseguir ganar dinero</h5><h2>haciendo aquello por lo que estarías dispuesto a pagar</h2></div>
+      <div class="st"><span class="n">4</span><h5>Tenemos en cuenta lo que es evidente</h5><h2>y también... de lo que tú no eres consciente</h2></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="wrap feat">
+      <article class="f">
+        <img src="https://www.aserfix.es/images/page-1_img02.png" alt="">
+        <h3>ASERFIX</h3>
+        <p><strong>Aserfix. S.L.</strong> comenzó su andadura en 1982 de la mano de <strong>Juan Ignacio Úbeda Blanco</strong>, Economista, Auditor y experto en coordinación Multidisciplinar.</p>
+      </article>
+      <article class="f">
+        <img src="https://www.aserfix.es/images/page-1_img01.png" alt="">
+        <h3>EXPERIENCIA</h3>
+        <p>Con más de <strong>30 años en el sector</strong>, los miembros de esta empresa tenemos como objetivo fundamental la tranquilidad de nuestros clientes, nuestros amigos.</p>
+      </article>
+      <article class="f">
+        <img src="https://www.aserfix.es/images/page-1_img03.png" alt="">
+        <h3>PROFESIONALIDAD</h3>
+        <p>Nos gratifica enormemente sentir que la <strong>suerte</strong> de nuestros 50 clientes, es gracias al esfuerzo, discreción y selección. Ni te imaginas lo que podemos hacer por ti.</p>
+      </article>
+      <article class="f">
+        <img src="https://www.aserfix.es/images/page-1_img04.png" alt="">
+        <h3>EL MEJOR EQUIPO</h3>
+        <p>Constituimos un <strong>eficiente equipo profesional</strong> que obtiene resultados muy rentables e innumerables satisfacciones, además de las económicas.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- TWO COLUMNS -->
+  <section class="dark">
+    <div class="wrap two">
+      <div>
+        <h3>Nuestro mayor esfuerzo</h3>
+        <h4>Nos gratifica enormemente sentir que estamos trabajando <strong>por, para y con</strong> nuestros amigos.</h4>
+        <p>Nuestro trabajo consiste en coordinar a los diferentes profesionales, tanto nuestros como aquellos con los que ya cuenta nuestro cliente, de forma que cada una de las diferentes áreas <strong>Fiscal, Financiera, Laboral, Marketing, etc.</strong> esté debidamente optimizada y en perfecta coordinación con las otras.</p>
+        <a href="https://www.aserfix.es/aserfix.html" class="btn btn-ghost">Saber más</a>
+      </div>
+      <div>
+        <h3>Resultados Garantizados</h3>
+        <h4>Lo primero que analizamos, sin coste alguno para usted, es si nuestros servicios le van a merecer la pena; si le vamos a ser rentables.</h4>
+        <p>Utilizamos herramientas tan simples como <strong>la sencillez, la economía, el sentido común, y, sobre todo, ponernos en la piel de nuestro cliente</strong>; aquello que le recomendamos, es porque antes lo hemos probado nosotros, con resultados satisfactorios.</p>
+        <a href="https://www.aserfix.es/servicios-aserfix.html" class="btn btn-ghost">Saber más</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes">
+    <div class="wrap q-grid">
+      <div class="q">
+        <h3>tenemos como objetivo fundamental la tranquilidad de nuestros clientes</h3>
+        <blockquote>“Nos gratifica enormemente sentir que estamos trabajando por, para y con nuestros amigos.”</blockquote>
+        <cite>Juan Ignacio Úbeda Blanco</cite>
+        <a href="https://www.aserfix.es/videos-aserfix.html" class="btn btn-dark">Conócenos</a>
+      </div>
+      <div class="q">
+        <h3>Si valoras tu tranquilidad, entrarás dentro de nuestros clientes selectos</h3>
+        <blockquote>“Llevamos 33 años sin que seas nuestro cliente y tú llevas 33 años sin conocernos... ¿consideras que te va bien? A nosotros sí.”</blockquote>
+        <cite>Juan Ignacio Úbeda Blanco</cite>
+        <a href="https://www.aserfix.es/videos-aserfix.html" class="btn btn-dark">Conócenos</a>
+      </div>
+      <div class="q">
+        <h3>¿Te han hecho creer que es imposible?... no lo es, lo imposible en Aserfix es el comienzo</h3>
+        <blockquote>“Te ayudamos a resolver lo que ni te imaginas... somos tu pase VIP.”</blockquote>
+        <cite>Juan Ignacio Úbeda Blanco</cite>
+        <a href="https://www.aserfix.es/videos-aserfix.html" class="btn btn-dark">Conócenos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="wrap svc-top">
+      <div>
+        <span class="eyebrow">aserfix</span>
+        <h2 class="h2">Nuestros Servicios</h2>
+        <p class="big">Lo primero que analizamos, sin coste alguno para usted, es si nuestros servicios le van a merecer la pena; si le vamos a ser rentables. ¡Muchos piensan que lo que no resolvemos nosotros, no lo resuelve nadie!</p>
+        <a href="https://www.aserfix.es/servicios-aserfix.html" class="btn btn-red">Nuestros servicios</a>
+      </div>
+      <ul class="list">
+        <li>Fusión de sociedades.</li>
+        <li>Todo tipo de consultoría laboral.</li>
+        <li>Implantaciones de sistemas contables y de control interno.</li>
+        <li>Escisión de ramas de actividad</li>
+        <li>Fiscalidad inteligente</li>
+        <li>Auditorías contables, de calidad y de protección de datos.</li>
+        <li>Asesoramiento sobre inversiones.</li>
+        <li>Elaboración de protocolos familiares (cómo superar la segunda generación)</li>
+        <li>Estrategias de marketing.</li>
+        <li>Obtención de Financiación.</li>
+        <li>Obtención de subvenciones.</li>
+        <li>Motivación de empresarios, directivos y empleados</li>
+        <li>Generación de condiciones óptimas de negocio.</li>
+        <li>Valoración de empresas y de negocios</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="c-grid">
+        <div class="c">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <b>Pasaje La Marquesina, 26</b><small>47004 Valladolid - España</small>
+        </div>
+        <div class="c">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+          <b><a href="mailto:direccion@aserfix.es">direccion@aserfix.es</a></b><small>Email</small>
+        </div>
+        <div class="c">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <b><a href="tel:+34983391011" class="tel">983 39 10 11</a></b><small>T:</small>
+        </div>
+        <div class="c">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 9V2h12v7"/><rect x="2" y="9" width="20" height="9" rx="2"/><path d="M6 14h12v8H6z"/></svg></span>
+          <b class="tel">983 39 16 55</b><small>Fax:</small>
+        </div>
+      </div>
+      <p class="map-h">Dónde estamos</p>
+      <div class="map">
+        <iframe title="Dónde estamos" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.4464644552063!2d-4.725399584267373!3d41.64609478787922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4712b5d1fc3fd1%3A0x839ddf52f33b7bdc!2sAserfix+Grandes+Patrimonios!5e0!3m2!1ses!2ses!4v1445869907681" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap f-grid">
+    <div>
+      <a href="https://www.aserfix.es/" class="fl"><img src="https://www.aserfix.es/images/brand_img.png" alt="aserfix"><span>ASERFIX</span></a>
+      <h5>copyright</h5>
+      <p>© Aserfix</p>
+      <p class="legal"><a href="https://www.aserfix.es/aviso-legal.html">Aviso Legal</a> | <a href="https://www.aserfix.es/proteccion-datos.html">Política de Protección de Datos</a></p>
+      <a href="https://www.youtube.com/user/aserfix" class="yt" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.8 3.1z"/></svg>YouTube</a>
+    </div>
+    <div>
+      <h5>Dirección</h5>
+      <p>Pasaje La Marquesina, 26<br>47004 Valladolid - España</p>
+      <p>Tel. <a href="tel:+34983391011"><strong class="tel">983 39 10 11</strong></a> / Fax. <span class="tel">983 39 16 55</span></p>
+      <p><em>Email: <a href="mailto:direccion@aserfix.es">direccion@aserfix.es</a></em></p>
+    </div>
+    <div>
+      <h5>Menú Principal</h5>
+      <ul>
+        <li><a href="https://www.aserfix.es/">Inicio</a></li>
+        <li><a href="https://www.aserfix.es/aserfix.html">Quiénes Somos</a></li>
+        <li><a href="https://www.aserfix.es/servicios-aserfix.html">Nuestros Servicios</a></li>
+        <li><a href="#contacto">Dónde estamos</a></li>
+        <li><a href="https://www.aserfix.es/contacto-aserfix.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Juan Úbeda TV</h5>
+      <ul><li><a href="https://www.aserfix.es/videos-aserfix.html">Juan Úbeda TV</a></li></ul>
+      <form class="search" onsubmit="return demoSubmit(this)" role="search">
+        <input type="text" name="s" autocomplete="off" aria-label="Buscar">
+        <button type="submit" aria-label="Buscar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      </form>
+      <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983391011" class="btn btn-red"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">983 39 10 11</span></a>
+  <a href="mailto:direccion@aserfix.es" class="btn btn-dark">Email</a>
+</div>
+
+<script>
+  function demoSubmit(f){ var ok=f.nextElementSibling; if(ok) ok.style.display='block'; return false; }
+</script>
+</body>
+</html>
