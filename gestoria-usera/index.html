@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gestoría Usera · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#41656E; --teal-dark:#2f4b52; --sky:#57A9BD; --ink:#1d2b2f; --text:#3b4649; --muted:#6a777a;
+    --line:#dfe8ea; --tint:#f2f7f8; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:"Josefin Sans",sans-serif;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);font-weight:700}
+  h1,h2,h3{font-family:"Josefin Sans",sans-serif;color:var(--ink);line-height:1.15}
+
+  .demo{background:var(--ink);color:#cfe3e8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top bar + header */
+  .topbar{background:var(--teal);color:#fff;font-size:.88rem}
+  .topbar .wrap{display:flex;justify-content:flex-end;align-items:center;gap:22px;min-height:40px;flex-wrap:wrap}
+  .topbar a{display:inline-flex;align-items:center;gap:7px;font-weight:600}
+  .topbar a:hover{text-decoration:underline}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+  .nav .logo img{height:52px;width:auto}
+  .menu{display:flex;gap:4px;list-style:none;font-family:"Josefin Sans",sans-serif;font-weight:600;font-size:1rem}
+  .menu a{padding:10px 10px;border-radius:8px;color:var(--ink);display:block;white-space:nowrap}
+  .menu a:hover{background:var(--tint);color:var(--teal)}
+  .menu a.on{color:var(--teal);box-shadow:inset 0 -2px 0 var(--sky)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.94rem;transition:.2s;border:1.5px solid var(--teal);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-main{background:var(--teal);color:#fff}
+  .btn-main:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
+  .btn-line{background:#fff;color:var(--teal)}
+  .btn-line:hover{background:var(--tint)}
+  .tel{font-variant-numeric:tabular-nums}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:64px 0 76px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero h1{font-size:clamp(2.1rem,4.4vw,3.3rem);font-weight:700;margin:14px 0 18px}
+  .hero h1 span{color:var(--teal)}
+  .hero p.lead{font-size:1.08rem;max-width:560px}
+  .hero p.lead a{color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .photo{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -34px rgba(29,43,47,.55)}
+  .photo img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover}
+  .badge{position:absolute;left:18px;bottom:18px;right:18px;background:rgba(65,101,110,.92);color:#fff;border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px}
+  .badge b{font-family:"Josefin Sans",sans-serif;font-size:1.15rem;line-height:1.2}
+  .badge svg{flex:none}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head h2{font-size:clamp(1.8rem,3.2vw,2.5rem);font-weight:700;margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* quick grid */
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;background:#fff;transition:.25s;display:flex;flex-direction:column}
+  .tile:hover{border-color:var(--sky);box-shadow:0 18px 40px -26px rgba(29,43,47,.35);transform:translateY(-2px)}
+  .tile .ic{width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--teal);display:grid;place-items:center;margin-bottom:14px}
+  .tile h3{font-size:1.3rem;margin-bottom:12px}
+  .tile ul{list-style:none;display:grid;gap:8px}
+  .tile li{font-size:.92rem;padding-left:18px;position:relative;line-height:1.45}
+  .tile li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:50%;background:var(--sky)}
+
+  /* detail rows */
+  .areas{background:var(--tint)}
+  .rows{display:grid;gap:26px}
+  .area{display:grid;grid-template-columns:1fr 1fr;background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+  .area:nth-child(even) .area-img{order:2}
+  .area-img img{width:100%;height:100%;min-height:260px;object-fit:cover}
+  .area-txt{padding:36px 38px;display:flex;flex-direction:column;justify-content:center}
+  .area-txt h3{font-size:1.6rem}
+  .area-txt h3 a{display:inline-flex;align-items:center;gap:10px}
+  .area-txt h3 a:hover{color:var(--teal)}
+  .area-txt .sub{color:var(--teal);font-weight:600;margin-top:6px}
+  .area-txt ul{list-style:none;display:grid;gap:10px;margin-top:18px}
+  .area-txt li{padding-left:22px;position:relative;line-height:1.5}
+  .area-txt li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:3px;background:var(--teal)}
+  .area-txt li ul{margin-top:8px;gap:6px}
+  .area-txt li li{font-size:.94rem;color:var(--muted)}
+  .area-txt li li::before{width:6px;height:6px;border-radius:50%;background:var(--sky);top:.6em}
+
+  /* why */
+  .why{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .why .txt p{margin-bottom:16px;font-size:1.02rem}
+  .why .txt p:first-child{font-size:1.15rem;color:var(--ink)}
+
+  /* history */
+  .history{background:var(--teal);color:#e7f1f3}
+  .history .eyebrow{color:#bfe3ec}
+  .history h2{color:#fff}
+  .hist-grid{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+  .year{font-family:"Josefin Sans",sans-serif;font-weight:700;font-size:clamp(4rem,9vw,6.6rem);line-height:.9;color:#fff;opacity:.95}
+  .hist-grid p{margin-bottom:14px;font-size:1.03rem}
+  .hist-grid strong{color:#fff}
+  .motto{margin-top:26px;border-top:1px solid rgba(255,255,255,.25);padding-top:24px;font-family:"Josefin Sans",sans-serif;font-weight:700;font-size:clamp(1.25rem,2.4vw,1.7rem);letter-spacing:.06em;color:#fff}
+
+  /* callout */
+  .callout{padding:56px 0}
+  .callout .box{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);padding:30px 34px}
+  .callout h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+  .callout .row{display:flex;gap:10px;flex-wrap:wrap}
+
+  footer{background:var(--ink);color:#c4d3d6;padding:60px 0 0;font-size:.95rem}
+  .foot{display:grid;grid-template-columns:1.2fr 1fr .8fr;gap:40px}
+  footer h3{color:#fff;font-size:1.2rem;margin-bottom:16px}
+  footer p{margin-bottom:10px}
+  footer a:hover{color:#fff;text-decoration:underline}
+  .ci{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+  .ci svg{flex:none;margin-top:4px;color:var(--sky)}
+  .legal{list-style:none;display:grid;gap:8px}
+  .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:44px;padding:18px 0;font-size:.84rem}
+  .foot-logo{background:#fff;border-radius:10px;padding:10px 12px;display:inline-block;margin-bottom:18px}
+  .foot-logo img{height:36px;width:auto}
+
+  .callbar{display:none}
+
+  @media (max-width:1180px){
+    header{position:static}
+    .nav{flex-wrap:wrap;height:auto;padding-top:12px;padding-bottom:8px;row-gap:6px}
+    .menu{order:3;width:100%;flex-wrap:wrap;font-size:.92rem;gap:0}
+    .menu a{padding:8px 9px}
+  }
+  @media (max-width:1020px){
+    .grid4{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:860px){
+    .hero-grid,.why,.foot{grid-template-columns:1fr}
+    .hero-grid{gap:36px}
+    .area{grid-template-columns:1fr}
+    .area:nth-child(even) .area-img{order:0}
+    .area-img img{min-height:0;aspect-ratio:16/8}
+    .hist-grid{grid-template-columns:1fr;gap:18px}
+    .why{gap:20px}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .wrap{justify-content:center;gap:14px;font-size:.82rem}
+    .nav .logo img{height:40px}
+    .nav .btn{display:none}
+    .hero{padding:40px 0 52px}
+    .hero .row .btn{width:100%}
+    .grid4{grid-template-columns:1fr}
+    section{padding:62px 0}
+    .area-txt{padding:26px 22px}
+    .callout .box{padding:24px 20px}
+    .callout .row,.callout .row .btn{width:100%}
+    .badge{left:12px;right:12px;bottom:12px;padding:12px 14px}
+    .badge b{font-size:1rem}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Gestoría Usera · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Llámenos:</span>
+    <a href="tel:+34914765013"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">91 476 50 13</span></a>
+    <a href="tel:+34914765149"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">91 476 51 49</span></a>
+    <a href="https://gestoria-usera.es/contacto/"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contacto</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://gestoria-usera.es/" aria-label="Gestoría Usera"><img src="https://gestoria-usera.es/wp-content/uploads/2016/04/Logo.png" alt="Gestoría Usera - Asesoría Fiscal, Laboral, Contable, Jurídica y Mercantil en Madrid"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://gestoria-usera.es/">Inicio</a></li>
+      <li><a href="https://gestoria-usera.es/asesoria-fiscal/">Asesoría Fiscal</a></li>
+      <li><a href="https://gestoria-usera.es/asesoria-laboral/">Asesoría Laboral</a></li>
+      <li><a href="https://gestoria-usera.es/asesoria-contable/">Asesoría Contable</a></li>
+      <li><a href="https://gestoria-usera.es/asesoria-juridica-y-mercantil/">Asesoría Jurídica y Mercantil</a></li>
+    </ul>
+    <a href="tel:+34914765013" class="btn btn-main"><span class="tel">91 476 50 13</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Gestoría Usera</span>
+        <h1>Gestoría Usera: <span>Asesoría Fiscal, Laboral, Contable, Jurídica y Mercantil</span> en Usera, Madrid</h1>
+        <p class="lead">Si está buscando Gestoría en Usera, <a href="https://gestoria-usera.es/contacto/">contáctenos sin compromiso</a>. Estamos en la calle Marcelo Usera, en Madrid.</p>
+        <div class="row">
+          <a href="tel:+34914765013" class="btn btn-main">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            Llámenos <span class="tel">91 476 50 13</span>
+          </a>
+          <a href="https://gestoria-usera.es/contacto/" class="btn btn-line">Contacto</a>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="https://gestoria-usera.es/wp-content/uploads/2016/04/Asesoria-Laboral-para-PYMES-y-Autonomos.jpg" alt="Sala de espera de Gestoría Usera">
+        <div class="badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M8.2 13 7 22l5-3 5 3-1.2-9"/></svg>
+          <b>Más de 35 años asesorando a Pymes</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK GRID -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Gestoría Usera</span>
+        <h2>Fiscal, Laboral, Contable, Jurídica y Mercantil</h2>
+      </div>
+      <div class="grid4">
+        <a class="tile" href="https://gestoria-usera.es/asesoria-fiscal/">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+          <h3>Fiscal</h3>
+          <ul><li>Declaración de IVA</li><li>Declaración de IRPF</li><li>Impuesto de Sociedades</li><li>Elaboración y presentación de cuentas anuales</li></ul>
+        </a>
+        <a class="tile" href="https://gestoria-usera.es/asesoria-laboral/">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 11a3 3 0 1 0 0-6M22 21a5 5 0 0 0-4-4.9"/></svg></span>
+          <h3>Laboral</h3>
+          <ul><li>Gestión laboral de empresas</li><li>Confección de nóminas</li><li>Seguros sociales</li><li>Contratos, altas y bajas, IRPF</li></ul>
+        </a>
+        <a class="tile" href="https://gestoria-usera.es/asesoria-contable/">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M14 10h2M8 14h2M14 14h2M8 18h2M14 18h2"/></svg></span>
+          <h3>Contable</h3>
+          <ul><li>Estudio y revisión de contabilidades</li><li>Confección y legalización de libros contables</li><li>Depósito de cuentas anuales</li></ul>
+        </a>
+        <a class="tile" href="https://gestoria-usera.es/asesoria-juridica-y-mercantil/">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 21h14M3 8h18M6 8l-3 7a3 3 0 0 0 6 0zM18 8l-3 7a3 3 0 0 0 6 0z"/></svg></span>
+          <h3>Jurídica y Mercantil</h3>
+          <ul><li>Constitución de sociedades</li><li>Modificaciones societarias</li><li>Cese y nombramiento de administradores</li></ul>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL ROWS (contenido del carrusel original) -->
+  <section class="areas">
+    <div class="wrap rows">
+      <article class="area">
+        <div class="area-img"><img src="https://gestoria-usera.es/wp-content/uploads/2016/04/Asesoria-Laboral-para-PYMES-y-Autonomos.jpg" alt="Asesoría Laboral para PYMES y Autónomos" loading="lazy"></div>
+        <div class="area-txt">
+          <h3><a href="https://gestoria-usera.es/asesoria-laboral/">Asesoría Laboral <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+          <p class="sub">Más de 35 años asesorando a Pymes</p>
+          <ul>
+            <li>Nóminas, contratos, altas y bajas</li>
+            <li>Régimen de Autónomos</li>
+            <li>Representación y defensa en los Juzgados de lo Social</li>
+          </ul>
+        </div>
+      </article>
+      <article class="area">
+        <div class="area-img"><img src="https://gestoria-usera.es/wp-content/uploads/2019/02/Asesoria-Fiscal-para-PYMES-y-Autonomos.jpg" alt="Asesoría Fiscal para PYMES y Autónomos" loading="lazy"></div>
+        <div class="area-txt">
+          <h3><a href="https://gestoria-usera.es/asesoria-fiscal/">Asesoría Fiscal <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+          <ul>
+            <li>Definición y planificación de la política fiscal</li>
+            <li>Confección y presentación:
+              <ul><li>Declaraciones de IVA</li><li>IRPF</li><li>Impuesto de Sociedades</li></ul>
+            </li>
+            <li>Elaboración y presentación de cuentas anuales</li>
+          </ul>
+        </div>
+      </article>
+      <article class="area">
+        <div class="area-img"><img src="https://gestoria-usera.es/wp-content/uploads/2019/02/Asesoria-Contable-para-PYMES-y-Autonomos.jpg" alt="Asesoría Contable para PYMES y Autónomos" loading="lazy"></div>
+        <div class="area-txt">
+          <h3><a href="https://gestoria-usera.es/asesoria-contable/">Asesoría Contable <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+          <ul>
+            <li>Estudio y revisión de contabilidades</li>
+            <li>Depósito de cuentas anuales</li>
+          </ul>
+        </div>
+      </article>
+      <article class="area">
+        <div class="area-img"><img src="https://gestoria-usera.es/wp-content/uploads/2019/02/Asesoria-Juridica-y-Mercantil-para-PYMES-y-Autonomos.jpg" alt="Asesoría Jurídica y Mercantil para PYMES y Autónomos" loading="lazy"></div>
+        <div class="area-txt">
+          <h3><a href="https://gestoria-usera.es/asesoria-juridica-y-mercantil/">Asesoría Jurídica y Mercantil <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+          <ul>
+            <li>Constitución de todo tipo de sociedades</li>
+            <li>Liquidación y disolución de sociedades</li>
+            <li>Cese y nombramiento de administradores</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="por-que">
+    <div class="wrap why">
+      <div class="head">
+        <span class="eyebrow">Gestoría Usera</span>
+        <h2>¿Por qué elegir Gestoría Usera?</h2>
+      </div>
+      <div class="txt">
+        <p>En primer lugar, porque proporcionamos un trato personal y un servicio profesional. En consecuencia nuestros asesores resolverán cualquier duda que le surja en su día a día. Del mismo modo proporcionamos asesoramiento personalizado para cada cliente en temas fiscales, laborales, contables y jurídicos. Es por ello que estamos especializados en Autónomos y PYMES.</p>
+        <p>Si es autónomo o dispone de una pequeña empresa, seguro que no tiene un minuto que perder en gestiones que no aporten valor a su negocio. Es por ello que en Gestoría Usera podemos asesorarle en temas fiscales, laborales o contables. Así usted podrá dedicarse a lo más importante: su negocio.</p>
+        <p>De esta forma, partiendo de la documentación aportada se aplicará el plan contable vigente en cada momento. Con todo esto, estará adaptado a cada sector de actividad y se obtendrán los informes, listados y libros oficiales necesarios.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="history" id="historia">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Gestoría Usera</span>
+        <h2>Nuestra historia</h2>
+      </div>
+      <div class="hist-grid">
+        <div class="year">1987</div>
+        <div>
+          <p>A principios de 1987 con mucha ilusión y pocos recursos decidimos emprender una aventura empresarial, Gestoría Usera.</p>
+          <p>Nuestro principal objetivo es ayudar a las Pymes y autónomos de Usera a cumplir con sus obligaciones laborales y fiscales con el <strong>menor coste</strong> posible, ofreciendo un <strong>servicio de calidad</strong>, directo y personalizado a un precio muy razonable.</p>
+          <p>Casi cuatro décadas después aquí seguimos; somos el primer despacho abierto en el barrio pero nuestra ilusión continúa intacta, nuestro objetivo sigue siendo el mismo y nuestro lema hace honor a él:</p>
+          <p class="motto">SERVICIOS DE CALIDAD A PRECIOS COMPETITIVOS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALLOUT -->
+  <div class="callout">
+    <div class="wrap">
+      <div class="box">
+        <h2>Consúltanos sin compromiso</h2>
+        <div class="row">
+          <a href="https://gestoria-usera.es/contacto/" class="btn btn-main">Contáctanos</a>
+          <a href="tel:+34914765013" class="btn btn-line"><span class="tel">91 476 50 13</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="contacto">
+  <div class="wrap foot">
+    <div>
+      <a class="foot-logo" href="https://gestoria-usera.es/"><img src="https://gestoria-usera.es/wp-content/uploads/2016/04/Logo.png" alt="Gestoría Usera"></a>
+      <h3>Contacta con nosotros</h3>
+      <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span>C/ Marcelo Usera, 15. 1ºDcha. - 28026, Madrid</span></div>
+      <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span><a href="tel:+34914765013">91 476 50 13</a><br><a href="tel:+34914765149">91 476 51 49</a></span></div>
+      <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:despacho@gestoria-usera.es" style="text-decoration:underline">despacho@gestoria-usera.es</a></div>
+    </div>
+    <div>
+      <h3>Horario</h3>
+      <p><strong style="color:#fff">Mañanas:</strong> lunes a viernes de 09:00 a 14:00</p>
+      <p><strong style="color:#fff">Tardes:</strong> martes y jueves de 16:00 a 19:00</p>
+    </div>
+    <div>
+      <h3>Gestoría Usera</h3>
+      <ul class="legal">
+        <li><a href="https://gestoria-usera.es/politica-cookies/">Política de cookies</a></li>
+        <li><a href="https://gestoria-usera.es/aviso-legal/">Aviso Legal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap copy">© 2025 Gestoría Usera</div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34914765013" class="btn btn-main">Llámenos</a>
+  <a href="https://gestoria-usera.es/contacto/" class="btn btn-line">Contacto</a>
+</div>
+
+</body>
+</html>

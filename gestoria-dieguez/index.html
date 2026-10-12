@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gestoría Diéguez · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#497D92; --brand-dark:#355d6d; --navy:#03181E; --accent:#3366AC; --text:#36434a; --muted:#68767c;
+    --line:#dde6ea; --tint:#f1f6f8; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:Lora,Georgia,serif;color:var(--navy);line-height:1.15}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);font-weight:600}
+
+  .demo{background:var(--navy);color:#bcd3dc;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:18px}
+  .logo img{height:58px;width:auto;border-radius:4px}
+  .menu{display:flex;list-style:none;gap:2px;font-weight:500;font-size:.95rem}
+  .menu>li{position:relative}
+  .menu>li>a{display:flex;align-items:center;gap:5px;padding:10px 13px;border-radius:8px;color:var(--navy)}
+  .menu>li>a:hover,.menu>li:focus-within>a{background:var(--tint);color:var(--brand-dark)}
+  .menu>li>a.on{color:var(--brand)}
+  .sub{position:absolute;top:100%;left:0;min-width:220px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:0 22px 40px -22px rgba(3,24,30,.35);opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+  .menu>li:hover .sub,.menu>li:focus-within .sub{opacity:1;visibility:visible;transform:none}
+  .sub a{display:block;padding:9px 12px;border-radius:8px;font-size:.92rem}
+  .sub a:hover{background:var(--tint);color:var(--brand-dark)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.94rem;transition:.2s;border:1.5px solid var(--brand);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-main{background:var(--brand);color:#fff}
+  .btn-main:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+  .btn-line{background:#fff;color:var(--brand-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.88rem}
+  .tel{font-variant-numeric:tabular-nums}
+
+  /* mobile menu */
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:10px 16px 18px;box-shadow:0 20px 30px -20px rgba(0,0,0,.25)}
+  .mnav .panel a{display:block;padding:10px 4px;border-bottom:1px solid var(--tint);color:var(--navy);font-weight:500}
+  .mnav .panel .grp{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:600;padding:14px 4px 2px}
+  .mnav .panel .in{padding-left:16px;font-weight:400}
+
+  /* hero */
+  .hero{background:linear-gradient(160deg,var(--brand) 0%,var(--brand-dark) 70%,#284956 100%);color:#e8f1f4;padding:70px 0 80px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-180px;top:-160px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.12)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center;position:relative;z-index:1}
+  .hero .eyebrow{color:#bfe0ec}
+  .hero h1{color:#fff;font-size:clamp(2.1rem,4.4vw,3.35rem);font-weight:600;margin:14px 0 26px}
+  .pillars{list-style:none;display:grid;gap:12px;margin-bottom:32px}
+  .pillars li{display:flex;align-items:center;gap:14px;font-size:1.05rem;color:#fff}
+  .pillars .ic{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px}
+  .hero .btn-main{background:#fff;color:var(--brand-dark);border-color:#fff}
+  .hero .btn-main:hover{background:var(--tint)}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08)}
+  .info{background:#fff;color:var(--text);border-radius:var(--radius);padding:28px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+  .info h2{font-size:1.3rem;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .info h2 svg{color:var(--brand)}
+  .hours{width:100%;border-collapse:collapse;font-size:.95rem}
+  .hours td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .hours td:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--navy);font-weight:500}
+  .hours tr:last-child td{border-bottom:0}
+  .closed{color:var(--muted)!important;font-weight:400!important}
+  .info .addr{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line)}
+  .info .addr p{margin-bottom:10px}
+  .info .addr a{color:var(--brand-dark);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:38px}
+  .head h2{font-size:clamp(1.85rem,3.3vw,2.6rem);font-weight:600;margin-top:10px}
+  .head h2 a:hover{color:var(--brand)}
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+  .head-row .head{margin-bottom:0}
+  .more{display:inline-flex;align-items:center;gap:8px;color:var(--brand-dark);font-weight:600}
+  .more:hover{text-decoration:underline}
+
+  /* about */
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .about .lead{font-family:Lora,Georgia,serif;font-size:clamp(1.35rem,2.2vw,1.7rem);color:var(--navy);line-height:1.35}
+  .about-list{display:grid;gap:16px}
+  .about-list p{padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:#fff;position:relative;padding-left:56px}
+  .about-list p svg{position:absolute;left:18px;top:20px;color:var(--brand)}
+
+  /* services */
+  .services{background:var(--tint)}
+  .svc{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .svc a{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;transition:.25s;display:flex;flex-direction:column;gap:14px;min-height:170px}
+  .svc a:hover{border-color:var(--brand);transform:translateY(-3px);box-shadow:0 18px 40px -26px rgba(3,24,30,.35)}
+  .svc .ic{width:48px;height:48px;border-radius:12px;background:var(--tint);color:var(--brand);display:grid;place-items:center}
+  .svc h3{font-family:Inter,sans-serif;font-size:1.02rem;font-weight:600;line-height:1.35}
+  .svc .go{margin-top:auto;color:var(--brand);display:flex}
+
+  /* news */
+  .news{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;list-style:none;counter-reset:n}
+  .news li{border-bottom:1px solid var(--line)}
+  .news a{display:flex;gap:14px;align-items:baseline;padding:14px 4px;transition:.2s}
+  .news a:hover{color:var(--brand-dark);padding-left:10px}
+  .news a::before{counter-increment:n;content:counter(n,decimal-leading-zero);font-family:Lora,serif;color:var(--brand);font-weight:600;font-size:.9rem;flex:none}
+
+  /* gallery captions */
+  .gallery{background:var(--navy);color:#cfe0e6}
+  .gallery .eyebrow{color:#9fcadb}
+  .gallery h2{color:#fff}
+  .gallery .more{color:#fff}
+  .caps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .caps a{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:20px;min-height:110px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;transition:.2s;background:rgba(255,255,255,.03)}
+  .caps a:hover{border-color:var(--brand);background:rgba(73,125,146,.18)}
+  .caps a span{font-weight:500;color:#fff}
+  .caps svg{color:#9fcadb}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(3,24,30,.35);border-top:4px solid var(--brand)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cfdbe0;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(73,125,146,.3);border-color:var(--brand)}
+  .check{display:flex;gap:10px;font-size:.86rem;color:var(--muted);margin:6px 0 20px;align-items:flex-start}
+  .check input{margin-top:3px;accent-color:var(--brand);flex:none}
+  .check a{text-decoration:underline;color:var(--brand-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.88rem;margin-top:12px}
+  .side{display:grid;gap:16px}
+  .box{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:var(--tint)}
+  .box h3{font-size:1.25rem;margin-bottom:8px}
+  .box p{font-size:.95rem;color:var(--muted);margin-bottom:12px}
+  .mail{font-weight:600;color:var(--navy);word-break:break-all;display:block;margin-bottom:14px}
+  .box .row{display:flex;gap:8px;flex-wrap:wrap}
+  .copied{display:none;font-size:.85rem;color:var(--brand-dark);margin-top:10px;font-weight:600}
+
+  footer{border-top:1px solid var(--line);padding:46px 0 24px;font-size:.9rem;color:var(--muted)}
+  .seo{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-bottom:28px}
+  .seo a{display:block;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.84rem}
+  .seo a:hover{border-color:var(--brand);color:var(--brand-dark)}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-top:1px solid var(--line);padding-top:22px}
+  .foot img{height:44px;border-radius:4px}
+  .foot nav{display:flex;gap:18px;flex-wrap:wrap}
+  .foot nav a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu,.nav .btn{display:none}
+    .mnav{display:block}
+    .svc{grid-template-columns:repeat(3,1fr)}
+    .caps{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:860px){
+    .hero-grid,.about,.contact-grid{grid-template-columns:1fr}
+    .about{gap:24px}
+    .news{grid-template-columns:1fr}
+    .svc{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .logo img{height:46px}
+    .hero{padding:44px 0 56px}
+    .hero .row .btn{width:100%}
+    section{padding:62px 0}
+    .svc{grid-template-columns:1fr}
+    .svc a{min-height:0;flex-direction:row;align-items:center}
+    .svc .go{margin-top:0;margin-left:auto}
+    .caps{grid-template-columns:1fr}
+    .caps a{min-height:0;flex-direction:row;align-items:center}
+    .card-form{padding:24px 20px}
+    .info{padding:22px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Gestoría Diéguez · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.gestorias-san-blas-madrid.com/" aria-label="Gestoría Diéguez"><img src="https://de.cdn-website.com/aea222c1d7394b89821ed155d7f07ea7/dms3rep/multi/Logo-Dieguez-web.png" alt="Gestoría Diéguez"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.gestorias-san-blas-madrid.com/">Inicio</a></li>
+      <li><a href="#conocenos">Conócenos <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="sub">
+          <li><a href="https://www.gestorias-san-blas-madrid.com/galeria">Galería de imágenes</a></li>
+          <li><a href="https://www.gestorias-san-blas-madrid.com/videos">Galería de vídeos</a></li>
+          <li><a href="https://www.gestorias-san-blas-madrid.com/saber-mas">Saber Más</a></li>
+          <li><a href="https://www.gestorias-san-blas-madrid.com/noticias">Noticias</a></li>
+          <li><a href="https://www.gestorias-san-blas-madrid.com/conocenos/tour">Tour virtual</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/servicios">Productos y Servicios <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="sub">
+          <li><a href="https://www.gestorias-san-blas-madrid.com/productos">Servicios</a></li>
+          <li><a href="https://www.gestorias-san-blas-madrid.com/blog">Blog</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/contacto">Contacto</a></li>
+    </ul>
+    <a href="tel:+34917601162" class="btn btn-main btn-sm">Llama ahora <span class="tel">91 760 11 62</span></a>
+    <details class="mnav">
+      <summary aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="panel">
+        <a href="https://www.gestorias-san-blas-madrid.com/">Inicio</a>
+        <div class="grp">Conócenos</div>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/galeria">Galería de imágenes</a>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/videos">Galería de vídeos</a>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/saber-mas">Saber Más</a>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/noticias">Noticias</a>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/conocenos/tour">Tour virtual</a>
+        <div class="grp"><a href="https://www.gestorias-san-blas-madrid.com/servicios" style="border:0;padding:0;color:inherit;font-weight:600">Productos y Servicios</a></div>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/productos">Servicios</a>
+        <a class="in" href="https://www.gestorias-san-blas-madrid.com/blog">Blog</a>
+        <a href="https://www.gestorias-san-blas-madrid.com/contacto">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Gestoría Diéguez</span>
+        <h1>Gestión de empresas y autónomos. Ciudad Lineal y barrio de Las Rosas</h1>
+        <ul class="pillars">
+          <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="M8.2 14 7 22l5-3 5 3-1.2-8"/></svg></span>Amplia experiencia en materia de gestión</li>
+          <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 11a3 3 0 1 0 0-6M22 21a5 5 0 0 0-4-4.9"/></svg></span>Equipo profesional altamente cualificado</li>
+          <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Asesoramiento a nuestros clientes</li>
+        </ul>
+        <div class="row">
+          <a href="tel:+34917601162" class="btn btn-main">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            Llama ahora <span class="tel">91 760 11 62</span>
+          </a>
+          <a href="#contacto" class="btn btn-line">Contáctanos</a>
+        </div>
+      </div>
+      <aside class="info">
+        <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Horario</h2>
+        <table class="hours">
+          <tr><td>Lun - Vie</td><td>09:00 - 14:00<br>17:00 - 20:00</td></tr>
+          <tr><td>Sábado</td><td>10:00 - 14:00</td></tr>
+          <tr><td>Domingo</td><td class="closed">Cerrado</td></tr>
+        </table>
+        <div class="addr">
+          <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Donde estamos</h2>
+          <p>Suecia 25, Madrid, Madrid 28022, ESP</p>
+          <a href="https://maps.google.com/maps?q=Suecia+25%2C+Madrid%2C+Madrid+28022%2C+ESP&amp;sll=40.422972,-3.605926" target="_blank" rel="noopener">Find Us <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- CONÓCENOS -->
+  <section id="conocenos">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Gestoría Diéguez</span>
+        <p class="lead" style="margin-top:14px">Gestoría Diéguez está compuesta por un equipo humano de profesionales con muchos años de experiencia en el sector del asesoramiento y gestión empresarial.</p>
+      </div>
+      <div class="about-list">
+        <p><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Nuestro objetivo primordial es lograr la plena satisfacción de nuestros clientes a través de la oferta de un servicio integral en donde cada uno de ellos sea el principal protagonista, recibiendo un trato totalmente personalizado y adaptado a sus necesidades.</p>
+        <p><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Queremos que nuestros clientes puedan delegarnos con total tranquilidad las obligaciones fiscales, laborales y contables a las que se enfrentan, y que encuentren apoyo técnico necesario que resuelva sus dudas y disminuya sus costes.</p>
+        <p><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h8M12 8v8"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>Somos miembros de varias asociaciones profesionales y hemos alcanzado acuerdos con empresas de distintas ramas como protección de datos, prevención de riesgos laborales, seguros, mutuas de accidentes, etc.</p>
+        <p><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Disponemos de personal bilingüe en idiomas como son polaco y búlgaro para poder cubrir las necesidades de nuestros clientes.</p>
+        <p><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Estamos autorizados por distintos organismos oficiales para la tramitación telemática de los documentos como puede ser Agencia Tributaria, Tesorería General de la Seguridad Social o Servicios Publico de Empleo Estatal (INEM).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services" id="servicios">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="head">
+          <span class="eyebrow">Productos y Servicios</span>
+          <h2><a href="https://www.gestorias-san-blas-madrid.com/productos">Servicios</a></h2>
+        </div>
+        <a class="more" href="https://www.gestorias-san-blas-madrid.com/productos">Ver más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="svc">
+        <a href="https://www.gestorias-san-blas-madrid.com/producto/asesoria">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+          <h3>Asesoría</h3><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="https://www.gestorias-san-blas-madrid.com/producto/gestiones-online">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+          <h3>Gestiones Online</h3><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="https://www.gestorias-san-blas-madrid.com/producto/gestiones-en-la-direccion-general-de-trafico">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14v-5l-2-5H7l-2 5z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M5 12h14"/></svg></span>
+          <h3>Gestiones en la dirección general de tráfico</h3><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="https://www.gestorias-san-blas-madrid.com/producto/otros-tramites">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v3h6V3M8 11h8M8 15h6"/></svg></span>
+          <h3>Otros trámites</h3><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="https://www.gestorias-san-blas-madrid.com/producto/gestoria-administrativa">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
+          <h3>Gestoría Administrativa</h3><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section id="noticias">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="head">
+          <span class="eyebrow">Gestoría Diéguez</span>
+          <h2><a href="https://www.gestorias-san-blas-madrid.com/noticias">Noticias</a></h2>
+        </div>
+        <a class="more" href="https://www.gestorias-san-blas-madrid.com/noticias">Ver más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="news">
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/feliz-navidad-y-prospero-ano-2021">Feliz Navidad y Próspero Año 2021</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/desescalada-fase-1">DESESCALADA FASE 1</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/horario-por-covid19">HORARIO POR COVID19</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/horario-de-verano__">HORARIO DE VERANO</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/declaracion-renta-2018">DECLARACION RENTA 2018</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/modelo-347-ano-2018">MODELO 347 AÑO 2018</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/gestoria-dieguez-os-desea-feliz-navidad">Gestoría Dieguez os desea Feliz Navidad!</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/devolucion-de-irpf-por-maternidad-y-paternidad">DEVOLUCION DE IRPF POR MATERNIDAD Y PATERNIDAD</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/campana-de-impuestos-3otrimestre-2018">CAMPAÑA DE IMPUESTOS 3ºTRIMESTRE 2018</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/los-vehiculos-de-empresa-como-fuente-de-problemas_">LOS VEHÍCULOS DE EMPRESA COMO FUENTE DE PROBLEMAS</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/horario-de-verano_">HORARIO DE VERANO</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/nos-cambiamos-de-oficina">NOS CAMBIAMOS DE OFICINA!!</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/ayudas-de-la-comunidad-de-madrid-para-trabajadores-autonomos">AYUDAS DE LA COMUNIDAD DE MADRID PARA TRABAJADORES AUTONOMOS</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/principales-novedades-declaracion-de-la-renta-2017">PRINCIPALES NOVEDADES DECLARACION DE LA RENTA 2017</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/apertura-nuevo-centro-en-calle-emilio-munoz-5-telefono-de-contacto-914-402-256_">Apertura nuevo centro en calle Emilio Muñoz, 5 teléfono de contacto 91 760 11 62 ext. 2</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/horario-de-verano">HORARIO DE VERANO</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/solicitud-de-aplazamientos-sin-garantia">Solicitud de aplazamientos sin garantía</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/reforma-estatuto-trabajadores-autonomos">Reforma estatuto trabajadores autónomos</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/medidas-de-reforma-administrativa-en-el-ambito-de-la-administracion-de-justicia-y-del-registro-civil">Medidas de reforma administrativa en el ámbito de la Administración de Justicia y del Registro Civil</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/subvenciones">Subvenciones</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/fiscal">Fiscal</a></li>
+        <li><a href="https://www.gestorias-san-blas-madrid.com/noticias/real-decreto-ley-3-2014">Real decreto-ley 3/2014</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="gallery" id="galeria">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="head">
+          <span class="eyebrow">Conócenos</span>
+          <h2><a href="https://www.gestorias-san-blas-madrid.com/galeria">Galería de imágenes</a></h2>
+        </div>
+        <a class="more" href="https://www.gestorias-san-blas-madrid.com/galeria">Ver más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="caps">
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/26294"><span>Asesoría fiscal, laboral y contable</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/26297"><span>Gestoría online</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/26296"><span>Asesorías de empresa en San Blas, Madrid</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/4539775"><span>Servicio integral de gestoría</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/4539773"><span>Gestión empresarial</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/10354357"><span>Reales decretos aprobados por COVID19</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/10362571"><span>Medidas que necesitan los autónomos</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+        <a href="https://www.gestorias-san-blas-madrid.com/fotos/img/26295"><span>Gestoría Diéguez</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contacto</span>
+        <h2>Contáctanos</h2>
+      </div>
+      <div class="contact-grid">
+        <form class="card-form" onsubmit="return demoSubmit(this)">
+          <div class="field"><label for="n">Nombre*:</label><input id="n" required autocomplete="name"></div>
+          <div class="field"><label for="e">Email*:</label><input id="e" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="t">Teléfono:</label><input id="t" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="m">Mensaje*:</label><textarea id="m" rows="5" required></textarea></div>
+          <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://www.gestorias-san-blas-madrid.com/politica-de-privacidad" target="_blank" rel="noopener">Política de Protección de Datos</a></span></label>
+          <button class="btn btn-main" type="submit">Enviar</button>
+          <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        </form>
+        <div class="side">
+          <div class="box">
+            <h3>Contacta con nosotros</h3>
+            <p>Mándanos un mail</p>
+            <a class="mail" href="mailto:dieguezasenjo@gestores.net">dieguezasenjo@gestores.net</a>
+            <p>Haz click en Copiar mail o Abrir correo</p>
+            <div class="row">
+              <button type="button" class="btn btn-line btn-sm" onclick="copyMail()">Copiar mail</button>
+              <a class="btn btn-main btn-sm" href="mailto:dieguezasenjo@gestores.net">Abrir correo</a>
+            </div>
+            <div class="copied" id="copied">Correo copiado</div>
+          </div>
+          <div class="box">
+            <h3>Ver teléfono</h3>
+            <a class="btn btn-main" href="tel:+34917601162" style="width:100%">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+              <span class="tel">91 760 11 62</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <ul class="seo">
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-abierta-los-sabados-ciudad-lineal-madrid">Gestoría abierta los sábados en Ciudad Lineal, Madrid</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-abierta-los-sabados-arturo-soria">Gestoría abierta los sábados Arturo Soria</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-administrativa-arturo-soria">Gestoría administrativa Arturo Soria</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-administrativa-ciudad-lineal-madrid">Gestoría administrativa Ciudad Lineal Madrid</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-abierta-los-sabados-san-blas-madrid">Gestoría abierta los sábados San Blas Madrid</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/asesorias-de-empresa-san-blas-madrid">Asesorías de empresa San Blas Madrid</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-abierta-los-sabados-las-rosas-madrid">Gestoría abierta los sábados Las Rosas Madrid</a></li>
+      <li><a href="https://www.gestorias-san-blas-madrid.com/es/gestoria-administrativa-las-rosas-madrid">Gestoría administrativa Las Rosas Madrid</a></li>
+    </ul>
+    <div class="foot">
+      <img src="https://de.cdn-website.com/aea222c1d7394b89821ed155d7f07ea7/dms3rep/multi/Logo-Dieguez-web.png" alt="Gestoría Diéguez">
+      <nav>
+        <a href="https://www.gestorias-san-blas-madrid.com/aviso-legal">Aviso legal</a>
+        <a href="https://www.gestorias-san-blas-madrid.com/politica-de-privacidad">Política de privacidad</a>
+        <a href="https://www.gestorias-san-blas-madrid.com/politica-de-cookies">Política de cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34917601162" class="btn btn-main">Llama ahora</a>
+  <a href="#contacto" class="btn btn-line">Contacto</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+  function copyMail(){
+    var ok=function(){ document.getElementById('copied').style.display='block'; };
+    try{ navigator.clipboard.writeText('dieguezasenjo@gestores.net').then(ok,ok); }catch(e){ ok(); }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>LCT Idiomas · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#496915; --green-dark:#3a5410; --green-mid:#97A975; --green-soft:#D0D8BF; --lime:#8cbc43;
+    --ink:#1b1b1b; --text:#3b4148; --muted:#69707a; --line:#e4e8dc; --tint:#f5f7f0; --white:#fff;
+    --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .ff{font-family:"Encode Sans Semi Expanded",system-ui,sans-serif}
+  .eyebrow{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700}
+
+  .demo{background:var(--ink);color:#d6dcc8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* top bar */
+  .topbar{background:var(--green);color:#eef2e6;font-size:.82rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:38px;flex-wrap:wrap}
+  .topbar .left{display:flex;gap:22px;flex-wrap:wrap}
+  .topbar a:hover{color:#fff;text-decoration:underline}
+  .social{display:flex;gap:14px}
+  .social a{display:inline-flex;align-items:center;gap:6px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:18px}
+  .nav .logo img{height:58px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 12px;font-weight:600;font-size:.9rem;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover{color:var(--green);background:var(--tint)}
+  .menu .has>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px;opacity:.6}
+  .sub{position:absolute;top:100%;left:0;min-width:250px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 44px -24px rgba(0,0,0,.35);padding:8px;list-style:none;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+  .menu>li:hover>.sub,.menu>li:focus-within>.sub{opacity:1;visibility:visible;transform:none}
+  .sub a{display:block;padding:8px 12px;border-radius:8px;font-size:.88rem;color:var(--text)}
+  .sub a:hover{background:var(--tint);color:var(--green)}
+  .sub .grp{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-mid);font-weight:700;padding:10px 12px 4px}
+  .sub .grp a{padding:0;display:inline;font-size:inherit;color:var(--green);background:none}
+  .sub .ind a{padding-left:24px}
+  .sub.wide{min-width:540px;columns:2;column-gap:8px}.sub.wide li{break-inside:avoid}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.92rem;transition:.2s;border:2px solid var(--green);cursor:pointer;font-family:"Encode Sans Semi Expanded",sans-serif;white-space:nowrap}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{background:var(--green-dark);border-color:var(--green-dark)}
+  .btn-line{background:#fff;color:var(--green)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-lime{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+  .btn-lime:hover{filter:brightness(.95)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:10px 18px;font-size:.84rem}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.9}
+
+  .mnav{display:none}
+
+  /* ribbon */
+  .ribbon{background:var(--tint);border-bottom:1px solid var(--line)}
+  .ribbon .wrap{display:flex;align-items:center;justify-content:center;gap:10px 22px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px;text-align:center}
+  .ribbon strong{font-family:"Encode Sans Semi Expanded",sans-serif;color:var(--green);font-size:.95rem;letter-spacing:.02em}
+  .ribbon span{font-size:.92rem;color:var(--text)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:#fff}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding-top:70px;padding-bottom:80px}
+  .hero h1{font-family:"Encode Sans Semi Expanded",sans-serif;font-weight:800;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.08;color:var(--ink);letter-spacing:-.01em}
+  .hero h1 a:hover{color:var(--green)}
+  .hero .claim{font-family:"Encode Sans Semi Expanded",sans-serif;color:var(--green);font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;margin:16px 0 14px}
+  .hero p.lead{font-size:1.04rem;max-width:560px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero-img{position:relative}
+  .hero-img img{border-radius:22px;aspect-ratio:4/3.2;object-fit:cover;width:100%;box-shadow:0 30px 60px -34px rgba(27,27,27,.5)}
+  .hero-img::before{content:"";position:absolute;inset:auto -18px -18px auto;width:62%;height:62%;border-radius:22px;background:var(--green-soft);z-index:-1}
+  .hero-badge{position:absolute;left:-18px;bottom:28px;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:0 18px 40px -20px rgba(0,0,0,.35);display:flex;align-items:center;gap:12px}
+  .hero-badge b{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:1.8rem;color:var(--green);line-height:1}
+  .hero-badge span{font-size:.84rem;font-weight:600;color:var(--ink);line-height:1.25}
+
+  /* promo cards */
+  .promos{padding:0 0 84px}
+  .promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .promo{position:relative;border-radius:var(--radius);overflow:hidden;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;color:#fff;background-size:cover;background-position:center}
+  .promo::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,27,27,.05) 0%,rgba(36,52,10,.88) 72%)}
+  .promo>*{position:relative}
+  .promo h3{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:1.12rem;font-weight:700;line-height:1.3}
+  .promo p{font-size:.92rem;color:#e7edd9;margin-top:6px}
+  .promo .btn{margin-top:16px;align-self:flex-start}
+
+  section{padding:92px 0}
+  .head{max-width:720px;margin-bottom:42px}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-family:"Encode Sans Semi Expanded",sans-serif;font-weight:800;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.15;color:var(--ink);margin-top:10px}
+  .head p{color:var(--muted);margin-top:14px}
+
+  /* nuevo curso (pop-up) */
+  .curso{background:var(--green);color:#fff;padding:0}
+  .curso .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px}
+  .curso img{border-radius:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .curso .eyebrow{color:var(--green-soft)}
+  .curso h2{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.15;margin:10px 0 12px}
+  .curso p{color:#e3ead3;max-width:520px}
+  .curso .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .about-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end}
+  .about-imgs img{border-radius:var(--radius);object-fit:cover;width:100%}
+  .about-imgs img:first-child{aspect-ratio:1/1.15}
+  .about-imgs img:last-child{aspect-ratio:1/1;transform:translateY(34px)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  .stat{background:var(--green);color:#fff;border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;gap:14px}
+  .stat.alt{background:var(--tint);color:var(--ink);border:1px solid var(--line)}
+  .stat b{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:2.1rem;line-height:1}
+  .stat.alt b{color:var(--green)}
+  .stat span{font-size:.92rem;font-weight:600;line-height:1.3}
+  .stat img{width:40px;height:40px}
+
+  /* trinity */
+  .trinity{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
+  .trinity .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .trinity h2{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:clamp(1.5rem,2.6vw,2rem);color:var(--ink);line-height:1.2}
+  .trinity p{margin:10px 0 20px;max-width:640px}
+  .trinity .logo-box{background:#fff;border-radius:var(--radius);padding:26px 30px;border:1px solid var(--line)}
+  .trinity .logo-box img{width:260px;height:auto}
+
+  /* method */
+  .method{position:relative;background:linear-gradient(180deg,rgba(248,248,248,.92),rgba(248,248,248,.92)),url(https://lctidiomas.es/wp-content/uploads/fondo-de-libros.jpg) center/cover}
+  .method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .mcard{background:#fff;border-radius:var(--radius);padding:28px 24px;border:1px solid var(--line);transition:.25s}
+  .mcard:hover{border-color:var(--green-mid);box-shadow:0 20px 40px -26px rgba(0,0,0,.3);transform:translateY(-2px)}
+  .mcard img{width:54px;height:54px;margin-bottom:16px}
+  .mcard h3{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:1.05rem;color:var(--ink);margin-bottom:8px}
+  .mcard p{font-size:.93rem}
+
+  /* why */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .why-grid .lead{font-size:1.02rem}
+  .blurbs{display:grid;gap:16px;margin-top:28px}
+  .blurb{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:#fff}
+  .blurb .ic{width:44px;height:44px;border-radius:12px;background:var(--tint);display:grid;place-items:center;color:var(--green)}
+  .blurb h3{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:1rem;color:var(--ink);margin-bottom:4px}
+  .blurb p{font-size:.93rem}
+  .why-img{position:relative}
+  .why-img img{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover}
+  .why-tag{position:absolute;right:18px;bottom:-22px;background:var(--green);color:#fff;border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 36px -18px rgba(0,0,0,.45)}
+  .why-tag img{width:34px;height:34px;filter:brightness(0) invert(1);aspect-ratio:auto;border-radius:0}
+  .why-tag b{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:.95rem}
+
+  /* formación */
+  .formacion{background:var(--tint)}
+  .f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .fcard{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:.25s}
+  .fcard:hover{box-shadow:0 22px 44px -28px rgba(0,0,0,.35);transform:translateY(-3px)}
+  .fcard img{aspect-ratio:7/5;object-fit:cover;width:100%}
+  .fcard .body{padding:22px 24px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .fcard h3{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:1.15rem;color:var(--ink)}
+  .fcard p{font-size:.92rem;color:var(--muted)}
+  .fcard .arrow{flex:none;width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center}
+  .center-row{text-align:center;margin-top:38px}
+
+  /* testimonios */
+  .t-top{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;margin-bottom:38px}
+  .t-top img{border-radius:var(--radius);width:100%;aspect-ratio:16/10;object-fit:cover}
+  .g-note{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:var(--muted);margin-top:14px}
+  .stars{color:#f5a623;letter-spacing:2px;font-size:.95rem}
+  .reviews{columns:3 300px;column-gap:20px}
+  .review{break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:20px}
+  .review header{position:static;background:none;backdrop-filter:none;border:0;display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .review header img{width:40px;height:40px;border-radius:50%}
+  .review .av{width:40px;height:40px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-weight:700}
+  .review h3{font-size:.95rem;color:var(--ink);font-weight:700;line-height:1.2}
+  .review p{font-size:.93rem}
+
+  /* contacto */
+  .contact{background:linear-gradient(180deg,#fff,var(--tint))}
+  .c-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(27,27,27,.35);border-top:5px solid var(--green)}
+  .card-form h2{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:1.45rem;color:var(--ink);line-height:1.25;margin-bottom:18px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{margin-bottom:2px}
+  .field.full{grid-column:1/-1}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field label span{color:var(--green)}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d5dccb;border-radius:10px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field textarea{min-height:140px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(73,105,21,.25);border-color:var(--green)}
+  .count{font-size:.76rem;color:var(--muted);text-align:right;margin-top:4px}
+  .check{display:flex;gap:10px;font-size:.84rem;color:var(--muted);align-items:flex-start;margin:14px 0 18px}
+  .check input{margin-top:3px;accent-color:var(--green);flex:none}
+  .check a{text-decoration:underline;color:var(--green)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:10px;padding:12px;font-size:.86rem;margin-top:12px;border:1px solid var(--line)}
+  .info{display:grid;gap:14px}
+  .info-item{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .info-item .ic{width:46px;height:46px;border-radius:12px;background:var(--green);color:#fff;display:grid;place-items:center}
+  .info-item h3{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:.95rem;color:var(--ink);margin-bottom:2px}
+  .info-item a{color:var(--green);font-weight:600}
+  .info-item a:hover{text-decoration:underline}
+  .info-item p{word-break:break-word}
+
+  /* duda band */
+  .band{background:linear-gradient(180deg,rgba(73,105,21,.88),rgba(73,105,21,.95)),url(https://lctidiomas.es/wp-content/uploads/ALUMNOS-EN-CLASE.jpg) center/cover;color:#fff;padding:70px 0}
+  .band .wrap{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+  .band h2{font-family:"Encode Sans Semi Expanded",sans-serif;font-size:clamp(1.6rem,3vw,2.2rem)}
+  .band p{color:#e5ecd6;max-width:680px;margin-top:8px}
+
+  footer{background:#1f2a12;color:#cbd3bb;padding:60px 0 0;font-size:.9rem}
+  .foot{display:grid;grid-template-columns:.9fr 1fr 1.3fr 1fr;gap:36px}
+  .foot .flogo{background:#fff;border-radius:12px;padding:12px;display:inline-block}
+  .foot .flogo img{height:70px;width:auto}
+  .foot h3{font-family:"Encode Sans Semi Expanded",sans-serif;color:#fff;font-size:.95rem;margin-bottom:12px}
+  .foot ul{list-style:none;display:grid;gap:6px}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .foot .exam{margin-top:18px;max-width:240px}
+  .hours li{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;border-bottom:1px dashed rgba(255,255,255,.12);padding-bottom:5px}
+  .hours li b{color:#fff;font-weight:600}.hours li span{text-align:right}
+  .foot-bottom{margin-top:44px;border-top:1px solid rgba(255,255,255,.1);padding:18px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .menu{display:none}
+    .mnav{display:block}
+    .mnav summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink)}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav[open] .mpanel{display:block}
+    .mpanel{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 40px -20px rgba(0,0,0,.3);max-height:75vh;overflow:auto;padding:10px 20px 20px}
+    .mpanel a{display:block;padding:9px 0;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
+    .mpanel .l2 a{padding-left:16px;font-weight:500;font-size:.92rem;color:var(--text)}
+    .mpanel .l3 a{padding-left:32px;font-weight:400;font-size:.88rem;color:var(--muted)}
+    .nav-ctas{display:none}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .promo-grid{grid-template-columns:1fr 1fr}
+    .promo-grid .promo:last-child{grid-column:1/-1}
+    .method-grid{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:820px){
+    .about-grid,.why-grid,.c-grid,.t-top,.curso .wrap{grid-template-columns:1fr}
+    .about-imgs img:last-child{transform:none}
+    .f-grid{grid-template-columns:1fr 1fr}
+    .trinity .wrap,.band .wrap{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .topbar{display:none}
+    .nav{height:70px}
+    .nav .logo img{height:48px}
+    .hero-grid{padding-top:40px;padding-bottom:56px}
+    .hero .row .btn{width:100%}
+    .hero-badge{left:10px;bottom:12px}
+    .hero-img::before{display:none}
+    .promo-grid,.method-grid,.f-grid,.fields,.stats{grid-template-columns:1fr}
+    .promo-grid .promo:last-child{grid-column:auto}
+    section{padding:64px 0}
+    .trinity .logo-box img{width:100%;max-width:240px}
+    .card-form{padding:24px 18px}
+    .foot{grid-template-columns:1fr}
+    .curso .row .btn,.band .btn,.trinity .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.84rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para LCT Idiomas · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="left">
+      <a href="tel:+34914731854">91 473 18 54</a>
+      <a href="mailto:lctidiomaslctidiomas@gmail.com">lctidiomaslctidiomas@gmail.com</a>
+    </div>
+    <div class="social">
+      <a href="https://www.facebook.com/people/LctIdiomas/100066737466998/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://twitter.com/LCTIDIOMAS" target="_blank" rel="noopener">X</a>
+      <a href="https://www.instagram.com/lctidiomasacademy/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://lctidiomas.es/" aria-label="LCT Idiomas"><img src="https://lctidiomas.es/wp-content/uploads/LCT-logo.png" alt="LCT Idiomas"></a>
+    <ul class="menu">
+      <li><a href="https://lctidiomas.es/sobre-nosotros/">Sobre nosotros</a></li>
+      <li class="has"><a href="https://lctidiomas.es/cursos/">Cursos</a>
+        <ul class="sub wide">
+          <li><a href="https://lctidiomas.es/curso-estandar/">Curso estándar (octubre a junio)</a></li>
+          <li><a href="https://lctidiomas.es/intensivos-en-lct/">Cursos Intensivos</a></li>
+          <li><a href="https://lctidiomas.es/clases-particulares/">Clases Particulares</a></li>
+          <li><a href="https://lctidiomas.es/english-course-for-kids/">English Course for kids</a></li>
+          <li class="grp"><a href="https://lctidiomas.es/cursos_extranjero/">Cursos Extranjero</a></li>
+          <li><a href="https://lctidiomas.es/ireland/">Irlanda</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/kingshospital/">Dublin King’s Hospital</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/bray/">Bray</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/waterford/">Waterford</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/dalkey/">Dalkey</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/cork/">Cork</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/sligo/">Sligo</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/galway/">Galway</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/limmerick/">Limmerick</a></li>
+          <li><a href="https://lctidiomas.es/canada-2/">Canadá</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/toronto-canada/">Toronto – Canadá</a></li>
+          <li><a href="https://lctidiomas.es/usa/">Estados Unidos</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/san-diego-california/">San Diego – California</a></li>
+          <li class="ind"><a href="https://lctidiomas.es/programa-de-inmersion/">Programa de inmersión</a></li>
+          <li class="grp"><a href="https://lctidiomas.es/cursos-escolares-extensivos/">Cursos Escolares Extranjero</a></li>
+          <li><a href="https://lctidiomas.es/curso-irlanda/">Irlanda</a></li>
+          <li><a href="https://lctidiomas.es/curso-canada/">Canadá</a></li>
+        </ul>
+      </li>
+      <li><a href="https://lctidiomas.es/niveles/">Niveles</a></li>
+      <li class="has"><a href="https://lctidiomas.es/examenes/">Exámenes</a>
+        <ul class="sub">
+          <li><a href="https://lctidiomas.es/cambridge/">Cambridge</a></li>
+          <li><a href="https://lctidiomas.es/trinity/">Trinity</a></li>
+          <li><a href="https://lctidiomas.es/linguaskill/">Linguaskill</a></li>
+        </ul>
+      </li>
+      <li><a href="https://lctidiomas.es/inscripcion/">Inscripción</a></li>
+      <li><a href="https://lctidiomas.es/blog/category/blog/">Blog</a></li>
+      <li><a href="https://lctidiomas.es/contacto/">Contacto</a></li>
+    </ul>
+    <div class="nav-ctas"><a href="#contacto" class="btn btn-green btn-sm">¡Reserva!</a></div>
+    <details class="mnav">
+      <summary aria-label="Menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <nav class="mpanel">
+        <a href="https://lctidiomas.es/sobre-nosotros/">Sobre nosotros</a>
+        <a href="https://lctidiomas.es/cursos/">Cursos</a>
+        <div class="l2"><a href="https://lctidiomas.es/curso-estandar/">Curso estándar (octubre a junio)</a><a href="https://lctidiomas.es/intensivos-en-lct/">Cursos Intensivos</a><a href="https://lctidiomas.es/clases-particulares/">Clases Particulares</a><a href="https://lctidiomas.es/english-course-for-kids/">English Course for kids</a><a href="https://lctidiomas.es/cursos_extranjero/">Cursos Extranjero</a></div>
+        <div class="l3"><a href="https://lctidiomas.es/ireland/">Irlanda</a><a href="https://lctidiomas.es/kingshospital/">Dublin King’s Hospital</a><a href="https://lctidiomas.es/bray/">Bray</a><a href="https://lctidiomas.es/waterford/">Waterford</a><a href="https://lctidiomas.es/dalkey/">Dalkey</a><a href="https://lctidiomas.es/cork/">Cork</a><a href="https://lctidiomas.es/sligo/">Sligo</a><a href="https://lctidiomas.es/galway/">Galway</a><a href="https://lctidiomas.es/limmerick/">Limmerick</a><a href="https://lctidiomas.es/canada-2/">Canadá</a><a href="https://lctidiomas.es/toronto-canada/">Toronto – Canadá</a><a href="https://lctidiomas.es/usa/">Estados Unidos</a><a href="https://lctidiomas.es/san-diego-california/">San Diego – California</a><a href="https://lctidiomas.es/programa-de-inmersion/">Programa de inmersión</a></div>
+        <div class="l2"><a href="https://lctidiomas.es/cursos-escolares-extensivos/">Cursos Escolares Extranjero</a></div>
+        <div class="l3"><a href="https://lctidiomas.es/curso-irlanda/">Irlanda</a><a href="https://lctidiomas.es/curso-canada/">Canadá</a></div>
+        <a href="https://lctidiomas.es/niveles/">Niveles</a>
+        <a href="https://lctidiomas.es/examenes/">Exámenes</a>
+        <div class="l2"><a href="https://lctidiomas.es/cambridge/">Cambridge</a><a href="https://lctidiomas.es/trinity/">Trinity</a><a href="https://lctidiomas.es/linguaskill/">Linguaskill</a></div>
+        <a href="https://lctidiomas.es/inscripcion/">Inscripción</a>
+        <a href="https://lctidiomas.es/blog/category/blog/">Blog</a>
+        <a href="https://lctidiomas.es/contacto/">Contacto</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="ribbon">
+    <div class="wrap">
+      <strong>PLAZAS DISPONIBLES PARA EL CURSO 2026-2027</strong>
+      <span>Preparación continua de exámenes A2, B1, B2, C1 y C2</span>
+      <a href="#contacto" class="btn btn-green btn-sm">¡Reserva!</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1><a href="https://lctidiomas.es/contacto/">TU ACADEMIA DE INGLÉS EN ARGANZUELA</a></h1>
+        <p class="claim">Desde 1993 enseñando a disfrutar del inglés</p>
+        <p class="lead">En nuestra academia de inglés en Arganzuela ofrecemos cursos académicos con clases presenciales y online, preparación de exámenes de PET, FCE, CAE, PROF, ISE y GESE de Trinity, clases particulares, cursos de verano, intensivos y asesoramiento lingüístico.</p>
+        <div class="row">
+          <a href="https://lctidiomas.es/contacto/" class="btn btn-green">Contacto</a>
+          <a href="tel:+34914731854" class="btn btn-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span class="tel">91 473 18 54</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://lctidiomas.es/wp-content/uploads/Banner-home-LCT-Idiomas-3.png" alt="Alumnos de LCT Idiomas">
+        <div class="hero-badge"><b>30+</b><span>años de<br>experiencia</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMOS (slider original) -->
+  <div class="promos">
+    <div class="wrap promo-grid">
+      <div class="promo" style="background-image:url(https://lctidiomas.es/wp-content/uploads/preparacion-continua-examenes-academia-ingles-arganzuela.webp)">
+        <h3>NUEVO CURSO 26-27: RESERVA ABIERTA</h3>
+        <p>Preparación continua de exámenes B1, B2, C1 y C2</p>
+        <a href="https://lctidiomas.es/cursos/" class="btn btn-lime btn-sm">Más información</a>
+      </div>
+      <div class="promo" style="background-image:url(https://lctidiomas.es/wp-content/uploads/Banner-home-LCT-Idiomas-1.png)">
+        <h3>CATÁLOGO AÑO ESCOLAR 2026-2027</h3>
+        <a href="https://lctidiomas.es/wp-content/uploads/LCTIDIOMAS_Catalogo_Ano_Escolar_2025_2026.pdf" target="_blank" rel="noopener" class="btn btn-lime btn-sm">Descargar</a>
+      </div>
+      <div class="promo" style="background-image:url(https://lctidiomas.es/wp-content/uploads/cursos-verano-extranjero-lct.jpg)">
+        <h3>CURSOS DE VERANO EN EL EXTRANJERO</h3>
+        <p>Destinos con plazas disponibles</p>
+        <a href="https://lctidiomas.es/cursos_extranjero/" class="btn btn-lime btn-sm">Más información</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="nosotros" style="padding-top:20px">
+    <div class="wrap about-grid">
+      <div class="about-imgs">
+        <img src="https://lctidiomas.es/wp-content/uploads/estudiante-con-carpetas.jpg" alt="Estudiante con carpetas" loading="lazy">
+        <img src="https://lctidiomas.es/wp-content/uploads/ninos-estudiando.jpg" alt="Niños estudiando" loading="lazy">
+      </div>
+      <div>
+        <span class="eyebrow">Una academia para todos</span>
+        <div class="head" style="margin-bottom:0">
+          <h2>Sobre nuestra academia de inglés en Arganzuela</h2>
+          <p>En LCT IDIOMAS somos una academia de inglés situada en Arganzuela en la que llevamos desde 1993 formando a nuestros alumnos en diferentes ámbitos. Ayudamos a cada uno de ellos a que alcancen sus objetivos tanto profesionales y formativos, como personales y de crecimiento.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>30+</b><span>años de experiencia</span></div>
+          <div class="stat alt"><img src="https://lctidiomas.es/wp-content/uploads/finance-5-as-9.png" alt="" loading="lazy"><b>98%</b><span>de éxito</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRINITY -->
+  <div class="trinity">
+    <div class="wrap">
+      <div>
+        <h2>Centro Examinador Oficial Trinity</h2>
+        <p>Obtén tu certificación oficial de inglés sin salir de nuestra academia. Prepárate con profesores especializados y realiza aquí tu examen Trinity.</p>
+        <a href="https://lctidiomas.es/trinity/" class="btn btn-green">Más información</a>
+      </div>
+      <div class="logo-box"><img src="https://lctidiomas.es/wp-content/uploads/trinity.webp" alt="Trinity" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- MÉTODO -->
+  <section class="method">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Nuestro método</span>
+        <h2>Te ayudamos a alcanzar el éxito</h2>
+        <p>En nuestra academia llevamos más de 30 años trabajando para formar a nuestros alumnos. Trabajamos con todos los niveles de inglés desde los 4 años y somos un centro certificado para exámenes de nivel de Cambridge y Trinity.</p>
+      </div>
+      <div class="method-grid">
+        <article class="mcard"><img src="https://lctidiomas.es/wp-content/uploads/objetivo-icono.png" alt="" loading="lazy"><h3>Formación integral</h3><p>Trabajamos para que alcances tus objetivos y desarrolles las habilidades necesarias.</p></article>
+        <article class="mcard"><img src="https://lctidiomas.es/wp-content/uploads/siguiente-nivel.png" alt="" loading="lazy"><h3>Transversal</h3><p>Te formamos en todos los ámbitos para alcanzar un nivel de inglés completo.</p></article>
+        <article class="mcard"><img src="https://lctidiomas.es/wp-content/uploads/grupo-de-lectura.png" alt="" loading="lazy"><h3>Personalización</h3><p>Garantizamos grupos reducidos para la atención personal a cada alumno.</p></article>
+        <article class="mcard"><img src="https://lctidiomas.es/wp-content/uploads/experiencia-icono.png" alt="" loading="lazy"><h3>Gran experiencia</h3><p>Nuestros profesores cuentan con una gran trayectoria de enseñanza de inglés.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ -->
+  <section>
+    <div class="wrap why-grid">
+      <div>
+        <span class="eyebrow">Aprendemos contigo</span>
+        <div class="head" style="margin-bottom:16px"><h2>Por qué elegir nuestra academia de inglés en Arganzuela</h2></div>
+        <p class="lead">Somos conscientes de que no todas las personas que acuden a nuestra academia son iguales ni tienen los mismos objetivos. Por esa razón, trabajamos cada día a tu lado para poder saber qué es lo que necesitas y cómo ayudarte a conseguirlo, adaptando nuestro método de enseñanza para que te sea lo más cómodo y sencillo posible.</p>
+        <div class="blurbs">
+          <div class="blurb"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></span><div><h3>Nos adaptamos a ti</h3><p>Sabemos que cada alumno tiene unas necesidades y unos objetivos distintos, por eso trabajamos para adaptarnos a cada persona y conseguir su éxito.</p></div></div>
+          <div class="blurb"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><h3>Te acompañamos y asesoramos</h3><p>Podrás contar con nuestros profesores en cualquier momento para todo tipo de dudas y problemas, y te asesoraremos en todo lo que necesites.</p></div></div>
+        </div>
+      </div>
+      <div class="why-img">
+        <img src="https://lctidiomas.es/wp-content/uploads/clase-ingles-ninos.jpg" alt="Clase de inglés para niños" loading="lazy">
+        <div class="why-tag"><img src="https://lctidiomas.es/wp-content/uploads/grupo-de-gente-icono.png" alt=""><b>Te acompañamos en tu desarrollo</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMACIÓN -->
+  <section class="formacion">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Nuestra formación</span>
+        <h2>Trabajamos por y para ti</h2>
+      </div>
+      <div class="f-grid">
+        <a class="fcard" href="https://lctidiomas.es/niveles/"><img src="https://lctidiomas.es/wp-content/uploads/ninos-nivel-ingles.jpg" alt="Niños nivel inglés" loading="lazy"><div class="body"><div><h3>Todos los niveles</h3><p>Desde los 4 años</p></div><span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+        <a class="fcard" href="https://lctidiomas.es/cambridge/"><img src="https://lctidiomas.es/wp-content/uploads/examen-cambridge-adolescentes.jpg" alt="Examen Cambridge adolescentes" loading="lazy"><div class="body"><div><h3>Cambridge</h3><p>Te preparamos para los exámenes</p></div><span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+        <a class="fcard" href="https://lctidiomas.es/trinity/"><img src="https://lctidiomas.es/wp-content/uploads/examen-trinity-jovenes.jpg" alt="Examen Trinity jóvenes" loading="lazy"><div class="body"><div><h3>Trinity</h3><p>Consigue el nivel que necesitas</p></div><span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      </div>
+      <div class="center-row"><a href="https://lctidiomas.es/cursos/" class="btn btn-green">Descubre nuestros cursos</a></div>
+    </div>
+  </section>
+
+  <!-- NUEVO CURSO (pop-up de la web) -->
+  <div class="curso">
+    <div class="wrap">
+      <img src="https://lctidiomas.es/wp-content/uploads/Pop-up-LCT-idiomas-nuevo-curso-26-27-1-1_11zon.webp" alt="Nuevo curso 2026-2027 en LCT Idiomas" loading="lazy">
+      <div>
+        <span class="eyebrow">NUEVO CURSO 26-27: RESERVA ABIERTA</span>
+        <h2>PLAZAS DISPONIBLES PARA EL CURSO 2026-2027</h2>
+        <p>Preparación continua de exámenes A2, B1, B2, C1 y C2</p>
+        <div class="row">
+          <a href="https://lctidiomas.es/contacto/" class="btn btn-lime">Más información</a>
+          <a href="#contacto" class="btn btn-ghost">¡Reserva!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="t-top">
+        <img src="https://lctidiomas.es/wp-content/uploads/aprobacion-testimonios.jpg" alt="Alumnos aprobados" loading="lazy">
+        <div>
+          <span class="eyebrow">TESTIMONIOS</span>
+          <div class="head" style="margin-bottom:0"><h2>Nuestros clientes opinan</h2></div>
+          <span class="g-note"><span class="stars">★★★★★</span> Publicado en Google</span>
+        </div>
+      </div>
+      <div class="reviews">
+        <article class="review"><header><span class="av">E</span><div><h3>Estibaliz Amilibia Toribio</h3><span class="stars">★★★★★</span></div></header><p>Excelentes profesionales!!! Asistí en su otra Academia durante un curso entero.</p></article>
+        <article class="review"><header><span class="av">M</span><div><h3>Mónica Bermejo Montejo</h3><span class="stars">★★★★★</span></div></header><p>Mi hermano y yo hemos estado preparando el C1 y lo hemos pasado!!! Muchas gracias a los profesores y a Belinda que nos ha explicado todo súper bien! Sin ellos no lo hubiéramos conseguido!!!</p></article>
+        <article class="review"><header><span class="av">F</span><div><h3>Felipe Bermejo Martinez</h3><span class="stars">★★★★★</span></div></header><p>Academia de idiomas muy recomendable, estamos muy contentos, profesionales, nativos, preparan muy bien exámenes de Cambridge. Trato muy personalizado. Sin la academia mi hija no hubiera sacado el B2 en 4º de la ESO. Ahora por el C1!</p></article>
+        <article class="review"><header><span class="av">Y</span><div><h3>Yulia Marchamalo Lobo</h3><span class="stars">★★★★★</span></div></header><p>Maravillosa academia</p></article>
+        <article class="review"><header><span class="av">A</span><div><h3>Ana Cristina</h3><span class="stars">★★★★★</span></div></header><p>Estoy encantada con el servicio recibido en la academia. Desde el primer día me he sentido muy cómoda. Belinda y Teresa son encantadoras, siempre te reciben con una sonrisa y están dispuestas a ayudarte en todo lo que necesites, haciendo que todo sea mucho más fácil. Emily es una profesora increíble: explica muy bien, hace las clases muy dinámicas y divertidas, y además es súper amable, por lo que aprender con ella se hace muy ameno. El ambiente en la academia es excelente, muy cercano y motivador. Gracias a su apoyo y a la calidad de la enseñanza he conseguido sacarme el C2. Sin duda, la recomendaría a cualquiera que quiera aprender inglés o preparar un examen oficial.</p></article>
+        <article class="review"><header><span class="av">J</span><div><h3>Julio Arrida</h3><span class="stars">★★★★★</span></div></header><p>Una academia muy recomendable. Trato cercano y grandes profesionales.</p></article>
+        <article class="review"><header><span class="av">R</span><div><h3>R</h3><span class="stars">★★★★★</span></div></header><p>Experiencia de 10 tanto en las clases con Matt y los compañeros como a la hora de realizar gestiones con Teresa y Belinda. Gran escuela en la que repetiré seguro si decido sacar el nivel C2. 👏🏼</p></article>
+        <article class="review"><header><span class="av">M</span><div><h3>marta morujo</h3><span class="stars">★★★★★</span></div></header><p>Mi experiencia con esta academia ha sido excelente. He hecho un curso de preparación para conseguir el C1 de Cambridge y lo he conseguido en parte gracias a las clases con Matt. Muy buen profesor con clases totalmente orientadas a mejorar tu nivel y a ayudarte a superar el examen. Además la atención por parte del personal de la academia ha sido inmejorable. La recomiendo totalmente!</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">CONTACTO</span></div>
+      <div class="c-grid">
+        <form class="card-form" onsubmit="return demoSubmit(this)">
+          <h2>¡Contáctanos y agenda tu prueba de nivel!</h2>
+          <div class="fields">
+            <div class="field"><label for="n">Nombre <span>*</span></label><input id="n" required autocomplete="name"></div>
+            <div class="field"><label for="t">Número de teléfono</label><input id="t" type="tel" autocomplete="tel"></div>
+            <div class="field full"><label for="e">Correo electrónico <span>*</span></label><input id="e" type="email" required autocomplete="email"></div>
+            <div class="field full"><label for="m">Mensaje</label><textarea id="m" maxlength="180" placeholder="Introduce tu mensaje..." oninput="document.getElementById('cnt').textContent=this.value.length"></textarea><div class="count"><span id="cnt">0</span> / 180</div></div>
+          </div>
+          <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://lctidiomas.es/aviso-legal/" target="_blank" rel="noopener">Política de Privacidad</a> <b style="color:var(--green)">*</b></span></label>
+          <button class="btn btn-green" type="submit">Enviar mensaje</button>
+          <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        </form>
+        <div class="info">
+          <div class="info-item"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><h3>Teléfono</h3><p><a href="tel:+34914731854">91 473 18 54</a><br><a href="tel:+34699298748">699 29 87 48</a></p></div></div>
+          <div class="info-item"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><h3>Email</h3><p><a href="mailto:lctidiomaslctidiomas@gmail.com">lctidiomaslctidiomas@gmail.com</a></p></div></div>
+          <div class="info-item"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><h3>Dirección</h3><p><a href="https://maps.app.goo.gl/5YL16h9uzW8uhrf6A" target="_blank" rel="noopener">Tr.ª de San Isidoro de Sevilla, 6,<br>28005 Madrid</a></p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUDA -->
+  <div class="band">
+    <div class="wrap">
+      <div>
+        <h2>¿Tienes alguna duda?</h2>
+        <p>Escríbenos o llámanos cuando necesites y te daremos toda la información necesaria para que te decidas por nuestra academia de inglés en Arganzuela.</p>
+      </div>
+      <a href="tel:+34914731854" class="btn btn-lime">Llámanos</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <span class="flogo"><img src="https://lctidiomas.es/wp-content/uploads/LCT-logo.png" alt="LCT Idiomas"></span>
+      <div class="social" style="margin-top:16px">
+        <a href="https://www.facebook.com/people/LctIdiomas/100066737466998/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://twitter.com/LCTIDIOMAS" target="_blank" rel="noopener">X</a>
+        <a href="https://www.instagram.com/lctidiomasacademy/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="https://lctidiomas.es/aviso-legal/">Aviso legal</a></li>
+        <li><a href="https://lctidiomas.es/politica-de-cookies/">Política de cookies</a></li>
+        <li><a href="https://lctidiomas.es/aviso-legal/">Política de privacidad</a></li>
+      </ul>
+      <h3 style="margin-top:22px">Contacto</h3>
+      <ul>
+        <li><a href="tel:+34914731854">91 473 18 54</a></li>
+        <li><a href="tel:+34699298748">699 29 87 48</a></li>
+        <li style="word-break:break-word"><a href="mailto:lctidiomaslctidiomas@gmail.com">lctidiomaslctidiomas@gmail.com</a></li>
+        <li><a href="https://maps.app.goo.gl/5YL16h9uzW8uhrf6A" target="_blank" rel="noopener">Tr.ª de San Isidoro de Sevilla, 6, 28005 Madrid</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Horario</h3>
+      <ul class="hours">
+        <li><b>Lunes:</b><span>10:00–13:30, 16:00–21:00</span></li>
+        <li><b>Martes:</b><span>10:00–13:30, 16:00–21:00</span></li>
+        <li><b>Miércoles:</b><span>10:00–13:30, 16:00–21:00</span></li>
+        <li><b>Jueves:</b><span>10:00–13:30, 16:00–21:00</span></li>
+        <li><b>Viernes:</b><span>16:00–20:00 (mañanas cerradas)</span></li>
+        <li><b>Sábado:</b><span>Cerrado</span></li>
+        <li><b>Domingo:</b><span>Cerrado</span></li>
+      </ul>
+    </div>
+    <div>
+      <a href="https://lctidiomas.promagister.com/" target="_blank" rel="noopener" class="btn btn-lime">Área Privada Alumno</a>
+      <img class="exam" src="https://lctidiomas.es/wp-content/uploads/centro-examinador-examenes-oficiales-ingles-1.png" alt="Centro examinador de exámenes oficiales de inglés" loading="lazy">
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>LCT Idiomas</span><span>Tr.ª de San Isidoro de Sevilla, 6, 28005 Madrid</span></div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34914731854" class="btn btn-green">Llámanos</a>
+  <a href="tel:+34699298748" class="btn btn-line">699 29 87 48</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

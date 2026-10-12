@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>González Ortigosa Gestoría Administrativa · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#fd841d; --orange-dark:#d96a0c; --ink:#212121; --text:#3b3b3b; --muted:#6b6b6b;
+    --line:#e6e2dc; --tint:#f6f4f1; --grey:#eaeaea; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-weight:600}
+  .serif{font-family:Lora,Georgia,serif}
+
+  .demo{background:var(--ink);color:#f3c9a3;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px}
+  .nav .logo img{height:62px;width:auto}
+  .menu{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+  .menu a{padding:8px 12px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--ink)}
+  .menu a:hover{background:var(--tint);color:var(--orange-dark)}
+  .menu a.cur{color:var(--orange-dark)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--orange);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-or{background:var(--orange);color:#fff}
+  .btn-or:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+  .btn-line{background:#fff;color:var(--orange-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.9}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:#2a2a2a url("https://gestoriaortigosa.com/wp-content/uploads/2019/05/N4B2467-1.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,20,20,.88) 0%,rgba(20,20,20,.72) 48%,rgba(20,20,20,.35) 100%)}
+  .hero .wrap{position:relative;padding-top:92px;padding-bottom:56px}
+  .hero h1{font-family:Lora,Georgia,serif;font-weight:700;font-size:clamp(2.2rem,4.8vw,3.7rem);line-height:1.08;max-width:760px;margin:16px 0 14px}
+  .hero .sub{font-size:1.15rem;color:#f1e6dc;max-width:620px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:64px}
+  .pillar{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-left:3px solid var(--orange);border-radius:10px;padding:18px 20px;backdrop-filter:blur(4px)}
+  .pillar strong{display:block;font-weight:600;font-size:1.02rem}
+  .pillar span{color:#e9ddd2;font-size:.92rem}
+
+  section{padding:92px 0}
+  .head{max-width:720px;margin-bottom:40px}
+  .head h2,.h2{font-family:Lora,Georgia,serif;font-weight:700;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.15;color:var(--ink);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* about */
+  .about{background:var(--grey)}
+  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+  .about-grid img{border-radius:var(--radius);aspect-ratio:3/2;object-fit:cover;width:100%;box-shadow:0 24px 50px -30px rgba(0,0,0,.45)}
+  .about p.big{font-size:1.06rem;margin-top:18px}
+  .about b{color:var(--ink)}
+
+  /* band */
+  .band{background:var(--ink);color:#fff;padding:80px 0}
+  .band-grid{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+  .band .kicker{font-family:Lora,Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--orange);white-space:nowrap}
+  .band h2{font-family:Lora,Georgia,serif;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.2;font-weight:700}
+  .band p{color:#d8d2ca;margin-top:10px;max-width:640px}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;padding:56px 0;border-bottom:1px solid var(--line)}
+  .svc:last-child{border-bottom:0}
+  .svc.rev .svc-img{order:2}
+  .svc-img img{border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;width:100%}
+  .svc .num{font-family:Lora,Georgia,serif;color:var(--orange);font-weight:700;font-size:1.1rem}
+  .svc h3{font-family:Lora,Georgia,serif;font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--ink);line-height:1.15;margin:4px 0 12px}
+  .svc .intro{color:var(--muted)}
+  .items{display:grid;gap:14px;margin:24px 0 26px}
+  .item{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
+  .item h4{font-size:1rem;color:var(--ink);font-weight:600;display:flex;gap:10px;align-items:center}
+  .item h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange);flex:none}
+  .item p{font-size:.93rem;margin-top:6px}
+  .item a{color:var(--orange-dark);text-decoration:underline}
+
+  /* team band */
+  .team{position:relative;color:#fff;background:#3a3a3a url("https://gestoriaortigosa.com/wp-content/uploads/2019/05/N4B2622.jpg") center/cover no-repeat;padding:96px 0}
+  .team::before{content:"";position:absolute;inset:0;background:rgba(25,25,25,.78)}
+  .team .wrap{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+  .team h2{font-family:Lora,Georgia,serif;font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:10px;line-height:1.15}
+  .team p{color:#e9e2da;font-size:1.06rem;margin-top:12px}
+  .team .row{margin-top:26px}
+  .hours{background:#fff;color:var(--text);border-radius:var(--radius);padding:28px;border-top:4px solid var(--orange)}
+  .hours h3{font-family:Lora,Georgia,serif;color:var(--ink);font-size:1.4rem;margin-bottom:14px}
+  .hours dl{display:grid;gap:12px}
+  .hours dt{font-weight:600;color:var(--ink);font-size:.93rem}
+  .hours dd{font-size:.93rem;color:var(--muted)}
+  .hours .sum{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .hours .sum h4{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-dark);margin-bottom:8px}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(0,0,0,.35);border-top:4px solid var(--orange)}
+  .card-form h3,.info h3{font-family:Lora,Georgia,serif;font-size:1.8rem;color:var(--ink);line-height:1.15}
+  .card-form p.sub,.info p.sub{color:var(--muted);margin:6px 0 20px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field label span{color:var(--orange-dark)}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d9d3cb;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(253,132,29,.3);border-color:var(--orange)}
+  .check{display:flex;gap:10px;font-size:.84rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:4px 0 20px}
+  .check input{margin-top:3px;accent-color:var(--orange);flex:none}
+  .check a{text-decoration:underline;color:var(--orange-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+  .info{padding:8px 0}
+  .info ul{list-style:none;display:grid;gap:14px}
+  .info li{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .info .ic{width:48px;height:48px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--orange-dark)}
+  .info small{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .info strong{color:var(--ink);font-weight:600;word-break:break-word}
+  .info .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+  footer{background:var(--ink);color:#bdb6ad;padding:40px 0;font-size:.86rem}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
+  .foot img{height:64px;width:auto}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 14px}
+  .foot nav a{text-decoration:underline}
+  .foot .fb{display:inline-flex;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);align-items:center;justify-content:center;color:#fff}
+  .foot .fb:hover{border-color:var(--orange);color:var(--orange)}
+
+  .callbar{display:none}
+
+  @media (max-width:1020px){
+    .nav{height:auto;padding:12px 20px;flex-wrap:wrap}
+    .menu{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+    .about-grid,.svc,.team .wrap,.contact-grid{grid-template-columns:1fr;gap:32px}
+    .svc.rev .svc-img{order:0}
+    .band-grid{grid-template-columns:1fr;gap:16px}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{padding:10px 16px;gap:8px}
+    .nav .logo img{height:48px}
+    .nav-cta{display:none}
+    .menu a{font-size:.84rem;padding:6px 9px;white-space:nowrap}
+    .hero .wrap{padding-top:56px;padding-bottom:40px}
+    .hero .row .btn{width:100%}
+    .pillars{grid-template-columns:1fr;margin-top:40px}
+    section{padding:64px 0}
+    .svc{padding:40px 0}
+    .band,.team{padding:64px 0}
+    .card-form{padding:24px 20px}
+    .info .row .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para González Ortigosa Gestoría Administrativa · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://gestoriaortigosa.com/" class="logo" aria-label="González Ortigosa · Gestoría Administrativa en Valladolid"><img src="https://gestoriaortigosa.com/wp-content/uploads/2019/07/Ortigosam%C3%A1sclaro-NN.png" alt="González Ortigosa · Gestoría Administrativa en Valladolid"></a>
+    <nav class="menu" aria-label="Menú principal">
+      <a href="https://gestoriaortigosa.com/" class="cur">Inicio</a>
+      <a href="https://gestoriaortigosa.com/index/gestoria/">Escrituras y herencias</a>
+      <a href="https://gestoriaortigosa.com/index/vehiculos/">Vehículos</a>
+      <a href="https://gestoriaortigosa.com/index/administracion/">Trámites</a>
+      <a href="https://gestoriaortigosa.com/index/actualidad-2/">Actualidad</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="tel:+34983354022" class="btn btn-or btn-sm nav-cta">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span class="tel">983 35 40 22</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Gestoría Administrativa</span>
+      <h1>Expertos en superar los retos burocráticos más complejos.</h1>
+      <p class="sub">Siempre exigentes, siempre resolutivos.</p>
+      <div class="row">
+        <a href="tel:+34983354022" class="btn btn-or">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          Teléfono <span class="tel">983 35 40 22</span>
+        </a>
+        <a href="#contacto" class="btn btn-ghost">Contacta con nosotros</a>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><strong>Nos anticipamos a los problemas, ofrecemos soluciones.</strong><span>Nuestra prioridad es la calidad en el servicio.</span></div>
+        <div class="pillar"><strong>Gestión de vehículos y tramitación de documentos públicos y privados.</strong><span>En constante evolución y mejora continua.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <img src="https://gestoriaortigosa.com/wp-content/uploads/2019/07/N4B2606-arreglada-definitiva-copia.jpg" alt="González Ortigosa Gestoría Administrativa en Valladolid">
+      <div>
+        <span class="eyebrow">Valladolid</span>
+        <h2 class="h2">González Ortigosa Gestoría Administrativa en Valladolid</h2>
+        <p class="big">Te damos la bienvenida a <b>González Ortigosa</b>, gestoría líder en gestión administrativa, especializada en tramitación de vehículos y autorizaciones de transporte, gestión de documentos públicos y privados, compraventas, herencias, donaciones y todo tipo de trámites ante la administración.</p>
+        <p class="big">Desde nuestro despacho ubicado en el centro de <b>Valladolid</b> y apoyados en un <b>equipo humano cualificado y profesional</b>, somos capaces de superar cualquier reto burocrático con precisión y rapidez. Y es que gracias a una <b>trayectoria profesional de más de 35 años</b>, disponemos de los mejores medios para prestar nuestros servicios de forma óptima y estamos altamente preparados para asumir toda clase de <b>gestión administrativa</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <div class="band">
+    <div class="wrap band-grid">
+      <span class="kicker">Nuestros Servicios</span>
+      <div>
+        <h2>Nos anticipamos a los problemas, ofrecemos soluciones.</h2>
+        <p>Estarás asesorado en todo momento por un equipo con alta formación y con una larga experiencia profesional. Tranquilidad y confianza.</p>
+      </div>
+      <a href="#contacto" class="btn btn-or">Contacta con nosotros</a>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="servicios" style="padding-top:40px;padding-bottom:40px">
+    <div class="wrap">
+      <article class="svc">
+        <div class="svc-img"><img src="https://gestoriaortigosa.com/wp-content/uploads/2019/05/N4B2547.jpg" alt="Escrituras. Herencias y donaciones." loading="lazy"></div>
+        <div>
+          <span class="num">01</span>
+          <h3>Escrituras. Herencias y donaciones.</h3>
+          <p class="intro">En <b>Gonzalez Ortigosa</b> trabajamos de forma rigurosa con una misión: analizar, tramitar, gestionar y solucionar todas tus consultas, obligaciones y necesidades ante la Administración.</p>
+          <div class="items">
+            <div class="item"><h4>Gestión de herencias y donaciones</h4><p>Confía en el mejor equipo para la gestión de herencias y donaciones. Tanto en la negociación entre los herederos como en la formalización de los documentos.</p></div>
+            <div class="item"><h4>Gestión de escrituras</h4><p>Desde nuestra gestoría en Valladolid te ofrecemos la posibilidad de planificar el otorgamiento y la tramitación de cualquier tipo de documento público o privado, asesorándote para su correcta formalización.</p></div>
+          </div>
+          <a href="https://gestoriaortigosa.com/index/gestoria/" class="btn btn-line">Ver Servicios</a>
+        </div>
+      </article>
+
+      <article class="svc rev">
+        <div class="svc-img"><img src="https://gestoriaortigosa.com/wp-content/uploads/2019/06/Cheste.jpg" alt="Trámites de vehículos" loading="lazy"></div>
+        <div>
+          <span class="num">02</span>
+          <h3>Trámites de vehículos</h3>
+          <p class="intro">Contamos con un equipo especializado en el mundo del motor que te ofrece una gestión integral en el ámbito administrativo para todo tipo de vehículos.</p>
+          <div class="items">
+            <div class="item"><h4>Transferencias y Matrículas</h4><p>Gestión integral en trámites de transferencias y matriculación de todo tipo de vehículos.</p></div>
+            <div class="item"><h4>Autorización de Transportes</h4><p>Avalados por nuestro amplio conocimiento de la operativa, realizamos todo tipo de trámites ante el <b>Servicio Territorial de Transportes de Valladolid</b> de forma rápida y eficaz.</p></div>
+            <div class="item"><h4>Pegatinas ECO</h4><p>Sin colas ni demoras, consigue tu pegatina ECO de forma <b>online</b> en: <a href="mailto:info@gestoriaortigosa.com">info@gestoriaortigosa.com</a></p></div>
+          </div>
+          <a href="https://gestoriaortigosa.com/index/vehiculos/" class="btn btn-line">Ver Servicios</a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-img"><img src="https://gestoriaortigosa.com/wp-content/uploads/2019/07/Glez-Ortigosa00009.jpeg" alt="Trámites Administrativos" loading="lazy"></div>
+        <div>
+          <span class="num">03</span>
+          <h3>Trámites Administrativos</h3>
+          <p class="intro">Nuestra prioridad es la calidad en el servicio, confíanos tus gestiones administrativas.</p>
+          <div class="items">
+            <div class="item"><h4>Trámites ante la Administración</h4><p>En <b>Gonzalez Ortigosa</b> somos capaces de proporcionarte cualquier certificación o documento administrativo que precises, así como las legalizaciones de los mismos que sean necesarias.</p></div>
+          </div>
+          <a href="https://gestoriaortigosa.com/index/administracion/" class="btn btn-line">Ver Servicios</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TEAM + HOURS -->
+  <div class="team">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Nuestra Gestoría</span>
+        <h2>Apoyados en un equipo humano cualificado y profesional.</h2>
+        <p>Somos capaces de superar cualquier reto burocrático con precisión y rapidez.</p>
+        <div class="row"><a href="#contacto" class="btn btn-or">Contacta con nosotros</a></div>
+      </div>
+      <div class="hours">
+        <h3>Horario de Atención</h3>
+        <dl>
+          <div><dt>Lunes a jueves</dt><dd>de 9:00 a 15:00 y de 17:00 a 19:00</dd></div>
+          <div><dt>Viernes</dt><dd>de 8:00 a 15:00 h.</dd></div>
+        </dl>
+        <div class="sum">
+          <h4>Horario de Verano</h4>
+          <dl><div><dt>Lunes a viernes</dt><dd>de 8:00 a 15:00 h.</dd></div></dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <h3>Contacta con nosotros</h3>
+        <p class="sub">Rellena este formulario.</p>
+        <div class="field"><label for="n">Nombre y Apellido <span>*</span></label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="e">Correo electrónico <span>*</span></label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="m">Mensaje <span>*</span></label><textarea id="m" rows="5" required></textarea></div>
+        <div class="field" style="margin-bottom:4px"><label>Política de Privacidad <span>*</span></label></div>
+        <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://gestoriaortigosa.com/legal#priva" target="_blank" rel="noopener">política de privacidad</a></span></label>
+        <button class="btn btn-or" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+
+      <div class="info">
+        <h3>Contacta con nosotros</h3>
+        <p class="sub">¿Necesitas más información? Estamos encantados de escucharte.</p>
+        <ul>
+          <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><small>Teléfono</small><a href="tel:+34983354022"><strong class="tel">983 35 40 22</strong></a></div></li>
+          <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small>Dirección</small><a href="https://goo.gl/maps/V8fNbTCxr3gXvrNF7" target="_blank" rel="noopener"><strong>Calle Santiago, 9 - 3º<br>47001 Valladolid · ES</strong></a></div></li>
+          <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>Correo Electrónico</small><a href="mailto:info@gestoriaortigosa.com"><strong>info@gestoriaortigosa.com</strong></a></div></li>
+        </ul>
+        <div class="row">
+          <a href="https://goo.gl/maps/V8fNbTCxr3gXvrNF7" target="_blank" rel="noopener" class="btn btn-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
+            Cómo llegar
+          </a>
+          <a href="tel:+34983354022" class="btn btn-or">Llamar <span class="tel">983 35 40 22</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="https://gestoriaortigosa.com/wp-content/uploads/2019/07/logo-t-gonzalez-ortigosa-BN.png" alt="Gestoria T. Gonzalez Ortigosa en Valladolid" loading="lazy">
+    <div>
+      <p>© 2019 T. González Ortigosa · Gestoría Administrativa en Valladolid.</p>
+      <nav aria-label="Legal" style="margin-top:6px">
+        <a href="https://gestoriaortigosa.com/legal" target="_blank" rel="noopener">Aviso legal</a>
+        <a href="https://gestoriaortigosa.com/legal#priva" target="_blank" rel="noopener">Política de Privacidad</a>
+        <a href="https://gestoriaortigosa.com/cookies" target="_blank" rel="noopener">Política de Cookies</a>
+      </nav>
+    </div>
+    <a class="fb" href="https://www.facebook.com/gestoria.gonzalezortigosa.1/timeline?lst=1000383380%2072714%3A100038338072714%3A1563873870" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983354022" class="btn btn-or">Llamar</a>
+  <a href="mailto:info@gestoriaortigosa.com" class="btn btn-line">Correo</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

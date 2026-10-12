@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gestoría Daniel Jiménez · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#AB2A3E; --brand-2:#8D2634; --brand-dark:#70222B; --ink:#292929; --text:#555; --muted:#787878;
+    --line:#E6E9ED; --tint:#F8F8F8; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Mulish,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,.serif{font-family:"DM Serif Text",Georgia,serif;font-weight:400}
+  .tag{display:inline-block;background:var(--brand);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
+  .demo{background:var(--ink);color:#e9cfd3;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .topbar{background:var(--brand-dark);color:#fff;font-size:.85rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+  .topbar a{text-decoration:underline;text-underline-offset:3px;font-weight:700}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px}
+  .brand{display:flex;flex-direction:column;align-items:center;line-height:1;color:var(--brand)}
+  .brand .ga{font-family:"DM Serif Text",serif;font-size:2.1rem}
+  .brand .nm{font-family:"DM Serif Text",serif;font-size:.86rem;color:var(--brand-dark);margin-top:4px}
+  .menu{display:flex;gap:28px;font-weight:700;font-size:.95rem;color:var(--ink)}
+  .menu a{padding:6px 0;border-bottom:2px solid transparent}
+  .menu a:hover,.menu a.on{border-color:var(--brand);color:var(--brand)}
+  .expert{display:flex;align-items:center;gap:10px;background:var(--brand);color:#fff;border-radius:10px;padding:10px 16px;line-height:1.2}
+  .expert small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.06em}
+  .expert b{font-family:"DM Serif Text",serif;font-weight:400;font-size:1.05rem}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:800;font-size:.86rem;letter-spacing:.04em;transition:.2s;border:1.5px solid var(--brand);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-brand{background:var(--brand);color:#fff}
+  .btn-brand:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+  .btn-line{background:#fff;color:var(--brand)}
+  .btn-line:hover{background:#fbf1f2}
+  .tel{font-variant-numeric:tabular-nums}
+
+  .hero{background:linear-gradient(180deg,#fbf3f4,#fff);padding:72px 0 80px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(2.5rem,5.2vw,4rem);line-height:1.05;color:var(--brand);margin:14px 0 18px}
+  .hero p{font-size:1.06rem;max-width:600px}
+  .hero p b{color:var(--ink)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero-img{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -30px rgba(112,34,43,.55);max-height:520px}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:36px}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.15;color:var(--brand);margin-top:12px}
+  .head p{margin-top:14px}
+
+  .pres{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:34px}
+  .pres-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:21/8}
+  .pres-img img{width:100%;height:100%;object-fit:cover}
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+  .value{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff;border-top:4px solid var(--brand)}
+  .value h3{font-size:1.35rem;color:var(--brand-dark);margin-bottom:8px}
+  .value p{font-size:.95rem}
+
+  .tint{background:var(--tint)}
+  .services{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:14px;transition:.25s}
+  .svc:hover{border-color:var(--brand);box-shadow:0 18px 40px -28px rgba(0,0,0,.35)}
+  .svc h3{font-size:1.4rem;color:var(--brand)}
+  .svc .btn{align-self:flex-start;margin-top:auto}
+
+  .news{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;background:var(--brand-dark);color:#f3e3e5;border-radius:var(--radius);padding:44px;margin-top:56px}
+  .news .tag{background:#fff;color:var(--brand-dark)}
+  .news h3{font-size:clamp(1.5rem,2.6vw,2rem);color:#fff;margin:14px 0 16px;line-height:1.2}
+  .news p{margin-bottom:12px;font-size:.96rem}
+  .news p a{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+  .news img{border-radius:10px}
+  .news .btn{background:var(--ink);border-color:var(--ink);color:#fff;margin-top:8px}
+
+  .vehicle{background:var(--brand);color:#fbeef0}
+  .veh-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+  .veh-img{border-radius:50%;overflow:hidden;aspect-ratio:1/1;max-width:380px;border:6px solid rgba(255,255,255,.18)}
+  .veh-img img{width:100%;height:100%;object-fit:cover}
+  .vehicle h2{font-size:clamp(1.9rem,3.4vw,2.6rem);color:#fff;line-height:1.15}
+  .vehicle h2 span{display:block;color:#ffd7dc}
+  .vehicle p{margin-top:16px;max-width:600px}
+  .vehicle p b{color:#fff}
+  .vehicle .help{font-weight:800;color:#fff}
+  .vehicle .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .vehicle .btn-brand{background:#fff;color:var(--brand);border-color:#fff}
+  .vehicle .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+
+  .reviews{display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:20px;align-items:start}
+  .qr{max-width:230px;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 40px -26px rgba(0,0,0,.4)}
+  .review{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
+  .review::before{content:"“";font-family:"DM Serif Text",serif;font-size:3.6rem;line-height:.8;color:var(--brand);display:block;margin-bottom:6px}
+  .review p{font-size:.96rem}
+  .review cite{display:block;font-style:normal;font-family:"DM Serif Text",serif;color:var(--brand-dark);font-size:1.1rem;margin-top:14px}
+
+  footer{background:var(--ink);color:#cfcfcf;padding:54px 0 26px;font-size:.9rem}
+  .fgrid{display:grid;grid-template-columns:1.2fr .8fr 1.2fr 1.2fr;gap:30px}
+  footer h4{font-family:"DM Serif Text",serif;font-weight:400;color:#fff;font-size:1.15rem;margin-bottom:12px}
+  footer ul{list-style:none;display:grid;gap:7px}
+  footer a:hover{color:#fff;text-decoration:underline}
+  .mail{display:inline-flex;align-items:center;gap:8px;margin-top:6px}
+  .kit{margin-top:34px;background:#fff;border-radius:8px;padding:12px}
+  .kit img{margin:0 auto}
+  .kit p{color:#555;font-size:.72rem;text-align:center;margin-top:8px;font-weight:700;letter-spacing:.03em}
+  .fbottom{border-top:1px solid #444;margin-top:24px;padding-top:16px;font-size:.82rem;color:#9a9a9a}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .hero-grid,.pres,.news,.veh-grid{grid-template-columns:1fr}
+    .hero-img{max-width:420px}
+    .reviews{grid-template-columns:1fr 1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .expert{display:none}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .wrap{justify-content:center;text-align:center}
+    .nav{height:auto;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;gap:8px}
+    .menu{gap:22px;font-size:.9rem}
+    .hero{padding:44px 0 56px}
+    .hero .row .btn{width:100%;white-space:normal;text-align:center}
+    .hero-grid>*{min-width:0}
+    section{padding:60px 0}
+    .values,.services,.reviews,.fgrid{grid-template-columns:1fr}
+    .pres-img{aspect-ratio:16/9}
+    .news{padding:26px 20px}
+    .news .btn,.vehicle .row .btn{width:100%}
+    .veh-img{max-width:260px}
+    .qr{max-width:260px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.82rem;letter-spacing:0}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Gestoría Daniel Jiménez · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>¿Necesita una consulta gratuita? <a href="https://gestoriadanieljimenez.com/contacto/">Haga una cita ahora</a></span>
+    <span><a href="mailto:3496@gestoresmadrid.org">3496@gestoresmadrid.org</a></span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="https://gestoriadanieljimenez.com/" aria-label="gA Gestoría Daniel Jiménez"><span class="ga">gA</span><span class="nm">Gestoría Daniel Jiménez</span></a>
+    <nav class="menu" aria-label="Menú">
+      <a href="https://gestoriadanieljimenez.com/" class="on">Inicio</a>
+      <a href="https://gestoriadanieljimenez.com/servicios/">Servicios</a>
+      <a href="https://gestoriadanieljimenez.com/contacto/">Contacto</a>
+    </nav>
+    <a class="expert" href="tel:+34676806113">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span><small>¡HABLE CON UN EXPERTO!</small><b class="tel">+34 (676) 806113</b></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag">Servicio de Gestoría</span>
+        <h1>Tu Gestoría de confianza en Madrid</h1>
+        <p>En <b>gA Gestoría Daniel Jiménez</b>, nos dedicamos a facilitar la gestión de tus trámites con un enfoque profesional y cercano. Ya sea que necesites asistencia para una <b>herencia</b>, la gestión de tu empresa o los trámites de <b>vehículos</b>, contamos con la experiencia y el conocimiento para acompañarte en cada paso. Confía en una <b>gestoría en Madrid</b> que pone al cliente en el centro de todo.</p>
+        <div class="row">
+          <a href="https://gestoriadanieljimenez.com/contacto/" class="btn btn-brand">CONTÁCTANOS</a>
+          <a href="tel:+34676806113" class="btn btn-line">¡HABLE CON UN EXPERTO! <span class="tel">+34 (676) 806113</span></a>
+        </div>
+      </div>
+      <div class="hero-img"><img src="https://gestoriadanieljimenez.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-27-at-11.56.42-580x1024.jpeg" alt="gA Gestoría Daniel Jiménez" width="580" height="1024"></div>
+    </div>
+  </div>
+
+  <section id="presentacion">
+    <div class="wrap">
+      <div class="pres">
+        <div class="head" style="margin-bottom:0">
+          <span class="tag">PRESENTACIÓN</span>
+          <h2>Nuestra Gestoría está comprometida en ayudarte</h2>
+        </div>
+        <p>En <b>gA Gestoría Daniel Jiménez</b>, nuestro compromiso es hacer que tus trámites sean lo más fáciles y eficientes posible. Brindamos soluciones ágiles para particulares, autónomos y empresas. Nos enfocamos en ofrecer un servicio de calidad con total transparencia, siempre buscando la mejor solución para ti.</p>
+      </div>
+      <div class="pres-img"><img src="https://gestoriadanieljimenez.com/wp-content/uploads/2024/10/sign-the-contract-businessman-offering-the-pen-an-2023-11-27-05-29-19-utc.jpg" alt="" loading="lazy"></div>
+      <div class="values">
+        <article class="value"><h3>Cercanía</h3><p>Nos preocupamos por ofrecer un trato personalizado, resolviendo tus dudas y adaptándonos a tus necesidades específicas.</p></article>
+        <article class="value"><h3>Confianza</h3><p>La seguridad y transparencia son esenciales. Estamos aquí para asesorarte en cada paso y garantizar que tus gestiones estén en buenas manos.</p></article>
+        <article class="value"><h3>Eficiencia</h3><p>Sabemos que tu tiempo es valioso. Por eso, trabajamos con rapidez y precisión para que obtengas resultados sin demoras innecesarias.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="tint">
+    <div class="wrap">
+      <div class="head center">
+        <span class="tag">SERVICIOS DE GESTORÍA</span>
+        <h2>Conoce nuestros servicios de gestoría</h2>
+        <p>En <b>gA Gestoría Daniel Jiménez</b>, ofrecemos una amplia gama de servicios para cubrir todas tus necesidades de gestión, tanto si eres un particular, autónomo o empresa. Confía en nuestros expertos para llevar a cabo tus trámites con agilidad y profesionalidad.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <h3>Tramitación de herencias</h3>
+          <p>Gestionamos de manera integral el proceso de herencias, desde la declaración de bienes hasta la obtención de escrituras y la liquidación de impuestos.</p>
+          <a href="https://gestoriadanieljimenez.com/servicios/" class="btn btn-brand">Ver más</a>
+        </article>
+        <article class="svc">
+          <h3>Gestoría para autónomos y empresas</h3>
+          <p>Ofrecemos asesoramiento contable y fiscal especializado para autónomos y empresas, ayudándote a gestionar tus obligaciones fiscales y laborales de forma eficaz.</p>
+          <a href="https://gestoriadanieljimenez.com/servicios/" class="btn btn-brand">Ver más</a>
+        </article>
+      </div>
+
+      <div class="news">
+        <div>
+          <span class="tag">NUEVO</span>
+          <h3>Nuevo reglamento para tramitar vehículos históricos</h3>
+          <p>Se considerarán vehículos históricos los fabricados o matriculados por primera vez hace 30 años como mínimo. También lo serán los incluidos en el Inventario General de Bienes Muebles del Patrimonio Histórico Español, o declarados de interés cultural y los que revistan un interés especial.</p>
+          <p>El uso de los vehículos históricos será ocasional y en ningún caso como medio de transporte cotidiano para minimizar su impacto medioambiental. <a href="https://www.mintur.gob.es/es-es/GabinetePrensa/NotasPrensa/2024/Paginas/nuevo-reglamento-vehiculos-historicos.aspx" target="_blank" rel="noopener">&gt;&gt; Más información</a></p>
+          <a href="https://gestoriadanieljimenez.com/contacto/" class="btn">ASESÓRATE CON NOSOTROS</a>
+        </div>
+        <img src="https://gestoriadanieljimenez.com/wp-content/uploads/2024/10/beetle-scaled-1024x683.jpg" alt="" loading="lazy" width="800" height="534">
+      </div>
+    </div>
+  </section>
+
+  <section class="vehicle" id="vehiculos">
+    <div class="wrap veh-grid">
+      <div class="veh-img"><img src="https://gestoriadanieljimenez.com/wp-content/uploads/2024/10/2024-03-28.jpg" alt="" loading="lazy"></div>
+      <div>
+        <h2>¿Compras o vendes un vehículo? <span>No te la juegues</span></h2>
+        <p>Confía en un gestor profesional y especializado para realizar el cambio de titularidad de tu vehículo de manera rápida y segura. En <b>gA Gestoría Daniel Jiménez</b>, nos encargamos de que el proceso se realice sin complicaciones, garantizando todas las formalidades necesarias.</p>
+        <p class="help">¡Estamos aquí para ayudarte!</p>
+        <div class="row">
+          <a href="https://gestoriadanieljimenez.com/contacto/" class="btn btn-brand">PIDE UN PRESUPUESTO</a>
+          <a href="tel:+34676806113" class="btn btn-line"><span class="tel">+34 (676) 806113</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resenas">
+    <div class="wrap">
+      <div class="head center">
+        <span class="tag">RESEÑAS</span>
+        <h2>Lo que nuestros clientes dicen sobre nosotros</h2>
+      </div>
+      <div class="reviews">
+        <div class="qr"><img src="https://gestoriadanieljimenez.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-02-at-12.39.02.jpeg" alt="" loading="lazy" width="900" height="1600"></div>
+        <blockquote class="review"><p>Ya he realizado varias gestiones con Daniel y siempre sin ningún problema, gestión rápida y sin complicaciones. Siempre con muy buena atención. Recomendable 100%</p><cite>David Serijel</cite></blockquote>
+        <blockquote class="review"><p>La atención de calidad me atendió todo muy rápido no tarde ni 20 minutos en hacer todo el trámite y en una semana ya lo tenía en físico la ficha del coche que llegó de la DGT muy satisfecho los recomiendo</p><cite>Giovanna Huerta</cite></blockquote>
+        <blockquote class="review"><p>Muy buen trato, muy satisfecho con el trabajo realizado, todo perfecto la verdad.<br>Lo recomiendo 100%</p><cite>Ivan Bonilla Nogar</cite></blockquote>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>gA Gestoría Daniel Jiménez</h4>
+        <a class="mail" href="mailto:3496@gestoresmadrid.org"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>3496@gestoresmadrid.org</a>
+        <p style="margin-top:8px"><a href="tel:+34676806113" class="tel">+34 (676) 806113</a></p>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://gestoriadanieljimenez.com/">Inicio</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/servicios/">Servicios</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://gestoriadanieljimenez.com/aviso-legal/">Aviso legal</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/declaracion-de-accesibilidad/">Declaración de accesibilidad</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/politica-de-cookies/">Política de cookies</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/politica-de-privacidad/">Política de privacidad</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/terminos-y-condiciones/">Términos y condiciones</a></li>
+          <li><a href="https://gestoriadanieljimenez.com/sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horarios de oficina</h4>
+        <ul>
+          <li>8:30 AM - 6 PM Lunes - Jueves</li>
+          <li>8:30 AM - 3 PM Viernes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kit">
+      <img src="https://gestoriadanieljimenez.com/wp-content/uploads/2024/10/patrocinio-1024x59.png" alt="" loading="lazy" width="800" height="46">
+      <p>FINANCIADO POR LA UNIÓN EUROPEA CON EL PROGRAMA KIT DIGITAL POR LOS FONDOS NEXT GENERATION (EU) DEL MECANISMO DE RECUPERACIÓN Y RESILIENCIA</p>
+    </div>
+    <div class="fbottom">Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34676806113" class="btn btn-brand">Llamar</a>
+  <a href="https://gestoriadanieljimenez.com/contacto/" class="btn btn-line">Haga una cita ahora</a>
+</div>
+
+</body>
+</html>

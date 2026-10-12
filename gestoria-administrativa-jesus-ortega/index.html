@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gestoría Administrativa Jesús Ortega Paunero · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#0098BF; --blue-dark:#0079a0; --link:#2976BA; --ink:#262725; --dark:#3a3b39; --foot:#57534b; --foot-text:#c3cfc0;
+    --text:#444; --muted:#6b6b6b; --line:#e3e8ea; --tint:#e1ebed; --soft:#f4f7f8; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Raleway,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+
+  .demo{background:#1d1e1c;color:#9fdcec;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .topbar{background:var(--dark);color:#fff;font-size:.86rem}
+  .topbar .wrap{display:flex;gap:24px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+  .topbar a:hover{color:#9fdcec}
+  .topbar svg{vertical-align:-3px;margin-right:6px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:18px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{height:62px;width:auto;padding-right:14px;border-right:3px solid #9E9E9E}
+  .brand .nm{font-weight:700;color:#7d7d7d;line-height:1.2;font-size:1rem;max-width:260px}
+  .menu{display:flex;list-style:none;gap:2px}
+  .menu a{display:block;padding:10px 14px;font-weight:600;font-size:.92rem;color:var(--ink);border-radius:8px}
+  .menu a:hover{color:var(--blue);background:var(--soft)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.93rem;transition:.2s;border:2px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--blue-dark)}
+  .btn-line:hover{background:var(--soft)}
+  .btn-white{background:transparent;border-color:#fff;color:#fff}
+  .btn-white:hover{background:#fff;color:var(--blue-dark)}
+  .btn-sm{padding:9px 18px;font-size:.86rem}
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:8px 16px 16px;box-shadow:0 18px 30px -18px rgba(0,0,0,.35)}
+  .mnav .panel a{display:block;padding:12px 4px;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
+
+  /* hero */
+  .hero{position:relative;background:#33414a url(https://www.gestoriaortegapaunero.net/uploads/slider/slider10.jpg) center/cover no-repeat;color:#fff;padding:96px 0 100px}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,32,40,.88) 0%,rgba(20,32,40,.72) 55%,rgba(0,152,191,.35) 100%)}
+  .hero .wrap{position:relative;max-width:var(--max)}
+  .hero .tag{color:#9fdcec}
+  .hero h1{font-size:clamp(2.1rem,4.8vw,3.6rem);font-weight:800;line-height:1.1;margin:14px 0 18px;max-width:760px}
+  .hero h2{font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:700;color:#fff}
+  .hero p{font-size:1.08rem;max-width:620px;color:#e3eef1;margin-top:6px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+  /* features */
+  .feat{margin-top:-46px;position:relative}
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .f{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:0 24px 50px -30px rgba(0,0,0,.45);border-top:4px solid var(--blue)}
+  .f .ic{width:54px;height:54px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--blue);margin-bottom:14px}
+  .f h2{font-size:1.15rem;color:var(--ink);font-weight:700;line-height:1.3;margin-bottom:8px}
+  .f p{color:var(--muted);font-size:.96rem}
+
+  section{padding:90px 0}
+  .head{max-width:720px;margin-bottom:38px}
+  .head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;color:var(--ink);font-weight:800;margin-top:8px}
+
+  /* empresa */
+  .emp{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+  .emp .side{background:var(--soft);border-radius:var(--radius);padding:30px;border-left:4px solid var(--blue)}
+  .emp .side b{display:block;font-size:2.6rem;line-height:1;color:var(--blue);font-weight:800}
+  .emp .side span{display:block;color:var(--muted);margin-bottom:22px}
+  .emp .side span:last-child{margin-bottom:0}
+  .emp .txt p{margin-bottom:14px}
+  .emp p.visit{font-weight:700;color:var(--ink)}
+  .emp .txt a{color:var(--link);font-weight:700}
+  .emp .txt a:hover{text-decoration:underline}
+
+  /* servicios */
+  .serv-sec{background:var(--soft)}
+  .group{margin-bottom:34px}
+  .group:last-child{margin-bottom:0}
+  .group > h3{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+  .group > h3::after{content:"";flex:1;height:1px;background:#cfdde2}
+  .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .s{background:#fff;border-radius:var(--radius);padding:24px;border:1px solid var(--line);transition:.25s}
+  .s:hover{border-color:var(--blue);box-shadow:0 18px 40px -26px rgba(0,0,0,.35)}
+  .s h4{font-size:1.06rem;color:var(--ink);font-weight:700;margin-bottom:8px;padding-left:16px;position:relative}
+  .s h4::before{content:"";position:absolute;left:0;top:.45em;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+  .s p{font-size:.92rem;color:var(--muted)}
+
+  /* valor añadido */
+  .va{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .va .box{border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .va h3{font-size:1.3rem;color:var(--ink);font-weight:800;margin-bottom:12px}
+  .va p{margin-bottom:12px;font-size:.96rem}
+  .va p:last-child{margin-bottom:0}
+  .tbl{margin-top:22px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .tbl .cap{background:var(--dark);color:#fff;font-weight:700;padding:14px 20px}
+  .tbl table{width:100%;border-collapse:collapse;font-size:.95rem}
+  .tbl th,.tbl td{text-align:left;padding:13px 20px;border-top:1px solid var(--line)}
+  .tbl th{background:var(--tint);color:var(--ink);font-weight:700}
+  .redga{margin-top:22px;background:var(--tint);border-radius:var(--radius);padding:26px 30px;display:flex;gap:22px;align-items:center}
+  .redga img{width:57px;flex:none}
+  .redga h3{font-size:1.15rem;color:var(--ink);font-weight:800;margin-bottom:4px}
+
+  /* cta */
+  .cta{background:var(--blue);color:#fff;padding:54px 0}
+  .cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cta p{font-size:clamp(1.2rem,2.4vw,1.6rem);font-weight:700;max-width:760px;line-height:1.3}
+
+  /* contacto */
+  .ct{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+  .info h3{font-size:1.3rem;color:var(--ink);font-weight:800;margin-bottom:6px}
+  .info .lbl{font-weight:700;color:var(--blue);margin-bottom:16px}
+  .info ul{list-style:none;display:grid;gap:14px}
+  .info li{display:flex;gap:14px;align-items:flex-start}
+  .info li .i{width:42px;height:42px;border-radius:50%;background:var(--tint);color:var(--blue);display:grid;place-items:center;flex:none}
+  .info li small{display:block;color:var(--muted);font-size:.8rem}
+  .info li a{font-weight:700;color:var(--ink)}
+  .info li a:hover{color:var(--blue)}
+  .info .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);border-top:4px solid var(--blue);box-shadow:0 24px 50px -30px rgba(0,0,0,.35)}
+  .card-form h3{font-size:1.5rem;color:var(--ink);font-weight:800;margin-bottom:16px}
+  .fg{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  .field{margin-bottom:12px}
+  .field.full{grid-column:1/-1}
+  .field label{display:block;font-size:.84rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cfd9dd;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(0,152,191,.3);border-color:var(--blue)}
+  .check{display:flex;gap:10px;font-size:.84rem;color:var(--muted);margin:8px 0;align-items:flex-start}
+  .check input{margin-top:3px;accent-color:var(--blue);flex:none}
+  .check a{color:var(--link);text-decoration:underline}
+  .card-form .btn{width:100%;margin-top:10px}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  footer{background:var(--foot);color:var(--foot-text);padding:58px 0 28px;font-size:.93rem}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:44px}
+  footer h3{color:var(--foot-text);font-size:1.05rem;display:flex;align-items:center;gap:12px;margin-bottom:14px;font-weight:700}
+  footer h3 img{width:46px}
+  footer p{margin-bottom:12px}
+  footer strong{color:#fff}
+  footer ul{list-style:none;display:grid;gap:9px}
+  footer a:hover{color:#fff;text-decoration:underline}
+  .legal{border-top:1px solid rgba(195,207,192,.25);margin-top:34px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.84rem}
+  .legal a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu{display:none}
+    .mnav{display:block}
+    .head-cta{display:none}
+    .feats,.sgrid{grid-template-columns:1fr 1fr}
+    .emp,.va,.ct,.fgrid{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .wrap{justify-content:center;gap:4px 18px}
+    .nav{height:72px}
+    .brand img{height:48px;padding-right:10px}
+    .brand .nm{font-size:.82rem;max-width:180px}
+    .hero{padding:56px 0 80px}
+    .hero .row .btn{width:100%}
+    .feats,.sgrid,.fg{grid-template-columns:1fr}
+    section{padding:62px 0}
+    .va .box,.card-form{padding:24px 18px}
+    .tbl th,.tbl td{padding:11px 12px;font-size:.86rem}
+    .redga{flex-direction:column;align-items:flex-start;padding:22px 18px}
+    .cta .btn,.info .row .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Gestoría Administrativa Jesús Ortega Paunero · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="tel:+34983356244"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>983 356 244</a>
+    <a href="mailto:ortega@gestores.net"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>ortega@gestores.net</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="https://www.gestoriaortegapaunero.net/" title="Gestoría Administrativa Jesús Ortega Paunero">
+      <img src="https://www.gestoriaortegapaunero.net/uploads/img/logo_ga.png" alt="Gestoría Administrativa Jesús Ortega Paunero">
+      <span class="nm">Gestoría Administrativa Jesús Ortega Paunero</span>
+    </a>
+    <ul class="menu">
+      <li><a href="https://www.gestoriaortegapaunero.net/inicio">Inicio</a></li>
+      <li><a href="https://www.gestoriaortegapaunero.net/empresa">Empresa</a></li>
+      <li><a href="https://www.gestoriaortegapaunero.net/servicios">Servicios</a></li>
+      <li><a href="https://www.gestoriaortegapaunero.net/valor-anadido">Valor añadido</a></li>
+      <li><a href="https://www.gestoriaortegapaunero.net/contacto">Contacto</a></li>
+    </ul>
+    <a href="tel:+34983356244" class="btn btn-blue btn-sm head-cta">983 356 244</a>
+    <details class="mnav">
+      <summary aria-label="Menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#262725" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <nav class="panel">
+        <a href="https://www.gestoriaortegapaunero.net/inicio">Inicio</a>
+        <a href="https://www.gestoriaortegapaunero.net/empresa">Empresa</a>
+        <a href="https://www.gestoriaortegapaunero.net/servicios">Servicios</a>
+        <a href="https://www.gestoriaortegapaunero.net/valor-anadido">Valor añadido</a>
+        <a href="https://www.gestoriaortegapaunero.net/contacto">Contacto</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow tag">Su gestoría administrativa en Valladolid</span>
+      <h1>Gestoría Administrativa Jesús Ortega Paunero</h1>
+      <h2>Servicio integral de asesoramiento</h2>
+      <p>Especialistas en gestión hipotecaria, asesoría fiscal, contable, laboral y jurídica</p>
+      <div class="row">
+        <a href="tel:+34983356244" class="btn btn-blue">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          983 356 244</a>
+        <a href="#contacto" class="btn btn-white">Contactar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat">
+    <div class="wrap feats">
+      <article class="f">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+        <h2>La importancia de la experiencia</h2>
+        <p>Llevamos años asesorando satisfactoriamente a nuestros clientes. Ese es nuestro mejor aval.</p>
+      </article>
+      <article class="f">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span>
+        <h2>Nuestros clientes, lo más importante</h2>
+        <p>El objetivo es satisfacer las necesidades de los clientes que confían en nosotros.</p>
+      </article>
+      <article class="f">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <h2>Apostamos por la tecnología</h2>
+        <p>Estamos a la última, tanto con nuestros clientes como con la Administración.</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Empresa -->
+  <section id="empresa">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Empresa</span>
+        <h2>Bienvenidos a Gestoría Administrativa Jesús Ortega Paunero</h2>
+      </div>
+      <div class="emp">
+        <div class="side">
+          <p class="visit" style="font-size:1.15rem">Visítenos. Estamos en Valladolid, Calle Correos, 11 1º.</p>
+          <div class="row" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
+            <a href="tel:+34983356244" class="btn btn-blue btn-sm">983 356 244</a>
+            <a href="#servicios" class="btn btn-line btn-sm">Más información de nuestros servicios</a>
+          </div>
+        </div>
+        <div class="txt">
+          <p>Bienvenidos a la Gestoría Jesús Ortega Paunero. Se trata de un despacho fundado en el año 1.947, por mi padre D Teodoro Ortega Hernández, a quien sustituyo en el año 1.991, por lo que se trata de una Gestoría que cuenta con la confianza de una amplia cartera de clientes, con más de 200.000 gestiones realizadas, producto del trabajo de 68 años de ejercicio profesional ininterrumpido en esta ciudad de Valladolid.</p>
+          <p>Nuestra misión es garantizarle una prestación de calidad, rigor y profesionalidad en cada uno de los servicios que le ofrecemos, resolver sus dudas y ayudarle a mejorar su gestión, así como optimizar sus resultados.</p>
+          <p>Desde la experiencia, conocimientos y medios tecnológicos que poseemos, le ofrecemos una atención personalizada basada en el respeto y la confidencialidad de todos sus datos, de acuerdo con el secreto profesional.</p>
+          <p>Nuestro objetivo es ser una empresa valorada por los clientes, cuyas expectativas se cumplan, comprometida con sus obligaciones ante la Administración y siempre buscando las mejores ventajas legislativas.</p>
+          <p>Estaremos encantados de asesorarle de manera integral en todos los trámites que precise realizar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="serv-sec" id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Servicios</span>
+        <h2>Nuestros servicios</h2>
+      </div>
+
+      <div class="group">
+        <h3>Asesoría</h3>
+        <div class="sgrid">
+          <article class="s"><h4>Asesoría fiscal</h4><p>Gestión y asesoramiento de beneficios y ventajas fiscales, de las obligaciones tributarias (confección y presentación de impuestos), ante la Administración Pública para particulares y empresarios (personas físicas y sociedades).</p></article>
+          <article class="s"><h4>Asesoría financiera</h4><p>Asesoramiento en materia de ahorro e inversiones, tales como cartera de valores, fondos de inversión, compraventa de acciones y participaciones, préstamos hipotecarios, gestión de créditos (líneas ICO), planes de pensiones, etc.</p></article>
+          <article class="s"><h4>Asesoría jurídica</h4><p>Asesoramiento individualizado y exhaustivo en actuaciones judiciales y extrajudiciales, en materia civil, mercantil, fiscal y tributaria, laboral y Seguridad Social, etc., tanto para sociedades, como para empresarios individuales o personas físicas.</p></article>
+          <article class="s"><h4>Asesoría a emprendedores</h4><p>Asesoramiento y gestión fiscal, laboral y contable a emprendedores para el inicio y desarrollo de su actividad de gestión empresarial: plan de empresa, plan de marketing, selección de la forma jurídica, etc.</p></article>
+          <article class="s"><h4>Mercantil</h4><p>Asesoramiento en planificación mercantil para decidir la personalidad jurídica de la empresa, según los distintos intereses y características de las actividades a desarrollar tanto personal como empresarial.</p></article>
+          <article class="s"><h4>LOPD</h4><p>Adaptación de las empresas a la Ley Orgánica de Protección de Datos, asesoramiento para garantizar la protección de datos de carácter personal, sistemas informáticos, seguridad de los datos, requisitos legales en internet, etc.</p></article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Registros, inmuebles y marcas</h3>
+        <div class="sgrid">
+          <article class="s"><h4>Registro</h4><p>Tramitaciones ante los diferentes Registros (Civil, Mercantil y de la Propiedad), solicitud de notas simples, certificaciones, inscripciones, legalización de libros de empresas: libros contables, libros de actas, libros de socios, etc.</p></article>
+          <article class="s"><h4>Escrituras</h4><p>Tramitación y liquidación de escrituras de compraventa de inmuebles, escrituras de declaración de obra nueva, segregaciones y agrupaciones, inscripción de todo tipo de escrituras en el correspondiente registro, etc.</p></article>
+          <article class="s"><h4>Catastro</h4><p>Gestión y asesoramiento de trámites catastrales de bienes inmuebles, rústicos y urbanos, tales como altas y variaciones catastrales, certificaciones gráficas y descriptivas, comprobación de la valoración catastral de inmuebles, etc.</p></article>
+          <article class="s"><h4>NETPRO</h4><p>Tramitación telemática de transmisiones inmobiliarias en el tráfico transfronterizo europeo, permitiendo al comprador extranjero realizar desde su país todos los trámites necesarios para la compra de un inmueble en España.</p></article>
+          <article class="s"><h4>Patentes y Marcas</h4><p>Asesoramiento y tramitación del registro de la marca y el logo de las empresas que permitan diferenciarlas de la competencia, así como cualquier otro trámite relacionado con la Propiedad Intelectual e Industrial.</p></article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Herencias y sucesiones</h3>
+        <div class="sgrid">
+          <article class="s"><h4>Herencias</h4><p>Asesoramiento y tramitación de herencias, obtención del certificado de defunción, obtención del certificado de últimas voluntades, liquidación y pago del Impuesto de Sucesiones y Donaciones, plusvalías, etc.</p></article>
+          <article class="s"><h4>Sucesiones</h4><p>Asesoramiento y planificación fiscal de la sucesión del patrimonio familiar o empresarial inter vivos y mortis causa, a los efectos del Impuesto sobre Sucesiones, IRPF e Impuesto sobre el Patrimonio, tramitación de herencias, etc.</p></article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Tráfico y transportes</h3>
+        <div class="sgrid">
+          <article class="s"><h4>Tráfico</h4><p>Gestiones y trámites de conductores y vehículos ante la Jefatura de Tráfico: renovación de permiso de conducción, matriculación, transmisión, bajas, rehabilitación de vehículos, etc.</p></article>
+          <article class="s"><h4>Transportes</h4><p>Asesoramiento y gestión de trámites para las empresas de transporte por carretera: obtención de autorización de transporte público o privado, transporte de pasajeros o de mercancías, transporte internacional, mercancías peligrosas, sanciones, etc.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valor añadido -->
+  <section id="valor">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Valor añadido</span>
+        <h2>Garantía profesional</h2>
+      </div>
+      <div class="va">
+        <div class="box">
+          <p>La profesión de gestor administrativo posee una gran tradición y arraigo social en la intermediación entre ciudadanos, pequeñas y medianas empresas y la Administración Pública.</p>
+          <p>El acceso a dicha profesión requiere estar en posesión de determinados títulos universitarios superiores, tales como: Licenciatura en Derecho, en Ciencias Económicas, en Ciencias Empresariales y en Ciencias Políticas (o sus grados equivalentes). Además, se exige superar una prueba de aptitud convocada por el Ministerio de Hacienda y Administraciones Públicas, a propuesta del Consejo General de Colegios.</p>
+          <p>Superada la prueba se habrá obtenido el título de gestor administrativo.</p>
+          <p>El ejercicio profesional, que requerirá de la colegiación obligatoria previa, está regulado estatutariamente y su actividad avalada por un seguro de responsabilidad civil.</p>
+        </div>
+        <div class="box">
+          <h3>Colegiados</h3>
+          <p>La colegiación como gestor administrativo acredita que el profesional que ejerce esta actividad cuenta con los conocimientos, la formación y el adecuado comportamiento ético para ello. Además, estar colegiado como GA lleva implícito estar en posesión de un seguro de responsabilidad civil que garantiza a sus clientes las posibles indemnizaciones por daños y perjuicios derivadas de cualquier error cometido en la prestación del servicio.</p>
+        </div>
+      </div>
+      <div class="tbl">
+        <div class="cap">Gestores colegiados de Gestoría Administrativa Jesús Ortega Paunero</div>
+        <table>
+          <thead><tr><th>Nombre</th><th>Nº colegiado</th><th>Colegio</th></tr></thead>
+          <tbody><tr><td>Jesús Ortega Paunero</td><td>1245</td><td>Ilustre Colegio de Gestores Administrativos de Castilla y León</td></tr></tbody>
+        </table>
+      </div>
+      <div class="redga">
+        <img src="https://www.gestoriaortegapaunero.net/uploads/img/mini_ga.png" alt="Red GA">
+        <div>
+          <h3>Red GA</h3>
+          <p>La web de Gestoría Administrativa Jesús Ortega Paunero pertenece a la RED GA, un movimiento impulsado por gestores administrativos interesados en dar a conocer en la red el valor de nuestra marca (GA) y nuestro buen hacer profesional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="wrap">
+      <p>¡Descubra cómo Gestoría Administrativa Jesús Ortega Paunero le puede ayudar en sus trámites!</p>
+      <a href="#contacto" class="btn btn-white">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Contactar</a>
+    </div>
+  </div>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contacto</span>
+        <h2>Información de contacto</h2>
+      </div>
+      <div class="ct">
+        <div class="info">
+          <p class="lbl">Despacho Valladolid:</p>
+          <ul>
+            <li><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div>Calle Correos 11 1º. 47001 Valladolid, Valladolid</div></li>
+            <li><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><a href="tel:+34983356244">983 356 244</a></div></li>
+            <li><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="7"/><rect x="3" y="9" width="18" height="9" rx="2"/><rect x="7" y="14" width="10" height="8"/></svg></span><div><small>Fax</small>983 374 168</div></li>
+            <li><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><a href="mailto:ortega@gestores.net">ortega@gestores.net</a></div></li>
+          </ul>
+        </div>
+
+        <form class="card-form" onsubmit="return demoSubmit(this)">
+          <h3>Déjenos un mensaje</h3>
+          <div class="fg">
+            <div class="field"><label for="nombre">Su nombre:*</label><input id="nombre" name="nombre" required autocomplete="name"></div>
+            <div class="field"><label for="telefono">Su teléfono:</label><input id="telefono" name="telefono" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="email">Su email:*</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="asunto">Asunto:*</label><input id="asunto" name="asunto" required></div>
+            <div class="field full"><label for="mensaje">Mensaje:</label><textarea id="mensaje" name="mensaje" rows="4" placeholder="Su mensaje..."></textarea></div>
+          </div>
+          <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://www.gestoriaortegapaunero.net/politica-de-datos" target="_blank" rel="noopener">política de protección de datos</a></span></label>
+          <label class="check"><input type="checkbox"><span>Acepto recibir publicidad.</span></label>
+          <button class="btn btn-blue" type="submit">Enviar mensaje</button>
+          <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h3><img src="https://www.gestoriaortegapaunero.net/uploads/img/mini_ga.png" alt="gestores administrativos"><strong>Gestoría Administrativa Jesús Ortega Paunero</strong></h3>
+        <p>En <strong>Gestoría Administrativa Ortega Paunero</strong> contamos con un grupo de profesionales que ponemos a su servicio para resolver sus <strong>gestiones administrativas</strong>. Nuestro objetivo es evitarle preocupaciones y ahorrarle tiempo en sus gestiones con La Administración.</p>
+        <p>Si tiene alguna cuestión que quiera aclarar no dude en ponerse en contacto con nuestra gestoría. Le responderemos a la mayor brevedad posible.</p>
+      </div>
+      <div>
+        <h3>Información de Contacto</h3>
+        <ul>
+          <li>Calle Correos 11 1º. 47001 Valladolid, Valladolid</li>
+          <li>Tel. <a href="tel:+34983356244">983 356 244</a></li>
+          <li><a href="mailto:ortega@gestores.net">ortega@gestores.net</a></li>
+          <li>Fax 983 374 168</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© Copyright 2026. Todos los derechos reservados.</span>
+      <span><a href="https://www.gestoriaortegapaunero.net/politica-de-datos">Política de Datos</a> / <a href="https://www.gestoriaortegapaunero.net/condiciones-de-uso">Condiciones de uso</a> / <a href="https://www.gestoriaortegapaunero.net/politica-de-cookies">Política de cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983356244" class="btn btn-blue">983 356 244</a>
+  <a href="mailto:ortega@gestores.net" class="btn btn-line">Contactar</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

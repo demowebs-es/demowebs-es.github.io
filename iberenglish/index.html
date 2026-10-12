@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IberEnglish · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0a4abf; --brand-dark:#083a9a; --brand-2:#0e63ff; --navy:#05306a; --red:#d62828; --red-dark:#b91c1c;
+    --ink:#0f172a; --text:#334155; --muted:#475569; --line:#e2e8f0; --tint:#f4f7fd; --foot:#0b1324; --radius:16px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:"Plus Jakarta Sans",Inter,sans-serif;color:var(--ink);line-height:1.15}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:700}
+
+  .demo{background:var(--foot);color:#93c5fd;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:18px}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .brand img{width:46px;height:46px;border-radius:10px;flex:none}
+  .brand b{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:1.25rem;color:var(--ink);font-weight:800;letter-spacing:-.01em;line-height:1.1}
+  .brand small{display:block;font-size:.74rem;color:var(--muted);line-height:1.2}
+  .menu{display:flex;gap:2px;align-items:center}
+  .menu a{padding:8px 11px;border-radius:9px;font-size:.9rem;font-weight:500;color:var(--ink)}
+  .menu a:hover{background:var(--tint);color:var(--brand)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-blue{background:var(--brand);color:#fff}
+  .btn-blue:hover{background:var(--brand-dark)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark)}
+  .btn-white{background:#fff;color:var(--brand)}
+  .btn-white:hover{background:#eaf1ff}
+  .btn-line{background:#fff;color:var(--brand);border-color:var(--brand)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:10px 16px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.92}
+
+  /* hero */
+  .hero{background:radial-gradient(circle at 78% 30%,rgba(14,99,255,.55),transparent 45%),linear-gradient(135deg,var(--navy),var(--brand));color:#fff;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;padding-top:64px}
+  .hero-text{padding-bottom:64px}
+  .hero h1{color:#fff;font-size:clamp(2.3rem,4.8vw,3.8rem);font-weight:800;letter-spacing:-.02em;margin:14px 0 18px}
+  .hero h1 span{display:block;color:#bcd3ff}
+  .hero .eyebrow{color:#bcd3ff}
+  .hero p.lead{font-size:1.12rem;color:#e6eeff}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .hero .micro{margin-top:24px;font-size:.92rem;color:#c9d8f7;border-left:3px solid var(--red);padding-left:14px}
+  .hero-media{justify-self:center;align-self:end}
+  .hero-media img{width:100%;max-width:400px;border-radius:18px 18px 0 0}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin:0 auto 40px;text-align:center}
+  .head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.01em;margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px;font-size:1.04rem}
+
+  /* method */
+  .method{background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);padding:36px 32px;margin-bottom:44px}
+  .method h3{font-size:1.4rem;text-align:center}
+  .method p.sub{text-align:center;color:var(--muted);margin:8px auto 26px;max-width:640px}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 14px;text-align:center;font-weight:600;color:var(--ink);font-size:.95rem;position:relative}
+  .steps li::before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;margin:0 auto 8px;border-radius:50%;background:var(--brand);color:#fff;font-size:.85rem}
+  .steps li:last-child::before{background:var(--red)}
+
+  /* courses */
+  .courses{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+  .course{grid-column:span 2;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.25s}
+  .course.wide{grid-column:span 3}
+  .course:hover{box-shadow:0 22px 44px -28px rgba(10,74,191,.45);border-color:#c7d6f5}
+  .course .thumb{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--tint)}
+  .course .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+  .course.wide .thumb img{object-fit:contain}
+  .course:hover .thumb img{transform:scale(1.03)}
+  .course .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .course h3{font-size:1.15rem}
+  .course h3 a:hover{color:var(--brand)}
+  .course p{font-size:.94rem;flex:1}
+  .course .go{font-weight:600;color:var(--brand);font-size:.9rem;display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+  .course.red .go{color:var(--red)}
+  .course .tag{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#eaf1ff;color:var(--brand)}
+  .course.red .tag{background:#fdeaea;color:var(--red)}
+  .course.dark .tag{background:#111;color:#fff}
+
+  /* banner */
+  .banner{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border-radius:20px;padding:48px 40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+  .banner h2{color:#fff;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800}
+  .banner p{color:#e2ebff;margin-top:10px;font-size:1.06rem;max-width:640px}
+
+  /* faq */
+  .faq{background:var(--tint)}
+  .faq-list{max-width:860px;margin:0 auto;display:grid;gap:12px}
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0 22px}
+  details[open]{border-color:#c7d6f5;box-shadow:0 14px 30px -24px rgba(10,74,191,.5)}
+  summary{list-style:none;cursor:pointer;padding:18px 32px 18px 0;font-weight:600;color:var(--ink);position:relative}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;background:var(--tint);color:var(--brand);display:grid;place-items:center;font-weight:700}
+  details[open] summary::after{content:"−"}
+  details p,details ul{padding-bottom:18px;font-size:.96rem}
+  details ul{padding-left:18px;display:grid;gap:8px}
+  details a{color:var(--brand);text-decoration:underline;font-weight:600}
+
+  /* seo text */
+  .about-text{max-width:860px;margin:0 auto;text-align:center}
+  .about-text h2{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800}
+  .about-text p{margin-top:14px;font-size:1.04rem}
+
+  /* contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .c-card{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:#fff}
+  .c-card h2{font-size:1.5rem;font-weight:800;margin-bottom:18px}
+  .c-list{list-style:none;display:grid;gap:14px}
+  .c-list li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center}
+  .c-list .ic{width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--brand)}
+  .c-list small{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .c-list strong{color:var(--ink);font-weight:600;word-break:break-word}
+  .c-list a strong{color:var(--brand)}
+  .c-card .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+  footer{background:var(--foot);color:#cbd5e1;font-size:.9rem}
+  .f-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding:48px 0 32px}
+  .f-grid h3{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+  .f-grid ul{list-style:none;display:grid;gap:6px}
+  .f-grid a{color:#93c5fd}
+  .f-grid a:hover{text-decoration:underline}
+  .f-grid .sm{font-size:.8rem;color:#94a3b8;margin-top:6px}
+  .legal{border-top:1px solid #334155;padding:20px 0;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+  .legal nav{display:flex;flex-wrap:wrap;gap:6px 14px}
+  .legal nav a{color:#93c5fd}
+  .legal p{font-size:.78rem;color:#94a3b8;max-width:620px}
+  .company{border-top:1px solid #334155;padding:16px 0;display:flex;align-items:center;gap:14px}
+  .company .scroll{flex:1;min-width:0;overflow-x:auto}
+  .company .scroll img{width:1030px;max-width:none;height:auto}
+  .social{display:flex;gap:10px;flex:none}
+  .social a{width:36px;height:36px;border-radius:50%;border:1px solid #334155;display:grid;place-items:center;color:#b5b5b5}
+  .social a:hover{color:#fff;border-color:#93c5fd}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .nav{height:auto;padding-top:10px;padding-bottom:8px;flex-wrap:wrap;row-gap:6px}
+    .menu{order:3;width:100%;overflow-x:auto;padding-bottom:2px}
+    .menu a{white-space:nowrap;font-size:.85rem;padding:6px 9px}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-text{padding-bottom:8px}
+    .hero-media img{max-width:320px}
+    .courses{grid-template-columns:1fr 1fr}
+    .course,.course.wide{grid-column:span 1}
+    .steps{grid-template-columns:1fr 1fr}
+    .steps li:last-child{grid-column:1/-1}
+    .banner{grid-template-columns:1fr;padding:36px 26px}
+    .contact{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .brand img{width:40px;height:40px}
+    .brand small{display:none}
+    .nav-cta{display:none}
+    .hero-grid{padding-top:40px}
+    .hero .row .btn,.banner .btn,.c-card .row .btn{width:100%}
+    section{padding:60px 0}
+    .method{padding:26px 18px}
+    .steps{grid-template-columns:1fr}
+    .courses{grid-template-columns:1fr}
+    details{padding:0 16px}
+    .c-card{padding:24px 20px}
+    .f-grid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para IberEnglish · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://iberenglish.com/" class="brand" aria-label="IberEnglish">
+      <img src="https://iberenglish.com/images/favicon.jpg" alt="IberEnglish">
+      <span><b>IberEnglish</b><small>School of English &amp; Professional English Training</small></span>
+    </a>
+    <nav class="menu" aria-label="Menú principal">
+      <a href="https://iberenglish.com/web/english-for-adults/">Adultos</a>
+      <a href="https://iberenglish.com/web/jovenes-eso-bach/">Jóvenes</a>
+      <a href="https://iberenglish.com/web/for-kids/">Niños</a>
+      <a href="https://iberenglish.com/web/clases-de-ingles-en-su-empresa/">Empresas</a>
+      <a href="https://iberenglish.com/web/about-us/">About us</a>
+      <a href="https://iberenglish.com/web/">Descubrir más</a>
+    </nav>
+    <a href="tel:+34913152143" class="btn btn-blue btn-sm nav-cta"><span class="tel">+34 91315 2143</span></a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">School of English &amp; Professional English Training</span>
+        <h1>Academia de inglés en Madrid <span>Presencial y online</span></h1>
+        <p class="lead">Grupos reducidos y profesorado nativo.</p>
+        <p class="lead">Empieza por tu nivel real: haz la prueba online.</p>
+        <div class="row">
+          <a href="https://iberenglish.com/new_level_test/test.php" target="_blank" rel="noopener" class="btn btn-red">Haz la prueba de nivel</a>
+          <a href="tel:+34913152143" class="btn btn-ghost">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span class="tel">+34 91315 2143</span>
+          </a>
+        </div>
+        <p class="micro">Academia de inglés en Madrid (Plaza de Castilla, Valdeacederas y Tetuán).<br>Clases presenciales y online para particulares y empresas.</p>
+      </div>
+      <div class="hero-media">
+        <img src="https://iberenglish.com/images/directora.webp" alt="Rebecca Gaspar – IberEnglish" width="768" height="912">
+      </div>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <section id="clases">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">IberEnglish</span>
+        <h2>Clases de inglés para todos los propósitos</h2>
+      </div>
+
+      <div class="method">
+        <h3>Nuestro sistema de trabajo</h3>
+        <p class="sub">Un proceso claro para asegurar continuidad y resultados medibles desde el inicio.</p>
+        <ol class="steps">
+          <li>Evaluación inicial</li>
+          <li>Objetivos definidos</li>
+          <li>Planificación</li>
+          <li>Seguimiento</li>
+          <li>Progresión real</li>
+        </ol>
+      </div>
+
+      <div class="courses">
+        <article class="course">
+          <a class="thumb" href="https://iberenglish.com/web/for-kids/"><img src="https://iberenglish.com/images/tienda0012.jpg" alt="Kids" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">Niños</span>
+            <h3><a href="https://iberenglish.com/web/for-kids/">Niños y Niñas de primaria</a></h3>
+            <p>Aprendizaje natural y lúdico desde primaria.</p>
+          </div>
+        </article>
+        <article class="course">
+          <a class="thumb" href="https://iberenglish.com/web/jovenes-eso-bach/"><img src="https://iberenglish.com/images/tienda002.jpg" alt="Teens" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">Jóvenes</span>
+            <h3><a href="https://iberenglish.com/web/jovenes-eso-bach/">Jóvenes ESO y Bachillerato</a></h3>
+            <p>ESO y Bachillerato · Refuerzo y preparación de exámenes Cambridge.</p>
+          </div>
+        </article>
+        <article class="course">
+          <a class="thumb" href="https://iberenglish.com/web/english-for-adults/"><img src="https://iberenglish.com/web/wp-content/uploads/2018/01/business7.png" alt="Adultos" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">Adultos</span>
+            <h3><a href="https://iberenglish.com/web/english-for-adults/">Adultos y profesionales</a></h3>
+            <p>Inglés profesional, conversación y exámenes oficiales.</p>
+          </div>
+        </article>
+        <article class="course wide red">
+          <a class="thumb" href="https://iberenglish.com/web/clases-de-ingles-en-su-empresa/"><img src="https://iberenglish.com/images/empresas.jpg" alt="Empresas" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">Empresas</span>
+            <h3><a href="https://iberenglish.com/web/clases-de-ingles-en-su-empresa/">Formación para empresas</a></h3>
+            <p>Programas a medida · Bonificable FUNDAE (impartición/gestión) · Presencial y Zoom.</p>
+          </div>
+        </article>
+        <article class="course wide dark">
+          <a class="thumb" href="https://iberenglish.com/web/halloween-2026/"><img src="https://iberenglish.com/web/wp-content/uploads/2026/10/halloween_2026-06.webp" alt="Fiesta Halloween 2026" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">Halloween</span>
+            <h3><a href="https://iberenglish.com/web/halloween-2026/">Fiesta Halloween 2026</a></h3>
+            <p>Fiesta infantil/juvenil 100% inglés - Tallado de Calabazas - Sábado 24 de Octubre.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <div class="wrap">
+    <div class="banner">
+      <div>
+        <h2>El inglés como competencia profesional</h2>
+        <p>No enseñamos “inglés en general”: enseñamos el inglés que vas a usar en situaciones reales.</p>
+      </div>
+      <a href="https://iberenglish.com/new_level_test/test.php" target="_blank" rel="noopener" class="btn btn-white">Haz la prueba de nivel</a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" style="margin-top:88px">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Preguntas frecuentes</h2>
+        <p>Resolvemos algunas dudas habituales sobre nuestras clases de inglés y preparación de exámenes oficiales.</p>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>¿Para quién son las clases de inglés?</summary>
+          <p>Ofrecemos formación específica para <a href="https://iberenglish.com/web/english-for-adults/">adultos</a>, <a href="https://iberenglish.com/web/jovenes-eso-bach/">jóvenes de secundaria</a> y <a href="https://iberenglish.com/web/for-kids/">niños de primaria</a>. Las clases pueden realizarse de forma presencial en nuestra academia de Madrid o bien online mediante Zoom en directo.</p>
+        </details>
+        <details>
+          <summary>¿Qué niveles de inglés ofrecéis?</summary>
+          <p>Cubrimos todos los niveles del Marco Común Europeo (A1, A2, B1, B2, C1 y C2). Antes de empezar realizamos una evaluación inicial para ubicar a cada alumno en su grupo adecuado.</p>
+          <p>Puedes consultar aquí las <a href="https://iberenglish.com/equivalencies-table.html" target="_blank" rel="noopener">equivalencias de niveles de inglés (CEFR, Cambridge, IELTS, Aptis y TOEFL)</a>.</p>
+        </details>
+        <details>
+          <summary>¿Cómo puedo saber mi nivel de inglés?</summary>
+          <p>Puedes realizar nuestra <a href="https://iberenglish.com/new_level_test/test.php" target="_blank" rel="noopener">prueba de nivel online gratuita</a>. La corrección no es automática, ya que la parte de speaking requiere evaluación manual. Después te orientaremos sobre tu nivel real, el grupo adecuado y el plan de formación recomendado.</p>
+        </details>
+        <details>
+          <summary>¿Preparáis para exámenes oficiales de inglés?</summary>
+          <p>Sí. Somos especialistas en la preparación de <a href="https://iberenglish.com/web/preparacion-examenes/">Cambridge (B1, B2, C1, C2), IELTS, TOEFL y Aptis</a>. Nuestro enfoque es dual: primero consolidamos las competencias reales del idioma y, en la fase final, entrenamos específicamente el formato del examen.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto tiempo se tarda en preparar un examen B2 de Cambridge?</summary>
+          <p>El tiempo depende de tu punto de partida:</p>
+          <ul>
+            <li><strong>Adquisición de competencias:</strong> Consolidar el nivel real de un B2 (First) puede requerir entre 6 y 12 meses de formación regular si se parte de un nivel inferior.</li>
+            <li><strong>Preparación técnica:</strong> Si ya posees el nivel adecuado, la preparación estricta del examen (técnicas de respuesta, gestión del tiempo y simulacros) se resuelve con éxito en un máximo de 3 meses.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>¿Es lo mismo "saber inglés" que "preparar el examen"?</summary>
+          <p>No. En IberEnglish diferenciamos ambos procesos: primero nos aseguramos de que tengas el nivel real exigido por el MCER y, después, te entrenamos para dominar la estructura específica del examen, sus "trampas" y la gestión del tiempo bajo presión.</p>
+        </details>
+        <details>
+          <summary>¿Hacéis simulacros de examen?</summary>
+          <p>Sí. Realizamos <a href="https://iberenglish.com/web/preparacion-examenes/">simulacros de examen (mock exams)</a> con modelos reales. Esto es vital para familiarizarte con el formato y asegurar que el día de la prueba tu rendimiento sea máximo.</p>
+        </details>
+        <details>
+          <summary>¿Los profesores son nativos?</summary>
+          <p>Nuestro equipo está formado por profesores nativos y titulados, con formación específica en la enseñanza de idiomas y amplia experiencia en la preparación de certificaciones oficiales.</p>
+        </details>
+        <details>
+          <summary>¿Las clases son en grupos grandes?</summary>
+          <p>No. Apostamos por grupos reducidos. Esto garantiza una participación constante, corrección personalizada por parte del profesor y un progreso real medible.</p>
+        </details>
+        <details>
+          <summary>¿Puedo cambiar de grupo si mi nivel mejora?</summary>
+          <p>Sí. Realizamos un seguimiento continuo del progreso. Si tu evolución es más rápida de lo previsto, ajustamos tu ubicación para que siempre estés en el grupo que más te rete y te ayude a mejorar.</p>
+        </details>
+        <details>
+          <summary>¿Ofrecéis clases presenciales y online?</summary>
+          <p>Sí. Impartimos clases presenciales en Madrid (zonas de Plaza de Castilla y Valdeacederas) y clases online por videoconferencia con la misma calidad y metodología que las presenciales.</p>
+        </details>
+        <details>
+          <summary>¿Ofrecéis formación para empresas?</summary>
+          <p>Sí. Diseñamos programas a medida para formación en empresas, tanto presenciales como online. Como empresa inscrita en el Registro Estatal de Entidades de Formación del SEPE, podemos gestionar las bonificaciones a través de FUNDAE.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT + CONTACT -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="about-text" style="margin-bottom:48px">
+        <h2>Academia de inglés en Madrid: Plaza de Castilla y Valdeacederas</h2>
+        <p>En IberEnglish ofrecemos clases de inglés presenciales y online para niños, adolescentes, adultos y empresas, con grupos reducidos y profesorado nativo cualificado. Nuestro enfoque se centra en desarrollar competencias reales de comunicación en inglés y preparar exámenes oficiales como Cambridge, IELTS, TOEFL o Aptis.</p>
+      </div>
+      <div class="contact">
+        <div class="c-card">
+          <h2>Contacto</h2>
+          <ul class="c-list">
+            <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>Clientes</small><a href="mailto:contacto@iberenglish.com"><strong>contacto@iberenglish.com</strong></a></div></li>
+            <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><div><small>Recruitment</small><a href="https://iberenglish.com/web/become-a-teacher/"><strong>become-a-teacher</strong></a></div></li>
+            <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><small>Teléfono</small><a href="tel:+34913152143"><strong class="tel">+34 91315 2143</strong></a></div></li>
+            <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small>Dirección</small><strong>Calle Amalia 9, 28020 - Madrid</strong></div></li>
+          </ul>
+        </div>
+        <div class="c-card">
+          <h2>Horario</h2>
+          <ul class="c-list">
+            <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Por teléfono</small><strong>De 8:00 a 21:00</strong></div></li>
+            <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><div><small>En persona</small><strong>Por cita</strong></div></li>
+          </ul>
+          <div class="row">
+            <a href="tel:+34913152143" class="btn btn-blue">Llamar <span class="tel">+34 91315 2143</span></a>
+            <a href="mailto:contacto@iberenglish.com" class="btn btn-line">contacto@iberenglish.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <h3>Clases de inglés</h3>
+        <ul>
+          <li><a href="https://iberenglish.com/web/for-kids/">Niños</a></li>
+          <li><a href="https://iberenglish.com/web/jovenes-eso-bach/">Jóvenes</a></li>
+          <li><a href="https://iberenglish.com/web/english-for-adults/">Adultos</a></li>
+          <li><a href="https://iberenglish.com/web/clases-de-ingles-en-su-empresa/">Empresas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Información</h3>
+        <ul>
+          <li><a href="https://iberenglish.com/web/about-us/">Empresa</a></li>
+          <li><a href="https://iberenglish.com/web/precios/">Tarifas</a></li>
+          <li><a href="https://iberenglish.com/web/horario/">Horario</a></li>
+          <li><a href="https://iberenglish.com/web/calendar/">Calendario</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Recursos</h3>
+        <ul>
+          <li><a href="https://iberenglish.com/web/become-a-teacher/">Recruitment</a></li>
+          <li><a href="https://school.iberenglish.com/">Cursos online</a></li>
+          <li><a href="https://iberenglish.com/web/free-conversation-classes/">Club conversación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exámenes Oficiales</h3>
+        <ul>
+          <li><a href="https://iberenglish.com/preparacion_examenes_oficiales.html">Prepara tu examen B1/B2/C1/C2</a></li>
+        </ul>
+        <p class="sm">IELTS© - Linguaskill© - FCE© - CAE© - CPE© - APTIS© - TOEFL©</p>
+        <h3 style="margin-top:18px">Campamentos</h3>
+        <ul><li><a href="https://iberenglish.com/web/brezo-osuna/">Alameda (CD Brezo)</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <nav aria-label="Legal">
+        <a href="https://iberenglish.com/avisos-legales.html#empresa">Empresa</a>
+        <a href="https://iberenglish.com/avisos-legales.html#datos">Privacidad</a>
+        <a href="https://iberenglish.com/avisos-legales.html#cookies">Cookies</a>
+        <a href="https://iberenglish.com/avisos-legales.html#cancelaciones">Cancelar/Reprogramar servicio</a>
+      </nav>
+      <p>Las marcas registradas y los nombres comerciales mencionados son propiedad de sus respectivos titulares. Su mención no implica respaldo ni aprobación de los servicios ofrecidos.</p>
+    </div>
+    <div class="company">
+      <div class="scroll" tabindex="0" role="region" aria-label="Datos societarios"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAYAAAAVCAYAAADVV+z/AAASsElEQVR4Xu2dX8i39xzHb8fsMZta/i3505pl2YQsJNIOUIqSJYWDFQ6cCCUHUsjJDlA7QEmkKDFpLVpoQvvTNGtpkhmtbOyZc3rd9r577/18vt/fdV337/lj9+d1dF2/67o+38//7/f689zPM5556cv+c9A0TdM0TdM0TdM0zYnkGf1goGmapmmapmmapmlOLv1goGmapmmapmmapmlOMDsfDHzmc184uOjURUf7n/z4x462L0TQ9+s3f/Xg7w//9UJU75zw8U986uB5L3jh4Vi//fUdBz/43ncOt/ftm1dd++qD933gg0f7t/7kxwc/v+3Wo/2KL930laMc8u21YMv99/3+yLZ9gv9u/9ltB/fcdeemcdwv+PqmL3/xySPb8Br0eILH+rvf+uahzsKvQwfF/UM3fuTgiitfcbid+r3lbdcfXP/2dx5uP3D/Hw6+cfPXnjzyVJD9t4cfKo+jE6y1m7Ff/JKXljJhFgts+vOfHtyZf7twfz5x+omDz3/204fbLp/jslG4f5M8P30+yxePIWicrL0cn9oSXmOz2MMsn0YyR3m2BWTts0dVKMe39p5zAXFQD3Iyl+C4Pj/X/iAHn/+CFx3VlvPu995w8NrXX3fBxcZ9RO29+a1vO6N2Krb0JY1VxVV1n7W5hJkusxwg5z5840fLeAnFLVmyJtg3WSPuK9kpco5zO3LtVPVhmPXvCu/BkDpUeM7NYrUEbLzyqlcO40mfr/KL6150+eU77QP34xKfrAUfnjp16gy5xOmOX96+OeeqOc7zaUmsqjlsVnsJ14/WOSO4Zl/rsSr+S+rCf/fzfR0Fs3px/y/pHUt60z4Y5dtSRtcfJ19na0DFJX2/lEUPBpTkNKSrX3XNGcadTXKBRMLBqGhc33PBLn3OBhTPaFLIBoR+XsT78k01OTF21Zgc131mxwyawXtveP/Bsy569qak30Xm3Bo0iahI2X7oL3/ZnB8UP0gXfCbZXo9qEvInsXj8X/86HDfr1nMC/e695+7DfJHukkG+3PLD75d+UOPxZgSSwW9r+wR6zh4MzMi83wI2+YSMTy+59LmHMl3+2skoz/fYgPs582VUs+jmPdEXbFyjySaPjWKv/VGuVosFmOXZFkb2nk229qGzCbGoelDmEj6/7o1vXpyLWxnpswVyhhujauGnvnK+40F9jW7+Z8eSLX1Jc2t1EyLfVbW4iy26QObcjDXnni28xxGrd7zrPU+pl9Eck73SGfWlnHeXsCUOa3JuhM/No7UTPuCGrsov+uSSeT19zP79f7jvDN/tG3R/8I8PnKH3UnwuG+UCeVD5zalyZUvM16C+ib4+rsc8bamo4j/yBTkJOs/XphzT77muQNdqvYOuoOuX1NWF0G+2ctx8dR+PYkTe3fW736weY9WDgX00p7XkggQHQLV4haoozya79DkbzBay+Ot73/l2af8+fTPTYYZft1UGPv/nY48e3oTsa7HqZM6tISfFfdeM65a55/FN33rTdlxGymP/2RdfXC6iGIsn1H6DC7qmejq6i/TdGo478abtictfOxnl+TmWxyp9kHGs8BzLsWAkw/XgOh62VTFDp+dccmnpm5Q9yrOl7LNHLSVtuBAY9aAqvvhsaS5uZaTPFqglyB5BHl/7mtcd3vie73jM+vbsWLKlL6kHVH4g1v9+4vFNsdiiC1Q5N2LNuecKr+/svc6sjkY9YsvCe0sc1uTcLpDlD0uE5gDI/EJn5vrq5iPBx6zP1ti3D7BrTRwS73GZx8RfVHngVHPYlpivYR/rsVH8Z3XhjOaIrDmvpVzvOKOaczJO/08cN1+d7A/EAt9A9ZBvF6seDHhyZ0ByH8V4EsTTJ94MsLAEPmGqPnFwQ/RJiv/G+bzN0+cpgBNyAen6cj1vxPTpmJ7Ak4z5ZosklDxvAu5U10c2pT7XveFNh9uyE1toktIhg1SNpSCfPn366JOzSrfqjQJFiE5VQVUNawuzYgZ8hK+Ef2LkxZ6FX/miQnZc+YqrztAjY44cLTbBx0MOMQJ84kWlBufb5L/kQOXj9E3WxXHxGHoz8Mk+mwS4HY7XdJ5TyRHowVPfXGAQQ3zu1838xphe93oQobFBbzdSP+ULvYFJ8TgT767amPU+oUk46yLPz7Ey3/wtvteE15GDbloQ5FiQ4wm3SZO3+pn3Z3RSLwf1nSo/MkZrcV3li+zfoD6Xv1N/Ol82uG2cy0Jeert/JQcdqr6QuA5+3kzvZCaj8mPGN3NuJI/rkAlZLxlH9wm/sVhUjcqnnhN6889veV6F8o4vHao6yDdFLjfnEvbRAT2R471Gfh/1H+VFrknwh3+iiX2PPfqPIx+lv5JZXxrFx9EcAnktcHOm3PC4QvaIkS6ShS5ZE+B6ItM/PUem/J1kfoLLAr8WWfhXtUJsVH/pn5mcEalPylAu+HyjXEs9xSgHofoKJvG+m/g43jc85zL/0qZdfuH6nLeBPOKlEvXuvYfzWUNljozgfOpntIZzG/2czGXZMevpisOo98hX1Vo6cZlsq6+yrTe75Gb6Lanm24z5LGbqg4w36l0JYy5dj42o4i//QVUXTmU3SDfF2e1j29c7orpHq8j6zn7i9eg54r+r3/jvnFvdvyo3QPMGuE+Ok68ws2EEeaI1IDF76cuvONzm97UPLmHRgwEZ7wZkQHIfw0GBVSHIgZ4QWTQc01tvtr1JpYMTT06u9U+mcLjG9/P8Zi6Tm32u93Oc1MftBHRQg89kH42lxqqEQKYv/rBj1CBA1yNXY0GOtxXsGL1BrHB9R9upm3yRqFHJrvSFx1wFKj968SSeZ6NtJ+MuqAOuUZ4x5ujf066l0l/5BhozfQSVHZmPeU4lRyhePokoL5hER9e537AHlNfIZPHKvnLYFw6uH+fqc3n5fEkDHTHKN+E9SuMJb/6jBwN+fnWjSB5DdQwkw/2BzvTmtNt9oxpQboiMvfJIteSxke46V/L9Zkl4jLaAbPUBZFX9G/LmA7Cp+qw+bcu8zh7ijOxhLJ8PGENvyUZ6Z9/dJaMaN3PJb1Jm8mb14v7wPHdSH+kgH2YtM/bo7aLG8MUWOtFLON/jkfowrtYGnOf2pw4V6AVco7xQbJCtNUnmiO/nMWfm51l8HJ2XN2LIJqcyFo77bqaLbNe5blPWEX71OWyUz8A4Xpspi3H8wQ+y8gGOZKO/bih2yRnhMhLG05tUyVN/zfGE/KjzPAd1bOQbITuFYuLxAmTpM+tR/qWeS/zCOXkD6XWR+aWc8nGXwHXgumBjtc4b+S7tE65v1j3H1HvkD8/7ao4W6IAu+XABGZA3cRXYpHsmx/vALGbpf+E2J/Lr2vWYGMVfuu2qC2Lga1PFEzKmoNzI9Y5qI38fkf3G+4nnOXpX929Zc8J1B/cP2z5veL6N/OPXz/IVRjZUKNeUW0L+JV9H/W/GogcDKmQFmwTOgOR+Jrc7JverQpKhu+Qkrm9e6/suR78/8sgjh9uJAsYxX4hA6pP76T/5yAvHYazLLrvsKYVMcvi+GvUu0MWf9LsuFeiDXonfjMCoyJyc/KSv667tmS9SV+T6QjH3FUv0zZxMvdnXUzmQnS4j5bmemQvC5VLg1YOBpb4WxC4bWDZjxTfzB9wOyOYEeU7mnVONVf0GI79lPnp8qrGlH3XqcYXMA6EGmSgHReqSuPzMq13k+dipm3L5RvpkjjrZWwS6eY65v7GHm1S3rYp9ynb/Z17o3GrBkefqt6W57nFIWb7PeXxS7WOPcmBmG2Q/HfUFh7G8v4Em85nezhoZwnMpFw0jeT+95Udn5Kv7yv0h29Pm1Cf3q/pJvwofW+dUvwFyR2uDlF/pAF4PoP6TeeH7mSO+n8dE1jm4XaP4ZK17D5Cf+Vsn+Zt8n3LxyS5d0na3yc+DStaIPDdlgevvMczel76byUkUc+zJfHA0fhXTzC/hvstzZjqJypb0G4xybhYr2KUD13vfSNv9et/O85bANdxYuuyEY9XXn1DZBx6Dqu5Hcc19Bzm6iarisZRKnzW57NvKYzFac2rMJesxfldPpZfmA/5dMc+cR16uTR2O64WP7NH1WfNC8xDjzuo345S6aV/juv/yWsd9AJ5v2TtB41SxhaX5mtvVfgXjVvcZW1n1YMD3wZ2aTp45NvdzDGeXnMRl5bW+L305V28q0oYKxudpkT+BhMoucH1c/mysLMbcX5Iowm2e+XkN6I7ckQ4kqd+wjpJe2zNfJFyTYE/V1FKuNyG2R2/Lq209NJLuGecRo8a3BmyuGmTGUzrd8atfnBEf9zvHqs+3Mm4zG31stpkY5E/P18wVl8l1HnP3VeY8eCxUs2LUkJeSticuP/NqF3m+71f54bFylsbDybFHsU893P/p26V5tgW3Q/Gu+jegI4tO3VylniL9lrnlOs/6gjMaC/Ka3BdrZIiMp+ftSB7XzOol/QGMz3X8tiQWVf5lfQsfW9ssAhUDj0clV2SuVediA7rqPM+FzAvfT5/4fh4Tu/w8ik/itaht3mzL3+57ZFZz7S5d0na3ifP889PMuRl5bmUz+vtXH4pN9qBdvnM5DrbM3rI57q+0MfNLuO8y57IuKipbqvGxg0/4cz7MWKWskV9E+ofzGT+59+47D66+5n9/YM5Z8tbckb+YL9JGkbEXlX0wiwGo97ivIPdF5f8lsayo9FmTyxp3zZrTx2R7tB6rGMWfexz+aGT6xeuCbeSOcg3ct1WcR3VW+SnJuKWs3MeHun+rbBMZe/d9FQfl20jnpfkKqXPuj6jkbmXVgwGC4InqSYHh/nZ65tjcx5mQTQHS0VViOa5v6lDtgy+UuX729AuqiVv6pJ3pP0/E0VhZyLk/SwD8lUWnGM2uWwvj5BMqje0xwz+jRZ9vj3zhIMsX7cJt9Binv0dxU17PvhjIt9Tou+S/lHHdtkA+VZ+bArrpU0NwH3JMee22kktabCQc8wXDLF/8GDrSbOU/z9eMgfut0t//KUFOZh4X/KrxFD89rNtCJQMd1vyvBPih+kwxz/c8Zgz/jJBj1ado0k+5xHmu52gh7HnAeaPYp3zs1Q1H6kSc9GbF5XuebcXzCtnZr30f3Lepp8ienLnlY7oN8km+PYfRWJB65r5YI0NkLklH8mcmb1Yv6Q/hOe/bkPpxHBT7US2Ay1L++5scnxdSruPnQXVu+sv7T+aF7+d17qORv2Dm51l8HM9BQCa5qfHc9+5Lrsu5dqRL2u42ccw/bWWMff5TAu9VHsO0O22byXGwc3ZjLDJfyA3Nn4xXrTXkR9nvMnQMe2b6uV2Ojw/I8t5d5d8av4hd53h+OT4uuH4O9nkN+nlpo0i/irRPeP5mHL33pM6571T1kvoIHyPx+USsyWX5f82a08dEt9F6bAkZ/1FdMM5obcp5+j3jMVrv+DXgfWaUa9lvvJ9U+8A46jOjfEwfeL6x7fe6nn8ZW+HXz/IVUufcF+6vzKHjsujBgH/K54WCQSQg5CfTM8dW+zmOJw6TnZ5SqmChKlovkNQh9yXbne7yATmMo3OFrkl99McH3S7pk0k8GisLOfdJLD4dHH2G6Hr6ojZ9PPosaSkef/BGRPEDOqKr/OVJ7tsjXzgcr5oD/tBNjMc4/Y1vcsEF5Jb/pWeXkdvIBOwavWGWXHD/b0GxdjzuPlbG0+1zH3h+gB/3mM5utD2vtS8Zma8zv6X+owkdPBaeY+iff+RrK66P56BP7JlXIhu8yNzONy5ZR6oJtxE8l9ynoGvAj3lO7Iq9H8/e4nmYeVHl2VaW9G8WTO5P94v7UvrkXJO5lf3U7Zn9BfisTekx0vs4MkSVe8jQv5UeyZvVi/vDr/f8V27Ip5V+/Ka8q/q3YAyvVa7zGzn87/mc81Y1fwjXQfHM39R/Mi9yX+OS70v/+ODMzzCKj5PzFHr5Atx97+NhG7Kr/pG6pK1pk/uMHrLPPz7oMfMYpt2ZJzM5TuYLqGfNcpTfOQ7Kc3A/QsbMx5NfuGa0UE+7HPUe8N7t8clYLfWLmOkGnl9Ojst51XrM/QhuRx7zGKSf5Uu3T3HJ/B3FNXXOfSfHzzg7jF/N9eBzmMiYz2Lm/ne7cu3k5Jjse/6ObK7w8WFUF9nLIOdQ8HjAyPb83f3P+KNcW/JgINc+eY7wPuE+8HxT7GW7+wTcjrX5CiMbEpcB1Tlb2flgoGmapmmapw+58GmapmnOP92bL2zyJv/pSD8YaJqmaZoTgt6e7PMNQ9M0TXM89Ha+e/OFSz8YaJqmaZrm/5r87JBPF/1T16Zpmub84f90KT+Zby4c+sFA0zRN0zRN0zRN0zRPa/qfEjRN0zRN0zRN0zTNCaYfDDRN0zRN0zRN0zTNCaYfDDRN0zRN0zRN0zTNCaYfDDRN0zRN0zRN0zTNCaYfDDRN0zRN0zRN0zTNCea/T3Z58UT+PMkAAAAASUVORK5CYII=" alt="Datos societarios de IberEnglish" width="1030" height="21"></div>
+      <div class="social">
+        <a href="https://www.facebook.com/iberenglish/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34913152143" class="btn btn-blue">Llamar</a>
+  <a href="https://iberenglish.com/new_level_test/test.php" target="_blank" rel="noopener" class="btn btn-red">Prueba de nivel</a>
+</div>
+</body>
+</html>

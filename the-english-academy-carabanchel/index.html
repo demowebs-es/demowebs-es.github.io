@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The English Academy · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#26415C; --navy-deep:#1A2D3F; --blue:#3E6A96; --blue-2:#4A7FB3; --sky:#6693C0; --sky-soft:#e8eff7;
+    --red:#d9302c; --star:#e87e2f; --ink:#1c2633; --text:#3d4652; --muted:#6b7480; --line:#e2e8ef; --tint:#f5f8fb; --white:#fff;
+    --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Mulish,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Roboto,sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);font-weight:700}
+
+  .demo{background:var(--navy-deep);color:#c9d6e4;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:var(--navy);box-shadow:0 6px 20px -12px rgba(0,0,0,.5)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:18px;position:relative}
+  .brand{display:flex;align-items:center;gap:14px;color:#fff}
+  .brand img{height:62px;width:auto}
+  .brand span{font-family:Roboto,sans-serif;font-weight:700;font-size:1.08rem;letter-spacing:.01em}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a,.menu>li>span{display:block;padding:10px 13px;font-weight:600;font-size:.92rem;color:#e6edf5;border-radius:8px;cursor:pointer}
+  .menu>li>a:hover,.menu>li:hover>span{background:rgba(255,255,255,.08);color:#fff}
+  .menu .has>a::after,.menu .has>span::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px;opacity:.7}
+  .sub{position:absolute;top:100%;left:0;min-width:240px;background:#fff;border-radius:12px;box-shadow:0 22px 44px -20px rgba(0,0,0,.45);padding:8px;list-style:none;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+  .menu>li:hover>.sub,.menu>li:focus-within>.sub{opacity:1;visibility:visible;transform:none}
+  .sub a{display:block;padding:9px 12px;border-radius:8px;font-size:.9rem;color:var(--text)}
+  .sub a:hover{background:var(--sky-soft);color:var(--navy)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:10px;font-weight:700;font-size:.93rem;transition:.2s;border:2px solid var(--sky);cursor:pointer;font-family:Roboto,sans-serif;white-space:nowrap}
+  .btn-sky{background:var(--sky);color:#fff}
+  .btn-sky:hover{background:var(--blue-2);border-color:var(--blue-2)}
+  .btn-navy{background:var(--navy);border-color:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+  .btn-ghost{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.65)}
+  .btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+  .btn-line{background:#fff;color:var(--navy);border-color:var(--sky)}
+  .btn-line:hover{background:var(--sky-soft)}
+  .btn-sm{padding:10px 16px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.92}
+
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:linear-gradient(180deg,rgba(26,45,63,.72),rgba(26,45,63,.82)),url(https://le-de.cdn-website.com/b73e774c07fc452aaf14488522cf87fd/dms3rep/multi/opt/imgi_1_portada3-1920w.jpg) center/cover}
+  .hero .wrap{padding-top:110px;padding-bottom:120px;text-align:center}
+  .hero h1{font-family:Roboto,sans-serif;font-weight:900;font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.1;max-width:900px;margin:0 auto;letter-spacing:-.01em}
+  .hero .row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero .phones{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 26px;margin-top:26px;font-size:.98rem;color:#d7e3ef}
+  .hero .phones a{display:inline-flex;align-items:center;gap:8px}
+  .hero .phones a:hover{color:#fff;text-decoration:underline}
+
+  section{padding:90px 0}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:38px}
+  .head h2{font-family:Roboto,sans-serif;font-weight:900;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.1;color:var(--navy);margin-top:8px}
+  .more{font-family:Roboto,sans-serif;font-weight:700;color:var(--blue);font-size:.92rem;letter-spacing:.04em;border-bottom:2px solid var(--sky);padding-bottom:2px}
+  .more:hover{color:var(--navy)}
+
+  /* cursos */
+  .cursos{background:var(--tint)}
+  .c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .curso{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:.25s}
+  .curso:hover{box-shadow:0 24px 46px -30px rgba(26,45,63,.45)}
+  .curso .img{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--sky-soft)}
+  .curso .img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+  .curso:hover .img img{transform:scale(1.04)}
+  .curso .body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+  .curso .tag{display:inline-block;align-self:flex-start;font-family:Roboto,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:var(--sky-soft);border-radius:6px;padding:4px 8px;margin-bottom:10px}
+  .curso h3{font-family:Roboto,sans-serif;font-size:1.22rem;color:var(--navy);margin-bottom:10px}
+  .curso h3 a:hover{color:var(--blue)}
+  .curso p{font-size:.93rem;margin-bottom:10px}
+  .curso p b{color:var(--ink)}
+  .curso ul{list-style:none;display:grid;gap:6px;margin:4px 0 6px}
+  .curso li{font-size:.9rem;padding-left:20px;position:relative}
+  .curso li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--sky)}
+  .curso .test{display:inline-block;margin-top:2px;font-weight:700;color:var(--blue);text-decoration:underline}
+  .curso.feature{grid-column:1/-1;flex-direction:row}
+  .curso.feature .img{aspect-ratio:auto;flex:0 0 40%;min-height:260px}
+  .curso.feature .body{justify-content:center}
+
+  /* galería */
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;grid-auto-flow:dense;gap:12px}
+  .gal a{position:relative;border-radius:12px;overflow:hidden;display:block;background:var(--sky-soft)}
+  .gal a:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .gal a:nth-child(6),.gal a:nth-child(7){grid-column:span 2}
+  .gal img{width:100%;height:100%;object-fit:cover;transition:.4s}
+  .gal a:hover img{transform:scale(1.05)}
+  .gal h3{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;font-size:.86rem;font-weight:600;color:#fff;background:linear-gradient(180deg,transparent,rgba(26,45,63,.85));line-height:1.3}
+
+  /* opiniones */
+  .opiniones{background:var(--navy);color:#fff}
+  .opiniones .head h2{color:#fff}
+  .r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .review{background:#fff;color:var(--text);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column}
+  .stars{color:var(--star);letter-spacing:3px;font-size:1.05rem}
+  .review blockquote{margin:12px 0 18px;font-size:.98rem;color:var(--ink);flex:1}
+  .review .who{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+  .review .who b{display:block;font-family:Roboto,sans-serif;color:var(--navy);font-size:1rem}
+  .review .who span{font-size:.82rem;color:var(--muted)}
+  .review .who a{font-size:.85rem;color:var(--blue);text-decoration:underline;white-space:nowrap}
+  .center-row{text-align:center;margin-top:34px}
+
+  /* sobre nosotros */
+  .about{display:grid;grid-template-columns:.75fr 1.25fr;gap:56px;align-items:start}
+  .about .side{background:var(--sky);color:#fff;border-radius:var(--radius);padding:34px 30px;position:sticky;top:110px}
+  .about .side h2{font-family:Roboto,sans-serif;font-size:2.4rem;font-weight:900;line-height:1}
+  .about .side p{font-family:Roboto,sans-serif;font-weight:700;letter-spacing:.06em;margin-top:8px}
+  .about .side img{margin-top:26px;width:150px;background:#fff;border-radius:12px;padding:10px}
+  .about .txt p{font-size:1.04rem;margin-bottom:18px}
+  .about .txt strong{color:var(--navy)}
+  .about .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+
+  /* contacto */
+  .contact{background:var(--tint);border-top:1px solid var(--line)}
+  .ct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ct{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .ct h3{font-family:Roboto,sans-serif;font-size:1rem;letter-spacing:.06em;color:var(--navy);margin-bottom:16px}
+  .ct .btns{display:grid;gap:10px}
+  .ct .btns .btn{width:100%;justify-content:space-between}
+  .ct .mail{margin-top:18px;font-size:.92rem}
+  .ct .mail a{color:var(--blue);font-weight:700;text-decoration:underline;word-break:break-word}
+  .ct address{font-style:normal;margin-bottom:16px}
+  .soc{display:flex;gap:10px;margin-top:6px}
+  .soc a{width:42px;height:42px;border-radius:10px;background:var(--sky-soft);display:grid;place-items:center;color:var(--navy)}
+  .soc a:hover{background:var(--sky);color:#fff}
+  .hours{list-style:none;display:grid;gap:10px}
+  .hours li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+  .hours b{color:var(--ink)}
+
+  footer{background:var(--navy-deep);color:#b9c7d6;font-size:.9rem}
+  .links{padding:44px 0 34px;text-align:center}
+  .links h2{font-family:Roboto,sans-serif;color:#fff;font-size:.95rem;letter-spacing:.06em;margin-bottom:16px}
+  .links ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px}
+  .links li a{display:inline-block;padding:6px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;font-size:.84rem}
+  .links li a:hover{border-color:var(--sky);color:#fff}
+  .legal{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;display:flex;justify-content:center;gap:8px 18px;flex-wrap:wrap;font-size:.85rem}
+  .legal a{text-decoration:underline}
+  .legal a:hover{color:#fff}
+  .totop{display:block;background:var(--sky);color:#fff;text-align:center;padding:10px;font-family:Roboto,sans-serif;font-weight:700;font-size:.9rem}
+
+  .wa{position:fixed;right:20px;bottom:20px;z-index:55;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 26px -10px rgba(0,0,0,.45)}
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block}
+    .mnav summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;color:#fff}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav[open] .mpanel{display:block}
+    .mpanel{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;box-shadow:0 20px 40px -20px rgba(0,0,0,.4);max-height:75vh;overflow:auto;padding:10px 20px 20px}
+    .mpanel a,.mpanel span{display:block;padding:10px 0;border-bottom:1px solid var(--line);font-weight:700;color:var(--ink)}
+    .mpanel .l2 a{padding-left:16px;font-weight:500;font-size:.93rem;color:var(--text)}
+    .c-grid{grid-template-columns:1fr 1fr}
+    .curso.feature{grid-column:span 2}
+    .gal{grid-template-columns:repeat(3,1fr)}
+    .gal a:nth-child(6),.gal a:nth-child(7){grid-column:auto}
+    .gal a:nth-child(7){grid-column:1/-1}
+  }
+  @media (max-width:820px){
+    .r-grid,.ct-grid{grid-template-columns:1fr}
+    .about{grid-template-columns:1fr;gap:28px}
+    .about .side{position:static}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .nav{height:72px}
+    .brand img{height:50px}
+    .brand span{font-size:.98rem}
+    .hero .wrap{padding-top:72px;padding-bottom:80px}
+    .hero .row .btn{width:100%}
+    section{padding:64px 0}
+    .c-grid{grid-template-columns:1fr}
+    .curso.feature{grid-column:auto;flex-direction:column}
+    .curso.feature .img{aspect-ratio:16/10;flex:none}
+    .gal{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+    .gal a:nth-child(1){grid-column:span 2;grid-row:span 1}
+    .gal a:nth-child(7){grid-column:auto}
+    .ct{padding:22px}
+    .wa{display:none}
+    .callbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 4px;font-size:.8rem;gap:6px}
+    .callbar .btn-wa{background:#25d366;border-color:#25d366;color:#fff}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body id="top">
+
+<div class="demo">Propuesta de rediseño para The English Academy · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="https://www.theenglishacademymadrid.es/" aria-label="The English Academy">
+      <img src="https://le-de.cdn-website.com/b73e774c07fc452aaf14488522cf87fd/dms3rep/multi/opt/Logo-The-English-Academy-web-209w.png" alt="The English Academy">
+      <span>The English Academy</span>
+    </a>
+    <ul class="menu">
+      <li><a href="https://www.theenglishacademymadrid.es/">Inicio</a></li>
+      <li class="has"><span tabindex="0">Conócenos</span>
+        <ul class="sub">
+          <li><a href="https://www.theenglishacademymadrid.es/galeria">Galería de imágenes</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/videos">Galería de vídeos</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/saber-mas">Saber Más</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/noticias">Noticias</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/conocenos/tour">Tour virtual</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.theenglishacademymadrid.es/servicios">Servicios</a></li>
+      <li class="has"><a href="https://www.theenglishacademymadrid.es/productos">Cursos de Inglés</a>
+        <ul class="sub">
+          <li><a href="https://www.theenglishacademymadrid.es/productos/otros">Otros</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/productos/examenes-oficiales-trinity">Exámenes Oficiales Trinity</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/productos/examenes-oficiales">Exámenes Oficiales Cambridge</a></li>
+          <li><a href="https://www.theenglishacademymadrid.es/productos/test-de-nivel">Test de Nivel</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.theenglishacademymadrid.es/blog">Blog</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/contacto">Contacto</a></li>
+    </ul>
+    <details class="mnav">
+      <summary aria-label="Menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <nav class="mpanel">
+        <a href="https://www.theenglishacademymadrid.es/">Inicio</a>
+        <span>Conócenos</span>
+        <div class="l2"><a href="https://www.theenglishacademymadrid.es/galeria">Galería de imágenes</a><a href="https://www.theenglishacademymadrid.es/videos">Galería de vídeos</a><a href="https://www.theenglishacademymadrid.es/saber-mas">Saber Más</a><a href="https://www.theenglishacademymadrid.es/noticias">Noticias</a><a href="https://www.theenglishacademymadrid.es/conocenos/tour">Tour virtual</a></div>
+        <a href="https://www.theenglishacademymadrid.es/servicios">Servicios</a>
+        <a href="https://www.theenglishacademymadrid.es/productos">Cursos de Inglés</a>
+        <div class="l2"><a href="https://www.theenglishacademymadrid.es/productos/otros">Otros</a><a href="https://www.theenglishacademymadrid.es/productos/examenes-oficiales-trinity">Exámenes Oficiales Trinity</a><a href="https://www.theenglishacademymadrid.es/productos/examenes-oficiales">Exámenes Oficiales Cambridge</a><a href="https://www.theenglishacademymadrid.es/productos/test-de-nivel">Test de Nivel</a></div>
+        <a href="https://www.theenglishacademymadrid.es/blog">Blog</a>
+        <a href="https://www.theenglishacademymadrid.es/contacto">Contacto</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <h1>Academia de inglés para niños y adultos en Carabanchel</h1>
+      <div class="row">
+        <a href="https://www.theenglishacademymadrid.es/contacto" class="btn btn-sky">Escríbenos</a>
+        <a href="https://maps.app.goo.gl/MbgTvEYscvpri4CF7" target="_blank" rel="noopener" class="btn btn-ghost">Dónde estamos</a>
+      </div>
+      <div class="phones">
+        <a href="tel:+34914711701"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">91 471 17 01</span></a>
+        <a href="tel:+34653061209"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>Móvil <span class="tel">653061209</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURSOS -->
+  <section class="cursos" id="cursos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Cursos de Inglés</h2>
+        <a class="more" href="https://www.theenglishacademymadrid.es/productos">VER TODOS &gt;</a>
+      </div>
+      <div class="c-grid">
+        <article class="curso">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/test-de-nivel"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/194/ProductImage/10259/508/660c662a8d4f4d62967acee6252a3652.webp" alt="Test de Nivel" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/test-de-nivel">Test de Nivel</a></h3>
+            <p>¿Quieres saber cuál es tu nivel de inglés?</p>
+            <p><a class="test" href="http://theenglishacademy.es/#nivelTest" target="_blank" rel="nofollow noopener">Comienza el test</a> y así sabremos qué nivel te corresponde. Si tienes cualquier duda solo tienes que contactar con nosotros.</p>
+          </div>
+        </article>
+        <article class="curso">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/pet-preliminary"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/754/ProductImage/10259/054/99e44b7c4fe240dc88badce55db626e2.webp" alt="PET - Preliminary" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">B1</span>
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/pet-preliminary">PET - Preliminary</a></h3>
+            <p>El <b>Cambridge PET</b> es un título de prestigio internacional que equivale al nivel B1 y corresponde a aquellas personas que tienen un nivel intermedio de inglés tanto hablado como escrito.</p>
+            <p>Este título te da acceso a otros títulos más exigentes como puede ser el First Certificate. En The English Academy te preparamos para realizar esta prueba y superarla de forma satisfactoria. Este examen está dividido en tres partes:</p>
+            <ul><li>Comprensión de textos y expresión escrita</li><li>Comprensión auditiva</li><li>Expresión oral</li></ul>
+          </div>
+        </article>
+        <article class="curso">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/fce-first-certificate"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/788/ProductImage/10259/829/532f7d97329b44d8b9e7ed4cb0f8b87d.webp" alt="FCE - First Certificate" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">B2</span>
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/fce-first-certificate">FCE - First Certificate</a></h3>
+            <p>El <b>First Certificate in English (FCE)</b> equivale al B2 que corresponde con un nivel de inglés intermedio alto. Este título te puede facilitar oportunidades de empleo y también te abre las puertas a la educación internacional. Muchas empresas piden este certificado como prueba de inglés para comenzar a trabajar con ellos.</p>
+            <p>Este examen se divide en 5 partes que se realizan en diferentes días:</p>
+            <ul><li>Comprensión de textos</li><li>Expresión escrita</li><li>Gramática</li><li>Comprensión auditiva</li><li>Expresión oral</li></ul>
+          </div>
+        </article>
+        <article class="curso">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/cae-advanced"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/910/ProductImage/10259/907/99eed7687afc4172a18d8237cc2dda5d.webp" alt="CAE - Advanced" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">C1</span>
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/cae-advanced">CAE - Advanced</a></h3>
+            <p>El <b>CAE - Advance</b> es un título muy valorado y reconocido en empresas e instituciones. Corresponde con el nivel C1 y supone un nivel de inglés alto en comprensión tanto escrita como hablada.</p>
+            <p>Este título se requiere en ofertas de trabajo donde parte de la actividad profesional se realice en inglés. Este examen, al igual que el First, se divide en 5 partes:</p>
+            <ul><li>Comprensión de textos</li><li>Expresión escrita</li><li>Gramática</li><li>Comprensión auditiva</li><li>Expresión oral</li></ul>
+          </div>
+        </article>
+        <article class="curso">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/cpe-proficiency"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/183/ProductImage/10259/858/be0f3b1f79d140bbb04e22953a27a6a5.webp" alt="CPE - Proficiency" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">C2</span>
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/cpe-proficiency">CPE - Proficiency</a></h3>
+            <p>El <b>Certificate of Proficiency in English (CPE)</b> es el título de inglés más avanzado que ofrece la Universidad de Cambridge. Ser poseedor de este título demuestra un contenido excepcional de la lengua inglesa. Corresponde al nivel C2.</p>
+            <p>Este título suele ser requerido en aquellas personas que quieran continuar sus estudios en el extranjero. En el Reino Unido, una buena nota en el CPE está reconocida por el UCAS (servicio de admisiones de las instituciones de educación superior de Reino Unido).</p>
+            <p>Este examen también está dividido en 5 partes:</p>
+            <ul><li>Comprensión de textos</li><li>Expresión escrita</li><li>Gramática</li><li>Comprensión auditiva</li><li>Expresión oral</li></ul>
+          </div>
+        </article>
+        <article class="curso">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/gese-oral"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/094/ProductImage/10259/054/d3e63d53e0af44709e93b1420b31d0e3.webp" alt="GESE - Oral" loading="lazy"></a>
+          <div class="body">
+            <span class="tag">Trinity</span>
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/gese-oral">GESE - Oral</a></h3>
+            <p>The Trinity College in London es una institución británica de reconocido prestigio y sus pruebas de inglés se equiparan con el Marco Común Europeo de Referencia para las lenguas. Todos sus exámenes están acreditados por las autoridades educativas en Reino Unido. The Trinity College es, además, líder en proyectos bilingües en nuestro país donde colabora directamente con las Comunidades Autónomas para la evaluación de alumnos y certificación para profesores.</p>
+            <p>Este examen consiste en una entrevista de entre 5 y 15 minutos con un examinador externo cualificado donde el alumno tendrá que demostrar su capacidad de desenvolverse en la lengua inglesa.</p>
+            <p>Existen hasta 12 niveles de examen, divididas en 4 etapas. En The English Academy también te ayudamos a mejorar tu nivel de conversación para que puedas mejorar y dominar el habla inglesa.</p>
+          </div>
+        </article>
+        <article class="curso feature">
+          <a class="img" href="https://www.theenglishacademymadrid.es/producto/cursos-de-ingles-en-irlanda"><img src="https://storage.googleapis.com/d_images/ProductImage/10259/715/ProductImage/10259/978/ccd8035ce2d3483595303eed70beabb5.webp" alt="Cursos de Inglés en Irlanda" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://www.theenglishacademymadrid.es/producto/cursos-de-ingles-en-irlanda">Cursos de Inglés en Irlanda</a></h3>
+            <p>The English Academy trabaja con <b><a href="https://www.iceireland.com/english-school-in-dublin-english-adult-and-junior-courses/english-language-schools-dublin-malahide/" target="_blank" rel="noopener" style="text-decoration:underline">Irish College of English (ICE)</a></b> gestionando estancias y cursos en Irlanda, sin ningún coste adicional para el alumno. Proponemos la mejor manera de aprender inglés ¡Viviendo en inglés!</p>
+            <p>Te ayudamos a gestionar tu estancia para que te diviertas aprendiendo mientras estás de vacaciones. Si quieres tener más información sobre nuestros cursos en el extranjero contacta con nosotros y estaremos encantados de ayudarte.</p>
+          </div>
+        </article>
+      </div>
+      <div class="center-row"><a href="https://www.theenglishacademymadrid.es/productos" class="btn btn-navy">Ver más</a></div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="wrap">
+      <div class="head">
+        <h2>Galería</h2>
+        <a class="more" href="https://www.theenglishacademymadrid.es/galeria">VER TODOS &gt;</a>
+      </div>
+      <div class="gal">
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974254"><img src="https://storage.googleapis.com/d_images/Image/10259/732/Image/10259/995/4cb521be8417423cad95cb867c45599d.webp" alt="Academia de inglés cerca de Vista Alegre, Madrid" loading="lazy"><h3>Academia de inglés cerca de Vista Alegre, Madrid</h3></a>
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974257"><img src="https://storage.googleapis.com/d_images/Image/10259/491/Image/10259/991/4f9805c01aea45bea1176dc172f16ca1.webp" alt="Clases de inglés cerca de Aluche" loading="lazy"><h3>Clases de inglés cerca de Aluche</h3></a>
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974250"><img src="https://storage.googleapis.com/d_images/Image/10259/140/Image/10259/316/f16c0728fdaa4a9a953084202b8ce006.webp" alt="Academia de inglés cerca de Carabanchel" loading="lazy"><h3>Academia de inglés cerca de Carabanchel</h3></a>
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974244"><img src="https://storage.googleapis.com/d_images/Image/10259/468/Image/10259/851/81a6998b4fc542d79b6dd5b2d8f07c16.webp" alt="Academia de inglés cerca de Aluche" loading="lazy"><h3>Academia de inglés cerca de Aluche</h3></a>
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974247"><img src="https://storage.googleapis.com/d_images/Image/10259/884/Image/10259/268/22dcfa1fc79c4b71b0b2542e55e026be.webp" alt="Clases ingles para adultos cerca de Oporto, Madrid" loading="lazy"><h3>Clases ingles para adultos cerca de Oporto, Madrid</h3></a>
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974260"><img src="https://storage.googleapis.com/d_images/Image/10259/325/Image/10259/360/04ab5ab5918e4bc1b35fe6fc9e0abe38.webp" alt="Cursos de inglés en el extranjero cerca de Carabanchel" loading="lazy"><h3>Cursos de inglés en el extranjero cerca de Carabanchel</h3></a>
+        <a href="https://www.theenglishacademymadrid.es/fotos/img/9974263"><img src="https://storage.googleapis.com/d_images/Image/10259/196/Image/10259/206/68b7ec5a95d947e298dc44186911bb71.webp" alt="Cursos de inglés cerca de Oporto, Madrid" loading="lazy"><h3>Cursos de inglés cerca de Oporto, Madrid</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section class="opiniones" id="opiniones">
+    <div class="wrap">
+      <div class="head"><h2>Opiniones</h2></div>
+      <div class="r-grid">
+        <article class="review">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Es la mejor academia estamos envatados"</blockquote>
+          <div class="who"><div><b>Nancy Gomez</b><span>05-12-2025</span></div><a href="https://search.google.com/local/reviews?placeid=ChIJO2VuD8EnQg0Re_sSEKWzNeI" target="_blank" rel="noopener">Ver opinión</a></div>
+        </article>
+        <article class="review">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Es una academia estupenda,los profesores muy implicados y con una biblioteca en ingles muy chula.100% recomendable"</blockquote>
+          <div class="who"><div><b>Noemi Martinez Perez</b><span>15-11-2025</span></div><a href="https://search.google.com/local/reviews?placeid=ChIJO2VuD8EnQg0Re_sSEKWzNeI" target="_blank" rel="noopener">Ver opinión</a></div>
+        </article>
+        <article class="review">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Academia con profesorado nativo. Siempre facilitando el poder aprender de la mejor manera y buscando el progreso del alumnado. Su ambiente es familiar y respetuoso donde te sientes arropado desde el primer momento a traves de Carol, su directora, hasta su profesorado. Super recomendable!"</blockquote>
+          <div class="who"><div><b>Palmira</b><span>10-11-2025</span></div><a href="https://search.google.com/local/reviews?placeid=ChIJO2VuD8EnQg0Re_sSEKWzNeI" target="_blank" rel="noopener">Ver opinión</a></div>
+        </article>
+      </div>
+      <div class="center-row"><a href="https://search.google.com/local/writereview?placeid=ChIJO2VuD8EnQg0Re_sSEKWzNeI" target="_blank" rel="noopener" class="btn btn-sky">Escribir opinión en Google</a></div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="nosotros">
+    <div class="wrap about">
+      <div class="side">
+        <h2>+Info</h2>
+        <p>SOBRE NOSOTROS</p>
+        <img src="https://le-de.cdn-website.com/b73e774c07fc452aaf14488522cf87fd/dms3rep/multi/opt/Logo-The-English-Academy-web-209w.png" alt="" loading="lazy">
+      </div>
+      <div class="txt">
+        <p>Tu <strong>academia de inglés de confianza en Carabanchel.</strong> En The English Academy aprenderás inglés de forma fácil, cómoda y divertida. Tenemos cursos para niños y adultos y todos los niveles. Te preparamos para que puedas superar los exámenes de Cambridge y Trinity College. ¿Quieres aprender inglés? Contacta con nosotros, estaremos encantados de enseñarte.</p>
+        <p>Nuestra escuela está formada por <strong>profesores nativos británicos e irlandeses</strong> especializados en la enseñanza del inglés. Todas las clases tienen un número reducido de alumnos con el objetivo de ofrecer una enseñanza más personalizada y tenemos clases para todos los niveles así como grupos de conversación.</p>
+        <p>The English Academy somos un centro certificado de preparación para los exámenes de Cambridge y Trinity College. También somos miembros del British Council. Apostamos por la alta calidad en la enseñanza y por <strong>cursos en inglés en el extranjero</strong>, concretamente en Irlanda y Bristol para que te diviertas aprendiendo. Toda una experiencia donde nuestros alumnos disfrutan y avanzan muchísimo. ¿Quieres saber más? Ven a vernos y haz gratis tu test de nivel. La primera clase es gratuita. ¡Te esperamos!</p>
+        <div class="row">
+          <a href="https://www.theenglishacademymadrid.es/contacto" class="btn btn-navy">Escríbenos</a>
+          <a href="tel:+34914711701" class="btn btn-line">91 471 17 01</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap ct-grid">
+      <div class="ct">
+        <h3>CONTACTA CON NOSOTROS</h3>
+        <div class="btns">
+          <a href="tel:+34914711701" class="btn btn-sky"><span>Teléfono</span><span class="tel">91 471 17 01</span></a>
+          <a href="tel:+34653061209" class="btn btn-sky"><span>Móvil</span><span class="tel">653061209</span></a>
+          <a href="https://wa.me/34914711701" target="_blank" rel="noopener" class="btn btn-line"><span>Contáctenos a través de WhatsApp</span></a>
+        </div>
+        <p class="mail"><a href="mailto:englishacademymadrid@gmail.com">Mándanos un mail</a><br>englishacademymadrid@gmail.com</p>
+      </div>
+      <div class="ct">
+        <h3>DÓNDE ESTAMOS</h3>
+        <address>Avenida de Pedro Diez 21bis, Madrid 28019, ESP</address>
+        <a href="https://maps.app.goo.gl/MbgTvEYscvpri4CF7" target="_blank" rel="noopener" class="btn btn-sky btn-sm">Cómo llegar</a>
+        <h3 style="margin-top:26px">SÍGUENOS</h3>
+        <div class="soc">
+          <a href="https://www.facebook.com/theenglishacademymadrid/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.8.5-1 1-1h2V2h-3c-3 0-4 2-4 4.3V8H8v3.5h2V22h4V11.5h2.7L17 8z"/></svg></a>
+          <a href="https://www.instagram.com/theenglishacademymadrid/?hl=es" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.google.com/maps/place/The+English+Academy/@40.3915093,-3.7316212,15z/data=!4m2!3m1!1s0x0:0xe235b3a51012fb7b" target="_blank" rel="noopener" aria-label="Google"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+        </div>
+      </div>
+      <div class="ct">
+        <h3>HORARIOS</h3>
+        <ul class="hours">
+          <li><b>Lun - Vie</b><span>16:30 - 20:15</span></li>
+          <li><b>Sáb - Dom</b><span>Cerrado</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap links">
+    <h2>ENLACES DE INTERÉS</h2>
+    <ul>
+      <li><a href="https://www.theenglishacademymadrid.es/es/examenes-cambridge-carabanchel">Exámenes Cambridge en Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/examen-b1-carabanchel">Examen B1 en Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/examen-c1-carabanchel">Examen C1 en Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/mejor-academia-de-ingles-carabanchel">Mejor academia de ingles Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/profesores-nativos-ingles-carabanchel">Profesores nativos inglés en Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/clases-de-ingles-carabanchel">Clases de inglés en Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/examen-b2-carabanchel">Examen B2 en Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/ingles-para-ninos-carabanchel">Inglés para niños Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/cursos-de-ingles-en-el-extranjero-carabanchel">Cursos de inglés en el extranjero Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/cursos-de-ingles-oporto-madrid">Cursos de inglés Oporto (Madrid)</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/clases-ingles-adultos-oporto-madrid">Clases inglés adultos Oporto (Madrid)</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/cursos-de-ingles-carabanchel">Cursos de inglés Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/academia-de-ingles-carabanchel">Academia de inglés Carabanchel</a></li>
+      <li><a href="https://www.theenglishacademymadrid.es/es/academia-de-ingles-carabanchel-oporto">Academia de inglés Carabanchel y Oporto</a></li>
+    </ul>
+  </div>
+  <div class="wrap legal">
+    <a href="https://www.theenglishacademymadrid.es/aviso-legal">Aviso legal</a>
+    <a href="https://www.theenglishacademymadrid.es/politica-de-privacidad">Política de privacidad</a>
+    <a href="https://www.theenglishacademymadrid.es/politica-de-cookies">Política de cookies</a>
+  </div>
+  <a href="#top" class="totop">Volver arriba</a>
+</footer>
+
+<a class="wa" href="https://wa.me/34914711701" target="_blank" rel="noopener" aria-label="Contáctenos a través de WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8s1.9 2.9 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2s.2-1.1.1-1.2-.2-.2-.4-.3z"/></svg></a>
+
+<div class="callbar">
+  <a href="tel:+34914711701" class="btn btn-sky">91 471 17 01</a>
+  <a href="tel:+34653061209" class="btn btn-line">Móvil</a>
+  <a href="https://wa.me/34914711701" target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+</div>
+</body>
+</html>
