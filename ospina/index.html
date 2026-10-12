@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Landing Abogado Penalista · Ospina Abogados (propuesta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#AD974F; --gold-dark:#8f7b3c; --ink:#1C1C1C; --text:#3A3A3A; --muted:#6f6a5f;
+    --line:#e9e3d3; --tint:#f8f6f0; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+  .demo{background:var(--ink);color:#cfc6a8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px}
+  .nav img{height:62px;width:auto;display:block}
+  .nav-ctas{display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--gold);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+  .btn-line{background:#fff;color:var(--gold-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:p 1.8s infinite}
+  @keyframes p{50%{opacity:.35}}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:72px 0 84px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+  .hero h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(2.6rem,5.4vw,4.2rem);line-height:1.02;color:var(--ink);margin:14px 0 6px}
+  .hero .sub-h{font-size:1rem;color:var(--muted);letter-spacing:.04em}
+  .hero blockquote{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(1.6rem,2.6vw,2rem);color:var(--gold-dark);margin:30px 0 14px;padding-left:18px;border-left:3px solid var(--gold);line-height:1.2}
+  .hero p.lead{font-size:1.06rem;max-width:560px}
+  .hero p.lead strong{color:var(--ink)}
+  .ask{margin-top:34px;padding:24px;border-radius:var(--radius);background:#fff;border:1px solid var(--line)}
+  .ask p{font-weight:600;color:var(--ink);margin-bottom:16px;font-size:1.02rem}
+  .ask .row{display:flex;flex-wrap:wrap;gap:10px}
+  .tel{font-variant-numeric:tabular-nums;opacity:.85;font-weight:500}
+
+  /* form */
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -28px rgba(28,28,28,.35);border-top:4px solid var(--gold)}
+  .card-form h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1.1}
+  .card-form p.sub{color:var(--muted);font-size:.9rem;margin:6px 0 4px}
+  .card-form p.req{font-size:.76rem;color:var(--muted);margin-bottom:16px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field label span,.check span b{color:var(--gold-dark)}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #ddd5c1;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(173,151,79,.35);border-color:var(--gold)}
+  .checks{margin:6px 0 18px;display:grid;gap:10px}
+  .check{display:flex;gap:10px;font-size:.76rem;color:var(--muted);line-height:1.45;align-items:flex-start}
+  .check input{margin-top:2px;accent-color:var(--gold);flex:none}
+  .check a{text-decoration:underline;color:var(--gold-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  /* areas */
+  section{padding:92px 0}
+  .head{max-width:700px;margin-bottom:40px}
+  .head h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.1;color:var(--ink);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  .urgent{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:var(--ink);color:#fff;border-radius:var(--radius);padding:30px 34px;margin-bottom:22px}
+  .urgent .ic{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;color:var(--gold)}
+  .urgent h3{font-size:1.25rem;font-weight:600}
+  .urgent ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:8px;color:#d9d4c6;font-size:.93rem}
+  .urgent li::before{content:"·";color:var(--gold);margin-right:8px;font-weight:700}
+  .urgent li:first-child::before{content:none}
+
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .area{border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 22px;background:#fff;transition:.25s}
+  .area:hover{border-color:var(--gold);box-shadow:0 18px 40px -26px rgba(28,28,28,.3)}
+  .area .num{font-family:"Cormorant Garamond",Georgia,serif;color:var(--gold);font-size:1.15rem;font-weight:700}
+  .area h3{font-size:1.08rem;color:var(--ink);margin:4px 0 14px;font-weight:600}
+  .area ul{list-style:none;display:grid;gap:9px}
+  .area li{font-size:.92rem;padding-left:18px;position:relative;line-height:1.5}
+  .area li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+  /* quote band */
+  .band{background:var(--ink);color:#fff;text-align:center;padding:88px 0}
+  .band blockquote{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.25;max-width:860px;margin:0 auto}
+  .band blockquote::before{content:"“";display:block;color:var(--gold);font-size:4.5rem;line-height:.6;margin-bottom:14px}
+  .band .sig{margin-top:22px;color:var(--gold);letter-spacing:.2em;font-size:.8rem;text-transform:uppercase;font-weight:600}
+  .band .row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:38px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .band .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;font-size:.84rem;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+  .foot img{height:44px}
+  .foot a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr}
+    .areas{grid-template-columns:1fr 1fr}
+    .urgent{grid-template-columns:auto 1fr}
+    .urgent .btn{grid-column:1/-1;justify-self:start}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav img{height:50px}
+    .nav-ctas{display:none}
+    .hero{padding:44px 0 56px}
+    .areas{grid-template-columns:1fr}
+    .urgent{grid-template-columns:1fr;padding:26px 22px}
+    .urgent .btn{width:100%}
+    .ask .row .btn,.band .row .btn{width:100%}
+    section{padding:64px 0}
+    .card-form{padding:24px 20px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Ospina Abogados · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://ospina.es/" aria-label="Ospina Abogados"><img src="https://cdn-cgial.nitrocdn.com/mAyOEhokkYZoVkOrgFEAxLZEuEwKqFml/assets/images/optimized/rev-a82f667/ospina.es/wp-content/uploads/2020/07/logo-e1551886996953.png" alt="Ospina Abogados"></a>
+    <div class="nav-ctas">
+      <a href="tel:+34610137480" class="btn btn-gold btn-sm"><span class="pulse"></span>Llamar 24 Horas</a>
+      <a href="tel:+34911573728" class="btn btn-line btn-sm">Llamar al Despacho</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Despacho de Abogados · Bufete Abogados Madrid</span>
+        <h1>Mejor Abogado Penal</h1>
+        <blockquote>Póngase en las mejores manos.</blockquote>
+        <p class="lead"><strong>OSPINA ABOGADOS</strong> es un despacho penalista altamente especializado. Ponemos a su disposición a un equipo de letrados que le ayudarán a resolver sus problemas.</p>
+
+        <div class="ask">
+          <p>¿Necesita asistencia legal? Llámanos o rellena el formulario y te llamaremos de inmediato</p>
+          <div class="row">
+            <a href="tel:+34610137480" class="btn btn-gold">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+              Llamar 24 Horas <span class="tel">610 137 480</span>
+            </a>
+            <a href="tel:+34911573728" class="btn btn-line">Llamar al Despacho <span class="tel">911 573 728</span></a>
+          </div>
+        </div>
+      </div>
+
+      <form class="card-form" id="contacto" onsubmit="return demoSubmit(this)">
+        <h2>Contacte por email</h2>
+        <p class="sub">Rellene este formulario y nos pondremos en contacto con usted con la mayor brevedad posible.</p>
+        <p class="req">"<b style="color:var(--gold-dark)">*</b>" señala los campos obligatorios</p>
+        <div class="field"><label for="n">Nombre <span>*</span></label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="e">Email <span>*</span></label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="t">Teléfono <span>*</span></label><input id="t" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="m">Mensaje <span>*</span></label><textarea id="m" rows="4" required></textarea></div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://ospina.es/politica-privacidad" target="_blank" rel="noopener">Política de Privacidad</a>. <b>*</b></span></label>
+          <label class="check"><input type="checkbox" required><span>Declaro, bajo mi propia responsabilidad, ser mayor de 18 años de edad y respondo exclusivamente a la veracidad de esta afirmación. <b>*</b></span></label>
+          <label class="check"><input type="checkbox"><span>Acepto recibir la información que la entidad considere oportuno enviarme por correo electrónico o medio de comunicación electrónica equivalente. (Es posible darse de baja en cualquier momento).</span></label>
+        </div>
+        <button class="btn btn-gold" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del despacho.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- AREAS -->
+  <section id="areas">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Áreas de práctica</span>
+        <h2>Le ayudamos a resolver sus problemas relacionados con:</h2>
+      </div>
+
+      <div class="urgent">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div>
+          <h3>Asistencia al Detenido en Comisaría y Juzgado de Guardia (Toda España)</h3>
+          <ul><li>“Hábeas corpus”</li><li>Juicio de faltas</li></ul>
+        </div>
+        <a href="tel:+34610137480" class="btn btn-gold"><span class="pulse"></span>Llamar 24 Horas</a>
+      </div>
+
+      <div class="areas">
+        <article class="area">
+          <span class="num">01</span>
+          <h3>Tráfico y accidentes</h3>
+          <ul>
+            <li>Accidentes de tráfico, alcoholemias, desobediencia, denegación de auxilio y todos los delitos contra la seguridad del tráfico.</li>
+            <li>Defensa penal en todo tipo de accidentes.</li>
+            <li>Reclamación de indemnizaciones.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="num">02</span>
+          <h3>Delitos contra las personas</h3>
+          <ul>
+            <li>Violencia doméstica, malos tratos y agresiones.</li>
+            <li>Lesiones, homicidios y asesinatos.</li>
+            <li>Abusos sexuales.</li>
+            <li>Coacciones, amenazas, vejaciones, injurias y calumnias.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="num">03</span>
+          <h3>Delitos económicos y documentales</h3>
+          <ul>
+            <li>Delitos económicos, robos, estafas, hurtos, apropiación indebida.</li>
+            <li>Insolvencia punible. Fraude a acreedores.</li>
+            <li>Falsedades documentales, falso testimonio.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="num">04</span>
+          <h3>Salud pública, familia y menores</h3>
+          <ul>
+            <li>Drogas y todos los delitos contra la salud pública.</li>
+            <li>Procedimientos de menores.</li>
+            <li>Delitos de abandono de familia y menor.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="num">05</span>
+          <h3>Procedimientos y recursos</h3>
+          <ul>
+            <li>Denuncias y querellas.</li>
+            <li>Procedimientos judiciales: juicio rápido, procedimiento abreviado, sumario y jurado.</li>
+            <li>Recursos de apelación, casación y amparo.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <span class="num">06</span>
+          <h3>Derecho penitenciario</h3>
+          <ul>
+            <li>Tratamiento penitenciario: clasificación, sanciones, permisos.</li>
+            <li>Comunicaciones y visitas. Permisos de salida.</li>
+            <li>Tercer grado, libertad condicional, indulto o cambio de centro penitenciario.</li>
+            <li>Quebrantamiento de condena.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BAND -->
+  <div class="band">
+    <div class="wrap">
+      <blockquote>La confianza y el trato cercano entre el cliente y nuestro despacho son nuestras principales características y puntos de partida.</blockquote>
+      <div class="sig">Ospina Abogados</div>
+      <div class="row">
+        <a href="tel:+34610137480" class="btn btn-gold"><span class="pulse"></span>Llamar 24 Horas <span class="tel">610 137 480</span></a>
+        <a href="tel:+34911573728" class="btn btn-line">Llamar al Despacho <span class="tel">911 573 728</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Ospina Abogados</span>
+    <a href="https://ospina.es/politica-privacidad" target="_blank" rel="noopener">Política de Privacidad</a>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34610137480" class="btn btn-gold"><span class="pulse"></span>Llamar 24 Horas</a>
+  <a href="tel:+34911573728" class="btn btn-line">Llamar al Despacho</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>
