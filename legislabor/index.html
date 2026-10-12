@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Legislabor · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2430; --navy-2:#163B5C; --gold:#B4965A; --gold-dark:#957a43; --gold-soft:#D6BE84;
+    --text:#2f3640; --muted:#5B6470; --line:#E3DDD0; --tint:#F7F5F0; --tint-2:#EEEAE1; --white:#fff;
+    --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .serif{font-family:"Playfair Display",Georgia,serif}
+
+  .demo{background:#0f151d;color:var(--gold-soft);font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(27,36,48,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:20px}
+  .nav .logo img{height:54px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 11px;color:#e8e4da;font-size:.92rem;font-weight:500;border-radius:8px}
+  .menu > li > a:hover,.menu > li > a.on{color:#fff}
+  .menu > li > a.on{box-shadow:inset 0 -2px 0 var(--gold)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:240px;background:#fff;border-radius:10px;padding:8px;list-style:none;box-shadow:0 20px 40px -18px rgba(0,0,0,.45)}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:9px 12px;border-radius:7px;color:var(--navy);font-size:.9rem}
+  .menu .sub a:hover{background:var(--tint)}
+  .caret{display:inline-block;margin-left:4px;font-size:.7rem;opacity:.7}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:6px;font-weight:600;font-size:.95rem;transition:.2s;border:1.5px solid var(--gold);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-gold{background:var(--gold);color:var(--navy)}
+  .btn-gold:hover{background:var(--gold-soft);border-color:var(--gold-soft)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .btn-line{background:#fff;color:var(--navy);border-color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 16px;font-size:.88rem}
+  .head-tel{color:var(--gold-soft);border-color:rgba(214,190,132,.6);background:transparent}
+  .head-tel:hover{background:rgba(214,190,132,.1)}
+
+  /* mobile menu */
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:8px;border:1px solid rgba(255,255,255,.25);color:#fff}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:10px 16px 18px;max-height:calc(100vh - 120px);overflow:auto}
+  .mnav .panel a{display:block;padding:11px 4px;color:#eee;border-bottom:1px solid rgba(255,255,255,.07);font-size:.98rem}
+  .mnav .panel .subm a{padding-left:18px;color:#c9c3b5;font-size:.92rem}
+
+  /* hero */
+  .hero{background:radial-gradient(circle at 80% 30%,#1d4a72 0,transparent 55%),linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:84px 0 92px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.1;margin:18px 0 22px}
+  .hero h1 em{font-style:normal;color:var(--gold-soft)}
+  .hero .lead{font-size:1.08rem;color:#cfd5de;max-width:580px}
+  .hero .lead strong{color:#fff;font-weight:600}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .sign{margin-top:28px;font-size:.88rem;color:#aeb7c4}
+  .sign b{color:#fff;font-weight:600}
+  .portrait{position:relative;justify-self:center;max-width:420px;width:100%}
+  .portrait img{width:100%;height:auto}
+
+  /* sections */
+  section{padding:96px 0}
+  .tint{background:var(--tint)}
+  h2.title{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.15;color:var(--navy);margin-top:12px}
+  h2.title em{font-style:normal;background:linear-gradient(transparent 62%,rgba(214,190,132,.45) 62%)}
+
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+  .about .photo{margin-top:34px;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 50px -30px rgba(27,36,48,.5)}
+  .about p{margin-bottom:18px;font-size:1.03rem}
+  .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+  .areas{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .area{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px 24px;display:flex;flex-direction:column;transition:.25s}
+  .area:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(27,36,48,.45)}
+  .area .num{font-family:"Playfair Display",Georgia,serif;color:var(--gold);font-size:1.3rem}
+  .area h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:1.3rem;color:var(--navy);margin:8px 0 10px;line-height:1.25}
+  .area p{color:var(--muted);font-size:.95rem;flex:1}
+  .area .more{margin-top:18px;font-weight:600;color:var(--gold-dark);font-size:.92rem}
+  .all{margin-top:30px;text-align:center}
+
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .why div{border-top:2px solid var(--gold);padding-top:22px}
+  .why .ic{width:46px;height:46px;border-radius:50%;background:var(--tint-2);display:grid;place-items:center;color:var(--gold-dark);margin-bottom:16px}
+  .why h3{font-size:1.12rem;color:var(--navy);font-weight:600;margin-bottom:8px}
+  .why p{color:var(--muted);font-size:.97rem}
+
+  /* reviews */
+  .rev-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .score{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 20px}
+  .score strong{font-size:1.05rem;color:var(--navy);letter-spacing:.06em}
+  .score span{font-size:.86rem;color:var(--muted);display:block}
+  .stars{color:#F4B400;letter-spacing:2px;font-size:1rem}
+  .reviews{margin-top:40px;columns:3;column-gap:18px}
+  .review{break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 20px;margin-bottom:18px}
+  .review .who{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .review .who b{color:var(--navy);font-size:.98rem}
+  .review .who time{font-size:.8rem;color:var(--muted)}
+  .review p{margin-top:10px;font-size:.95rem}
+  .review .src{margin-top:12px;font-size:.76rem;color:var(--muted);display:flex;gap:8px;align-items:center}
+
+  /* contact */
+  .contact{background:var(--navy);color:#fff}
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+  .contact h2.title{color:#fff}
+  .contact h2.title em{font-style:normal;color:var(--gold-soft);background:none}
+  .contact .intro{color:#c8cfd9;margin:16px 0 28px;font-size:1.03rem}
+  .contact .row{display:flex;flex-wrap:wrap;gap:12px}
+  .cinfo{margin-top:28px;display:grid;gap:12px;color:#d7dce4}
+  .cinfo a{text-decoration:underline;text-underline-offset:3px}
+  .cinfo div{display:flex;gap:12px;align-items:flex-start}
+  .cinfo svg{color:var(--gold);flex:none;margin-top:3px}
+  .wa{margin-top:30px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:20px 22px}
+  .wa p{font-weight:600}
+  .wa small{display:block;color:#9fa9b6;margin:6px 0 14px;font-size:.8rem}
+  .wa small a{text-decoration:underline}
+
+  form.card{background:#fff;color:var(--text);border-radius:var(--radius);padding:32px;border-top:4px solid var(--gold);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .field{margin-bottom:14px}
+  .field label,.field .lab{display:block;font-size:.84rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+  .field label span,.field .lab span{color:var(--gold-dark)}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d8d1c2;border-radius:8px;font:inherit;font-size:.96rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(180,150,90,.35);border-color:var(--gold)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .hint{font-size:.8rem;color:var(--muted);margin:-2px 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips label{display:inline-flex;align-items:center;gap:7px;border:1px solid #d8d1c2;border-radius:999px;padding:7px 13px;font-size:.88rem;font-weight:500;color:var(--text);cursor:pointer;margin:0}
+  .chips input{accent-color:var(--gold)}
+  .chips label:has(input:checked){border-color:var(--gold);background:var(--tint)}
+  .check{display:flex;gap:10px;font-size:.86rem;color:var(--muted);align-items:flex-start;margin:6px 0 18px}
+  .check input{margin-top:3px;accent-color:var(--gold)}
+  .check a{text-decoration:underline;color:var(--gold-dark)}
+  form.card .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:8px;padding:12px;font-size:.88rem;margin-top:12px}
+
+  footer{background:#141b24;color:#b9c0ca;padding:64px 0 28px;font-size:.92rem}
+  .fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+  .fgrid img{height:64px;width:auto;margin-bottom:18px}
+  .fgrid h4{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  .fgrid ul{list-style:none;display:grid;gap:8px}
+  .fgrid a:hover{color:#fff}
+  .col{color:var(--gold-soft);margin-top:12px}
+  .fbot{border-top:1px solid rgba(255,255,255,.08);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.84rem}
+  .fbot a{text-decoration:underline;text-underline-offset:3px}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block}
+    .areas{grid-template-columns:1fr 1fr}
+    .reviews{columns:2}
+  }
+  @media (max-width:900px){
+    .hero-grid,.about,.contact-grid{grid-template-columns:1fr}
+    .portrait{max-width:320px}
+    .why{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .fgrid > div:first-child{grid-column:1/-1}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:68px}
+    .nav .logo img{height:44px}
+    .head-tel{display:none}
+    .hero{padding:48px 0 60px}
+    .hero .row .btn,.contact .row .btn,.links .btn{width:100%}
+    section{padding:64px 0}
+    .areas{grid-template-columns:1fr}
+    .reviews{columns:1}
+    .grid2{grid-template-columns:1fr}
+    form.card{padding:24px 18px}
+    .fgrid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.25)}
+    .callbar .btn{padding:13px 8px;font-size:.92rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Legislabor · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.legislabor.com/" aria-label="Legislabor"><img src="https://www.legislabor.com/wp-content/uploads/2018/05/logo-footer.png" alt="Legislabor · Laura Zamora García, abogada en Madrid" width="424" height="195"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.legislabor.com/">Inicio</a></li>
+      <li><a href="https://www.legislabor.com/asesoramiento-legal-madrid/">Áreas Legales<span class="caret">▼</span></a>
+        <ul class="sub">
+          <li><a href="https://www.legislabor.com/abogado-despidos-madrid/">Despidos</a></li>
+          <li><a href="https://www.legislabor.com/abogados-laboralistas-madrid/">Derecho del Trabajo</a></li>
+          <li><a href="https://www.legislabor.com/abogado-derecho-mercantil/">Derecho Mercantil</a></li>
+          <li><a href="https://www.legislabor.com/abogado-civil-familiar/">Derecho Civil y familiar</a></li>
+          <li><a href="https://www.legislabor.com/abogados-penalistas-madrid/">Derecho Penal</a></li>
+          <li><a href="https://www.legislabor.com/abogado-derecho-administrativo/">Derecho Administrativo</a></li>
+          <li><a href="https://www.legislabor.com/abogado-reclamar-accidentes/">Responsabilidad Civil</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.legislabor.com/abogado-asesoramiento-online/">Consulta Online</a></li>
+      <li><a href="https://www.legislabor.com/despacho-abogados-madrid/">El Despacho</a></li>
+      <li><a href="https://www.legislabor.com/blog/">Blog</a></li>
+      <li><a href="https://www.legislabor.com/contacto-legislabor/">Contacto</a></li>
+    </ul>
+    <a href="tel:+34652122835" class="btn btn-sm head-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>652 122 835</a>
+    <details class="mnav">
+      <summary aria-label="Abrir navegación"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <nav class="panel">
+        <a href="https://www.legislabor.com/">Inicio</a>
+        <a href="https://www.legislabor.com/asesoramiento-legal-madrid/">Áreas Legales</a>
+        <div class="subm">
+          <a href="https://www.legislabor.com/abogado-despidos-madrid/">Despidos</a>
+          <a href="https://www.legislabor.com/abogados-laboralistas-madrid/">Derecho del Trabajo</a>
+          <a href="https://www.legislabor.com/abogado-derecho-mercantil/">Derecho Mercantil</a>
+          <a href="https://www.legislabor.com/abogado-civil-familiar/">Derecho Civil y familiar</a>
+          <a href="https://www.legislabor.com/abogados-penalistas-madrid/">Derecho Penal</a>
+          <a href="https://www.legislabor.com/abogado-derecho-administrativo/">Derecho Administrativo</a>
+          <a href="https://www.legislabor.com/abogado-reclamar-accidentes/">Responsabilidad Civil</a>
+        </div>
+        <a href="https://www.legislabor.com/abogado-asesoramiento-online/">Consulta Online</a>
+        <a href="https://www.legislabor.com/despacho-abogados-madrid/">El Despacho</a>
+        <a href="https://www.legislabor.com/blog/">Blog</a>
+        <a href="https://www.legislabor.com/contacto-legislabor/">Contacto</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Despidos · Indemnizaciones · Seguridad Social</span>
+        <h1><em>Abogada laboralista en Madrid.</em> Si te han despedido, tienes 20 días hábiles para reclamar.</h1>
+        <p class="lead">Más de 15 años ejerciendo como abogada laboralista y de Seguridad Social en Madrid: despidos, indemnizaciones, reclamaciones de cantidad e incapacidades. <strong>Primera valoración de tu caso sin compromiso.</strong></p>
+        <div class="row">
+          <a href="#contacto" class="btn btn-gold">Contar mi caso</a>
+          <a href="tel:+34652122835" class="btn btn-ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Llamar al 652 122 835</a>
+        </div>
+        <p class="sign"><b>Laura Zamora García</b> · Abogada colegiada ICAM 75610 · Despacho en Madrid</p>
+      </div>
+      <div class="portrait">
+        <img src="https://www.legislabor.com/wp-content/uploads/2018/05/laura-zamora.png" alt="Laura Zamora García, abogada laboralista en Madrid" width="700" height="650">
+      </div>
+    </div>
+  </div>
+
+  <!-- DESPACHO -->
+  <section class="tint" id="despacho">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">El despacho</span>
+        <h2 class="title">Asesoramiento laboral <em>de persona a persona</em>, no de call center</h2>
+        <div class="photo"><img src="https://www.legislabor.com/wp-content/uploads/2021/03/abogados-chamberi-madrid.jpg" alt="Madrid, ciudad del despacho de Legislabor" width="900" height="600" loading="lazy"></div>
+      </div>
+      <div>
+        <p>Legislabor es el despacho de la abogada laboralista Laura Zamora García, especializado en Derecho del Trabajo y de la Seguridad Social. Estudiamos cada caso, individual o colectivo, de particular o de empresa, y te acompañamos en todo el proceso hasta conseguir una resolución satisfactoria.</p>
+        <p>Abarcamos también el Derecho Civil y de Familia, Mercantil, Penal y Administrativo, con especial énfasis en la defensa de los trabajadores. Desde el despacho en el centro de Madrid buscamos la solución más efectiva y personalizada para cada situación.</p>
+        <div class="links">
+          <a href="https://www.legislabor.com/despacho-abogados-madrid/" class="btn btn-line">Conocer a la abogada →</a>
+          <a href="https://www.legislabor.com/abogado-despidos-madrid/" class="btn btn-line">Abogada de despidos en Madrid →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section id="areas">
+    <div class="wrap">
+      <span class="eyebrow">Áreas legales</span>
+      <h2 class="title">En qué podemos <em>ayudarte</em></h2>
+      <div class="areas">
+        <a class="area" href="https://www.legislabor.com/abogados-laboralistas-madrid/">
+          <span class="num">I</span>
+          <h3>Derecho del Trabajo y Seguridad Social</h3>
+          <p>Despidos, reclamaciones de cantidad, mobbing, incapacidades y asesoramiento laboral a empresas.</p>
+          <span class="more">Ver el área →</span>
+        </a>
+        <a class="area" href="https://www.legislabor.com/abogado-derecho-mercantil/">
+          <span class="num">II</span>
+          <h3>Derecho Mercantil y Concursal</h3>
+          <p>Contratos mercantiles, pactos de socios, fusiones, compraventa de negocios y concurso de acreedores.</p>
+          <span class="more">Ver el área →</span>
+        </a>
+        <a class="area" href="https://www.legislabor.com/abogado-civil-familiar/">
+          <span class="num">III</span>
+          <h3>Derecho Civil y de Familia</h3>
+          <p>Divorcios, custodia, herencias y testamentos, contratos y responsabilidad civil.</p>
+          <span class="more">Ver el área →</span>
+        </a>
+        <a class="area" href="https://www.legislabor.com/abogados-penalistas-madrid/">
+          <span class="num">IV</span>
+          <h3>Derecho Penal</h3>
+          <p>Defensa y acusación en todo tipo de procedimientos penales, asistencia al detenido y recursos.</p>
+          <span class="more">Ver el área →</span>
+        </a>
+        <a class="area" href="https://www.legislabor.com/abogado-derecho-administrativo/">
+          <span class="num">V</span>
+          <h3>Derecho Administrativo</h3>
+          <p>Recursos, sanciones, licencias, expropiaciones y defensa del empleado público.</p>
+          <span class="more">Ver el área →</span>
+        </a>
+        <a class="area" href="https://www.legislabor.com/abogado-reclamar-accidentes/">
+          <span class="num">VI</span>
+          <h3>Indemnizaciones por accidentes</h3>
+          <p>Accidentes de tráfico y laborales: reclamación a aseguradoras con coste cero hasta cobrar.</p>
+          <span class="more">Ver el área →</span>
+        </a>
+      </div>
+      <div class="all"><a href="https://www.legislabor.com/asesoramiento-legal-madrid/" class="btn btn-line">Ver todas las áreas</a></div>
+    </div>
+  </section>
+
+  <!-- POR QUE -->
+  <section class="tint">
+    <div class="wrap">
+      <span class="eyebrow">Por qué Legislabor</span>
+      <h2 class="title">Un despacho pequeño, <em>una abogada que da la cara</em></h2>
+      <div class="why">
+        <div>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
+          <h3>Trato directo con la abogada</h3>
+          <p>Atención individualizada y cercana: Laura Zamora García lleva tu caso y está a tu disposición en todo momento.</p>
+        </div>
+        <div>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7M9 8h3"/></svg></span>
+          <h3>Presupuesto claro desde el inicio</h3>
+          <p>Un presupuesto detallado y bien explicado antes de empezar, con facilidades de pago.</p>
+        </div>
+        <div>
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <h3>Despacho en el centro de Madrid</h3>
+          <p>Calle Alberto Aguilera 33. Consulta presencial, por teléfono, WhatsApp o videollamada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section id="resenas">
+    <div class="wrap">
+      <div class="rev-head">
+        <div>
+          <span class="eyebrow">Reseñas de Google</span>
+          <h2 class="title">Lo que dicen <em>las personas que hemos defendido</em></h2>
+        </div>
+        <div class="score">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <div><strong>EXCELENTE</strong><span>A base de 57 reseñas</span></div>
+        </div>
+      </div>
+      <div class="reviews">
+        <article class="review"><div class="who"><b>Valerio Coco</b><time>10/07/2023</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Profesional, humana, simpatica, siempre dispuesta a escuchar y siempre presente. Me guíe por las reseñas a la hora de elegir Laura y me ha atendido en estos 7 meses un 10. Muy, pero muy recomendada. Muchísimas gracias Laura de corazón por todo!</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>Patricia Valido M</b><time>02/06/2023</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Le hice una consulta sencilla y no me cobró. Si la necesito en el futuro contaré con ella. Muy buen trato</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>I. G</b><time>22/04/2023</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Excelentes</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>Jose Maria Blazquez Gil</b><time>19/12/2022</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Laura es una fantástica abogada. He hecho varias consultas y es muy profesional y empática con el cliente. Si lo estás pensando, no dudes en contactar con ella.</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>William Argueta</b><time>18/11/2022</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Excelente profesional, me ayudó muchísimo con un caso bastante espinoso y complejo, pero todo se ha resuelto favorablemente.</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>Noor Aldean Nabil Sabri</b><time>18/08/2022</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Ha sido bastante profecional y muy amable incluso me atendió en horario de comer y ha resuelto todas mis dudas, recomendo a contactar con ella antes de hacer cual quier cosa, le doy 5 estrellas porque lo marece, y le agradezco mucho a la abogada laura 👍</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>Mar Gomez Hernandez</b><time>16/06/2022</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Laura es una excelente abogada. Todas las consultas que he realizado con ella han sido tratadas de forma minuciosa y precisa dando salida y resolviendo todas mis dudas. Es una excelente profesional y gracias a ella he podido avanzar en mis negocios. La recomiendo encarecidamente y desde luego es mi abogada de referencia</p><div class="src">Publicado en Google</div></article>
+        <article class="review"><div class="who"><b>Cris28</b><time>28/04/2022</time></div><span class="stars" aria-hidden="true">★★★★★</span><p>Laura es una gran profesional y excelente persona. Sin duda se nota que le encanta su trabajo, escucha, analiza y aconseja en todo momento siempre con sinceridad. La recomiendo por supuesto una y mil veces. Gracias por todo.</p><div class="src">Publicado en Google</div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h2 class="title"><em>Cuéntanos</em> tu caso</h2>
+        <p class="intro">Primera valoración sin compromiso. Cuantos más detalles nos des, mejor podremos orientarte.</p>
+        <div class="row">
+          <a href="https://wa.me/34652122835" target="_blank" rel="noopener" class="btn btn-gold">Escribir por WhatsApp</a>
+          <a href="tel:+34652122835" class="btn btn-ghost">Llamar al 652 122 835</a>
+        </div>
+        <div class="cinfo">
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:abogados@legislabor.com">abogados@legislabor.com</a></div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>C/ Alberto Aguilera 33, 1º Izq. 28015 Madrid</span></div>
+        </div>
+        <div class="wa">
+          <p>¿Quieres consultar con nosotros? Pídenos cita por Whatsapp</p>
+          <small>Al enviar mensajes por whatsapp aceptas nuestra <a href="https://www.legislabor.com/privacidad/" target="_blank" rel="noopener">política de privacidad</a></small>
+          <a href="https://wa.me/34652122835" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">Abrir chat</a>
+        </div>
+      </div>
+
+      <form class="card" onsubmit="return demoSubmit(this)">
+        <div class="grid2">
+          <div class="field"><label for="n">Nombre <span>*</span></label><input id="n" required autocomplete="name" placeholder="Tu nombre"></div>
+          <div class="field"><label for="t">Teléfono <span>*</span></label><input id="t" type="tel" required autocomplete="tel" placeholder="652 000 000"></div>
+        </div>
+        <div class="field"><label for="e">Correo electrónico <span>*</span></label><input id="e" type="email" required autocomplete="email" placeholder="tu@email.com"></div>
+        <div class="field">
+          <span class="lab">Tipo de consulta <span>*</span></span>
+          <p class="hint">Elige un área</p>
+          <div class="chips">
+            <label><input type="checkbox" name="tipo" value="Laboralista">Laboralista</label>
+            <label><input type="checkbox" name="tipo" value="Familiar">Familiar</label>
+            <label><input type="checkbox" name="tipo" value="Seguridad Social">Seguridad Social</label>
+            <label><input type="checkbox" name="tipo" value="Mercantil">Mercantil</label>
+            <label><input type="checkbox" name="tipo" value="Penal">Penal</label>
+            <label><input type="checkbox" name="tipo" value="Administrativo">Administrativo</label>
+            <label><input type="checkbox" name="tipo" value="Responsabilidad Civil">Responsabilidad Civil</label>
+            <label><input type="checkbox" name="tipo" value="Otra">Otra</label>
+          </div>
+        </div>
+        <div class="field"><label for="m">Cuéntanos tu caso <span>*</span></label><textarea id="m" rows="5" required placeholder="Qué ha pasado, cuándo y qué necesitas"></textarea></div>
+        <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://www.legislabor.com/privacidad/" target="_blank" rel="noopener">Política de Privacidad</a></span></label>
+        <button class="btn btn-gold" type="submit">Enviar mi consulta</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <img src="https://www.legislabor.com/wp-content/uploads/2018/05/logo-footer.png" alt="Legislabor" width="424" height="195" loading="lazy">
+        <p>Despacho de la abogada Laura Zamora García en Madrid, experta en asesoramiento jurídico laboral y reclamación de indemnizaciones.</p>
+        <p class="col">Nº de colegiada 75610, ICAM</p>
+      </div>
+      <div>
+        <h4>Áreas</h4>
+        <ul>
+          <li><a href="https://www.legislabor.com/abogados-laboralistas-madrid/">Derecho del Trabajo y Seguridad Social</a></li>
+          <li><a href="https://www.legislabor.com/abogado-derecho-mercantil/">Derecho Mercantil y Concursal</a></li>
+          <li><a href="https://www.legislabor.com/abogado-civil-familiar/">Derecho Civil y de Familia</a></li>
+          <li><a href="https://www.legislabor.com/abogados-penalistas-madrid/">Derecho Penal</a></li>
+          <li><a href="https://www.legislabor.com/abogado-derecho-administrativo/">Derecho Administrativo</a></li>
+          <li><a href="https://www.legislabor.com/abogado-reclamar-accidentes/">Indemnizaciones por accidentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34652122835">652 122 835</a></li>
+          <li><a href="https://wa.me/34652122835" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:abogados@legislabor.com">abogados@legislabor.com</a></li>
+          <li>C/ Alberto Aguilera 33, 1º Izq. 28015 Madrid</li>
+        </ul>
+        <p style="margin-top:16px"><a href="https://www.legislabor.com/despacho-abogados-madrid/">La abogada</a> · <a href="https://www.legislabor.com/abogado-asesoramiento-online/">Consulta online</a> · <a href="https://www.legislabor.com/contacto-legislabor/">Contacto</a></p>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© Legislabor · Laura Zamora García · <a href="https://www.legislabor.com/privacidad/">Política de privacidad</a> · <a href="https://www.legislabor.com/cookies/">Política de cookies</a></span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34652122835" class="btn btn-gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>652 122 835</a>
+  <a href="https://wa.me/34652122835" target="_blank" rel="noopener" class="btn btn-line">WhatsApp</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

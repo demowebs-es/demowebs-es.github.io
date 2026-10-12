@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Construcciones Luquero · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#DD2B1C; --red-dark:#b82216; --blue:#171796; --ink:#282828; --text:#3d3d42; --muted:#6c6c75;
+    --line:#e6e6ee; --tint:#f5f5fa; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Rubik,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:600}
+
+  .demo{background:var(--ink);color:#d6d6de;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px}
+  .logo img{height:62px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none;font-size:.82rem;font-weight:600;letter-spacing:.04em}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 9px;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover{color:var(--red)}
+  .menu ul{display:none;position:absolute;top:100%;left:0;min-width:210px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:0 0 10px 10px;box-shadow:0 18px 40px -20px rgba(0,0,0,.3);list-style:none;padding:8px 0}
+  .menu li:hover>ul,.menu li:focus-within>ul{display:block}
+  .menu ul a{display:block;padding:8px 16px;font-weight:500;letter-spacing:0;color:var(--text)}
+  .menu ul a:hover{color:var(--red);background:var(--tint)}
+  .menu .hl>a{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:6px;font-weight:600;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;transition:.2s;border:2px solid var(--red);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-line{background:transparent;color:var(--red)}
+  .btn-line:hover{background:#fff4f3}
+  .btn-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-light:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500;letter-spacing:0}
+
+  /* mobile menu */
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);padding:10px 14px;border:1.5px solid var(--line);border-radius:8px}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav[open] .mlist{display:block}
+  .mlist{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 30px -18px rgba(0,0,0,.3);padding:8px 16px 18px;max-height:75vh;overflow:auto}
+  .mlist a{display:block;padding:9px 0;border-bottom:1px solid var(--tint);font-weight:600;color:var(--ink)}
+  .mlist a.sub{padding-left:16px;font-weight:400;color:var(--text)}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:linear-gradient(135deg,rgba(40,40,40,.86),rgba(40,40,40,.72)),url(https://jmluquero.com/wp-content/uploads/2020/03/construcciones-luquero-1.jpg) center/cover;padding:110px 0 210px}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--red) 0 50%,var(--blue) 50% 100%)}
+  .hero h1{font-weight:700;font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.05;max-width:820px;margin:14px 0 18px}
+  .hero .claim{font-size:clamp(1.15rem,2.2vw,1.45rem);color:#f0f0f4;max-width:640px}
+  .hero .claim2{font-size:1rem;color:#c9c9d4;margin-top:6px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero .eyebrow{color:#ff8d82}
+
+  section{padding:92px 0}
+  .head{max-width:760px;margin-bottom:42px}
+  .head h2{font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.12;color:var(--ink);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* servicios */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-150px;position:relative;z-index:2}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;box-shadow:0 24px 50px -30px rgba(23,23,150,.35);transition:.25s;display:flex;flex-direction:column}
+  .svc:hover{border-color:var(--red);transform:translateY(-3px)}
+  .svc img{width:56px;height:56px;margin-bottom:18px}
+  .svc h3{font-size:1.18rem;color:var(--ink);font-weight:600;margin-bottom:8px}
+  .svc p{font-size:.95rem;color:var(--muted)}
+  .svc .more{margin-top:auto;padding-top:16px;color:var(--red);font-weight:600;font-size:.86rem}
+  .svc-sec{padding-top:0}
+
+  /* compromisos */
+  .commit{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .c{border-top:3px solid var(--blue);background:var(--tint);border-radius:0 0 var(--radius) var(--radius);padding:22px 20px}
+  .c .ck{width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;margin-bottom:12px}
+  .c h3{font-size:1.02rem;color:var(--ink);font-weight:600;line-height:1.3;margin-bottom:8px}
+  .c p{font-size:.9rem;color:var(--muted);line-height:1.5}
+
+  /* sobre */
+  .about{background:var(--tint)}
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+  .about p{margin-bottom:16px}
+  .about p.big{font-size:1.1rem;color:var(--ink)}
+  .types{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;border-left:4px solid var(--red)}
+  .types h3{font-size:1.05rem;color:var(--ink);margin-bottom:14px}
+  .types ul{list-style:none;display:grid;gap:8px}
+  .types li{font-size:.93rem;padding-left:18px;position:relative;line-height:1.45}
+  .types li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:2px;background:var(--blue)}
+  .types li:first-child{padding-left:0;font-weight:500;color:var(--ink)}
+  .types li:first-child::before{content:none}
+  .quote-box{margin-top:22px;background:var(--blue);color:#fff;border-radius:var(--radius);padding:26px 28px}
+  .quote-box strong{display:block;font-size:1.35rem;line-height:1.2;margin-bottom:14px}
+
+  /* band */
+  .band{background:var(--ink);color:#fff;padding:84px 0}
+  .band-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .band h2{font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.15;font-weight:700}
+  .band p{color:#cfcfda;margin-top:12px;max-width:640px;font-size:1.05rem}
+  .band .row{display:flex;flex-wrap:wrap;gap:12px}
+
+  /* form */
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .contact-info p{margin-bottom:14px}
+  .contact-info .sig{color:var(--red);font-weight:600;font-size:1.1rem}
+  .info-list{list-style:none;margin-top:26px;display:grid;gap:14px}
+  .info-list li{display:flex;gap:14px;align-items:flex-start}
+  .info-list .ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--tint);color:var(--blue);display:grid;place-items:center}
+  .info-list small{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .info-list a{color:var(--ink);font-weight:500}
+  .card-form{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--line);box-shadow:0 24px 50px -28px rgba(40,40,40,.35);border-top:4px solid var(--red)}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d9d9e3;border-radius:8px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(221,43,28,.25);border-color:var(--red)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .check{display:flex;gap:10px;font-size:.84rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:6px 0 18px}
+  .check input{margin-top:3px;accent-color:var(--red);flex:none}
+  .check a{text-decoration:underline;color:var(--red)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:8px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  footer{background:#1d1d24;color:#c3c3cf;padding:64px 0 28px;font-size:.92rem}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.1fr .9fr;gap:36px}
+  footer h4{color:#fff;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  footer ul{list-style:none;display:grid;gap:8px}
+  footer a:hover{color:#fff}
+  .foot-logo{background:#fff;border-radius:10px;padding:8px 12px;display:inline-block;margin-bottom:16px}
+  .foot-logo img{height:48px;width:auto}
+  .foot-claim{color:#fff;font-weight:500;margin-top:10px}
+  .seal{width:96px;margin-top:16px}
+  .social{display:flex;gap:10px;margin-top:16px}
+  .social a{border:1px solid #44444f;border-radius:999px;padding:7px 14px;font-size:.84rem}
+  .copy{border-top:1px solid #34343e;margin-top:44px;padding-top:22px;font-size:.82rem;color:#8d8d9a}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .menu{display:none}
+    .mnav{display:block}
+    .commit{grid-template-columns:repeat(3,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:880px){
+    .services{grid-template-columns:1fr;margin-top:-110px}
+    .about-grid,.contact-grid,.band-grid{grid-template-columns:1fr}
+    .commit{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .logo img{height:48px}
+    .hero{padding:64px 0 150px}
+    .hero .row .btn,.band .row .btn{width:100%}
+    section{padding:64px 0}
+    .svc-sec{padding-top:0}
+    .commit{grid-template-columns:1fr}
+    .two{grid-template-columns:1fr}
+    .card-form{padding:24px 20px}
+    .foot-grid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.84rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Construcciones Luquero · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://jmluquero.com/" aria-label="Construcciones Luquero"><img src="https://jmluquero.com/wp-content/uploads/2020/03/logo-luquero-simplificado-C-e1583159933944.jpg" alt="jm luquero"></a>
+    <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="https://jmluquero.com/">INICIO</a></li>
+        <li><a href="https://jmluquero.com/por-que-elegirnos/">NOSOTROS</a></li>
+        <li><a href="https://jmluquero.com/empresa-constructora-valladolid/">CONSTRUCCIÓN</a>
+          <ul>
+            <li><a href="https://jmluquero.com/empresa-constructora-valladolid/proyecto-direccion-obra-valladolid/">Dirección de obra</a></li>
+            <li><a href="https://jmluquero.com/empresa-constructora-valladolid/construccion-chalets-valladolid/">Chalets</a></li>
+            <li><a href="https://jmluquero.com/empresa-constructora-valladolid/construccion-naves-industriales-valladolid/">Naves</a></li>
+            <li><a href="https://jmluquero.com/empresa-constructora-valladolid/construccion-trasteros-valladolid/">Trasteros</a></li>
+          </ul></li>
+        <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/">REHABILITACIÓN</a>
+          <ul>
+            <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/rehabilitacion-cubiertas-valladolid/">Cubiertas</a></li>
+            <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/revestimiento-fachadas-valladolid/">Fachadas</a></li>
+            <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/impermeabilizacion-terrazas-rehabilitacion-patios-valladolid/">Patios y Terrazas</a></li>
+            <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/empresas-aislamiento-termico-valladolid/">Eficiencia energética</a></li>
+            <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/instalacion-ascensores-valladolid/">Accesibilidad</a></li>
+          </ul></li>
+        <li><a href="https://jmluquero.com/empresas-reformas-valladolid/">REFORMAS</a>
+          <ul>
+            <li><a href="https://jmluquero.com/empresas-reformas-valladolid/reformas-integrales-valladolid/">Viviendas</a></li>
+            <li><a href="https://jmluquero.com/empresas-reformas-valladolid/reformas-locales-comerciales-valladolid/">Locales</a></li>
+            <li><a href="https://jmluquero.com/empresas-reformas-valladolid/reformas-cocinas-banos-valladolid/">Cocinas y Baños</a></li>
+            <li><a href="https://jmluquero.com/empresas-reformas-valladolid/reformas-portales-valladolid/">Portales</a></li>
+          </ul></li>
+        <li><a href="https://jmluquero.com/placas-solares-valladolid/">PLACAS SOLARES</a></li>
+        <li class="hl"><a href="https://jmluquero.com/contacto/">CONTACTO</a></li>
+        <li class="hl"><a href="https://jmluquero.com/trabajos-destacados/">TRABAJOS DESTACADOS</a></li>
+      </ul>
+    </nav>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="mlist">
+        <a href="https://jmluquero.com/">INICIO</a>
+        <a href="https://jmluquero.com/por-que-elegirnos/">NOSOTROS</a>
+        <a href="https://jmluquero.com/empresa-constructora-valladolid/">CONSTRUCCIÓN</a>
+        <a class="sub" href="https://jmluquero.com/empresa-constructora-valladolid/proyecto-direccion-obra-valladolid/">Dirección de obra</a>
+        <a class="sub" href="https://jmluquero.com/empresa-constructora-valladolid/construccion-chalets-valladolid/">Chalets</a>
+        <a class="sub" href="https://jmluquero.com/empresa-constructora-valladolid/construccion-naves-industriales-valladolid/">Naves</a>
+        <a class="sub" href="https://jmluquero.com/empresa-constructora-valladolid/construccion-trasteros-valladolid/">Trasteros</a>
+        <a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/">REHABILITACIÓN</a>
+        <a class="sub" href="https://jmluquero.com/rehabilitacion-edificios-valladolid/rehabilitacion-cubiertas-valladolid/">Cubiertas</a>
+        <a class="sub" href="https://jmluquero.com/rehabilitacion-edificios-valladolid/revestimiento-fachadas-valladolid/">Fachadas</a>
+        <a class="sub" href="https://jmluquero.com/rehabilitacion-edificios-valladolid/impermeabilizacion-terrazas-rehabilitacion-patios-valladolid/">Patios y Terrazas</a>
+        <a class="sub" href="https://jmluquero.com/rehabilitacion-edificios-valladolid/empresas-aislamiento-termico-valladolid/">Eficiencia energética</a>
+        <a class="sub" href="https://jmluquero.com/rehabilitacion-edificios-valladolid/instalacion-ascensores-valladolid/">Accesibilidad</a>
+        <a href="https://jmluquero.com/empresas-reformas-valladolid/">REFORMAS</a>
+        <a class="sub" href="https://jmluquero.com/empresas-reformas-valladolid/reformas-integrales-valladolid/">Viviendas</a>
+        <a class="sub" href="https://jmluquero.com/empresas-reformas-valladolid/reformas-locales-comerciales-valladolid/">Locales</a>
+        <a class="sub" href="https://jmluquero.com/empresas-reformas-valladolid/reformas-cocinas-banos-valladolid/">Cocinas y Baños</a>
+        <a class="sub" href="https://jmluquero.com/empresas-reformas-valladolid/reformas-portales-valladolid/">Portales</a>
+        <a href="https://jmluquero.com/placas-solares-valladolid/">PLACAS SOLARES</a>
+        <a href="https://jmluquero.com/contacto/">CONTACTO</a>
+        <a href="https://jmluquero.com/trabajos-destacados/">TRABAJOS DESTACADOS</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Valladolid · Construcción y Rehabilitación</span>
+      <h1>Construcciones y Reformas J.M. Luquero</h1>
+      <p class="claim">Construyendo tus sueños desde el 2000</p>
+      <p class="claim2">Construyendo tu confianza desde el 2000</p>
+      <div class="row">
+        <a href="#contacto" class="btn btn-red">consúltanos</a>
+        <a href="tel:+34983454165" class="btn btn-light">¡Llámanos! <span class="tel">983 454 165</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section class="svc-sec" id="servicios">
+    <div class="wrap">
+      <div class="services">
+        <a class="svc" href="https://jmluquero.com/empresa-constructora-valladolid/">
+          <img src="https://jmluquero.com/wp-content/uploads/2020/02/construction-icon-1-gray.png" alt="">
+          <h3>Servicios de Construcción</h3>
+          <p>Dirección de obra, construcción de chalets, construcción de naves</p>
+          <span class="more">Empresa Constructora →</span>
+        </a>
+        <a class="svc" href="https://jmluquero.com/rehabilitacion-edificios-valladolid/">
+          <img src="https://jmluquero.com/wp-content/uploads/2020/02/construction-icon-7-gray.png" alt="">
+          <h3>Servicios de Rehabilitación</h3>
+          <p>Cubiertas, fachadas, patios y sótanos, eficiencia energética, accesibilidad</p>
+          <span class="more">Rehabilitación de Edificios →</span>
+        </a>
+        <a class="svc" href="https://jmluquero.com/empresas-reformas-valladolid/">
+          <img src="https://jmluquero.com/wp-content/uploads/2020/02/construction-icon-6-gray.png" alt="">
+          <h3>Reformas</h3>
+          <p>De viviendas, locales comerciales, cocinas y baños, y portales</p>
+          <span class="more">Reformas Integrales →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPROMISOS -->
+  <section id="compromiso" style="padding-top:20px">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Construcciones y Reformas Luquero</span>
+        <h2>¿Y tú… qué le pides a una constructora para tu proyecto?</h2>
+      </div>
+      <div class="commit">
+        <div class="c"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><h3>Proyectos Rigurosos</h3><p>Que tienen en cuenta tus necesidades, los requisitos técnicos, y los plazos de ejecución.</p></div>
+        <div class="c"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><h3>Presupuesto ajustado</h3><p>Detallado por partidas, con precio cerrado de antemano, y sin sorpresas.</p></div>
+        <div class="c"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><h3>Planificación y coordinación integral</h3><p>De los trabajos de ejecución, que asegure un acabado excelente en un plazo razonable.</p></div>
+        <div class="c"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><h3>Triple calidad para tu proyecto</h3><p>En materiales utilizados, trabajos realizados, y personal técnico especializado.</p></div>
+        <div class="c"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><h3>Plazo de entrega firme</h3><p>Que se ajuste a tus necesidades y las características del proyecto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about" id="nosotros">
+    <div class="wrap about-grid">
+      <div>
+        <p class="big">En Construcciones y Reformas Luquero, nos distinguimos por el compromiso con nuestros clientes desde el primer momento, por la formalidad y la calidad en nuestro trabajo, y por cumplir los objetivos marcados en el proyecto para que tú siempre quedes satisfecho.</p>
+        <p>Nuestros clientes nos eligen por la eficacia y el esfuerzo que demostramos día a día, lo que nos ha llevado a convertirnos en una referencia en el sector de la construcción, gracias a la gran calidad de nuestros servicios.</p>
+        <div class="quote-box">
+          <strong>Presupuesto SIN Compromiso</strong>
+          <a href="#contacto" class="btn btn-red">solicita tu presupuesto</a>
+        </div>
+      </div>
+      <div class="types">
+        <ul>
+          <li>Realizamos todo tipo de proyectos de construcción, rehabilitación y reforma:</li>
+          <li>Mantenimiento integral y proyectos para comunidades</li>
+          <li>instalación de ascensores</li>
+          <li>mejora de accesibilidad</li>
+          <li>rehabilitación de cubiertas</li>
+          <li>rehabilitación de fachadas y patios</li>
+          <li>mejora de eficiencia energética (aislamiento térmico SATE)</li>
+          <li>impermeabilizaciones</li>
+          <li>rehabilitación integral de portales</li>
+          <li>reforma integral y parcial de viviendas, locales y oficinas</li>
+          <li>chalets de construcción tradicional y casas pasivas</li>
+          <li>naves industriales.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <div class="band">
+    <div class="wrap band-grid">
+      <div>
+        <h2>Realizando Proyectos desde hace más de 20 años</h2>
+        <p>Si buscas una constructora o un reformista de confianza en Valladolid para desarrollar tus proyectos, no busques más.</p>
+      </div>
+      <div class="row">
+        <a href="https://jmluquero.com/por-que-elegirnos/" class="btn btn-light">Conócenos</a>
+        <a href="#contacto" class="btn btn-red">consúltanos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">Contacto</span>
+        <div class="head" style="margin-bottom:18px"><h2>Rellena el siguiente formulario si tienes cualquier consulta sobre una obra, reforma, rehabilitación, o sobre la instalación de placas solares.</h2></div>
+        <p>Te responderemos lo antes posible.</p>
+        <p class="sig">Luquero, construyendo tus sueños desde 2000</p>
+        <ul class="info-list">
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><small>Teléfono</small><a href="tel:+34983454165">983 454 165</a></div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><a href="mailto:jmluquero@yahoo.es">jmluquero@yahoo.es</a></div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Dónde Estamos</small>Calle Hernando de Soto, nº4, 47195, Arroyo de la Encomienda, Valladolid</div></li>
+        </ul>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="two">
+          <div class="field"><label for="n">Nombre</label><input id="n" placeholder="Nombre" required autocomplete="name"></div>
+          <div class="field"><label for="t">Teléfono</label><input id="t" type="tel" placeholder="Teléfono" required pattern="[0-9\s\-]*" title="Sólo se permiten números." autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="e">Dirección de correo electrónico</label><input id="e" type="email" placeholder="Dirección de correo electrónico" required autocomplete="email"></div>
+        <div class="field"><label for="m">Mensaje</label><textarea id="m" rows="5" placeholder="Mensaje" required></textarea></div>
+        <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://jmluquero.com/politica-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a></span></label>
+        <button class="btn btn-red" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="foot-logo" href="https://jmluquero.com/"><img src="https://jmluquero.com/wp-content/uploads/2020/03/logo-luquero-simplificado-C-e1583159933944.jpg" alt="jm luquero"></a>
+        <p>Construcciones y reformas Luquero, es una empresa con amplia experiencia en el sector de la construcción en Valladolid, y en la ejecución de todo tipo de obras de construcción, rehabilitación y reformas.</p>
+        <p class="foot-claim">Construyendo tus sueños desde 2000</p>
+      </div>
+      <div>
+        <h4>Nuestros Servicios</h4>
+        <ul>
+          <li><a href="https://jmluquero.com/empresa-constructora-valladolid/">Empresa Constructora</a></li>
+          <li><a href="https://jmluquero.com/rehabilitacion-edificios-valladolid/">Rehabilitación de Edificios</a></li>
+          <li><a href="https://jmluquero.com/empresas-reformas-valladolid/">Reformas Integrales</a></li>
+          <li><a href="https://jmluquero.com/placas-solares-valladolid/">Instalación de placas solares</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dónde Estamos</h4>
+        <ul>
+          <li>Calle Hernando de Soto, nº4, 47195, Arroyo de la Encomienda, Valladolid</li>
+          <li><a href="tel:+34983454165">983 454 165</a></li>
+          <li><a href="mailto:jmluquero@yahoo.es">jmluquero@yahoo.es</a></li>
+        </ul>
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=100057409782766" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/construccionesjmluquero/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Textos Legales</h4>
+        <ul>
+          <li><a href="https://jmluquero.com/aviso-legal/">Aviso Legal</a></li>
+          <li><a href="https://jmluquero.com/politica-de-cookies/">Política de cookies</a></li>
+          <li><a href="https://jmluquero.com/politica-de-privacidad/">Política de privacidad</a></li>
+        </ul>
+        <img class="seal" src="https://jmluquero.com/wp-content/uploads/2024/10/sello-arroyo-exito-empresarial.png" alt="">
+      </div>
+    </div>
+    <div class="copy">© 2020 Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983454165" class="btn btn-red">¡Llámanos!</a>
+  <a href="#contacto" class="btn btn-line">consúltanos</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

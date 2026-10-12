@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Reformena · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#00a8a8; --teal-dark:#008686; --navy:#17465f; --ink:#2c353d; --text:#454e57; --muted:#6b737a;
+    --line:#e1e7ea; --tint:#f2f8f8; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:Metrophobic,Inter,sans-serif;font-weight:400;color:var(--ink)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:600}
+
+  .demo{background:var(--ink);color:#c8d3d8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px;position:relative}
+  .logo img{height:70px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none;font-size:.9rem;font-weight:500}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 11px;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover{color:var(--teal)}
+  .menu ul{display:none;position:absolute;top:100%;left:0;min-width:260px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:0 0 10px 10px;box-shadow:0 18px 40px -20px rgba(0,0,0,.3);list-style:none;padding:8px 0}
+  .menu li:hover>ul,.menu li:focus-within>ul{display:block}
+  .menu ul a{display:block;padding:8px 16px;color:var(--text)}
+  .menu ul a:hover{color:var(--teal);background:var(--tint)}
+  .menu .small>a{font-size:.8rem;color:var(--muted)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--teal);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-teal{background:var(--teal);color:#fff}
+  .btn-teal:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
+  .btn-line{background:#fff;color:var(--teal-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}
+  .btn-light:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500}
+
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--ink);padding:10px 16px;border:1.5px solid var(--line);border-radius:999px}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mlist{position:absolute;left:-16px;right:-16px;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 30px -18px rgba(0,0,0,.3);padding:8px 16px 18px}
+  .mlist a{display:block;padding:9px 0;border-bottom:1px solid var(--tint);font-weight:500;color:var(--ink)}
+  .mlist a.sub{padding-left:16px;font-weight:400;color:var(--text)}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:linear-gradient(100deg,rgba(23,70,95,.93) 0%,rgba(23,70,95,.78) 45%,rgba(0,168,168,.35) 100%),url(https://reformena.com/wp-content/uploads/2015/10/c4.jpg) center/cover;padding:104px 0 112px}
+  .hero h1{color:#fff;font-size:clamp(2.3rem,5.2vw,3.9rem);line-height:1.08;max-width:760px;margin:14px 0 16px}
+  .hero .eyebrow{color:#7ee0e0}
+  .hero p.lead{font-size:clamp(1.1rem,2vw,1.35rem);color:#e3f1f3}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+  /* intro strip */
+  .intro{background:var(--teal);color:#fff;padding:30px 0}
+  .intro .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .intro p{font-size:1.15rem;max-width:760px;font-family:Metrophobic,Inter,sans-serif}
+  .intro .btn{background:#fff;color:var(--teal-dark);border-color:#fff}
+  .intro .btn:hover{background:var(--tint)}
+
+  section{padding:92px 0}
+  .head{max-width:720px;margin-bottom:42px}
+  .head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin-top:8px}
+
+  /* slides as cards */
+  .highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .hl{position:relative;border-radius:var(--radius);overflow:hidden;min-height:300px;display:flex;align-items:flex-end;color:#fff;background-size:cover;background-position:center}
+  .hl::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,70,95,.15) 0%,rgba(23,70,95,.92) 100%)}
+  .hl .in{position:relative;padding:28px}
+  .hl h3{color:#fff;font-size:1.6rem;line-height:1.2;margin-bottom:8px}
+  .hl p{color:#e3f1f3;margin-bottom:18px}
+  .hl .row{display:flex;flex-wrap:wrap;gap:10px}
+  .hl .btn{padding:10px 18px;font-size:.86rem}
+
+  /* services */
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .svc{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:.25s;display:flex;flex-direction:column}
+  .svc:hover{border-color:var(--teal);box-shadow:0 18px 40px -26px rgba(23,70,95,.45);transform:translateY(-3px)}
+  .svc img{aspect-ratio:495/400;object-fit:cover;width:100%}
+  .svc .in{padding:20px 20px 22px}
+  .svc h3{font-size:1.25rem;margin-bottom:8px}
+  .svc p{font-size:.92rem;color:var(--muted)}
+
+  /* why */
+  .why{background:var(--tint)}
+  .whys{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .w{background:#fff;border-radius:var(--radius);padding:26px 24px;border:1px solid var(--line)}
+  .w .ic{width:48px;height:48px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;margin-bottom:16px}
+  .w h3{font-size:1.25rem;margin-bottom:6px}
+  .w p{font-size:.93rem;color:var(--muted)}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .about p{margin-bottom:14px}
+  .about h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;margin:8px 0 18px}
+  .data{margin-top:28px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:26px 28px}
+  .data h3{color:#fff;font-size:1.3rem;margin-bottom:14px}
+  .data ul{list-style:none;display:grid;gap:12px}
+  .data small{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#8fd6d6;font-weight:600}
+  .data a{font-weight:500}
+  .card-form{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--line);box-shadow:0 24px 50px -28px rgba(23,70,95,.4);border-top:4px solid var(--teal)}
+  .card-form h2{font-size:1.8rem;line-height:1.15;margin-bottom:18px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d3dde1;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(0,168,168,.3);border-color:var(--teal)}
+  .check{display:flex;gap:10px;font-size:.84rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:6px 0 18px}
+  .check input{margin-top:3px;accent-color:var(--teal);flex:none}
+  .check a{text-decoration:underline;color:var(--teal-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  footer{background:#22292f;color:#b9c3c9;padding:64px 0 30px;font-size:.92rem}
+  .foot-grid{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:40px}
+  footer h4{color:#fff;font-family:Metrophobic,Inter,sans-serif;font-weight:400;font-size:1.1rem;margin-bottom:14px}
+  footer ul{list-style:none;display:grid;gap:7px}
+  footer a:hover{color:#fff}
+  footer p{margin-bottom:12px}
+  footer p a{color:#7ee0e0;text-decoration:underline}
+  .foot-logo{background:#fff;border-radius:10px;padding:6px;display:inline-block;margin-top:32px}
+  .foot-logo img{height:64px;width:auto}
+
+  .callbar{display:none}
+
+  @media (max-width:1100px){
+    .menu{display:none}
+    .mnav{display:block}
+    .services,.whys{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:880px){
+    .highlights,.contact-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .mlist{left:-16px;right:-16px}
+    .nav{height:70px}
+    .logo img{height:56px}
+    .hero{padding:60px 0 70px}
+    .hero .row .btn,.intro .btn{width:100%}
+    section{padding:64px 0}
+    .services,.whys{grid-template-columns:1fr}
+    .card-form{padding:24px 20px}
+    .foot-grid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Reformena · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://reformena.com/" aria-label="Reformena"><img src="https://reformena.com/wp-content/uploads/2018/12/LOGO.jpg" alt="Reformena"></a>
+    <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="https://reformena.com/">Inicio</a></li>
+        <li><a href="https://reformena.com/quienes-somos/">Quiénes somos</a></li>
+        <li><a href="https://reformena.com/servicios-2/">Servicios</a>
+          <ul>
+            <li><a href="https://reformena.com/reformas/">Reformas</a></li>
+            <li><a href="https://reformena.com/pequenos-trabajos-valladolid/">Pequeños trabajos</a></li>
+            <li><a href="https://reformena.com/alicatados-solados-valladolid/">Alicatados y solados</a></li>
+            <li><a href="https://reformena.com/rehabilitaciones-fachadas-tejados-valladolid/">Rehabilitaciones de fachadas y tejados</a></li>
+          </ul></li>
+        <li><a href="https://reformena.com/galeria-2/">Galería</a></li>
+        <li><a href="https://reformena.com/contacto/">Contacto</a></li>
+        <li class="small"><a href="https://reformena.com/politica-de-cookies-ue/">Política de cookies (UE)</a></li>
+      </ul>
+    </nav>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="mlist">
+        <a href="https://reformena.com/">Inicio</a>
+        <a href="https://reformena.com/quienes-somos/">Quiénes somos</a>
+        <a href="https://reformena.com/servicios-2/">Servicios</a>
+        <a class="sub" href="https://reformena.com/reformas/">Reformas</a>
+        <a class="sub" href="https://reformena.com/pequenos-trabajos-valladolid/">Pequeños trabajos</a>
+        <a class="sub" href="https://reformena.com/alicatados-solados-valladolid/">Alicatados y solados</a>
+        <a class="sub" href="https://reformena.com/rehabilitaciones-fachadas-tejados-valladolid/">Rehabilitaciones de fachadas y tejados</a>
+        <a href="https://reformena.com/galeria-2/">Galería</a>
+        <a href="https://reformena.com/contacto/">Contacto</a>
+        <a href="https://reformena.com/politica-de-cookies-ue/">Política de cookies (UE)</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO (slide 1) -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Reformas integrales en Valladolid</span>
+      <h1>REFORMENA, empresa de reformas en Valladolid</h1>
+      <p class="lead">Más de 10 años de experiencia</p>
+      <div class="row">
+        <a href="https://reformena.com/quienes-somos/" class="btn btn-light">Conócenos</a>
+        <a href="#servicios" class="btn btn-teal">Servicios</a>
+        <a href="tel:+34656961949" class="btn btn-light">Llámanos <span class="tel">656 961 949</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro">
+    <div class="wrap">
+      <p>Reforma parcial o integral de tu vivienda, nave, parking, comunidad de vecinos o local comercial al mejor precio.</p>
+      <a href="tel:+34656961949" class="btn">LLÁMANOS</a>
+    </div>
+  </div>
+
+  <!-- SLIDES 2 y 3 -->
+  <section style="padding-bottom:0">
+    <div class="wrap highlights">
+      <div class="hl" style="background-image:url(https://reformena.com/wp-content/uploads/2015/10/c3.jpg)">
+        <div class="in">
+          <h3>Reforma completa de baños en Valladolid</h3>
+          <p>Equipo profesional y altamente cualificado</p>
+          <div class="row">
+            <a href="https://www.comerciosyservicios.com/reformena.htm" class="btn btn-light" target="_blank" rel="noopener">Conócenos mejor</a>
+            <a href="#contacto" class="btn btn-teal">Contacta</a>
+          </div>
+        </div>
+      </div>
+      <div class="hl" style="background-image:url(https://reformena.com/wp-content/uploads/2015/10/c2.jpg)">
+        <div class="in">
+          <h3>Trabajos de fontanería, pintura y electricidad en Valladolid</h3>
+          <p>Trabajos de jardinería con la mejor calidad a precios muy competitivos</p>
+          <div class="row">
+            <a href="https://reformena.com/quienes-somos/" class="btn btn-light">Quiénes somos</a>
+            <a href="tel:+34656961949" class="btn btn-teal">Llámanos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Servicios</span><h2>Nuestros servicios</h2></div>
+      <div class="services">
+        <a class="svc" href="https://reformena.com/reformas/">
+          <img src="https://reformena.com/wp-content/uploads/2015/10/kitchen-1640439_960_720-495x400.jpg" alt="Reformas" loading="lazy">
+          <div class="in"><h3>Reformas</h3><p>Nuestro servicio principal son las reformas, gracias a nuestra experiencia podemos afrontar cualquier trabajo dentro del sector.</p></div>
+        </a>
+        <a class="svc" href="https://reformena.com/pequenos-trabajos-valladolid/">
+          <img src="https://reformena.com/wp-content/uploads/2015/10/23361907_xxl-495x400.jpg" alt="Pequeños trabajos" loading="lazy">
+          <div class="in"><h3>Pequeños trabajos</h3><p>En REFORMENA nos encargamos de cualquier tipo de instalación y reparación relacionada con la fontanería, carpintería, pintura, electricidad y albañilería.</p></div>
+        </a>
+        <a class="svc" href="https://reformena.com/alicatados-solados-valladolid/">
+          <img src="https://reformena.com/wp-content/uploads/2015/10/brillo-495x400.jpg" alt="Alicatado y solado" loading="lazy">
+          <div class="in"><h3>Alicatado y solado</h3><p>Azulejos, pavimentos y baldosas en Valladolid, venta e instalación, aprovecha nuestros precios, contamos con un servicio limpio y de calidad.</p></div>
+        </a>
+        <a class="svc" href="https://reformena.com/rehabilitaciones-fachadas-tejados-valladolid/">
+          <img src="https://reformena.com/wp-content/uploads/2015/10/1-487x400.jpg" alt="Rehabilitaciones de fachadas y tejados" loading="lazy">
+          <div class="in"><h3>Rehabilitaciones de fachadas y tejados</h3><p>Ofrecemos un servicio profesional y eficaz en la rehabilitación de fachadas tratando todas las tipologías que afectan a la salud de tu inmueble.</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ -->
+  <section class="why">
+    <div class="wrap">
+      <div class="head"><h2>¿Por qué elegirnos?</h2></div>
+      <div class="whys">
+        <div class="w"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Experiencia</h3><p>Tenemos más de 10 años de experiencia en el sector.</p></div>
+        <div class="w"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h3>Equipo de profesionales</h3><p>Nuestro equipo está altamente cualificado para cualquier trabajo.</p></div>
+        <div class="w"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Mejores precios</h3><p>Contamos con precios muy competitivos.</p></div>
+        <div class="w"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></span><h3>Satisfacción</h3><p>Muchos clientes a nuestra espalda que avalan la calidad de nuestro trabajo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE + FORM -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div class="about">
+        <span class="eyebrow">Sobre nosotros</span>
+        <h2>REFORMENA, empresa de reformas en Valladolid</h2>
+        <p>En Roy Mena Diez nos dedicamos al sector de las reformas, llevamos más de 10 años ofreciendo nuestro servicio en Valladolid.</p>
+        <p>Nuestra empresa destaca por nuestro gran equipo de profesionales, nuestro asesoramiento personal, calidad en el servicio y trato con el cliente.</p>
+        <div class="data">
+          <h3>Datos de contacto</h3>
+          <ul>
+            <li><small>Dirección</small>Valladolid</li>
+            <li><small>Email</small><a href="mailto:info@reformena.com">info@reformena.com</a></li>
+            <li><small>Teléfono</small><a href="tel:+34656961949">656 961 949</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <h2>Pide tu presupuesto sin compromiso</h2>
+        <div class="field"><label for="n">Tu nombre (requerido)</label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="e">Tu correo electrónico (requerido)</label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="s">Asunto</label><input id="s"></div>
+        <div class="field"><label for="m">Tu mensaje</label><textarea id="m" rows="6"></textarea></div>
+        <label class="check"><input type="checkbox"><span>Al hacer clic acepta nuestra <a href="https://reformena.com/politica-de-privacidad/" target="_blank" rel="noopener">Política de privacidad</a> que puede leer aquí.</span></label>
+        <button class="btn btn-teal" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>REFORMENA</h4>
+        <ul>
+          <li><a href="https://reformena.com/">Inicio</a></li>
+          <li><a href="https://reformena.com/quienes-somos/">Quiénes somos</a></li>
+          <li><a href="https://reformena.com/servicios-2/">Servicios</a></li>
+          <li><a href="https://reformena.com/reformas/">Reformas</a></li>
+          <li><a href="https://reformena.com/pequenos-trabajos-valladolid/">Pequeños trabajos</a></li>
+          <li><a href="https://reformena.com/alicatados-solados-valladolid/">Alicatados y solados</a></li>
+          <li><a href="https://reformena.com/rehabilitaciones-fachadas-tejados-valladolid/">Rehabilitaciones de fachadas y tejados</a></li>
+          <li><a href="https://reformena.com/galeria-2/">Galería</a></li>
+          <li><a href="https://reformena.com/contacto/">Contacto</a></li>
+          <li><a href="https://reformena.com/politica-de-cookies-ue/">Política de cookies (UE)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Enlaces de interés</h4>
+        <ul>
+          <li><a href="https://www.comerciosyservicios.com/reformena.htm" target="_blank" rel="noopener">Comercios y Servicios</a></li>
+          <li><a href="https://reformena.com/aviso-legal/">Aviso Legal</a></li>
+          <li><a href="https://reformena.com/politica-de-privacidad/">Política de Privacidad</a></li>
+        </ul>
+        <a class="foot-logo" href="https://reformena.com/"><img src="https://reformena.com/wp-content/uploads/2018/12/LOGO.jpg" alt="Reformena"></a>
+      </div>
+      <div>
+        <h4>Información de interés</h4>
+        <p>Si quiere o necesita poder acceder a nuestras hojas de reclamaciones, solo tiene que ponerse en contacto con nosotros a través del siguiente email: <a href="mailto:info@reformena.com">info@reformena.com</a> y te daremos información detallada.</p>
+        <p>Así mismo, si necesita gestionar algún tipo de queja, deberá enviarnos un correo electrónico a la misma dirección <a href="mailto:info@reformena.com">info@reformena.com</a> para poder atenderla con la máxima celeridad posible.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34656961949" class="btn btn-teal">Llámanos</a>
+  <a href="#contacto" class="btn btn-line">Contacta</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

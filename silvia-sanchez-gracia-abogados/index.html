@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Silvia Sánchez Gracia Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2B4B8C; --navy-dark:#1d3463; --blue:#008DF9; --blue-dark:#0a74c9;
+    --ink:#222222; --text:#4a4a4a; --muted:#6b6b6b; --line:#e3e6ec; --tint:#f5f7fb; --white:#fff;
+    --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+
+  .demo{background:var(--navy-dark);color:#cfdcf5;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:18px}
+  .nav .logo img{height:64px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 10px;font-size:.88rem;font-weight:600;color:#3b3b3b;border-radius:8px}
+  .menu > li > a:hover{color:var(--navy)}
+  .menu > li > a.on{color:var(--navy);box-shadow:inset 0 -2px 0 var(--blue)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:290px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;list-style:none;box-shadow:0 20px 40px -20px rgba(29,52,99,.35)}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:9px 12px;border-radius:7px;font-size:.88rem;color:var(--ink)}
+  .menu .sub a:hover{background:var(--tint);color:var(--navy)}
+  .caret{font-size:.62rem;margin-left:4px;opacity:.6}
+  .social{display:flex;gap:6px}
+  .social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--navy);border:1px solid var(--line)}
+  .social a:hover{background:var(--tint)}
+
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line);color:var(--navy)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:8px 16px 18px;max-height:calc(100vh - 120px);overflow:auto;box-shadow:0 20px 30px -20px rgba(0,0,0,.25)}
+  .mnav .panel a{display:block;padding:11px 4px;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
+  .mnav .panel .subm a{padding-left:18px;font-weight:400;color:var(--text);font-size:.94rem}
+  .mnav .social{margin-top:14px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:8px;font-weight:600;font-size:.95rem;transition:.2s;border:1.5px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-white{background:#fff;color:var(--navy);border-color:#fff}
+  .btn-white:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-line{background:#fff;color:var(--navy);border-color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+
+  /* hero */
+  .hero{position:relative;color:#fff;min-height:560px;display:flex;align-items:center;overflow:hidden}
+  .hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,33,66,.92) 0%,rgba(18,33,66,.72) 48%,rgba(18,33,66,.2) 100%)}
+  .hero .wrap{position:relative;z-index:1;padding-top:80px;padding-bottom:80px;width:100%}
+  .hero .kicker{font-size:.82rem;letter-spacing:.22em;font-weight:700;color:#9fd2ff}
+  .hero h1{font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.08;font-weight:700;letter-spacing:.01em;margin:16px 0 18px;max-width:720px}
+  .hero .spec{font-size:clamp(1rem,1.6vw,1.2rem);font-weight:600;letter-spacing:.06em;color:#e3ebf8;max-width:600px;border-left:3px solid var(--blue);padding-left:16px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .tel{font-variant-numeric:tabular-nums}
+
+  .tiles{background:var(--navy-dark)}
+  .tiles .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .tile{position:relative;min-height:170px;display:flex;align-items:flex-end;padding:22px;color:#fff;overflow:hidden}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.4s}
+  .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,33,66,.92),rgba(18,33,66,.35))}
+  .tile:hover img{transform:scale(1.05)}
+  .tile span{position:relative;z-index:1;font-weight:700;font-size:.92rem;letter-spacing:.08em;line-height:1.35}
+  .tile span::after{content:" →";color:#9fd2ff}
+
+  .band{background:#fff;border-top:4px solid var(--blue);border-bottom:4px solid var(--blue);text-align:center;padding:40px 0}
+  .band p{font-size:clamp(1.6rem,3.4vw,2.4rem);color:var(--blue);letter-spacing:.04em;font-weight:500}
+
+  section{padding:90px 0}
+  .tint{background:var(--tint)}
+  .head{text-align:center;max-width:720px;margin:0 auto 44px}
+  .head h2{font-size:clamp(1.7rem,3vw,2.3rem);color:var(--ink);font-weight:700;margin-top:10px;line-height:1.2}
+
+  .services{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+  .svc{grid-column:span 2;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .svc:nth-child(4){grid-column:2 / span 2}
+  .svc:hover{box-shadow:0 24px 44px -28px rgba(29,52,99,.45);transform:translateY(-3px)}
+  .svc .ph{display:block;aspect-ratio:845/684;overflow:hidden}
+  .svc .ph img{width:100%;height:100%;object-fit:cover}
+  .svc .bd{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .svc h3{font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:700}
+  .svc p{font-size:.95rem;margin:10px 0 18px;flex:1}
+  .svc .btn{align-self:flex-start;padding:11px 20px;font-size:.88rem}
+
+  .values{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .val{background:#fff;border-radius:var(--radius);padding:28px 24px;border:1px solid var(--line);text-align:center}
+  .val .ic{width:58px;height:58px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;background:#e6f2fe;color:var(--blue)}
+  .val h3{font-size:1.06rem;color:var(--navy);font-weight:700;margin-bottom:8px}
+  .val p{font-size:.94rem}
+  .center{text-align:center;margin-top:36px}
+
+  .about{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;max-width:960px;margin:0 auto}
+  .about img{width:300px;height:auto}
+  .about h2{font-size:clamp(1.7rem,3vw,2.3rem);color:var(--ink);font-weight:700;margin:10px 0 16px}
+  .about p{font-size:1.08rem}
+  .about p strong{color:var(--navy)}
+
+  footer{background:var(--navy-dark);color:#cbd6ea;padding:70px 0 30px;font-size:.92rem}
+  .fgrid{display:grid;grid-template-columns:1fr 1.3fr 1fr 1.3fr;gap:36px}
+  footer h4{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+  footer ul{list-style:none;display:grid;gap:7px}
+  footer a:hover{color:#fff}
+  footer .u{text-decoration:underline;text-underline-offset:3px}
+  .ci{display:grid;gap:12px}
+  .ci b{display:block;color:#fff;font-size:.82rem;font-weight:600}
+  .fsoc{display:grid;gap:8px}
+  .fsoc a{display:flex;gap:10px;align-items:center}
+  .fsoc svg{flex:none;color:#9fd2ff}
+  .info p+p{margin-top:10px}
+  .fbot{margin-top:46px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:.84rem;color:#9fb0cf}
+
+  .callbar{display:none}
+
+  @media (max-width:1120px){
+    .menu,.nav > .social{display:none}
+    .mnav{display:block}
+  }
+  @media (max-width:980px){
+    .services{grid-template-columns:1fr 1fr}
+    .svc,.svc:nth-child(4){grid-column:auto}
+    .values{grid-template-columns:1fr 1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav .logo img{height:52px}
+    .hero{min-height:0}
+    .hero .wrap{padding-top:56px;padding-bottom:56px}
+    .hero::after{background:linear-gradient(180deg,rgba(18,33,66,.78),rgba(18,33,66,.9))}
+    .hero .row .btn{width:100%}
+    .tiles .wrap{grid-template-columns:1fr;padding:0}
+    .tile{min-height:120px}
+    section{padding:64px 0}
+    .services,.values{grid-template-columns:1fr}
+    .about{grid-template-columns:1fr;gap:20px;text-align:center}
+    .about img{width:220px;margin:0 auto}
+    .fgrid{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.25)}
+    .callbar .btn{padding:13px 6px;font-size:.92rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Silvia Sánchez Gracia Abogados · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://silviasanchezabogados.com/" aria-label="Silvia Sánchez Gracia Abogados"><img src="https://silviasanchezabogados.com/wp-content/uploads/2020/02/logonuevo.jpg" alt="Silvia Sánchez Gracia Abogados" width="400" height="241"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://silviasanchezabogados.com/">Inicio</a></li>
+      <li><a href="https://silviasanchezabogados.com/quienes-somos/">Quiénes somos</a></li>
+      <li><a href="#servicios">Servicios<span class="caret">▼</span></a>
+        <ul class="sub">
+          <li><a href="https://silviasanchezabogados.com/derecho-civil-en-madrid/">Derecho Civil en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/derecho-de-familia-y-sucesiones-en-madrid/">Derecho de Familia y Sucesiones en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/mediacion-familiar-en-madrid/">Mediación Familiar en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/conciliacion-privada-en-madrid/">Conciliación privada en Madrid</a></li>
+        </ul>
+      </li>
+      <li><a href="https://silviasanchezabogados.com/consulta-online/">Consulta online</a></li>
+      <li><a href="https://silviasanchezabogados.com/contacto/">Contacto</a></li>
+      <li><a href="https://silviasanchezabogados.com/blog/">Blog</a></li>
+      <li><a href="https://silviasanchezabogados.com/politica-de-cookies-ue/">Política de cookies (UE)</a></li>
+    </ul>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/silviasanchezgracia/?originalSubdomain=es" target="_blank" rel="noopener" aria-label="Link to LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+      <a href="https://www.instagram.com/silvia.sanchez_abogados/" target="_blank" rel="noopener" aria-label="Link to Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/silviasanchezgraciaabogados" target="_blank" rel="noopener" aria-label="Link to Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V9c0-.6.4-1 1-1z"/></svg></a>
+    </div>
+    <details class="mnav">
+      <summary aria-label="Abrir navegación"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <nav class="panel">
+        <a href="https://silviasanchezabogados.com/">Inicio</a>
+        <a href="https://silviasanchezabogados.com/quienes-somos/">Quiénes somos</a>
+        <a href="#servicios">Servicios</a>
+        <div class="subm">
+          <a href="https://silviasanchezabogados.com/derecho-civil-en-madrid/">Derecho Civil en Madrid</a>
+          <a href="https://silviasanchezabogados.com/derecho-de-familia-y-sucesiones-en-madrid/">Derecho de Familia y Sucesiones en Madrid</a>
+          <a href="https://silviasanchezabogados.com/mediacion-familiar-en-madrid/">Mediación Familiar en Madrid</a>
+          <a href="https://silviasanchezabogados.com/conciliacion-privada-en-madrid/">Conciliación privada en Madrid</a>
+        </div>
+        <a href="https://silviasanchezabogados.com/consulta-online/">Consulta online</a>
+        <a href="https://silviasanchezabogados.com/contacto/">Contacto</a>
+        <a href="https://silviasanchezabogados.com/blog/">Blog</a>
+        <a href="https://silviasanchezabogados.com/politica-de-cookies-ue/">Política de cookies (UE)</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <img src="https://silviasanchezabogados.com/wp-content/uploads/2024/01/FOTO-PRIMERA-1500x630.jpg" alt="Despacho de Silvia Sánchez Gracia Abogados" width="1500" height="630">
+    <div class="wrap">
+      <span class="kicker">DESPACHO DE ABOGADOS EN MADRID</span>
+      <h1>SILVIA SÁNCHEZ GRACIA ABOGADOS</h1>
+      <p class="spec">ESPECIALISTAS EN DERECHO DE FAMILIA Y SUCESIONES Y EN DERECHO CIVIL</p>
+      <div class="row">
+        <a href="tel:+34915624520" class="btn btn-blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">915 624 520</span></a>
+        <a href="tel:+34609127636" class="btn btn-ghost"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg><span class="tel">609 127 636</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <div class="wrap">
+      <a class="tile" href="https://silviasanchezabogados.com/mediacion-familiar-en-madrid/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2025/01/foto-despacho-24-1500x630.jpg" alt="Mediacion Familiar en Madrid" loading="lazy"><span>MEDIACIÓN FAMILIAR EN MADRID CAPITAL</span></a>
+      <a class="tile" href="https://silviasanchezabogados.com/conciliacion-privada-en-madrid/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2025/10/FOTO-CONCILIACION-PRIVADA-1500x630.jpg" alt="Abogados especialistas en CONCILIACIÓN PRIVADA" loading="lazy"><span>CONCILIACIÓN PRIVADA EN MADRID</span></a>
+      <a class="tile" href="https://silviasanchezabogados.com/quienes-somos/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2024/01/FOTO-SEGUNDA-1500x630.jpg" alt="ESPECIALISTAS EN DERECHO DE FAMILIA Y SUCESIONES Y EN DERECHO CIVIL" loading="lazy"><span>Quiénes somos</span></a>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap"><p>30 AÑOS A TU SERVICIO</p></div></div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <h2>Servicios</h2>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <a class="ph" href="https://silviasanchezabogados.com/derecho-civil-en-madrid/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2024/01/FOTO-DERECHO-CIVIL-I-845x684.jpg" alt="Derecho Civil" loading="lazy" width="845" height="684"></a>
+          <div class="bd">
+            <h3>Derecho Civil</h3>
+            <p>Tenemos profesionales cualificados y capacitados para que te ayuden en todo lo que necesites. Llámanos.</p>
+            <a href="https://silviasanchezabogados.com/derecho-civil-en-madrid/" class="btn btn-blue">Saber más</a>
+          </div>
+        </article>
+        <article class="svc">
+          <a class="ph" href="https://silviasanchezabogados.com/derecho-de-familia-y-sucesiones-en-madrid/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2024/01/FOTO-DERECHO-DE-FAMILIA-845x684.jpg" alt="Abogados expertos en Derecho de familia y sucesiones" loading="lazy" width="845" height="684"></a>
+          <div class="bd">
+            <h3>Derecho de Familia y Sucesiones</h3>
+            <p>Buscaremos la opción que mejor se adapte a tu caso, tratando de evitar el litigio.</p>
+            <a href="https://silviasanchezabogados.com/derecho-de-familia-y-sucesiones-en-madrid/" class="btn btn-blue">Saber más</a>
+          </div>
+        </article>
+        <article class="svc">
+          <a class="ph" href="https://silviasanchezabogados.com/mediacion-familiar-en-madrid/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2024/01/FOTO-MEDIACION-I-845x684.jpg" alt="Mediación Familiar" loading="lazy" width="845" height="684"></a>
+          <div class="bd">
+            <h3>Mediación Familiar</h3>
+            <p>Una forma rápida, económica y eficaz de resolver los conflictos.</p>
+            <a href="https://silviasanchezabogados.com/mediacion-familiar-en-madrid/" class="btn btn-blue">Saber más</a>
+          </div>
+        </article>
+        <article class="svc">
+          <a class="ph" href="https://silviasanchezabogados.com/conciliacion-privada-en-madrid/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2025/10/FOTO-CONCILIACION-PRIVADA-845x684.jpg" alt="Abogados especialistas en CONCILIACIÓN PRIVADA" loading="lazy" width="845" height="684"></a>
+          <div class="bd">
+            <h3>Conciliación privada</h3>
+            <p>Resolvemos tus conflictos familiares, civiles o mercantiles de forma rápida, confidencial y sin necesidad de ir a juicio.</p>
+            <a href="https://silviasanchezabogados.com/conciliacion-privada-en-madrid/" class="btn btn-blue">Saber más</a>
+          </div>
+        </article>
+        <article class="svc">
+          <a class="ph" href="https://silviasanchezabogados.com/blog/"><img src="https://silviasanchezabogados.com/wp-content/uploads/2024/01/FOTO-BLOG-845x684.jpg" alt="Blog" loading="lazy" width="845" height="684"></a>
+          <div class="bd">
+            <h3>Blog</h3>
+            <p>Descubre nuestros últimos artículos.</p>
+            <a href="https://silviasanchezabogados.com/blog/" class="btn btn-blue">Saber más</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="tint" id="valores">
+    <div class="wrap">
+      <div class="head"><h2>Nuestros valores</h2></div>
+      <div class="values">
+        <div class="val">
+          <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Honestidad</h3>
+          <p>Nuestro asesoramiento se basa en la sinceridad e integridad a la hora de plantear los objetivos a conseguir.</p>
+        </div>
+        <div class="val">
+          <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg></span>
+          <h3>Experiencia</h3>
+          <p>30 años de profesión nos avalan</p>
+        </div>
+        <div class="val">
+          <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-5 9 5-9 5z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/></svg></span>
+          <h3>Profesionalidad</h3>
+          <p>Nuestra formación especializada nos permite afrontar con éxito cada caso que nos llega</p>
+        </div>
+        <div class="val">
+          <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span>
+          <h3>Asesoramiento personalizado</h3>
+          <p>Estudiamos tu caso en profundidad para encontrar la solución más adecuada a tus necesidades</p>
+        </div>
+      </div>
+      <div class="center"><a href="#contacto" class="btn btn-blue">Contacta con nosotros</a></div>
+    </div>
+  </section>
+
+  <!-- QUIENES SOMOS -->
+  <section id="quienes-somos">
+    <div class="about">
+      <img src="https://silviasanchezabogados.com/wp-content/uploads/2020/02/logonuevo.jpg" alt="Silvia Sánchez Gracia Abogados" width="400" height="241" loading="lazy">
+      <div>
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Silvia Sánchez Gracia Abogados</h2>
+        <p>es un despacho de abogados expertos en <strong>Derecho de Familia y Sucesiones y Derecho Civil en Madrid Capital</strong>, que también ofrece servicios de <strong>Mediación Familiar</strong>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="https://silviasanchezabogados.com/">Inicio</a></li>
+          <li><a href="https://silviasanchezabogados.com/quienes-somos/">Quiénes somos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="https://silviasanchezabogados.com/derecho-civil-en-madrid/">Derecho Civil en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/derecho-de-familia-y-sucesiones-en-madrid/">Derecho de Familia y Sucesiones en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/mediacion-familiar-en-madrid/">Mediación Familiar en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/conciliacion-privada-en-madrid/">Conciliación privada en Madrid</a></li>
+          <li><a href="https://silviasanchezabogados.com/consulta-online/">Consulta online</a></li>
+          <li><a href="https://silviasanchezabogados.com/contacto/">Contacto</a></li>
+          <li><a href="https://silviasanchezabogados.com/blog/">Blog</a></li>
+          <li><a href="https://silviasanchezabogados.com/politica-de-cookies-ue/">Política de cookies (UE)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="ci">
+          <div><b>Dirección:</b><a class="u" href="https://goo.gl/maps/MUyLYTz6UaaweKaA9" target="_blank" rel="noopener">C/ López de Hoyos, 92, 4º 1, Madrid, 28002</a></div>
+          <div><b>Correo:</b><a class="u" href="mailto:silvia@silviasanchezabogados.com">silvia@silviasanchezabogados.com</a></div>
+          <div><b>Teléfono:</b><a class="u" href="tel:+34915624520">915624520</a><br><a class="u" href="tel:+34609127636">609127636</a></div>
+          <div><b>Redes Sociales:</b>
+            <div class="fsoc">
+              <a href="https://www.linkedin.com/in/silviasanchezgracia/?originalSubdomain=es" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg>Silvia Sánchez Gracia</a>
+              <a href="https://www.instagram.com/silvia.sanchez_abogados/" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>silvia.sanchez_abogados</a>
+              <a href="https://www.facebook.com/silviasanchezgraciaabogados" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V9c0-.6.4-1 1-1z"/></svg>Silvia Sánchez Gracia Abogados</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Enlaces de interés</h4>
+        <ul>
+          <li>Comercios y servicios</li>
+          <li><a href="https://silviasanchezabogados.com/politica-de-privacidad/" target="_blank" rel="noopener">Política de privacidad</a></li>
+          <li><a href="https://silviasanchezabogados.com/aviso-legal/" target="_blank" rel="noopener">Aviso Legal</a></li>
+          <li><a href="https://silviasanchezabogados.com/politica-de-cookies/" target="_blank" rel="noopener">Política de cookies</a></li>
+        </ul>
+      </div>
+      <div class="info">
+        <h4>Información de interés</h4>
+        <p>Si quiere o necesita poder acceder a nuestras hojas de reclamaciones, solo tiene que ponerse en contacto con nosotros a través del siguiente email: <a class="u" href="mailto:silviasanchezgracia67@gmail.com">silviasanchezgracia67@gmail.com</a> y te daremos información detallada.</p>
+        <p>Asimismo, si necesita gestionar algún tipo de queja, deberá enviarnos un correo electrónico a la misma dirección <a class="u" href="mailto:silviasanchezgracia67@gmail.com">silviasanchezgracia67@gmail.com</a> para poder atenderla con la máxima celeridad posible.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34915624520" class="btn btn-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>915 624 520</a>
+  <a href="tel:+34609127636" class="btn btn-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>609 127 636</a>
+</div>
+</body>
+</html>

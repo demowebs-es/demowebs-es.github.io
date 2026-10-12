@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Allende Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#FF8000; --orange-dark:#d96c00; --orange-soft:#fff3e6; --blue:#0069B2; --ink:#1d2329; --text:#3b434b; --muted:#6C757D;
+    --line:#e7e2dc; --tint:#faf7f3; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-dark);font-weight:700}
+  .serif{font-family:"Source Serif 4",Georgia,serif}
+  .inl{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  .inl:hover{color:var(--orange-dark)}
+
+  .demo{background:var(--ink);color:#e6d6c4;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
+  .nav .logo{flex:none}
+  .nav .logo img{height:52px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none;font-size:.92rem;font-weight:600;color:var(--ink)}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 12px;border-radius:8px}
+  .menu > li > a:hover{color:var(--orange-dark)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -20px rgba(0,0,0,.25);padding:8px;list-style:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:7px 12px;border-radius:6px;font-weight:400}
+  .menu .sub a:hover{background:var(--orange-soft);color:var(--orange-dark)}
+  .caret{font-size:.7em;margin-left:4px;opacity:.6}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.95rem;transition:.2s;border:1.5px solid var(--orange);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-or{background:var(--orange);color:#fff}
+  .btn-or:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+  .btn-line{background:#fff;color:var(--orange-dark)}
+  .btn-line:hover{background:var(--orange-soft)}
+  .btn-sm{padding:9px 16px;font-size:.88rem}
+  .tel{font-variant-numeric:tabular-nums}
+  .mobile-menu{display:none}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:64px 0 40px}
+  .hero-top{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
+  .hero h1{font-family:"Source Serif 4",Georgia,serif;font-weight:700;font-size:clamp(2.3rem,5vw,3.9rem);line-height:1.05;color:var(--ink);margin:12px 0 0}
+  .hero p.lead{font-size:1.12rem;margin-bottom:24px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px}
+  .banner{margin-top:44px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff}
+  .banner img{width:100%;height:auto}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head h2{font-family:"Source Serif 4",Georgia,serif;font-weight:700;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;color:var(--ink);margin-top:8px}
+  .head p{margin-top:12px;color:var(--muted)}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* why */
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .why p.intro{font-size:1.08rem}
+  .points{display:grid;gap:14px;margin-top:26px;list-style:none}
+  .points li{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .points li::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--orange);margin-top:.5em}
+  .callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:34px 32px}
+  .callout .big{font-family:"Source Serif 4",Georgia,serif;font-size:1.6rem;line-height:1.25;font-weight:700}
+  .callout .em{color:#ffb366;font-style:italic;margin:18px 0 26px;font-size:1.05rem}
+  .callout .row{display:flex;flex-wrap:wrap;gap:10px}
+  .callout .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+
+  /* offices + trust */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .panel{border:1px solid var(--line);border-radius:var(--radius);padding:32px;background:#fff}
+  .panel h3{font-family:"Source Serif 4",Georgia,serif;font-size:1.6rem;color:var(--ink);line-height:1.2;margin-bottom:14px}
+  .panel p+p{margin-top:12px}
+  .panel .addr{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);display:grid;gap:6px}
+  .panel .addr b{color:var(--ink)}
+  .panel img{border-radius:10px;margin-top:20px;width:100%}
+  .panel.trust{background:var(--orange-soft);border-color:#f7dcc0}
+  .panel.trust .hl{font-size:1.15rem;color:var(--ink)}
+  .panel.trust .hl strong{color:var(--orange-dark)}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:56px}
+  .chips a{padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-weight:600;font-size:.92rem;color:var(--ink);background:#fff}
+  .chips a:hover{border-color:var(--orange);color:var(--orange-dark)}
+
+  /* areas */
+  .area{border-top:1px solid var(--line);padding:48px 0;display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;scroll-margin-top:100px}
+  .area:first-of-type{border-top:0;padding-top:0}
+  .area .side .eyebrow{display:block;margin-bottom:8px}
+  .area .side h3{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(1.6rem,2.8vw,2.1rem);color:var(--ink);line-height:1.15}
+  .area .side p{margin-top:14px}
+  .area .side .mini{margin-top:20px;display:inline-flex;flex-direction:column;background:var(--ink);color:#fff;border-radius:10px;padding:14px 20px}
+  .area .side .mini b{font-size:1.25rem}
+  .area .side .mini span{color:#ffb366;font-weight:600}
+  .groups{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .groups.g2{grid-template-columns:repeat(2,1fr)}
+  .group{background:var(--tint);border-radius:10px;padding:20px}
+  .group h4{font-size:1rem;color:var(--ink);margin-bottom:6px}
+  .group h4 a{color:var(--blue)}
+  .group h4 a:hover{color:var(--orange-dark)}
+  .group p.sub{font-size:.9rem;font-weight:600;color:var(--muted);margin-bottom:8px}
+  .group ul{list-style:none;display:grid;gap:6px;font-size:.95rem}
+  .group li{padding-left:16px;position:relative}
+  .group li::before{content:"";position:absolute;left:0;top:.68em;width:7px;height:2px;background:var(--orange)}
+  .group li a{color:var(--blue)}
+  .group li a:hover{color:var(--orange-dark)}
+  .labor{display:grid;gap:14px}
+  .labor div{background:var(--tint);border-radius:10px;padding:18px 20px}
+  .labor b{color:var(--ink)}
+
+  /* actualidad */
+  .actual{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .post{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;border-top:3px solid var(--orange);transition:.2s}
+  .post:hover{box-shadow:0 16px 36px -24px rgba(0,0,0,.3)}
+  .post h3{font-size:1.08rem;line-height:1.3;color:var(--ink);margin-bottom:8px}
+  .post h3 a:hover{color:var(--orange-dark)}
+  .post p{font-size:.93rem;color:var(--muted)}
+
+  /* oficinas */
+  .office{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .office-card{background:var(--ink);color:#fff;border-radius:var(--radius);padding:32px}
+  .office-card h3{font-family:"Source Serif 4",Georgia,serif;font-size:1.5rem;margin-bottom:12px}
+  .office-card p{color:#d9dde1}
+  .office-card .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .office-card .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+
+  footer{background:#171c21;color:#b9c0c7;padding:60px 0 28px;font-size:.93rem}
+  .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:34px}
+  .foot img{height:48px;width:auto;margin-bottom:16px}
+  .foot h4{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+  .foot ul{list-style:none;display:grid;gap:6px}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.84rem}
+  .copy nav{display:flex;flex-wrap:wrap;gap:16px}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .menu{display:none}
+    .mobile-menu{display:block;position:relative}
+    .mobile-menu summary{list-style:none;cursor:pointer;padding:9px 16px;border:1.5px solid var(--orange);border-radius:999px;color:var(--orange-dark);font-weight:700;font-size:.9rem}
+    .mobile-menu summary::-webkit-details-marker{display:none}
+    .mobile-menu nav{position:absolute;right:0;top:calc(100% + 10px);width:min(320px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -18px rgba(0,0,0,.3);padding:10px;max-height:70vh;overflow:auto}
+    .mobile-menu a{display:block;padding:8px 12px;border-radius:6px;font-size:.95rem;color:var(--ink)}
+    .mobile-menu a.sub{padding-left:26px;font-size:.9rem;color:var(--text)}
+    .mobile-menu .lbl{display:block;padding:8px 12px 2px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  }
+  @media (max-width:980px){
+    .hero-top,.why,.two,.area,.office{grid-template-columns:1fr;gap:28px}
+    .posts{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:66px}
+    .nav .logo img{height:42px}
+    .head-cta{display:none}
+    .hero{padding:40px 0 28px}
+    .hero .row .btn,.callout .row .btn,.office-card .row .btn{width:100%}
+    .groups,.groups.g2,.posts,.foot{grid-template-columns:1fr}
+    section{padding:60px 0}
+    .panel,.callout,.office-card{padding:24px 20px}
+    .chips{justify-content:flex-start}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Allende Abogados · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.allendeabogados.com/" aria-label="Allende Abogados"><img src="https://www.allendeabogados.com/images/shared/logos/logo-allende-top.png" alt="Allende Abogados"></a>
+    <ul class="menu">
+      <li><a href="https://www.allendeabogados.com/">Nosotros</a></li>
+      <li><a href="#servicios">Servicios<span class="caret">▾</span></a>
+        <ul class="sub">
+          <li><a href="https://www.allendeabogados.com/abogados-administrativo/">Derecho Administrativo</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-urbanismo/">Urbanismo</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-inmobiliario-madrid/">Inmobiliario</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-penalistas-madrid/">Derecho Penal</a></li>
+          <li><a href="https://www.allendeabogados.com/derecho-civil/">Derecho Civil</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-familia-madrid/">Abogados de Familia</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-herencias-madrid/">Herencias y Sucesiones</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-laborales-madrid/">Derecho Laboral</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-mercantiles/">Derecho Mercantil</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-hipotecas-madrid/">Bancario e Hipotecario</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.allendeabogados.com/blog/">Blog</a></li>
+      <li><a href="https://www.allendeabogados.com/empleo-abogado-madrid/">Empleo abogados</a></li>
+      <li><a href="https://www.allendeabogados.com/contacto/">Contacto - Cita gratuita</a></li>
+    </ul>
+    <a href="tel:+34910053915" class="btn btn-or btn-sm head-cta">¡Llámanos! <span class="tel">910 05 39 15</span></a>
+    <details class="mobile-menu">
+      <summary>Menú</summary>
+      <nav>
+        <a href="https://www.allendeabogados.com/">Nosotros</a>
+        <span class="lbl">Servicios</span>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-administrativo/">Derecho Administrativo</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-urbanismo/">Urbanismo</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-inmobiliario-madrid/">Inmobiliario</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-penalistas-madrid/">Derecho Penal</a>
+        <a class="sub" href="https://www.allendeabogados.com/derecho-civil/">Derecho Civil</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-familia-madrid/">Abogados de Familia</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-herencias-madrid/">Herencias y Sucesiones</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-laborales-madrid/">Derecho Laboral</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-mercantiles/">Derecho Mercantil</a>
+        <a class="sub" href="https://www.allendeabogados.com/abogados-hipotecas-madrid/">Bancario e Hipotecario</a>
+        <a href="https://www.allendeabogados.com/blog/">Blog</a>
+        <a href="https://www.allendeabogados.com/empleo-abogado-madrid/">Empleo abogados</a>
+        <a href="https://www.allendeabogados.com/contacto/">Contacto - Cita gratuita</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div>
+          <span class="eyebrow">Allende Abogados Madrid</span>
+          <h1>Tu Despacho de Abogados Especialistas en Madrid</h1>
+        </div>
+        <div>
+          <p class="lead">Contamos con un gran equipo de juristas, y con Oficinas en el Centro de Madrid Capital y otras localidades en la Comunidad de Madrid.</p>
+          <div class="row">
+            <a href="tel:+34910053915" class="btn btn-or">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+              <span class="tel">910 05 39 15</span>
+            </a>
+            <a href="https://www.allendeabogados.com/contacto/" class="btn btn-line">¡Solicita cita gratuita!</a>
+          </div>
+        </div>
+      </div>
+      <div class="banner"><img src="https://www.allendeabogados.com/images/shared/banners/equipo-2026.jpg" alt="Equipo de Allende Abogados" width="2172" height="724"></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap why">
+      <div>
+        <div class="head" style="margin-bottom:18px">
+          <span class="eyebrow">¿Por qué escogernos?</span>
+          <h2>¿Necesitas asesoramiento jurídico en Madrid?</h2>
+        </div>
+        <p class="intro">En Allende Abogados Madrid encontrarás un equipo de profesionales, personas con gran conciencia del deber a nuestros clientes, vocacionales y dedicados por entero a nuestra labor de la forma más transparente y honrada.</p>
+        <ul class="points">
+          <li>Estudiamos cada caso para identificar las alternativas jurídicas viables.</li>
+          <li>Trabajamos con transparencia, atención cercana y compromiso profesional.</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <p class="big">¡Solicita una primera cita gratuita para valorar tu asunto!</p>
+        <p class="em">Profesionales con gran empatía; personas que entienden a personas.</p>
+        <div class="row">
+          <a href="https://www.allendeabogados.com/contacto/" class="btn btn-or">¡Llámenos sin compromiso!</a>
+          <a href="tel:+34910053915" class="btn btn-line tel">910 05 39 15</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap two">
+      <div class="panel">
+        <span class="eyebrow">Nuestros Despachos</span>
+        <h3 style="margin-top:8px">Allende Abogados dispone de despachos en Madrid capital y Rivas Vaciamadrid.</h3>
+        <p>Esto nos permite disponer de un equipo de abogados con experiencia en distintas áreas jurídicas, así como de proporcionar un enfoque multidisciplinar al mismo. Nuestros juristas son colegiados del <a class="inl" href="https://web.icam.es/" target="_blank" rel="noopener">Ilustre Colegio de Abogados de Madrid</a>.</p>
+        <div class="addr">
+          <div><b>Oficina principal:</b> Calle del General Castaños, 13, Madrid.</div>
+          <div><b>Despacho en Rivas Vaciamadrid:</b> <a class="inl" href="https://www.abogados-rivas.com/" target="_blank" rel="noopener">Rivas Vaciamadrid</a>.</div>
+        </div>
+      </div>
+      <div class="panel trust">
+        <span class="eyebrow">Elija una opción segura y profesional</span>
+        <p class="hl" style="margin-top:12px">En Allende Abogados Madrid siempre encontrarás <strong>un trato amable y cercano</strong></p>
+        <p>La confianza que día a día nos dispensan nuestros clientes es el impulso que nos ayuda a continuar con la misma ilusión de nuestros inicios y alimenta de continuo nuestra vocación.</p>
+        <img src="https://www.allendeabogados.com/images/shared/350/allende-350-2026.jpg" alt="Allende Abogados" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center" style="text-align:center">
+        <span class="eyebrow">Servicios</span>
+        <h2>Servicios jurídicos especializados en Madrid</h2>
+      </div>
+      <nav class="chips" aria-label="Áreas">
+        <a href="#idPenal">Derecho Penal</a>
+        <a href="#idLaboral">Derecho Laboral</a>
+        <a href="#idBancario">Bancario e Hipotecario</a>
+        <a href="#idFamilia">Familia, Matrimonial y Divorcios</a>
+        <a href="#idHerencias">Herencias y Sucesiones</a>
+        <a href="#idInmobiliario">Inmobiliario y Urbanismo</a>
+        <a href="#idActualidad">Actualidad Jurídica</a>
+        <a href="#idDespachos">Despachos en Madrid</a>
+      </nav>
+
+      <article class="area" id="idPenal">
+        <div class="side">
+          <span class="eyebrow">Derecho Penal</span>
+          <h3>Especialistas en Derecho Penal</h3>
+          <p>Como <a class="inl" href="https://www.allendeabogados.com/abogados-penalistas-madrid/">abogados penalistas</a>, nuestra amplia experiencia en esta rama del derecho nos ha permitido llevar casos de todo tipo relacionados con el Derecho Penal en Madrid y resto de España.</p>
+        </div>
+        <div class="groups">
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-delitos-economicos/">Delitos económicos</a></h4><ul><li><a href="https://www.allendeabogados.com/abogados-estafas/">Estafas</a></li><li>Fraudes bancarios</li><li>Estafas por internet</li><li>Delitos socioeconómicos</li></ul></div>
+          <div class="group"><h4><a href="https://www.allendeabogados.com/delitos-sexuales/">Delitos sexuales</a></h4><ul><li><a href="https://www.allendeabogados.com/acoso-sexual/">Acoso sexual</a></li><li>Agresiones sexuales</li><li>Violencia de género</li><li>Pornografía infantil</li></ul></div>
+          <div class="group"><h4>Delitos contra las personas y patrimonio</h4><ul><li><a href="https://www.allendeabogados.com/delitos-leves/">Delitos leves</a></li><li>Robos y hurtos</li><li>Homicidios y asesinatos</li><li><a href="https://www.allendeabogados.com/abogados-alcoholemia-madrid/">Alcoholemias</a></li></ul></div>
+        </div>
+      </article>
+
+      <article class="area" id="idLaboral">
+        <div class="side">
+          <span class="eyebrow">Derecho Laboral</span>
+          <h3>¿Necesitas un buen <a href="https://www.allendeabogados.com/abogados-laborales-madrid/">abogado laboralista en Madrid</a>?</h3>
+          <p>Pasión y dedicación al Derecho Laboral y del Trabajo en Madrid</p>
+        </div>
+        <div class="labor">
+          <div><b>Incapacidad Permanente:</b> Somos <a class="inl" href="https://www.allendeabogados.com/incapacidad-permanente/">abogados especialistas en incapacidad permanente</a>. Llevamos cientos de solicitudes o reclamaciones (administrativas y judiciales) anualmente.</div>
+          <div><b>Discapacidad:</b> Como <a class="inl" href="https://www.allendeabogados.com/abogados-discapacidad/">abogados especialistas en discapacidades</a>, ayudamos a nuestros clientes en la solicitud o revisión del grado de discapacidad.</div>
+          <div><b>Despidos:</b> Llevamos todo tipo de <a class="inl" href="https://www.allendeabogados.com/abogados-despidos-madrid/">despidos laborales en Madrid</a>, defendiendo tanto a trabajadores como a empresas.</div>
+          <div><b><a class="inl" href="https://www.allendeabogados.com/abogados-seguridad-social/">Seguridad Social</a>:</b> Expertos en la tramitación de las pensiones derivadas del INSS.</div>
+          <div><b>Accidentes de trabajo:</b> Reclamando la indemnización que legalmente corresponda.</div>
+        </div>
+      </article>
+
+      <article class="area" id="idBancario">
+        <div class="side">
+          <span class="eyebrow">Bancario e Hipotecario</span>
+          <h3>¿Tienes problemas con tu hipoteca?</h3>
+        </div>
+        <div class="labor">
+          <div><b><a class="inl" href="https://www.allendeabogados.com/abogados-hipotecas-madrid/">Abogados hipotecarios</a>:</b> Reclamación y recuperación de los gastos de formalización de su hipoteca por abogados expertos en Madrid.</div>
+          <div><b><a class="inl" href="https://www.allendeabogados.com/abogados-clausula-suelo-madrid/">Cláusula Suelo</a>:</b> Recupere lo pagado de más por IRPH o cláusula suelo abusiva en su hipoteca.</div>
+          <div><b><a class="inl" href="https://www.allendeabogados.com/abogados-hipotecas-multidivisa-madrid/">Hipotecas Multidivisa</a>:</b> Somos especialistas en demandas por nulidad de hipotecas multidivisa.</div>
+          <div><b><a class="inl" href="https://www.allendeabogados.com/ejecucion-hipotecaria/">Ejecución Hipotecaria</a>:</b> Detenemos los procesos de ejecución hipotecaria que pueden derivar en desahucio o subasta de su vivienda.</div>
+        </div>
+      </article>
+
+      <article class="area" id="idFamilia">
+        <div class="side">
+          <span class="eyebrow">Familia</span>
+          <h3>Derecho de Familia, Matrimonial y Divorcios</h3>
+          <p>Especialistas en Derecho Familiar y delitos contra las relaciones familiares. Amplia experiencia en procedimientos relacionados con el Derecho Matrimonial. Procedimientos de divorcio y disolución de la pareja en Madrid.</p>
+          <a class="mini" href="tel:+34910053915"><b class="tel">910 05 39 15</b><span>¡Solicite cita gratuita!</span></a>
+        </div>
+        <div class="groups">
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-familia-madrid/">Abogados de Familia</a></h4><ul><li><a href="https://www.allendeabogados.com/incapacitacion-judicial/">Incapacitación judicial</a>, <a href="https://www.allendeabogados.com/abogados-tutela/">Tutela</a> y Curatela</li><li><a href="https://www.allendeabogados.com/adopciones/">Adopciones</a> en Madrid y nacionales</li><li><a href="https://www.allendeabogados.com/paternidad-filiacion/">Paternidad, Maternidad y Filiación</a></li><li>Violencia de género</li></ul></div>
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-matrimonialistas-madrid/">Abogados Matrimonialistas</a></h4><ul><li>Separaciones matrimoniales</li><li>Custodia compartida</li><li>Modificación de medidas</li><li>Liquidación sociedad ganancial</li></ul></div>
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-divorcios-madrid/">Abogados de Divorcios</a></h4><ul><li>Divorcio contencioso</li><li>Divorcio de mutuo acuerdo</li><li>Divorcio notarial</li><li>Nulidad matrimonial</li></ul></div>
+        </div>
+      </article>
+
+      <article class="area" id="idHerencias">
+        <div class="side">
+          <span class="eyebrow">Herencias</span>
+          <h3>Sucesiones y Donaciones</h3>
+          <p>Abogados especializados en Herencias, Testamentos y Donaciones</p>
+        </div>
+        <div class="groups g2">
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-herencias-madrid/">Abogados de Herencias</a></h4><ul><li>Aceptación o impugnación de herencias</li><li>Partición judicial de herencias</li><li>Reclamación de legítima y legados</li><li><a href="https://www.allendeabogados.com/impugnar-testamento/">Impugnación de testamentos</a></li><li><a href="https://www.allendeabogados.com/impugnar-herencia-aceptada/">Impugnar herencia aceptada</a></li></ul></div>
+        </div>
+      </article>
+
+      <article class="area" id="idInmobiliario">
+        <div class="side">
+          <span class="eyebrow">Inmobiliario y Urbanismo</span>
+          <h3>Derecho Inmobiliario y Urbanismo</h3>
+          <p>Abogados con amplia experiencia en Derecho Urbanístico e Inmobiliario</p>
+        </div>
+        <div class="groups g2">
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-inmobiliario-madrid/">Abogados Inmobiliarios</a></h4><ul><li><a href="https://www.allendeabogados.com/abogados-desahucios/">Desahucios</a></li><li>Vicios de construcción</li><li>Comunidades de vecinos</li><li>Cooperativas de vivienda y promotoras</li><li><a href="https://www.allendeabogados.com/abogados-estafas-inmobiliarias/">Estafas inmobiliarias</a></li></ul></div>
+          <div class="group"><h4>Abogados de Urbanismo</h4><ul><li>Convenios urbanísticos</li><li>Planes urbanísticos</li><li><a href="https://www.allendeabogados.com/abogados-expropiaciones/">Expropiaciones y reparcelación</a></li><li>Recalificación del suelo</li><li>Derecho medioambiental</li></ul></div>
+        </div>
+      </article>
+
+      <article class="area">
+        <div class="side">
+          <span class="eyebrow">Civil y Mercantil</span>
+          <h3>Otros Servicios jurídicos</h3>
+        </div>
+        <div class="groups g2">
+          <div class="group"><h4><a href="https://www.allendeabogados.com/derecho-civil/">Derecho Civil</a></h4><p class="sub">Áreas de actuación en nuestro Despacho de Abogados en Madrid</p><ul><li><a href="https://www.allendeabogados.com/indemnizaciones/">Abogados para indemnizaciones</a></li><li><a href="https://www.allendeabogados.com/abogados-reclamacion-seguros/">Reclamación de Seguros</a></li><li>Responsabilidad civil</li><li><a href="https://www.allendeabogados.com/abogados-negligencias-medicas/">Negligencias y errores médicos</a></li><li><a href="https://www.allendeabogados.com/recursos-judiciales/">Recursos judiciales</a></li></ul></div>
+          <div class="group"><h4><a href="https://www.allendeabogados.com/abogados-mercantiles/">Derecho Mercantil</a></h4><p class="sub">Defensa de sus intereses por Abogados mercantilistas especialistas en Madrid</p><ul><li><a href="https://www.allendeabogados.com/abogados-ley-de-segunda-oportunidad/">Abogados Ley Segunda Oportunidad</a></li><li>Concurso de acreedores</li><li>Constitución de sociedades</li><li>Delitos socioeconómicos</li></ul></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="actual" id="idActualidad">
+    <div class="wrap">
+      <div class="head center" style="text-align:center">
+        <span class="eyebrow">Blog</span>
+        <h2>Actualidad Jurídica</h2>
+      </div>
+      <div class="posts">
+        <article class="post"><h3><a href="https://www.allendeabogados.com/sentencia-declaracion-nulidad-medida-denegatoria-escolaridad-gratuita/">Mejoras sociales, reducción de jornada y discriminación</a></h3><p>Sentencia estimatoria de declaración de nulidad de medida denegatoria de escolaridad gratuita por vulneración del Derecho Fundamental de igualdad de trato y sin discriminación.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/como-interponer-una-demanda-de-divorcio/">Demanda de Divorcio</a></h3><p>La demanda en el procedimiento de divorcio contencioso y de mutuo acuerdo.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/cambios-jubilacion-anticipada-discapacidad-2023/">Decreto 370/2023: Jubilación anticipada por discapacidad</a></h3><p>Los cambios en la jubilación anticipada para personas trabajadoras con discapacidad igual o superior al 45%.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/derecho-laboral/que-hacer-ante-un-despido-improcedente/">¿Qué hacer ante un despido improcedente?</a></h3><p>Reclamación legal por despido improcedente ¿Cómo debo actuar ante un despido improcedente?</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/la-obligacion-de-los-bancos-para-evitar-el-phishing/">La obligación de los bancos para evitar el phishing</a></h3><p>En España, los bancos tienen la obligación legal de tomar medidas para prevenir y proteger a sus clientes del phishing.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/solicitar-grado-discapacidad/">Solicitar el Grado y Certificado de Discapacidad</a></h3><p>Conseguir el Certificado de Discapacidad no es sencillo, confíe en abogados especialistas. Tramitación íntegra de la Solicitud del Grado de Discapacidad en Madrid.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/blog/cuanto-cuesta-incapacitar-a-una-persona-mayor/">Cuánto Cuesta Incapacitar a una Persona Mayor</a></h3><p>Dependiendo de los motivos que inicien la decisión de incapacitar, el proceso tendrá distintos grados de dificultad, y por ende un coste más o menos elevado.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/impugnar-testamento/">Impugnar Testamento</a></h3><p>Impugnar el testamento es un proceso complicado que puede alargarse en el tiempo si no cuenta con un bufete especialista.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/blog/incapacitar-persona-con-alzheimer/">Incapacitar a una Persona con Alzheimer</a></h3><p>El fin principal de la incapacitación del enfermo de Alzheimer no es otro que salvaguardar sus bienes, derechos y su propia integridad.</p></article>
+        <article class="post"><h3><a href="https://www.allendeabogados.com/incapacidad-permanente/solicitud-incapacidad-permanente/">Solicitar una Incapacidad Permanente</a></h3><p>El objetivo de iniciar una solicitud de incapacidad permanente es tener acceso a una serie de prestaciones económicas, que buscan compensar, en mayor o menor grado, la imposibilidad de trabajar.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="idDespachos">
+    <div class="wrap office">
+      <div>
+        <div class="head" style="margin-bottom:16px">
+          <span class="eyebrow">Despachos en Madrid</span>
+          <h2>Nuestras Oficinas en Madrid</h2>
+        </div>
+        <p>Allende Abogados presta atención presencial en Madrid capital y Rivas Vaciamadrid. Desde estas oficinas asesoramos a clientes de toda la Comunidad de Madrid y, cuando la naturaleza del asunto lo permite, del resto de España.</p>
+        <p style="margin-top:16px;font-weight:700;color:var(--ink)">¡Solicita una primera cita gratuita con un abogado especialista!</p>
+      </div>
+      <div class="office-card">
+        <h3><a href="https://www.allendeabogados.com/despacho-madrid/">Despacho en Madrid Capital</a></h3>
+        <p>Calle del General Castaños, 13<br>28004 MADRID (Madrid)</p>
+        <p style="margin-top:8px">Teléfono: <a href="tel:+34910053915" class="tel">910 05 39 15</a></p>
+        <div class="row">
+          <a href="tel:+34910053915" class="btn btn-or">Llamar</a>
+          <a href="https://g.page/allendeabogados?gm" target="_blank" rel="noopener" class="btn btn-line">Ver Mapa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="https://www.allendeabogados.com/"><img src="https://www.allendeabogados.com/images/shared/logos/allendeabogados-logo-trans.png" alt="Allende Abogados" loading="lazy"></a>
+        <p style="color:#fff;font-weight:700;margin-bottom:6px">ALLENDE Abogados Madrid</p>
+        <p>Despacho de abogados en Madrid fundado en 2015, con un equipo integrado mayoritariamente por letrados con más de 25 años de experiencia profesional.</p>
+      </div>
+      <div>
+        <h4>Áreas</h4>
+        <ul>
+          <li><a href="https://www.allendeabogados.com/">Abogados Madrid</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-administrativo/">Derecho Administrativo</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-urbanismo/">Urbanismo</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-penalistas-madrid/">Derecho Penal</a></li>
+          <li><a href="https://www.allendeabogados.com/derecho-civil/">Derecho Civil</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-familia-madrid/">Abogados de Familia</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-herencias-madrid/">Herencias y Sucesiones</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-laborales-madrid/">Derecho Laboral</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-mercantiles/">Derecho Mercantil</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-hipotecas-madrid/">Bancario e Hipotecario</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-inmobiliario-madrid/">Inmobiliario</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Especialidades</h4>
+        <ul>
+          <li><a href="https://www.allendeabogados.com/abogados-matrimonialistas-madrid/">Abogados Matrimonialistas</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-divorcios-madrid/">Divorcios</a></li>
+          <li><a href="https://www.allendeabogados.com/incapacidad-permanente/">Incapacidad permanente</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-despidos-madrid/">Despidos</a></li>
+          <li><a href="https://www.allendeabogados.com/delitos-sexuales/">Delitos sexuales</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-alcoholemia-madrid/">Alcoholemias</a></li>
+          <li><a href="https://www.allendeabogados.com/ejecucion-hipotecaria/">Ejecución hipotecaria</a></li>
+          <li><a href="https://www.allendeabogados.com/abogados-ley-de-segunda-oportunidad/">Segunda oportunidad</a></li>
+          <li><a href="https://www.allendeabogados.com/recursos-judiciales/">Recursos judiciales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Despacho</h4>
+        <ul>
+          <li><a href="https://www.allendeabogados.com/contacto/">Formulario de contacto</a></li>
+          <li><a href="https://www.allendeabogados.com/publicaciones/">Blogs de Allende</a></li>
+          <li><a href="https://www.allendeabogados.com/empleo-abogado-madrid/">Ofertas de Empleo para Abogados</a></li>
+          <li><a href="tel:+34910053915">910 05 39 15</a></li>
+          <li><a href="mailto:info@allendeabogados.com">info@allendeabogados.com</a></li>
+          <li>Calle del General Castaños, 13, 28004 Madrid</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© www.allendeabogados.com 2015-2026</span>
+      <nav>
+        <a href="https://www.allendeabogados.com/soporte/cookies">Configurar cookies</a>
+        <a href="https://www.allendeabogados.com/soporte/aviso-legal">Aviso legal</a>
+        <a href="https://www.allendeabogados.com/soporte/privacidad">Privacidad</a>
+        <a href="https://www.allendeabogados.com/soporte/cookies">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34910053915" class="btn btn-or">¡Llámanos!</a>
+  <a href="https://www.allendeabogados.com/contacto/" class="btn btn-line">Cita gratuita</a>
+</div>
+</body>
+</html>

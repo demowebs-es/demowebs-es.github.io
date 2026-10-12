@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Martín Aranda Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#004E7D; --brand-dark:#003a5e; --brand-soft:#e8f0f5; --ink:#14212b; --text:#3a4650; --muted:#66727c;
+    --line:#dde6ec; --tint:#f4f7f9; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Poppins,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);font-weight:600}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif}
+
+  .demo{background:var(--ink);color:#c9d6df;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:18px}
+  .nav .logo{flex:none}
+  .nav .logo img{height:64px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none;font-size:.86rem;font-weight:500;color:var(--ink)}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 8px;border-radius:8px;white-space:nowrap}
+  .menu > li > a:hover{color:var(--brand)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -20px rgba(0,0,0,.25);padding:8px;list-style:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:8px 12px;border-radius:6px;font-weight:400}
+  .menu .sub a:hover{background:var(--tint);color:var(--brand)}
+  .caret{font-size:.7em;margin-left:4px;opacity:.6}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.92rem;transition:.2s;border:1.5px solid var(--brand);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-brand{background:var(--brand);color:#fff}
+  .btn-brand:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+  .btn-line{background:#fff;color:var(--brand)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.84rem}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.9}
+  .mobile-menu{display:none}
+
+  /* hero */
+  .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
+  .hero .bg{position:absolute;inset:0;background:url("https://www.bufetemartinaranda.com/wp-content/uploads/2014/10/bufetemartinaranda-slide1.jpg") center right/cover no-repeat}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,30,45,.94) 0%,rgba(10,30,45,.82) 42%,rgba(10,30,45,.2) 100%)}
+  .hero .wrap{position:relative;padding-top:110px;padding-bottom:120px}
+  .hero .eyebrow{color:#9cc3dc}
+  .hero h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;margin:14px 0 22px;max-width:640px}
+  .hero p{max-width:560px;font-size:1.06rem;color:#dbe6ee}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08);border-color:#fff}
+  .hero .btn-brand{background:#fff;color:var(--brand);border-color:#fff}
+  .hero .btn-brand:hover{background:var(--brand-soft)}
+
+  section{padding:92px 0}
+  .head{max-width:720px;margin-bottom:42px}
+  .head h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(2rem,3.8vw,2.9rem);line-height:1.08;color:var(--ink);margin-top:8px}
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:42px}
+  .head-row .head{margin-bottom:0}
+
+  /* services */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;background:#fff;transition:.25s}
+  .svc:hover{border-color:var(--brand);box-shadow:0 18px 40px -26px rgba(0,40,70,.35);transform:translateY(-2px)}
+  .svc .num{font-family:"Cormorant Garamond",Georgia,serif;color:var(--brand);font-size:1.15rem;font-weight:700}
+  .svc h3{font-size:1.15rem;color:var(--ink);margin:4px 0 12px;font-weight:600}
+  .svc p{font-size:.9rem;flex:1}
+  .svc .more{margin-top:16px;font-size:.84rem;font-weight:600;color:var(--brand)}
+
+  /* asesoria */
+  .asesoria{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ase{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .ase h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(2rem,3.6vw,2.7rem);line-height:1.1;color:var(--ink)}
+  .ase h2 a:hover{color:var(--brand)}
+  .ase p{font-size:1rem}
+  .ase .btn{margin-top:24px}
+
+  /* blog */
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .post{display:flex;flex-direction:column;border-top:3px solid var(--brand);background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:24px 4px 4px}
+  .post h3{font-size:1.02rem;line-height:1.4;color:var(--ink);font-weight:600;margin-bottom:10px}
+  .post h3 a:hover{color:var(--brand)}
+  .post p{font-size:.88rem;color:var(--muted);flex:1}
+  .post .more{margin-top:14px;font-size:.84rem;font-weight:600;color:var(--brand)}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about img{border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;width:100%}
+  .about p{font-size:1.02rem;margin-bottom:24px}
+
+  /* testimonials */
+  .testis{background:var(--brand);color:#fff}
+  .testis .eyebrow{color:#9cc3dc}
+  .testis .head h2{color:#fff}
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quote{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:28px 26px;display:flex;flex-direction:column}
+  .quote blockquote{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:1.35rem;line-height:1.35;flex:1}
+  .quote blockquote::before{content:"“";display:block;font-size:3.4rem;line-height:.6;color:#9cc3dc;margin-bottom:10px}
+  .quote .who{margin-top:20px;font-weight:600}
+  .quote .who span{display:block;font-weight:400;font-size:.82rem;color:#b9d2e2}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .info{display:grid;gap:18px;margin-top:26px}
+  .info .it{display:flex;gap:14px;align-items:flex-start}
+  .info .ic{flex:none;width:42px;height:42px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center}
+  .info b{display:block;color:var(--ink);font-weight:600;font-size:.92rem}
+  .info span,.info a{font-size:.92rem}
+  .info a:hover{color:var(--brand)}
+  .card-form{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--line);box-shadow:0 24px 50px -28px rgba(0,40,70,.35);border-top:4px solid var(--brand)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field label span{color:var(--brand)}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cfdbe3;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(0,78,125,.25);border-color:var(--brand)}
+  .check{display:flex;gap:10px;font-size:.8rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:6px 0 20px}
+  .check input{margin-top:3px;accent-color:var(--brand);flex:none}
+  .check a{text-decoration:underline;color:var(--brand)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  footer{background:#0d2a3d;color:#c5d4de;padding:64px 0 30px;font-size:.88rem}
+  .foot{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.4fr;gap:36px}
+  .foot img{height:70px;width:auto;margin-bottom:18px}
+  .foot h4{color:#fff;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+  .foot ul{list-style:none;display:grid;gap:7px}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .social{display:flex;gap:14px;flex-wrap:wrap}
+  .copy{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;font-size:.8rem;color:#90a6b5}
+
+  .callbar{display:none}
+
+  @media (max-width:1240px){
+    .menu{display:none}
+    .mobile-menu{display:block;position:relative}
+    .mobile-menu summary{list-style:none;cursor:pointer;padding:10px 16px;border:1.5px solid var(--brand);border-radius:999px;color:var(--brand);font-weight:600;font-size:.86rem}
+    .mobile-menu summary::-webkit-details-marker{display:none}
+    .mobile-menu nav{position:absolute;right:0;top:calc(100% + 10px);width:min(320px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -18px rgba(0,0,0,.3);padding:10px;max-height:70vh;overflow:auto}
+    .mobile-menu a{display:block;padding:9px 12px;border-radius:6px;font-size:.9rem;color:var(--ink)}
+    .mobile-menu a.sub{padding-left:26px;font-size:.85rem;color:var(--text)}
+    .mobile-menu a:hover{background:var(--tint)}
+    .head-tel{display:none}
+  }
+  @media (max-width:980px){
+    .services,.posts,.quotes{grid-template-columns:1fr 1fr}
+    .ase,.about,.contact-grid{grid-template-columns:1fr;gap:36px}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav .logo img{height:50px}
+    .hero .wrap{padding-top:64px;padding-bottom:72px}
+    .hero .bg{background-position:72% center}
+    .hero .bg::after{background:linear-gradient(180deg,rgba(10,30,45,.75),rgba(10,30,45,.93))}
+    .hero .row .btn{width:100%}
+    .services,.posts,.quotes,.foot{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .card-form{padding:24px 20px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Martín Aranda Abogados · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.bufetemartinaranda.com/" aria-label="Abogados Martín Aranda"><img src="https://www.bufetemartinaranda.com/wp-content/uploads/2022/08/logo.jpg" alt="Abogados Martín Aranda" width="300" height="143"></a>
+    <ul class="menu">
+      <li><a href="https://www.bufetemartinaranda.com/servicios-juridicos/">Qué hacemos<span class="caret">▾</span></a>
+        <ul class="sub">
+          <li><a href="https://www.bufetemartinaranda.com/abogado-familia/">Abogado de Familia</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-agrario-y-ganadero/">Abogado Agrario y ganadero</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-herencias/">Abogado Herencias</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-civil/">Abogado Civil</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-laboral/">Abogado Laboral</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-penal/">Abogado Penal</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-accidentes/">Abogado Accidentes</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.bufetemartinaranda.com/asesoria-integral-para-pymes-y-autonomos-en-madrid/">Asesoría</a></li>
+      <li><a href="https://www.bufetemartinaranda.com/campana-renta-2025-asesoria-fiscal-para-presentar-tu-declaracion-de-la-renta/">Campaña Renta 2025</a></li>
+      <li><a href="https://www.bufetemartinaranda.com/quienes-somos/">Quiénes somos</a></li>
+      <li><a href="https://www.bufetemartinaranda.com/category/de-interes/">De interés</a></li>
+      <li><a href="https://www.bufetemartinaranda.com/contacto/">Contacto</a></li>
+      <li><a href="https://www.bufetemartinaranda.com/preguntas-frecuentes-faq-bufete-martin-aranda/">Preguntas Frecuentes (FAQ)</a></li>
+    </ul>
+    <a href="tel:+34917062416" class="btn btn-brand btn-sm head-tel">+34 917 06 24 16</a>
+    <details class="mobile-menu">
+      <summary>Menú</summary>
+      <nav>
+        <a href="https://www.bufetemartinaranda.com/servicios-juridicos/">Qué hacemos</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-familia/">Abogado de Familia</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-agrario-y-ganadero/">Abogado Agrario y ganadero</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-herencias/">Abogado Herencias</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-civil/">Abogado Civil</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-laboral/">Abogado Laboral</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-penal/">Abogado Penal</a>
+        <a class="sub" href="https://www.bufetemartinaranda.com/abogado-accidentes/">Abogado Accidentes</a>
+        <a href="https://www.bufetemartinaranda.com/asesoria-integral-para-pymes-y-autonomos-en-madrid/">Asesoría</a>
+        <a href="https://www.bufetemartinaranda.com/campana-renta-2025-asesoria-fiscal-para-presentar-tu-declaracion-de-la-renta/">Campaña Renta 2025</a>
+        <a href="https://www.bufetemartinaranda.com/quienes-somos/">Quiénes somos</a>
+        <a href="https://www.bufetemartinaranda.com/category/de-interes/">De interés</a>
+        <a href="https://www.bufetemartinaranda.com/contacto/">Contacto</a>
+        <a href="https://www.bufetemartinaranda.com/preguntas-frecuentes-faq-bufete-martin-aranda/">Preguntas Frecuentes (FAQ)</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="bg" role="img" aria-label="Despacho de Martín Aranda Abogados"></div>
+    <div class="wrap">
+      <span class="eyebrow">Abogados y Asesoría Legal y contable Madrid Aluche</span>
+      <h1>Martín Aranda Abogados</h1>
+      <p>Es un despacho profesional creado en 1994, que viene desarrollando con éxito su actividad profesional en las distintas materias del derecho, en sus dos oficinas de Madrid.</p>
+      <div class="row">
+        <a href="tel:+34917062416" class="btn btn-brand">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          Llámanos ahora <span class="tel">+34 917 06 24 16</span>
+        </a>
+        <a href="#escribenos" class="btn btn-line">Contacta con nosotros</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="head">
+          <span class="eyebrow">Servicios</span>
+          <h2>¿Qué hacemos?</h2>
+        </div>
+        <a href="https://www.bufetemartinaranda.com/servicios-juridicos/" class="btn btn-line">Ver más áreas de trabajo</a>
+      </div>
+      <div class="services">
+        <a class="svc" href="https://www.bufetemartinaranda.com/abogado-familia/"><span class="num">01</span><h3>Familia</h3><p>Divorcios, Separaciones, Parejas de hecho, Impago de pensiones, Modificación de medidas, Patria potestad, Ejecución de sentencias, Modificación de la capacidad (incapacidades), Liquidación de gananciales.</p><span class="more">Abogado de Familia →</span></a>
+        <a class="svc" href="https://www.bufetemartinaranda.com/abogado-agrario-y-ganadero/"><span class="num">02</span><h3>Agroalimentario</h3><p>Asociaciones, Sectoriales, Ley de la cadena alimenticia.</p><span class="more">Abogado Agrario y ganadero →</span></a>
+        <a class="svc" href="https://www.bufetemartinaranda.com/abogado-herencias/"><span class="num">03</span><h3>Herencias</h3><p>Testamentos, Partición hereditaria, Liquidación de impuestos, Declaración de herederos, División judicial de herencia, Casos complejos, Partidor contador.</p><span class="more">Abogado Herencias →</span></a>
+        <a class="svc" href="https://www.bufetemartinaranda.com/abogado-civil/"><span class="num">04</span><h3>Civil</h3><p>Contratos, Arrendamientos, Compraventas, Desahucios, Reclamación de deudas, Responsabilidad civil, Daños y perjuicios.</p><span class="more">Abogado Civil →</span></a>
+        <a class="svc" href="https://www.bufetemartinaranda.com/abogado-laboral/"><span class="num">05</span><h3>Laboral</h3><p>Despidos, Reclamación de cantidad, Sanciones, Reclamaciones ante el INEM, Reclamaciones ante Seguridad Social, Invalidez.</p><span class="more">Abogado Laboral →</span></a>
+        <a class="svc" href="https://www.bufetemartinaranda.com/abogado-penal/"><span class="num">06</span><h3>Penal</h3><p>Delitos leves, Alcoholemias, Impago de pensiones.</p><span class="more">Abogado Penal →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="asesoria">
+    <div class="wrap ase">
+      <div>
+        <span class="eyebrow">Asesoría</span>
+        <h2 style="margin-top:8px"><a href="https://www.bufetemartinaranda.com/asesoria-integral-para-pymes-y-autonomos-en-madrid">Asesoría Integral para Pymes y Autónomos en Madrid</a></h2>
+      </div>
+      <div>
+        <p>En Martin Aranda Abogados, ofrecemos un servicio integral de asesoría y gestoría para autónomos, pequeñas y medianas empresas en Madrid, en nuestra oficina de Aluche. Nuestro equipo especializado combina conocimiento jurídico y experiencia empresarial para ayudarte a gestionar con eficacia los aspectos contables, fiscales, laborales, mercantiles y legales de tu negocio. Aportamos soluciones prácticas y actualizadas que facilitan tu día a día, para que puedas centrarte en crecer y consolidar tu proyecto.</p>
+        <a href="https://www.bufetemartinaranda.com/asesoria-integral-para-pymes-y-autonomos-en-madrid" class="btn btn-brand">Saber más</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="head">
+          <span class="eyebrow">Blog</span>
+          <h2>De interés</h2>
+        </div>
+        <a href="https://www.bufetemartinaranda.com/category/de-interes/" class="btn btn-line">Ver más contenido de interés</a>
+      </div>
+      <div class="posts">
+        <article class="post"><h3><a href="https://www.bufetemartinaranda.com/derecho-mercantil-en-madrid-sociedades-contratos-y-concursos/">Derecho Mercantil en Madrid: Sociedades, Contratos y Concursos</a></h3><p>Llevar el día a día de una empresa en un mercado tan dinámico como el de Madrid no es fácil.…</p><a class="more" href="https://www.bufetemartinaranda.com/derecho-mercantil-en-madrid-sociedades-contratos-y-concursos/">Leer más →</a></article>
+        <article class="post"><h3><a href="https://www.bufetemartinaranda.com/carteles-ganaderos-y-danos-por-incendios-guia-de-reclamaciones-seguros-y-derechos-del-sector/">Cárteles Ganaderos y Daños por Incendios: Guía de Reclamaciones, Seguros y Derechos del Sector</a></h3><p>El sector ganadero en España y en la Unión Europea enfrenta un escenario jurídico y financiero complejo. Por un lado,…</p><a class="more" href="https://www.bufetemartinaranda.com/carteles-ganaderos-y-danos-por-incendios-guia-de-reclamaciones-seguros-y-derechos-del-sector/">Leer más →</a></article>
+        <article class="post"><h3><a href="https://www.bufetemartinaranda.com/usas-ia-en-tu-pyme-los-riesgos-legales-que-quizas-estas-corriendo-sin-saberlo/">¿Usas IA en tu Pyme? Los Riesgos Legales que Quizás Estás Corriendo sin Saberlo</a></h3><p>La Inteligencia Artificial ha llegado a las pequeñas y medianas empresas para hacernos la vida más fácil. Hoy en día,…</p><a class="more" href="https://www.bufetemartinaranda.com/usas-ia-en-tu-pyme-los-riesgos-legales-que-quizas-estas-corriendo-sin-saberlo/">Leer más →</a></article>
+        <article class="post"><h3><a href="https://www.bufetemartinaranda.com/la-guia-definitiva-frente-a-vecinos-ruidosos-molestos-o-conflictivos-vias-legales-y-soluciones-eficaces/">La guía definitiva frente a vecinos ruidosos, molestos o conflictivos: vías legales y soluciones eficaces</a></h3><p>Convivir en una comunidad de propietarios no siempre es sencillo. Desde el vecino que organiza fiestas a deshoras hasta pisos…</p><a class="more" href="https://www.bufetemartinaranda.com/la-guia-definitiva-frente-a-vecinos-ruidosos-molestos-o-conflictivos-vias-legales-y-soluciones-eficaces/">Leer más →</a></article>
+        <article class="post"><h3><a href="https://www.bufetemartinaranda.com/despido-improcedente-en-espana/">Despido improcedente en España</a></h3><p>Un despido es improcedente cuando la empresa no cumple los requisitos legales para extinguir tu contrato: o bien la causa…</p><a class="more" href="https://www.bufetemartinaranda.com/despido-improcedente-en-espana/">Leer más →</a></article>
+        <article class="post"><h3><a href="https://www.bufetemartinaranda.com/hacer-testamento-ante-notario-es-suficiente-para-que-sea-100-legal-e-inatacable/">¿Hacer testamento ante notario es suficiente para que sea 100% legal e inatacable?</a></h3><p>Existe la falsa creencia de que acudir a una notaría y firmar un testamento constituye un escudo protector absoluto e…</p><a class="more" href="https://www.bufetemartinaranda.com/hacer-testamento-ante-notario-es-suficiente-para-que-sea-100-legal-e-inatacable/">Leer más →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" style="background:var(--tint);border-top:1px solid var(--line)">
+    <div class="wrap about">
+      <img src="https://www.bufetemartinaranda.com/wp-content/uploads/2022/09/1663601980681.jpg" alt="Entrada del despacho Martín Aranda Abogados" loading="lazy">
+      <div>
+        <div class="head" style="margin-bottom:18px">
+          <span class="eyebrow">Sobre nosotros</span>
+          <h2>Bufete Martín Aranda</h2>
+        </div>
+        <p>En Martin Aranda Abogados encontrará una amplia experiencia en el ejercicio de la abogacía, llevando procedimientos judiciales en todo el ámbito nacional. Aquí trataremos su caso de manera personalizada para buscar la mejor solución a su situación.</p>
+        <a href="https://www.bufetemartinaranda.com/quienes-somos/" class="btn btn-brand">Leer más</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testis">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Testimonios</span>
+        <h2>Palabras de nuestros clientes</h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote"><blockquote>Un excelente servicio llevaba 5 años sin poderme divorciar y este abogado lo ha logrado en 2 semanas y, a un excelente precio. Muy muy contenta con mi divorcio.</blockquote><figcaption class="who">Johanna Saltos<span>Particular</span></figcaption></figure>
+        <figure class="quote"><blockquote>Perfectos tanto a nivel personal como profesional. Los recomiendo totalmente. Muchas gracias por vuestros servicios.</blockquote><figcaption class="who">Isa Leo Valverde<span>Particular</span></figcaption></figure>
+        <figure class="quote"><blockquote>Muy agradecida de encontrar a estos grandes profesionales en momentos en los que necesitas un buen abogado. Les recomiendo completamente.</blockquote><figcaption class="who">Casilda Peche<span>Particular</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="escribenos">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">Contacto</span>
+          <h2>Escríbenos</h2>
+        </div>
+        <div class="info">
+          <div class="it"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><b>Teléfono</b><a href="tel:+34917062416">+34 917 06 24 16</a></div></div>
+          <div class="it"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><b>Email</b><a href="mailto:despacho@bufetemartinaranda.com">despacho@bufetemartinaranda.com</a></div></div>
+          <div class="it"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Oficinas</b><span>Calle Ventura Rodríguez, 5, entreplanta izquierda, 28008 Madrid</span><br><span>Avda. de las Águilas nº 2 B, 5º-1 28044 Madrid</span></div></div>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="field"><label for="n">Nombre y apellidos <span>*</span></label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="t">Teléfono <span>*</span></label><input id="t" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="e">Email <span>*</span></label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="m">Cuéntenos su caso</label><textarea id="m" rows="4"></textarea></div>
+        <label class="check"><input type="checkbox"><span>Acepta la política de <a href="https://www.bufetemartinaranda.com/politica-de-privacidad/" target="_blank" rel="noopener">privacidad de Bufete Martín Aranda</a></span></label>
+        <button class="btn btn-brand" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="https://www.bufetemartinaranda.com/wp-content/uploads/2022/08/81790715-260f-4716-a388-1f0cc05f63c0.png" alt="Abogados Martín Aranda" width="300" height="143" loading="lazy">
+        <div class="social">
+          <a href="https://www.facebook.com/bufetemartinaranda/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://es.linkedin.com/company/bufete-martin-aranda" target="_blank" rel="noopener">Linkedin</a>
+          <a href="https://www.instagram.com/bufetemartinaranda/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-familia/">Familia</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-agrario-y-ganadero/">Agroalimentario</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-herencias/">Herencias</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-civil/">Civil</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-laboral/">Laboral</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-penal/">Penal</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/abogado-accidentes/">Accidentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>De interés</h4>
+        <ul>
+          <li><a href="https://www.bufetemartinaranda.com/aviso-legal/">Aviso Legal</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/politica-de-privacidad/">Política de Privacidad</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/politica-de-cookies/">Política de Cookies</a></li>
+          <li><a href="https://www.bufetemartinaranda.com/declaracion-de-accesibilidad/">Declaración de accesibilidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34917062416">+34 917 06 24 16</a></li>
+          <li><a href="mailto:despacho@bufetemartinaranda.com">despacho@bufetemartinaranda.com</a></li>
+          <li>Calle Ventura Rodríguez, 5, entreplanta izquierda, 28008 Madrid</li>
+          <li>Avda. de las Águilas nº 2 B, 5º-1 28044 Madrid</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">Copyright 2024 © Todos los derechos reservados</div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34917062416" class="btn btn-brand">Llámanos ahora</a>
+  <a href="#escribenos" class="btn btn-line">Escríbenos</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

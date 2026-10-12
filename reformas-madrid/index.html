@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Reformas Madrid · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1d4f9c; --cyan:#22b0d2; --brand:#505ac7; --brand-dark:#3f48a8; --ink:#141a2b; --text:#3b4255; --muted:#687087;
+    --line:#e3e7f1; --tint:#f4f6fc; --white:#fff; --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:700;font-family:Montserrat,sans-serif}
+  h1,h2,h3,h4{font-family:Montserrat,system-ui,sans-serif;color:var(--ink);line-height:1.18}
+
+  .demo{background:var(--ink);color:#c9d2ef;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
+  .nav .logo img{height:50px;width:auto}
+  .menu{display:flex;gap:4px;align-items:center;font-size:.88rem;font-weight:500}
+  .menu > li{list-style:none;position:relative}
+  .menu > li > a{display:block;padding:8px 11px;border-radius:8px}
+  .menu > li > a:hover{background:var(--tint);color:var(--brand)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px;min-width:250px;box-shadow:0 18px 40px -20px rgba(20,26,43,.35)}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:8px 12px;border-radius:7px;font-size:.86rem}
+  .menu .sub a:hover{background:var(--tint)}
+  .nav-ctas{display:flex;gap:8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:10px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--brand);cursor:pointer;font-family:inherit;text-align:center}
+  .btn svg{flex:none}
+  .btn-brand{background:var(--brand);color:#fff}
+  .btn-brand:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+  .btn-line{background:#fff;color:var(--brand)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-wa{background:#1fa855;border-color:#1fa855;color:#fff}
+  .btn-wa:hover{background:#178a45;border-color:#178a45}
+  .btn-sm{padding:9px 15px;font-size:.84rem}
+  .tel{font-variant-numeric:tabular-nums;font-weight:500;opacity:.9}
+
+  /* hero */
+  .hero{background:linear-gradient(160deg,var(--tint) 0%,#fff 60%);padding:64px 0 72px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.6rem);font-weight:800;margin:12px 0 18px;letter-spacing:-.01em}
+  .hero h1 span{display:block;font-size:.5em;font-weight:700;color:var(--navy);margin-top:10px;letter-spacing:0}
+  .hero h1 span a{background:linear-gradient(90deg,var(--navy),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .q{font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+  .hero p{margin-bottom:12px;max-width:600px}
+  .hero p a{color:var(--brand);font-weight:600}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .hero-img{position:relative}
+  .hero-img img{border-radius:var(--radius);box-shadow:0 30px 60px -30px rgba(20,26,43,.45);aspect-ratio:1000/640;object-fit:cover;width:100%}
+  .rating{position:absolute;left:-18px;bottom:-22px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;box-shadow:0 18px 40px -20px rgba(20,26,43,.4);font-size:.84rem;line-height:1.35;max-width:250px}
+  .stars{color:#f5b301;letter-spacing:2px;font-size:1rem}
+  .rating b{color:var(--ink)}
+
+  /* sections */
+  section{padding:84px 0}
+  section.alt{background:var(--tint)}
+  .head{max-width:760px;margin-bottom:36px}
+  .head h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;margin-top:10px}
+  .head h2 a:hover{color:var(--brand)}
+  .head p{color:var(--muted);margin-top:12px}
+  .prose p{margin-bottom:12px}
+  .prose p:last-child{margin-bottom:0}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+
+  /* reviews */
+  .reviews{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .rev{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 7px;font-size:.86rem}
+  .rev .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--cyan));color:#fff;display:grid;place-items:center;font-weight:700;font-size:.8rem;flex:none}
+  .rev em{color:var(--muted);font-style:normal}
+  .score{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .score .big{font-family:Montserrat,sans-serif;font-size:2.6rem;font-weight:800;color:var(--ink);line-height:1}
+
+  /* why */
+  .why{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+  .why .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.84rem;font-weight:500}
+  .panel{background:var(--ink);color:#dfe4f4;border-radius:var(--radius);padding:30px}
+  .panel p{margin-bottom:12px}
+  .panel strong{color:#fff}
+
+  /* service list */
+  .svc-list{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .svc-list li{list-style:none;background:#fff;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);font-size:.93rem}
+
+  .zones{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .zone{display:grid;grid-template-columns:150px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.2s}
+  .zone:hover{border-color:var(--brand);box-shadow:0 18px 40px -26px rgba(20,26,43,.4)}
+  .zone img{width:100%;height:100%;object-fit:cover}
+  .zone div{padding:18px 18px 18px 0}
+  .zone h3{font-size:1.02rem;margin-bottom:6px}
+  .zone p{font-size:.9rem;color:var(--muted)}
+  .more{display:inline-block;margin-top:8px;color:var(--brand);font-weight:600;font-size:.88rem}
+
+  /* topics */
+  .topics{display:grid;gap:22px}
+  .topic{display:grid;grid-template-columns:1fr 380px;gap:34px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px}
+  .topic.noimg{grid-template-columns:1fr}
+  .topic h3{font-size:1.32rem;margin-bottom:14px;font-weight:700}
+  .topic h4{font-size:1.02rem;margin:20px 0 8px;color:var(--navy)}
+  .topic p{margin-bottom:10px}
+  .topic figure img{border-radius:10px;width:100%;aspect-ratio:3/2;object-fit:cover}
+  .topic figcaption{font-size:.78rem;color:var(--muted);margin-top:6px}
+  ul.dots{list-style:none;display:grid;gap:8px;margin:10px 0 12px}
+  ul.dots li{padding-left:20px;position:relative}
+  ul.dots li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,var(--navy),var(--cyan))}
+  ul.dots li b{color:var(--ink)}
+  .cta-row{margin-top:18px}
+  .group-title{display:flex;align-items:center;gap:14px;margin:54px 0 22px}
+  .group-title:first-child{margin-top:0}
+  .group-title h2{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800}
+  .group-title::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--line),transparent)}
+
+  /* prices */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .qa{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+  .qa h3{font-size:1rem;margin-bottom:8px;font-weight:700}
+  .qa p{font-size:.94rem;margin-bottom:8px}
+  .qa p:last-child{margin-bottom:0}
+  .qa.wide{grid-column:1/-1}
+  .pisos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+  .piso{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+  .piso h3{font-size:.9rem;font-weight:700;margin-bottom:6px}
+  .piso p{font-size:.88rem;color:var(--text)}
+
+  /* guarantee */
+  .guar{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+  .guar li{list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;font-weight:600;color:var(--ink);font-size:.93rem}
+  .guar li span{display:block;width:34px;height:34px;margin:0 auto 10px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--cyan));color:#fff;display:grid;place-items:center}
+
+  /* blog */
+  .posts{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .post{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+  .post:hover{border-color:var(--brand)}
+  .post img{width:100%;aspect-ratio:39/20;object-fit:cover}
+  .post div{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .post h3{font-size:.95rem;margin-bottom:6px}
+  .post p{font-size:.84rem;color:var(--muted);flex:1}
+
+  /* contact */
+  .contact{background:var(--ink);color:#d7ddef;padding:84px 0}
+  .contact h2{color:#fff}
+  .contact .head p{color:#aab3cf}
+  .c-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+  .c-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:24px}
+  .c-card h3{color:#fff;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;color:var(--cyan)}
+  .c-card a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35)}
+  .c-card .tel{font-size:1.4rem;font-weight:700;font-family:Montserrat,sans-serif;text-decoration:none;opacity:1}
+  .hours{display:grid;grid-template-columns:auto auto;gap:4px 16px;font-size:.92rem}
+  .coords{font-size:.78rem;color:#8e98b8;margin-top:10px}
+  .contact .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .contact .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+
+  footer{padding:30px 0;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot img{height:40px;width:auto}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 16px}
+  .foot nav a:hover{color:var(--brand)}
+  .foot .tag-line{width:100%;font-weight:600;color:var(--ink)}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .menu{display:none}
+    .svc-list{grid-template-columns:repeat(2,1fr)}
+    .posts{grid-template-columns:repeat(2,1fr)}
+    .pisos{grid-template-columns:repeat(2,1fr)}
+    .guar{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:900px){
+    .hero-grid,.why,.two,.topic,.c-grid{grid-template-columns:1fr}
+    .faq,.zones{grid-template-columns:1fr}
+    .topic figure{order:-1}
+    .rating{left:12px;bottom:12px}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:66px}
+    .nav .logo img{height:40px}
+    .nav-ctas{display:none}
+    .hero{padding:40px 0 56px}
+    section,.contact{padding:60px 0}
+    .topic{padding:22px 18px}
+    .zone{grid-template-columns:1fr}
+    .zone img{aspect-ratio:39/20}
+    .zone div{padding:0 18px 18px}
+    .posts,.svc-list{grid-template-columns:1fr}
+    .guar{grid-template-columns:1fr 1fr}
+    .hero .cta .btn,.contact .btns .btn,.cta-row .btn{width:100%;white-space:normal}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:76px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Reformas Madrid · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://reformasmadrid.eu/" aria-label="Reformas Madrid"><img src="https://reformasmadrid.eu/wp-content/uploads/2022/08/reformas-madrid-logo-banos-cocinas-rehatilitaciones-logo-web.jpg" alt="Reformas Madrid" width="600" height="162"></a>
+    <ul class="menu">
+      <li><a href="https://reformasmadrid.eu/">Reformas Madrid</a>
+        <div class="sub">
+          <a href="https://reformasmadrid.eu/reformas-en-alcala-de-henares/">Reformas en Alcalá de Henares</a>
+          <a href="https://reformasmadrid.eu/reformas-en-alcobendas/">Reformas en Alcobendas</a>
+        </div>
+      </li>
+      <li><a href="https://reformasmadrid.eu/nosotros/">Nosotros</a></li>
+      <li><a href="https://reformasmadrid.eu/servicios/">Servicios</a>
+        <div class="sub">
+          <a href="https://reformasmadrid.eu/reformas-de-banos-en-madrid/">Reformas de baños en Madrid</a>
+          <a href="https://reformasmadrid.eu/reformas-de-cocinas-en-madrid/">Reformas de cocinas en Madrid</a>
+          <a href="https://reformasmadrid.eu/reformas-de-pisos-en-madrid/">Reformas de pisos en Madrid</a>
+        </div>
+      </li>
+      <li><a href="https://reformasmadrid.eu/contacto/">Contacto</a></li>
+      <li><a href="https://reformasmadrid.eu/blog/">Blog</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="tel:+34919930335" class="btn btn-brand btn-sm"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>919 93 03 35</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Reformas Madrid expertos en todo tipo de reformas</span>
+        <h1>Reformas Madrid <span><a href="https://reformasmadrid.eu/">Calidad al Mejor Precio</a></span></h1>
+        <p class="q">¿Quieres renovar la imagen de tu vivienda, piso, negocio u oficina comercial en Madrid?</p>
+        <p>Reformas Madrid es una empresa de reformas para todos los oficios y te ofrece varias soluciones de renovación de interiores para decorar, poner tu hogar a la altura o aislarlo para ahorrar energía.</p>
+        <p>De forma habitual, ¡nuestra empresa de <a href="https://reformasmadrid.eu">reformas Madrid</a> se encarga de todo!</p>
+        <p><a href="https://reformasmadrid.eu/">Reformas integrales de pisos en Madrid</a>, mobiliario de cocina y de baño, cambio de pintura o empapelado, instalación de alicatados nuevos.</p>
+        <p>Asimismo reformas de baños, reformas de cocinas, reformas de tejados o reparaciones de fontanería, acondicionamiento de buhardilla u oficina, vestidor, etc.</p>
+        <p><strong>¡Contáctanos para conocer todos nuestros servicios de reforma de interiores y exteriores en Madrid!</strong></p>
+        <div class="cta">
+          <a href="https://wa.me/34644701077?text=He%20visto%20vuestra%20web%20de%20Reformas%20Madrid%20y%20quer%C3%ADa%20pedir%20presupuesto%20para%3A" class="btn btn-brand" target="_blank" rel="noopener">PIDE PRESUPUESTO GRATIS PARA TU REFORMA</a>
+          <a href="tel:+34919930335" class="btn btn-line">Servicio al cliente: <span class="tel">919 93 03 35</span></a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reforma-integral-madrid-piso-vivienda.jpg" alt="empresa-de-reformas-madrid" width="1000" height="640">
+        <div class="rating">
+          <div class="stars">★★★★★</div>
+          La evaluación general en Google es <b>5 de 5</b>, en base a <b>244 evaluaciones</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="score">
+        <span class="big">5 de 5</span>
+        <div><div class="stars">★★★★★</div><span>en base a 244 evaluaciones</span></div>
+      </div>
+      <div class="reviews">
+        <span class="rev"><span class="av">V</span>Victor Chavez</span>
+        <span class="rev"><span class="av">Y</span>Yender Pérez</span>
+        <span class="rev"><span class="av">M</span>matias herrera parada</span>
+        <span class="rev"><span class="av">Y</span>YO H</span>
+        <span class="rev"><span class="av">E</span>Erik Gonzalez</span>
+        <span class="rev"><span class="av">L</span>Luis Roberto Padilla</span>
+        <span class="rev"><span class="av">A</span>Almeida <em>«Boa muito»</em></span>
+        <span class="rev"><span class="av">ש</span><bdi>שלום יאיר גניש</bdi></span>
+        <span class="rev"><span class="av">G</span>Gustavo Turassa</span>
+        <span class="rev"><span class="av">H</span>Héctor Morales (AlexLeón18)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="alt" id="por-que">
+    <div class="wrap why">
+      <div>
+        <div class="head" style="margin-bottom:20px">
+          <h2>¿Por qué confiar en Reformas Madrid?</h2>
+        </div>
+        <div class="prose">
+          <p>Detrás de Reformas Madrid se encuentra un equipo competente de artesanos dinámicos que ponen sus habilidades y experiencia a tu servicio para llevar a cabo todos tus proyectos de reformas en Madrid con resultados de calidad.</p>
+          <p>Gracias a nuestra experiencia de 30 años, y a nuestra pasión por nuestra profesión, podemos satisfacer tus solicitudes y expectativas.</p>
+          <p>Asimismo todos nuestros trabajos de reformas integrales o parciales en Madrid se realizan con saber hacer, rigor, respeto por las premisas y por supuesto cubiertos por una amplia garantía.</p>
+          <p>En Reformas Madrid realizamos todos tus proyectos de acabados y desarrollos llave en mano y ponemos a tu servicio nuestros conocimientos de electricidad, fontanería, creación de mamparas, revestimientos de suelos, pintura de paredes y techos.</p>
+        </div>
+        <div class="tags"><span class="tag">Somos expertos en reformas, construcciones, pintura, microcemento, fontanería y electricidad.</span></div>
+      </div>
+      <div class="panel">
+        <p>Te ofrecemos multitud de servicios de calidad para la reforma integral de tu vivienda o de tu local comercial en Madrid.</p>
+        <p>Además nuestro compromiso es acompañarte en tu proyecto y hacerte descubrir todas las posibilidades que ofrece la reforma.</p>
+        <p>Al confiar en Reformas Madrid, te aseguras un soporte personalizado para un proyecto exitoso y un único punto de contacto; también te proteges de retrasos y otras sorpresas desagradables.</p>
+        <p><strong>Con Reformas Madrid, controlas tu presupuesto, estás acompañado por expertos y puedes seguir el progreso de la obra de reforma, para un resultado limpio y de calidad.</strong></p>
+        <a href="https://wa.me/34644701077?text=He%20visto%20vuestra%20web%20de%20Reformas%20Madrid%20y%20quer%C3%ADa%20pedir%20presupuesto%20para%3A" class="btn btn-brand" target="_blank" rel="noopener" style="margin-top:10px;width:100%;white-space:normal">PIDE PRESUPUESTO GRATIS PARA TU REFORMA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONES / SERVICES -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Reformas Madrid.</span>
+        <h2><a href="https://reformasmadrid.eu/servicios/">¿Cuáles son nuestros servicios de Reformas Madrid?</a></h2>
+        <p><a href="https://reformasmadrid.eu/servicios/">¿Cuáles son nuestros servicios de reformas integrales en Madrid?</a></p>
+      </div>
+      <div class="zones">
+        <a class="zone" href="https://reformasmadrid.eu/reformas-en-alcala-de-henares/">
+          <img src="https://reformasmadrid.eu/wp-content/uploads/2023/07/reformas-en-alcala-henares-cerca-de-mi-390x200.jpg" alt="Reformas en Alcalá de Henares" loading="lazy">
+          <div><h3>Reformas en Alcalá de Henares</h3><p>Empresa de reformas en Alcalá de Henares Reformas Madrid es la mejor</p><span class="more">Leer más…</span></div>
+        </a>
+        <a class="zone" href="https://reformasmadrid.eu/reformas-en-alcobendas/">
+          <img src="https://reformasmadrid.eu/wp-content/uploads/2023/08/reformas-baratas-alcobendas-390x200.jpg" alt="Reformas en Alcobendas" loading="lazy">
+          <div><h3>Reformas en Alcobendas</h3><p>Empresa de reformas en Alcobendas Reformas Madrid es la mejor empresa de</p><span class="more">Leer más…</span></div>
+        </a>
+      </div>
+
+      <div class="head" style="margin-top:64px">
+        <h2>Servicio de Reformas Madrid: interiores / exteriores</h2>
+        <p>Ya sea para una reforma parcial o total, nuestros servicios de Reformas Madrid pueden cubrir todas tus necesidades. Opta por cambiar la decoración de tu hogar, de tu oficina o local comercial.</p>
+        <p>Cambia los revestimientos de pisos, paredes; optimiza el aislamiento, cambia la apariencia de los techos, etc., con nuestros servicios completos de Reformas Madrid. En general podemos complacerte en todo lo que desees.</p>
+        <p>Te ayudaremos, asesoraremos y acompañaremos en todo el proceso de reforma.</p>
+      </div>
+      <ul class="svc-list">
+        <li>Reforma de exteriores.</li>
+        <li>Reforma de interiores.</li>
+        <li>Reforma de fachadas.</li>
+        <li>Reformas de pisos.</li>
+        <li>Reforma de baños.</li>
+        <li>Reforma de cocinas.</li>
+        <li>Reformas de aislamiento.</li>
+        <li>Reformas de techos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DETAIL -->
+  <section class="alt" id="detalle">
+    <div class="wrap">
+      <div class="topics">
+
+        <div class="group-title"><h2>Exteriores</h2></div>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de exteriores en Madrid</h3>
+            <p>Para embellecer el exterior de tu casa, edificio o de tu local comercial, Reformas Madrid te ofrece una amplia gama de trabajos de exterior, desde albañilería hasta terrazas y carpintería.</p>
+            <p>¡Confía en nuestro especialista en reformas de exteriores y aprovecha al máximo el potencial de tus espacios!</p>
+            <h4>Rehabilitación exterior: obra y albañilería en Madrid</h4>
+            <p>¿Empiezas a sentirte apretado en tu casa?</p>
+            <p>¿Quieres ganar m² adicionales sin tener que cambiar de casa?</p>
+            <p>Como especialista en reformas exteriores, Reformas Madrid se ocupa de todos los trabajos de construcción y albañilería destinados a ampliar tu vivienda: ampliación, mejora, terrazas, pérgolas, etc.</p>
+            <p>Estas reformas exteriores te permiten aumentar la superficie habitable de tu hogar sin tener que sufrir las molestias de mudarte.</p>
+            <p>También podemos intervenir en la ampliación y mejora de tus espacios interiores.</p>
+            <p>Antes de iniciar cualquier proyecto de reforma exterior en Madrid destinado a ampliar tu casa, un técnico de nuestra empresa se desplazará a tu vivienda para estudiar la viabilidad de tu proyecto y sugerirle los planos adecuados.</p>
+            <p>Nuestro equipo tiene en cuenta la importancia de mantener la armonía de tu edificio ofreciéndote, por ejemplo, una ampliación en el mismo material que las estructuras existentes de tu propiedad.</p>
+            <p>Además del aspecto estético, esta consistencia en la estructura del marco garantizará su confiabilidad y solidez.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reformas-totales-piso-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de fachadas en Madrid</h3>
+            <p>Tu fachada es la única muralla contra los ataques externos.</p>
+            <p>También es la primera imagen que refleja tu hogar, por lo que su buen mantenimiento es fundamental para reflejar la mejor imagen posible.</p>
+            <p>De hecho, con el paso de los años, las paredes exteriores se deterioran haciendo que tu hogar esté menos protegido.</p>
+            <p>Si la pintura se está desconchando o el revestimiento se está deteriorando, ¡una buena limpieza y una reforma de tu fachada son esenciales!</p>
+            <p>Como especialista en reformas exteriores, Reformas Madrid interviene para dar nueva vida a tu fachada.</p>
+            <p>Después de una limpieza adecuada, nuestros técnicos aplican una capa raspada a las paredes exteriores.</p>
+            <p>Asimismo esta mezcla de aglutinante y áridos tiene la doble ventaja de proteger tu fachada a la vez que la embellece.</p>
+            <p>Nuestro equipo de reformas Madrid también te ofrece otro método de aplicación para tu nuevo revestimiento de fachada: revestimiento por pulverización.</p>
+            <p>Su papel es el mismo que el de un revestimiento raspado, excepto que el revestimiento proyectado ofrece un aspecto diferente.</p>
+            <p>De hecho, la representación es más cruda y revela los gránulos.</p>
+            <p><strong>Además somos expertos en fachadas tipo SATE, consúltanos tu presupuesto.</strong></p>
+            <p>Para obtener asesoramiento sobre el tipo de revestimiento de fachada que mejor se adapta a tu soporte, ¡no dudes en contactarnos en nuestra página web o por nuestros teléfonos!</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reformas-madrid-hall-pasillo.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de la estructura exterior</h3>
+            <p>El armazón es el elemento que sostiene tu techo y tus paredes, asegura su solidez y por lo tanto la estabilidad de tu edificio en el tiempo.</p>
+            <p>En este sentido, es esencial inspeccionar la estructura de tu casa regularmente para asegurarse de que esté en buenas condiciones.</p>
+            <p>Reformas Madrid ofrece soluciones de renovación exterior de tu estructura, adaptadas a las distintas amenazas.</p>
+            <ul class="dots">
+              <li>Tratamiento estructural preventivo para anticipar cualquier ataque de plagas que pueda debilitar la estructura.</li>
+              <li>Tratamiento curativo si la estructura ya está infestada de insectos con larvas xilófagas o con tendencia al moho para realizar un tratamiento en profundidad de la madera y limitar los daños causados.</li>
+            </ul>
+            <h4>Impermeabilización para reforma exterior</h4>
+            <p>Otro aspecto fundamental para asegurar la durabilidad de una construcción radica en la eficacia de su estanqueidad.</p>
+            <p>Tu empresa de reformas exteriores, Reformas Madrid, te ofrece la posibilidad de rehacer la impermeabilización de tu casa de varias formas: construyendo un muro de contención, colocando zanjas para drenar el agua o sellando las paredes exteriores.</p>
+            <p>No dudes en ponerte en contacto con nosotros para un diagnóstico gratuito.</p>
+            <p>Nuestros especialistas en impermeabilización podrán identificar las soluciones más adecuadas para tu situación.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reformas-madrid-cierre-hierro-vidrio-separador.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de terrazas en Madrid</h3>
+            <p>¿Tienes una zona exterior o un jardín que no estás aprovechando al máximo?</p>
+            <p>La construcción de una terraza es una solución de reforma exterior ideal para optimizar la distribución de tu exterior y sacarle el máximo partido.</p>
+            <p>Te sugerimos diferentes materiales para hacer una reforma en tu terraza: madera, PVC o composite según tus deseos y necesidades.</p>
+            <p>¡Llama a Reformas Madrid para la renovación de tu terraza o para una creación desde cero, y aprovecha al máximo los días soleados!</p>
+            <p>No dudes en ponerte en contacto con Reformas Madrid para obtener un presupuesto gratuito. También te asesoramos en los trabajos de pavimentación, para acondicionar tu terraza y mejorar la estética de tus instalaciones exteriores.</p>
+            <h4>Reforma de techos en Madrid</h4>
+            <p>El techo es un elemento clave de una casa, cuya función es protegerlo del mal tiempo y aislarlo.</p>
+            <p>Como especialistas en trabajos de techo, Reformas Madrid se esfuerza al máximo para garantizar resistencia, durabilidad e impermeabilidad a tu techo.</p>
+            <p>Varios elementos pueden afectar a tu tejado: la contaminación (aparición de manchas), el desarrollo de plantas (musgo y líquenes) o los hongos.</p>
+            <p>También pueden aparecer microfisuras, lo que se traduce en problemas de infiltración de agua.</p>
+            <p>La intemperie también puede romper algunas tejas.</p>
+            <p>Nuestros técnicos de reformas Madrid acuden a tu domicilio para diagnosticar el estado de tu tejado y ofrecerte la reforma de tejado más adecuada.</p>
+            <p>No dudes en ponerte en contacto con nosotros para recibir un asesoramiento personalizado y un presupuesto gratuito para la reforma de tus techos.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reformas-banos-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <div class="group-title"><h2>Interiores</h2></div>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de interior de casas y oficinas Madrid</h3>
+            <p>Lo primero en lo que piensas cuando quieres hacer una reforma de interior es en la decoración.</p>
+            <p>De hecho, generalmente, cambiar la pintura u optar por un nuevo papel pintado es suficiente para dar nueva vida a tu interior.</p>
+            <p>La elección de nuevos materiales o colores más acordes con los tiempos te permite cambiar radicalmente tu decoración sin necesidad de mudarte.</p>
+            <p>¿Tus paredes interiores están descoloridas o ya no coinciden con tus gustos actuales?</p>
+            <p>Dales una nueva imagen con nuestros servicios de reforma con pintura interior.</p>
+            <p>Como especialista en reformas de interiores, Reformas Madrid pone a tu disposición los mejores asesores técnicos para ofrecerte los revestimientos que más se adaptan a tus gustos y necesidades.</p>
+            <p>Es la solución ideal para energizar tu hogar a un costo menor y darle un poco de vida a un interior envejecido.</p>
+            <p>Te asesoramos sobre el tipo de pintura o papel pintado que mejor se adapta a tu interior y tus gustos y nos encargamos del trabajo de la A a la Z, para entregar un acabado decorativo armonioso que cubra tus expectativas.</p>
+            <p>¿Quieres ganar espacio o luminosidad en tu salón principal? Existen varias soluciones, ¡todo depende de tus deseos!</p>
+            <p>Si deseas replantear el modelado de tu habitación, puede ser necesario derribar las paredes para abrir el espacio.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reformas-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic noimg">
+          <div class="two">
+            <div>
+              <h3>Reforma interior cocina en Madrid</h3>
+              <p>Si deseas aprovechar un trabajo de reforma interior para revisar el diseño de tu cocina, Reformas Madrid también te ofrece soluciones adecuadas.</p>
+              <p>Dependiendo de la superficie de esta parte de tu casa y de tus deseos en términos de mobiliario y funcionalidad, en Reformas Madrid te ofrecemos cocinas a medida.</p>
+              <p>¿Quieres una cocina abierta para una mejor circulación y ahorro de espacio?</p>
+              <p>¡Con Reformas Madrid todo es posible!</p>
+              <p>Cuéntanos tus necesidades y te ayudaremos a optimizar tu espacio de la mejor manera posible: muebles, electrodomésticos, encimeras, etc.</p>
+              <p>¿Ya no te agrada tu cocina vieja, envejecida y poco funcional?</p>
+              <p>Desde la creación de cocinas en L para optimizar el espacio, hasta cocinas con isla central, en Reformas Madrid te ofrecemos una amplia gama de cocinas a medida según tus deseos y tus necesidades.</p>
+              <p>¡Deja que Reformas Madrid lleve a cabo el trabajo de renovación o creación de tu cocina y aprovecha al máximo este espacio vital central!</p>
+            </div>
+            <div>
+              <h3>Reformas de baño en Madrid</h3>
+              <p>Un proyecto de reforma de baño no se puede improvisar.</p>
+              <p>Tienes que anticipar todos los pasos, así como el presupuesto que quieres destinar.</p>
+              <p>Los especialistas en equipamiento y renovación de baños de Reformas Madrid te acompañan de la A a la Z en la realización de tu proyecto.</p>
+              <p>Asimismo somos expertos en reformas integrales de baño en la Comunidad de Madrid.</p>
+              <p>Primero, nuestros técnicos calificados se dirigen a tus instalaciones para identificar las limitaciones físicas relacionadas con la renovación de tu baño y ver los aspectos prácticos que se pueden mejorar.</p>
+              <p>Diseñamos tu proyecto de reforma de baño de forma que se optimice al máximo el espacio, y reflexionamos juntos sobre los puntos de atención en los que centrarnos:</p>
+              <ul class="dots">
+                <li>Tipo de decoración deseada.</li>
+                <li>Elección del revestimiento del suelo (mosaico, baldosas, parquet laminado, etc.).</li>
+                <li>Elección del revestimiento de la pared (azulejo o pintura).</li>
+                <li>Elementos deseados (bañera, ducha, lavabos, etc.).</li>
+                <li>Tipo de iluminación (focos, apliques, etc.)</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Revestimiento para suelos de baños</h3>
+            <p>¿Estás cansado de tus viejos azulejos dañados?</p>
+            <p>El primer paso en la reforma de tu baño es cambiar el revestimiento del suelo.</p>
+            <p>Pero ojo, el material de este revestimiento debe ser apto para estar en contacto con el agua.</p>
+            <p>Si eliges un nuevo azulejo para el piso de tu baño, debes deshacerte de los acabados pulidos.</p>
+            <p>En su lugar, opta por azulejos antideslizantes o mosaico poroso o con texturas.</p>
+            <h4>Reforma del alicatado del baño</h4>
+            <p>¿Quieres cambiar la apariencia de tu baño pero tienes un presupuesto limitado?</p>
+            <p>En nuestra empresa te ofrecemos reformas baratas en Madrid.</p>
+            <p>La instalación de un nuevo alicatado constituye una solución estética y económica.</p>
+            <p>Disponible en muchos colores y materiales, el mosaico en el baño es un elemento por derecho propio que contribuye a la estética general de un lugar.</p>
+            <p>Su instalación es delicada y debe ser realizada por un profesional.</p>
+            <p>Reformas Madrid, el especialista en renovación de interiores, te apoya en la elección de tu nueva cerámica o revestimiento y lleva a cabo la instalación bajo las reglas del arte para un acabado altamente profesional.</p>
+            <h4>Asesoramiento para la reforma de muebles del baño</h4>
+            <p>Los muebles de almacenaje son fundamentales para hacer de tu baño un espacio agradable.</p>
+            <p>De hecho, las toallas de baño y otros productos de belleza tienden a ocupar espacio.</p>
+            <p>Al reformar tu baño es importante proporcionar espacio para el almacenamiento, para no abarrotar la habitación innecesariamente.</p>
+            <p>Cada rincón de tu baño debe ser aprovechado para hacerlo elegante y optimizado.</p>
+            <p>En Reformas Madrid te asesoramos sobre el almacenaje más adecuado para tu baño: instalación de un armario, instalación de una estantería o instalación de un mueble bajo lavabo, etc.</p>
+            <p>¡Sabemos cómo ofrecerte las soluciones más adecuadas en tu situación!</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reforma-loft-convertido-en-duplex-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de oficina para optimizar tu espacio de trabajo</h3>
+            <p>¿Quieres transformar tu ático o una habitación en particular en una oficina?</p>
+            <p>Nuestros expertos en renovación de interiores de Reformas Madrid te apoyan en tu proyecto de principio a fin para un espacio de trabajo optimizado, ergonómico y 100% funcional.</p>
+            <p>Todo estará pensado hasta el más mínimo detalle, desde la ubicación del escritorio en relación a las ventanas hasta el almacenaje, pasando por la luminosidad, la silla y los complementos.</p>
+            <p>Tanto si dispones de una estancia dedicada como si deseas habilitar una zona de despacho en una estancia ya existente, en Reformas Madrid podemos asesorarte en la elección del mobiliario más adecuado a tu espacio y a la decoración actual de tu habitación.</p>
+            <h4>Reforma para el aislamiento interior</h4>
+            <p>La reforma de interiores en Madrid también es una oportunidad para optimizar el aislamiento interior.</p>
+            <p>Al aislar tus paredes desde el interior, puedes ahorrar hasta un 25% en tus facturas de calefacción. También te beneficiarás de un mejor confort térmico en tu hogar.</p>
+            <p>Durante el trabajo de renovación de interiores, nuestros expertos en aislamiento de Reformas Madrid irán a tu hogar para instalar el aislamiento antes del nuevo revestimiento de paredes o colocar baldosas.</p>
+            <h4>Renovación interior: conversión de ático</h4>
+            <p>¿Quieres ampliar tu interior sin tener que mudarte?</p>
+            <p>El ático es una solución de reforma interior ideal para ganar metros cuadrados adicionales.</p>
+            <p>Esta es una oportunidad, por ejemplo, para crear un nuevo dormitorio o para agregar una habitación adicional a tu hogar, como una oficina o un vestidor separado.</p>
+            <p>Una vez más, Reformas Madrid interviene para optimizar el espacio y ofrecerte una distribución ideal.</p>
+            <p>Durante una obra de construcción del ático, se planificará el trabajo eléctrico para llevar la corriente a esta nueva habitación.</p>
+            <p>Y si estás planeando tener un baño en suite, entonces también deberás considerar algunos trabajos de plomería.</p>
+            <p>Pero no te preocupes porque también trabajamos en este tipo de servicio sea cual sea el piso donde necesites reformar tu fontanería: instalación de balón termodinámico, instalación de red de calefacción, etc.</p>
+            <p>Y si quieres beneficiarte de un confort térmico óptimo tanto en verano como en invierno, dentro de un trabajo de reformas en Madrid, también es posible hacer la instalación de un sistema de ventilación.</p>
+            <p>Esto te permitirá disfrutar de un interior fresco en climas muy cálidos.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reforma-lonja-local-comercial-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de pisos en Madrid</h3>
+            <p>¿Vives en un apartamento en Madrid que deseas renovar o remodelar?</p>
+            <p>La reforma de pisos en Madrid o de un estudio generalmente tiene como objetivo renovar una decoración envejecida, o incluso redefinir la organización de las habitaciones para maximizar los espacios.</p>
+            <p>Reformas Madrid te ofrece hacerse cargo de los trabajos de renovación de tu apartamento en Madrid con soluciones adaptadas a tus necesidades y a tu presupuesto.</p>
+            <p>Asimismo no deje de consultarnos si desea realizar una reforma integral de piso, vivienda o apartamento en Madrid.</p>
+            <p>La renovación de un apartamento implica necesariamente un cambio de imagen de su interior. Para ello, Reformas Madrid se encarga de poner al día el apartamento, lo que incluye:</p>
+            <ul class="dots">
+              <li><b>Cambiar los revestimientos de suelos:</b> pintar los suelos, sustituir la moqueta por parquet, linóleo o alicatado.</li>
+              <li><b>Renovar los revestimientos de paredes:</b> sustituir el papel pintado envejecido por más empapelado al día o pintura de las paredes.</li>
+            </ul>
+            <h4>Reforma parcial o completa de cocinas y baños</h4>
+            <p>¿Necesitas arreglar tu baño o cocina? Dependiendo de tu presupuesto, podemos ofrecerte:</p>
+            <ul class="dots">
+              <li><b>Reforma parcial:</b> refrescar la pintura de los muebles, cambiar el revestimiento de suelos y paredes.</li>
+              <li><b>Reforma completa:</b> modificar el plan de trabajo, materiales, fregadero, muebles de cocina, electrodomésticos para la cocina y transformación de la bañera en una moderna ducha, sustitución del lavabo por mueble para el baño.</li>
+            </ul>
+            <p>Por supuesto, todas estas reformas de pisos en Madrid incluyen el seguimiento de las normas de seguridad (electricidad, incendios).</p>
+            <p>Asimismo la integración de elementos específicos propios de estas estancias (evacuaciones, entrada/salida de agua, etc.)</p>
+            <p>Nuestros especialistas realizan tu cambio de imagen por ti. ¡Confía en nuestros expertos de Reformas Madrid!</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reforma-integral-piso-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <div class="group-title"><h2>Energía</h2></div>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma energética en Madrid</h3>
+            <p>En Reformas Madrid te asesoramos en los trabajos de renovación energética realizados según las normas establecidas.</p>
+            <p>Llámanos y te beneficiarás de la experiencia de un equipo calificado y experimentado.</p>
+            <p>Nos encargamos de todo, desde la evaluación energética hasta las recomendaciones y los trabajos de reformas de la obra.</p>
+            <p>Nuestra empresa de reformas en Madrid está especializada en servicios como el aislamiento térmico.</p>
+            <p>Los técnicos experimentados de nuestro negocio primero verifican el estado de tus techos y paredes, luego te hacen una propuesta adaptada a tus necesidades.</p>
+            <p>También procedemos a la instalación de sistemas de ventilación, el tratamiento de las goteras de tu tejado o el tratamiento de tus problemas de humedad.</p>
+            <p>Al recurrir a Reformas Madrid, te beneficias de un asesoramiento altamente profesional para llevar a cabo tu obra de renovación energética.</p>
+            <p>Nuestro trabajo cumple con la nueva normativa térmica vigente y garantizamos la durabilidad de tus nuevas instalaciones.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/rehabilitacion-impermeabilizacion-tejado-aislamiento-cubierta-madrid-sate-cubierta-tejados.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic noimg">
+          <div>
+            <h3>Instalación de placas solares en Madrid</h3>
+            <p>En primer lugar la instalación de placas solares, también conocida como energía solar fotovoltaica, consiste en la colocación de paneles solares en una vivienda, edificio, o terreno con el objetivo de captar la radiación solar y convertirla en energía eléctrica utilizada para el consumo propio o para la conexión a la red eléctrica.</p>
+            <p>Los componentes principales de un sistema de placas solares incluyen:</p>
+            <ul class="dots">
+              <li><b>Paneles solares:</b> Estos son dispositivos compuestos por celdas fotovoltaicas que capturan la luz solar y la convierten en energía eléctrica mediante el efecto fotovoltaico.</li>
+              <li><b>Inversor:</b> Es un equipo que se encarga de transformar la corriente continua generada por los paneles solares en corriente alterna, que es la forma de electricidad utilizada en los hogares y empresas.</li>
+              <li><b>Estructura de montaje:</b> Se utiliza para asegurar los paneles solares en el techo o en el suelo y asegurar su correcta orientación hacia el sol.</li>
+              <li><b>Sistema de almacenamiento (opcional):</b> En algunos casos, se instalan baterías para almacenar el exceso de energía generada durante el día para utilizarla en momentos en los que no haya suficiente radiación solar, como durante la noche o en días nublados.</li>
+            </ul>
+            <p>Asimismo la instalación de placas solares en Madrid, o en cualquier otra ubicación con un buen nivel de radiación solar, permite aprovechar la energía del sol como fuente renovable y limpia de electricidad.</p>
+            <p>Además de reducir la dependencia de fuentes de energía tradicionales, esto puede tener un impacto positivo en el medio ambiente y ayudar a disminuir las emisiones de gases de efecto invernadero.</p>
+            <p>Es importante mencionar que las regulaciones y políticas relacionadas con la instalación de paneles solares pueden variar según el país, región o ciudad, por lo que se recomienda siempre consultar con expertos locales o compañías especializadas antes de realizar cualquier proyecto de instalación de placas solares.</p>
+          </div>
+        </article>
+
+        <div class="group-title"><h2>Reformas integrales</h2></div>
+
+        <article class="topic noimg">
+          <div>
+            <h3>Reformas integrales en Madrid</h3>
+            <p>Las reformas integrales en Madrid, al igual que en cualquier otra ciudad, consisten en la renovación completa o parcial de un espacio, ya sea un hogar, oficina o local comercial, con el objetivo de mejorar tanto su aspecto estético como su funcionalidad.</p>
+            <p>Estas reformas pueden abarcar diferentes áreas y aspectos del inmueble, y generalmente involucran trabajos de albañilería, fontanería, electricidad, carpintería y pintura, entre otros.</p>
+            <p>Algunas de las áreas que suelen incluirse en una reforma integral son:</p>
+            <ul class="dots">
+              <li><b>Albañilería:</b> Se pueden realizar cambios en la distribución de espacios, ampliación o reducción de habitaciones, creación de tabiques o eliminación de los mismos, entre otros.</li>
+              <li><b>Fontanería:</b> Renovación o reparación de tuberías, instalación de nuevos sanitarios, grifos y duchas, entre otros.</li>
+              <li><b>Electricidad:</b> Actualización de la instalación eléctrica, colocación de nuevos puntos de luz, tomas de corriente y sistemas de iluminación más eficientes.</li>
+              <li><b>Carpintería:</b> Cambio de puertas, ventanas y suelos, instalación de armarios empotrados, entre otros.</li>
+              <li><b>Pintura y decoración:</b> Renovación de paredes y techos, aplicación de nuevos acabados y colores, y en general, la decoración del espacio.</li>
+              <li><b>Instalaciones adicionales:</b> Si es necesario, pueden incorporarse sistemas de climatización, domótica, seguridad, etc.</li>
+            </ul>
+            <p>Una de las principales ventajas de las reformas integrales es que permiten actualizar y adaptar los espacios a las necesidades y preferencias actuales del propietario, mejorando la calidad de vida en el hogar o aumentando la eficiencia y atractivo de un local comercial.</p>
+            <p>Es importante contar con profesionales cualificados y experimentados en este tipo de trabajos para garantizar un resultado satisfactorio y seguro.</p>
+            <p>Además, el costo y la duración de una reforma integral pueden variar según la extensión y complejidad del proyecto, así como los materiales y acabados elegidos.</p>
+            <p>Por lo tanto, es recomendable solicitar presupuestos detallados antes de iniciar cualquier trabajo.</p>
+          </div>
+        </article>
+
+        <article class="topic">
+          <div>
+            <h3>Reforma de local a vivienda en Madrid</h3>
+            <p>En primer lugar una reforma de cambio de local comercial a vivienda implica la transformación de un espacio que originalmente estaba destinado a fines comerciales en un espacio habitable para uso residencial.</p>
+            <p>Esto podría aplicarse a locales comerciales que ya no están en uso, que deseen ser reconvertidos en viviendas para satisfacer las necesidades de vivienda en una determinada área.</p>
+            <p>El proceso de una reforma de este tipo podría implicar varios pasos, que incluyen:</p>
+            <ul class="dots">
+              <li><b>Obtención de permisos y licencias:</b> Para llevar a cabo la transformación de un local comercial en una vivienda, será necesario obtener los permisos y licencias pertinentes de las autoridades locales y municipales. Estos pueden incluir permisos de construcción, permisos de cambio de uso y otros requisitos específicos según las regulaciones locales.</li>
+              <li><b>Evaluación estructural y técnica:</b> Antes de comenzar cualquier trabajo, es necesario realizar una evaluación de la estructura y las instalaciones del local comercial para asegurarse de que cumpla con los requisitos de habitabilidad y seguridad para uso residencial.</li>
+              <li><b>Diseño y planificación:</b> Se debe realizar un diseño detallado del espacio habitable, teniendo en cuenta aspectos como la distribución de las habitaciones, la instalación de servicios básicos (agua, electricidad, saneamiento), ventilación, iluminación, etc.</li>
+              <li><b>Adaptación de instalaciones:</b> En muchos casos, los locales comerciales pueden tener instalaciones y sistemas diferentes a los requeridos en una vivienda, por lo que será necesario adaptarlos o instalar nuevos sistemas.</li>
+              <li><b>Cumplimiento de regulaciones de habitabilidad:</b> Las viviendas deben cumplir con ciertos estándares mínimos de habitabilidad, incluyendo requisitos de superficie mínima, ventilación, iluminación, etc. Es importante asegurarse de que la transformación cumpla con estos requisitos.</li>
+              <li><b>Aspectos legales y fiscales:</b> La transformación de un local comercial en una vivienda puede tener implicaciones legales y fiscales, como el cambio de la calificación catastral, lo que podría afectar a impuestos y otras cuestiones administrativas.</li>
+            </ul>
+            <p>Es fundamental contratar a profesionales cualificados como arquitectos, ingenieros y constructores para llevar a cabo una reforma de este tipo y asegurarse de cumplir con todas las regulaciones y estándares requeridos.</p>
+            <p>Asimismo te sugiero que te pongas en contacto con las autoridades locales o con un experto en el campo para obtener información actualizada sobre las normativas específicas en Madrid en caso de que desees llevar a cabo este tipo de reforma, pero lo mejor es que nos llames y te gestionaremos todo el proceso.</p>
+          </div>
+          <figure><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/convertir-local-comercial-madrid.jpg" alt="Reformas Madrid." loading="lazy"><figcaption>Reformas Madrid.</figcaption></figure>
+        </article>
+
+        <article class="topic noimg">
+          <div class="two">
+            <div>
+              <h3>Reforma tu hogar con confianza con Reformas Madrid</h3>
+              <p>Soldador, Pintor de casas, Plomero, Albañil, en fin… nuestra capacidad de acción es múltiple.</p>
+              <p>Realizamos trabajos de reforma en todas las áreas: carpintería, electricidad, alicatados, ventanas y muchos más.</p>
+              <p>Benefíciate de una empresa capaz de gestionar todos tus trabajos de reforma parcial o total en Madrid. Coordinamos todas las renovaciones de tu hogar en la región.</p>
+              <h4>Reformas simples y baratas en Madrid</h4>
+              <p>Si desea refrescar las estancias de tu hogar, podemos realizar trabajos simples de reforma con trabajos sencillos de pintura en general:</p>
+              <p>Pintura de paredes y techos, pintura de suelos o incluso aplicar revestimientos a tus paredes y techos para que luzcan como nuevos.</p>
+              <h4>Reformas complejas en Madrid</h4>
+              <p>Si necesitas realizar obras de reforma complejas en Madrid, también podemos encargarnos de trabajos de fontanería para modificar las instalaciones de agua o tuberías.</p>
+              <p>Si quieres llevar tu instalación eléctrica a la altura, también estamos cualificados para llevarlo a cabo.</p>
+              <p>Reformas Madrid incluso, puede así encargarse de rehabilitar tu instalación eléctrica como parte de una reforma compleja.</p>
+              <p>Dentro de una reforma integral en Madrid, nuestra empresa también está capacitada para llevar a cabo la sustitución de ventanas o puertas.</p>
+            </div>
+            <div>
+              <h4 style="margin-top:0">Reformas Madrid Integrales</h4>
+              <p>Así podrás mejorar el aislamiento térmico y acústico de tu hogar y ahorrar energía.</p>
+              <p>Este servicio también incluye todos los trabajos de reformas del suelo de tu vivienda.</p>
+              <p>Además realizamos por ti la instalación de revestimientos de suelos, zócalos e incluso su alicatado, con unos acabados irreprochables.</p>
+              <p>También realizamos reformas integrales de baños en Madrid, o podemos realizar duchas de obra con instalación de revestimiento de canto rodado, mosaico, gres, etc.</p>
+              <h4>Trabajos de ampliación en Madrid</h4>
+              <p>Reformas Madrid puede realizar los trabajos de reforma de tu espacio en tu casa.</p>
+              <p>De hecho, si tienes suficiente altura de techo y quieres ahorrar espacio, es posible crear un desván, e instalar o quitar mamparas en tu casa.</p>
+              <p>Además con el fin de ampliar la estancia e incluso tabiquerías con ladrillos de vidrio para un enlucido decorativo y no perder luminosidad.</p>
+              <p>Benefíciate de una empresa capaz de gestionar todos tus trabajos de reforma interior en Madrid. Coordinamos todas las renovaciones de tu hogar en la región.</p>
+              <div class="cta-row"><a href="https://wa.me/34644701077?text=He%20visto%20vuestra%20web%20de%20Reformas%20Madrid%20y%20quer%C3%ADa%20pedir%20presupuesto%20para%3A" class="btn btn-brand" target="_blank" rel="noopener">PIDE PRESUPUESTO GRATIS PARA TU REFORMA</a></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICES -->
+  <section id="precios">
+    <div class="wrap">
+      <div class="head">
+        <h2>¿Cuánto cuestan las reformas en Madrid?</h2>
+        <p>El precio de las reformas en Madrid depende de varios criterios, entre ellos el tamaño del edificio, la superficie a reformar y, por supuesto, el tipo de obra.</p>
+      </div>
+      <div class="faq">
+        <div class="qa wide">
+          <p>Sin embargo, el primer elemento de impacto es más fácil de definir, ya que es simplemente el tipo de edificio que deseas renovar y las partes involucradas.</p>
+          <p>De hecho, el presupuesto de trabajo puede variar significativamente entre la renovación de un apartamento, una casa o un local comercial, por ejemplo.</p>
+          <p>Para obras generales, es necesario sobre todo tener en cuenta el tipo de hábitat.</p>
+          <p>Un piso es generalmente más pequeño, por lo que tiene menos habitaciones de media, lo que muchas veces implicará un presupuesto total más bajo.</p>
+          <p>Sabiendo que el coste de reformar una habitación fluctúa, por ejemplo, entre 20 y 100 € por m², el tamaño juega aquí un papel importante.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta una reforma integral de piso en Madrid?</h3>
+          <p>Una reforma integral en Madrid cuesta desde los 25000 euros hasta los 50000 euros.</p>
+          <p>Todo dependerá de la dimensión del piso, todo lo que agrupe la reforma y la calidad de los materiales.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuál es el precio de las reformas de suelos en Madrid?</h3>
+          <p>Cada superficie (suelo, cubierta, carpintería, etc.) presenta entonces sus particularidades, lo que dará lugar a rangos de precios variados.</p>
+          <p>El repintado de una fachada cuesta entre 30 y 60 € por m².</p>
+          <p>La renovación de una pared estándar ronda los 20 a 40 € por m² sin preparación.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta la renovación energética en una vivienda de Madrid?</h3>
+          <p>El trabajo de reforma energética también puede tener un precio distinto dependiendo del tipo de habitación que se desee aislar. Por ejemplo:</p>
+          <ul class="dots">
+            <li>Considera de 60 a 120 € por m² para evitar pérdidas de energía rehaciendo el aislamiento del ático de tu hogar.</li>
+            <li>Debes estimar de 300 a 1.200 € por radiador eléctrico para mejorar tu calefacción</li>
+            <li>Para climatizar el ambiente con aire acondicionado, el presupuesto es muy variable: de 150 a más de 3.000 € (según la solución adoptada).</li>
+          </ul>
+        </div>
+        <div class="qa">
+          <h3>¿Cuál es el precio de una reforma por m² en Madrid?</h3>
+          <p>El precio de una reforma por m² en Madrid depende sobre todo del tipo de obra prevista.</p>
+          <p>Una reforma simple que implique pequeñas reparaciones suele costar entre 100 y 450 € por m².</p>
+          <p>Una reforma completa está entre 1.000 y 1.800 € cuando una reforma mayor tiene un precio de salida de 1.500 €.</p>
+          <h3 style="margin-top:16px">¿Cuánto cuesta una reforma integral por m2 en Madrid?</h3>
+          <p>Una reforma integral cuesta unos 1500 €/m2 en Madrid.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuál es el coste de una reforma simple por m² en Madrid?</h3>
+          <p>Una reforma simple implica pequeñas reparaciones, pero también refrescar las pinturas o el suelo, siempre que no sea necesario intervenir en la electricidad o la fontanería.</p>
+          <p>El presupuesto para este tipo de pequeños proyectos se puede limitar a entre 100 y 300 €/m².</p>
+          <p>Entre 300 y 450 €, se puede considerar la reparación de techos, tabiques u otras reparaciones más técnicas.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuál es el precio de una reforma completa por m² en Madrid?</h3>
+          <p>La reforma integral incluye todos los trabajos de una reforma simple, así como la reparación de estancias completas (cocina, baño) y la modernización y/o adecuación de la instalación eléctrica y de fontanería.</p>
+          <p>Una reforma interior completa tiene un presupuesto medio de 1.000 a 1.800 €/m², teniendo en cuenta mano de obra y suministros, para materiales de gama media.</p>
+        </div>
+        <div class="qa wide">
+          <h3>¿Coste de una reforma compleja en Madrid?</h3>
+          <p>Desde 1.500 € el m², estamos hablando de grandes reformas o reformas complejas en Madrid, que consisten en modificar la estructura, fachada o cubierta de un edificio.</p>
+          <p>El coste entonces se aproxima fácilmente al precio de las nuevas construcciones. En algunos casos, una reforma importante también consiste en añadir un nuevo elemento de construcción a una propiedad.</p>
+          <p>Este es particularmente el caso si deseas invertir en una ampliación de la casa, que te costará entre 1100 y 3000 € por m² para una ampliación tradicional, en comparación con 1000 € y 1900 € por m² para un garaje.</p>
+        </div>
+      </div>
+
+      <div class="head" style="margin-top:64px;margin-bottom:20px">
+        <h2>¿Cuánto cuesta reformar un piso en Madrid?</h2>
+        <p>El precio medio de una reforma integral en Madrid es de 15000 euros.</p>
+      </div>
+      <div class="pisos">
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 50 m2 en Madrid?</h3><p>La reforma de un piso de 50 m2 en Madrid cuesta unos 20000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 60 m2 en Madrid?</h3><p>La reforma de un piso de 60 m2 en Madrid cuesta unos 25000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 70 m2 en Madrid?</h3><p>La reforma de un piso de 70 m2 en Madrid cuesta unos 30000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 80 m2 en Madrid?</h3><p>La reforma de un piso de 80 m2 en Madrid cuesta unos 30000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 90 m2 en Madrid?</h3><p>La reforma de un piso de 90 m2 en Madrid cuesta unos 35000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 100 m2 en Madrid?</h3><p>La reforma de un piso de 100 m2 en Madrid cuesta unos 40000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 120 m2 en Madrid?</h3><p>La reforma de un piso de 120 m2 en Madrid cuesta unos 45000 euros de media.</p></div>
+        <div class="piso"><h3>¿Cuánto cuesta reformar un piso de 150 m2 en Madrid?</h3><p>La reforma de un piso de 150 m2 en Madrid cuesta unos 50000 euros de media.</p></div>
+      </div>
+      <div class="faq">
+        <div class="qa">
+          <h3>¿Qué incluye una reforma integral de piso en Madrid?</h3>
+          <p>La reforma integral de un piso en Madrid incluye; reforma de baño y cocina, reforma de puertas y ventanas, reforma de electricidad y fontanería.</p>
+          <p>Asimismo pintura, cambio de suelo, mobiliario y actualizaciones varias.</p>
+          <p>Además el presupuesto variará dependiendo de las dimensiones de la vivienda y dependiendo también de la calidad de los materiales elegidos.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta la reforma integral de una casa de 100 m2 en Madrid?</h3>
+          <p>La reforma integral de una casa de 100 m2 en Madrid cuesta unos 45000 euros.</p>
+          <h3>¿Cuánto cuesta la reforma integral de una casa de 120 m2 en Madrid?</h3>
+          <p>La reforma integral de una casa de 120 m2 en Madrid cuesta unos 50000 euros.</p>
+          <h3>¿Cuánto cuesta la reforma integral de una casa de 150 m2 en Madrid?</h3>
+          <p>La reforma integral de una casa de 150 m2 en Madrid cuesta unos 55000 euros.</p>
+          <h3>¿Cuánto cuesta la reforma integral de una casa de 200 m2 en Madrid?</h3>
+          <p>La reforma integral de una casa de 200 m2 en Madrid cuesta unos 65000 euros.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta reforma integral de un baño en Madrid?</h3>
+          <p>La reforma integral de un cuarto de baño en Madrid de tamaño estándar cuesta unos 4500 euros.</p>
+          <p>Asimismo en esta reforma estaría incluido el alicatado y el mobiliario de la reforma.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta la reforma integral de una cocina en Madrid?</h3>
+          <p>La reforma integral de una cocina en Madrid de tamaño estándar cuesta unos 5500 euros.</p>
+          <p>Asimismo en esta reforma estaría incluido el alicatado y el mobiliario de la reforma.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta la reforma integral de un local comercial en Madrid?</h3>
+          <p>La reforma integral de un local comercial o lonja que esté de obra en Madrid cuesta unos 90000 euros de media.</p>
+        </div>
+        <div class="qa">
+          <h3>¿Cuánto cuesta reformar una fachada en Madrid?</h3>
+          <p>La reforma de un edificio de una comunidad en Madrid cuesta unos 100000 euros de media.</p>
+          <p>Asimismo estaríamos hablando de una comunidad de vecinos de 5 alturas como mínimo y una reforma tipo SATE.</p>
+        </div>
+        <div class="qa wide">
+          <h3>¿Cuánto cuesta la reforma de un tejado o cubierta en Madrid?</h3>
+          <p>La reforma de un tejado en Madrid cuesta unos 30000 euros de media.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIRE / PROCESS -->
+  <section class="alt" id="presupuesto">
+    <div class="wrap two">
+      <div>
+        <span class="eyebrow">Contrata nuestros servicios:</span>
+        <ul class="dots" style="margin-top:14px">
+          <li><a href="https://reformasmadrid.eu">Reformas en Madrid</a></li>
+          <li><a href="https://reformasmadrid.eu/reformas-de-banos-en-madrid/">Reformas de baños en Madrid</a></li>
+          <li><a href="https://reformasmadrid.eu/reformas-de-cocinas-en-madrid/">Reformas de cocinas en Madrid</a></li>
+          <li><a href="https://reformasmadrid.eu/reformas-de-pisos-en-madrid/">Reformas de pisos en Madrid</a></li>
+        </ul>
+        <div class="head" style="margin:30px 0 14px">
+          <h2><a href="https://reformasmadrid.eu/contacto/">¡Solicita un presupuesto a Reformas Madrid!</a></h2>
+        </div>
+        <p>Cualquiera que sea tu trabajo de renovación, el equipo de <a href="https://reformasmadrid.eu/contacto/" style="color:var(--brand);font-weight:600">Reformas Madrid</a> puede intervenir para:</p>
+        <ul class="dots">
+          <li>Actualizar una casa u oficina (renovación de paredes y suelo, sustitución de carpintería, etc.)</li>
+          <li>Completar una reforma parcial de la vivienda (cocina, baño, etc.)</li>
+          <li>Realizar una reforma integral de la vivienda (rehabilitación de espacios, aislamientos, fontanería y electricidad, etc.)</li>
+        </ul>
+      </div>
+      <div class="topic noimg" style="display:block">
+        <h3>¿Qué sucede después de tu solicitud de cotización o presupuesto?</h3>
+        <p>Recibirás un presupuesto de obra detallado con suministro e instalación.</p>
+        <p>Esto te permitirá tener una idea clara del precio de las reformas de obra en Madrid.</p>
+        <p>Después, revisarás los detalles del presupuesto con nuestro personal encargado de tu caso, quien podrá acudir al lugar para ofrecerte las soluciones más adecuadas con la mejor relación calidad-precio, lo que te permitirá afinar tu cotización con un trabajo preciso y personalizado.</p>
+        <div class="cta-row"><a href="https://wa.me/34644701077?text=He%20visto%20vuestra%20web%20de%20Reformas%20Madrid%20y%20quer%C3%ADa%20pedir%20presupuesto%20para%3A" class="btn btn-brand" target="_blank" rel="noopener" style="width:100%;white-space:normal">PIDE PRESUPUESTO GRATIS PARA TU REFORMA</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEES -->
+  <section id="garantias">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Una empresa especializada en reformas en Madrid</span>
+        <h2>¿Cuáles son nuestras garantías como empresa de reformas en Madrid?</h2>
+      </div>
+      <ul class="guar">
+        <li><span>✓</span>Presupuestos rápidos y gratuitos.</li>
+        <li><span>✓</span>Resultados altamente profesionales.</li>
+        <li><span>✓</span>Respeto de los plazos.</li>
+        <li><span>✓</span>Manejo de sitio.</li>
+        <li><span>✓</span>Garantías.</li>
+      </ul>
+
+      <div class="topic noimg" style="margin-top:44px">
+        <div>
+          <h3>Pequeñas reformas en Madrid</h3>
+          <div class="two">
+            <div>
+              <p>Las pequeñas reformas en Madrid son una forma efectiva de renovar y mejorar el espacio en el que vivimos, sin necesidad de grandes inversiones.</p>
+              <p>Desde cambios cosméticos hasta mejoras funcionales, existen muchas opciones para transformar cualquier hogar.</p>
+              <p>Para comenzar, una pequeña reforma puede incluir la repintura de las paredes y techos.</p>
+              <p>Este proyecto no solo refresca el espacio, sino que también permite a los propietarios experimentar con nuevos colores y estilos.</p>
+              <p>Además, la repintura puede ayudar a resolver problemas de humedad o manchas en las paredes.</p>
+              <p>Otro aspecto importante de las pequeñas reformas es la renovación de los baños y cocinas. Estos espacios suelen ser los más utilizados de la casa y están sujetos a desgaste y desgaste constante.</p>
+              <p>Reemplazar los azulejos rotos, instalar grifos nuevos y cambiar los armarios puede dar un aspecto fresco y renovado a estos espacios importantes.</p>
+            </div>
+            <div>
+              <p>Los pisos también son un aspecto clave en cualquier reforma. La sustitución de los pisos antiguos por materiales más modernos como el parquet, el laminado o los azulejos puede transformar por completo la apariencia de una casa.</p>
+              <p>Asimismo, estos materiales son más duraderos y resistentes que los pisos antiguos, lo que los hace ideales para las pequeñas reformas.</p>
+              <p>Las mejoras en iluminación también son un aspecto importante de las pequeñas reformas.</p>
+              <p>Instalar luces LED eficientes en el techo o agregar lámparas de pie en las habitaciones puede mejorar significativamente la iluminación y crear un ambiente más acogedor en el hogar.</p>
+              <p>En resumen, las pequeñas reformas en Madrid son una forma efectiva de renovar y mejorar el espacio en el que vivimos sin necesidad de grandes inversiones.</p>
+              <p>Desde repintura hasta renovación de baños y cocinas, la iluminación y los pisos, existen muchas opciones para transformar cualquier hogar en un espacio más acogedor y funcional.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="alt" id="blog">
+    <div class="wrap">
+      <div class="head">
+        <h2><a href="https://reformasmadrid.eu/blog/">Visita nuestro Blog de reformas</a></h2>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://reformasmadrid.eu/reformas-baratas-en-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reformas-baratas-madrid-390x200.png" alt="Reformas baratas en Madrid" loading="lazy"><div><h3>Reformas baratas en Madrid</h3><p>Reformas baratas en Madrid con Calidad Total En Madrid, por ser la</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/empresa-de-reformas/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/01/reformas-madrid-logo-390x200.png" alt="Empresa de reformas en Madrid. Consejos para afrontar una reforma en Madrid" loading="lazy"><div><h3>Empresa de reformas</h3><p>La mejor empresa de reformas en Madrid 2023 ¿Estás pensando en hacer</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/reformas-madrid-opiniones/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/03/cliente-satisfecho-opiniones-reformas-madrid-clientes-contentos-390x200.jpg" alt="Reformas Madrid opiniones" loading="lazy"><div><h3>Reformas Madrid opiniones</h3><p>Empresa de Reformas Madrid opiniones ¡Nuestra prioridad es lo que piensan nuestros</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/reformar-casa-de-pueblo-en-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/03/reformas-de-lujo-en-madrid-390x200.jpg" alt="Pepa y Pepe la historia de una reforma" loading="lazy"><div><h3>Reformar casa de pueblo en Madrid</h3><p>Empresa para reformar casa de pueblo en Madrid Si tienes una casa</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/reformas-integrales-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2022/09/reforma-loft-convertido-en-duplex-madrid-390x200.jpg" alt="Reformas integrales Madrid Reformas Madrid." loading="lazy"><div><h3>Reformas integrales Madrid</h3><p>Empresa de reformas integrales Madrid En Reformas integrales Madrid llevamos años trabajando</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/piscinas-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/03/piscinas-familiares-pequenas-madrid-390x200.jpg" alt="Piscinas Madrid" loading="lazy"><div><h3>Piscinas Madrid</h3><p>Empresa de construcción de Piscinas Madrid Ofrecemos la mejor opción en Madrid</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/construccion-de-piscinas-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/03/piscinas-Madrid-390x200.jpg" alt="Construcción de piscinas Madrid" loading="lazy"><div><h3>Construcción de piscinas Madrid</h3><p>Empresa de construcción de piscinas Madrid Desde Reformas Madrid con la especialidad</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/insonorizacion-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/03/insonorizaciones-especiales-bares-restaurantes-madrid-390x200.jpg" alt="Insonorización Madrid" loading="lazy"><div><h3>Insonorización Madrid</h3><p>Empresa de Insonorización Madrid Durante un trabajo de reforma, la insonorización es</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/instalacion-de-placas-solares-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/06/placas-solares-subvenciones-madrid-ayudas-390x200.jpg" alt="Instalación de placas Solares Madrid" loading="lazy"><div><h3>Instalación de placas Solares Madrid</h3><p>Empresa de instalación de placas Solares Madrid Instalación de placas solares en</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/pladur-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/07/estanteria-pladur-madrid-390x200.jpg" alt="Pladur Madrid" loading="lazy"><div><h3>Pladur Madrid</h3><p>Instalación de Pladur Madrid ¡Hola! Parece que estás buscando el servicio de</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/pintores-en-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/08/pinto-390x200.jpg" alt="Pintores en Madrid" loading="lazy"><div><h3>Pintores en Madrid</h3><p>Empresa de pintores en Madrid ¿Quieres encontrar a los mejores pintores de</p><span class="more">Leer más…</span></div></a>
+        <a class="post" href="https://reformasmadrid.eu/consejos-para-afrontar-una-reforma-en-madrid/"><img src="https://reformasmadrid.eu/wp-content/uploads/2023/01/reformas-madrid-logo-390x200.png" alt="Empresa de reformas en Madrid. Consejos para afrontar una reforma en Madrid" loading="lazy"><div><h3>Consejos para afrontar una reforma en Madrid</h3><p>Los mejores consejos para afrontar una reforma en Madrid ¡Por supuesto! Afrontar</p><span class="more">Leer más…</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact" id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" style="color:var(--cyan)"><a href="https://reformasmadrid.eu">Reformas Madrid Integrales</a></span>
+        <h2>¡Contáctanos!</h2>
+        <p>Apasionados por nuestra profesión, en <a href="https://reformasmadrid.eu/nosotros/" style="color:#fff;text-decoration:underline">Nosotros en Reformas Madrid</a> seremos capaces de satisfacer tus solicitudes y expectativas, ofreciéndote resultados de un trabajo es de alta calidad y con acabados impecables.</p>
+        <p>Contáctanos para solicitar una cotización gratis y vivir una experiencia de entera satisfacción con nuestros servicios de reformas en Madrid.</p>
+      </div>
+      <h3 style="color:#fff;font-size:1.2rem;margin-bottom:6px">¿Dónde nos podéis encontrar?</h3>
+      <p style="margin-bottom:22px"><a href="https://reformasmadrid.eu" style="color:#fff">Reformas Madrid | Baños, Cocinas o Reformas integrales</a></p>
+      <div class="c-grid">
+        <div class="c-card">
+          <h3>Servicio al cliente:</h3>
+          <a class="tel" href="tel:+34919930335">919 93 03 35</a>
+          <h3 style="margin-top:18px">Correo electrónico:</h3>
+          <a href="mailto:madridreformas0@gmail.com">madridreformas0@gmail.com</a>
+        </div>
+        <div class="c-card">
+          <h3>Dirección:</h3>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=C.%20Teobaldo%2C%201%2C%20Carabanchel%2C%2028025%20Madrid" target="_blank" rel="noopener">C. Teobaldo, 1, Carabanchel, 28025 Madrid</a>
+          <p class="coords">Reformas Madrid integrales: 40.37920720497337, -3.7423985625648397</p>
+        </div>
+        <div class="c-card">
+          <h3>Horas:</h3>
+          <div class="hours">
+            <span>lunes, martes, miércoles, jueves, viernes</span><span>09:00–20:00</span>
+            <span>sábado</span><span>09:00–14:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="btns">
+        <a href="https://wa.me/34644701077?text=He%20visto%20vuestra%20web%20de%20Reformas%20Madrid%20y%20quer%C3%ADa%20pedir%20presupuesto%20para%3A" class="btn btn-wa" target="_blank" rel="noopener">PIDE PRESUPUESTO GRATIS PARA TU REFORMA</a>
+        <a href="tel:+34919930335" class="btn btn-line">Servicio al cliente: <span class="tel">919 93 03 35</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p class="tag-line">Reformas Madrid expertos en todo tipo de reformas</p>
+    <img src="https://reformasmadrid.eu/wp-content/uploads/2022/08/reformas-madrid-logo-banos-cocinas-rehatilitaciones-logo-web.jpg" alt="Reformas Madrid" width="600" height="162" loading="lazy">
+    <nav>
+      <a href="https://reformasmadrid.eu">Reformas integrales Madrid</a>
+      <a href="https://reformastoledo.eu">Reformas Toledo</a>
+      <a href="https://reformasmadrid.eu/reformas-de-pisos-en-madrid/">Reformas de pisos en Madrid</a>
+      <a href="https://reformasmadrid.eu/reformas-de-banos-en-madrid/">Reformas de baños en Madrid</a>
+      <a href="https://reformasmadrid.eu/reformas-de-cocinas-en-madrid/">Reformas de cocinas en Madrid</a>
+      <a href="https://reformasmadrid.eu/reformas-baratas-en-madrid/">Reformas baratas Madrid</a>
+      <a href="https://reformasmadrid.eu/nosotros/">Nosotros</a>
+      <a href="https://reformasmadrid.eu/contacto/">Contacto</a>
+    </nav>
+    <nav>
+      <a href="https://reformasmadrid.eu/aviso-legal/">Aviso Legal</a>
+      <a href="https://reformasmadrid.eu/politica-de-privacidad">Política de Privacidad</a>
+      <a href="https://reformasmadrid.eu/politica-de-cookies/">Política de Cookies</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34919930335" class="btn btn-brand"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>919 93 03 35</a>
+  <a href="https://wa.me/34644701077?text=He%20visto%20vuestra%20web%20de%20Reformas%20Madrid%20y%20quer%C3%ADa%20pedir%20presupuesto%20para%3A" class="btn btn-wa" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ciasa, Grupo Tamsa · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#c33a0d; --brand-2:#c94c12; --brand-dark:#9e2f0a; --ink:#222; --text:#444; --muted:#777;
+    --line:#e6e6e6; --tint:#f4f3f1; --soft:#fbf3ef; --white:#fff; --radius:10px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,h4{font-family:Roboto,system-ui,sans-serif;color:var(--ink);line-height:1.15}
+  .eyebrow{font-family:Roboto,sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:700}
+  p a.inline{color:var(--brand);font-weight:600;border-bottom:1px solid rgba(195,58,13,.35)}
+  p a.inline:hover{border-color:var(--brand)}
+
+  .demo{background:#1d1d1d;color:#e9c2b4;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .top{background:var(--tint);border-bottom:1px solid var(--line);font-size:.84rem;color:#666}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;flex-wrap:wrap}
+  .top .contact{display:flex;gap:20px;flex-wrap:wrap}
+  .top .contact a{display:inline-flex;align-items:center;gap:7px;font-weight:600;color:#333}
+  .top .contact svg{color:var(--brand)}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
+  .nav .logo img{height:54px;width:auto}
+  .menu{display:flex;align-items:center;gap:6px;list-style:none}
+  .menu a{font-family:Roboto,sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.06em;color:#555;padding:10px 12px;border-radius:6px;display:inline-flex;align-items:center}
+  .menu a:hover{color:var(--brand);background:var(--soft)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:6px;font-family:Roboto,sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.04em;transition:.2s;border:2px solid var(--brand);cursor:pointer;white-space:nowrap;text-align:center}
+  .btn-brand{background:var(--brand);color:#fff}
+  .btn-brand:hover{background:var(--brand-2);border-color:var(--brand-2)}
+  .btn-line{background:#fff;color:var(--brand)}
+  .btn-line:hover{background:var(--soft)}
+  .btn-sm{padding:10px 16px;font-size:.82rem}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:56px 0 72px;border-bottom:1px solid var(--line)}
+  .crumbs{font-size:.8rem;color:var(--muted);margin-bottom:18px}
+  .crumbs a{color:#333;font-weight:600}
+  .crumbs a:hover{color:var(--brand)}
+  .crumbs span.sep{margin:0 8px;color:#bbb}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero h1{font-weight:900;font-size:clamp(2.2rem,4.8vw,3.6rem);letter-spacing:-.01em;margin:12px 0 22px}
+  .hero h1 span{color:var(--brand)}
+  .hero p{font-size:1.04rem;margin-bottom:14px;max-width:580px}
+  .hero p strong{color:var(--ink)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .hero-img{position:relative}
+  .hero-img img{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:0 30px 60px -32px rgba(0,0,0,.45)}
+  .hero-img::before{content:"";position:absolute;inset:auto auto -14px -14px;width:42%;height:46%;background:var(--brand);border-radius:var(--radius);z-index:-1}
+  .badge{position:absolute;right:16px;bottom:16px;background:#fff;border-radius:8px;padding:10px 14px;font-family:Roboto,sans-serif;font-weight:700;font-size:.82rem;color:var(--ink);display:flex;gap:8px;align-items:center;box-shadow:0 10px 30px -12px rgba(0,0,0,.4)}
+  .badge svg{color:var(--brand)}
+
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:36px}
+  .head h2{font-weight:900;font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:10px}
+  .head p{margin-top:14px}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .split p{margin-bottom:14px}
+  .split img{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover}
+  .note{border-left:4px solid var(--brand);background:var(--soft);padding:20px 22px;border-radius:0 var(--radius) var(--radius) 0;margin-top:8px}
+
+  .spec{background:#1f1f1f;color:#ddd;padding:80px 0}
+  .spec .wrap{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:start}
+  .spec .ic{width:64px;height:64px;border-radius:50%;border:2px solid var(--brand);display:grid;place-items:center;color:var(--brand)}
+  .spec h2{color:#fff;font-weight:900;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:14px}
+  .spec p{max-width:820px;font-size:1.03rem}
+  .spec strong{color:#fff}
+
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;background:#fff;transition:.25s;border-top:4px solid var(--brand)}
+  .card:hover{box-shadow:0 18px 40px -26px rgba(0,0,0,.35);transform:translateY(-2px)}
+  .card .num{font-family:Roboto,sans-serif;color:var(--brand);font-weight:900;font-size:1.05rem}
+  .card h3{font-size:1.12rem;margin:6px 0 12px}
+  .card p{font-size:.92rem;margin-bottom:10px}
+  .card p:last-child{margin-bottom:0}
+
+  .pisos{background:var(--tint)}
+  .pisos .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+  .pisos p{margin-bottom:14px}
+  .local{background:#fff;border-radius:var(--radius);padding:28px;border:1px solid var(--line)}
+  .local h3{font-size:1.3rem;margin-bottom:12px}
+
+  .quote{text-align:center}
+  .quote .box{background:var(--brand);color:#fff;border-radius:16px;padding:56px 32px;max-width:900px;margin:0 auto}
+  .quote h2{color:#fff;font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:14px}
+  .quote p{max-width:680px;margin:0 auto;color:#fde8df}
+  .quote p a{color:#fff;font-weight:700;border-bottom:1px solid rgba(255,255,255,.6)}
+  .quote .btn{margin-top:28px;background:#fff;color:var(--brand);border-color:#fff}
+  .quote .btn:hover{background:#1f1f1f;color:#fff;border-color:#1f1f1f}
+
+  .map{padding:0}
+  .map iframe{display:block;width:100%;height:300px;border:0;filter:grayscale(.3)}
+  .map .wrap{display:flex;justify-content:flex-end;padding-top:12px;padding-bottom:12px}
+  .map a{font-weight:600;color:var(--brand);display:inline-flex;gap:6px;align-items:center}
+
+  .cta{padding:60px 0;border-top:1px solid var(--line)}
+  .cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+  .cta h4{font-size:1.45rem;font-weight:700;margin-bottom:6px}
+  .cta p strong{color:var(--brand)}
+  .cta .row{display:flex;gap:12px;flex-wrap:wrap}
+
+  footer{background:#eee;color:#666;font-size:.9rem}
+  .foot{display:grid;grid-template-columns:1.3fr .8fr .8fr 1.4fr;gap:36px;padding:56px 0 40px}
+  .foot img{height:48px;width:auto;margin-bottom:16px}
+  .foot h6{font-family:Roboto,sans-serif;font-size:.85rem;letter-spacing:.12em;color:#333;margin-bottom:14px}
+  .foot ul{list-style:none;display:grid;gap:8px}
+  .foot ul a:hover,.foot .legal a:hover{color:var(--brand)}
+  .foot .co{font-weight:700;color:#333;display:block}
+  .foot .phone{font-family:Roboto,sans-serif;font-size:1.5rem;font-weight:700;color:var(--brand);display:inline-flex;align-items:center;gap:8px;margin:10px 0 6px}
+  .foot .line{display:flex;gap:8px;align-items:flex-start;margin-top:4px}
+  .foot .line svg{flex:none;margin-top:4px;color:#999}
+  .foot .line a{color:#333;font-weight:600}
+  .bottom{border-top:1px solid #ddd;padding:18px 0;font-size:.82rem}
+  .bottom .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .bottom nav{display:flex;gap:6px 16px;flex-wrap:wrap}
+  .bottom nav a{font-weight:600;color:#777}
+  .bottom nav a:hover{color:var(--brand)}
+  .legal a{color:#333}
+
+  .callbar{display:none}
+
+  @media (max-width:1040px){
+    .menu a{padding:10px 8px;font-size:.82rem}
+    .nav .cta-head{display:none}
+    .cards{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:860px){
+    .hero-grid,.split,.pisos .grid{grid-template-columns:1fr;gap:34px}
+    .menu{display:none}
+    .mnav{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0 12px;border-top:1px solid var(--line)}
+    .mnav a{font-family:Roboto,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.05em;color:#555;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:#fff}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .top{display:none}
+    .nav{height:68px}
+    .nav .logo img{height:42px}
+    .hero{padding:32px 0 52px}
+    .hero .row .btn{width:100%;white-space:normal}
+    .hero-img::before{display:none}
+    section{padding:60px 0}
+    .spec{padding:60px 0}
+    .spec .wrap{grid-template-columns:1fr;gap:18px}
+    .cards{grid-template-columns:1fr}
+    .quote .box{padding:40px 22px}
+    .quote .btn{width:100%;white-space:normal}
+    .cta .row,.cta .row .btn{width:100%}
+    .foot{grid-template-columns:1fr;gap:28px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 6px;font-size:.82rem;white-space:normal}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Ciasa, Grupo Tamsa · demo no oficial</div>
+
+<div class="top">
+  <div class="wrap">
+    <span>Empresa Constructora Certificada</span>
+    <div class="contact">
+      <a href="tel:+34987307326"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>987 307 326</a>
+      <a href="mailto:tamsa@grupotamsa.es"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>tamsa@grupotamsa.es</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="http://ciasa.es/index.php" aria-label="Grupo Tamsa"><img src="logo-tamsa.png" srcset="logo-tamsa.png 1x, logo-tamsa@2x.png 2x" alt="Grupo Tamsa - Ciasa - Constructora en León" width="269" height="70"></a>
+    <ul class="menu">
+      <li><a href="http://ciasa.es/index.php" aria-label="Inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg></a></li>
+      <li><a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php">PROYECTOS</a></li>
+      <li><a href="http://ciasa.es/servicios-construccion-reformas-tamsa-leon.php">SERVICIOS</a></li>
+      <li><a href="http://ciasa.es/gravera-aridos-tamsa-leon.php">GRAVERA</a></li>
+      <li><a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php">CONTACTO</a></li>
+      <li class="cta-head"><a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php" class="btn btn-brand btn-sm" style="color:#fff">SOLICITAR PRESUPUESTO</a></li>
+    </ul>
+  </div>
+  <div class="wrap">
+    <nav class="mnav" aria-label="Menú">
+      <a href="http://ciasa.es/index.php">INICIO</a>
+      <a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php">PROYECTOS</a>
+      <a href="http://ciasa.es/servicios-construccion-reformas-tamsa-leon.php">SERVICIOS</a>
+      <a href="http://ciasa.es/gravera-aridos-tamsa-leon.php">GRAVERA</a>
+      <a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php">CONTACTO</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="http://ciasa.es/index.php">Grupo Tamsa</a><span class="sep">/</span>Construcción y reformas en León</div>
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Empresa Constructora Certificada</span>
+          <h1>Construcción y reformas en <span>León</span></h1>
+          <p>En Ciasa contamos con una amplia trayectoria en el sector de la construcción que nos ha permitido situarnos como una de las <strong>empresas de referencia de la construcción en León</strong>.</p>
+          <p>Ofrecemos las mejores soluciones tanto para la edificación de obra nueva como para la <strong>reforma de cualquier tipo de inmuebles</strong>. Como empresa especializada en el sector de la construcción buscamos siempre ofrecer los resultados que el cliente está buscando.</p>
+          <div class="row">
+            <a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php?mensaje1=contPresupuesto" class="btn btn-brand">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg>
+              PRESUPUESTO PARA REFORMAS</a>
+            <a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php#projects_locales" class="btn btn-line">VER TRABAJOS DESTACADOS</a>
+          </div>
+        </div>
+        <div class="hero-img">
+          <img src="reformas-en-general-en-leon.jpg" alt="Empresas de reformas en general en León" width="825" height="300">
+          <div class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>Empresa de Reformas certificada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICADA -->
+  <section id="certificada">
+    <div class="wrap split">
+      <div>
+
+        <div class="head" style="margin-bottom:22px"><h2>Empresa de Reformas certificada</h2></div>
+        <p>Nuestra empresa cuenta con un <strong>programa específico de calidad</strong> mediante el que se realiza un plan de seguimiento de cada uno de los proyectos. Gracias a una estructuración y organización adecuada aseguramos a nuestros clientes la realización de nuestras <a class="inline" href="http://ciasa.es/empresas-de-construccion-en-leon.php" title="construcción y edificación de obras">obras de construcción</a> en los plazos solicitados según el plan elaborado.</p>
+        <p>Nuestro método de trabajo comienza por realizar una planificación adecuada que nos permita tener una visión clara del trabajo a realizar. Contar con una buena organización de nuestro equipo de trabajo, nos permite cumplir con los plazos de entrega obteniendo resultados de la mejor calidad.</p>
+        <p class="note">Trabajamos para conseguir un aprovechamiento eficiente del espacio, diseñando espacios interiores y exteriores modernos y atractivos. Nuestro equipo cuenta siempre con maquinaria moderna que le permita conseguir los mejores acabados posibles. Sabemos cuidar los detalles, aportando nuestro trabajo y la calidad de nuestros materiales.</p>
+      </div>
+      <img src="empresas-de-reformas-en-leon.jpg" alt="Reformas de pisos en León" width="825" height="300" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ESPECIALISTAS -->
+  <div class="spec">
+    <div class="wrap">
+      <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></span>
+      <div>
+        <h2>Especialistas en Reformas en general León</h2>
+        <p>Somos especialistas en la <strong>restauración, rehabilitación y reforma de pisos en León</strong>. Nos ocupamos de trabajar desde la planificación del proyecto hasta la realización de todas las tareas de reforma y construcción para conseguir los mejores resultados. Ciasa cuenta con el certificado de empresa constructora como premio a los trabajos realizados. Confía en nosotros para la realización de tu proyecto.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFORMAS INTEGRALES -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Servicios</span>
+        <h2>Reformas Integrales</h2>
+        <p>Contamos con el equipo más completo para la realización de todo tipo de tareas de reforma para su hogar. Estamos capacitados para todo tipo de trabajos de reforma, especialmente en pisos y locales.</p>
+        <p>Nuestros profesionales se encargarán de realizar aquellos trabajos que necesite. Le exponemos nuestros servicios más destacados.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="num">01</span>
+          <h3>Rehabilitación de viviendas</h3>
+          <p>Puede contactar con nosotros si está pensando en realizar cualquier tipo de reforma o necesitar rehabilitar algún espacio. Realizaremos un estudio del lugar para valorar las mejores opciones que permitan recuperar estructuras dañadas o cambiar por completo la decoración y organización de su local.</p>
+        </article>
+        <article class="card">
+          <span class="num">02</span>
+          <h3>Impermeabilizaciones para tejados y fachadas</h3>
+          <p>Evitar que las humedades dañen tu casa es un problema que puede tener solución para ti, hoy mismo. Evita realizar cualquier obra innecesaria sin antes averiguar el motivo de las humedades. Estudiaremos tu caso para actuar de la manera que más te convenga. Utilizamos materiales de calidad que ayudarán a erradicar la humedad de tu piso o vivienda.</p>
+          <p>Utilizamos materiales impermeables y aislantes, tanto térmicos como acústicos.</p>
+        </article>
+        <article class="card">
+          <span class="num">03</span>
+          <h3>Cubiertas y Tejados</h3>
+          <p>En Ciasa te ayudamos a reformar tu tejado, instalar o reparar tu cubierta. El desgaste y la corrosión provocados por la climatología y el paso del tiempo puede causar daños importantes en tu casa. La solución es repararlos siempre utilizando materiales de construcción de primera calidad que perduren en el tiempo.</p>
+        </article>
+        <article class="card">
+          <span class="num">04</span>
+          <h3>Restauración de fachadas</h3>
+          <p>Arreglamos cualquier tipo de desperfecto causado en la fachada de su vivienda. Rehabilitamos y subsanamos todo tipo de desperfectos causados por el paso del tiempo, conservando su arquitectura y recuperando el aspecto original.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PISOS Y LOCALES -->
+  <section class="pisos" id="pisos">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:28px">
+
+        <h2>Reformas de pisos y locales en León</h2>
+      </div>
+      <div class="grid">
+        <div>
+          <p>Si estás pensando en realizar algún tipo de obra o reforma en tu casa, no dudes en consultarnos. Somos especialistas en todo tipo de reformas integrales. Dale un cambio a tu hogar y moderniza tu baño, tu cocina o cualquier otra estancia. Nosotros te ayudaremos con la instalación de sanitarios, muebles y electrodomésticos. Nos ocupamos del diseño y planificación de tu reforma para adecuarla a los servicios que necesites.</p>
+          <p>Ciasa es su empresa de reformas de pisos especializada. Le ofreceremos un proyecto de acondicionamiento de su piso, planificando todo el proceso desde el concepto inicial, los materiales y el periodo de realización. Nuestro equipo especializado consta de técnicos y operarios con una larga experiencia en la reforma de locales, casas, pisos o cualquier tipo de vivienda.</p>
+          <p><strong>Si dispones de un local u otro espacio disponible para rehabilitar, puedes pedirnos presupuesto sin ningún tipo de compromiso.</strong></p>
+        </div>
+        <div class="local">
+          <h3>Reforma de un local comercial</h3>
+          <p>Si necesita realizar una rehabilitación o renovación de su establecimiento, podemos ofrecerle ideas tanto de reforma como de decoración. Reformar un local para uso comercial debe tener una planificación adecuada ya que con él mostraremos la imagen de nuestra empresa hacia nuestros clientes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESUPUESTO -->
+  <section class="quote" id="presupuesto">
+    <div class="wrap">
+      <div class="box">
+        <h2>Presupuesto para reformas integrales</h2>
+        <p>Cuéntanos tu idea y pídenos presupuesto sin compromiso. Nos encargamos de darte las soluciones para reformas de locales, baños, pisos, casas... Para más información puedes consultar todos <a href="http://ciasa.es/servicios-construccion-reformas-tamsa-leon.php" title="Servicios de construcción y reformas">nuestros servicios</a> como gravera y empresa constructora.</p>
+        <a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php?mensaje1=contPresupuesto" class="btn">SOLICITAR PRESUPUESTO PARA REFORMA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d46991.44535029372!2d-5.576817!3d42.598479!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe7c97618aed7fb78!2sComercial+Industrial+de+%C3%81ridos%2C+S.A.+(TAMSA+-+CIASA)!5e0!3m2!1ses!2ses!4v1475231928865" loading="lazy" title="Mapa" allowfullscreen></iframe>
+    <div class="wrap"><a href="https://www.google.com/maps/place/Comercial+Industrial+de+%C3%81ridos,+S.A.+(TAMSA+-+CIASA)/@42.598479,-5.576817,13z/data=!4m5!3m4!1s0x0:0xe7c97618aed7fb78!8m2!3d42.598479!4d-5.576817?hl=es-ES" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Cómo llegar</a></div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <div>
+        <h4>¿Necesita más información acerca de nuestros servicios?</h4>
+        <p>Póngase en contacto con nosotros llamando al <a href="tel:+34987307326"><strong>987 307 326</strong></a> o a través del formulario de contacto.</p>
+      </div>
+      <div class="row">
+        <a class="btn btn-brand" href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php">CONTACTAR</a>
+        <a class="btn btn-line" href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php">TODOS LOS PROYECTOS</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="logo-tamsa.png" srcset="logo-tamsa.png 1x, logo-tamsa@2x.png 2x" alt="Grupo Tamsa - Ciasa - Constructora en León" width="269" height="70" loading="lazy">
+      <p>Contamos con un equipo humano excepcional y que apuesta por soluciones medioambientalmente sostenibles y de alta calidad.</p>
+    </div>
+    <div>
+      <h6>SERVICIOS</h6>
+      <ul>
+        <li><a href="http://ciasa.es/edificacion-constructora-tamsa-ciasa-leon.php">Edificación</a></li>
+        <li><a href="http://ciasa.es/obra-industrial-constructora-tamsa-ciasa-leon.php">Obra Industrial</a></li>
+        <li><a href="http://ciasa.es/obra-civil-publica-constructora-tamsa-ciasa-leon.php">Obra Civil-Pública</a></li>
+        <li><a href="http://ciasa.es/reforma-locales-constructora-tamsa-ciasa-leon.php">Locales</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6>PROYECTOS</h6>
+      <ul>
+        <li><a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php#projects_edificacion">Edificación</a></li>
+        <li><a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php#projects_industrial">Obra Industrial</a></li>
+        <li><a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php#projects_civil">Obra Civil-Pública</a></li>
+        <li><a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php#projects_locales">Locales</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6>CONTACTE CON NOSOTROS</h6>
+      <span class="co">Comercial Industrial de Áridos, S.A. (TAMSA - CIASA)</span>
+      <span>Construcción y Reformas en León. Graveras y venta de áridos</span><br>
+      <a class="phone" href="tel:+34987307326"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>987 307 326</a>
+      <div class="line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span>C/Colón 1, 1B - 24001 León</span></div>
+      <div class="line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><a href="mailto:tamsa@grupotamsa.es">tamsa@grupotamsa.es</a></div>
+      <div class="line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="Fax"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M6 14h12v7H6z"/></svg><span>987 307 321</span></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="wrap">
+      <nav aria-label="Pie">
+        <a href="http://ciasa.es/index.php">INICIO</a>
+        <a href="http://ciasa.es/proyectos-trabajos-constructora-tamsa-ciasa-leon.php">PROYECTOS</a>
+        <a href="http://ciasa.es/servicios-construccion-reformas-tamsa-leon.php">SERVICIOS</a>
+        <a href="http://ciasa.es/gravera-aridos-tamsa-leon.php">GRAVERA</a>
+        <a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php">CONTACTO</a>
+        <a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php" style="color:var(--brand)">SOLICITAR PRESUPUESTO</a>
+      </nav>
+      <div class="legal">2016 &copy; Grupo Tamsa | <a href="http://ciasa.es/aviso-legal.php" target="_blank" rel="noopener">Aviso Legal</a> | <a href="http://ciasa.es/proteccion-datos.php" target="_blank" rel="noopener">Política de Privacidad</a> | <a href="http://ciasa.es/politica-cookies.php" target="_blank" rel="noopener">Política de Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34987307326" class="btn btn-brand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>987 307 326</a>
+  <a href="http://ciasa.es/contacto-tamsa-ciasa-constructora-leon.php" class="btn btn-line">SOLICITAR PRESUPUESTO</a>
+</div>
+</body>
+</html>
