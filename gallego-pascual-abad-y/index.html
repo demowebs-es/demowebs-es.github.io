@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gallego, Pascual, Abad &amp; Asociados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#E03F68; --rose-dark:#b92c50; --ink:#161616; --char:#282828; --text:#353535; --muted:#6b6b6b; --grey:#54595F;
+    --line:#ece7e8; --tint:#f8f6f6; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Poppins,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;font-size:15.5px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .serif{font-family:"EB Garamond",Georgia,serif}
+  .kicker{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .rose{color:var(--rose)}
+
+  .demo{background:#000;color:#f3b9c8;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:18px}
+  .nav .logo img{height:56px;width:auto}
+  .menu{display:flex;gap:6px;list-style:none;font-size:.9rem;font-weight:500;color:var(--char)}
+  .menu a{padding:8px 12px;border-radius:8px;display:block}
+  .menu a:hover{color:var(--rose)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.9rem;transition:.2s;border:1.5px solid var(--rose);cursor:pointer;font-family:inherit;text-align:center}
+  .btn-rose{background:var(--rose);color:#fff}
+  .btn-rose:hover{background:var(--rose-dark);border-color:var(--rose-dark)}
+  .btn-line{background:transparent;color:var(--rose-dark)}
+  .btn-line:hover{background:#fdf0f3}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .btn-ghost:hover{border-color:#fff}
+  .btn-sm{padding:10px 18px;font-size:.85rem}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{background:#0e0e0e url("https://carlosgallegoabogados.es/wp-content/uploads/2021/11/fondo2-2.jpg") center/cover;color:#fff}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;padding:84px 20px}
+  .hero h1{font-family:"EB Garamond",Georgia,serif;font-weight:500;font-size:clamp(2.6rem,5.6vw,4.6rem);line-height:.98;letter-spacing:-.01em}
+  .hero h1 .amp{color:var(--rose)}
+  .hero .kicker{color:#bdbdbd;display:block;margin:22px 0 8px}
+  .hero .founded{font-family:"EB Garamond",Georgia,serif;font-size:1.7rem;color:var(--rose)}
+  .hero .rule{width:56px;height:2px;background:var(--rose);margin:24px 0}
+  .hero .claim{font-family:"EB Garamond",Georgia,serif;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.2;color:#eee}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero .art{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.08)}
+
+  section{padding:90px 0}
+  .h2{font-family:"EB Garamond",Georgia,serif;font-weight:500;font-size:clamp(2.1rem,4vw,3.1rem);line-height:1.08;color:var(--ink)}
+  .h2 .rose{font-style:normal}
+  .head{max-width:760px;margin-bottom:38px}
+  .head .kicker{display:block;margin-top:10px}
+  .head p{margin-top:18px}
+  p+p{margin-top:14px}
+
+  .commit{display:grid;grid-template-columns:110px 1fr;gap:34px;align-items:start;max-width:960px;margin:0 auto}
+  .commit img{width:96px;opacity:.95}
+  .commit p{font-size:1.06rem}
+
+  .bg-tint{background:var(--tint)}
+  .practice{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .practice .icon{width:86px;margin-bottom:14px}
+
+  .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:10px}
+  .area{background:var(--ink);border:1px solid var(--ink);border-radius:var(--radius);padding:30px 22px;text-align:center;transition:.25s}
+  .area:hover{border-color:var(--rose);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(224,63,104,.55)}
+  .area img{width:84px;height:84px;margin:0 auto 18px}
+  .area h3{font-size:.92rem;letter-spacing:.12em;color:#fff;font-weight:600}
+  .more{margin-top:30px;text-align:center}
+
+  .dark{background:var(--ink);color:#d6d6d6}
+  .dark .h2{color:#fff}
+  .dark .kicker{color:#9a9a9a}
+  .team{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px}
+  .member img{aspect-ratio:1;object-fit:cover;border-radius:10px;filter:grayscale(.15)}
+  .member span{display:block;margin-top:10px;font-family:"EB Garamond",Georgia,serif;font-size:1.12rem;color:#fff;line-height:1.25}
+  .dark .btn-line{color:#fff;border-color:rgba(255,255,255,.45)}
+  .dark .btn-line:hover{background:rgba(255,255,255,.06);border-color:#fff}
+
+  .pubs{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  .pubs a{display:block;border-radius:8px;overflow:hidden;box-shadow:0 18px 30px -22px rgba(0,0,0,.5);transition:.25s;background:#fff}
+  .pubs a:hover{transform:translateY(-4px)}
+  .pubs img{width:100%;aspect-ratio:3/4;object-fit:cover}
+
+  .posts{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .post{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .post img{aspect-ratio:16/10;object-fit:cover;width:100%}
+  .post div{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .post h3{font-family:"EB Garamond",Georgia,serif;font-size:1.3rem;line-height:1.15;color:var(--ink);font-weight:600}
+  .post h3 a:hover{color:var(--rose)}
+  .post p{font-size:.88rem}
+  .post time{margin-top:auto;font-size:.78rem;color:var(--rose-dark);font-weight:500}
+
+  .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+  .contact .info{margin-top:26px;display:grid;gap:10px;font-size:.95rem}
+  .contact .info a{font-weight:600;color:var(--ink)}
+  form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);border-top:4px solid var(--rose);box-shadow:0 24px 50px -30px rgba(0,0,0,.35)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #ddd3d5;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(224,63,104,.25);border-color:var(--rose)}
+  .check{display:flex;gap:10px;font-size:.74rem;color:var(--muted);line-height:1.5;align-items:flex-start;margin:6px 0 18px}
+  .check input{margin-top:3px;accent-color:var(--rose);flex:none}
+  form .btn{width:100%}
+  .form-ok{display:none;background:#fdf0f3;border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  footer{background:#0e0e0e;color:#b9b9b9;padding:64px 0 28px;font-size:.9rem}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr .8fr;gap:44px}
+  .foot img{width:180px;margin-bottom:16px}
+  footer h4{color:#fff;font-family:"EB Garamond",Georgia,serif;font-size:1.3rem;font-weight:500;margin-bottom:12px}
+  footer ul{list-style:none;display:grid;gap:8px}
+  footer a:hover{color:#fff;text-decoration:underline}
+  .legal{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 22px;font-size:.8rem}
+  .legal nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+
+  .callbar{display:none}
+
+  @media (max-width:1000px){
+    .hero .wrap,.practice,.contact{grid-template-columns:1fr}
+    .areas,.posts{grid-template-columns:repeat(2,1fr)}
+    .team{grid-template-columns:repeat(3,1fr)}
+    .pubs{grid-template-columns:repeat(3,1fr)}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    body{font-size:15px}
+    .wrap{padding:0 16px}
+    .nav{height:68px}
+    .nav .logo img{height:44px}
+    .menu,.nav .btn-sm{display:none}
+    .mnav{display:block}
+    .mnav summary{list-style:none;border:1.5px solid var(--line);border-radius:10px;padding:8px 14px;font-size:.9rem;cursor:pointer}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:6px 16px 14px;box-shadow:0 20px 30px -20px rgba(0,0,0,.3)}
+    .mnav .panel a{display:block;padding:11px 0;border-bottom:1px solid var(--line);font-weight:500;color:var(--ink)}
+    .hero .wrap{padding:50px 16px 54px;gap:34px}
+    .hero .ctas .btn{width:100%}
+    section{padding:62px 0}
+    .commit{grid-template-columns:1fr;gap:16px}
+    .commit img{width:64px}
+    .areas,.posts{grid-template-columns:1fr}
+    .team{grid-template-columns:repeat(2,1fr)}
+    .pubs{grid-template-columns:repeat(2,1fr)}
+    form{padding:24px 18px}
+    .foot{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Gallego, Pascual, Abad &amp; Asociados · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://carlosgallegoabogados.es/" class="logo" aria-label="gallego, pascual, abad &amp; asociados"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/11/logo-abogados-valladolid.png" alt="Logo GPA&amp;A - Abogados en Valladolid"></a>
+    <ul class="menu">
+      <li><a href="https://carlosgallegoabogados.es/equipo/">Equipo</a></li>
+      <li><a href="https://carlosgallegoabogados.es/areas-de-practica/">Áreas de Práctica</a></li>
+      <li><a href="https://carlosgallegoabogados.es/publicaciones/">Publicaciones</a></li>
+      <li><a href="https://carlosgallegoabogados.es/contacto/">Contacto</a></li>
+    </ul>
+    <a href="tel:+34983202011" class="btn btn-rose btn-sm">983 20 20 11</a>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a href="https://carlosgallegoabogados.es/equipo/">Equipo</a>
+        <a href="https://carlosgallegoabogados.es/areas-de-practica/">Áreas de Práctica</a>
+        <a href="https://carlosgallegoabogados.es/publicaciones/">Publicaciones</a>
+        <a href="https://carlosgallegoabogados.es/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>gallego, pascual, abad <span class="amp">&amp;</span> asociados</h1>
+        <span class="kicker">Abogados en Valladolid</span>
+        <div class="founded">Despacho fundado en 1949</div>
+        <div class="rule"></div>
+        <p class="claim">Defendiendo sus derechos con <span class="rose">Pasión</span> y <span class="rose">Perseverancia</span></p>
+        <div class="ctas">
+          <a href="tel:+34983202011" class="btn btn-rose">Telf.: 983 20 20 11</a>
+          <a href="#contacto" class="btn btn-ghost">Contacto</a>
+        </div>
+      </div>
+      <div class="art"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2023/08/9244-1024x683.jpg" alt="" width="1024" height="683"></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap commit">
+      <img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/11/comillas2.png" alt="">
+      <div>
+        <h2 class="h2" style="margin-bottom:16px"><span class="rose">Compromiso</span> con nuestros clientes</h2>
+        <p>Abordamos el ejercicio de nuestra profesión, manteniendo los niveles de calidad y de compromiso que han hecho de nuestra oferta una opción profesional ganadora y merecedora de un general reconocimiento, materializado en nuestro liderazgo más allá del ámbito local en las materias de nuestra especialidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint">
+    <div class="wrap practice">
+      <div>
+        <img class="icon" src="https://carlosgallegoabogados.es/wp-content/uploads/2023/08/icono-negro-rosa.png" alt="">
+        <h2 class="h2"><span class="rose">áreas</span> de práctica</h2>
+        <span class="kicker" style="display:block;margin-top:10px">Abogados en Valladolid</span>
+      </div>
+      <div>
+        <p>El despacho ofrece un asesoramiento integral en todas las áreas del Derecho, tanto en el campo preventivo (asesoramiento y contratación) como en el jurisdiccional (procedimientos y trámites ante los diversos órganos judiciales).</p>
+        <p>Cada asunto es un desafío que abordamos con expertise y compromiso inquebrantable. Nuestra destreza se refuerza por un enfoque metódico y la aplicación de habilidades adquiridas en más de medio siglo de intensa práctica.</p>
+        <p style="margin-top:24px"><a href="https://carlosgallegoabogados.es/areas-de-practica/" class="btn btn-line">MÁS INFORMACIÓN</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <h2 class="h2"><span class="rose">áreas</span> de actuación</h2>
+        <span class="kicker">Abogados en Valladolid</span>
+        <p>La máxima importancia que concedemos a la atención personal de nuestros clientes nos exige mantener una completa disponibilidad para escuchar sus indicaciones e informarles en tiempo real de cualquier incidencia relevante, de modo que se sientan constantemente arropados.</p>
+      </div>
+      <div class="areas">
+        <a class="area" href="https://carlosgallegoabogados.es/areas-de-practica/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/propiedad-horizontal.svg" alt=""><h3>PROPIEDAD HORIZONTAL</h3></a>
+        <a class="area" href="https://carlosgallegoabogados.es/areas-de-practica/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/defectos-constructivos.svg" alt=""><h3>DEFECTOS CONSTRUCTIVOS</h3></a>
+        <a class="area" href="https://carlosgallegoabogados.es/areas-de-practica/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/derecho-familiar.svg" alt=""><h3>DERECHO CIVIL Y FAMILIAR</h3></a>
+        <a class="area" href="https://carlosgallegoabogados.es/areas-de-practica/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/derecho-penal.svg" alt=""><h3>DERECHO PENAL</h3></a>
+      </div>
+      <div class="more"><a href="https://carlosgallegoabogados.es/areas-de-practica/" class="btn btn-rose">TODOS NUESTROS SERVICIOS</a></div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:0">
+        <h2 class="h2">nuestro <span class="rose">equipo</span></h2>
+        <p>La preparación y la extensa práctica de nuestros abogados son la columna vertebral de nuestro progreso. La actividad de cada miembro del grupo se caracteriza por su compromiso profesional y su exigencia ética en la defensa de sus derechos.</p>
+        <p style="margin-top:24px"><a href="https://carlosgallegoabogados.es/equipo/" class="btn btn-line">CONOZCA A NUESTROS ABOGADOS</a></p>
+      </div>
+      <div class="team">
+        <a class="member" href="https://carlosgallegoabogados.es/equipo/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/angel-gallego-gil.jpg" alt="Ángel Gallego Gil" loading="lazy"><span>Ángel Gallego Gil</span></a>
+        <a class="member" href="https://carlosgallegoabogados.es/equipo/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/Carlos-Gallego-Brizuela.jpg" alt="Carlos Gallego Brizuela" loading="lazy"><span>Carlos Gallego Brizuela</span></a>
+        <a class="member" href="https://carlosgallegoabogados.es/equipo/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/Cristina-Gallego-Velloso.jpg" alt="Cristina Gallego Velloso" loading="lazy"><span>Cristina Gallego Velloso</span></a>
+        <a class="member" href="https://carlosgallegoabogados.es/equipo/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/jesus-abad-muniz.jpg" alt="Jesús Abad Muñiz" loading="lazy"><span>Jesús Abad Muñiz</span></a>
+        <a class="member" href="https://carlosgallegoabogados.es/equipo/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/Jose-Ignacio-Pascual-Matarranz.jpg" alt="José I. Pascual Matarranz" loading="lazy"><span>José I. Pascual Matarranz</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="h2"><span class="rose">Últimas</span> publicaciones</h2>
+        <span class="kicker">Abogados en Valladolid</span>
+        <p>Hemos atendido la exigencia de nuestro compromiso profesional a través de publicaciones en que ofrecemos el fruto de nuestro esfuerzo, por una parte divulgativas de las materias de nuestra especialidad.</p>
+      </div>
+      <div class="pubs">
+        <a href="https://carlosgallegoabogados.es/publicaciones/#comunidades"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2023/08/comunidades_16edicion.jpg" alt="" loading="lazy"></a>
+        <a href="https://carlosgallegoabogados.es/publicaciones/#respuestas"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/11/comunidades-de-vecinos.jpg" alt="" loading="lazy"></a>
+        <a href="https://carlosgallegoabogados.es/publicaciones/#comentarios"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2023/08/comentarios-a-la-ley-de-propiedad-horizontal.jpg" alt="" loading="lazy"></a>
+        <a href="https://carlosgallegoabogados.es/publicaciones/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/11/ley-de-propiedad-horizontal.jpg" alt="" loading="lazy"></a>
+        <a href="https://carlosgallegoabogados.es/publicaciones/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2023/08/indemnizacion-defectos-constructivos.jpg" alt="" loading="lazy"></a>
+      </div>
+      <div class="more"><a href="https://carlosgallegoabogados.es/publicaciones" class="btn btn-line">MÁS INFORMACIÓN SOBRE NUESTRAS PUBLICACIONES</a></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><h2 class="h2">Últimas entradas de nuestro <span class="rose">Blog</span></h2></div>
+      <div class="posts">
+        <article class="post"><a href="https://carlosgallegoabogados.es/desahucio-de-personas-con-discapacidad/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/23234.jpg" alt="" loading="lazy"></a><div><h3><a href="https://carlosgallegoabogados.es/desahucio-de-personas-con-discapacidad/">Desahucio de personas con Discapacidad</a></h3><p>El Constitucional declara que el procedimiento debe tener en cuenta la concurrencia de esta circunstancia en el demandado Se decretó...</p><time>1 de diciembre de 2021</time></div></article>
+        <article class="post"><a href="https://carlosgallegoabogados.es/garantias-para-consumidores/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/aideentrepreneur.jpg" alt="" loading="lazy"></a><div><h3><a href="https://carlosgallegoabogados.es/garantias-para-consumidores/">Garantías para consumidores</a></h3><p>A partir del 1 de enero de 2022, aumenta el plazo de garantía en las ventas a consumidores. El 1...</p><time>29 de noviembre de 2021</time></div></article>
+        <article class="post"><a href="https://carlosgallegoabogados.es/la-causa-de-disolucion-sigue-suspendida/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/perte.jpg" alt="" loading="lazy"></a><div><h3><a href="https://carlosgallegoabogados.es/la-causa-de-disolucion-sigue-suspendida/">La causa de disolución sigue suspendida</a></h3><p>Se prorroga la medida para favorecer a las empresas en dificultades. Cuando una sociedad sufre pérdidas que dejan reducido su...</p><time>28 de noviembre de 2021</time></div></article>
+        <article class="post"><a href="https://carlosgallegoabogados.es/cambio-de-apellido/"><img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/12/cambiar-un-apellido.jpg" alt="" loading="lazy"></a><div><h3><a href="https://carlosgallegoabogados.es/cambio-de-apellido/">Cambio de Apellido</a></h3><p>Puede hacerse si existe riesgo de que un apellido familiar desaparezca Un matrimonio presentó solicitud ante el Registro Civil para...</p><time>27 de noviembre de 2021</time></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint" id="contacto">
+    <div class="wrap contact">
+      <div>
+        <h2 class="h2">¿Tiene dudas o necesita consultarnos?</h2>
+        <p style="margin-top:18px">Estamos encantados de poder ofrecerle nuestros servicios jurídicos. Si cree que podemos ser útiles en su caso, por favor, no dude en contactar con nosotros.</p>
+        <p>Rellene el siguiente formulario y le responderemos a la mayor brevedad posible.</p>
+        <p>Muchas gracias.</p>
+        <div class="info">
+          <span>Calle Muro 3, 4º Izquierda<br>47004 Valladolid, ESPAÑA</span>
+          <span>Telf.: <a href="tel:+34983202011">983 20 20 11</a></span>
+        </div>
+      </div>
+      <form onsubmit="return demoSubmit(this)">
+        <div class="field"><label for="n">Nombre</label><input id="n" autocomplete="name"></div>
+        <div class="field"><label for="e">Email</label><input id="e" type="email" placeholder="Escriba aquí su email" required autocomplete="email"></div>
+        <div class="field"><label for="m">Mensaje</label><textarea id="m" rows="4"></textarea></div>
+        <label class="check"><input type="checkbox" required><span>ABOGADOS &amp; ASOCIADOS GPA, SLP solicita su consentimiento para prestarle el servicio solicitado y contestar a las cuestiones planteadas. La legitimación tiene como base jurídica el consentimiento del interesado para los fines expresados. Los datos no se cederán a terceros salvo en los casos en que exista una obligación legal. En todo caso, los datos que nos facilita están ubicados en servidores cuya sede se encuentra dentro del territorio de la UE o gestionados por Encargados de Tratamiento acogidos al acuerdo “Privacy Shield”. Tiene derecho a acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional. Si no facilita los datos solicitados como obligatorios, puede dar como resultado no poder cumplir con la finalidad para los que se solicitan.</span></label>
+        <button class="btn btn-rose" type="submit">Enviar formulario</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="https://carlosgallegoabogados.es/wp-content/uploads/2021/11/logo-abogados-valladolid-blanco.png" alt="Logo GPA&amp;A - Abogados en Valladolid" loading="lazy">
+        <p>gallego, pascual, abad &amp; asociados es un despacho de abogados en Valladolid que ofrece un asesoramiento integral en todas las áreas del Derecho, tanto en el campo preventivo (asesoramiento y contratación) como en el jurisdiccional (procedimientos y trámites ante los diversos órganos judiciales).</p>
+        <p>Nuestro liderazgo en el derecho de las Comunidades de Propietarios y en el de la responsabilidad por defectos constructivos se completa con nuestra especialización en Mediación Familiar y general como alternativa a la solución jurisdiccional del conflicto.</p>
+      </div>
+      <div>
+        <h4>Abogados en Valladolid</h4>
+        <p>gallego, pascual, abad &amp; asociados<br>Calle Muro 3, 4º Izquierda<br>47004 Valladolid, ESPAÑA<br>Telf.: <a href="tel:+34983202011">983 20 20 11</a></p>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://carlosgallegoabogados.es/equipo/">Equipo</a></li>
+          <li><a href="https://carlosgallegoabogados.es/areas-de-practica/">Áreas de Práctica</a></li>
+          <li><a href="https://carlosgallegoabogados.es/publicaciones/">Publicaciones</a></li>
+          <li><a href="https://carlosgallegoabogados.es/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>2026 @ ABOGADOS &amp; ASOCIADOS GPA, SLP | Todos los derechos reservados</span>
+      <nav>
+        <a href="https://carlosgallegoabogados.es/aviso-legal/">Aviso Legal</a>
+        <a href="https://carlosgallegoabogados.es/politica-de-privacidad/">Política de Privacidad</a>
+        <a href="https://carlosgallegoabogados.es/contacto/">Contacto</a>
+        <a href="https://carlosgallegoabogados.es/politica-de-cookies/">Política de cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983202011" class="btn btn-rose">983 20 20 11</a>
+  <a href="#contacto" class="btn btn-line">Contacto</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AFGSL Asesoría · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Serif:opsz,wght@8..144,400;8..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#054e80; --head:#10486c; --gold:#E09900; --gold-dark:#b97f00; --sky:#5f8fb0;
+    --ink:#0f2c40; --text:#3b4650; --muted:#66737e; --line:#dfe7ee; --tint:#f3f7fa; --white:#fff;
+    --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);font-weight:700}
+  .demo{background:var(--ink);color:#c9d8e4;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:16px}
+  .logo{display:flex;align-items:center;height:62px;overflow:hidden;flex:none}
+  .logo img{height:104px;width:auto;max-width:none;margin:0 -16px 0 -14px}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none;font-size:.9rem;font-weight:500;color:var(--ink)}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 12px;border-radius:8px}
+  .menu>li>a:hover{color:var(--blue);background:var(--tint)}
+  .menu .on{color:var(--blue)}
+  .sub{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 20px 40px -24px rgba(5,78,128,.45);padding:8px;min-width:270px;list-style:none}
+  .sub a{display:block;padding:8px 12px;border-radius:6px;font-weight:400;font-size:.88rem}
+  .sub a:hover{background:var(--tint);color:var(--blue)}
+  .sub .grp{font-weight:600;color:var(--head)}
+  .sub .in{padding-left:24px}
+  .menu>li:hover .sub,.menu>li:focus-within .sub{display:block}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.95rem;transition:.2s;border:1.5px solid var(--gold);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+  .btn-line{background:#fff;color:var(--blue);border-color:var(--blue)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:9px 16px;font-size:.85rem}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:url("despacho3-scaled.jpg") center/cover no-repeat;opacity:.38}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,30,50,.92) 0%,rgba(5,78,128,.6) 60%,rgba(5,78,128,.25) 100%)}
+  .hero .wrap{position:relative;z-index:1;padding-top:96px;padding-bottom:104px}
+  .hero h1{font-weight:500;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;max-width:760px;margin:14px 0 14px}
+  .hero .tag{font-style:italic;font-weight:500;font-size:clamp(1.2rem,2.4vw,1.6rem);color:#e8f0f6}
+  .hero .eyebrow{color:#ffc24d}
+  .stars{margin:18px 0 30px;font-size:1.3rem;letter-spacing:4px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08)}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:40px}
+  .head h2{font-weight:500;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.15;color:var(--head);margin-top:8px}
+  .head h2::after{content:"";display:block;width:56px;height:3px;background:var(--blue);margin-top:16px;border-radius:2px}
+
+  /* about */
+  .about{background:var(--tint)}
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .about p{font-family:"Roboto Serif",Georgia,serif;font-size:1.08rem;line-height:1.75;color:#2f3b45;margin-bottom:18px}
+  .about p strong{color:var(--head);font-weight:600}
+  .about .cta{font-family:Roboto,sans-serif;font-weight:600;color:var(--blue);font-size:1.12rem;margin:26px 0 18px}
+  .about-photos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .about-photos img{border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;width:100%}
+  .about-photos img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+  .facts{display:flex;gap:28px;flex-wrap:wrap;margin:6px 0 4px}
+  .facts div{border-left:3px solid var(--gold);padding-left:12px}
+  .facts b{display:block;font-size:1.6rem;color:var(--head);line-height:1.1}
+  .facts span{font-size:.82rem;color:var(--muted)}
+
+  /* areas */
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .area{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.25s}
+  .area:hover{border-color:var(--blue);box-shadow:0 20px 40px -26px rgba(5,78,128,.45);transform:translateY(-2px)}
+  .area img{aspect-ratio:16/10;object-fit:cover;width:100%}
+  .area .body{padding:22px 22px 20px;display:flex;flex-direction:column;flex:1}
+  .area h3{font-size:1.15rem;color:var(--head);font-weight:600;margin-bottom:10px}
+  .area p{font-family:"Roboto Serif",Georgia,serif;font-size:.95rem;line-height:1.65;flex:1}
+  .area .more{margin-top:16px;font-size:.8rem;font-weight:700;letter-spacing:.12em;color:var(--gold-dark)}
+  .area .more::after{content:" →"}
+
+  /* reviews */
+  .reviews{background:var(--tint)}
+  .rating{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin-bottom:28px}
+  .rating .score{font-size:2.4rem;font-weight:700;color:var(--head);line-height:1}
+  .rating .gold{color:#f4b400;letter-spacing:2px;font-size:1.15rem}
+  .rating .meta{font-size:.9rem;color:var(--muted)}
+  .rating .name{font-weight:600;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line)}
+  .rating .btn{margin-left:auto}
+  .revs{columns:3 300px;column-gap:18px}
+  .rev{break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:18px}
+  .rev .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .rev a{font-weight:600;color:var(--ink)}
+  .rev time{font-size:.78rem;color:var(--muted);white-space:nowrap}
+  .rev .gold{color:#f4b400;font-size:.9rem;letter-spacing:1px;margin:2px 0 6px}
+  .rev p{font-size:.93rem;line-height:1.6}
+  .rev p+p{margin-top:6px}
+
+  /* contact band */
+  .band{background:var(--blue);color:#fff;padding:72px 0}
+  .band-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .band h2{font-weight:500;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.2}
+  .band .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .band .btn-line:hover{background:rgba(255,255,255,.08)}
+  .band address{font-style:normal;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:24px 26px;line-height:1.9}
+  .band address a{text-decoration:underline;text-decoration-color:rgba(255,255,255,.4)}
+  .band address .t{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#ffc24d;font-weight:700}
+
+  footer{background:var(--ink);color:#b8c8d5;font-size:.9rem;padding:56px 0 30px}
+  .fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  footer h4{color:#fff;font-size:.8rem;letter-spacing:.16em;margin-bottom:12px;font-weight:700}
+  footer ul{list-style:none;display:grid;gap:6px}
+  footer a:hover{color:#fff}
+  .eu{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+  .eu .logos{display:flex;gap:10px;flex-wrap:wrap}
+  .eu img{height:56px;width:auto;background:#fff;border-radius:6px;padding:4px}
+  .eu span{font-size:.78rem;letter-spacing:.06em}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:600;font-size:.88rem;color:var(--ink)}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav ul{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -20px rgba(5,78,128,.45);padding:8px;width:min(300px,calc(100vw - 32px));list-style:none;max-height:70vh;overflow:auto}
+    .mnav a{display:block;padding:8px 12px;border-radius:6px;font-size:.92rem}
+    .mnav .in{padding-left:24px;color:var(--muted)}
+    .about-grid,.band-grid{grid-template-columns:1fr}
+    .areas{grid-template-columns:1fr 1fr}
+    .fcols{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .hero .wrap{padding-top:60px;padding-bottom:68px}
+    .hero .row .btn,.band .row .btn{width:100%}
+    section{padding:64px 0}
+    .areas{grid-template-columns:1fr}
+    .rating .btn{margin-left:0;width:100%}
+    .fcols{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para AFGSL Asesoría · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://afgsl.es/" class="logo" aria-label="Asesoría Fiscal y de Gestión S.L."><img src="logo_afgsl.png" alt="AFG asesoría fiscal y de gestión, s.l."></a>
+    <nav aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="https://afgsl.es/" class="on">Inicio</a></li>
+        <li><a href="#areas">Servicios ▾</a>
+          <ul class="sub">
+            <li><a class="grp" href="https://afgsl.es/fiscalidad-empresarial">Asesoramiento fiscal empresas</a></li>
+            <li><a class="in" href="https://afgsl.es/planificacion-fiscal">Planificación Fiscal</a></li>
+            <li><a class="in" href="https://afgsl.es/procedimientos-tributarios">Procedimientos Tributarios</a></li>
+            <li><a class="in" href="https://afgsl.es/operaciones-societarias">Operaciones Societarias</a></li>
+            <li><a class="grp" href="https://afgsl.es/fiscalidad-personal">Asesoramiento fiscal particulares</a></li>
+            <li><a class="in" href="https://afgsl.es/gestion-de-patrimonios">Gestión de patrimonios</a></li>
+            <li><a class="in" href="https://afgsl.es/sucesiones">Herencias y sucesiones</a></li>
+            <li><a class="in" href="https://afgsl.es/asesoramiento-inversiones">Asesoramiento en inversiones</a></li>
+            <li><a class="grp" href="https://afgsl.es/contabilidad">Contabilidad y gestoría</a></li>
+          </ul>
+        </li>
+        <li><a href="https://afgsl.es/equipo">Equipo</a></li>
+        <li><a href="https://afgsl.es/blog">Blog</a></li>
+        <li><a href="https://afgsl.es/contacto">Contacto</a></li>
+        <li><a href="https://a3doc.wolterskluwer.es/" class="btn btn-line btn-sm">Acceso Clientes</a></li>
+      </ul>
+    </nav>
+    <details class="mnav">
+      <summary>Menú ☰</summary>
+      <ul>
+        <li><a href="https://afgsl.es/">Inicio</a></li>
+        <li><a href="#areas">Servicios</a></li>
+        <li><a class="in" href="https://afgsl.es/fiscalidad-empresarial">Asesoramiento fiscal empresas</a></li>
+        <li><a class="in" href="https://afgsl.es/planificacion-fiscal">Planificación Fiscal</a></li>
+        <li><a class="in" href="https://afgsl.es/procedimientos-tributarios">Procedimientos Tributarios</a></li>
+        <li><a class="in" href="https://afgsl.es/operaciones-societarias">Operaciones Societarias</a></li>
+        <li><a class="in" href="https://afgsl.es/fiscalidad-personal">Asesoramiento fiscal particulares</a></li>
+        <li><a class="in" href="https://afgsl.es/gestion-de-patrimonios">Gestión de patrimonios</a></li>
+        <li><a class="in" href="https://afgsl.es/sucesiones">Herencias y sucesiones</a></li>
+        <li><a class="in" href="https://afgsl.es/asesoramiento-inversiones">Asesoramiento en inversiones</a></li>
+        <li><a class="in" href="https://afgsl.es/contabilidad">Contabilidad y gestoría</a></li>
+        <li><a href="https://afgsl.es/equipo">Equipo</a></li>
+        <li><a href="https://afgsl.es/blog">Blog</a></li>
+        <li><a href="https://afgsl.es/contacto">Contacto</a></li>
+        <li><a href="https://a3doc.wolterskluwer.es/">Acceso Clientes</a></li>
+      </ul>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Asesoría Fiscal y de Gestión S.L.</span>
+      <h1>Asesoría fiscal y de gestión en Madrid</h1>
+      <p class="tag">Asesorando a empresas y particulares desde 1989</p>
+      <div class="stars" aria-label="5 estrellas">⭐️⭐️⭐️⭐️⭐️</div>
+      <div class="row">
+        <a href="https://afgsl.es/contacto/" class="btn btn-gold">Contacta con nosotros</a>
+        <a href="tel:+34913720778" class="btn btn-line">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="tel">+34 913 720 778</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section class="about" id="quienes-somos">
+    <div class="wrap about-grid">
+      <div>
+        <div class="facts">
+          <div><b>1989</b><span>Ángel Verdasco Bravo</span></div>
+          <div><b>+30</b><span>años de experiencia</span></div>
+          <div><b>+450</b><span>clientes</span></div>
+        </div>
+        <br>
+        <p>Somos un <strong>despacho de asesoría fiscal en Madrid</strong> fundado por <strong>Ángel Verdasco Bravo en 1989</strong>, con más de <strong>30 años de experiencia</strong> ofreciendo servicios especializados en <strong>asesoría fiscal, contable y gestión empresarial</strong>. Trabajamos con <strong>empresas, autónomos y particulares</strong> de distintos sectores y tamaños, proporcionando soluciones adaptadas a cada necesidad.</p>
+        <p>Nuestro objetivo es optimizar la carga fiscal de nuestros clientes, garantizar el cumplimiento normativo y ofrecer un asesoramiento estratégico para la toma de decisiones. Actualmente, más de <strong>450 clientes</strong> confían en nuestro equipo de expertos para gestionar sus obligaciones fiscales y contables con eficacia y profesionalidad.</p>
+        <p class="cta">Explícanos tu caso, estaremos encantados de ayudarte.</p>
+        <a href="https://afgsl.es/contacto/" class="btn btn-gold">Contacta con nosotros</a>
+      </div>
+      <div class="about-photos">
+        <img src="despacho2-1024x683.jpg" alt="Despacho de AFG en Madrid" loading="lazy">
+        <img src="sala2-1024x683.jpg" alt="Sala de reuniones" loading="lazy">
+        <img src="depacho1-1024x683.jpg" alt="Despacho" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="areas">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Servicios</span>
+        <h2>Áreas de trabajo</h2>
+      </div>
+      <div class="areas">
+        <a class="area" href="https://afgsl.es/fiscalidad-empresarial/">
+          <img src="despacho2-1024x683.jpg" alt="" loading="lazy">
+          <div class="body"><h3>Fiscalidad Empresarial</h3>
+          <p>Ofrecemos un amplio abanico de servicios de asesoría fiscal y contable tanto a Grandes Empresas, como a Autónomos y Pequeñas y Medianas Empresas permitiendo cubrir desde todos los ángulos las necesidades concretas de cada cliente.</p>
+          <span class="more">LEER MÁS</span></div>
+        </a>
+        <a class="area" href="https://afgsl.es/fiscalidad-personal/">
+          <img src="img14-300x225.jpg" alt="" loading="lazy">
+          <div class="body"><h3>Fiscalidad Personal</h3>
+          <p>Nuestro equipo de expertos le asesorará en todos los puntos reflejados en la Declaración del Impuesto de la Renta de Personas Físicas (IRPF) tratando siempre de maximizar el ahorro fiscal de acuerdo a las múltiples palancas que la normativa vigente ofrece.</p>
+          <span class="more">LEER MÁS</span></div>
+        </a>
+        <a class="area" href="https://afgsl.es/planificacion-fiscal/">
+          <img src="sala2-1024x683.jpg" alt="" loading="lazy">
+          <div class="body"><h3>Planificación Fiscal</h3>
+          <p>Tanto a nivel particular, como a nivel empresarial, es fundamental la planificación fiscal, a corto, medio y largo plazo para conseguir abatir, atenuar o diferir la carga fiscal de toda operación.</p>
+          <span class="more">LEER MÁS</span></div>
+        </a>
+        <a class="area" href="https://afgsl.es/contabilidad/">
+          <img src="sala-1024x683.jpg" alt="" loading="lazy">
+          <div class="body"><h3>Contabilidad</h3>
+          <p>Ofrecemos un servicio completo en la confección de la contabilidad, presentación de libros oficiales y presentación de cuentas anuales.</p>
+          <span class="more">LEER MÁS</span></div>
+        </a>
+        <a class="area" href="https://afgsl.es/operaciones-societarias/">
+          <img src="libretas-1024x683.jpg" alt="" loading="lazy">
+          <div class="body"><h3>Operaciones Societarias</h3>
+          <p>Nuestro equipo está integrado por profesionales con un profundo conocimiento y una dilatada experiencia en materia societaria, que acompañan a nuestros clientes en el día a día de la actividad de sus empresas.</p>
+          <span class="more">LEER MÁS</span></div>
+        </a>
+        <a class="area" href="https://afgsl.es/procedimientos-tributarios/">
+          <img src="depacho1-1024x683.jpg" alt="" loading="lazy">
+          <div class="body"><h3>Procedimientos Tributarios</h3>
+          <p>La Ley General Tributaria es la norma fundamental de nuestra fiscalidad, nuestro despacho, mediante un profundo conocimiento de los principales procedimientos tributarios que regulan las relaciones del contribuyente con la Administración Tributaria…</p>
+          <span class="more">LEER MÁS</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="opiniones">
+    <div class="wrap">
+      <div class="rating">
+        <span class="score">5.0</span>
+        <div>
+          <div class="gold" aria-hidden="true">★★★★★</div>
+          <a class="name" href="https://maps.google.com/?cid=16354293173959239661" target="_blank" rel="nofollow noopener">Asesoría Fiscal y de Gestión S.L.</a>
+          <div class="meta">Basado en 55 reseñas.</div>
+        </div>
+        <a class="btn btn-line btn-sm" href="https://search.google.com/local/writereview?placeid=ChIJQ6v764ApQg0R7advMv4e9uI" target="_blank" rel="nofollow noopener">valóranos en Google</a>
+      </div>
+      <div class="revs">
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/116093743174293286150/reviews" target="_blank" rel="nofollow noopener">Claudia Richter</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Profesionales, muy rigurosos y de total confianza. Muy tranquila en sus manos con algo tan importante!</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/117872402912202338465/reviews" target="_blank" rel="nofollow noopener">fernando martín</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Buen servicio, buenas personas. Contabilidad e impuestos, todo bajo control.</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/112935307402861798602/reviews" target="_blank" rel="nofollow noopener">S MP</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Excelente atención y servicio.</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/118168318809593455666/reviews" target="_blank" rel="nofollow noopener">Jorge Pinilla</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Rápidos, eficientes y, sobre todo, claros. He trabajado con esta asesoría más de 15 años y su ayuda siempre ha sido acertada, tanto para la gestión de impuestos como en asesoramiento de operaciones complejas.</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/107047294451113241403/reviews" target="_blank" rel="nofollow noopener">Antonio Ballesteros Gomez</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Empecé con mi declaración de hacienda personal y ahora me ayudan con toda la gestión de la empresa. Toda. No puedo explicar mejor mi agradecimiento y satisfacción. Ah!!! y a cualquier hora.</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/110857095512507283487/reviews" target="_blank" rel="nofollow noopener">Germán Pinilla</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Asesoría muy eficiente y de total confianza. Merecen totalmente la pena sus servicios. Llevamos muchos años trabajando con ellos y desde luego ni se nos ha pasado por la cabeza cambiarnos.</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/115390680682650973282/reviews" target="_blank" rel="nofollow noopener">Edgar Bueso-Inchausti</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Excelente servicio y profesionalidad. Natalia, nuestra asesora fiscal ha demostrado un conocimiento impecable, siempre brindando soluciones eficientes y personalizadas. Además, su trato cercano y disposición, hacen que nuestra valoración sea de 10. ¡Totalmente recomendable!</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/101444884228224743468/reviews" target="_blank" rel="nofollow noopener">Xandra Velasco</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>AFG se distingue por las personas, por su calidad humana y su profesionalidad. Siempre están disponibles, el trato personal es inigualable, son rigurosos con el trabajo y ágiles con las respuestas. Trabajar con AFG es una pata fundamental para nuestra empresa. Nos genera confianza y mucha tranquilidad en una parte tan importante como es la fiscal y de gestión. Gracias!</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/116342082598110127705/reviews" target="_blank" rel="nofollow noopener">iñigo eh</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Gonzalo es un asesor muy serio, prudente y técnicamente muy solvente</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/104504438435878400787/reviews" target="_blank" rel="nofollow noopener">luis poyato</a><time>hace 2 años</time></div><div class="gold">★★★★★</div></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/115022739475072673695/reviews" target="_blank" rel="nofollow noopener">Virginia Sanz Carrasqueño</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Un servicio de asesoramiento excelente, muy profesional y atento. Se notan los años de experiencia.</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/101179411942472237219/reviews" target="_blank" rel="nofollow noopener">Yago Fontcuberta Peña</a><time>hace 2 años</time></div><div class="gold">★★★★★</div></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/105693910187124716841/reviews" target="_blank" rel="nofollow noopener">Miguel Roca Ibáñez</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Llevo tiempo confiando en el equipo de Asesoría Fiscal y de Gestión S.L., y no podría estar más satisfecho con el servicio. Desde el primer momento, han demostrado un profundo conocimiento en materia fiscal ofreciendo soluciones personalizadas y siempre adaptadas a mis necesidades.</p><p>Gracias Gonzalo y equipo!!!</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/114552464501772771927/reviews" target="_blank" rel="nofollow noopener">Juan Huidobro</a><time>hace 2 años</time></div><div class="gold">★★★★★</div><p>Llevamos más de 10 años trabajando con la asesoría y cabe destacar tanto su servicio y cercanía como su gran profesionalidad</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/110110529181928136715/reviews" target="_blank" rel="nofollow noopener">Alvaro Lara</a><time>hace 3 años</time></div><div class="gold">★★★★★</div><p>Sin duda la mejor asesoría fiscal con la que he trabajado. Ofrecen una consultoría de calidad, 100% confiable y transparente. Y todo con un trato y atención personal excelente. Les recomiendo siempre que tengo ocasión</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/100031583797075170317/reviews" target="_blank" rel="nofollow noopener">Enrique Iglesias de Ussel</a><time>hace 3 años</time></div><div class="gold">★★★★★</div><p>Excelente y cercano equipo de profesionales que prestan una asesoría de primer nivel. Prestan sus servicios tanto a personas físicas (presentación de impuesto de la renta, herencias…) como a empresas (asuntos fiscales de diversa índole, contabilidad, operaciones societarias, gestión empresarial…). Tienen la combinación perfecta entre cercanía en el trato y profundidad en el conocimiento de los asuntos en los que asesoran. Todo ello con una gran agilidad y flexibilidad. Los recomiendo al 100%!</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/112514347358014300399/reviews" target="_blank" rel="nofollow noopener">Sergio González</a><time>hace 3 años</time></div><div class="gold">★★★★★</div><p>Mi asesoría desde hace más de 10 años. Resolviendo siempre mis dudas y con una atención personalizada excelente muchas gracias a Gonzalo por ser mi mayor tranquilidad</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/107157178434772026443/reviews" target="_blank" rel="nofollow noopener">Jose luis muguiro</a><time>hace 3 años</time></div><div class="gold">★★★★★</div><p>Trato excelente y gran profesionalidad.</p><p>Desde el primer momento trataron mi caso y quedé más que satisfecho con el resultado obtenido</p></article>
+        <article class="rev"><div class="top"><a href="https://www.google.com/maps/contrib/109968974502030958244/reviews" target="_blank" rel="nofollow noopener">Guillermo Hernández Blanco</a><time>hace 3 años</time></div><div class="gold">★★★★★</div><p>Muy buena asesoría fiscal con grandes profesionales y expertos.</p><p>Trato excelente y detallado tanto en el ámbito de las personas físicas como en fiscalidad empresarial.</p><p>Muy recomendable.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" id="contacto">
+    <div class="wrap band-grid">
+      <div>
+        <h2>Explícanos tu caso, estaremos encantados de ayudarte.</h2>
+        <div class="row">
+          <a href="tel:+34913720778" class="btn btn-gold">Llamar <span class="tel">+34 913 720 778</span></a>
+          <a href="https://wa.me/34628120755" class="btn btn-line">Escríbenos</a>
+        </div>
+      </div>
+      <address>
+        <div class="t">Contacto</div>
+        C/ Nuria 36 1ª Planta, Puerta 1<br>
+        28034 - Madrid<br>
+        <a href="tel:+34913720778">+34 913 720 778</a><br>
+        <a href="mailto:despacho@afgsl.es">despacho@afgsl.es</a>
+      </address>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4>COMPAÑÍA</h4><ul>
+        <li><a href="https://afgsl.es/asesor-fiscal-madrid/">Asesor Fiscal en Madrid</a></li>
+        <li><a href="#quienes-somos">Quiénes somos</a></li>
+        <li><a href="https://afgsl.es/equipo/">Equipo</a></li>
+      </ul></div>
+      <div><h4>ÁREAS DE TRABAJO</h4><ul>
+        <li><a href="https://afgsl.es/fiscalidad-empresarial/">Fiscalidad Empresarial</a></li>
+        <li><a href="https://afgsl.es/fiscalidad-personal/">Fiscalidad Personal</a></li>
+        <li><a href="https://afgsl.es/planificacion-fiscal/">Planificación Fiscal</a></li>
+        <li><a href="https://afgsl.es/contabilidad/">Contabilidad</a></li>
+        <li><a href="https://afgsl.es/operaciones-societarias/">Operaciones Societarias</a></li>
+        <li><a href="https://afgsl.es/procedimientos-tributarios/">Procedimientos Tributarios</a></li>
+      </ul></div>
+      <div><h4>CONTACTO</h4><ul>
+        <li>C/ Nuria 36 1ª Planta, Puerta 1</li>
+        <li>28034 - Madrid</li>
+        <li><a href="tel:+34913720778">+34 913 720 778</a></li>
+        <li><a href="mailto:despacho@afgsl.es">despacho@afgsl.es</a></li>
+      </ul></div>
+      <div><h4>LEGAL</h4><ul>
+        <li><a href="https://afgsl.es/privacidad-y-seguridad/">Política de Privacidad</a></li>
+        <li><a href="https://afgsl.es/aviso-legal/">Aviso Legal</a></li>
+        <li><a href="https://afgsl.es/politica-de-cookies/">Política de Cookies</a></li>
+      </ul></div>
+    </div>
+    <div class="eu">
+      <div class="logos">
+        <img src="footer1.png" alt="" loading="lazy">
+        <img src="footer3.png" alt="" loading="lazy">
+      </div>
+      <span>FINANCIADO POR LA UNIÓN EUROPEA - NEXTGENERATIONEU</span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34913720778" class="btn btn-gold">Llamar</a>
+  <a href="https://wa.me/34628120755" class="btn btn-line">Escríbenos</a>
+</div>
+
+</body>
+</html>

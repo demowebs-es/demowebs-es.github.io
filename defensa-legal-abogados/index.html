@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Defensa Legal Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Merriweather:ital,wght@0,400;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16163f; --navy-2:#211f40; --gold:#d3b574; --gold-dark:#a98d4c; --ink:#16163f; --text:#4a4a4a; --muted:#6c6b7d;
+    --line:#e5e5e6; --tint:#f6f5f1; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Montserrat,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dark);font-weight:600}
+  .serif{font-family:Cinzel,Georgia,serif}
+
+  .demo{background:#0c0c26;color:#d9c99e;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  .topbar{background:var(--navy);color:#fff;font-size:.84rem}
+  .topbar .wrap{display:flex;justify-content:flex-end;gap:22px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+  .topbar a{display:inline-flex;align-items:center;gap:7px}
+  .topbar a:hover{color:var(--gold)}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:16px}
+  .nav img{height:60px;width:auto}
+  .menu{display:flex;gap:26px;font-size:.84rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
+  .menu a:hover{color:var(--gold-dark)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.9rem;transition:.2s;border:1.5px solid var(--navy);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:#26265e}
+  .btn-gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+  .btn-gold:hover{background:#c9a75f;border-color:#c9a75f}
+  .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-out{background:#fff;color:var(--navy)}
+  .btn-out:hover{background:var(--tint)}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--navy) url("https://www.defensalegalabogados.com/wp-content/uploads/2020/12/P1000161-scaled.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(22,22,63,.94) 0%,rgba(22,22,63,.82) 48%,rgba(22,22,63,.45) 100%)}
+  .hero .wrap{position:relative;padding-top:110px;padding-bottom:110px}
+  .hero .eyebrow{color:var(--gold)}
+  .hero h1{font-family:Cinzel,Georgia,serif;font-weight:600;font-size:clamp(2.6rem,6.2vw,4.6rem);line-height:1.04;margin:14px 0 18px;letter-spacing:.02em}
+  .hero p.lead{font-family:Merriweather,Georgia,serif;font-size:clamp(1.05rem,1.8vw,1.3rem);max-width:640px;line-height:1.6;color:#eceaf3}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero .addr{margin-top:30px;font-size:.9rem;color:#cfcde0;display:flex;gap:8px;align-items:flex-start}
+  .hero .addr svg{flex:none;margin-top:3px;color:var(--gold)}
+
+  section{padding:92px 0}
+  .head{max-width:760px;margin-bottom:44px}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-family:Cinzel,Georgia,serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;color:var(--ink);margin-top:10px}
+  .head h2 small{display:block;font-size:.62em;color:var(--gold-dark);margin-top:6px}
+  .head p{margin-top:14px}
+
+  /* intro */
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .intro-grid p+p{margin-top:14px}
+  .intro-grid strong{color:var(--ink)}
+  .intro-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -36px rgba(22,22,63,.55)}
+
+  /* areas */
+  .areas-sec{background:var(--navy);color:#d8d7e6}
+  .areas-sec .head h2{color:#fff}
+  .areas-sec .eyebrow{color:var(--gold)}
+  .areas-sec .head p strong{color:#fff}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .area{display:block;background:#fff;color:var(--text);border-radius:var(--radius);padding:28px 26px;border-top:4px solid var(--gold);transition:.25s}
+  .area:hover{transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+  .area h3{font-family:Cinzel,Georgia,serif;font-size:1.25rem;color:var(--ink);margin-bottom:10px;font-weight:600}
+  .area p{font-size:.93rem}
+  .area .more{display:inline-flex;margin-top:14px;font-size:.8rem;font-weight:600;color:var(--gold-dark);letter-spacing:.06em;text-transform:uppercase}
+  .areas-cta{margin-top:34px;text-align:center}
+
+  /* team */
+  .team{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .member{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff}
+  .member h3{font-family:Cinzel,Georgia,serif;font-size:1.12rem;color:var(--ink);font-weight:600;line-height:1.3}
+  .member .role{display:inline-block;margin:8px 0 14px;font-size:.72rem;letter-spacing:.16em;font-weight:700;color:var(--navy);background:#f3eddd;padding:4px 10px;border-radius:999px}
+  .member p{font-size:.92rem}
+
+  /* offices */
+  .offices{background:var(--tint)}
+  .off-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .offices .head h2{font-size:clamp(1.4rem,2.4vw,1.85rem);line-height:1.3}
+  .off-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+  .off{background:#fff;border-radius:var(--radius);padding:20px;border:1px solid var(--line)}
+  .off b{font-family:Cinzel,Georgia,serif;color:var(--ink);font-size:1.05rem;display:block}
+  .off span{font-size:.88rem;display:block;margin:4px 0 12px}
+  .off a{font-weight:600;color:var(--navy);font-size:.9rem;display:inline-flex;gap:7px;align-items:center}
+  .off-photo{border-radius:var(--radius);overflow:hidden}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .step{padding:30px 26px;border-radius:var(--radius);border:1px solid var(--line);position:relative}
+  .step .num{font-family:Cinzel,Georgia,serif;font-size:2.4rem;color:var(--gold);line-height:1}
+  .step h3{font-size:1.1rem;color:var(--ink);margin:10px 0 10px;font-weight:700}
+  .step p{font-size:.93rem}
+
+  /* cta */
+  .cta{background:var(--navy);color:#fff;text-align:center;padding:80px 0}
+  .cta h2{font-family:Cinzel,Georgia,serif;font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:600}
+  .cta p{color:#d8d7e6;max-width:640px;margin:14px auto 30px}
+  .cta .row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+  /* reviews + form */
+  .rf-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .reviews{display:grid;gap:18px}
+  .review{background:var(--tint);border-radius:var(--radius);padding:28px}
+  .review blockquote{font-family:Merriweather,Georgia,serif;font-style:italic;font-size:1.12rem;color:var(--ink);line-height:1.5}
+  .review .who{margin-top:14px;font-size:.88rem;font-weight:600;color:var(--navy)}
+  .review .src{font-size:.78rem;color:var(--muted)}
+  .stars{color:var(--gold);letter-spacing:2px;margin-bottom:10px}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);border-top:4px solid var(--gold);box-shadow:0 24px 50px -28px rgba(22,22,63,.4)}
+  .card-form h2{font-family:Cinzel,Georgia,serif;font-size:1.55rem;color:var(--ink);font-weight:600;line-height:1.2;margin-bottom:18px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field select{width:100%;padding:12px 14px;border:1px solid #d5d4de;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field select:focus{outline:2px solid rgba(211,181,116,.45);border-color:var(--gold)}
+  .check{display:flex;gap:10px;font-size:.8rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:8px 0 18px}
+  .check input{margin-top:2px;accent-color:var(--navy);flex:none}
+  .check a{text-decoration:underline;color:var(--navy)}
+  .card-form .btn{width:100%;white-space:normal}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  /* articles */
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .post{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff;transition:.2s}
+  .post:hover{border-color:var(--gold)}
+  .post h3{font-size:1rem;color:var(--ink);line-height:1.4;font-weight:700}
+  .post p{font-size:.88rem;margin:10px 0 14px;color:var(--muted)}
+  .post .more{margin-top:auto;font-size:.8rem;font-weight:700;color:var(--gold-dark)}
+  .posts-cta{text-align:center;margin-top:30px}
+
+  footer{background:#0f0f2e;color:#bdbbd0;padding:64px 0 26px;font-size:.88rem}
+  .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+  .foot img{height:64px;width:auto;margin-bottom:16px}
+  .foot h4{color:#fff;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+  .foot ul{list-style:none;display:grid;gap:8px}
+  .foot a:hover{color:var(--gold)}
+  .social{display:flex;gap:10px;margin-top:18px}
+  .social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;color:#fff}
+  .social a:hover{border-color:var(--gold);color:var(--gold)}
+  .copy{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:20px;font-size:.78rem;letter-spacing:.08em}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu{display:none}
+    .intro-grid,.off-grid,.rf-grid{grid-template-columns:1fr;gap:40px}
+    .areas,.posts{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .wrap{justify-content:center;gap:14px;font-size:.78rem}
+    .nav{height:70px}
+    .nav img{height:50px}
+    .hero .wrap{padding-top:64px;padding-bottom:70px}
+    .hero .row .btn{width:100%}
+    section{padding:64px 0}
+    .areas,.posts,.team,.off-cards{grid-template-columns:1fr}
+    .card-form{padding:24px 20px}
+    .foot{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 6px;font-size:.8rem;flex-direction:column;gap:0;line-height:1.25}
+    .callbar .btn small{font-weight:500;opacity:.85}
+    body{padding-bottom:84px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Defensa Legal Abogados · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="tel:+34983049173"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Valladolid - 983 049 173</a>
+    <a href="tel:+34979706970"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Palencia - 979 706 970</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://www.defensalegalabogados.com/" aria-label="Defensa Legal Abogados"><img src="https://www.defensalegalabogados.com/wp-content/uploads/elementor/thumbs/dla-az-sf-pkk0yszcsfax5g9kklzybhze6xwwxm110ivltti6w4.png" alt="Defensa Legal Abogados"></a>
+    <nav class="menu">
+      <a href="#areas">Áreas de Trabajo</a>
+      <a href="https://www.defensalegalabogados.com/somos-defensa-legal-abogados/">Defensa Legal ABOGADOS</a>
+      <a href="https://www.defensalegalabogados.com/blog/">Artículos</a>
+      <a href="https://www.defensalegalabogados.com/contacto/">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Abogados en Valladolid</span>
+      <h1>Defensa Legal</h1>
+      <p class="lead">La experiencia es fundamental pero igual de importante que la cercanía, la implicación en el caso y la transparencia</p>
+      <div class="row">
+        <a href="#contacto" class="btn btn-gold">¿En qué te podemos ayudar?</a>
+        <a href="tel:+34983049173" class="btn btn-line">Valladolid - 983 049 173</a>
+      </div>
+      <p class="addr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Oficina en Calle Santiago 15, 3ºD. 47001 Valladolid | España</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap intro-grid">
+      <div>
+        <span class="eyebrow">¿En qué te podemos ayudar?</span>
+        <div class="head" style="margin-bottom:22px">
+          <h2>Si estás aquí es porque necesitas un abogado<small>la persona en la que depositarás tu confianza</small></h2>
+        </div>
+        <p>Cuando tomas la decisión de depositar tu confianza en <strong>Defensa Legal ABOGADOS</strong>, asumimos una gran responsabilidad. Sabemos que tenemos que tratar tu caso como si fuera el único.</p>
+        <p>Sabemos que tenemos que implicarnos y buscar las mejores herramientas legales para obtener los resultados que como cliente esperas. <strong>Ese es nuestro compromiso.</strong></p>
+      </div>
+      <div class="intro-photo"><img src="https://www.defensalegalabogados.com/wp-content/uploads/2021/01/defensa-legal-abogados-valladolid-palencia.jpg" alt="Defensa Legal Abogados" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="areas-sec" id="areas">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Un Servicio Integral y cercano</span>
+        <h2>Nuestras áreas de trabajo</h2>
+        <p>En <strong>Defensa Legal Abogados</strong>, queremos atender todas tus necesidades y por ello ofrecemos un servicio integral; un servicio que además se adapta a cada necesidad individual, donde siempre encontramos la mejor solución para tu caso.</p>
+      </div>
+      <div class="areas">
+        <a class="area" href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-civil/"><h3>Civil</h3><p>Es una herramienta que resuelve cuestiones del día a día; temas de familia, herencias, contratos, propiedades, alquileres</p><span class="more">Derecho Civil →</span></a>
+        <a class="area" href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-laboral/"><h3>Laboral</h3><p>Tratamos ERES, ERTES, extinción de contratos, sanciones, Mobbing y despidos</p><span class="more">Derecho Laboral →</span></a>
+        <a class="area" href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-penal/"><h3>Penal</h3><p>Te ayudamos a resolver problemas derivados de delitos contra las personas, económicos, tráfico o patrimonio, así como malos tratos o violencia de género</p><span class="more">Derecho Penal →</span></a>
+        <a class="area" href="https://www.defensalegalabogados.com/areas-de-trabajo/sociedades-y-empresas/"><h3>Mercantil</h3><p>Adelantarse a los contratiempos es fundamental para la sostenibilidad empresarial. Encontrar con rapidez las soluciones a todos ellos, es nuestra fortaleza.</p><span class="more">Sociedades y Empresas →</span></a>
+        <a class="area" href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-administrativo/"><h3>Administrativo</h3><p>Puede parecer que la Administración tiene demasiado poder. Te ayudaremos a encontrar soluciones y defensa ante la administración, resolviendo tu situación ante incapacidades, errores administrativos, entre otros</p><span class="more">Derecho Administrativo →</span></a>
+      </div>
+      <div class="areas-cta"><a href="https://www.defensalegalabogados.com/areas-de-trabajo/" class="btn btn-gold">Información Áreas Legales →</a></div>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">En Defensa Legal ABOGADOS, somos más que</span>
+        <h2>un equipo de abogados Expertos</h2>
+        <p>Somos un equipo de profesionales que trabajamos perfectamente cohesionados. Cada uno de nosotros conoce perfectamente cuál es su cometido y trabajamos, desde hace muchos años, como una máquina bien engrasada. Sabemos que somos parte fundamental de tu día a día personal y profesional, y por eso tus retos serán nuestros retos. Te presentamos a parte de nuestro equipo</p>
+      </div>
+      <div class="team">
+        <article class="member">
+          <h3>Pablo Menéndez-Santirso Sanchez</h3>
+          <span class="role">ABOGADO DIRECTOR</span>
+          <p>Pertenezco a una amplia familia de juristas, por lo que el derecho forma parte de mis raíces. Me licencié en Derecho por la Universidad de Valladolid en el año 1997. Compaginé mis últimos cursos universitarios trabajando en el ámbito Notarial, donde me especialicé en Sucesiones y Herencias. Finalizados mis estudios universitarios me preparé durante dos años en la Escuela de Prácticas Jurídicas. Abogado del Colegio de Médicos de Palencia y de sus colegiados desde el año 2007, así como de la Compañía Aseguradora más fuerte en dicho sector. Especialista en Derecho Civil, Penal y Sanitario.</p>
+        </article>
+        <article class="member">
+          <h3>Noelia G. Delgado Bufrahí</h3>
+          <span class="role">ABOGADA</span>
+          <p>Me licencié en derecho por la Universidad de Valladolid en el año 1998 y realicé, nada más finalizar, dos años de estudio en la Escuela de Prácticas Jurídicas. Con los años me hice experta en materia procesal. En el año 2013 obtuve la titulación para el ejercicio de la Actividad Mediadora en el ámbito Civil y Mercantil, obteniendo posteriormente la especialización jurídica en Mediación en el ámbito Sanitario. Trabajo desde mis inicios tanto en el ámbito empresarial como en el jurídico, siendo experta en Negociación, así como en el marco de Recursos Humanos dentro de las Empresas.</p>
+        </article>
+        <article class="member">
+          <h3>Manuel Diego Escudero</h3>
+          <span class="role">ECONOMISTA</span>
+          <p>Me licencié en Ciencias Económicas y Empresariales por la Universidad de Valladolid, en 1994. Me incorporé al equipo de trabajo para ofrecer a nuestros clientes asesoramiento en el ámbito Fiscal y contable. Especialista en Administración Concursal, así como en la elaboración de informes periciales de carácter económico, Análisis Económicos-Financieros y Análisis de Proyectos de Inversión.</p>
+        </article>
+        <article class="member">
+          <h3>Yolanda Gutiérrez Fuentes</h3>
+          <span class="role">ADMINISTRATIVA</span>
+          <p>Graduada Superior en Educación por la Universidad de Valladolid, he realizado numerosos Cursos y Jornadas que integran mi formación; entre ellas destacar el Curso de Empleados Administrativos realizado de forma continua durante los años 2012 a 2015, Curso específico de Asesor Fiscal en el año 2013, y Curso de Secretariado Jurídico en el año 2014. Al frente de la Secretaría del Bufete desde hace 10 años, me gusta trasmitir a nuestros clientes un trato dinámico y cercano, tan fundamental en el ejercicio de nuestro trabajo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="offices">
+    <div class="wrap off-grid">
+      <div>
+        <span class="eyebrow">Desde Defensa Legal ABOGADOS, te atenderemos con</span>
+        <div class="head" style="margin-bottom:0">
+          <h2>Un equipo profesional con sede tanto en Valladolid como en Palencia, atendiendo así a toda Castilla y León.</h2>
+          <p>Atenderemos su caso desde nuestras oficinas situadas en Valladolid, en la Calle Santiago, 15, 3º D y desde Palencia, en nuestro local a pie de calle, en Ignacio Martínez de Azcoitia, 5.</p>
+        </div>
+        <div class="off-cards">
+          <div class="off"><b>Valladolid</b><span>Calle Santiago, 15, 3º D</span><a href="tel:+34983049173">983 049 173</a></div>
+          <div class="off"><b>Palencia</b><span>Ignacio Martínez de Azcoitia, 5</span><a href="tel:+34979706970">979 706 970</a></div>
+        </div>
+      </div>
+      <div class="off-photo"><img src="https://www.defensalegalabogados.com/wp-content/uploads/2020/12/P1000161-scaled.jpg" alt="Despacho de Defensa Legal Abogados" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="steps">
+        <div class="step"><span class="num">01</span><h3>Toma de contacto</h3><p>Siempre hemos pensado que tu primera consulta tiene que ser gratuita. Es la única forma de que nos conozcas con total libertad y que seas tú quien juzgue, por ti mismo, si somos el Despacho de Abogados que buscas.</p></div>
+        <div class="step"><span class="num">02</span><h3>Plan de acción</h3><p>Es el momento de analizar pormenorizadamente tu caso. Estudiaremos las diferentes opciones y te mostraremos nuestro Plan de Trabajo; dándote un presupuesto detallado de los posibles costes.</p></div>
+        <div class="step"><span class="num">03</span><h3>Resolución</h3><p>Sabemos que tan importante es hacer un buen planteamiento inicial como los trámites procesales que conlleva; siendo la defensa en Sala, uno de los momentos más importantes hasta llegar al objetivo final. Por eso, hasta la resolución del caso estaremos siempre a su lado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="wrap">
+      <h2>Comienza aquí tu asesoramiento legal</h2>
+      <p>Haz clic en el botón y cuéntenos tu caso, estaremos encantados de proporcionarte la ayuda que necesitas</p>
+      <div class="row">
+        <a href="#contacto" class="btn btn-gold">¿En qué te podemos ayudar?</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="contacto">
+    <div class="wrap rf-grid">
+      <div>
+        <span class="eyebrow">la mejor forma de conocernos</span>
+        <div class="head" style="margin-bottom:26px"><h2>Así hablan nuestros clientes</h2></div>
+        <div class="reviews">
+          <div class="review"><div class="stars">★★★★★</div><blockquote>“Muy Profesionales, fue un acierto confiar en este gran equipo.”</blockquote><div class="who">Ana Reyes Rodriguez Teran</div><div class="src">Google Maps</div></div>
+          <div class="review"><div class="stars">★★★★★</div><blockquote>“Simplemente inmejorables, trato personalizado y humano.”</blockquote><div class="who">F.Frontela Palencia</div><div class="src">Google Maps</div></div>
+        </div>
+      </div>
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <h2>¿Nos ponemos en contacto contigo?</h2>
+        <div class="field"><label for="n">Nombre</label><input id="n" required placeholder="¿Cuál es tu nombre?" autocomplete="name"></div>
+        <div class="field"><label for="t">Teléfono</label><input id="t" type="tel" required placeholder="¿Cuál es tu teléfono?" autocomplete="tel"></div>
+        <div class="field"><label for="h">Horario</label>
+          <select id="h" required>
+            <option value="">¿En qué momento desea que le llamemos?</option>
+            <option>Cuando sea posible</option>
+            <option>Horario de Mañana</option>
+            <option>Horario de Tarde</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" required aria-label="Aceptar"><span>He leído y acepto el <a href="https://www.defensalegalabogados.com/aviso-legal/" target="_blank" rel="noopener">Aviso Legal</a>, Términos y Condiciones de Uso.</span></label>
+        <button class="btn btn-navy" type="submit">Deseo que se pongan en contacto</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+
+  <section style="background:var(--tint)">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Aquí encontrará la mejor selección de</span>
+        <h2>artículos legales</h2>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://www.defensalegalabogados.com/llega-el-registro-obligatorio-de-la-jornada-laboral-en-que-consiste-y-para-que-sirve/"><h3>Llega el registro obligatorio de la jornada laboral: ¿en qué consiste y para qué sirve?</h3><p>El Registro de la Jornada de Trabajo entrará en vigor el próximo 12 de mayo. Este registro ha sido modificado al amparo del RDL 8/2019, de…</p><span class="more">Leer Más &gt;&gt;</span></a>
+        <a class="post" href="https://www.defensalegalabogados.com/renta-2018-2019-10-consejos-para-realizar-la-declaracion-sin-problemas/"><h3>RENTA 2018 – 2019: 10 consejos para realizar la declaración sin problemas</h3><p>La Campaña de la renta 2018-2019 ya está en marcha. Desde el 2 de abril se pueden presentar las declaraciones a través de la web de la…</p><span class="more">Leer Más &gt;&gt;</span></a>
+        <a class="post" href="https://www.defensalegalabogados.com/nuevas-medidas-laborales-del-rd-ley/"><h3>Nuevas medidas laborales del RD-Ley</h3><p>«medidas urgentes para la garantía de la igualdad de trato y oportunidades en el empleo y la ocupación» El Consejo de Ministros celebrado hoy ha…</p><span class="more">Leer Más &gt;&gt;</span></a>
+        <a class="post" href="https://www.defensalegalabogados.com/sentencia-tribunal-supremo-reparto-gastos-hipotecarios/"><h3>Sentencia Tribunal Supremo – Reparto gastos hipotecarios</h3><p>El Tribunal Supremo ha aclarado definitivamente cómo deberían repartirse los distintos gastos de constitución de una hipoteca atendiendo a la norma que rige cada uno. El asunto había sido objeto…</p><span class="more">Leer Más &gt;&gt;</span></a>
+        <a class="post" href="https://www.defensalegalabogados.com/derechos-y-obligaciones-autonomos-2019/"><h3>DERECHOS Y OBLIGACIONES AUTÓNOMOS 2019</h3><p>Ya es oficial. Después de varios tiras y aflojas entre las principales asociaciones de autónomos y el Gobierno, se llegó a un acuerdo sobre al aumento…</p><span class="more">Leer Más &gt;&gt;</span></a>
+        <a class="post" href="https://www.defensalegalabogados.com/sentencia-del-tribunal-superior-de-justicia-de-la-ue/"><h3>Sentencia del Tribunal Superior de Justicia de la UE</h3><p>Te explicamos la Sentencia del Tribunal Superior de Justicia de la UE de fecha 21/12/2016. Fuente: Expansión El Tribunal de Justicia de la Unión Europea…</p><span class="more">Leer Más &gt;&gt;</span></a>
+      </div>
+      <div class="posts-cta"><a href="https://www.defensalegalabogados.com/blog/" class="btn btn-out">MÁS ARTÍCULOS DE INTERÉS</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="https://www.defensalegalabogados.com/wp-content/uploads/elementor/thumbs/dla-bln-sf-pkk0zauc3o9kw0ousas25foue5jac2qa0m03pwavey.png" alt="Defensa Legal Abogados" loading="lazy">
+        <p>Abogados en Valladolid y Palencia. Entendemos la abogacía como una profesión que debe estar impregnada de humanismo, de verdad y de honestidad, y ello se traduce en un trato y atención más personal en la relación cliente-abogado.</p>
+        <div class="social">
+          <a href="mailto:administracion@defensa-legal.com" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/defensa-legal-abogados-79b4a1136/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+          <a href="https://www.facebook.com/Defensa-Legal-Abogados-797242067285414/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+          <a href="https://www.instagram.com/defensalegal.abogados/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>servicios</h4>
+        <ul>
+          <li><a href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-civil/">Derecho Civil</a></li>
+          <li><a href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-laboral/">Derecho Laboral</a></li>
+          <li><a href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-penal/">Derecho Penal</a></li>
+          <li><a href="https://www.defensalegalabogados.com/areas-de-trabajo/sociedades-y-empresas/">Sociedades y Empresas</a></li>
+          <li><a href="https://www.defensalegalabogados.com/areas-de-trabajo/derecho-administrativo/">Derecho Administrativo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>páginas</h4>
+        <ul>
+          <li><a href="https://www.defensalegalabogados.com/somos-defensa-legal-abogados/">Quienes Somos DLA</a></li>
+          <li><a href="https://www.defensalegalabogados.com/blog/">Noticias del Bufete</a></li>
+          <li><a href="https://www.defensalegalabogados.com/somos-defensa-legal-abogados/">Equipo de Abogados</a></li>
+          <li><a href="https://www.defensalegalabogados.com/areas-de-trabajo/">Áreas de Trabajo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>enlaces</h4>
+        <ul>
+          <li><a href="https://www.defensalegalabogados.com/contacto/">Contacto</a></li>
+          <li><a href="https://www.defensalegalabogados.com/abogados-en-palencia/">Bufete en Palencia</a></li>
+          <li><a href="https://www.defensalegalabogados.com/abogados-en-valladolid/">Bufete en Valladolid</a></li>
+          <li><a href="https://www.defensalegalabogados.com/politica-privacidad/">Política de Privacidad</a></li>
+          <li><a href="https://www.defensalegalabogados.com/aviso-legal/">Aviso Legal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© TODOS LOS DERECHOS RESERVADOS</div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983049173" class="btn btn-navy">Valladolid<small>983 049 173</small></a>
+  <a href="tel:+34979706970" class="btn btn-out">Palencia<small>979 706 970</small></a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

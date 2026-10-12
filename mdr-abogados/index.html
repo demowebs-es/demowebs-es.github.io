@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MDR Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#139B94; --teal-dark:#0F635F; --aqua:#2BCCC4; --aqua-tint:#2BCCC414; --ink:#0d1f1e; --text:#4a4f4f; --muted:#6b7272;
+    --line:#dfeceb; --tint:#f3faf9; --white:#fff; --radius:14px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:700}
+  .serif{font-family:"Playfair Display",Georgia,serif}
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:10px;top:10px;background:#fff;padding:8px;z-index:99}
+
+  .demo{background:#06302e;color:#bfe9e6;font-size:.76rem;text-align:center;padding:6px 16px}
+  .topbar{background:var(--teal-dark);color:#e6f6f5;font-size:.85rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:40px}
+  .topbar b{color:#fff}
+  .topbar .ico{display:flex;gap:16px}
+  .topbar .ico a{display:flex;align-items:center;gap:6px;opacity:.9}
+  .topbar .ico a:hover{opacity:1}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:18px}
+  .logo img{height:62px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none;font-size:.86rem;font-weight:600;color:var(--ink)}
+  .menu>li{position:relative}
+  .menu>li>a,.menu>li>span{display:block;padding:10px 12px;border-radius:8px;cursor:pointer}
+  .menu>li>a:hover,.menu>li:hover>span{color:var(--teal)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 40px -24px rgba(0,0,0,.35);padding:8px;min-width:260px;list-style:none}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:8px 12px;border-radius:8px;font-weight:500;font-size:.85rem}
+  .menu .sub a:hover{background:var(--tint);color:var(--teal-dark)}
+  .menu .sub .lbl{display:block;padding:10px 12px 4px;font-size:.7rem;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+  .menu>li>span::after{content:"";display:inline-block;margin-left:6px;border:4px solid transparent;border-top-color:currentColor;transform:translateY(2px)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--teal);cursor:pointer;font-family:inherit;text-align:center}
+  .btn-teal{background:var(--teal);color:#fff}
+  .btn-teal:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
+  .btn-line{background:#fff;color:var(--teal-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:#06302e url("https://www.mdrabogados.es/wp-content/uploads/2025/03/abogados-en-madrid.webp") center/cover}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,40,38,.92) 0%,rgba(10,70,66,.78) 55%,rgba(10,70,66,.45) 100%)}
+  .hero .wrap{position:relative;padding:86px 20px 76px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
+  .hero .eyebrow{color:var(--aqua)}
+  .hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(2.3rem,5vw,3.9rem);line-height:1.06;margin:14px 0 22px}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+  .hero .ctas .btn-teal{background:var(--aqua);border-color:var(--aqua);color:#06302e}
+  .hero .ctas .btn-teal:hover{background:#fff;border-color:#fff}
+  .hero .tagline{margin-top:20px;font-size:.92rem;color:#cfeeec}
+  .slides{display:grid;gap:12px}
+  .slides div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);border-radius:12px;padding:16px 18px;font-weight:600;display:flex;gap:12px;align-items:center}
+  .slides div::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--aqua)}
+  .press{background:var(--teal-dark);color:#fff}
+  .press .wrap{display:flex;align-items:center;justify-content:center;gap:22px;padding:18px 20px;flex-wrap:wrap;text-align:center}
+  .press span{font-size:.78rem;letter-spacing:.16em;font-weight:700;text-transform:uppercase}
+  .press img{height:30px;width:auto}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:40px}
+  .head h2,.h2{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.15;color:var(--ink);margin-top:10px}
+  p+p{margin-top:14px}
+  strong{color:var(--ink);font-weight:600}
+
+  .intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+  .intro .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -36px rgba(0,0,0,.45)}
+  .photo img{width:100%;height:100%;object-fit:cover}
+  .defend{margin-top:30px;padding:24px 26px;border-left:4px solid var(--teal);background:var(--tint);border-radius:0 12px 12px 0}
+  .defend h3{font-size:.85rem;letter-spacing:.16em;color:var(--teal-dark);margin-bottom:10px}
+
+  .bg-tint{background:var(--tint)}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;transition:.25s;display:flex;flex-direction:column;gap:8px}
+  .card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(15,99,95,.6)}
+  .card .num{font-family:"Playfair Display",Georgia,serif;color:var(--teal);font-weight:700}
+  .card h3{font-size:1.06rem;color:var(--ink)}
+  .card p{font-size:.9rem}
+  .card .go{margin-top:auto;color:var(--teal);font-weight:700;font-size:1.2rem}
+  .callout{margin-top:30px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;background:var(--teal-dark);color:#fff;border-radius:var(--radius);padding:26px 30px}
+  .callout p{font-family:"Playfair Display",Georgia,serif;font-size:1.45rem}
+  .callout .btn{background:#fff;color:var(--teal-dark);border-color:#fff}
+
+  .lawyer{display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:center;margin-top:44px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .lawyer img{border-radius:12px;aspect-ratio:3/4;object-fit:cover;width:100%;object-position:top}
+  .lawyer h3{font-family:"Playfair Display",Georgia,serif;font-size:1.8rem;color:var(--ink)}
+  .lawyer .role{color:var(--teal);font-weight:700;font-size:.8rem;letter-spacing:.14em;margin:6px 0 14px}
+  .lawyer .num-col{margin-top:12px;font-weight:600;color:var(--ink)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:34px 0}
+  .stats div{border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center;font-family:"Playfair Display",Georgia,serif;font-size:1.25rem;color:var(--teal-dark);font-weight:700;background:#fff}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .box{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:#fff}
+  .box h3{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;color:var(--ink);margin-bottom:12px}
+
+  .band{background:linear-gradient(120deg,#06302e,var(--teal-dark));color:#fff;text-align:center;padding:84px 0}
+  .band blockquote{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.3;max-width:880px;margin:0 auto}
+  .band blockquote::before{content:"“";display:block;color:var(--aqua);font-size:4.5rem;line-height:.6;margin-bottom:14px}
+  .band .btn{margin-top:34px;background:var(--aqua);border-color:var(--aqua);color:#06302e}
+
+  .faq{max-width:860px}
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  summary{cursor:pointer;font-weight:600;color:var(--ink);font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--teal);font-size:1.4rem;line-height:1}
+  details[open] summary::after{content:"−"}
+  details p{margin-top:12px}
+
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .contact .photo{margin-bottom:24px;aspect-ratio:16/10}
+  .contact .calls{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);border-top:4px solid var(--teal);box-shadow:0 24px 50px -30px rgba(0,0,0,.35)}
+  form h2{font-family:"Playfair Display",Georgia,serif;font-size:1.8rem;color:var(--ink);margin-bottom:18px}
+  .field{margin-bottom:12px}
+  .field input,.field textarea{width:100%;padding:13px 14px;border:1px solid #cfe0df;border-radius:9px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(19,155,148,.3);border-color:var(--teal)}
+  .priv{font-size:.8rem;font-weight:700;color:var(--ink);margin:10px 0 6px}
+  .check{display:flex;gap:10px;font-size:.85rem;align-items:flex-start;margin-bottom:18px}
+  .check input{margin-top:4px;accent-color:var(--teal)}
+  .check a{text-decoration:underline;color:var(--teal-dark)}
+  form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.86rem;margin-top:12px}
+
+  .sedes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .sede{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff}
+  .sede h3{font-family:"Playfair Display",Georgia,serif;font-size:1.35rem;color:var(--ink);margin-bottom:16px}
+  .sede dl{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;font-size:.92rem}
+  .sede dt{font-weight:700;color:var(--teal-dark);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding-top:2px}
+  .hours{display:grid;grid-template-columns:auto 1fr;gap:2px 14px}
+  .phones{display:flex;flex-wrap:wrap;gap:6px 14px}
+  .phones a,.sede a.u{text-decoration:underline;text-underline-offset:3px}
+
+  .reviews{columns:3 300px;column-gap:20px}
+  .review{break-inside:avoid;margin-bottom:20px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .review .stars{color:#f5b301;letter-spacing:2px;font-size:.9rem;display:none}
+  .review p{font-size:.93rem}
+  .review .who{display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:600;color:var(--ink);font-size:.9rem}
+  .review .who img{width:22px;height:22px}
+  .review .who small{font-weight:500;color:var(--muted)}
+
+  footer{background:#06302e;color:#bcd9d7;padding:60px 0 30px;font-size:.9rem}
+  .foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+  footer h4{color:#fff;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+  footer ul{list-style:none;display:grid;gap:8px}
+  footer a:hover{color:#fff;text-decoration:underline}
+  .foot .logo-f{background:#fff;border-radius:10px;padding:8px;display:inline-block;margin-bottom:16px}
+  .foot .logo-f img{height:60px;width:auto}
+  .legal{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.84rem}
+
+  .wa{position:fixed;right:18px;bottom:18px;z-index:55;background:#25D366;color:#fff;border-radius:999px;padding:12px 18px;font-weight:600;font-size:.9rem;display:flex;gap:8px;align-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block}
+    .mnav summary{border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;font-size:.9rem}
+    .mnav summary::after{content:none}
+    .mnav[open] .panel{display:block}
+    .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);max-height:75vh;overflow:auto;padding:10px 20px 20px;box-shadow:0 20px 30px -20px rgba(0,0,0,.3)}
+    .mnav .panel a{display:block;padding:9px 0;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
+    .mnav .panel .lbl{display:block;margin-top:14px;font-size:.72rem;letter-spacing:.14em;color:var(--teal);font-weight:700;text-transform:uppercase}
+    .mnav .panel .lbl+a,.mnav .panel .in a{font-weight:500}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .hero .wrap,.intro,.split,.contact{grid-template-columns:1fr}
+    .lawyer{grid-template-columns:240px 1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    .wrap{padding:0 16px}
+    .hero .wrap{padding:52px 16px 50px}
+    .topbar .msg{font-size:.78rem}
+    .topbar .ico span{display:none}
+    .nav{height:70px}
+    .logo img{height:48px}
+    .nav .btn-sm{display:none}
+    section{padding:60px 0}
+    .intro .cols,.two,.sedes,.stats,.cards{grid-template-columns:1fr}
+    .lawyer{grid-template-columns:1fr;padding:20px}
+    .lawyer img{aspect-ratio:4/5;max-width:300px}
+    .sede dl{grid-template-columns:1fr;gap:4px}
+    .sede dd{margin-bottom:10px}
+    .callout{padding:22px}
+    .callout .btn,.hero .ctas .btn,.contact .calls .btn{width:100%}
+    form{padding:24px 18px}
+    .foot{grid-template-columns:1fr}
+    .wa{display:none}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    .callbar .wa-btn{background:#25D366;border-color:#25D366;color:#fff}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Ir al contenido</a>
+<div class="demo">Propuesta de rediseño para MDR Abogados · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="msg">Solicita consulta sin compromiso <b>atendemos 365 días al año</b></span>
+    <span class="ico">
+      <a href="mailto:consultas@mdrabogados.es" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+      <a href="tel:+34910291154" aria-label="Teléfono"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></a>
+      <a href="https://api.whatsapp.com/send?phone=34615397020" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg></a>
+    </span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://www.mdrabogados.es/" class="logo" aria-label="MDR Abogados"><img src="https://www.mdrabogados.es/wp-content/uploads/2025/03/mdr-delfa.jpeg" alt="MDR Abogados" width="493" height="285"></a>
+    <ul class="menu">
+      <li><a href="https://www.mdrabogados.es/">Inicio</a></li>
+      <li><span tabindex="0">Áreas de trabajo</span>
+        <ul class="sub">
+          <li><a href="https://www.mdrabogados.es/abogados-herencias/">Herencias</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-familia/">Familia</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-laboral/">Laboral</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-extranjeria/">Extranjería</a></li>
+          <li><a href="https://www.mdrabogados.es/regularizacion-masiva-inmigrantes-madrid/">Regularización masiva</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-concursal/">Concursal</a></li>
+          <li><a href="https://www.mdrabogados.es/peritos-judiciales/">Peritaciones</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-penal/">Penal</a></li>
+        </ul>
+      </li>
+      <li><span tabindex="0">Especialidades</span>
+        <ul class="sub">
+          <li><a href="https://www.mdrabogados.es/abogados-herencias/#gestion">Gestión de herencias</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-herencias/#testamento">Testamentos</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-custodia-compartida/">Custodia compartida</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-divorcios-separaciones/">Divorcios y separaciones</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-extranjeria/#nacionalidad-espanola">Obtención de nacionalidad</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-accidentes-trafico/">Accidentes de tráfico</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-laboral/#despido-improcedente">Despidos improcedentes</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-penal/#abogados-agresiones-sexuales-madrid">Agresiones sexuales</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-penal/#abogados-alcoholemia-madrid">Delitos de alcoholemia</a></li>
+          <li><span class="lbl">Otras especialidades</span></li>
+          <li><a href="https://www.mdrabogados.es/abogados-disolucion-gananciales/">Disolución de gananciales</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-ejecucion-sentencias/">Ejecución de sentencias</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-pension-compensatoria/">Pensión compensatoria</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-pension-alimentos/">Pensión alimentaria</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-pozuelo-de-alarcon/">Abogados en Pozuelo</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.mdrabogados.es/sobre-nosotros/">Sobre nosotros</a></li>
+      <li><a href="https://www.mdrabogados.es/blog/">Noticias</a></li>
+      <li><a href="https://www.mdrabogados.es/contacto/">Contacto</a></li>
+    </ul>
+    <a href="tel:+34910291154" class="btn btn-teal btn-sm">910 29 11 54</a>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a href="https://www.mdrabogados.es/">Inicio</a>
+        <span class="lbl">Áreas de trabajo</span>
+        <div class="in">
+          <a href="https://www.mdrabogados.es/abogados-herencias/">Herencias</a>
+          <a href="https://www.mdrabogados.es/abogados-familia/">Familia</a>
+          <a href="https://www.mdrabogados.es/abogados-derecho-laboral/">Laboral</a>
+          <a href="https://www.mdrabogados.es/abogados-extranjeria/">Extranjería</a>
+          <a href="https://www.mdrabogados.es/regularizacion-masiva-inmigrantes-madrid/">Regularización masiva</a>
+          <a href="https://www.mdrabogados.es/abogados-derecho-concursal/">Concursal</a>
+          <a href="https://www.mdrabogados.es/peritos-judiciales/">Peritaciones</a>
+          <a href="https://www.mdrabogados.es/abogados-derecho-penal/">Penal</a>
+        </div>
+        <span class="lbl">Especialidades</span>
+        <div class="in">
+          <a href="https://www.mdrabogados.es/abogados-herencias/#gestion">Gestión de herencias</a>
+          <a href="https://www.mdrabogados.es/abogados-herencias/#testamento">Testamentos</a>
+          <a href="https://www.mdrabogados.es/abogados-custodia-compartida/">Custodia compartida</a>
+          <a href="https://www.mdrabogados.es/abogados-divorcios-separaciones/">Divorcios y separaciones</a>
+          <a href="https://www.mdrabogados.es/abogados-extranjeria/#nacionalidad-espanola">Obtención de nacionalidad</a>
+          <a href="https://www.mdrabogados.es/abogados-accidentes-trafico/">Accidentes de tráfico</a>
+          <a href="https://www.mdrabogados.es/abogados-derecho-laboral/#despido-improcedente">Despidos improcedentes</a>
+          <a href="https://www.mdrabogados.es/abogados-derecho-penal/#abogados-agresiones-sexuales-madrid">Agresiones sexuales</a>
+          <a href="https://www.mdrabogados.es/abogados-derecho-penal/#abogados-alcoholemia-madrid">Delitos de alcoholemia</a>
+        </div>
+        <span class="lbl">Otras especialidades</span>
+        <div class="in">
+          <a href="https://www.mdrabogados.es/abogados-disolucion-gananciales/">Disolución de gananciales</a>
+          <a href="https://www.mdrabogados.es/abogados-ejecucion-sentencias/">Ejecución de sentencias</a>
+          <a href="https://www.mdrabogados.es/abogados-pension-compensatoria/">Pensión compensatoria</a>
+          <a href="https://www.mdrabogados.es/abogados-pension-alimentos/">Pensión alimentaria</a>
+          <a href="https://www.mdrabogados.es/abogados-pozuelo-de-alarcon/">Abogados en Pozuelo</a>
+        </div>
+        <a href="https://www.mdrabogados.es/sobre-nosotros/">Sobre nosotros</a>
+        <a href="https://www.mdrabogados.es/blog/">Noticias</a>
+        <a href="https://www.mdrabogados.es/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Abogados Madrid</span>
+        <h1>MDR Despacho de abogados en Plaza Castilla</h1>
+        <div class="ctas">
+          <a href="tel:+34912916798" class="btn btn-teal">Solicitar Consulta Gratuita</a>
+          <a href="https://api.whatsapp.com/send?phone=34615397020" target="_blank" rel="noopener" class="btn btn-ghost">Escríbenos al WhatsApp</a>
+        </div>
+        <p class="tagline">Solicita consulta sin compromiso, atendemos 365 días al año.</p>
+      </div>
+      <div class="slides">
+        <div>¿Necesitas un abogado en la ciudad de Madrid?</div>
+        <div>Somos especialistas en todas las ramas del derecho</div>
+        <div>Contamos con abogados con amplia experiencia</div>
+      </div>
+    </div>
+  </div>
+  <div class="press">
+    <a class="wrap" href="https://cadenaser.com/cmadrid/2022/09/19/madrid-encabeza-las-donaciones-por-testamento-solidario-en-toda-espana-radio-madrid/" target="_blank" rel="noopener">
+      <span>Empresa colaboradora con medios de comunicación</span>
+      <img src="https://www.mdrabogados.es/wp-content/uploads/2023/01/cadena-ser.png" alt="MDR Abogados, empresa colaboradora con Cadena SER">
+    </a>
+  </div>
+
+  <section>
+    <div class="wrap intro">
+      <div>
+        <span class="eyebrow">MDR Abogados</span>
+        <h2 class="h2">Áreas de derecho en las que trabajamos</h2>
+      </div>
+      <div class="cols">
+        <div>
+          <p>En MDR Abogados nos destacamos como una <strong>firma líder en servicios legales</strong>, con una sólida <strong>trayectoria de más de una década en el ámbito jurídico</strong>.</p>
+          <p><strong>Nos especializamos en áreas clave</strong> como Derecho de Familia, Derecho Sucesorio, Gestión de Accidentes de Tráfico, Asuntos de Extranjería, Derecho Penal y Derecho Concursal.</p>
+        </div>
+        <div>
+          <p>Nuestro enfoque se centra en brindar <strong>asesoramiento legal integral</strong>, diseñado para optimizar los resultados y garantizar la máxima satisfacción de nuestros clientes.</p>
+          <p>Ofrecemos una <strong>atención personalizada</strong>, comprometiéndonos a analizar y resolver sus inquietudes con la mayor eficiencia y profesionalismo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Plaza de Castilla</span>
+        <h2 class="h2">Un despacho junto a los juzgados de Plaza de Castilla</h2>
+        <p style="margin-top:18px">Somos un <strong>despacho de abogados</strong> comprometido con ofrecer soluciones legales prácticas y eficaces, tanto para particulares como para empresas. Contamos con un <strong>equipo con experiencia y formación en distintas áreas del derecho</strong>, lo que nos permite adaptarnos a las necesidades concretas de cada cliente.</p>
+        <p>Estamos <strong>ubicados</strong> en una <strong>zona estratégica</strong>, junto a los juzgados de Plaza de Castilla. Nuestro despacho dispone de sala de espera, sala de juntas y varios despachos individuales, donde podemos atenderle con la privacidad y el trato personal que cada caso requiere.</p>
+        <div class="defend">
+          <h3>DEFENDEMOS TUS DERECHOS</h3>
+          <p>Abogamos por tus intereses con profesionalismo y dedicación. Tu tranquilidad y satisfacción son nuestra principal prioridad.</p>
+          <p>Cada caso que abordamos es más que una simple disputa legal, es una oportunidad para demostrar nuestro profundo compromiso con la justicia y la equidad.</p>
+        </div>
+      </div>
+      <div class="photo"><img src="https://www.mdrabogados.es/wp-content/uploads/2025/11/bufete-abogados-madrid-1024x683.jpg" alt="bufete abogados madrid" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="especialidades">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Áreas de trabajo</span>
+        <h2>Nuestras especialidades</h2>
+      </div>
+      <div class="cards">
+        <a class="card" href="https://www.mdrabogados.es/abogados-herencias/"><span class="num">01</span><h3>Herencias</h3><p>Expertos en derecho sucesorio y testamentario</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/abogados-familia/"><span class="num">02</span><h3>Familia</h3><p>Divorcios, custodia de hijos, pensiones alimenticias, regímenes matrimoniales</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/abogados-derecho-penal/"><span class="num">03</span><h3>Derecho Penal</h3><p>Alcoholemia, tráfico de drogas, agresiones sexuales, robos, hurtos, homicidios, asesinatos y estafas</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/abogados-derecho-laboral/"><span class="num">04</span><h3>Derecho Laboral</h3><p>Despidos, ERTEs, EREs, reclamaciones de cantidades, impugnación de sanciones, acoso laboral y discriminación.</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/abogados-derecho-concursal/"><span class="num">05</span><h3>Derecho Concursal</h3><p>Cooperamos estrechamente con la administración concursal para garantizar una finalización…</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/abogados-accidentes-trafico/"><span class="num">06</span><h3>Accidentes de Tráfico</h3><p>Gestión de indemnizaciones por accidentes de tráfico</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/abogados-extranjeria/"><span class="num">07</span><h3>Extranjería y Nacionalidad</h3><p>Ayuda para obtener el permiso de residencia, reagrupación familiar...</p><span class="go">→</span></a>
+        <a class="card" href="https://www.mdrabogados.es/peritos-judiciales/"><span class="num">08</span><h3>Peritaciones Judiciales</h3><p>Desde la liquidación del régimen económico matrimonial hasta la valoración de bienes y la división equitativa de la herencia</p><span class="go">→</span></a>
+      </div>
+      <div class="callout">
+        <p>¿Necesitas asesoramiento personalizado?</p>
+        <a href="tel:+34912916798" class="btn">LLÁMANOS</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint" id="nosotros">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:0">
+        
+        <h2>La filosofía de MDR Abogados</h2>
+        <p style="margin-top:16px">Nuestra filosofía se fundamenta en la búsqueda incansable de <strong>justicia</strong>, a través de la precisión y la dedicación. Cada caso es tratado con un compromiso inquebrantable hacia la excelencia y la integridad, reflejando nuestra cita fundacional.</p>
+        <p>La confianza de nuestros clientes se basa en resultados y, por ello, trabajamos incansablemente para <strong>superar sus expectativas</strong>.</p>
+      </div>
+      <div class="lawyer">
+        <img src="https://www.mdrabogados.es/wp-content/uploads/2025/04/Maria_Angeles_Delfa_Ramos-586x1024.jpg" alt="María Ángeles Delfa Ramos" loading="lazy">
+        <div>
+          <h3>María Ángeles Delfa Ramos</h3>
+          <div class="role">ABOGADA Y PERITO JUDICIAL CONTADOR</div>
+          <p>Abogada del Ilustre Colegio de Abogados de Madrid. Licenciada por la Universidad de Salamanca. Perito judicial contador - partidor</p>
+          <p class="num-col">Nº Colegiado: 88502</p>
+          <div class="links">
+            <a class="btn btn-line btn-sm" href="https://www.abogacia.es/servicios-abogacia/censo-de-letrados/" target="_blank" rel="noopener">Censo de Letrados</a>
+            <a class="btn btn-line btn-sm" href="https://www.mdrabogados.es/wp-content/uploads/2026/02/Numero-de-Colegiado-88502.pdf" target="_blank" rel="noopener">Número de Colegiado 88502</a>
+            <a class="btn btn-line btn-sm" href="https://es.linkedin.com/in/maria-de-los-angeles-delfa-ramos-2b579b1a7" target="_blank" rel="noopener">Linkedin</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head" style="margin-bottom:0">
+        
+        <h2>Cómo trabajamos cada caso</h2>
+        <p style="margin-top:16px">Sabemos que cada caso es único y merece una <strong>estrategia personalizada</strong>. Nuestra metodología comienza con una comprensión profunda de las circunstancias y objetivos de nuestros clientes, lo que nos permite diseñar soluciones jurídicas específicas que responden eficazmente a sus necesidades.</p>
+        <p>Desde litigios complejos hasta asesoramiento preventivo, nuestro equipo está preparado para actuar con la agilidad y atención que su situación requiere.</p>
+      </div>
+      <div class="stats">
+        <div>Más de 15 años de experiencia</div>
+        <div>Abogados en Madrid Capital</div>
+        <div>Soluciones Legales Personalizadas</div>
+      </div>
+      <div class="two" style="margin-bottom:28px">
+        <p>Trabajamos <strong>diversas áreas del derecho</strong>, incluyendo derecho penal, derecho civil, derecho mercantil, derecho laboral y derecho de familia, entre otros.</p>
+        <p style="margin-top:0">Esta diversidad en nuestra práctica nos permite ser el despacho de abogados de elección para individuos, familias y empresas en Madrid que buscan orientación legal confiable y accesible en múltiples frentes.</p>
+      </div>
+      <div class="two">
+        <div class="box">
+          <h3>Compromiso con los resultados</h3>
+          <p>Nuestro compromiso va más allá de la simple prestación de servicios jurídicos. Perseguimos la excelencia a través de la integridad, la transparencia y un compromiso inquebrantable con los intereses de nuestros clientes.</p>
+          <p>La confianza es el pilar de la relación abogado-cliente, y nos esforzamos por construir y mantener esa confianza a través de cada acción que emprendemos.</p>
+        </div>
+        <div class="box">
+          <h3>Consulta jurídica</h3>
+          <p>Ofrecemos un servicio de consulta jurídica diseñado para brindar claridad, confianza y dirección desde el inicio de su jornada legal.</p>
+          <p>Situados en el corazón de Madrid, nuestro despacho se dedica a proporcionar asesoramiento legal excepcional, caracterizado por la experiencia, la dedicación y un profundo compromiso con los <strong>intereses de nuestros clientes</strong>.</p>
+          <p>Trabajamos de manera eficiente para brindar soluciones legales rápidas y efectivas ante cualquier problema legal.</p>
+          <p>Nuestros abogados son expertos en sus respectivas áreas del derecho, y siempre están actualizados con las últimas novedades y cambios en la ley. Además, nuestro despacho de abogados, también se especializa en <strong>servicios de mediación y negociación</strong>, ayudando a nuestros clientes a resolver disputas de manera amistosa y eficiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <blockquote>En MDR Abogados, cada caso es un nuevo reto y por eso recibe atención individualizada, convirtiendo desafíos legales en soluciones efectivas y satisfactorias para nuestros clientes.</blockquote>
+      <a href="tel:+34912916798" class="btn">CONSULTA SIN COMPROMISO</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><h2>Preguntas frecuentes</h2></div>
+      <div class="faq">
+        <details open><summary>¿Por qué elegir MDR Abogados en Madrid?</summary><p>En MDR Abogados, nos destacamos como un despacho de abogados en Madrid con más de una década de experiencia. Ofrecemos asesoramiento legal integral en una amplia gama de áreas, incluyendo derecho penal, derecho de familia, derecho laboral y más. Nuestro enfoque personalizado y nuestro compromiso con la excelencia nos convierten en la opción ideal para quienes buscan soluciones legales efectivas y confiables en Madrid.</p></details>
+        <details><summary>¿Qué servicios ofrece vuestro despacho de abogados en Madrid?</summary><p>Nuestro despacho de abogados en Madrid ofrece una amplia gama de servicios legales, incluyendo derecho penal, derecho civil, derecho mercantil, derecho de familia, derecho laboral, y más. Además, contamos con especialistas en áreas como accidentes de tráfico, extranjería y nacionalidad, y derecho concursal. Estamos comprometidos en brindar un asesoramiento legal de calidad, adaptado a las necesidades específicas de cada cliente.</p></details>
+        <details><summary>¿Cómo puedo solicitar una consulta gratuita en MDR Abogados?</summary><p>Solicitar una consulta gratuita en nuestro despacho de abogados en Madrid es muy sencillo. Puedes contactarnos a través de nuestra web o llamarnos directamente. Nuestro equipo de abogados está disponible para ofrecerte un primer asesoramiento sin costo, en el que analizaremos tu caso y te proporcionaremos una visión general de las opciones legales disponibles.</p></details>
+        <details><summary>¿Qué diferencia a MDR Abogados de otros despachos de abogados en Madrid?</summary><p>MDR Abogados se diferencia por su enfoque en la atención personalizada y su compromiso con la obtención de los mejores resultados para sus clientes. Contamos con un equipo de abogados altamente cualificado y especializado en diversas áreas del derecho. Además, nuestra trayectoria y reputación en Madrid nos avalan como uno de los despachos de abogados de referencia en la capital.</p></details>
+        <details><summary>¿Dónde se encuentra nuestro despacho de abogados en Madrid?</summary><p>Nuestro despacho de abogados está convenientemente ubicado en Plaza Castilla, Madrid, lo que nos permite estar en el corazón de la capital y a disposición de nuestros clientes en cualquier momento. Ofrecemos un entorno accesible y profesional para atender todas tus necesidades legales con la máxima eficacia.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint" id="contacto">
+    <div class="wrap contact">
+      <div>
+        <div class="photo"><img src="https://www.mdrabogados.es/wp-content/uploads/2025/11/abogados-madrid-1024x682.jpg" alt="abogados madrid" loading="lazy"></div>
+        <h2 class="h2">¿Necesitas un abogado con experiencia en la Comunidad de Madrid?</h2>
+        <p style="margin-top:12px;font-size:1.05rem">Cuéntanos tu caso: la primera consulta es gratuita y sin compromiso.</p>
+        <div class="calls">
+          <a href="tel:+34910291154" class="btn btn-teal">LLÁMANOS</a>
+          <a href="tel:+34910291154" class="btn btn-line">o marca 910 29 11 54</a>
+        </div>
+      </div>
+      <form onsubmit="return demoSubmit(this)">
+        <h2>Contacta con nosotros</h2>
+        <div class="field"><input placeholder="Nombre completo" aria-label="Nombre completo" required autocomplete="name"></div>
+        <div class="field"><input type="tel" placeholder="Teléfono" aria-label="Teléfono" required autocomplete="tel"></div>
+        <div class="field"><input type="email" placeholder="Email" aria-label="Email" required autocomplete="email"></div>
+        <div class="field"><textarea rows="4" placeholder="Mensaje" aria-label="Mensaje"></textarea></div>
+        <p class="priv">Privacidad</p>
+        <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://www.mdrabogados.es/politica-privacidad/" target="_blank" rel="noopener">política de privacidad</a>.</span></label>
+        <button class="btn btn-teal" type="submit">ENVIAR</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Dónde estamos</span><h2>Horarios y sedes: Madrid Centro y Pozuelo de Alarcón</h2></div>
+      <div class="sedes">
+        <div class="sede">
+          <h3>Despacho de abogados en Madrid Centro</h3>
+          <dl>
+            <dt>Horario de apertura</dt>
+            <dd class="hours"><span>Lunes a viernes</span><span>9:00-20:00</span><span>Sábado</span><span>9:30–14:00</span><span>Domingo</span><span>Cerrado</span></dd>
+            <dt>Dónde estamos</dt>
+            <dd>C. del Poeta Joan Maragall, 51, Piso 3, Puerta 2, Tetuán, 28020 Madrid (Entrada sin barreras arquitectónicas por calle infanta Mercedes 94)<br><a class="u" href="https://www.google.com/maps/place/MDR+Abogados+Madrid/@40.463413,-3.6925549,645m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd42296d4f2c21d3:0x5aa1b7ad27aae445!8m2!3d40.463413!4d-3.6925549!16s%2Fg%2F11k6wk3nh4" target="_blank" rel="noopener">MDR Abogados Madrid</a></dd>
+            <dt>Contacto</dt>
+            <dd><span class="phones"><a href="tel:+34910291154">910 29 11 54</a><a href="tel:+34912916798">912 91 67 98</a><a href="tel:+34615397020">615 39 70 20</a></span><a class="u" href="mailto:consultas@mdrabogados.es">consultas@mdrabogados.es</a></dd>
+          </dl>
+        </div>
+        <div class="sede">
+          <h3>Despacho de abogados en Pozuelo de Alarcón</h3>
+          <dl>
+            <dt>Horario de apertura</dt>
+            <dd class="hours"><span>Lunes a viernes</span><span>9:00-20:00</span><span>Sábado</span><span>9:30–14:00</span><span>Domingo</span><span>Cerrado</span></dd>
+            <dt>Dónde estamos</dt>
+            <dd>Vía de las Dos Castillas, N 33, Atica 4,B-A, 28224 Pozuelo de Alarcón, Madrid<br><a class="u" href="https://www.mdrabogados.es/abogados-pozuelo-de-alarcon/">MDR Abogados Atica Pozuelo</a></dd>
+            <dt>Contacto</dt>
+            <dd><span class="phones"><a href="tel:+34912916798">912 91 67 98</a><a href="tel:+34615397020">615 39 70 20</a><a href="tel:+34910291154">910 29 11 54</a></span><a class="u" href="mailto:consultas@mdrabogados.es">consultas@mdrabogados.es</a></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-tint">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Ficha de Google</span><h2>Principales opiniones de nuestros clientes</h2></div>
+      <div class="reviews">
+        <div class="review"><p>Es mi abogada de confianza, me lleva todo el proceso de herencias y un penal. Y me lo ha ganado todo. Recomiendo 100%. Trabajadora, asesora y muy sincera.</p><p>Te dice todo lo que puede ganar de juicios y lo que no.</p><p>Recomendable</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Ruben Molina"><span>Ruben Molina <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Recomiendo este despacho 100%, en especial a Mari Ángeles. Mi caso no era nada sencillo, contábamos con muy poco tiempo, ya que los plazos se estaban consumiendo. María Ángeles, con su actitud resolutiva, enseguida vio cómo solucionarlo, y llevarlo a cabo. El resultado no ha podido ser más satisfactorio. Ha sido una suerte conocerla. Muchas gracias. Queda clarísimo que sois personas que aman la profesión que ejercen.</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Rocío Izquierdo"><span>Rocío Izquierdo <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Recomendable 100%! El trato y profesionalidad de Ángeles insuperable. Nos ha explicado todo de una forma muy cercana y ha sido muy honesta con nosotros. Mil gracias por hacer tan bien las cosas.</p><p>Queda clarísimo que sois personas que aman la profesión que ejercen.</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Laura Pérez"><span>Laura Pérez <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Es difícil poner en palabras la calidad profesional, la calidez humana, la atención para escucharte y la rapidez en resolverte y facilitarte los trámites que encontré en este grupo de abogadas.</p><p>Mil gracias por hacer tan bien las cosas.</p><p>Queda clarísimo que sois personas que aman la profesión que ejercen.</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Luis Alberto Simó"><span>Luis Alberto Simó <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Francamente puedo recomendar este gabinete de abogados al 10.000%, tuve un inconveniente en España y llamé a este gabinete de abogados y María Ángeles es una abogada genial, es impresionante su atención y sobre todo su reacción, no duden en llamarlos, no se van à decepcionar, son super eficientes.</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Cataleïa"><span>Cataleïa <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Muy buenos profesionales, siempre a tu disposición. Trato muy agradable y cercano con tarifas asequibles.</p><p>Abarcan casi todas las áreas de la jurisprudencia, así como otras labores de gestión (Registros y papeleo en general).</p><p>He quedado muy contenta.</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Concha Yunta"><span>Concha Yunta <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Recomiendo a la Abogada María de los Angeles, buena actitud, muy amable y sobre todo muy profesional, mi esposo y yo estamos realizando unos trámites con ella y estamos encantados. La recomiendo 100%.</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Litsy Fernandez"><span>Litsy Fernandez <small>Ficha de Google</small></span></div></div>
+        <div class="review"><p>Me atendieron fenomenal, el trato fue inmejorable. Mari Ángeles fue encantadora. Gracias por todo! Recomendable 100%</p><div class="who"><img src="https://www.mdrabogados.es/wp-content/uploads/2022/12/google.png" alt="Celia Ross"><span>Celia Ross <small>Ficha de Google</small></span></div></div>
+      </div>
+      <p style="margin-top:10px"><a class="btn btn-line" href="https://g.co/kgs/mTUwK5Z" target="_blank" rel="noopener">MDR Abogados Madrid</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="https://www.mdrabogados.es/" class="logo-f"><img src="https://www.mdrabogados.es/wp-content/uploads/2025/03/mdr-delfa.jpeg" alt="MDR Abogados" loading="lazy"></a>
+        <p>Despacho de abogados especializado en derecho sucesorio con más de 15 años de experiencia tramitando herencias en Madrid.</p>
+        <p><a href="https://www.mdrabogados.es/wp-content/uploads/2026/02/Numero-de-Colegiado-88502.pdf" target="_blank" rel="noopener">Número de Colegiado 88502</a></p>
+      </div>
+      <div>
+        <h4>Nuestras especialidades</h4>
+        <ul>
+          <li><a href="https://www.mdrabogados.es/abogados-herencias/">Herencias</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-familia/">Familia</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-laboral/">Laboral</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-concursal/">Concursal</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-extranjeria/">Extranjería</a></li>
+          <li><a href="https://www.mdrabogados.es/peritos-judiciales/">Peritaciones</a></li>
+          <li><a href="https://www.mdrabogados.es/abogados-derecho-penal/">Penal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34910291154">910 29 11 54</a></li>
+          <li><a href="mailto:consultas@mdrabogados.es">consultas@mdrabogados.es</a></li>
+          <li><a href="https://api.whatsapp.com/send?phone=34615397020" target="_blank" rel="noopener">Escríbenos al WhatsApp</a></li>
+          <li><a href="https://www.facebook.com/people/MdrAbogados/100054860615678/" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/mdr_abogados_" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.mdrabogados.es/blog/">Noticias Legales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <a href="https://www.mdrabogados.es/politica-cookies/">Política de cookies</a>
+      <a href="https://www.mdrabogados.es/aviso-legal/">Aviso legal</a>
+      <a href="https://www.mdrabogados.es/politica-privacidad/">Política de privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://api.whatsapp.com/send?phone=34615397020" target="_blank" rel="noopener">Escríbenos al WhatsApp</a>
+
+<div class="callbar">
+  <a href="tel:+34910291154" class="btn btn-teal">LLÁMANOS</a>
+  <a href="https://api.whatsapp.com/send?phone=34615397020" target="_blank" rel="noopener" class="btn wa-btn">WhatsApp</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

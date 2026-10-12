@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>English Plus · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2ea3f2; --sky:#45adde; --navy:#0a5090; --deep:#0b2f52; --ink:#16324a; --text:#44505c; --muted:#6b7884;
+    --line:#dceaf5; --tint:#f4f9fd; --white:#fff; --radius:16px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Quicksand,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+
+  .demo{background:var(--deep);color:#cfe6f7;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:18px}
+  .nav .logo img{height:54px;width:auto}
+  .menu{display:flex;align-items:center;gap:2px;list-style:none}
+  .menu>li{position:relative}
+  .menu>li>a{display:block;padding:10px 8px;font-size:.86rem;white-space:nowrap;font-weight:600;color:var(--ink);border-radius:8px}
+  .menu>li>a:hover,.menu>li>a.on{color:var(--blue)}
+  .menu .has>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 7px;opacity:.6}
+  .sub{position:absolute;top:100%;left:0;min-width:270px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;box-shadow:0 22px 40px -22px rgba(11,47,82,.35);list-style:none;display:none}
+  .menu>li:hover>.sub,.menu>li:focus-within>.sub{display:block}
+  .sub a{display:block;padding:7px 10px;font-size:.86rem;border-radius:8px;color:var(--text)}
+  .sub a:hover{background:var(--tint);color:var(--navy)}
+  .sub .grp{font-weight:700;color:var(--ink);margin-top:4px}
+  .sub .grp:first-child{margin-top:0}
+  .sub .in{padding-left:22px}
+  .mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.92rem;transition:.2s;border:2px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--navy);border-color:var(--navy)}
+  .btn-line{background:#fff;color:var(--navy)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.85rem}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:var(--deep)}
+  .hero-bg{position:absolute;inset:0;background:url(https://www.english-plus.es/wp-content/uploads/2025/04/academia-ingles-madrid.webp) center/cover}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,47,82,.92) 0%,rgba(10,80,144,.78) 48%,rgba(10,80,144,.25) 100%)}
+  .hero .wrap{position:relative;padding-top:96px;padding-bottom:110px}
+  .hero .brand{font-size:.85rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:#bfe3fb}
+  .hero .claim{font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.05;font-weight:700;margin:14px 0 18px;max-width:720px}
+  .hero h1{font-size:1.05rem;font-weight:600;color:#d9eefc;letter-spacing:.02em;display:flex;align-items:center;gap:12px}
+  .hero h1::before{content:"";width:36px;height:2px;background:var(--blue)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff}
+  .tel{font-variant-numeric:tabular-nums;opacity:.85;font-weight:600}
+
+  .slides{position:relative;margin-top:-56px;z-index:2}
+  .slides .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .slide{position:relative;border-radius:var(--radius);overflow:hidden;min-height:230px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;box-shadow:0 24px 44px -26px rgba(11,47,82,.6)}
+  .slide .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s}
+  .slide:hover .bg{transform:scale(1.05)}
+  .slide .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,47,82,.25) 0%,rgba(11,47,82,.92) 75%)}
+  .slide>*:not(.bg){position:relative}
+  .slide .k{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#bfe3fb}
+  .slide .t{font-size:1.25rem;font-weight:700;line-height:1.2;margin:6px 0 14px}
+  .slide .go{font-size:.86rem;font-weight:700;display:inline-flex;align-items:center;gap:8px}
+  .slide .go::after{content:"→"}
+
+  section{padding:96px 0}
+  .head{max-width:760px;margin-bottom:44px}
+  .head.c{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-weight:700;font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.15;color:var(--ink);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* intro */
+  .intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .intro .lead{font-size:1.18rem;color:var(--ink);font-weight:600;line-height:1.55}
+  .intro p+p{margin-top:16px}
+  .intro a.inl{color:var(--blue);font-weight:700;border-bottom:2px solid rgba(46,163,242,.3)}
+
+  /* courses */
+  .courses{background:var(--tint)}
+  .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .course{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:.25s}
+  .course:hover{border-color:var(--blue);box-shadow:0 22px 44px -28px rgba(11,47,82,.4);transform:translateY(-3px)}
+  .course img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:4px solid #e3f2fc}
+  .course h3{font-size:1.18rem;color:var(--ink);margin:18px 0 10px;font-weight:700;line-height:1.3}
+  .course p{font-size:.95rem;flex:1}
+  .course p b{color:var(--ink)}
+  .course .btn{margin-top:20px;align-self:flex-start}
+
+  /* why */
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .w{border-top:3px solid var(--blue);padding-top:22px}
+  .w .n{width:42px;height:42px;border-radius:50%;background:#e3f2fc;color:var(--blue);display:grid;place-items:center}
+  .w .k{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-top:18px}
+  .w h3{font-size:1.12rem;color:var(--ink);margin:6px 0 10px;line-height:1.3}
+  .w p{font-size:.93rem}
+
+  /* faq */
+  .faq{background:var(--deep);color:#d6e6f3}
+  .faq .head h2{color:#fff}
+  .faq .eyebrow{color:#7cc8f7}
+  .qs{display:grid;gap:12px;max-width:900px}
+  details.q{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:0 24px}
+  details.q[open]{background:rgba(255,255,255,.08)}
+  details.q summary{cursor:pointer;list-style:none;padding:20px 0;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  details.q summary::-webkit-details-marker{display:none}
+  details.q summary h3{font-size:1.04rem;color:#fff;font-weight:600}
+  details.q summary::after{content:"+";font-size:1.5rem;color:#7cc8f7;line-height:1;flex:none}
+  details.q[open] summary::after{content:"–"}
+  details.q p{padding-bottom:22px;font-size:.96rem}
+
+  /* reviews */
+  .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .rev{border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;background:#fff}
+  .rev .stars{color:#f5b301;letter-spacing:3px;font-size:1.05rem}
+  .rev p{margin:14px 0 20px;flex:1;color:var(--ink)}
+  .rev .who{font-weight:700;color:var(--navy)}
+
+  /* blog */
+  .blog{background:var(--tint)}
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .post{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:.25s}
+  .post:hover{box-shadow:0 22px 44px -28px rgba(11,47,82,.4)}
+  .post img{width:100%;aspect-ratio:8/5;object-fit:cover}
+  .post div{padding:22px}
+  .post h3{font-size:1.06rem;color:var(--ink);line-height:1.35;margin-bottom:8px}
+  .post p{font-size:.9rem;color:var(--muted)}
+  .center{text-align:center;margin-top:36px}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+  .cinfo{display:grid;gap:12px;margin-top:26px}
+  .ci{display:flex;gap:14px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;transition:.2s}
+  .ci:hover{border-color:var(--blue)}
+  .ci .ic{width:42px;height:42px;border-radius:50%;background:#e3f2fc;color:var(--blue);display:grid;place-items:center;flex:none}
+  .ci small{display:block;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+  .ci b{color:var(--ink);font-weight:700}
+  .card-form{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(11,47,82,.45);border-top:4px solid var(--blue)}
+  .field{margin-bottom:13px}
+  .field label{display:block;font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cfe0ee;border-radius:10px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(46,163,242,.3);border-color:var(--blue)}
+  .checks{margin:6px 0 18px;display:grid;gap:9px}
+  .check{display:flex;gap:10px;font-size:.84rem;color:var(--muted);align-items:flex-start}
+  .check input{margin-top:4px;accent-color:var(--blue);flex:none}
+  .check a{text-decoration:underline;color:var(--navy)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:10px;padding:12px;font-size:.86rem;margin-top:12px;color:var(--ink)}
+  details.legal{margin-top:18px;font-size:.78rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+  details.legal summary{cursor:pointer;font-weight:700;color:var(--ink)}
+  details.legal p{margin-top:8px}
+
+  footer{background:var(--sky);color:#fff;padding:56px 0 28px}
+  .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+  .foot img{height:52px;width:auto;margin-bottom:16px}
+  .foot h4{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+  .foot ul{list-style:none;display:grid;gap:7px;font-size:.93rem}
+  .foot a:hover{text-decoration:underline}
+  .soc{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+  .soc a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+  .soc a:hover{background:rgba(255,255,255,.3);text-decoration:none}
+  .soc img{height:18px;width:auto;margin:0;filter:brightness(0) invert(1)}
+  .canal{display:inline-block;margin-top:20px;background:#fff;color:var(--sky);font-weight:700;font-size:.8rem;padding:9px 16px;border-radius:999px;letter-spacing:.06em}
+  .canal:hover{text-decoration:none!important;background:var(--tint)}
+  .bottom{border-top:1px solid rgba(255,255,255,.3);margin-top:36px;padding-top:20px;font-size:.84rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  .callbar{display:none}
+
+  @media (max-width:1240px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;padding:10px 16px;border:2px solid var(--line);border-radius:999px;font-weight:700;color:var(--ink);font-size:.9rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(330px,calc(100vw - 32px));max-height:70vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:0 22px 40px -20px rgba(11,47,82,.4)}
+    .mnav .panel a{display:block;padding:7px 10px;font-size:.9rem;border-radius:8px}
+    .mnav .panel a.top{font-weight:700;color:var(--ink)}
+    .mnav .panel a.l2{padding-left:22px;color:var(--text)}
+    .mnav .panel a.l3{padding-left:36px;color:var(--muted);font-size:.86rem}
+    .cgrid,.posts,.revs{grid-template-columns:1fr 1fr}
+    .why{grid-template-columns:1fr 1fr}
+    .intro,.contact-grid{grid-template-columns:1fr;gap:32px}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav .logo img{height:44px}
+    .hero .wrap{padding-top:60px;padding-bottom:96px}
+    .hero .row .btn{width:100%}
+    .slides .grid,.cgrid,.posts,.revs,.why{grid-template-columns:1fr}
+    .slide{min-height:190px}
+    section{padding:64px 0}
+    .card-form{padding:24px 18px}
+    .foot{grid-template-columns:1fr;gap:28px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para English Plus · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.english-plus.es/" aria-label="English Plus"><img src="https://www.english-plus.es/wp-content/uploads/2023/07/logo-academia-ingles.png" alt="English Plus"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.english-plus.es/">Inicio</a></li>
+      <li class="has"><a href="https://www.english-plus.es/clases-con-profesor-particular-ingles-a-domicilio-madrid/">Nuestros servicios</a>
+        <ul class="sub">
+          <li><a class="grp" href="https://www.english-plus.es/clases-con-profesor-particular-ingles-a-domicilio-madrid/">Clases particulares</a></li>
+          <li><a class="in" href="https://www.english-plus.es/clases-de-ingles-domicilio-para-adulto/">Clases de inglés a domicilio para adultos</a></li>
+          <li><a class="in" href="https://www.english-plus.es/clases-ingles-particulares-para-ninos/">Clases de inglés a domicilio para niños</a></li>
+          <li><a class="in" href="https://www.english-plus.es/clases-ingles-online/">Clases Online</a></li>
+          <li><a class="grp" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/">Cursos de Grupo</a></li>
+          <li><a class="in" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/clases-conversacion-ingles/">Clases de conversación</a></li>
+          <li><a class="in" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/ingles-general/">Cursos de inglés general</a></li>
+          <li><a class="grp" href="https://www.english-plus.es/preparacion-examenes-oficiales-cambridge/">Preparación exámenes oficiales</a></li>
+          <li><a class="grp" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/">Spanish Classes</a></li>
+          <li><a class="in" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/intensive-courses-cursos-intensivos-espanol/">Intensive Courses</a></li>
+          <li><a class="in" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/general-spanishdele-preparation-courses-cursos-de-preparacion-de-examenes-oficiales/">General Spanish/Dele Preparation Courses</a></li>
+          <li><a class="in" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/conversation-classes-clases-de-conversacion-espanol/">Conversation Classes</a></li>
+          <li><a class="in" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/one-one-classes-spanish-classes-in-madrid/">One to one classes</a></li>
+          <li><a class="grp" href="https://www.english-plus.es/otros-idiomas-y-traducciones/">Otros idiomas y Traducciones</a></li>
+          <li><a class="in" href="https://www.english-plus.es/servicio-traduccion-en-madrid/">Servicios de traducción</a></li>
+          <li><a class="in" href="https://www.english-plus.es/clases-frances-portuges-chino/">Otros idiomas</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.english-plus.es/clases-de-ingles-para-empresas-en-madrid/">Inglés para empresas</a></li>
+      <li class="has"><a href="https://www.english-plus.es/empresa-actividades-extraescolares-madrid/">Extraescolares en colegios</a>
+        <ul class="sub">
+          <li><a href="https://www.english-plus.es/ingles-empresa-de-actividades-extraescolares-de-ingles-en-madrid/">Inglés</a></li>
+          <li><a href="https://www.english-plus.es/actividades-deportivas-extraescolares/">Deportivas</a></li>
+          <li><a href="https://www.english-plus.es/artisticas/">Artísticas</a></li>
+          <li><a href="https://www.english-plus.es/creativas-empresas-de-actividades-extraescolares-en-madrid/">Creativas</a></li>
+          <li><a href="https://www.english-plus.es/otros-idiomas-academia-de-idiomas-en-madrid-empresas-de-actividades-extraescolares-en-madrid/">Otros idiomas</a></li>
+          <li><a href="https://www.english-plus.es/study-clubs-empresa-de-campamentos-en-colegios/">Study Clubs</a></li>
+          <li><a href="https://www.english-plus.es/campamentos-empresa-de-campamentos-en-colegios/dias-sueltos/">Días no lectivos</a></li>
+        </ul>
+      </li>
+      <li class="has"><a href="https://www.english-plus.es/campamentos-empresa-de-campamentos-en-colegios/">Campamentos</a>
+        <ul class="sub">
+          <li><a href="https://www.english-plus.es/campamentos-en-urbanizaciones/">Campamentos en urbanizaciones</a></li>
+          <li><a href="https://www.english-plus.es/campamentos-en-colegios/">Campamentos en colegios</a></li>
+        </ul>
+      </li>
+      <li><a href="https://www.english-plus.es/quienes-somos/">Quiénes Somos</a></li>
+      <li><a href="https://www.english-plus.es/blog/">Blog</a></li>
+      <li><a href="https://www.english-plus.es/contacto/">Contacto</a></li>
+    </ul>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a class="top" href="https://www.english-plus.es/">Inicio</a>
+        <a class="top" href="https://www.english-plus.es/clases-con-profesor-particular-ingles-a-domicilio-madrid/">Nuestros servicios</a>
+        <a class="l2" href="https://www.english-plus.es/clases-con-profesor-particular-ingles-a-domicilio-madrid/">Clases particulares</a>
+        <a class="l3" href="https://www.english-plus.es/clases-de-ingles-domicilio-para-adulto/">Clases de inglés a domicilio para adultos</a>
+        <a class="l3" href="https://www.english-plus.es/clases-ingles-particulares-para-ninos/">Clases de inglés a domicilio para niños</a>
+        <a class="l3" href="https://www.english-plus.es/clases-ingles-online/">Clases Online</a>
+        <a class="l2" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/">Cursos de Grupo</a>
+        <a class="l3" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/clases-conversacion-ingles/">Clases de conversación</a>
+        <a class="l3" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/ingles-general/">Cursos de inglés general</a>
+        <a class="l2" href="https://www.english-plus.es/preparacion-examenes-oficiales-cambridge/">Preparación exámenes oficiales</a>
+        <a class="l2" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/">Spanish Classes</a>
+        <a class="l3" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/intensive-courses-cursos-intensivos-espanol/">Intensive Courses</a>
+        <a class="l3" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/general-spanishdele-preparation-courses-cursos-de-preparacion-de-examenes-oficiales/">General Spanish/Dele Preparation Courses</a>
+        <a class="l3" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/conversation-classes-clases-de-conversacion-espanol/">Conversation Classes</a>
+        <a class="l3" href="https://www.english-plus.es/spanish-classes-cursos-de-espanol-en-madrid/one-one-classes-spanish-classes-in-madrid/">One to one classes</a>
+        <a class="l2" href="https://www.english-plus.es/otros-idiomas-y-traducciones/">Otros idiomas y Traducciones</a>
+        <a class="l3" href="https://www.english-plus.es/servicio-traduccion-en-madrid/">Servicios de traducción</a>
+        <a class="l3" href="https://www.english-plus.es/clases-frances-portuges-chino/">Otros idiomas</a>
+        <a class="top" href="https://www.english-plus.es/clases-de-ingles-para-empresas-en-madrid/">Inglés para empresas</a>
+        <a class="top" href="https://www.english-plus.es/empresa-actividades-extraescolares-madrid/">Extraescolares en colegios</a>
+        <a class="l2" href="https://www.english-plus.es/ingles-empresa-de-actividades-extraescolares-de-ingles-en-madrid/">Inglés</a>
+        <a class="l2" href="https://www.english-plus.es/actividades-deportivas-extraescolares/">Deportivas</a>
+        <a class="l2" href="https://www.english-plus.es/artisticas/">Artísticas</a>
+        <a class="l2" href="https://www.english-plus.es/creativas-empresas-de-actividades-extraescolares-en-madrid/">Creativas</a>
+        <a class="l2" href="https://www.english-plus.es/otros-idiomas-academia-de-idiomas-en-madrid-empresas-de-actividades-extraescolares-en-madrid/">Otros idiomas</a>
+        <a class="l2" href="https://www.english-plus.es/study-clubs-empresa-de-campamentos-en-colegios/">Study Clubs</a>
+        <a class="l2" href="https://www.english-plus.es/campamentos-empresa-de-campamentos-en-colegios/dias-sueltos/">Días no lectivos</a>
+        <a class="top" href="https://www.english-plus.es/campamentos-empresa-de-campamentos-en-colegios/">Campamentos</a>
+        <a class="l2" href="https://www.english-plus.es/campamentos-en-urbanizaciones/">Campamentos en urbanizaciones</a>
+        <a class="l2" href="https://www.english-plus.es/campamentos-en-colegios/">Campamentos en colegios</a>
+        <a class="top" href="https://www.english-plus.es/quienes-somos/">Quiénes Somos</a>
+        <a class="top" href="https://www.english-plus.es/blog/">Blog</a>
+        <a class="top" href="https://www.english-plus.es/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg" role="img" aria-label="Academia de inglés en Madrid"></div>
+    <div class="wrap">
+      <span class="brand">English Plus</span>
+      <p class="claim">¡Aprender inglés nunca fue tan fácil!</p>
+      <h1>Academia de inglés en Madrid</h1>
+      <div class="row">
+        <a href="https://www.english-plus.es/contacto/" class="btn btn-blue">Empezar ahora</a>
+        <a href="tel:+34911435715" class="btn btn-ghost">Fijo: <span class="tel">+34 911 435 715</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slides">
+    <div class="wrap grid">
+      <a class="slide" href="https://www.english-plus.es/campamentos-en-urbanizaciones/">
+        <span class="bg" style="background-image:url(https://www.english-plus.es/wp-content/uploads/2023/02/campamento-urbano-madrid.jpg)"></span>
+        <span class="k">Campamento urbano en Madrid</span>
+        <span class="t">¡Haz que tus hijos aprendan inglés mientras se divierten!</span>
+        <span class="go">Campamentos urbanos</span>
+      </a>
+      <a class="slide" href="https://www.english-plus.es/contacto/">
+        <span class="bg" style="background-image:url(https://www.english-plus.es/wp-content/uploads/2022/11/academia-de-ingles-en-madrid-imagen06.jpg)"></span>
+        <span class="k">Clases de inglés en grupos</span>
+        <span class="t">¿Necesitas una certificación oficial?</span>
+        <span class="go">Más información</span>
+      </a>
+      <a class="slide" href="https://www.english-plus.es/contacto/">
+        <span class="bg" style="background-image:url(https://www.english-plus.es/wp-content/uploads/2025/04/academia-de-ingles-en-madrid-imagen03.webp)"></span>
+        <span class="k">Clases extraescolares para niños</span>
+        <span class="t">¡Es el mejor momento para empezar!</span>
+        <span class="go">Más información</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section id="academia">
+    <div class="wrap intro">
+      <p class="lead">English Plus somos una academia de inglés con profesores cualificados y con experiencia para ayudar a nuestros estudiantes a sacar lo mejor de ellos a la hora de aprender idiomas.</p>
+      <div>
+        <p>Ofrecemos clases con horarios flexibles para poder adaptarnos a sus horarios, además de que pueden ser en grupo o particulares, siempre teniendo en cuenta los objetivos de nuestros alumnos.</p>
+        <p>¿Necesitas mejorar en conversación, preparación de exámenes, aprender inglés para empresas? Somos flexibles y adaptamos nuestra metodología a lo que quieras conseguir. Nuestro reto es ofrecer a nuestros alumnos una enseñanza personalizada, con planes de estudio adecuados para que cumplas con tus metas. Si estás buscando una opción completa para avanzar en el idioma, puedes explorar nuestro curso de <a class="inl" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/ingles-general/">inglés general en Madrid</a>, pensado para mejorar tus habilidades comunicativas en todos los niveles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses" id="cursos">
+    <div class="wrap">
+      <div class="head c">
+        <span class="eyebrow">Cursos</span>
+        <h2>Conoce nuestros cursos de inglés en Madrid</h2>
+      </div>
+      <div class="cgrid">
+        <article class="course">
+          <img src="https://www.english-plus.es/wp-content/uploads/2025/04/aprender-ingles-madrid.webp" alt="aprender-ingles-madrid" loading="lazy">
+          <h3>Clases extraescolares en inglés</h3>
+          <p>Tenemos una gran experiencia en programas formativos para colegios. <b>Saber inglés es como tener súper poderes</b> y por eso queremos ayudarte a conseguirlos.</p>
+          <a class="btn btn-line btn-sm" href="https://www.english-plus.es/empresa-actividades-extraescolares-madrid/">Más información</a>
+        </article>
+        <article class="course">
+          <img src="https://www.english-plus.es/wp-content/uploads/2025/04/clases-ingles-madrid.webp" alt="Clases de inglés en Madrid" loading="lazy">
+          <h3>Cursos de idiomas en grupos</h3>
+          <p>Sea cual sea tu nivel y objetivos en nuestra <b>escuela de inglés en Madrid</b> tenemos los cursos planificados en tiempo y contenidos para que puedas estudiar lo que necesites al ritmo que desees.</p>
+          <a class="btn btn-line btn-sm" href="https://www.english-plus.es/cursos-de-ingles-en-grupo/">Más información</a>
+        </article>
+        <article class="course">
+          <img src="https://www.english-plus.es/wp-content/uploads/2025/04/academia-de-ingles-madrid.webp" alt="Academia de inglés - Madrid" loading="lazy">
+          <h3>Campamento urbano en Madrid</h3>
+          <p>Descubre nuestros campamentos urbanos en Madrid durante el verano y el invierno, permitiéndoles aprender y comprender el idioma inglés mediante juegos, canciones, cuentos, pintura, música, baile, huerto, juegos al aire libre…</p>
+          <a class="btn btn-line btn-sm" href="https://www.english-plus.es/campamentos-empresa-de-campamentos-en-colegios/">Más información</a>
+        </article>
+        <article class="course">
+          <img src="https://www.english-plus.es/wp-content/uploads/2025/04/estudiar-ingles-madrid.webp" alt="Estudiar inglés en Madrid" loading="lazy">
+          <h3>Clases de idiomas particulares</h3>
+          <p>Cursos a tu medida con un plan de estudio ajustado a tus necesidades. Elige entre <b>clases de inglés a domicilio, Skype o telefónicas</b>.</p>
+          <a class="btn btn-line btn-sm" href="https://www.english-plus.es/clases-con-profesor-particular-ingles-a-domicilio-madrid/">Más información</a>
+        </article>
+        <article class="course">
+          <img src="https://www.english-plus.es/wp-content/uploads/2025/04/ingles-madrid.webp" alt="estudiar-ingles-madrid" loading="lazy">
+          <h3>Inglés para empresas</h3>
+          <p>Cubre tus necesidades, amplía tus posibilidades y haz crecer a tu empresa haciendo crecer a tus empleados con nuestras <b>clases de inglés</b>.</p>
+          <a class="btn btn-line btn-sm" href="https://www.english-plus.es/clases-de-ingles-para-empresas-en-madrid/">Más información</a>
+        </article>
+        <article class="course">
+          <img src="https://www.english-plus.es/wp-content/uploads/2025/04/academia-de-ingles-en-madrid.webp" alt="Academia de inglés en Madrid" loading="lazy">
+          <h3>Clases de inglés para niños</h3>
+          <p>¿Necesitas un profesor particular para tus hijos? Contamos con profesores de inglés nativos a domicilio, con amplia experiencia que ayudarán a tus hijos a mejorar su nivel de inglés.</p>
+          <a class="btn btn-line btn-sm" href="https://www.english-plus.es/clases-ingles-particulares-para-ninos/">Más información</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="por-que">
+    <div class="wrap">
+      <div class="head c">
+        <h2>¿Por qué elegir nuestra academia de inglés?</h2>
+      </div>
+      <div class="why">
+        <div class="w">
+          <span class="n"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="k">Clases Flexibles</div>
+          <h3>Aprender inglés con clases flexibles</h3>
+          <p>Tenemos un curso para todo, clases de inglés particulares, de grupo, preparación de exámenes, conversación, business y en los horarios que más te convengan.</p>
+        </div>
+        <div class="w">
+          <span class="n"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="k">Plan de estudio personalizado</div>
+          <h3>Plan personalizado para aprender inglés</h3>
+          <p>En nuestro centro de inglés en Madrid nos encargamos de realizar el plan de estudios que necesites en función a los objetivos que te plantees.</p>
+        </div>
+        <div class="w">
+          <span class="n"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="k">Somos expertos</div>
+          <h3>Para cada formación, un plan de estudios adecuado</h3>
+          <p>Somos expertos en la aplicación de planes de estudio para ayudarte a conseguir cualquier objetivo que tengas en el aprendizaje de los idiomas.</p>
+        </div>
+        <div class="w">
+          <span class="n"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="k">Trato personal</div>
+          <h3>Aprende inglés con profesionales</h3>
+          <p>Estamos pendientes de tus necesidades y cerca de ti para que puedas alcanzar tus objetivos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Preguntas frecuentes sobre nuestra academia de idiomas</h2>
+      </div>
+      <div class="qs">
+        <details class="q" open>
+          <summary><h3>¿Qué diferencia a nuestra academia de inglés en Madrid de otras opciones?</h3></summary>
+          <p>Nuestra academia se caracteriza por su enfoque personalizado, adaptado a las necesidades específicas de cada estudiante. Ofrecemos clases dinámicas con profesores nativos y altamente cualificados, lo que asegura una experiencia de aprendizaje efectiva y motivadora. Además, nuestras instalaciones modernas están diseñadas para crear un ambiente propicio para el aprendizaje.</p>
+        </details>
+        <details class="q">
+          <summary><h3>¿Qué niveles de inglés puedo estudiar en la academia?</h3></summary>
+          <p>En nuestra academia cubrimos todos los niveles de inglés, desde principiante (A1) hasta avanzado (C2). También ofrecemos cursos específicos para preparación de exámenes oficiales como Cambridge, TOEFL, IELTS y más. Nuestro equipo docente realiza una evaluación inicial para asignarte al grupo adecuado según tu nivel y objetivos.</p>
+        </details>
+        <details class="q">
+          <summary><h3>¿Se ofrecen clases de inglés para empresas?</h3></summary>
+          <p>Sí, contamos con programas especializados para empresas que buscan mejorar las habilidades lingüísticas de sus empleados. Estas clases pueden adaptarse a necesidades específicas, como inglés para reuniones, presentaciones, negociaciones o redacción de correos electrónicos. Además, ofrecemos la opción de impartir las clases en nuestras instalaciones o en la oficina del cliente.</p>
+        </details>
+        <details class="q">
+          <summary><h3>¿Puedo recibir clases de inglés online?</h3></summary>
+          <p>Sí, ofrecemos clases de inglés online que combinan flexibilidad y calidad. Nuestros cursos virtuales están diseñados para mantener la misma interacción y eficacia que las clases presenciales, con materiales digitales y el uso de plataformas interactivas que facilitan el aprendizaje desde cualquier lugar.</p>
+        </details>
+        <details class="q">
+          <summary><h3>¿Cómo me inscribo en un curso de inglés en Madrid?</h3></summary>
+          <p>Inscribirte en nuestra academia es sencillo. Solo necesitas contactarnos a través de nuestro formulario web, correo electrónico o teléfono. Nuestro equipo te proporcionará toda la información sobre horarios, precios y niveles, y te guiará en el proceso de inscripción para que puedas comenzar tus clases cuanto antes.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="head c">
+        <span class="eyebrow">Opiniones</span>
+        <h2>¿Qué opinan sobre nuestra academia de idiomas?</h2>
+      </div>
+      <div class="revs">
+        <figure class="rev">
+          <span class="stars" aria-label="5 estrellas">★★★★★</span>
+          <p>English Plus una academia seria. Con profesionales bien formados, buen planteamiento, métodos de aprendizaje muy eficaces y ganas de ayudar a mejorar el inglés a alumnos de todos los niveles.</p>
+          <span class="who">Carmen Toribio</span>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 estrellas">★★★★★</span>
+          <p>Mi hijo ha comenzado con clases de inglés a domicilio este mes de octubre y estamos encantados. Conocí la academia a través de Internet, no tenía ninguna referencia, pero ha sido todo un acierto. La profesora que le han asignado es extraordinaria, muy cercana y amable. Recomendable 100%</p>
+          <span class="who">María Dolores Barrajón</span>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 estrellas">★★★★★</span>
+          <p>Estoy consiguiendo con ellos, lo que llevaba 20 años intentando. Voy a sus clases motivado y con ganas de seguir aprendiendo. Las clases son súper entretenidas, se pasa el tiempo volando y además conoces gente interesante. Muy contento.</p>
+          <span class="who">José Luis Velasco</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog" id="blog">
+    <div class="wrap">
+      <div class="head c">
+        <span class="eyebrow">Blog</span>
+        <h2>Nuestras últimas entradas de blog para aprender inglés</h2>
+        <p>Visita nuestro blog y descubre información relevante sobre la lengua inglesa</p>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://www.english-plus.es/blog/clases-conversacion-ingles-profesores-nativos/">
+          <img src="https://www.english-plus.es/wp-content/uploads/2026/09/clases-conversacion-ingles-400x250.png" alt="Cómo ganar fluidez y confianza hablando inglés con profesores nativos" loading="lazy">
+          <div><h3>Cómo ganar fluidez y confianza hablando inglés con profesores nativos</h3>
+          <p>Aprender gramática y vocabulario es importante, pero llega un momento en el que hay que dar el siguiente paso: hablar inglés con confianza y naturalidad. Muchas...</p></div>
+        </a>
+        <a class="post" href="https://www.english-plus.es/blog/hablar-ingles-en-el-trabajo-speaking-profesional/">
+          <img src="https://www.english-plus.es/wp-content/uploads/2026/06/hablar-ingles-en-el-trabajo-400x250.webp" alt="Hablar inglés en el trabajo: la habilidad que realmente marca la diferencia" loading="lazy">
+          <div><h3>Hablar inglés en el trabajo: la habilidad que realmente marca la diferencia</h3>
+          <p>Durante años, el aprendizaje del inglés ha estado asociado a la gramática, los ejercicios escritos y la preparación de exámenes. Muchas personas han dedicado horas a...</p></div>
+        </a>
+        <a class="post" href="https://www.english-plus.es/blog/campamentos-en-urbanizaciones-tendencias-verano/">
+          <img src="https://www.english-plus.es/wp-content/uploads/2026/05/PORTADAS-BLOG-400x250.jpg" alt="Por qué los campamentos en urbanizaciones son tendencia este verano" loading="lazy">
+          <div><h3>Por qué los campamentos en urbanizaciones son tendencia este verano</h3>
+          <p>Con la llegada del verano, muchas familias empiezan a hacerse la misma pregunta: ¿cómo organizar las vacaciones de los niños mientras continúan las rutinas laborales?...</p></div>
+        </a>
+      </div>
+      <div class="center"><a class="btn btn-blue" href="https://www.english-plus.es/blog/">Ver más entradas</a></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">English Plus:</span>
+          <h2>Tu academia de inglés en Madrid para todos los niveles</h2>
+        </div>
+        <div class="cinfo">
+          <a class="ci" href="tel:+34911435715"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Fijo:</small><b>+34 911 435 715</b></span></a>
+          <a class="ci" href="tel:+34665185907"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span><span><small>Móvil:</small><b>+34 665 185 907</b></span></a>
+          <a class="ci" href="mailto:info@english-plus.es"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Email</small><b>info@english-plus.es</b></span></a>
+          <a class="ci" href="https://maps.app.goo.gl/j62kjaAnrMYndtK4A" target="_blank" rel="noopener"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small>Dirección</small><b>C/Núñez de Balboa, 30, Bajo A, 28001 (Madrid)</b></span></a>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="field"><label for="n">Nombre y Apellidos</label><input id="n" required autocomplete="name"></div>
+        <div class="field"><label for="e">E-mail</label><input id="e" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="t">Teléfono</label><input id="t" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="m">Mensaje</label><textarea id="m" rows="5"></textarea></div>
+        <div class="checks">
+          <label class="check"><input type="checkbox"><span>Acepto las condiciones de la <a href="https://www.english-plus.es/wp-content/uploads/2019/07/POLITICA_DE_PRIVACIDAD_PRIMERA_CAPA.pdf" target="_blank" rel="noopener">política de privacidad</a></span></label>
+          <label class="check"><input type="checkbox"><span><a href="https://www.english-plus.es/wp-content/uploads/2019/01/DOCUMENTO_DESISTIMIENTO.pdf" target="_blank" rel="noopener">No acepto las condiciones</a></span></label>
+        </div>
+        <button class="btn btn-blue" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        <details class="legal">
+          <summary>Reglamento General de Protección de Datos (UE) 2016/679</summary>
+          <p>En cumplimiento del Reglamento General de Protección de Datos (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 y la ley orgánica 3/2018 de 5 de diciembre de Protección de Datos Personales y de Garantía de los Derechos Digitales le informamos que los datos por Vd. proporcionados serán objeto de tratamiento por parte de ENGLISH PLUS con CIF B86351871, con domicilio en CALLE NÚÑEZ DE BALBOA, 30 con la finalidad de prestarle el servicio solicitado y/o contratado, realizar la facturación del mismo.</p>
+          <p>La base legal para el tratamiento de sus datos es la ejecución del servicio por usted contratado y/o solicitado. La oferta prospectiva de productos y servicios está basada en el consentimiento que se le solicita, sin que en ningún caso la retirada de este consentimiento condicione la ejecución del contrato.</p>
+          <p>Los datos proporcionados se conservarán mientras se mantenga la relación comercial o durante los años necesarios para cumplir con las obligaciones legales. Los datos no se cederán a terceros salvo en los casos en que exista una obligación legal.</p>
+          <p>Usted tiene derecho a obtener confirmación sobre si ENGLISH PLUS estamos tratando sus datos personales y por tanto tiene derecho a ejercer sus derechos de acceso, rectificación, limitación del tratamiento, portabilidad, oposición al tratamiento y supresión de sus datos así como el derecho a presentar una reclamación ante la Autoridad de Control mediante escrito dirigido a la dirección postal arriba mencionada o electrónica INFO@ENGLISH-PLUS.ES, adjuntando copia del DNI en ambos casos.</p>
+          <p>Asimismo le solicitamos su autorización para ofrecerle productos y servicios relacionados con los solicitados, prestados y/o comercializados por nuestra entidad y poder de esa forma fidelizarle como cliente.</p>
+        </details>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="https://www.english-plus.es/" aria-label="English Plus"><img src="https://www.english-plus.es/wp-content/uploads/2017/03/english-plus-log.png" alt="English Plus"></a>
+        <p>En English Plus estamos comprometidos en enriquecer tu vida a través del aprendizaje del inglés. Únete a nuestra familia y prepárate para un futuro lleno de posibilidades.</p>
+        <a class="canal" href="https://www.english-plus.es/canal-de-informante/">CANAL DE INFORMANTE</a>
+      </div>
+      <div>
+        <h4>Enlaces de interés</h4>
+        <ul>
+          <li><a href="https://www.english-plus.es/mejores-academias-de-ingles-en-espana/">Mejores academias de inglés en España</a></li>
+          <li><a href="https://www.english-plus.es/">Academia de inglés en Madrid</a></li>
+          <li><a href="https://www.english-plus.es/clases-con-profesor-particular-ingles-a-domicilio-madrid/">Profesor particular de inglés</a></li>
+          <li><a href="https://www.english-plus.es/clases-ingles-particulares-para-ninos/">Clases de inglés para niños</a></li>
+          <li><a href="https://www.english-plus.es/empresa-actividades-extraescolares-madrid/">Actividades extraescolares</a></li>
+          <li><a href="https://www.english-plus.es/campamentos-en-urbanizaciones/">Campamentos urbanos</a></li>
+          <li><a href="https://www.english-plus.es/blog/">El blog de English Plus</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34911435715">Fijo: +34 911 435 715</a></li>
+          <li><a href="tel:+34665185907">Móvil: +34 665 185 907</a></li>
+          <li><a href="mailto:info@english-plus.es">info@english-plus.es</a></li>
+          <li><a href="https://maps.app.goo.gl/j62kjaAnrMYndtK4A" target="_blank" rel="noopener">C/Núñez de Balboa, 30, Bajo A, 28001 (Madrid)</a></li>
+        </ul>
+        <h4 style="margin-top:22px">Follow us!</h4>
+        <div class="soc">
+          <a href="https://es.linkedin.com/company/english-plus" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="https://www.english-plus.es/wp-content/uploads/2023/03/linkedin-brands-1.png" alt=""></a>
+          <a href="https://www.facebook.com/englishplus.ls" target="_blank" rel="noopener" aria-label="Facebook"><img src="https://www.english-plus.es/wp-content/uploads/2023/03/facebook-brands.png" alt=""></a>
+          <a href="https://twitter.com/_EnglishPlus" target="_blank" rel="noopener" aria-label="Twitter"><img src="https://www.english-plus.es/wp-content/uploads/2023/03/twitter-brands.png" alt=""></a>
+          <a href="https://www.instagram.com/englishplus_/" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://www.english-plus.es/wp-content/uploads/2023/03/instagram-brands.png" alt=""></a>
+          <a href="https://www.pinterest.es/englishplus/" target="_blank" rel="noopener" aria-label="Pinterest"><img src="https://www.english-plus.es/wp-content/uploads/2023/03/pinterest-brands.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© English Plus</span>
+      <a href="https://wa.me/34665185907" target="_blank" rel="noopener">¿Necesitas ayuda? WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34911435715" class="btn btn-blue">Llamar</a>
+  <a href="https://wa.me/34665185907" class="btn btn-line" target="_blank" rel="noopener">¿Necesitas ayuda?</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

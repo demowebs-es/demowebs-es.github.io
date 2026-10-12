@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>My English Time · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2a0e72; --purple-dark:#1d0952; --red:#dc2b19; --grey:#838280; --ink:#1f1b2e; --text:#4a4759; --muted:#76738a;
+    --line:#e7e4ef; --tint:#f8f9fa; --lav:#f3f0fa; --white:#fff; --radius:18px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"PT Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;font-size:1.04rem}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .serif{font-family:"Playfair Display",Georgia,serif}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700}
+  .eyebrow::before{content:"";width:34px;height:3px;border-radius:2px;background:var(--red)}
+
+  .demo{background:var(--purple-dark);color:#d8cff3;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:18px}
+  .nav .logo img{height:58px;width:auto}
+  .menu{display:flex;gap:4px;list-style:none;align-items:center}
+  .menu a{display:block;padding:9px 11px;font-size:.92rem;font-weight:700;color:var(--ink);border-radius:8px}
+  .menu a:hover{color:var(--purple);background:var(--lav)}
+  .mnav{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;transition:.2s;border:2px solid var(--purple);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-p{background:var(--purple);color:#fff;box-shadow:0 12px 28px -10px rgba(42,14,114,.45)}
+  .btn-p:hover{background:var(--purple-dark);border-color:var(--purple-dark)}
+  .btn-line{background:#fff;color:var(--purple)}
+  .btn-line:hover{background:var(--lav)}
+  .btn-r{background:var(--red);border-color:var(--red);color:#fff}
+  .btn-g{background:var(--grey);border-color:var(--grey);color:#fff}
+  .btn-sm{padding:11px 20px;font-size:.76rem}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:70px 0 90px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:1.04;color:var(--ink);margin:18px 0 22px}
+  .hero h1 em{font-style:normal;color:var(--purple)}
+  .hero p{font-size:1.12rem;max-width:540px}
+  .hero p+p{margin-top:10px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero-img{position:relative}
+  .hero-img::before{content:"";position:absolute;inset:8% 4% 2% 10%;background:var(--purple);border-radius:58% 42% 50% 50%/48% 52% 48% 52%;opacity:.08}
+  .hero-img img{position:relative;width:100%;max-width:470px;margin:0 auto;border-radius:46% 54% 50% 50%/40% 44% 56% 60%;aspect-ratio:4/5;object-fit:cover}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .badges span{font-size:.82rem;font-weight:700;color:var(--purple);background:var(--lav);border-radius:999px;padding:7px 14px}
+
+  section{padding:96px 0}
+  .head{max-width:760px;margin-bottom:46px}
+  .head.c{margin-left:auto;margin-right:auto;text-align:center}
+  .head.c .eyebrow{justify-content:center}
+  .head h2{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.12;color:var(--ink);margin-top:12px}
+  .head p{color:var(--muted);margin-top:14px}
+
+  /* why */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .step:hover{box-shadow:0 26px 50px -30px rgba(42,14,114,.45);transform:translateY(-3px)}
+  .step .ph{position:relative}
+  .step .ph img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .step .num{position:absolute;left:22px;bottom:-22px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.1rem;border:4px solid #fff}
+  .step .bd{padding:36px 26px 26px;flex:1;display:flex;flex-direction:column}
+  .step h3{font-size:1.06rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+  .step p{margin:8px 0 22px;flex:1}
+  .step .btn{align-self:flex-start}
+
+  /* mission */
+  .mission{background:var(--purple);color:#e3dcf7}
+  .mgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+  .mgrid img{border-radius:50% 50% 50% 50%/46% 46% 54% 54%;aspect-ratio:1/1;object-fit:cover;width:100%;max-width:440px}
+  .mission .eyebrow{color:#ff8f82}
+  .mission .eyebrow::before{background:#ff8f82}
+  .mission h2{font-family:"Playfair Display",Georgia,serif;color:#fff;font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.12;margin:12px 0 18px}
+  .mission p{font-size:1.1rem}
+  .mission .btn{margin-top:28px;background:#fff;color:var(--purple);border-color:#fff}
+
+  /* courses */
+  .intro-c{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start;margin-bottom:46px}
+  .chips{display:grid;gap:10px}
+  .chip{display:flex;gap:12px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;font-weight:700;color:var(--ink)}
+  .chip i{width:34px;height:34px;border-radius:50%;background:var(--lav);color:var(--purple);display:grid;place-items:center;flex:none;font-style:normal}
+  .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .course{border-radius:var(--radius);overflow:hidden;background:var(--tint);display:flex;flex-direction:column}
+  .course img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .course div{padding:24px}
+  .course h3{font-family:"Playfair Display",Georgia,serif;font-size:1.35rem;color:var(--ink);line-height:1.2;margin-bottom:10px}
+  .course .tag{display:inline-block;margin-top:14px;font-weight:700;color:var(--red);font-size:.9rem}
+
+  /* certs */
+  .certs{background:var(--tint)}
+  .oxford{display:grid;grid-template-columns:minmax(0,1fr);gap:0;background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin-bottom:28px}
+  .oxford .ph{background-size:cover;background-position:center;min-height:320px}
+  .oxford .bd{padding:44px;max-width:900px}
+  .oxford h3,.cam h3.t{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.55rem,2.6vw,2rem);line-height:1.18;color:var(--ink);margin:12px 0 16px}
+  .oxford p+p{margin-top:12px}
+  .oxford b,.cam b{color:var(--purple)}
+  .oxford .btn,.cam .btn{margin-top:26px}
+  .cam{background:#fff;border-radius:var(--radius);border:1px solid var(--line);padding:44px}
+  .cam .top{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .exams{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
+  .ex{border-radius:14px;padding:20px 14px;text-align:center;background:var(--lav);border-top:4px solid var(--purple)}
+  .ex:nth-child(even){border-top-color:var(--red)}
+  .ex h4{font-family:"Playfair Display",Georgia,serif;font-size:1.12rem;color:var(--ink);line-height:1.2}
+  .ex span{display:block;margin-top:6px;font-weight:700;letter-spacing:.14em;color:var(--purple);font-size:.86rem}
+
+  /* cta */
+  .cta{text-align:center;padding:90px 0}
+  .cta h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2rem,3.6vw,2.8rem);color:var(--ink)}
+  .cta p{max-width:600px;margin:14px auto 0;font-size:1.1rem}
+  .cta .row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .tel{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+
+  footer{border-top:2px solid var(--purple);padding:54px 0 26px;background:#fff}
+  .foot{display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:34px;align-items:start}
+  .foot .logo img{height:96px;width:auto}
+  .foot h4{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+  .foot ul{list-style:none;display:grid;gap:8px}
+  .foot ul a{display:inline-block}
+  .foot ul a::first-letter{text-transform:uppercase}
+  .foot a:hover{color:var(--purple);text-decoration:underline}
+  .soc{display:flex;gap:10px;flex-wrap:wrap}
+  .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.88rem}
+  .soc a:hover{text-decoration:none;border-color:var(--purple)}
+  .kit{margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+  .kit img{width:100%;max-width:760px;margin:0 auto}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .mnav{display:block;position:relative}
+    .mnav summary{list-style:none;cursor:pointer;padding:10px 16px;border:2px solid var(--line);border-radius:999px;font-weight:700;color:var(--ink);font-size:.9rem}
+    .mnav summary::-webkit-details-marker{display:none}
+    .mnav .panel{position:absolute;right:0;top:calc(100% + 10px);width:min(320px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 22px 40px -20px rgba(42,14,114,.4)}
+    .mnav .panel a{display:block;padding:9px 12px;font-weight:700;color:var(--ink);border-radius:8px}
+    .hero-grid,.mgrid,.intro-c,.oxford,.cam .top{grid-template-columns:minmax(0,1fr)}
+    .hero-grid{gap:20px}
+    .steps,.cgrid{grid-template-columns:1fr 1fr}
+    .exams{grid-template-columns:repeat(3,1fr)}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:700px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .nav .logo img{height:48px}
+    .hero{padding:44px 0 60px}
+    .hero .row .btn{width:100%}
+    .hero-img img{max-width:320px}
+    section{padding:64px 0}
+    .steps,.cgrid{grid-template-columns:1fr}
+    .exams{grid-template-columns:1fr 1fr}
+    .oxford .bd,.cam{padding:28px 20px}
+    .oxford .ph{min-height:220px}
+    .oxford .btn,.cam .btn{white-space:normal;text-align:center}
+    .mgrid img{max-width:300px;margin:0 auto}
+    .cta .row .btn{width:100%}
+    .foot{grid-template-columns:1fr}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.78rem;letter-spacing:.08em}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para My English Time · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://myenglishtime.org/" aria-label="My English Time"><img src="https://myenglishtime.org/wp-content/uploads/2025/06/Logo_MET.svg" alt="My English Time"></a>
+    <ul class="menu">
+      <li><a href="https://myenglishtime.org/sobre-nosotros/">Nosotros</a></li>
+      <li><a href="https://myenglishtime.org/cursos-ingles-valladolid/">Cursos</a></li>
+      <li><a href="https://myenglishtime.org/oxford-test-english-valladolid/">Centro Preparador y Examinador Oxford</a></li>
+      <li><a href="https://myenglishtime.org/centro-preparador-cambridge-valladolid/">Centro Preparador Oficial de Cambridge</a></li>
+      <li><a href="https://myenglishtime.org/galeria/">Galería</a></li>
+      <li><a href="https://myenglishtime.org/contacto/">Contacto</a></li>
+    </ul>
+    <details class="mnav">
+      <summary>Menú</summary>
+      <div class="panel">
+        <a href="https://myenglishtime.org/sobre-nosotros/">Nosotros</a>
+        <a href="https://myenglishtime.org/cursos-ingles-valladolid/">Cursos</a>
+        <a href="https://myenglishtime.org/oxford-test-english-valladolid/">Centro Preparador y Examinador Oxford</a>
+        <a href="https://myenglishtime.org/centro-preparador-cambridge-valladolid/">Centro Preparador Oficial de Cambridge</a>
+        <a href="https://myenglishtime.org/galeria/">Galería</a>
+        <a href="https://myenglishtime.org/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Tutorías personalizadas</span>
+        <h1>Aprende inglés con confianza en <em>Valladolid</em></h1>
+        <p>Cursos para todas las edades, preparación de exámenes oficiales y experiencias en el extranjero.</p>
+        <p>Tu academia de inglés de confianza, con grupos reducidos y profesores cualificados.</p>
+        <div class="row">
+          <a href="https://myenglishtime.org/contacto/" class="btn btn-p">Infórmate ahora</a>
+          <a href="tel:+34600400444" class="btn btn-line">Tel.: <span class="tel">600 400 444</span></a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://myenglishtime.org/wp-content/uploads/2025/07/Nino-estudiante-con-gafas-con-carpetas-en-el-brazo-sobre-fondo-amarillo.webp" alt="Niño estudiante con gafas con carpetas en el brazo sobre fondo amarillo">
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section id="por-que">
+    <div class="wrap">
+      <div class="head c">
+        <h2>¿Por qué elegir My English Time?</h2>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="ph"><img src="https://myenglishtime.org/wp-content/uploads/2025/07/Primer-plano-de-libros-de-ingles-sobre-una-mesa-con-estudiantes-de-fondo.webp" alt="Primer plano de libros de inglés sobre una mesa con estudiantes de fondo" loading="lazy"><span class="num" style="background:var(--purple)">1</span></div>
+          <div class="bd">
+            <h3>Clases para todas las edades</h3>
+            <p>Desde infantil hasta adultos, con grupos adaptados por nivel y edad.</p>
+            <a class="btn btn-p btn-sm" href="https://myenglishtime.org/cursos-ingles-valladolid/">Nuestros cursos</a>
+          </div>
+        </article>
+        <article class="step">
+          <div class="ph"><img src="https://myenglishtime.org/wp-content/uploads/2025/07/Test-de-ingles-sobre-una-mesa-de-madera.webp" alt="Test de inglés sobre una mesa de madera" loading="lazy"><span class="num" style="background:var(--grey)">2</span></div>
+          <div class="bd">
+            <h3>Títulos oficiales</h3>
+            <p>Especialistas en Oxford, Cambridge, TOEFL, IELTS y más.</p>
+            <a class="btn btn-g btn-sm" href="https://myenglishtime.org/oxford-test-english-valladolid/">Certificaciones</a>
+          </div>
+        </article>
+        <article class="step">
+          <div class="ph"><img src="https://myenglishtime.org/wp-content/uploads/2025/07/Trafalgar-Square-en-Londres-Inglaterra.webp" alt="Trafalgar Square en Londres Inglaterra" loading="lazy"><span class="num" style="background:var(--red)">3</span></div>
+          <div class="bd">
+            <h3>Experiencias en el extranjero</h3>
+            <p>Cursos de verano y años escolares para una inmersión real en el idioma.</p>
+            <a class="btn btn-r btn-sm" href="https://myenglishtime.org/galeria/">Galería</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission" id="nosotros">
+    <div class="wrap mgrid">
+      <img src="https://myenglishtime.org/wp-content/uploads/2025/07/Profesora-joven-ensena-palabras-basicas-de-ingles.webp" alt="Profesora joven enseña palabras básicas de inglés" loading="lazy">
+      <div>
+        <span class="eyebrow">Nosotros</span>
+        <h2>Nuestra misión es que hables inglés con seguridad</h2>
+        <p>En My English Time llevamos seis años enseñando inglés en Valladolid con una metodología práctica, comunicativa y cercana. Nuestro equipo docente trabaja con pasión y compromiso para que cada alumno alcance sus objetivos, gane fluidez y pierda el miedo a hablar.</p>
+        <a class="btn" href="https://myenglishtime.org/sobre-nosotros/">Sobre nosotros</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="cursos">
+    <div class="wrap">
+      <div class="intro-c">
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">Profesionales especializados en cada materia</span>
+          <h2>Cursos para todos los niveles</h2>
+          <p>En My English Time ofrecemos cursos de inglés adaptados a todas las edades y niveles. Ya seas un niño que empieza, un adolescente que necesita refuerzo escolar o un adulto que quiere mejorar su inglés por motivos personales o profesionales, tenemos un grupo y una metodología pensados para ti.</p>
+        </div>
+        <div class="chips">
+          <div class="chip"><i>✓</i>Clases individuales</div>
+          <div class="chip"><i>✓</i>Preparación de exámenes oficiales</div>
+          <div class="chip"><i>✓</i>Clases de conversación</div>
+        </div>
+      </div>
+      <div class="cgrid">
+        <article class="course">
+          <img src="https://myenglishtime.org/wp-content/uploads/2025/07/Profesora-sentada-en-una-mesa-con-sus-alumnos-leyendo-un-cuento.webp" alt="Profesora sentada en una mesa con sus alumnos leyendo un cuento" loading="lazy">
+          <div><h3>Inglés para Infantil y Primaria</h3>
+          <p>En nuestra academia de inglés en Valladolid, los niños aprenden desde pequeños con clases dinámicas y divertidas. Juegos, canciones y actividades adaptadas para que desarrollen el idioma de forma natural y efectiva.</p></div>
+        </article>
+        <article class="course">
+          <img src="https://myenglishtime.org/wp-content/uploads/2025/07/Profesora-dando-clase-a-sus-alumnos.webp" alt="Profesora dando clase a sus alumnos" loading="lazy">
+          <div><h3>Clases de inglés para ESO y Bachillerato</h3>
+          <p>Ofrecemos clases de inglés en Valladolid para estudiantes de secundaria y bachillerato, con refuerzo escolar y preparación para exámenes oficiales. Mejora tus notas y tu fluidez con nuestro método práctico y comunicativo.</p></div>
+        </article>
+        <article class="course">
+          <img src="https://myenglishtime.org/wp-content/uploads/2025/07/Joven-estudiante-recibiendo-una-clase-junto-a-otros-estudiantes.webp" alt="Joven estudiante recibiendo una clase junto a otros estudiantes" loading="lazy">
+          <div><h3>Inglés para adultos y profesionales</h3>
+          <p>Cursos de inglés para adultos en Valladolid orientados a mejorar la comunicación real: en el trabajo, en viajes o para certificar tu nivel. Clases presenciales, grupos reducidos y enfoque 100 % práctico.</p>
+          <span class="tag">Clases presenciales y online</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section class="certs" id="examenes">
+    <div class="wrap">
+      <div class="oxford">
+        <div class="bd">
+          <span class="eyebrow">Oxford Approved Test Centre</span>
+          <h3>Centro Oficial Examinador de Oxford Test of English en Valladolid</h3>
+          <p>En My English Time somos un <b>Oxford Approved Test Centre</b>, lo que nos permite ofrecer a nuestros alumnos el prestigioso <b>Oxford Test of English</b> de forma oficial y directa desde nuestro centro en Valladolid.</p>
+          <p>Este examen, desarrollado por la Universidad de Oxford, es reconocido internacionalmente y está adaptado al <b>Marco Común Europeo de Referencia (A2, B1, B2 y C1)</b>. Es ideal para certificar tu nivel de forma rápida, flexible y 100 % online.</p>
+          <a class="btn btn-p btn-sm" href="https://myenglishtime.org/oxford-test-english-valladolid/">Más información sobre el Oxford Test</a>
+        </div>
+      </div>
+
+      <div class="cam">
+        <div class="top">
+          <div>
+            <span class="eyebrow">Centro Preparador Oficial de Cambridge</span>
+            <h3 class="t">Prepárate con un Centro Oficial Cambridge en Valladolid</h3>
+          </div>
+          <div>
+            <p>En My English Time somos <b>Centro Preparador Oficial de Cambridge</b>, lo que garantiza que seguimos los estándares de calidad y exigencia que exige la Universidad de Cambridge.</p>
+            <p style="margin-top:12px">Te ayudamos a conseguir tu certificado con clases enfocadas, materiales oficiales y profesores con experiencia en exámenes como:</p>
+          </div>
+        </div>
+        <div class="exams">
+          <div class="ex"><h4>A2 Key</h4><span>KET</span></div>
+          <div class="ex"><h4>B1 Preliminary</h4><span>PET</span></div>
+          <div class="ex"><h4>B2 First</h4><span>FCE</span></div>
+          <div class="ex"><h4>C1 Advanced</h4><span>CAE</span></div>
+          <div class="ex"><h4>C2 Proficiency</h4><span>CPE</span></div>
+        </div>
+        <a class="btn btn-r btn-sm" href="https://myenglishtime.org/centro-preparador-cambridge-valladolid/">Quiero más información</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="wrap">
+      <h2>¿Quieres más información?</h2>
+      <p>Escríbenos o llámanos. Te asesoramos sin compromiso y te ayudamos a encontrar tu curso ideal.</p>
+      <div class="row">
+        <a class="btn btn-p" href="https://myenglishtime.org/contacto/">Contacta ahora</a>
+        <a class="btn btn-line" href="tel:+34600400444">Tel.: <span class="tel">+34 600 400 444</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="logo" href="https://myenglishtime.org/" aria-label="My English Time"><img src="https://myenglishtime.org/wp-content/uploads/2025/06/Logo_MET.svg" alt="My English Time"></a>
+      <div>
+        <ul>
+          <li><a href="https://myenglishtime.org/contacto/">contacta con nosotros</a></li>
+          <li><a href="https://myenglishtime.org/aviso-legal/">aviso legal</a></li>
+          <li><a href="https://myenglishtime.org/politica-de-privacidad/">política de privacidad</a></li>
+          <li><a href="https://myenglishtime.org/mapa-del-sitio/">mapa del sitio</a></li>
+          <li><a href="https://myenglishtime.org/accesibilidad/">accesibilidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>My English Time</h4>
+        <p><a href="https://myenglishtime.org/contacto/">C/ Villafranca de Duero, 14<br>47008, Valladolid</a></p>
+        <p style="margin-top:8px"><a href="tel:+34600400444">Tel.: +34 600 400 444</a></p>
+        <p><a href="mailto:info@myenglishtime.org">info@myenglishtime.org</a></p>
+      </div>
+      <div>
+        <div class="soc">
+          <a href="https://www.facebook.com/myenglishtime.org/?locale=es_ES" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.5V11H7v4h3v9h4v-9h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg>Seguir</a>
+          <a href="https://www.instagram.com/myenglishtime_va/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Seguir</a>
+        </div>
+      </div>
+    </div>
+    <div class="kit"><img src="https://myenglishtime.org/wp-content/uploads/2025/06/logos-kit-digital-scaled.png" alt="" loading="lazy"></div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34600400444" class="btn btn-p">Llamar</a>
+  <a href="https://myenglishtime.org/contacto/" class="btn btn-line">Contacta ahora</a>
+</div>
+</body>
+</html>
