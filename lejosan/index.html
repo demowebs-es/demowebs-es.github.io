@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lejosan Asesoramiento Empresarial · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#003699; --blue-dark:#012C5F; --orange:#FF6400; --ink:#14213d; --text:#3f4652; --muted:#6b7280;
+    --line:#e3e8f2; --tint:#f3f6fc; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-weight:600}
+  h1,h2,h3{font-family:Archivo,Inter,sans-serif;color:var(--ink)}
+
+  .demo{background:var(--blue-dark);color:#c9d4ea;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:16px}
+  .brand img{height:52px;width:auto;display:block}
+  .nav-ctas{display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--blue)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-orange{background:var(--orange);border-color:var(--orange);color:#fff}
+  .btn-orange:hover{background:#e55a00;border-color:#e55a00}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums;opacity:.85;font-weight:500}
+
+  /* menu */
+  .menu{background:var(--blue);color:#fff}
+  .menu ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 4px;padding:8px 0}
+  .menu a{display:block;padding:7px 12px;border-radius:6px;font-size:.86rem;font-weight:500;color:#e6ecf8}
+  .menu a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .menu a.on{background:#fff;color:var(--blue);font-weight:600}
+  .menu details{display:none}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:76px 0 84px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero h1{font-weight:800;font-style:italic;font-size:clamp(2.3rem,4.8vw,3.7rem);line-height:1.04;letter-spacing:-.01em;margin:14px 0 26px;color:var(--blue)}
+  .hero p{font-size:1.05rem;max-width:600px;margin-bottom:14px}
+  .hero p strong{color:var(--ink)}
+  .years{display:inline-flex;align-items:center;gap:12px;margin-top:8px;padding:14px 20px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);font-weight:600;color:var(--ink)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .hero-img{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 24px 50px -30px rgba(1,44,95,.35)}
+  .hero-img img{display:block;width:100%;height:auto}
+
+  /* services */
+  section{padding:92px 0}
+  .head{max-width:700px;margin-bottom:40px}
+  .head h2{font-weight:800;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;margin-top:10px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .svc{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;background:#fff;transition:.25s;min-height:84px}
+  .svc:hover{border-color:var(--blue);box-shadow:0 18px 40px -26px rgba(1,44,95,.35);transform:translateY(-2px)}
+  .svc .ic{flex:none;width:44px;height:44px;border-radius:10px;background:var(--tint);display:grid;place-items:center;color:var(--blue)}
+  .svc .ic img{width:44px;height:33px;object-fit:contain}
+  .svc h3{font-size:1.02rem;font-weight:700;line-height:1.3}
+  .svc .arr{margin-left:auto;color:var(--orange);font-weight:700;flex:none}
+  .svc.feat .ic{background:#fff;border:1px solid var(--line);width:64px;height:52px}
+  .svc.feat .ic img{width:56px;height:42px}
+
+  /* access + contact band */
+  .band{background:var(--blue-dark);color:#fff;padding:80px 0}
+  .band-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:stretch}
+  .band-box{border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:32px;background:rgba(255,255,255,.04)}
+  .band h2{color:#fff;font-weight:800;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.1;margin:10px 0 22px}
+  .band .row{display:flex;flex-wrap:wrap;gap:10px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .band .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .band .eyebrow{color:#ffb27f}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;font-size:.84rem;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot img{height:34px;width:auto}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+  .foot nav a:hover{color:var(--blue);text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-img{max-width:520px}
+    .grid{grid-template-columns:1fr 1fr}
+    .band-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:70px}
+    .brand img{height:40px}
+    .nav-ctas{display:none}
+    .menu ul.full{display:none}
+    .menu details{display:block}
+    .menu summary{list-style:none;cursor:pointer;padding:12px 0;font-weight:600;font-size:.92rem;display:flex;justify-content:space-between;align-items:center}
+    .menu summary::-webkit-details-marker{display:none}
+    .menu summary::after{content:"+";font-size:1.3rem;line-height:1}
+    .menu details[open] summary::after{content:"–"}
+    .menu details ul{display:grid;grid-template-columns:1fr;justify-content:stretch;padding:0 0 12px}
+    .menu details a{padding:10px 8px;font-size:.92rem}
+    .hero{padding:44px 0 56px}
+    .grid{grid-template-columns:1fr}
+    .hero .row .btn,.band .row .btn{width:100%}
+    .years{display:flex}
+    section{padding:64px 0}
+    .band{padding:60px 0}
+    .band-box{padding:24px 20px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Lejosan Asesoramiento Empresarial · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="http://lejosan.com/" aria-label="Lejosan Asesoramiento Empresarial Especializado"><img src="logo.png" alt="Lejosan Asesoramiento Empresarial Especializado"></a>
+    <div class="nav-ctas">
+      <a href="tel:+34987425353" class="btn btn-blue btn-sm">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        Llamar <span class="tel">987 42 53 53</span></a>
+      <a href="http://lejosan.com/index.php?mid=niv12&amp;accion=2" class="btn btn-line btn-sm" rel="nofollow">Acceso de Usuarios</a>
+    </div>
+  </div>
+  <nav class="menu" aria-label="Menú principal">
+    <div class="wrap">
+      <ul class="full">
+        <li><a class="on" href="http://lejosan.com/asesoramiento-empresarial-especializado/gmx-niv12.htm">Lejosan</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-contable/gmx-niv13.htm">Asesoramiento contable</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-fiscal/gmx-niv14.htm">Asesoramiento fiscal</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-laboral/gmx-niv15.htm">Asesoramiento laboral</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-juridico/gmx-niv16.htm">Asesoramiento jurídico</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-financiero/gmx-niv17.htm">Asesoramiento financiero</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-mercantil/gmx-niv18.htm">Asesoramiento mercantil</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-a-sociedades/gmx-niv19.htm">Asesoría a Sociedades</a></li>
+        <li><a href="http://lejosan.com/asesoramiento-en-prevenciones/gmx-niv20.htm">Asesoría Prev Riesgos</a></li>
+        <li><a href="http://lejosan.com/proteccion-de-datos/gmx-niv27.htm">Protección de Datos</a></li>
+        <li><a href="http://lejosan.com/contacta/gmx-niv22.htm">Contacta</a></li>
+        <li><a href="http://lejosan.com/zona-usuarios/gmx-niv24.htm">Zona de Usuarios</a></li>
+      </ul>
+      <details>
+        <summary>Menú</summary>
+        <ul>
+          <li><a class="on" href="http://lejosan.com/asesoramiento-empresarial-especializado/gmx-niv12.htm">Lejosan</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-contable/gmx-niv13.htm">Asesoramiento contable</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-fiscal/gmx-niv14.htm">Asesoramiento fiscal</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-laboral/gmx-niv15.htm">Asesoramiento laboral</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-juridico/gmx-niv16.htm">Asesoramiento jurídico</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-financiero/gmx-niv17.htm">Asesoramiento financiero</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-mercantil/gmx-niv18.htm">Asesoramiento mercantil</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-a-sociedades/gmx-niv19.htm">Asesoría a Sociedades</a></li>
+          <li><a href="http://lejosan.com/asesoramiento-en-prevenciones/gmx-niv20.htm">Asesoría Prev Riesgos</a></li>
+          <li><a href="http://lejosan.com/proteccion-de-datos/gmx-niv27.htm">Protección de Datos</a></li>
+          <li><a href="http://lejosan.com/contacta/gmx-niv22.htm">Contacta</a></li>
+          <li><a href="http://lejosan.com/zona-usuarios/gmx-niv24.htm">Zona de Usuarios</a></li>
+        </ul>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Lejosan</span>
+        <h1>Asesoramiento empresarial especializado</h1>
+        <p>En el año 1988 nace <strong>LEJOSAN ASESORES</strong>, nuestras oficinas se situarían en un principio en la Calle Padre Santalla, 2 de Ponferrada. Trasladándose en el año 1.992, a las actuales en la Calle Camino de Santiago, 20-1º-D.</p>
+        <p>Donde un grupo de profesionales en diferentes áreas de los servicios a empresas realizan todas tareas capaces de satisfacer aquellas demandas de las compañías en toda su extensión.</p>
+        <div class="years">Contamos con casi 20 años de experiencia en el sector.</div>
+        <div class="row">
+          <a href="tel:+34987425353" class="btn btn-blue">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            Llamar <span class="tel">987 42 53 53</span></a>
+          <a href="http://lejosan.com/contacta/gmx-niv22.htm" class="btn btn-line">Contacta</a>
+        </div>
+      </div>
+      <div class="hero-img"><img src="libros.jpg" alt="" width="392" height="195"></div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <h2>Servicios</h2>
+      </div>
+      <div class="grid">
+        <a class="svc feat" href="http://lejosan.com/asesoramiento-laboral/gmx-niv15.htm"><span class="ic"><img src="asesoramiento_laboral.jpg" alt=""></span><h3>Asesoramiento laboral</h3><span class="arr">→</span></a>
+        <a class="svc feat" href="http://lejosan.com/asesoramiento-financiero/gmx-niv17.htm"><span class="ic"><img src="asesoramiento_financiero.jpg" alt=""></span><h3>Asesoramiento financiero</h3><span class="arr">→</span></a>
+        <a class="svc feat" href="http://lejosan.com/asesoramiento-juridico/gmx-niv16.htm"><span class="ic"><img src="asesoramiento_juridico.jpg" alt=""></span><h3>Asesoramiento jurídico</h3><span class="arr">→</span></a>
+        <a class="svc" href="http://lejosan.com/asesoramiento-contable/gmx-niv13.htm"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M14 11h2M8 15h2M14 15h2"/></svg></span><h3>Asesoramiento contable</h3><span class="arr">→</span></a>
+        <a class="svc" href="http://lejosan.com/asesoramiento-fiscal/gmx-niv14.htm"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15l6-6M9.5 10h.01M14.5 14h.01"/></svg></span><h3>Asesoramiento fiscal</h3><span class="arr">→</span></a>
+        <a class="svc" href="http://lejosan.com/asesoramiento-mercantil/gmx-niv18.htm"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><h3>Asesoramiento mercantil</h3><span class="arr">→</span></a>
+        <a class="svc" href="http://lejosan.com/asesoramiento-a-sociedades/gmx-niv19.htm"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c2.8 0 5 2.2 5 5"/></svg></span><h3>Asesoría a Sociedades</h3><span class="arr">→</span></a>
+        <a class="svc" href="http://lejosan.com/asesoramiento-en-prevenciones/gmx-niv20.htm"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Asesoría Prev Riesgos</h3><span class="arr">→</span></a>
+        <a class="svc" href="http://lejosan.com/proteccion-de-datos/gmx-niv27.htm"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h3>Protección de Datos</h3><span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTA + ZONA DE USUARIOS -->
+  <div class="band">
+    <div class="wrap band-grid">
+      <div class="band-box">
+        <span class="eyebrow">Contacta</span>
+        <h2>Calle Camino de Santiago, 20&#8209;1º&#8209;D · Ponferrada</h2>
+        <div class="row">
+          <a href="tel:+34987425353" class="btn btn-orange">Llamar <span class="tel">987 42 53 53</span></a>
+          <a href="tel:+34987425799" class="btn btn-line">Llamar <span class="tel">987 42 57 99</span></a>
+          <a href="http://lejosan.com/contacta/gmx-niv22.htm" class="btn btn-line">Contacta</a>
+        </div>
+      </div>
+      <div class="band-box">
+        <span class="eyebrow">Zona de Usuarios</span>
+        <h2>Acceso de Usuarios</h2>
+        <div class="row">
+          <a href="http://lejosan.com/index.php?mid=niv12&amp;accion=2" class="btn btn-line" rel="nofollow">entrar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="logo.png" alt="Lejosan Asesoramiento Empresarial Especializado">
+    <nav aria-label="Legal">
+      <a href="http://lejosan.com/gestionmax/politica-privacidad/gmx-niv6.htm">Política privacidad</a>
+      <a href="http://lejosan.com/gestionmax/aviso-legal/gmx-niv5.htm">Aviso legal</a>
+      <a href="http://lejosan.com/gestionmax/buscador/gmx-niv4.htm">Buscador</a>
+      <a href="http://lejosan.com/gestionmax/ayuda/gmx-niv3.htm">Política de cookies</a>
+      <a href="http://lejosan.com/gestionmax/mapa/gmx-niv1.htm">Mapa web</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34987425353" class="btn btn-blue">Llamar</a>
+  <a href="http://lejosan.com/contacta/gmx-niv22.htm" class="btn btn-line">Contacta</a>
+</div>
+
+</body>
+</html>

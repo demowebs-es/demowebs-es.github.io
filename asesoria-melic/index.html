@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Asesoría de Empresas A. Melic, S.L.P. · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#006CAD; --blue-dark:#00507f; --navy:#0b2a44; --red:#9B1B1B; --red-dark:#7a1212; --orange:#F39C12;
+    --ink:#14212e; --text:#3b4652; --muted:#6b7682; --line:#e3e8ee; --tint:#f2f6fa; --grey:#D7D6D6;
+    --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,h4{font-family:"Plus Jakarta Sans",Inter,sans-serif;color:var(--ink);line-height:1.15}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:600}
+
+  .demo{background:#000;color:#cfd8e2;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:linear-gradient(100deg,var(--navy) 0%,#0d3a60 60%,var(--blue-dark) 100%);box-shadow:0 8px 24px -16px rgba(0,0,0,.6)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:84px}
+  .bar .logo img{height:58px;width:auto}
+  .bar-ctas{display:flex;gap:10px;align-items:center}
+  nav.menu{border-top:1px solid rgba(255,255,255,.12)}
+  nav.menu ul{list-style:none;display:flex;flex-wrap:wrap;gap:2px 6px;padding:8px 0}
+  nav.menu a{display:block;color:#dbe9f5;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:999px;transition:.2s}
+  nav.menu a:hover{background:rgba(255,255,255,.1);color:#fff}
+  nav.menu a.on{background:#fff;color:var(--blue-dark)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--blue-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-red{background:var(--red);border-color:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:9px 16px;font-size:.85rem}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);padding:68px 0 76px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem);font-weight:800;margin:12px 0 18px;letter-spacing:-.02em}
+  .hero h1 span{color:var(--blue)}
+  .hero p.lead{font-size:1.06rem;max-width:580px}
+  .hero p.lead strong{color:var(--ink)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .tel{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500}
+  .photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -32px rgba(11,42,68,.55);position:relative}
+  .photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.045)}
+  .hero .photo{aspect-ratio:537/259}
+  .badge{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.95);border-radius:10px;padding:10px 14px;display:flex;gap:10px;align-items:center;font-size:.82rem;color:var(--ink);font-weight:600}
+  .badge i{width:9px;height:9px;border-radius:50%;background:var(--red);display:block}
+
+  /* presupuesto */
+  .quote{background:var(--navy);color:#fff;border-radius:var(--radius);padding:30px 34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-top:-38px;position:relative;z-index:2;box-shadow:0 24px 50px -30px rgba(11,42,68,.7)}
+  .quote h2{color:#fff;font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:800;letter-spacing:.01em}
+  .quote h2 em{font-style:normal;color:var(--orange)}
+  .quote p{color:#c9d7e4;margin-top:6px}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:38px}
+  .head h2{font-size:clamp(1.8rem,3.2vw,2.5rem);font-weight:800;margin-top:10px;letter-spacing:-.01em}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* bienvenida */
+  .welcome{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+  .letter{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;border-top:4px solid var(--blue)}
+  .letter p+p{margin-top:14px}
+  .letter .sign{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);font-size:.95rem;color:var(--muted)}
+  .letter .sign strong{display:block;color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;font-size:1.05rem;margin-top:4px}
+  .general{background:var(--tint);border-radius:var(--radius);padding:34px;display:flex;flex-direction:column}
+  .general h3{font-size:1.35rem;font-weight:800;margin-bottom:18px}
+  .general .photo{aspect-ratio:537/259;margin-bottom:22px;box-shadow:none}
+  .checks{list-style:none;display:grid;gap:11px}
+  .checks li{padding-left:30px;position:relative;font-size:.95rem}
+  .checks li::before{content:"";position:absolute;left:0;top:.2em;width:19px;height:19px;border-radius:50%;background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat}
+  .more{margin-top:auto;padding-top:22px;font-weight:600;color:var(--blue-dark);display:inline-flex;gap:8px;align-items:center}
+  .more:hover{color:var(--red)}
+
+  /* servicios */
+  .svc-bg{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .group{margin-top:44px}
+  .group:first-of-type{margin-top:0}
+  .group-title{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .group-title h3{font-size:1.05rem;font-weight:700;color:var(--blue-dark);white-space:nowrap}
+  .group-title::after{content:"";height:1px;background:#cfdae5;flex:1}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 20px;display:flex;flex-direction:column;transition:.25s}
+  .card:hover{border-color:var(--blue);box-shadow:0 18px 40px -26px rgba(0,108,173,.45);transform:translateY(-2px)}
+  .card .ic{width:42px;height:42px;border-radius:11px;background:rgba(0,108,173,.09);color:var(--blue);display:grid;place-items:center;margin-bottom:14px}
+  .card h4{font-size:1.04rem;font-weight:700;margin-bottom:8px}
+  .card p{font-size:.92rem;line-height:1.55}
+  .card .warn{color:var(--red);font-weight:600}
+  .card a.info{margin-top:auto;padding-top:16px;font-size:.84rem;font-weight:600;color:var(--blue);letter-spacing:.02em}
+  .card a.info:hover{color:var(--red)}
+
+  /* zona cliente */
+  .zone{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+  .links{display:grid;gap:12px}
+  .link{display:grid;grid-template-columns:48px 1fr auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;transition:.2s}
+  .link:hover{border-color:var(--blue);background:var(--tint)}
+  .link .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;color:#fff}
+  .link b{display:block;color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;font-size:1rem;overflow-wrap:anywhere}
+  .link small{color:var(--muted);font-size:.82rem}
+  .link .arr{color:var(--muted)}
+  .news{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .news-head{background:linear-gradient(100deg,var(--navy),var(--blue-dark));color:#fff;padding:22px 26px}
+  .news-head h3{color:#fff;font-size:1.3rem;font-weight:800}
+  .news-head h3 em{font-style:normal;color:#ff8a8a}
+  .news-head p{color:#c9d7e4;font-size:.86rem;margin-top:4px}
+  .news ol{list-style:none;counter-reset:n}
+  .news li{counter-increment:n;border-bottom:1px solid var(--line)}
+  .news li a{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:14px 26px;font-size:.94rem;color:var(--ink);font-weight:500;transition:.2s}
+  .news li a::before{content:counter(n,decimal-leading-zero);color:var(--red);font-weight:700;font-family:"Plus Jakarta Sans",sans-serif;font-size:.85rem;padding-top:2px}
+  .news li a:hover{background:var(--tint);color:var(--blue-dark)}
+  .news .all{display:block;padding:16px 26px;font-weight:600;font-size:.9rem;color:var(--ink)}
+  .news .all em{font-style:italic;color:var(--red)}
+  .news .all:hover{background:var(--tint)}
+
+  /* contacto */
+  .contact{background:var(--navy);color:#c9d7e4;padding:80px 0 60px}
+  .contact h2{color:#fff}
+  .cgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:34px}
+  .cgrid h3{color:#fff;font-size:1rem;font-weight:700;margin-bottom:14px;letter-spacing:.02em}
+  .cgrid ul{list-style:none;display:grid;gap:9px;font-size:.92rem}
+  .cgrid a:hover{color:#fff;text-decoration:underline}
+  .addr{font-size:.95rem;line-height:1.7}
+  .addr strong{color:#fff;font-weight:600}
+  .mapcard{display:block;border-radius:12px;border:1px solid rgba(255,255,255,.16);padding:18px;background:rgba(255,255,255,.04);transition:.2s}
+  .mapcard:hover{background:rgba(255,255,255,.09)}
+  .mapcard .pin{width:40px;height:40px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff;margin-bottom:12px}
+  .mapcard p{font-size:.9rem}
+  .mapcard span{display:inline-block;margin-top:10px;color:#fff;font-weight:600;font-size:.88rem}
+  .contact .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+
+  footer{background:#071c2e;color:#8fa3b6;font-size:.84rem;padding:22px 0}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 18px;align-items:center}
+  .foot a{text-decoration:underline}
+  .foot a:hover{color:#fff}
+
+  .form-ok{display:none}
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .hero-grid,.welcome,.zone{grid-template-columns:minmax(0,1fr)}
+    .cards{grid-template-columns:1fr 1fr}
+    .cgrid{grid-template-columns:1fr 1fr}
+    .bar-ctas .btn-line{display:none}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .btn{white-space:normal;text-align:center}
+    .bar{height:64px}
+    .bar .logo img{height:auto;width:min(300px,78vw)}
+    .bar-ctas{display:none}
+    nav.menu ul{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:6px 0}
+    nav.menu ul::-webkit-scrollbar{display:none}
+    nav.menu a{white-space:nowrap;font-size:.84rem;padding:6px 10px}
+    .hero{padding:40px 0 64px}
+    .hero .row .btn{width:100%}
+    .quote{grid-template-columns:1fr;padding:24px 20px}
+    .quote .btn{width:100%}
+    section{padding:60px 0}
+    .letter,.general{padding:24px 20px}
+    .cards{grid-template-columns:1fr}
+    .cgrid{grid-template-columns:1fr}
+    .news li a,.news .all,.news-head{padding-left:18px;padding-right:18px}
+    .link{grid-template-columns:44px 1fr;padding:12px 14px}
+    .link .ic{width:44px;height:44px}
+    .link .arr{display:none}
+    .contact .row .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Asesoría de Empresas A. Melic, S.L.P. · demo no oficial</div>
+
+<header>
+  <div class="wrap bar">
+    <a href="http://asesoriamelic.com/index.html" class="logo" aria-label="Asesoría de Empresas A. Melic, S.L.P."><img src="logo.png" alt="Asesoría de Empresas A. Melic, S.L.P." width="985" height="116"></a>
+    <div class="bar-ctas">
+      <a href="tel:+34976324415" class="btn btn-blue btn-sm">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        (976) 32 44 15</a>
+      <a href="mailto:contacto@asesoriamelic.com" class="btn btn-ghost btn-sm">contacto@asesoriamelic.com</a>
+    </div>
+  </div>
+  <nav class="menu">
+    <ul class="wrap">
+      <li><a href="http://asesoriamelic.com/index.html" class="on">Inicio</a></li>
+      <li><a href="http://asesoriamelic.com/quienes.html">Quiénes Somos</a></li>
+      <li><a href="http://asesoriamelic.com/servicios.html">Servicios</a></li>
+      <li><a href="http://asesoriamelic.com/cliente/index.html">Zona Cliente</a></li>
+      <li><a href="http://asesoriamelic.com/enlaces.html">Enlaces de Interés</a></li>
+      <li><a href="http://asesoriamelic.com/contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Zaragoza · Av. Francisca Millán Serrano nº 37</span>
+        <h1>Bienvenid@<span>:</span></h1>
+        <p class="lead">Le damos la bienvenida a la página web de ‘<strong>Asesoría de empresas A. Melic, S.L.P.</strong>’, empresa familiar dedicada al asesoramiento contable y fiscal de autónomos, PYME’s y grandes empresas. Nuestro objetivo radica en proporcionarle múltiples servicios relacionados con una planificación fiscal adecuada de acuerdo a sus metas e intereses.</p>
+        <div class="row">
+          <a href="tel:+34976324415" class="btn btn-blue">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            Teléfono: <span class="tel">(976) 32 44 15</span></a>
+          <a href="mailto:contacto@asesoriamelic.com" class="btn btn-line">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            contacto@asesoriamelic.com</a>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="foto-despacho.jpg" alt="Mesa de trabajo de la asesoría con códigos fiscales y formularios" width="537" height="259">
+        <div class="badge"><i></i>Asesoría de Empresas A. Melic, S.L.P.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESUPUESTO -->
+  <div class="wrap">
+    <a href="http://asesoriamelic.com/contacto.html" class="quote">
+      <div>
+        <h2>SOLICÍTENOS PRESUPUESTO <em>SIN COMPROMISO</em></h2>
+        <p>Le enviaremos inmediatamente un presupuesto ajustado a su perfil y circunstancias personales.</p>
+      </div>
+      <span class="btn btn-red">Contacto
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+
+  <!-- BIENVENIDA + SERVICIOS GENERALES -->
+  <section id="bienvenida">
+    <div class="wrap welcome">
+      <div class="letter">
+        <span class="eyebrow">Bienvenid@</span>
+        <div style="height:14px"></div>
+        <p>Puede consultar los servicios que prestamos pinchando en la casilla ‘<a href="http://asesoriamelic.com/servicios.html" style="color:var(--blue);font-weight:600">servicios</a>’, donde encontrará un listado pormenorizado de las tareas realizadas por la asesoría en su jornada habitual.</p>
+        <p>Por otra parte, si es Usted cliente registrado, podrá acceder a contenido restringido sobre materia tributaria muy beneficiosa para la toma de decisiones económico-financieras. Si no está registrado, puede hacerlo gratuitamente pulsando en el botón ‘registrar’ en ‘<a href="http://asesoriamelic.com/cliente/index.html" style="color:var(--blue);font-weight:600">Zona clientes</a>’.</p>
+        <p>En cualquier caso y con objeto de mejorar la calidad del servicio, quedamos a su disposición en la sección ‘<a href="http://asesoriamelic.com/contacto.html" style="color:var(--blue);font-weight:600">contacto</a>’ para cualquier duda que le pudiera surgir en el manejo de la web.</p>
+        <div class="sign">Atentamente, en representación de Asesoría de empresas A. Melic, S.L.P.,
+          <strong>Antonio Melic &amp; Álex Melic</strong></div>
+      </div>
+
+      <div class="general">
+        <div class="photo"><img src="foto-euros.jpg" alt="Monedas y billetes de euro" width="537" height="259" loading="lazy"></div>
+        <h3>Servicios Generales:</h3>
+        <ul class="checks">
+          <li>Asesoramiento general (resolución de consultas, aviso de novedades tributarias, etcétera).</li>
+          <li>Asesoramiento y confección de contabilidad.</li>
+          <li>Asesoramiento y tramitación de documentación en materia de Protección de datos.</li>
+          <li>Asesoramiento y tramitación de documentación en materia de Prevención de Blanqueo de Capitales.</li>
+          <li>Asesoramiento general en materia de preparación de juntas y actos mercantiles ordinarios.</li>
+        </ul>
+        <a href="http://asesoriamelic.com/servicios.html" class="more">+ Información sobre los servicios ofrecidos.
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="svc-bg">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Servicios</span>
+      </div>
+
+      <div class="group">
+        <div class="group-title"><h3>Contabilidad e impuestos</h3></div>
+        <div class="cards">
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
+            <h4>Le llevamos su contabilidad</h4>
+            <p><span class="warn">Evite sanciones.</span> Atendemos por usted sus obligaciones contables y tributarias. Consulte el calendario del contribuyente y los registros fiscales que le impone la legislación.</p>
+            <a href="http://asesoriamelic.com/atendemosobligaciones.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span>
+            <h4>Campaña I.R.P.F.</h4>
+            <p>(Disponible a partir del 1 de abril de 2014) Pincha para saber qué documentos necesitaremos para confeccionar tu declaración fiscal.</p>
+            <a href="http://asesoriamelic.com/irpf.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21h18M5 21V10M10 21V10M14 21V10M19 21V10M2 10l10-6 10 6z"/></svg></span>
+            <h4>Impuesto sobre Sociedades</h4>
+            <p>Guía de las cuestiones iniciales sobre el impuesto sobre sociedades.</p>
+            <a href="http://asesoriamelic.com/impuestosobresociedades.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+            <h4>Cuentas Anuales</h4>
+            <p>Balance, Cuenta de Pérdidas y Ganancias, Estado de Cambios en el Patrimonio Neto, Estado de Flujos de Efectivo y Memoria forman una unidad que se complementa mutuamente para reflejar la Imagen Fiel de la situación económica y financiera de una compañía.</p>
+            <a href="http://asesoriamelic.com/cuentasanuales_estadosfinancierosintermedios.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></span>
+            <h4>Inspecciones de Hacienda</h4>
+            <p>Defendemos sus derechos ante las dependencias de Gestión e Inspección de la Agencia Tributaria así como ante la Hacienda Autonómica y Local. Además elaboramos sus alegaciones, los recursos de reposición y las reclamaciones económico-administrativas que tengan lugar.</p>
+            <a href="http://asesoriamelic.com/representamos.html" class="info">+ INFO</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-title"><h3>Empresa y patrimonio</h3></div>
+        <div class="cards">
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+            <h4>Trámites de Constitución</h4>
+            <p>Le ayudamos a darse de alta como empresario individual o constituir una sociedad. Esquemas de trámites a realizar.</p>
+            <a href="http://asesoriamelic.com/altaempresario.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span>
+            <h4>Asesoría legal, técnica y laboral externalizada</h4>
+            <p>En Asesoría A. MELIC, S.L.P. externalizamos la prestación de servicios de asesoría legal y laboral para atender mejor sus necesidades.</p>
+            <a href="http://asesoriamelic.com/laboral.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></svg></span>
+            <h4>Gestión de Herencias</h4>
+            <p>Conozca los trámites a la hora de gestionar una herencia. A continuación encontrará un breve esquema de los pasos a seguir en su tramitación e información importante sobre la liquidación de impuestos.</p>
+            <a href="http://asesoriamelic.com/gestionamosherencias.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
+            <h4>Cree valor empresarial</h4>
+            <p>Análisis de estados Económico-Financieros de su compañía y elaboración de informes de la misma naturaleza.</p>
+            <a href="http://asesoriamelic.com/analisis_estados.html" class="info">+ INFO</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-title"><h3>Cumplimiento normativo</h3></div>
+        <div class="cards">
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 20c3-1 4-4 6-4s2 3 4 3 3-3 6-3M15 4l5 5-8 8H7v-5z"/></svg></span>
+            <h4>Firma electrónica y DEH</h4>
+            <p>Disponemos de un servicio de gestión de firmas digitales autorizado por la Administración Pública, a través de la entidad certificadora ANF.</p>
+            <a href="http://asesoriamelic.com/firmaelectronica.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+            <h4>Protección de Datos</h4>
+            <p><span class="warn">Evite sanciones</span> y cumpla todos los trámites relacionados con la Ley 15/1999, de 13 de diciembre, de Datos de Carácter Personal, y su Reglamento asociado.</p>
+            <a href="http://asesoriamelic.com/protecciondedatos.html" class="info">+ INFO</a>
+          </article>
+          <article class="card">
+            <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5M8.5 11h5"/></svg></span>
+            <h4>Prevención de blanqueo de capitales e infracciones monetarias</h4>
+            <p>Esta asesoría, con ánimo de facilitar el proceso burocrático de los sujetos obligados por la Ley 10/2010, puede ayudarle en sus tareas de prevención, identificación y evaluación del riesgo de sus clientes.</p>
+            <a href="http://asesoriamelic.com/prevencionblanqueo.html" class="info">+ INFO</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONA CLIENTE -->
+  <section id="novedades">
+    <div class="wrap zone">
+      <div class="links">
+        <a href="https://www.facebook.com/asesoriamelic" target="_blank" rel="noopener" class="link">
+          <span class="ic" style="background:#3b5998"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.2V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></span>
+          <span><b>Asesoría Melic</b><small>Pulsa para ir a su Facebook</small></span>
+          <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://twitter.com/intent/user?original_referer=http%3A%2F%2Fasesoriamelic.com%2Fcontacto.html&amp;profile_id=2193828578&amp;screen_name=asesoriamelic&amp;tw_p=embeddedtimeline&amp;tw_w=401021826349793282" target="_blank" rel="noopener" class="link">
+          <span class="ic" style="background:#1d9bf0"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 6c-.7.3-1.5.6-2.3.7.8-.5 1.5-1.3 1.8-2.2-.8.5-1.7.8-2.6 1A4.1 4.1 0 0 0 11.9 9 11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5 0 2 1.4 3.7 3.3 4.1-.6.2-1.2.2-1.9.1.5 1.6 2 2.8 3.8 2.9A8.3 8.3 0 0 1 2 18.4 11.7 11.7 0 0 0 8.3 20c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg></span>
+          <span><b>@asesoriamelic</b><small>Pulsa para ir a su Twitter</small></span>
+          <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+        <a href="http://asesoriamelic.com/favoritos.html" target="_blank" rel="noopener" class="link">
+          <span class="ic" style="background:var(--red)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg></span>
+          <span><b>Agregar a favoritos</b><small>Pulsa para agregar a favoritos</small></span>
+          <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+        <a href="http://asesoriamelic.com/noticiaseco.html" class="link">
+          <span class="ic" style="background:var(--orange)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span>
+          <span><b>Noticias de actualidad económica</b><small>europa press · Pulsa para ver las últimas noticias de economía</small></span>
+          <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+        <a href="mailto:contacto@asesoriamelic.com" class="link">
+          <span class="ic" style="background:var(--blue)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <span><b>contacto@asesoriamelic.com</b><small>Pulsa para mandar un e-mail</small></span>
+          <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="news">
+        <div class="news-head">
+          <h3>Novedades <em>Zona Cliente</em></h3>
+          <p>Se necesita ser cliente para obtener "nombre" y "clave" de usuario.</p>
+        </div>
+        <ol>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/006.html">Permuta inmobiliaria para obra futura. Resolución</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/007.html">Arrendamiento de vivienda a un hijo (IRPF)</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/008.html">Validez de la valoración administrativa en el ITP y AJD a efectos del IS</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/009.html">Escrituras públicas sometidas a condición a efectos del ITP y AJD</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/010.html">Devolución del impuesto ante la imposibilidad de entrega del inmueble vendido</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/011.html">Conservación de la documentación con trascendencia tributaria</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/012.html">Entregas intracomunitarias exentas del IVA</a></li>
+          <li><a href="http://asesoriamelic.com/cliente/abril2014/013.html">Declaración de bienes y derechos en el extranjero</a></li>
+        </ol>
+        <a href="http://asesoriamelic.com/cliente/index.html" target="_blank" rel="noopener" class="all">Ver todas las noticias de la <em>Zona Clientes</em> →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <div class="contact" id="contacto">
+    <div class="wrap">
+      <div class="cgrid">
+        <div>
+          <h3>Contacto</h3>
+          <p class="addr"><strong>Av. Francisca Millán Serrano<br>(Antigua Av. Radio Juventud)<br>nº 37 50012 Zaragoza</strong></p>
+          <p class="addr" style="margin-top:12px">Teléfono: <a href="tel:+34976324415">(976) 32 44 15</a><br>Fax: (976) 53 56 97<br><a href="mailto:contacto@asesoriamelic.com">contacto@asesoriamelic.com</a></p>
+          <div class="row">
+            <a href="tel:+34976324415" class="btn btn-blue btn-sm">Teléfono: (976) 32 44 15</a>
+          </div>
+        </div>
+        <div>
+          <h3>Google Maps</h3>
+          <a class="mapcard" href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=Calle+Francisca+Mill%C3%A1n,+Zaragoza,+Espa%C3%B1a&amp;aq=0&amp;oq=calle+fran&amp;sll=41.648791,-0.889581&amp;sspn=0.112109,0.154324&amp;ie=UTF8&amp;hq=&amp;hnear=Calle+Francisca+Mill%C3%A1n,+Zaragoza,+Espa%C3%B1a&amp;t=m&amp;ll=41.642003,-0.929718&amp;spn=0.011546,0.021286&amp;z=14&amp;iwloc=A" target="_blank" rel="noopener">
+            <span class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <p>Av. Francisca Millán Serrano nº 37 50012 Zaragoza</p>
+            <span>Ver mapa más grande →</span>
+          </a>
+        </div>
+        <div>
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="http://asesoriamelic.com/servicios.html">Asesoría Fiscal</a></li>
+            <li><a href="http://asesoriamelic.com/servicios.html">Asesoramiento y confección de contabilidad.</a></li>
+            <li><a href="http://asesoriamelic.com/servicios.html">Protección de datos</a></li>
+            <li><a href="http://asesoriamelic.com/servicios.html">Prevención de Blanqueo de Capitales</a></li>
+            <li><a href="http://asesoriamelic.com/servicios.html">Juntas y actos mercantiles ordinarios</a></li>
+            <li><a href="http://asesoriamelic.com/servicios.html">Firmas Digitales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Redes Sociales</h3>
+          <ul>
+            <li><a href="mailto:contacto@asesoriamelic.com">contacto@asesoriamelic.com</a></li>
+            <li><a href="https://www.facebook.com/asesoriamelic" target="_blank" rel="noopener">Asesoría Melic</a></li>
+            <li><a href="https://twitter.com/intent/user?original_referer=http%3A%2F%2Fasesoriamelic.com%2Fcontacto.html&amp;profile_id=2193828578&amp;screen_name=asesoriamelic&amp;tw_p=embeddedtimeline&amp;tw_w=401021826349793282" target="_blank" rel="noopener">@asesoriamelic</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Copyright 2013. Asesoría de Empresas A. Melic, S.L.P. · <a href="http://www.asesoriamelic.com/avisolegal.html">AVISO LEGAL</a></span>
+    <span>Webmaster: <a href="http://www.denismelic.com" target="_blank" rel="noopener">Denis Melic</a></span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34976324415" class="btn btn-blue">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    Llamar</a>
+  <a href="mailto:contacto@asesoriamelic.com" class="btn btn-line">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    E-mail</a>
+</div>
+
+</body>
+</html>

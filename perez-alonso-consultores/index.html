@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pérez Alonso Consultores · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#116BB2; --blue-dark:#0d5690; --navy:#2E3A59; --navy-deep:#232b45; --orange:#F77100;
+    --feather:#405090; --feather-2:#7080A0; --ink:#1f2740; --text:#3d4456; --muted:#6b7285;
+    --line:#e2e6ef; --tint:#f3f5fa; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:600}
+  h1,h2,h3{font-family:Manrope,Inter,sans-serif;color:var(--ink)}
+
+  .demo{background:var(--navy-deep);color:#c3cbe0;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:104px;gap:20px}
+  /* logo original, recortado por CSS para ocultar la franja inferior del fichero */
+  .logo{--s:86px;display:block;width:var(--s);height:var(--s);overflow:hidden;flex:none}
+  .logo img{display:block;width:calc(var(--s) * 1.3889);height:auto;max-width:none;margin-left:calc(var(--s) * -.1944);margin-top:calc(var(--s) * -.007)}
+  .menu{display:flex;gap:4px;list-style:none}
+  .menu a{display:block;padding:9px 14px;border-radius:8px;font-size:.84rem;font-weight:600;letter-spacing:.06em;color:var(--navy)}
+  .menu a:hover{color:var(--orange)}
+  .menu a.on{background:var(--tint);color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:.93rem;transition:.2s;border:1.5px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+  .btn-line{background:#fff;color:var(--blue)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums;opacity:.85;font-weight:500}
+  .mnav{display:none}
+
+  /* hero */
+  .hero{position:relative;background:linear-gradient(180deg,var(--tint),#fff);padding:76px 0 88px;border-bottom:1px solid var(--line);overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-60px;top:-40px;width:420px;height:392px;background:url(https://www.perezalonsoconsultores.com/images/marca.jpg) no-repeat center/contain;mix-blend-mode:multiply;opacity:.9;pointer-events:none}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .hero h1{font-weight:800;font-size:clamp(2.3rem,4.8vw,3.6rem);line-height:1.05;letter-spacing:-.02em;margin:14px 0 24px}
+  .hero h1 span{color:var(--blue)}
+  .hero p{font-size:1.06rem;max-width:600px}
+  .hero p strong{color:var(--ink)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .photos img{display:block;width:100%;height:100%;object-fit:cover;border-radius:14px;box-shadow:0 22px 44px -28px rgba(35,43,69,.45)}
+  .photos img{aspect-ratio:4/5}
+  .photos .ph{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/5;box-shadow:0 22px 44px -28px rgba(35,43,69,.45)}
+  .photos .ph img{position:absolute;left:0;bottom:0;height:135%;aspect-ratio:auto;border-radius:0;box-shadow:none;object-position:30% center}
+
+  /* nosotros */
+  section{padding:92px 0}
+  .about{max-width:860px}
+  .about-txt p{font-size:clamp(1.08rem,1.6vw,1.22rem);line-height:1.7;color:var(--ink);padding-left:22px;border-left:3px solid var(--blue)}
+
+  /* quote band */
+  .band{background:linear-gradient(135deg,var(--navy-deep),var(--navy) 55%,#1d578e);color:#fff;text-align:center;padding:88px 0}
+  .band blockquote{font-family:Manrope,Inter,sans-serif;font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.35;max-width:880px;margin:0 auto}
+  .band blockquote::before{content:"“";display:block;color:var(--orange);font-size:4.2rem;line-height:.6;margin-bottom:14px}
+
+  /* contacto */
+  .cta{display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:var(--radius);padding:38px 40px;background:#fff;box-shadow:0 24px 50px -34px rgba(35,43,69,.35)}
+  .cta p{font-size:1.1rem;color:var(--ink);font-weight:500}
+  .cta p a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  .cta p a:hover{color:var(--orange)}
+  .cta .row{display:grid;gap:10px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;font-size:.84rem;color:var(--muted);background:#fff}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot .logo{--s:52px}
+  .foot-l{display:flex;align-items:center;gap:14px}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 20px;font-weight:600;color:var(--navy)}
+  .foot nav a:hover{color:var(--orange)}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr}
+    .photos{max-width:560px}
+    .cta{grid-template-columns:1fr}
+    .cta .row{grid-template-columns:1fr 1fr}
+    .nav .btn{display:none}
+  }
+  @media (max-width:760px){
+    .menu{display:none}
+    .mnav{display:block;border-top:1px solid var(--line)}
+    .mnav ul{list-style:none;display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;padding:6px 0}
+    .mnav a{display:block;padding:8px 2px;font-size:.7rem;font-weight:600;letter-spacing:.04em;color:var(--navy);text-align:center}
+    .mnav a.on{color:var(--blue)}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:84px}
+    .nav .logo{--s:68px}
+    .hero{padding:44px 0 56px}
+    .hero::after{width:260px;height:243px;right:-90px;top:-30px;opacity:.7}
+    .hero .row .btn{width:100%}
+    section{padding:64px 0}
+    .band{padding:64px 0}
+    .cta{padding:26px 20px}
+    .cta .row{grid-template-columns:1fr}
+    .cta .row .btn{width:100%}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Pérez Alonso Consultores · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.perezalonsoconsultores.com/" aria-label="Pérez Alonso Consultores"><img src="https://www.perezalonsoconsultores.com/images/logo.jpg" alt="Pérez Alonso Consultores"></a>
+    <ul class="menu">
+      <li><a class="on" href="https://www.perezalonsoconsultores.com/index.html">NOSOTROS</a></li>
+      <li><a href="https://www.perezalonsoconsultores.com/servicios.htm">SERVICIOS</a></li>
+      <li><a href="https://www.perezalonsoconsultores.com/enlaces.htm">ENLACES DE INTERÉS</a></li>
+      <li><a href="https://www.perezalonsoconsultores.com/contacto.php">CONTACTO</a></li>
+    </ul>
+    <a href="tel:+34987405664" class="btn btn-blue btn-sm">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      Llamar <span class="tel">987 40 56 64</span></a>
+  </div>
+  <nav class="mnav" aria-label="Menú">
+    <div class="wrap">
+      <ul>
+        <li><a class="on" href="https://www.perezalonsoconsultores.com/index.html">NOSOTROS</a></li>
+        <li><a href="https://www.perezalonsoconsultores.com/servicios.htm">SERVICIOS</a></li>
+        <li><a href="https://www.perezalonsoconsultores.com/enlaces.htm">ENLACES DE INTERÉS</a></li>
+        <li><a href="https://www.perezalonsoconsultores.com/contacto.php">CONTACTO</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Nosotros</span>
+        <h1>Pérez Alonso <span>Consultores</span></h1>
+        <p><strong>Pérez Alonso Consultores</strong> es un despacho con más de diez años de experiencia en el ámbito de la gestión empresarial. Nuestros servicios se enfocan a proporcionar valor añadido a nuestros clientes a través de proyectos de mejora, mediante el uso de herramientas de gestión a la vanguardia del estado de la técnica.</p>
+        <div class="row">
+          <a href="tel:+34987405664" class="btn btn-blue">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            Llamar <span class="tel">987 40 56 64</span></a>
+          <a href="https://www.perezalonsoconsultores.com/contacto.php" class="btn btn-line">Contacto</a>
+        </div>
+      </div>
+      <div class="photos">
+        <img src="https://www.perezalonsoconsultores.com/images/main03.jpg" alt="" width="215" height="191">
+        <div class="ph"><img src="https://www.perezalonsoconsultores.com/images/main01.jpg" alt="" width="239" height="191"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="wrap about">
+      <div class="about-txt">
+        <p>Desde el primer momento hemos tenido como objetivo ofrecer a nuestros clientes un servicio de calidad que tratara de dar respuesta a todas las demandas relacionadas con los campos de actuación propios de la asesoría fiscal, laboral y mercantil y además un servicio jurídico general que venía siendo demandado, y que hasta ahora casi nadie podía ofertar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BAND -->
+  <div class="band">
+    <div class="wrap">
+      <blockquote>Mantenemos una línea de comunicación directa con el cliente, lo que le permite estar asesorado de forma personal, sin la burocracia de los grandes y con respuestas inmediatas y certeras a sus consultas.</blockquote>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="cta">
+        <p>No lo dude, si lo que desea es el mejor asesoramiento póngase en <a href="https://www.perezalonsoconsultores.com/contacto.php">contacto</a> con nosotros y descubrirá por qué cientos de profesionales y particulares confían en nuestros servicios.</p>
+        <div class="row">
+          <a href="tel:+34987405664" class="btn btn-blue">Llamar <span class="tel">987 40 56 64</span></a>
+          <a href="https://www.perezalonsoconsultores.com/contacto.php" class="btn btn-line">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-l">
+      <span class="logo"><img src="https://www.perezalonsoconsultores.com/images/logo.jpg" alt="Pérez Alonso Consultores"></span>
+      <span>Copyright © 2005 Pérez Alonso Consultores</span>
+    </div>
+    <nav aria-label="Pie">
+      <a href="https://www.perezalonsoconsultores.com/index.html">Nosotros</a>
+      <a href="https://www.perezalonsoconsultores.com/servicios.htm">Servicios</a>
+      <a href="https://www.perezalonsoconsultores.com/enlaces.htm">Enlaces</a>
+      <a href="https://www.perezalonsoconsultores.com/contacto.php">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34987405664" class="btn btn-blue">Llamar</a>
+  <a href="https://www.perezalonsoconsultores.com/contacto.php" class="btn btn-line">Contacto</a>
+</div>
+
+</body>
+</html>

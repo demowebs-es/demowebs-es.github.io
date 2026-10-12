@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Iñiguez Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#C7AD59; --gold-dark:#a08a3f; --ink:#191515; --ink-2:#3d3333; --text:#3a3535; --muted:#6e6762;
+    --line:#e8e1cf; --tint:#F3EFE4; --white:#fff; --radius:12px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Lato,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .serif{font-family:"Bodoni Moda",Georgia,serif}
+  .eyebrow{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dark);font-weight:700}
+
+  .demo{background:var(--ink);color:#d9cba0;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px}
+  .logo img{height:66px;width:auto;border-radius:4px}
+  .menu{display:flex;align-items:center;gap:4px;list-style:none}
+  .menu > li{position:relative}
+  .menu > li > a{display:flex;align-items:center;gap:6px;padding:10px 14px;font-size:.88rem;font-weight:700;color:var(--ink);letter-spacing:.02em;border-radius:8px;transition:.2s}
+  .menu > li > a:hover{color:var(--gold-dark);background:var(--tint)}
+  .menu .caret{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-3px);opacity:.6}
+  .sub{position:absolute;top:100%;left:0;min-width:270px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;box-shadow:0 20px 40px -24px rgba(25,21,21,.4);padding:8px;list-style:none;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
+  .menu > li:hover .sub,.menu > li:focus-within .sub{opacity:1;visibility:visible;transform:none}
+  .sub a{display:block;padding:9px 12px;font-size:.88rem;border-radius:6px;color:var(--text)}
+  .sub a:hover{background:var(--tint);color:var(--ink)}
+  .menu .cta{background:var(--gold);color:#fff;margin-left:8px;padding:10px 18px;border-radius:999px}
+  .menu .cta:hover{background:var(--gold-dark);color:#fff}
+
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;width:46px;height:46px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav summary span,.mnav summary span::before,.mnav summary span::after{display:block;width:20px;height:2px;background:var(--ink);position:relative;content:""}
+  .mnav summary span::before{position:absolute;top:-6px}
+  .mnav summary span::after{position:absolute;top:6px}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 40px -20px rgba(0,0,0,.25);padding:10px 16px 18px;max-height:calc(100vh - 120px);overflow:auto}
+  .mnav .panel > a,.mnav .grp > span{display:block;padding:12px 4px;font-weight:700;color:var(--ink);border-bottom:1px solid var(--line)}
+  .mnav .grp > span a{color:var(--ink)}
+  .mnav .grp ul{list-style:none;padding:6px 0 8px 12px;border-bottom:1px solid var(--line)}
+  .mnav .grp li a{display:block;padding:6px 4px;font-size:.92rem;color:var(--muted)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.92rem;letter-spacing:.02em;transition:.2s;border:1.5px solid var(--gold);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+  .btn-line{background:transparent;color:var(--gold-dark)}
+  .btn-line:hover{background:var(--tint)}
+
+  /* hero */
+  .hero{position:relative;color:#fff;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+  .hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(25,21,21,.88) 0%,rgba(25,21,21,.62) 45%,rgba(25,21,21,.15) 100%)}
+  .hero .wrap{position:relative;z-index:1;padding-top:96px;padding-bottom:84px;width:100%}
+  .hero .kicker{font-size:.82rem;letter-spacing:.32em;color:var(--gold);font-weight:700}
+  .hero h1{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.02;margin:16px 0 0;max-width:720px;letter-spacing:.01em}
+  .hero .rule{width:64px;height:3px;background:var(--gold);margin:28px 0 30px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px}
+  .hero .btn-line{color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.08);border-color:#fff}
+
+  /* intro / firma */
+  section{padding:96px 0}
+  .intro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .intro p.lead{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(1.35rem,2.3vw,1.75rem);line-height:1.45;color:var(--ink-2);margin:18px 0 30px}
+  .intro p.lead strong{color:var(--ink);font-weight:600}
+  .photos{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:14px}
+  .photos img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover}
+  .photos .a{grid-row:1/3;aspect-ratio:3/4}
+  .photos .b,.photos .c{aspect-ratio:4/3}
+
+  /* cards */
+  .explore{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:36px 34px 32px;display:flex;flex-direction:column;transition:.25s}
+  .card:hover{border-color:var(--gold);box-shadow:0 24px 48px -30px rgba(25,21,21,.35)}
+  .card .top{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+  .card .ic{width:64px;height:64px;flex:none}
+  .card .pre{font-size:.95rem;color:var(--muted)}
+  .card h2{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;font-size:clamp(1.5rem,2.4vw,1.95rem);line-height:1.15;color:var(--ink)}
+  .card ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+  .card li a{display:inline-block;padding:7px 14px;border:1px solid var(--line);border-radius:999px;font-size:.88rem;color:var(--ink-2);background:#fff;transition:.2s}
+  .card li a:hover{border-color:var(--gold);color:var(--gold-dark)}
+  .card .btn{align-self:flex-start;margin-top:auto}
+
+  /* contacto */
+  .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .contact h2{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;font-size:clamp(2.1rem,4vw,3rem);line-height:1.05;color:var(--ink);margin-top:10px}
+  .contact .intro-p{margin:16px 0 28px;color:var(--muted);font-size:1.02rem}
+  .info{display:grid;gap:14px}
+  .info .item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+  .info .item .i{width:42px;height:42px;border-radius:50%;background:var(--tint);color:var(--gold-dark);display:grid;place-items:center;flex:none}
+  .info .lbl{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .info .val{font-size:1.08rem;color:var(--ink);font-weight:700;overflow-wrap:anywhere}
+  .info .val a:hover{color:var(--gold-dark)}
+  .info .sep{color:var(--line);margin:0 6px}
+
+  .card-form{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(25,21,21,.35);border-top:4px solid var(--gold)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.76rem;letter-spacing:.12em;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #ddd4bd;border-radius:9px;font:inherit;font-size:.96rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(199,173,89,.35);border-color:var(--gold)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  .check{display:flex;gap:10px;font-size:.86rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:4px 0 20px}
+  .check input{margin-top:3px;accent-color:var(--gold);flex:none}
+  .check a{text-decoration:underline;color:var(--gold-dark)}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--tint);border-radius:9px;padding:12px;font-size:.88rem;margin-top:12px;color:var(--ink-2)}
+
+  footer{background:var(--ink);color:#cfc7bb;padding:44px 0 34px;font-size:.9rem}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .foot .addr{display:flex;flex-wrap:wrap;gap:4px 0;align-items:center}
+  .foot .addr span{white-space:nowrap}
+  .foot .addr .bar{color:var(--gold);margin:0 10px}
+  .foot .addr strong{color:#fff}
+  .foot img.logo-f{height:58px;border-radius:4px}
+  .kit{margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12)}
+  .kit img{background:#fff;border-radius:8px;padding:8px 12px;max-width:620px;width:100%;height:auto}
+
+  .callbar{display:none}
+
+  @media (max-width:980px){
+    .menu{display:none}
+    .mnav{display:block}
+    .intro,.contact{grid-template-columns:1fr;gap:44px}
+    .cards{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .nav{height:72px}
+    .logo img{height:56px}
+    .hero{min-height:500px}
+    .hero .wrap{padding-top:70px;padding-bottom:56px}
+    .hero .row .btn{width:100%}
+    section{padding:64px 0}
+    .card{padding:28px 22px 24px}
+    .card .ic{width:52px;height:52px}
+    .card .btn{width:100%}
+    .card-form{padding:24px 18px}
+    .grid2{grid-template-columns:1fr}
+    .foot .addr{flex-direction:column;align-items:flex-start}
+    .foot .addr .bar{display:none}
+    .callbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:12px 4px;font-size:.8rem;gap:6px;letter-spacing:0}
+    body{padding-bottom:72px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Iñiguez Abogados · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://iniguezabogados.com/" aria-label="Iñiguez Abogados"><img src="https://iniguezabogados.com/wp-content/uploads/2019/07/iniguez-logo.jpg" alt="Iñiguez Abogados"></a>
+
+    <ul class="menu">
+      <li><a href="https://iniguezabogados.com/la-firma/">La Firma</a></li>
+      <li><a href="https://iniguezabogados.com/equipo/">Equipo <i class="caret"></i></a>
+        <ul class="sub">
+          <li><a href="https://iniguezabogados.com/equipo/">Ignacio Iñiguez</a></li>
+          <li><a href="https://iniguezabogados.com/equipo/">Begoña Grañe</a></li>
+          <li><a href="https://iniguezabogados.com/equipo/">Francisco Martin</a></li>
+          <li><a href="https://iniguezabogados.com/equipo/">Ricardo Gonzalez</a></li>
+        </ul>
+      </li>
+      <li><a href="https://iniguezabogados.com/sectores/">Sectores de especialización <i class="caret"></i></a>
+        <ul class="sub">
+          <li><a href="https://iniguezabogados.com/sectores/">Urbanismo, Construcción e Inmobiliario</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Penal Económico</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Seguros</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Derecho Concesional y Contratación Pública</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Derecho Concursal y Mediación Mercantil</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Mercantil</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Reclamaciones por daños</a></li>
+        </ul>
+      </li>
+      <li><a class="cta" href="https://iniguezabogados.com/contacto/">Contacto</a></li>
+    </ul>
+
+    <details class="mnav">
+      <summary aria-label="Menú"><span></span></summary>
+      <nav class="panel">
+        <a href="https://iniguezabogados.com/la-firma/">La Firma</a>
+        <div class="grp">
+          <span><a href="https://iniguezabogados.com/equipo/">Equipo</a></span>
+          <ul>
+            <li><a href="https://iniguezabogados.com/equipo/">Ignacio Iñiguez</a></li>
+            <li><a href="https://iniguezabogados.com/equipo/">Begoña Grañe</a></li>
+            <li><a href="https://iniguezabogados.com/equipo/">Francisco Martin</a></li>
+            <li><a href="https://iniguezabogados.com/equipo/">Ricardo Gonzalez</a></li>
+          </ul>
+        </div>
+        <div class="grp">
+          <span><a href="https://iniguezabogados.com/sectores/">Sectores de especialización</a></span>
+          <ul>
+            <li><a href="https://iniguezabogados.com/sectores/">Urbanismo, Construcción e Inmobiliario</a></li>
+            <li><a href="https://iniguezabogados.com/sectores/">Penal Económico</a></li>
+            <li><a href="https://iniguezabogados.com/sectores/">Seguros</a></li>
+            <li><a href="https://iniguezabogados.com/sectores/">Derecho Concesional y Contratación Pública</a></li>
+            <li><a href="https://iniguezabogados.com/sectores/">Derecho Concursal y Mediación Mercantil</a></li>
+            <li><a href="https://iniguezabogados.com/sectores/">Mercantil</a></li>
+            <li><a href="https://iniguezabogados.com/sectores/">Reclamaciones por daños</a></li>
+          </ul>
+        </div>
+        <a href="https://iniguezabogados.com/contacto/">Contacto</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <img src="https://iniguezabogados.com/wp-content/uploads/2019/05/iniguez-abogados-7.jpg" alt="abogados en zaragoza">
+    <div class="wrap">
+      <span class="kicker">IÑIGUEZ ABOGADOS</span>
+      <h1>Abogados en Zaragoza</h1>
+      <div class="rule"></div>
+      <div class="row">
+        <a href="#contacto" class="btn btn-gold">Contáctanos</a>
+        <a href="tel:+34976215494" class="btn btn-line">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          976 215 494
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRMA -->
+  <section>
+    <div class="wrap intro">
+      <div>
+        <span class="eyebrow">La Firma</span>
+        <p class="lead"><strong>Abogados en Zaragoza | IÑIGUEZ ABOGADOS</strong> es un bufete jurídico fundado en 1993, de ámbito nacional que ofrece a sus clientes soluciones ambiciosas y eficientes para sus necesidades jurídicas.</p>
+        <a href="https://iniguezabogados.com/la-firma/" class="btn btn-gold">Conoce nuestra firma</a>
+      </div>
+      <div class="photos">
+        <img class="a" src="https://iniguezabogados.com/wp-content/uploads/2019/08/banner_02.jpg" alt="abogados en zaragoza" loading="lazy">
+        <img class="b" src="https://iniguezabogados.com/wp-content/uploads/2019/08/banner_04-768x427.jpg" alt="abogados en zaragoza" loading="lazy">
+        <img class="c" src="https://iniguezabogados.com/wp-content/uploads/2019/08/banner_06-768x427.jpg" alt="abogados en zaragoza" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO / SECTORES -->
+  <section class="explore">
+    <div class="wrap cards">
+      <article class="card">
+        <div class="top">
+          <img class="ic" src="https://iniguezabogados.com/wp-content/uploads/2019/05/equipo-humano.png" alt="equipo-humano">
+          <div>
+            <p class="pre">Conoce a nuestro</p>
+            <h2>Equipo Humano</h2>
+          </div>
+        </div>
+        <ul>
+          <li><a href="https://iniguezabogados.com/equipo/">Ignacio Iñiguez</a></li>
+          <li><a href="https://iniguezabogados.com/equipo/">Begoña Grañe</a></li>
+          <li><a href="https://iniguezabogados.com/equipo/">Francisco Martin</a></li>
+          <li><a href="https://iniguezabogados.com/equipo/">Ricardo Gonzalez</a></li>
+        </ul>
+        <a href="https://iniguezabogados.com/equipo/" class="btn btn-line">VER MÁS</a>
+      </article>
+      <article class="card">
+        <div class="top">
+          <img class="ic" src="https://iniguezabogados.com/wp-content/uploads/2019/05/areas-practica.png" alt="areas-practica">
+          <div>
+            <p class="pre">Consulta nuestros</p>
+            <h2>Sectores de especialización</h2>
+          </div>
+        </div>
+        <ul>
+          <li><a href="https://iniguezabogados.com/sectores/">Urbanismo, Construcción e Inmobiliario</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Penal Económico</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Seguros</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Derecho Concesional y Contratación Pública</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Derecho Concursal y Mediación Mercantil</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Mercantil</a></li>
+          <li><a href="https://iniguezabogados.com/sectores/">Reclamaciones por daños</a></li>
+        </ul>
+        <a href="https://iniguezabogados.com/sectores/" class="btn btn-line">VER MÁS</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap contact">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h2>Contáctanos</h2>
+        <p class="intro-p">Puede contactar con nosotros a través del formulario o llamando al:</p>
+        <div class="info">
+          <div class="item">
+            <span class="i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <div><div class="lbl">Tel:</div><div class="val"><a href="tel:+34976215494">976 215 494</a><span class="sep">/</span><a href="tel:+34976218115">976 218 115</a></div></div>
+          </div>
+          <div class="item">
+            <span class="i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div><div class="lbl">E-mail:</div><div class="val"><a href="mailto:despacho@iniguezabogados.com">despacho@iniguezabogados.com</a></div></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="grid2">
+          <div class="field"><label for="n">NOMBRE:</label><input id="n" placeholder="Nombre" required autocomplete="name"></div>
+          <div class="field"><label for="e">E-MAIL:</label><input id="e" type="email" placeholder="nombre@micorreo.com" required autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="s">ASUNTO:</label><input id="s" placeholder="Asunto"></div>
+        <div class="field"><textarea id="m" rows="5" placeholder="Pregúntanos lo que quieras" aria-label="Mensaje"></textarea></div>
+        <label class="check"><input type="checkbox" required><span>He leído y acepto la <a href="https://iniguezabogados.com/politica-privacidad/" target="_blank" rel="noopener">Política de Privacidad.</a></span></label>
+        <button class="btn btn-gold" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <img class="logo-f" src="https://iniguezabogados.com/wp-content/uploads/2019/07/iniguez-logo.jpg" alt="Iñiguez Abogados">
+      <div class="addr">
+        <span>Iñiguez Abogados</span><span class="bar">|</span>
+        <span>Plaza de los Sitios 1, DPDO., 1ºB</span><span class="bar">|</span>
+        <span>50001 Zaragoza</span><span class="bar">|</span>
+        <span><strong>www.iniguezabogados.com</strong></span>
+      </div>
+    </div>
+    <div class="kit">
+      <img src="https://iniguezabogados.com/wp-content/uploads/2019/05/footer_kitdigital-1024x68-1-768x51.png" alt="footer_kitdigital-1024x68-1-768x51" loading="lazy">
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34976215494" class="btn btn-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>976 215 494</a>
+  <a href="tel:+34976218115" class="btn btn-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>976 218 115</a>
+  <a href="mailto:despacho@iniguezabogados.com" class="btn btn-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>E-mail</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

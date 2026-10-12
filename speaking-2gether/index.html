@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Speaking 2gether · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#e06618; --orange-dark:#c0530f; --blue:#3775af; --blue-dark:#2a5d8f; --sky:#c5d3f8; --coral:#f55959;
+    --ink:#2b2a30; --text:#3d3c44; --muted:#6c6a74; --line:#ece8e3; --tint:#fff6f0; --tint-blue:#f1f5fd;
+    --dark:#3b3941; --white:#fff; --radius:14px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  h1,h2,h3,.nunito{font-family:Nunito,system-ui,sans-serif;color:var(--ink);line-height:1.15}
+  .eyebrow{display:inline-block;font-family:Nunito,sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:800}
+
+  .demo{background:var(--dark);color:#e6e2dc;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
+  .nav .logo img{height:54px;width:auto}
+  .menu{display:flex;gap:4px;align-items:center;font-family:Nunito,sans-serif;font-weight:700;font-size:.95rem}
+  .menu a{padding:8px 9px;border-radius:8px;color:var(--ink);transition:.2s;white-space:nowrap}
+  .nav-tel{white-space:nowrap}
+  .menu a:hover{color:var(--orange);background:var(--tint)}
+  .nav-tel{display:flex;flex-direction:column;align-items:flex-end;font-size:.78rem;color:var(--muted);line-height:1.3}
+  .nav-tel b{font-family:Nunito,sans-serif;color:var(--orange);font-size:1rem;font-weight:800;letter-spacing:.02em}
+  .nav-tel a:hover{text-decoration:underline}
+  .burger{display:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:999px;font-family:Nunito,sans-serif;font-weight:800;font-size:.98rem;transition:.2s;border:2px solid var(--orange);cursor:pointer;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-orange{background:var(--orange);color:#fff}
+  .btn-orange:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+  .btn-line{background:#fff;color:var(--orange-dark)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-blue{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+
+  /* hero */
+  .hero{position:relative;color:#fff;background:#1d2236 url(https://speaking2gether.com/img/inicio/foto-fondo.jpg) center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,22,38,.88) 0%,rgba(20,22,38,.62) 55%,rgba(20,22,38,.35) 100%)}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:72px 20px 84px}
+  .hero .big-logo{width:min(400px,100%);height:auto;margin-bottom:22px}
+  .hero h1{color:#fff;font-weight:900;font-size:clamp(2rem,4.4vw,3.2rem);letter-spacing:.01em}
+  .hero h1 span{display:block;color:#ffb27f;font-size:.55em;letter-spacing:.2em;margin-top:8px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .hero .addr{margin-top:22px;font-size:.9rem;color:#d9dbe6}
+  .decide{background:#fff;color:var(--text);border-radius:var(--radius);padding:30px 30px 26px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);border-top:5px solid var(--orange)}
+  .decide h2{font-size:1.65rem;font-weight:900;color:var(--ink)}
+  .decide h2 em{display:block;font-style:normal;color:var(--orange)}
+  .decide ul{list-style:none;margin-top:18px;display:grid;gap:11px}
+  .decide li{position:relative;padding-left:30px;font-weight:600;color:var(--ink)}
+  .decide li::before{content:"";position:absolute;left:0;top:.2em;width:20px;height:20px;border-radius:50%;background:var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e06618' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat}
+
+  section{padding:88px 0}
+  .head{max-width:720px;margin-bottom:40px}
+  .head.center{text-align:center;margin-left:auto;margin-right:auto}
+  .head h2{font-weight:900;font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:8px}
+  .bar{width:64px;height:4px;border-radius:4px;background:var(--orange);margin-top:16px}
+  .head.center .bar{margin-left:auto;margin-right:auto}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+  .about-grid p{margin-bottom:16px;font-size:1.02rem}
+  .about-grid strong{color:var(--ink)}
+  .facts{display:grid;gap:14px}
+  .fact{display:flex;gap:14px;align-items:flex-start;background:var(--tint);border-radius:12px;padding:16px 18px}
+  .fact .ic{flex:none;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--orange)}
+  .fact p{margin:0;font-size:.98rem}
+  .cam-badge{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;background:#fff}
+  .cam-badge img{margin:0 auto;max-width:340px;width:100%}
+  .cam-badge p{color:#8a7f4a;font-size:.84rem;margin-top:10px;line-height:1.5}
+
+  /* matricula */
+  .matricula{background:var(--orange);color:#fff;padding:70px 0;position:relative;overflow:hidden}
+  .matricula::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .mat-grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+  .matricula h2{color:#fff;font-weight:900;font-size:clamp(2rem,4vw,3rem)}
+  .matricula p{margin-bottom:12px;font-size:1.03rem}
+  .matricula .lead{font-weight:700;font-size:1.15rem}
+  .matricula .btn{background:#fff;border-color:#fff;color:var(--orange-dark);margin-top:10px}
+  .matricula .btn:hover{background:var(--tint)}
+
+  /* cursos */
+  #cursos{background:var(--tint-blue)}
+  #cursos .eyebrow{color:var(--blue)}
+  #cursos .bar{background:var(--blue)}
+  .group-title{font-family:Nunito,sans-serif;font-weight:800;color:var(--blue);font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;margin:44px 0 16px;display:flex;align-items:center;gap:14px}
+  .group-title::after{content:"";flex:1;height:1px;background:var(--sky)}
+  .group-title:first-of-type{margin-top:0}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid #dfe6f6;transition:.25s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -28px rgba(55,117,175,.55)}
+  .card .ph{height:150px;background-size:cover;background-position:center 20%;position:relative}
+  .card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(55,117,175,0) 40%,rgba(55,117,175,.18))}
+  .card .bd{padding:22px 24px 24px}
+  .card h3{font-size:1.25rem;font-weight:900;color:var(--blue);margin-bottom:8px}
+  .card p{font-size:.95rem}
+  .card ul{list-style:none;margin-top:12px;display:grid;gap:7px}
+  .card li{position:relative;padding-left:18px;font-size:.93rem}
+  .card li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+
+  /* cambridge */
+  .cam-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+  .cam-side{background:var(--tint-blue);border-radius:var(--radius);padding:40px 30px;text-align:center}
+  .cam-side img{margin:0 auto 26px;max-width:260px;width:100%}
+  .cam-side h3{font-size:1.35rem;font-weight:900}
+  .cam-side .btn{margin-top:16px}
+  .cam-text p{margin-bottom:16px;font-size:1.03rem}
+  .cam-text strong{color:var(--blue)}
+
+  /* coffee */
+  .coffee{position:relative;color:#fff;background:#2a1f1d url(https://speaking2gether.com/img/coffe/cafes.jpg) center/cover no-repeat}
+  .coffee::before{content:"";position:absolute;inset:0;background:rgba(28,20,22,.78)}
+  .coffee .wrap{position:relative}
+  .coffee-top{display:flex;align-items:center;gap:30px;margin-bottom:40px}
+  .coffee-top img{width:150px;height:auto;flex:none}
+  .coffee h2{color:#fff;font-weight:900;font-size:clamp(1.9rem,3.4vw,2.6rem)}
+  .coffee .eyebrow{color:#ffb27f}
+  .qa{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .qa article{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:26px}
+  .qa h3{color:#fff;font-size:1.2rem;font-weight:800;margin-bottom:10px}
+  .qa h3::before{content:"";display:block;width:34px;height:4px;border-radius:4px;background:var(--orange);margin-bottom:14px}
+  .qa p{color:#ece7e4;font-size:.95rem;margin-bottom:10px}
+  .qa strong{color:#fff}
+  .qa a{color:#ffb27f;text-decoration:underline}
+  .levels{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+  .levels span{font-size:.8rem;font-weight:700;background:rgba(224,102,24,.25);border:1px solid rgba(255,178,127,.5);color:#fff;border-radius:999px;padding:3px 10px}
+
+  /* baby */
+  .baby-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .baby-photo{position:relative}
+  .baby-photo .ph{border-radius:var(--radius);aspect-ratio:4/3;background:url(https://speaking2gether.com/img/baby2gether.jpg) center/cover no-repeat}
+  .baby-photo .badge{position:absolute;right:-14px;bottom:-26px;width:150px;background:#fff;border-radius:18px;padding:10px;box-shadow:0 18px 40px -20px rgba(0,0,0,.4)}
+  .baby-text p{margin-bottom:14px}
+  .baby-text strong{color:var(--ink)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .stat{background:var(--tint);border-radius:12px;padding:16px 18px;font-family:Nunito,sans-serif;font-weight:800;color:var(--ink);line-height:1.35}
+
+  /* contacto */
+  #contacto{background:var(--dark);color:#fff}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:stretch}
+  .contact-info h2{color:#fff;font-weight:900;font-size:clamp(1.9rem,3.4vw,2.6rem);margin:8px 0 18px}
+  .contact-info .eyebrow{color:#ffb27f}
+  .contact-info p{color:#dedbe3}
+  .contact-list{list-style:none;display:grid;gap:12px;margin:24px 0}
+  .contact-list li{display:flex;gap:12px;align-items:flex-start}
+  .contact-list .ic{flex:none;width:38px;height:38px;border-radius:50%;background:rgba(224,102,24,.18);color:#ffb27f;display:grid;place-items:center}
+  .contact-list a:hover{color:#ffb27f}
+  .socials{display:flex;flex-wrap:wrap;gap:8px}
+  .socials a{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 14px;font-size:.86rem;font-weight:600;transition:.2s}
+  .socials a:hover{border-color:#ffb27f;color:#ffb27f}
+  .map{border-radius:var(--radius);overflow:hidden;min-height:300px;margin-top:22px}
+  .map iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
+  .form{background:#fff;color:var(--text);border-radius:var(--radius);padding:32px;border-top:5px solid var(--orange)}
+  .form h3{font-size:1.6rem;font-weight:900;margin-bottom:18px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #dcd7d2;border-radius:10px;font:inherit;font-size:.96rem;color:var(--text);background:#fbfaf9}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(224,102,24,.3);border-color:var(--orange);background:#fff}
+  .form .btn{width:100%;margin-top:6px}
+  .form-ok{display:none;background:var(--tint);border-radius:10px;padding:12px;font-size:.88rem;margin-top:12px;color:var(--ink)}
+
+  footer{background:#2f2e35;color:#c9c6cf;padding:40px 0 30px;font-size:.88rem}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
+  .foot img.flogo{height:52px;width:auto}
+  .foot a:hover{color:#ffb27f}
+  .foot-right{text-align:right}
+  .funds{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
+  .funds span{background:#fff;border-radius:8px;padding:8px 12px;display:flex;align-items:center}
+  .funds img{height:44px;width:auto}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .burger{display:block;position:relative}
+    .burger summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink)}
+    .burger summary::-webkit-details-marker{display:none}
+    .burger nav{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 40px -20px rgba(0,0,0,.3);padding:8px;display:grid;min-width:230px;font-family:Nunito,sans-serif;font-weight:700}
+    .burger nav a{padding:11px 14px;border-radius:8px}
+    .burger nav a:hover{background:var(--tint);color:var(--orange)}
+    .nav-right{display:flex;align-items:center;gap:14px}
+  }
+  @media (max-width:980px){
+    .hero-grid,.about-grid,.mat-grid,.cam-grid,.baby-grid,.contact-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr 1fr}
+    .qa{grid-template-columns:1fr}
+    .baby-photo{margin-bottom:30px}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .hero-grid{padding:44px 16px 56px}
+    .nav{height:68px}
+    .nav .logo img{height:44px}
+    .nav-tel{display:none}
+    section{padding:62px 0}
+    .cards{grid-template-columns:1fr}
+    .hero .row .btn{width:100%}
+    .coffee-top{flex-direction:column;align-items:flex-start;gap:18px}
+    .coffee-top img{width:120px}
+    .form{padding:24px 18px}
+    .decide{padding:24px 20px}
+    .stats{grid-template-columns:1fr}
+    .baby-photo .badge{right:8px;width:120px}
+    .foot{flex-direction:column;align-items:flex-start}
+    .foot-right{text-align:left}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 6px;font-size:.92rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body id="inicio">
+
+<div class="demo">Propuesta de rediseño para Speaking 2gether · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="logo" aria-label="Speaking 2gether"><img src="https://speaking2gether.com/img/menu/logo-menu.png" alt="Logotipo Speaking 2gether"></a>
+    <nav class="menu" aria-label="Menú principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#cambridge">Exámenes Cambridge</a>
+      <a href="#coffee2gether">Coffee 2gether</a>
+      <a href="#baby2gether">Baby 2gether</a>
+      <a href="#formulario">Contacto</a>
+      <a href="#localizacion">Dónde estamos</a>
+    </nav>
+    <div class="nav-right">
+      <div class="nav-tel"><span>TEL:</span><b><a href="tel:+34983100587">983 100 587</a> | <a href="tel:+34633864859">633 864 859</a></b></div>
+      <details class="burger">
+        <summary aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav aria-label="Menú móvil">
+          <a href="#inicio">Inicio</a>
+          <a href="#cursos">Cursos</a>
+          <a href="#cambridge">Exámenes Cambridge</a>
+          <a href="#coffee2gether">Coffee 2gether</a>
+          <a href="#baby2gether">Baby 2gether</a>
+          <a href="#formulario">Contacto</a>
+          <a href="#localizacion">Dónde estamos</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <img class="big-logo" src="https://speaking2gether.com/img/inicio/logo-grande.png" alt="Speaking 2gether">
+        <h1>SPEAKING 2GETHER <span>ACADEMIA DE IDIOMAS</span></h1>
+        <div class="row">
+          <a href="#cursos" class="btn btn-orange">Cursos</a>
+          <a href="#formulario" class="btn btn-ghost">Contacto</a>
+        </div>
+        <p class="addr">C/ Paseo del Hospital Militar, 43 47006 Valladolid</p>
+      </div>
+      <aside class="decide">
+        <h2>PRESENCIAL U ONLINE <em>¡Tú decides!</em></h2>
+        <ul>
+          <li>Logramos tus objetivos</li>
+          <li>Especialistas en los exámenes de Cambridge</li>
+          <li>From your learners to Proficiency</li>
+          <li>Todas las edades y niveles</li>
+          <li>Speaking</li>
+          <li>Extraescolares</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="sobreNosotros">
+    <div class="wrap about-grid">
+      <div>
+        <div class="head">
+          <span class="eyebrow">Speaking 2gether</span>
+          <h2>Academia de idiomas</h2>
+          <div class="bar"></div>
+        </div>
+        <p>En <strong>Speaking 2gether</strong> llevamos desde el 2008 enseñando inglés y consiguiendo que nuestros alumnos alcancen sus objetivos. Buscamos resultados, pero sobre todo, queremos que nuestros estudiantes puedan comunicarse en inglés, puesto que ese es el fin esencial del aprendizaje de una lengua. Y como a nosotros nos gusta hablar, ya lo tenemos todo listo para que nuestros alumnos disfruten al tiempo que aprenden.</p>
+        <p>Somos especialistas en la preparación de los títulos de Cambridge. Tenemos grandes resultados y experiencia. Es por ello que desde 2013, somos <strong>CENTRO PREPARADOR OFICIAL DE LOS EXÁMENES DE CAMBRIDGE</strong>.</p>
+        <p>Todos nuestros profesores son licenciados universitarios en posesión del CAP y la titulación de Cambridge University.</p>
+      </div>
+      <div>
+        <div class="facts">
+          <div class="fact"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 14.2c2.9.3 5 2.7 5 5.8"/></svg></span><p>Trabajamos con niños, adolescentes, adultos... Todos ellos son bienvenidos.</p></div>
+          <div class="fact"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><p>Las clases se dan en grupos reducidos de máximo 6 personas.</p></div>
+        </div>
+        <div class="cam-badge">
+          <img src="https://speaking2gether.com/img/nosotros/logo-cambridge.jpg" alt="Logo Cambridge">
+          <p>Este logo es el reconocimiento que Cambridge otorga a aquellos Preparation Centres que presentan a más de 50 candidatos a los exámenes de Cambridge durante el último año.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATRICULA -->
+  <div class="matricula" id="matricula">
+    <div class="wrap mat-grid">
+      <h2>MATRÍCULA GRATUITA</h2>
+      <div>
+        <p class="lead">La matrícula de nuestros cursos siempre ha sido GRATUITA y así lo seguirá siendo.</p>
+        <p>Puede ponerse en contacto con nosotros para comentar cualquier posible duda o para solicitar más información sobre cualquiera de nuestros cursos.</p>
+        <p>Puede hacerlo a través de nuestro formulario de solicitud de información, por teléfono o acercándote a nuestra academia. Estaremos encantados de atenderte.</p>
+        <a href="#formulario" class="btn">Contacto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURSOS -->
+  <section id="cursos">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Speaking 2gether</span>
+        <h2>CURSOS</h2>
+        <div class="bar"></div>
+      </div>
+
+      <p class="group-title">Online y Cambridge</p>
+      <div class="cards">
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/online.jpg)"></div>
+          <div class="bd">
+            <h3>ONLINE</h3>
+            <p>Debido a la situación actual, hemos dado prioridad a nuestra enseñanza a distancia.</p>
+            <ul>
+              <li>Es más efectiva.</li>
+              <li>Trabaja más contenidos.</li>
+              <li>Hay mayor concentración por parte de los alumnos.</li>
+              <li>Aprendizaje más rápido.</li>
+              <li>Trabajo de muchos más contenidos.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/cambridge-1.jpg)"></div>
+          <div class="bd">
+            <h3>Preparación exámenes de Cambridge</h3>
+            <p>Los resultados nos avalan. Preparamos todos los niveles:</p>
+            <ul>
+              <li>Young Learners (Starters, Movers and Flyers).</li>
+              <li>Key.</li>
+              <li>Preliminary.</li>
+              <li>First.</li>
+              <li>Advanced.</li>
+              <li>Proficiency.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/cambridge-2.jpg)"></div>
+          <div class="bd">
+            <h3>Intensivos exámenes de Cambridge</h3>
+            <p>Si tu opción es sacar el título de Cambridge lo antes posible, entonces tienes que hacer nuestros intensivos de:</p>
+            <ul>
+              <li>Preliminary.</li>
+              <li>First.</li>
+              <li>Advanced.</li>
+              <li>Proficiency.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <p class="group-title">Niños y jóvenes</p>
+      <div class="cards">
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/ninios.jpg)"></div>
+          <div class="bd">
+            <h3>Niños</h3>
+            <p>Desde tres años. Clases dinámicas, alegres y participativas. Con unos objetivos claros desde el principio del curso. Lo esencial es que nuestros alumnos siempre vienen motivados a nuestras clases.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/adolescentes.jpg)"></div>
+          <div class="bd">
+            <h3>Extraescolares</h3>
+            <p>Estamos presentes en varios colegios de Valladolid. Nos adaptamos a las necesidades de cada centro. Trabajamos con profesores titulados.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/campamentos.jpg)"></div>
+          <div class="bd">
+            <h3>Campamentos urbanos</h3>
+            <p>4 horas diarias de speaking, juegos, manualidades, música y mucha diversión, por supuesto, en inglés. Las actividades tienen lugar en nuestro centro y en diferentes colegios de nuestra ciudad.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="group-title">Adultos y empresas</p>
+      <div class="cards">
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/adultos.jpg)"></div>
+          <div class="bd">
+            <h3>Inglés general</h3>
+            <p>La gran mayoría de adultos vienen a Speaking 2gether para conseguir hablar inglés y sobre todo para poder defenderse cuando salen a un país extranjero. Por eso, nuestras clases son realistas y prácticas para que el aprendizaje sea más efectivo.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/individuales.jpg)"></div>
+          <div class="bd">
+            <h3>Individuales</h3>
+            <p>Como cada objetivo es diferente, nos adaptamos totalmente a tus necesidades.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" style="background-image:url(https://speaking2gether.com/img/cursos/empresas.jpg)"></div>
+          <div class="bd">
+            <h3>Empresas</h3>
+            <p>Como cada empresa necesita un tipo de inglés y unas expectativas diferentes, con unos horarios concretos, nosotros buscamos las mejores alternativas para cubrir sus necesidades.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMBRIDGE -->
+  <section id="cambridge">
+    <div class="wrap cam-grid">
+      <div class="cam-side">
+        <img src="https://speaking2gether.com/img/cambridge_logo.png" alt="Cambridge">
+        <h3>Fechas de los exámenes</h3>
+        <a href="https://examsvalladolid.com/" target="_blank" rel="noopener" class="btn btn-blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+          VER
+        </a>
+      </div>
+      <div class="cam-text">
+        <div class="head">
+          <span class="eyebrow" style="color:var(--blue)">Exámenes Cambridge</span>
+          <h2>Exámenes de Cambridge</h2>
+          <div class="bar" style="background:var(--blue)"></div>
+        </div>
+        <p>Somos especialistas en la preparación de los títulos de Cambridge. Tenemos grandes resultados y experiencia. Es por ello que desde 2013, somos <strong>Centro Preparador Oficial De Los Exámenes De Cambridge</strong>.</p>
+        <p>Gracias a los excepcionales resultados obtenidos en estos últimos años, podemos asegurar que nuestros cursos para la preparación de los exámenes son los más idóneos y efectivos para la obtención del título deseado.</p>
+        <p>Puedes preparar tu examen de Cambridge (todos los niveles) en un grupo reducido a lo largo del curso, o bien realizando un intensivo (Preliminary, First, Advanced, Proficiency) para acelerar la preparación de cara al examen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COFFEE 2GETHER -->
+  <section id="coffee2gether" class="coffee">
+    <div class="wrap">
+      <div class="coffee-top">
+        <img src="https://speaking2gether.com/img/coffe/cofeetgether.png" alt="Logo Coffee 2gether">
+        <div>
+          <span class="eyebrow">Speaking 2gether</span>
+          <h2>Coffee 2gether</h2>
+        </div>
+      </div>
+      <div class="qa">
+        <article>
+          <h3>¿Qué es Coffee 2gether?</h3>
+          <p><strong>Coffee 2gether</strong> consiste en grupos reducidos de conversación en los que podremos degustar un rico café al tiempo que charlamos sobre muchos temas de interés, sin libros y solo en inglés.</p>
+          <p>Estableceremos tres niveles: Beginners (B1), Intermediate (B2) y Advanced (C1).Los grupos estarán formados por un mínimo de tres alumnos y un máximo de seis.</p>
+        </article>
+        <article>
+          <h3>¿Cuánto cuesta?</h3>
+          <p><strong>Coffee 2gether</strong> no cobra por meses, ni por trimestres, sino que cobra por bonos. Es lo más parecido a comprar un bono de la piscina. Si vienes a clase, consumes bono y si no vienes, no consumes. Los bonos son de 8 sesiones.</p>
+          <p>En esta modalidad no hay descuentos por tener más hermanos en el centro.</p>
+          <p>El período de validez por cada bono es de un año desde que se compra el bono.</p>
+        </article>
+        <article>
+          <h3>¿Cómo se reserva?</h3>
+          <p>Las reservas se harán a través de nuestra web <a href="http://coffee2gether.es/reserva-aqui/" target="_blank" rel="noopener">www.coffee2gether.es</a>, es muy sencillo, la primera vez que entréis a reservar una clase, os pedirá que os registréis. Una vez completado el registro, buscas tu clase, tu nivel, pinchas sobre ella y reservas tu plaza.</p>
+          <p>Recuerda que las clases tienen que estar formadas por un mínimo de tres alumnos y un máximo de seis. La reserva se puede hacer hasta 24 horas antes de la clase y la cancelación de la misma tiene que realizarse con 24 horas de antelación, de lo contrario ese bono será cobrado.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BABY 2GETHER -->
+  <section id="baby2gether">
+    <div class="wrap baby-grid">
+      <div class="baby-photo">
+        <div class="ph" role="img" aria-label="Baby 2gether"></div>
+        <img class="badge" src="https://speaking2gether.com/img/baby2gether_logo.png" alt="Baby 2gether">
+      </div>
+      <div class="baby-text">
+        <div class="head">
+          <span class="eyebrow">Baby 2gether</span>
+          <h2>Baby 2gether</h2>
+          <div class="bar"></div>
+        </div>
+        <p><strong>Baby 2gether</strong> es una actividad dirigida a padres y/o madres acompañados de sus bebés o niñ@s en la etapa de primer ciclo de infantil. En esta actividad promovemos el aprendizaje del inglés de una forma natural, en la que los padres serán partícipes no sólo del aprendizaje sino también de la enseñanza del idioma, independientemente de cuál sea su nivel.</p>
+        <p>La base de la actividad será la música, juegos y actividades amenas, gracias a lo cual enseñaremos vocabulario y frases útiles que poco a poco debemos ir introduciendo en nuestra vida cotidiana, así como una serie de hábitos que si los fijamos desde una edad temprana, tendrán su repercusión en el aprendizaje y posterior maduración del idioma.</p>
+        <p>Ya que un bebé no nace sabiendo un idioma, y es la familiarización con el entorno lo que hace que sea nativo español o de cualquier otro país, trabajamos sonidos de tal forma que el niño desarrolle su lenguaje y pronunciación al tiempo que continúa con el aprendizaje de su lengua materna.</p>
+        <p>En cada clase, trabajamos con recursos que luego debemos continuar utilizando en nuestra casa. Y todos los días haremos un repaso de lo anteriormente aprendido hasta que lo hayamos sistematizado en nuestra vida cotidiana.</p>
+        <div class="stats">
+          <div class="stat">Duración de la actividad: 45 minutos</div>
+          <div class="stat">Número de alumnos por clase: (Mínimo 3 y máximo 6) + 1 acompañante por niñ@</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">Dónde estamos</span>
+        <h2>CONTACTO</h2>
+        <ul class="contact-list">
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>C/ Paseo del Hospital Militar, 43 47006 Valladolid</span></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span>TEL: <a href="tel:+34983100587">983 100 587</a> | <a href="tel:+34633864859">633 864 859</a></span></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span>E-mail: <a href="mailto:info@speaking2gether.com">info@speaking2gether.com</a></span></li>
+        </ul>
+        <div class="socials">
+          <a href="https://aulavirtual.speaking2gether.com/" target="_blank" rel="noopener" title="Acceso para alumnos">Aula virtual</a>
+          <a href="https://www.facebook.com/speaking2gether/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://twitter.com/Speaking2gether" target="_blank" rel="noopener">Twitter</a>
+          <a href="http://blog.speaking2gether.com/" target="_blank" rel="noopener">Blog</a>
+        </div>
+        <div class="map" id="localizacion">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.512900086978!2d-4.738236884291534!3d41.64465908796888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd476d48482786c7%3A0x5de80bc9837c9aa0!2sSpeaking+2gether!5e0!3m2!1ses!2ses!4v1470674177754" loading="lazy" title="Mapa Speaking 2gether" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <form class="form" id="formulario" onsubmit="return demoSubmit(this)">
+        <h3>CONTACTO</h3>
+        <div class="field"><label for="name">Nombre</label><input id="name" name="name" placeholder="Nombre" required autocomplete="name"></div>
+        <div class="field"><label for="telephone">Teléfono</label><input id="telephone" name="telephone" type="tel" placeholder="Teléfono" minlength="9" autocomplete="tel"></div>
+        <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="E-mail" required autocomplete="email"></div>
+        <div class="field"><label for="message">Mensaje</label><textarea id="message" name="message" rows="5" placeholder="Mensaje" required></textarea></div>
+        <div class="field"><label for="security">Pregunta de seguridad: ¿cuál es el resultado de restar 4 - 1?</label><input id="security" name="security" placeholder="Respuesta" required></div>
+        <button type="submit" class="btn btn-orange">ENVIAR</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <img class="flogo" src="https://speaking2gether.com/img/menu/logo-menu.png" alt="Speaking 2gether">
+      <p class="foot-right">Paseo del Hospital Militar, 43 47006 Valladolid<br>
+        <a href="tel:+34983100587">983 100 587</a> | <a href="tel:+34633864859">633 864 859</a> E-mail: <a href="mailto:info@speaking2gether.com">info@speaking2gether.com</a></p>
+    </div>
+    <div class="funds">
+      <span><img src="https://speaking2gether.com/img/footer/jcyl.png" alt="Junta de Castilla y León"></span>
+      <span><img src="https://speaking2gether.com/img/footer/logo-europa-impulsa.png" alt="Unión Europea Impulsa"></span>
+      <span><img src="https://speaking2gether.com/img/footer/fse_cuatricro_ue.izqu_.jpg" alt="Fondo Social Europeo"></span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983100587" class="btn btn-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>983 100 587</a>
+  <a href="tel:+34633864859" class="btn btn-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>633 864 859</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+  document.querySelectorAll('.burger nav a').forEach(function(a){ a.addEventListener('click', function(){ a.closest('details').removeAttribute('open'); }); });
+</script>
+</body>
+</html>
