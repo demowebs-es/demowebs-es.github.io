@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ABA Abogadas · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#840630; --wine-dark:#64041f; --wine-soft:#b4597a; --rose:#f6e9ee; --rose-2:#fbf4f7;
+    --ink:#2a1a20; --text:#333333; --muted:#6f6468; --line:#ecdfe4; --white:#fff;
+    --radius:16px; --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Montserrat,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .sg{font-family:"Space Grotesk",sans-serif}
+  .eyebrow{font-family:"Space Grotesk",sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);font-weight:600}
+
+  .demo{background:var(--ink);color:#e9d7de;font-size:.76rem;text-align:center;padding:6px 16px}
+  .topbar{background:var(--wine);color:#fff;font-size:.8rem;font-weight:500}
+  .topbar .wrap{display:flex;justify-content:flex-end;gap:22px;padding-top:7px;padding-bottom:7px;flex-wrap:wrap}
+  .topbar a{display:inline-flex;align-items:center;gap:7px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+  .nav .logo img{height:60px;width:auto}
+  .menu{display:flex;gap:4px;font-family:"Space Grotesk",sans-serif;font-size:.9rem;font-weight:600;color:var(--wine);text-transform:uppercase;letter-spacing:.03em}
+  .menu > div{position:relative}
+  .menu > div > a{display:block;padding:10px 12px;border-radius:999px}
+  .menu > div > a:hover{background:var(--rose)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:0 20px 40px -22px rgba(42,26,32,.4);text-transform:none;letter-spacing:0;font-weight:500}
+  .menu .sub a{display:block;padding:9px 12px;border-radius:8px;color:var(--text)}
+  .menu .sub a:hover{background:var(--rose);color:var(--wine)}
+  .menu > div:hover .sub,.menu > div:focus-within .sub{display:block}
+  .menu .caret{font-size:.7em;margin-left:3px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:999px;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.95rem;transition:.2s;border:1.5px solid var(--wine);cursor:pointer;white-space:nowrap}
+  .btn-wine{background:var(--wine);color:#fff}
+  .btn-wine:hover{background:var(--wine-dark);border-color:var(--wine-dark)}
+  .btn-line{background:#fff;color:var(--wine)}
+  .btn-line:hover{background:var(--rose)}
+  .btn-sm{padding:10px 18px;font-size:.86rem}
+  .tel{font-variant-numeric:tabular-nums}
+
+  /* hero */
+  .hero{position:relative;color:#fff;overflow:hidden;background:var(--wine-dark)}
+  .hero::before{content:"";position:absolute;inset:0;background:url(https://aba-abogadas.com/wp-content/uploads/2026/07/20-scaled.jpg) center 30%/cover no-repeat}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(132,6,48,.55) 0%,rgba(100,4,31,.82) 70%,rgba(100,4,31,.95) 100%)}
+  .hero .wrap{position:relative;z-index:1;padding-top:120px;padding-bottom:56px;text-align:center}
+  .hero .eyebrow{color:#f3cdd9}
+  .hero h1{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05;margin:14px auto 18px;max-width:900px;letter-spacing:-.01em}
+  .hero .rule{width:56px;height:3px;background:#fff;margin:0 auto 20px;opacity:.8}
+  .hero p.lead{font-size:1.1rem;max-width:720px;margin:0 auto;color:#fbe9ef;font-weight:500}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+  .hero .btn-wine{background:#fff;color:var(--wine);border-color:#fff}
+  .hero .btn-wine:hover{background:var(--rose)}
+  .hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .hero .btn-line:hover{background:rgba(255,255,255,.1)}
+  .slides{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px;text-align:left}
+  .slide{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:22px 22px 20px;border-radius:var(--radius);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(4px);transition:.2s}
+  .slide:hover{background:rgba(255,255,255,.18)}
+  .slide b{display:block;font-family:"Space Grotesk",sans-serif;font-size:1.7rem;font-weight:700;letter-spacing:.02em;line-height:1}
+  .slide span{display:inline-block;margin-top:12px;font-family:"Space Grotesk",sans-serif;font-size:.85rem;font-weight:600;background:#f3cdd9;color:var(--wine);padding:6px 14px;border-radius:999px}
+
+  section{padding:96px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.15;color:var(--wine);margin-top:8px}
+  .head p{margin-top:14px;font-size:1.04rem}
+
+  /* team */
+  .team-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+  .team-head h2{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(1.9rem,3.4vw,2.6rem);color:var(--wine);line-height:1.15}
+  .team{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  .member{display:flex;flex-direction:column}
+  .member .ph{aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:var(--rose);margin-bottom:12px}
+  .member .ph img{width:100%;height:100%;object-fit:cover;transition:.35s}
+  .member:hover .ph img{transform:scale(1.04)}
+  .member b{font-family:"Space Grotesk",sans-serif;font-weight:600;color:var(--wine);font-size:1.02rem;line-height:1.25}
+  .member .role{font-size:.82rem;font-weight:600;color:var(--ink);margin-top:2px}
+  .member .more{margin-top:6px;font-size:.82rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+  .member .more:hover{color:var(--wine)}
+
+  /* services */
+  .bg-rose{background:var(--rose-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .spec{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start;margin-bottom:44px}
+  .spec h2{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--wine);line-height:1.15}
+  .spec p{font-size:1.02rem}
+  .spec p strong{color:var(--ink)}
+  .spec .btn{margin-top:20px}
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .service{position:relative;min-height:130px;border-radius:var(--radius);padding:22px;display:flex;align-items:flex-end;color:#fff;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.12rem;background:linear-gradient(140deg,#9b1844 0%,var(--wine) 55%,var(--wine-dark) 100%);overflow:hidden;box-shadow:0 18px 36px -24px rgba(100,4,31,.7);transition:.2s}
+  .service::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border:1.5px solid rgba(255,255,255,.25);border-radius:50%}
+  .service:hover{transform:translateY(-3px)}
+
+  /* ebook */
+  .ebook{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;margin-top:72px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:40px}
+  .ebook h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(1.4rem,2.4vw,1.85rem);color:var(--wine);line-height:1.2;margin-bottom:14px}
+  .ebook ul{list-style:none;margin-top:12px;display:grid;gap:6px}
+  .ebook li{font-weight:600;color:var(--ink);padding-left:22px;position:relative}
+  .ebook li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--wine)}
+
+  /* help */
+  .help{background:var(--wine);color:#fff}
+  .help .head h2{color:#fff}
+  .help .head p{color:#f3cdd9}
+  .problems{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .problems a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,.22);font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.05rem;line-height:1.3;transition:.2s}
+  .problems a:hover{background:rgba(255,255,255,.1)}
+  .problems svg{flex:none;opacity:.75}
+
+  .consult{position:relative;color:#fff;text-align:center;padding:96px 0;overflow:hidden;background:var(--ink)}
+  .consult::before{content:"";position:absolute;inset:0;background:url(https://aba-abogadas.com/wp-content/uploads/2026/07/DSCF0707-980x653.jpg) center/cover no-repeat;opacity:.35}
+  .consult .wrap{position:relative}
+  .consult h2{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(2rem,3.6vw,2.8rem)}
+  .consult p{max-width:640px;margin:12px auto 28px;font-size:1.06rem;color:#f6e4ea}
+  .consult .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .consult .btn-wine{background:#fff;color:var(--wine);border-color:#fff}
+  .consult .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+
+  /* comunicamos */
+  .comms{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+  .card-form{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(42,26,32,.35);border-top:4px solid var(--wine)}
+  .card-form h3{font-family:"Space Grotesk",sans-serif;font-size:1.4rem;font-weight:600;color:var(--wine);line-height:1.2;margin-bottom:18px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #e1d3d9;border-radius:10px;font:inherit;font-size:.95rem;color:var(--text);background:#fff}
+  .field input:focus,.field textarea:focus{outline:2px solid rgba(132,6,48,.25);border-color:var(--wine)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .check{display:flex;gap:10px;font-size:.8rem;color:var(--muted);line-height:1.45;align-items:flex-start;margin:6px 0 14px}
+  .check input{margin-top:2px;accent-color:var(--wine);flex:none}
+  .check a{text-decoration:underline;color:var(--wine)}
+  .captcha{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:.88rem;font-weight:600;color:var(--ink);flex-wrap:wrap}
+  .captcha input{width:90px;padding:10px 12px;border:1px solid #e1d3d9;border-radius:10px;font:inherit}
+  .card-form .btn{width:100%}
+  .form-ok{display:none;background:var(--rose);border-radius:10px;padding:12px;font-size:.86rem;margin-top:12px;color:var(--ink)}
+  .legal-note{font-size:.78rem;color:var(--muted);margin-top:12px}
+  .legal-note a{color:var(--wine);text-decoration:underline}
+
+  .media{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .mcard{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .mcard .tag{display:flex;align-items:center;gap:8px;padding:14px 16px;font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--wine);letter-spacing:.06em;font-size:.9rem;border-bottom:1px solid var(--line)}
+  .mcard img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--rose)}
+  .mcard .body{padding:14px 16px 18px;font-size:.86rem}
+  .mcard .body b{display:block;font-family:"Space Grotesk",sans-serif;color:var(--ink);font-size:.98rem;line-height:1.3;margin-bottom:6px}
+  .mcard .meta{color:var(--muted);font-size:.78rem}
+  .mcard .meta a{text-decoration:underline}
+  .video{position:relative}
+  .video::after{content:"";position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(132,6,48,.9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 7l8 5-8 5z'/%3E%3C/svg%3E") center/26px no-repeat}
+
+  .logos{border-top:1px solid var(--line);padding:40px 0}
+  .logos .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:center}
+  .logos img{width:100%;height:auto;object-fit:contain}
+
+  /* footer */
+  footer{background:var(--wine-dark);color:#f4dde5;padding:72px 0 0;font-size:.92rem}
+  .foot-top{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .foot-top .logo-box{background:#fff;display:inline-block;padding:12px 16px;border-radius:12px;margin-bottom:22px}
+  .foot-top .logo-box img{height:56px;width:auto}
+  .foot-top p{margin-bottom:14px}
+  footer .card-form{border-top-color:#f3cdd9}
+  .data{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;padding-top:36px;border-top:1px solid rgba(255,255,255,.18)}
+  .data h4{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.05rem;margin-bottom:8px}
+  .data a:hover{text-decoration:underline}
+  .foot-logos{margin-top:40px;opacity:.85}
+  .foot-logos img{width:100%;max-width:820px;height:auto;margin:0 auto}
+  .bottom{margin-top:36px;padding:20px 0;border-top:1px solid rgba(255,255,255,.18);font-size:.82rem;display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center}
+  .bottom a{text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1020px){
+    .menu{display:none}
+    .team{grid-template-columns:repeat(3,1fr)}
+    .spec,.comms,.foot-top,.ebook{grid-template-columns:1fr}
+    .problems{grid-template-columns:1fr 1fr}
+    .data{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 16px}
+    .topbar .wrap{justify-content:center;gap:6px 16px}
+    .nav{height:70px}
+    .nav .logo img{height:48px}
+    .nav .btn{display:none}
+    .hero .wrap{padding-top:72px;padding-bottom:36px}
+    .hero .row .btn{width:100%}
+    .slides{grid-template-columns:1fr;margin-top:40px}
+    .slide b{font-size:1.4rem}
+    .team{grid-template-columns:1fr 1fr;gap:14px}
+    .services{grid-template-columns:1fr 1fr}
+    .service{min-height:110px;font-size:1rem;padding:18px}
+    .ebook{padding:26px 20px}
+    .problems{grid-template-columns:1fr}
+    .media{grid-template-columns:1fr}
+    .logos .wrap{grid-template-columns:1fr}
+    .grid2{grid-template-columns:1fr;gap:0}
+    .data{grid-template-columns:1fr}
+    .consult .row .btn{width:100%}
+    section{padding:64px 0}
+    .card-form{padding:24px 20px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.9rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para ABA Abogadas · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="tel:+34915974343"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel">+34 915 974 343</span></a>
+    <a href="mailto:administracion@aba-abogadas.com"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>administracion@aba-abogadas.com</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://aba-abogadas.com/" aria-label="ABA Abogadas"><img src="https://aba-abogadas.com/wp-content/uploads/2018/03/logo_400x185px.png" alt="ABA Abogadas"></a>
+    <nav class="menu" aria-label="Menú principal">
+      <div><a href="https://aba-abogadas.com/">Inicio</a></div>
+      <div><a href="https://aba-abogadas.com/la-firma/">La firma</a></div>
+      <div><a href="https://aba-abogadas.com/equipo/">Equipo</a></div>
+      <div><a href="https://aba-abogadas.com/servicios/">Servicios<span class="caret">▾</span></a>
+        <div class="sub">
+          <a href="https://aba-abogadas.com/servicios/familia/">Familia</a>
+          <a href="https://aba-abogadas.com/servicios/testamentos-y-herencias/">Testamentos y herencias</a>
+          <a href="https://aba-abogadas.com/servicios/laboral/">Laboral</a>
+          <a href="https://aba-abogadas.com/servicios/penal/">Penal</a>
+          <a href="https://aba-abogadas.com/servicios/obligaciones-y-contratos/">Obligaciones y contratos</a>
+          <a href="https://aba-abogadas.com/servicios/arrendamientos/">Arrendamientos</a>
+        </div>
+      </div>
+      <div><a href="https://aba-abogadas.com/comunicacion/">Comunicación<span class="caret">▾</span></a>
+        <div class="sub">
+          <a href="https://aba-abogadas.com/medios-de-comunicacion/">Medios de comunicación</a>
+          <a href="https://aba-abogadas.com/profesional/">Blog</a>
+        </div>
+      </div>
+      <div><a href="https://aba-abogadas.com/contacto/">Contacto<span class="caret">▾</span></a>
+        <div class="sub">
+          <a href="https://aba-abogadas.com/contacto/unete/">Únete a ABA</a>
+        </div>
+      </div>
+    </nav>
+    <a href="tel:+34915974343" class="btn btn-wine btn-sm"><span class="tel">915 97 43 43</span></a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Despacho Abogados Derecho de Familia en Madrid</span>
+      <h1>Es profesional, es personal.</h1>
+      <div class="rule"></div>
+      <p class="lead">Nos exigimos los más altos estándares de la abogacía, asumiendo cada caso como si fuera de nuestra propia familia.</p>
+      <div class="row">
+        <a href="tel:+34915974343" class="btn btn-wine">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          Teléfono <span class="tel">+34 915 97 43 43</span>
+        </a>
+        <a href="#contacto" class="btn btn-line">Pide una consulta</a>
+      </div>
+      <div class="slides">
+        <a class="slide" href="https://aba-abogadas.com/servicios/familia/"><div><b>FAMILIA</b><span>Servicios | Familia</span></div></a>
+        <a class="slide" href="https://aba-abogadas.com/servicios/laboral/"><div><b>LABORAL</b><span>Servicios | Laboral</span></div></a>
+        <a class="slide" href="https://aba-abogadas.com/servicios/penal/"><div><b>PENAL</b><span>Servicios | Penal</span></div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPO -->
+  <section id="equipo">
+    <div class="wrap">
+      <div class="team-head">
+        <h2>Más de 15 especialistas a tu lado</h2>
+        <a href="https://aba-abogadas.com/equipo/" class="btn btn-line">Conoce al equipo completo</a>
+      </div>
+      <div class="team">
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/ana-clara-belio/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/ANACLARA-480x600.jpg" alt="Ana Clara Belío" loading="lazy"></a><b>Ana Clara Belío</b><span class="role">Socia Directora</span><a class="more" href="https://aba-abogadas.com/equipo/ana-clara-belio/">Más sobre Ana Clara</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/julia-clavero/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/julia-480x600.jpg" alt="Julia Clavero" loading="lazy"></a><b>Julia Clavero</b><span class="role">Socia</span><a class="more" href="https://aba-abogadas.com/equipo/julia-clavero/">Más sobre Julia</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/rosa-lopez/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/ROSA-480x600.jpg" alt="Rosa López" loading="lazy"></a><b>Rosa López</b><span class="role">Socia</span><a class="more" href="https://aba-abogadas.com/equipo/rosa-lopez/">Más sobre Rosa</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/encarnacion-roca-trias/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/ENCARNA-480x600.jpg" alt="Encarnación Roca Trías" loading="lazy"></a><b>Encarnación Roca Trías</b><span class="role">Socia Of Counsel</span><a class="more" href="https://aba-abogadas.com/equipo/encarnacion-roca-trias/">Más sobre Encarnación</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/lara-sanchez/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/LAURA-480x600.jpg" alt="Lara Sánchez" loading="lazy"></a><b>Lara Sánchez</b><span class="role">Abogada</span><a class="more" href="https://aba-abogadas.com/equipo/lara-sanchez/">Más sobre Lara</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/tania-pose/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/TANIA1-480x600.jpg" alt="Tania Pose" loading="lazy"></a><b>Tania Pose</b><span class="role">Abogada</span><a class="more" href="https://aba-abogadas.com/equipo/tania-pose/">Más sobre Tania</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/montserrat-garcia-santos/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/MONTSERRAT-480x600.jpg" alt="Montserrat García Santos" loading="lazy"></a><b>Montserrat García Santos</b><span class="role">Letrada</span><a class="more" href="https://aba-abogadas.com/equipo/montserrat-garcia-santos/">Más sobre Montserrat</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/silvia-calzon-arias/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/SILVIA-480x600.jpg" alt="Silvia Calzón" loading="lazy"></a><b>Silvia Calzón</b><span class="role">Letrada</span><a class="more" href="https://aba-abogadas.com/equipo/silvia-calzon-arias/">Más sobre Silvia</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/alba-rodriguez/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/ALBA1-480x600.jpg" alt="Alba Rodríguez Giménez" loading="lazy"></a><b>Alba Rodríguez Giménez</b><span class="role">Letrada</span><a class="more" href="https://aba-abogadas.com/equipo/alba-rodriguez/">Más sobre Alba</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/lucia-paredes-masso/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/LUCIA-480x600.jpg" alt="Lucía Paredes Massó" loading="lazy"></a><b>Lucía Paredes Massó</b><span class="role">Letrada</span><a class="more" href="https://aba-abogadas.com/equipo/lucia-paredes-masso/">Más sobre Lucía</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/myriam-socorro/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/MIRIAM-480x600.jpg" alt="Myriam Socorro" loading="lazy"></a><b>Myriam Socorro</b><span class="role">Letrada</span><a class="more" href="https://aba-abogadas.com/equipo/myriam-socorro/">Más sobre Myriam</a></div>
+        <div class="member"><a class="ph" href="https://aba-abogadas.com/equipo/cristina-herranz/"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/CRISTINA1-480x600.jpg" alt="Cristina Herranz" loading="lazy"></a><b>Cristina Herranz</b><span class="role">Letrada</span><a class="more" href="https://aba-abogadas.com/equipo/cristina-herranz/">Más sobre Cristina</a></div>
+        <div class="member"><div class="ph"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/PALOMA-480x600.jpg" alt="Paloma Martín" loading="lazy"></div><b>Paloma Martín</b><span class="role">Atención al cliente</span></div>
+        <div class="member"><div class="ph"><img src="https://aba-abogadas.com/wp-content/uploads/2026/07/ANABEL-480x600.jpg" alt="Anabel Moreno" loading="lazy"></div><b>Anabel Moreno</b><span class="role">Atención al cliente</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="bg-rose">
+    <div class="wrap">
+      <div class="spec">
+        <h2>Especialización en Derecho de Familia</h2>
+        <div>
+          <p>Ayudamos a nuestros clientes a resolver <strong>todo tipo de cuestiones relacionadas con el ámbito familiar</strong>, buscando el mejor escenario futuro para cada realidad, aportando <strong>representación legal altamente cualificada, ética y comprometida</strong>, así como el apoyo de otros profesionales, si fueran necesarios.</p>
+          <a href="https://aba-abogadas.com/servicios/" class="btn btn-line">Ver más</a>
+        </div>
+      </div>
+      <div class="services">
+        <a class="service" href="https://aba-abogadas.com/servicios/familia/">Familia</a>
+        <a class="service" href="https://aba-abogadas.com/servicios/testamentos-y-herencias/">Testamentos y herencias</a>
+        <a class="service" href="https://aba-abogadas.com/servicios/laboral/">Laboral</a>
+        <a class="service" href="https://aba-abogadas.com/servicios/penal/">Penal</a>
+        <a class="service" href="https://aba-abogadas.com/servicios/obligaciones-y-contratos/">Obligaciones y contratos</a>
+        <a class="service" href="https://aba-abogadas.com/servicios/arrendamientos/">Arrendamientos</a>
+      </div>
+
+      <div class="ebook">
+        <div>
+          <h3>Descarga el ebook con todo lo que debes saber antes de divorciarte o separarte de tu pareja</h3>
+          <p>Lee la guía con <strong>pasos imprescindibles</strong> en el caso de una ruptura matrimonial, entre ellos:</p>
+          <ul>
+            <li>Pensión compensatoria</li>
+            <li>Guarda y custodia</li>
+            <li>Régimen de visitas</li>
+            <li>Liquidación de gananciales</li>
+          </ul>
+        </div>
+        <a href="https://aba-abogadas.com/abogados-de-divorcios-y-separaciones/"><img src="https://aba-abogadas.com/wp-content/uploads/2018/10/ABA_MQ_MockUp-eBook-DivorciosSeparaciones-2.png" alt="Ebook Separaciones y divorcios" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO PODEMOS AYUDARTE -->
+  <section class="help">
+    <div class="wrap">
+      <div class="head center">
+        <h2>¿Cómo podemos ayudarte?</h2>
+        <p>Los problemas más frecuentemente tratados en nuestro despacho</p>
+      </div>
+      <div class="problems">
+        <a href="https://aba-abogadas.com/abogados-de-divorcios-y-separaciones/">Divorcios y separaciones<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/familia/">Reparto de gananciales<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/familia/">Custodia y visitas a los hijos<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/familia/">Alimentos y pensiones<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/penal/">Violencia doméstica y maltrato<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/laboral/">Despidos<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/familia/">Sustracción internacional<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://aba-abogadas.com/servicios/familia/">Traslado de menores<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIDE UNA CONSULTA -->
+  <div class="consult">
+    <div class="wrap">
+      <h2>Pide una consulta</h2>
+      <p>Cuanto antes acudas a un especialista, más fácil será resolver, e incluso evitar, un problema.</p>
+      <div class="row">
+        <a href="#contacto" class="btn btn-wine">Contacta</a>
+        <a href="tel:+34915974343" class="btn btn-line">Teléfono <span class="tel">+34 915 97 43 43</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOS COMUNICAMOS -->
+  <section id="comunicamos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Comunicación</span>
+        <h2>NOS COMUNICAMOS</h2>
+      </div>
+      <div class="comms">
+        <form class="card-form" onsubmit="return demoSubmit(this)">
+          <h3>Recibe nuestros artículos en tu e-mail</h3>
+          <div class="field"><label for="nl-n">Nombre</label><input id="nl-n" required autocomplete="name"></div>
+          <div class="field"><label for="nl-e">Dirección de correo electrónico</label><input id="nl-e" type="email" required autocomplete="email"></div>
+          <label class="check"><input type="checkbox"><span>He leído el deber de informar sobre el <a href="https://aba-abogadas.com/newsletter-politicas/" target="_blank" rel="noopener">tratamiento de mis datos</a></span></label>
+          <div class="captcha"><label for="nl-c">Introduce el código para enviar el formulario</label><input id="nl-c" autocomplete="off"></div>
+          <button class="btn btn-wine" type="submit">Suscribirse</button>
+          <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        </form>
+
+        <div class="media">
+          <a class="mcard" href="https://aba-abogadas.com/custodia-compartida-informe-psicosocial-2/">
+            <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v12H7l-3 3z"/></svg>OPINIÓN</span>
+            <img src="https://aba-abogadas.com/wp-content/uploads/2026/10/Web-LinkedIn-4-400x250.png" alt="Law&amp;Trends | Custodia compartida pese a un informe psicosocial contrario" loading="lazy">
+            <div class="body"><b>Law&amp;Trends | Custodia compartida pese a un informe psicosocial contrario</b><p class="meta">por ABA Abogadas | ABA en los medios, Familia</p><p>¿Puede un juez...</p></div>
+          </a>
+          <a class="mcard" href="https://www.expansion.com/juridico/opinion/2020/03/19/5e726c7d468aeb2f048b4593.html" target="_blank" rel="noopener">
+            <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h13v16H6a2 2 0 0 1-2-2zM17 8h3v10a2 2 0 0 1-2 2h-1z"/></svg>PRENSA</span>
+            <div class="body"><b>Testamento en tiempos de coronavirus</b><p class="meta">Expansión</p></div>
+          </a>
+          <a class="mcard" href="https://www.youtube.com/watch?v=NXrn5AjLa8Y" target="_blank" rel="noopener">
+            <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h13v12H3zM16 10l5-3v10l-5-3z"/></svg>VÍDEOS</span>
+            <span class="video"><img src="https://i.ytimg.com/vi/NXrn5AjLa8Y/hqdefault.jpg" alt="5 falsos mitos en un proceso de divorcio" loading="lazy"></span>
+            <div class="body"><b>5 falsos mitos en un proceso de divorcio</b></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="logos">
+    <div class="wrap">
+      <img src="https://aba-abogadas.com/wp-content/uploads/2026/06/logos-1-scaled.png" alt="Logos de empresas colaboradoras 1" loading="lazy">
+      <img src="https://aba-abogadas.com/wp-content/uploads/2026/06/logo-2-scaled.png" alt="Logos de empresas colaboradoras 2" loading="lazy">
+      <img src="https://aba-abogadas.com/wp-content/uploads/2026/06/logo-3-scaled.png" alt="Logos de empresas colaboradoras 3" loading="lazy">
+    </div>
+  </div>
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <span class="logo-box"><img src="https://aba-abogadas.com/wp-content/uploads/2018/03/logo_400x185px.png" alt="ABA Abogadas"></span>
+        <p>La razón de la existencia de ABA Abogadas es dar soluciones a los conflictos de las familias.</p>
+        <p>Servimos a los clientes ayudando a resolver cuestiones que afectan a las familias buscando el escenario futuro más feliz dentro de cada realidad, aportando representación legal altamente calificada, ética y comprometida.</p>
+      </div>
+      <form class="card-form" onsubmit="return demoSubmit(this)">
+        <div class="grid2">
+          <div class="field"><label for="c-n">Nombre</label><input id="c-n" required autocomplete="name"></div>
+          <div class="field"><label for="c-e">Dirección de correo electrónico</label><input id="c-e" type="email" required autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="c-t">Teléfono</label><input id="c-t" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="c-m">Mensaje</label><textarea id="c-m" rows="4" required></textarea></div>
+        <div class="field"><label>Política de privacidad</label>
+          <label class="check" style="margin-top:0"><input type="checkbox" required><span>He leído el deber de informar sobre el tratamiento de mis datos</span></label>
+        </div>
+        <div class="captcha"><label for="c-c">7 + 6 =</label><input id="c-c" required autocomplete="off"></div>
+        <button class="btn btn-wine" type="submit">Enviar</button>
+        <div class="form-ok">Demo: en la versión final el formulario se conecta al email del negocio.</div>
+        <p class="legal-note">Al enviar este formulario aceptas nuestra <a href="https://aba-abogadas.com/politica-de-proteccion-de-datos-y-privacidad/" target="_blank" rel="noopener">política de privacidad</a></p>
+      </form>
+    </div>
+
+    <div class="data">
+      <div><h4>Teléfono</h4><a href="tel:+34915974343" class="tel">+34 915 97 43 43</a></div>
+      <div><h4>Fax</h4><span class="tel">+34 915 56 95 26</span></div>
+      <div><h4>Horario de atención al cliente</h4><p>L-J: 09:30 a 14:00 y de 15:00 a 19:00<br>V: De 09:00 a 14:00<br>No cerramos ningún mes del año</p></div>
+      <div><h4>Dónde estamos</h4><a href="https://goo.gl/maps/UX4HMzgHfTR2" target="_blank" rel="noopener">Calle Serrano N40 2 Izq · 28001 Madrid</a></div>
+    </div>
+
+    <div class="foot-logos"><img src="https://aba-abogadas.com/wp-content/uploads/2026/06/logos-footer-aba-2-1024x102.png" alt="" loading="lazy"></div>
+
+    <div class="bottom">
+      <a href="https://aba-abogadas.com/aviso-legal/">Aviso legal</a>
+      <span>·</span>
+      <a href="https://aba-abogadas.com/politica-de-proteccion-de-datos-y-privacidad/">Política de Privacidad</a>
+      <span>·</span>
+      <a href="https://aba-abogadas.com/deber-de-informar/">Deber de informar</a>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34915974343" class="btn btn-wine">Llamar</a>
+  <a href="#contacto" class="btn btn-line">Contacta</a>
+</div>
+
+<script>
+  function demoSubmit(f){ f.querySelector('.form-ok').style.display='block'; return false; }
+</script>
+</body>
+</html>

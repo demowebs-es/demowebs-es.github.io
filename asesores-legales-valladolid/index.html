@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Asesores Legales Valladolid · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Raleway:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#980a2b; --wine-dark:#7a0822; --slate:#324151; --ink:#1f2933; --text:#3d4752; --muted:#6b7480;
+    --line:#e2e2e2; --tint:#f5f4f2; --grey:#d6d6d6; --white:#fff; --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:Raleway,sans-serif;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wine);font-weight:700}
+  .serif{font-family:"Libre Baskerville",Georgia,serif}
+
+  .demo{background:var(--slate);color:#e6e9ee;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
+  .nav .logo img{height:66px;width:auto}
+  .menu{display:flex;align-items:center;gap:4px;font-family:Raleway,sans-serif;font-weight:600;font-size:.9rem;color:var(--slate)}
+  .menu > li{list-style:none;position:relative}
+  .menu > li > a{display:block;padding:10px 12px;border-radius:8px}
+  .menu > li > a:hover{color:var(--wine)}
+  .menu .sub{display:none;position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--wine);border-radius:0 0 10px 10px;padding:8px;box-shadow:0 20px 40px -24px rgba(0,0,0,.35)}
+  .menu li:hover .sub,.menu li:focus-within .sub{display:block}
+  .menu .sub a{display:block;padding:7px 10px;border-radius:6px;font-weight:500;font-size:.86rem}
+  .menu .sub a:hover{background:var(--tint);color:var(--wine)}
+  .menu .sub.cols{columns:2;min-width:440px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:6px;font-family:Raleway,sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.02em;transition:.2s;border:1.5px solid var(--wine);cursor:pointer;white-space:nowrap}
+  .btn svg{flex:none}
+  .btn-wine{background:var(--wine);color:#fff}
+  .btn-wine:hover{background:var(--wine-dark);border-color:var(--wine-dark)}
+  .btn-line{background:#fff;color:var(--wine)}
+  .btn-line:hover{background:var(--tint)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{padding:10px 16px;font-size:.84rem}
+  .tel{font-variant-numeric:tabular-nums}
+
+  .mnav{display:none}
+  .mnav summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:Raleway,sans-serif;font-weight:700;font-size:.86rem;color:var(--slate);padding:10px 12px;border:1px solid var(--line);border-radius:8px}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav .panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.3);padding:8px 16px 18px;max-height:75vh;overflow:auto}
+  .mnav .panel b{display:block;font-family:Raleway,sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);margin:14px 0 4px}
+  .mnav .panel b a{color:inherit}
+  .mnav .panel a.l{display:block;padding:6px 0;border-bottom:1px solid var(--tint);font-size:.95rem}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--tint),#fff);border-bottom:1px solid var(--line);padding:70px 0 80px}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+  .hero h1{font-family:"Libre Baskerville",Georgia,serif;font-weight:700;font-size:clamp(2.1rem,4.4vw,3.3rem);line-height:1.12;color:var(--ink);margin:14px 0 18px;text-transform:uppercase;letter-spacing:.01em}
+  .hero h1 em{font-style:normal;color:var(--wine)}
+  .hero .lead{font-size:1.14rem;color:var(--slate);font-weight:500;max-width:540px}
+  .hero p.welcome{margin-top:16px;max-width:540px}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero-photo{position:relative}
+  .hero-photo img{border-radius:var(--radius);aspect-ratio:16/10;object-fit:cover;width:100%;box-shadow:0 30px 60px -32px rgba(31,41,51,.55)}
+  .hero-photo .tag{position:absolute;left:-18px;bottom:-22px;background:var(--wine);color:#fff;border-radius:10px;padding:16px 20px;max-width:270px;font-size:.88rem;line-height:1.45;box-shadow:0 18px 36px -20px rgba(0,0,0,.5)}
+  .hero-photo .tag strong{display:block;font-family:"Libre Baskerville",Georgia,serif;font-size:1.05rem;margin-bottom:2px}
+
+  /* promos (slider content) */
+  .promos{padding:64px 0 24px}
+  .promo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .promo{position:relative;border-radius:var(--radius);overflow:hidden;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;padding:20px;isolation:isolate}
+  .promo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s}
+  .promo::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(31,41,51,.15) 0%,rgba(31,41,51,.88) 70%)}
+  .promo:hover img{transform:scale(1.05)}
+  .promo .k{font-family:Raleway,sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#f3c6cf}
+  .promo h3{font-family:"Libre Baskerville",Georgia,serif;font-size:1.06rem;line-height:1.35;margin:6px 0 4px;font-weight:700}
+  .promo p{font-size:.88rem;color:#e7eaee}
+  .promo .go{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font-family:Raleway,sans-serif;font-weight:700;font-size:.82rem;border-bottom:1.5px solid var(--wine);align-self:flex-start;padding-bottom:2px}
+  .promo.wide{grid-column:span 2}
+
+  /* about */
+  section{padding:88px 0}
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .about .card{border:1px solid var(--line);border-radius:var(--radius);padding:34px;background:#fff}
+  .about .card.dark{background:var(--slate);color:#e3e7ec;border-color:var(--slate)}
+  .about h2{font-family:"Libre Baskerville",Georgia,serif;font-size:clamp(1.5rem,2.6vw,1.9rem);color:var(--ink);line-height:1.2;margin:10px 0 14px}
+  .about .card.dark h2{color:#fff}
+  .about .card.dark .eyebrow{color:#f3c6cf}
+  .about .card .btn{margin-top:22px}
+
+  /* services */
+  .services{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .head{max-width:720px;margin-bottom:40px}
+  .head h2{font-family:"Libre Baskerville",Georgia,serif;font-weight:700;font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.15;color:var(--ink);margin-top:10px}
+  .head p{color:var(--muted);margin-top:12px;font-size:1.04rem}
+  .svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px 20px;display:flex;flex-direction:column;transition:.25s}
+  .svc:hover{border-color:var(--wine);box-shadow:0 20px 40px -28px rgba(31,41,51,.45);transform:translateY(-2px)}
+  .svc img{width:52px;height:52px;margin-bottom:14px}
+  .svc h3{font-family:Raleway,sans-serif;font-weight:700;font-size:1.02rem;color:var(--ink);line-height:1.3}
+  .svc p{font-size:.88rem;margin:8px 0 16px;flex:1}
+  .svc .go{font-family:Raleway,sans-serif;font-weight:700;font-size:.8rem;color:var(--wine);display:inline-flex;gap:6px;align-items:center}
+
+  /* team band */
+  .team{position:relative;color:#fff;padding:0;isolation:isolate;overflow:hidden}
+  .team img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:-2}
+  .team::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(31,41,51,.92) 0%,rgba(31,41,51,.65) 45%,rgba(31,41,51,.1) 100%)}
+  .team .wrap{min-height:440px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:70px;padding-bottom:70px}
+  .team h2{font-family:"Libre Baskerville",Georgia,serif;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.15;max-width:460px;margin-bottom:24px}
+
+  /* news */
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .post{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.25s}
+  .post:hover{box-shadow:0 20px 40px -28px rgba(31,41,51,.45)}
+  .post img{aspect-ratio:3/2;object-fit:cover;width:100%}
+  .post .b{padding:22px;display:flex;flex-direction:column;flex:1}
+  .post time{font-size:.78rem;color:var(--wine);font-weight:500;letter-spacing:.04em}
+  .post h3{font-family:"Libre Baskerville",Georgia,serif;font-size:1.06rem;line-height:1.4;color:var(--ink);margin:6px 0 10px}
+  .post p{font-size:.9rem;color:var(--muted)}
+
+  /* opinions + partners */
+  .ops{background:var(--tint);border-top:1px solid var(--line)}
+  .ops-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .ops h2{font-family:"Libre Baskerville",Georgia,serif;font-size:clamp(1.8rem,3.4vw,2.5rem);color:var(--ink);line-height:1.15;margin:10px 0 22px}
+  .ops .badge{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .ops .badge img{max-height:150px;width:auto}
+  .partners{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+  .partner{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-size:.82rem;color:var(--muted);transition:.2s}
+  .partner:hover{border-color:var(--wine)}
+  .partner img{height:56px;width:auto;object-fit:contain}
+
+  /* contact */
+  .contact{background:var(--slate);color:#e3e7ec}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+  .cbox{border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:26px}
+  .cbox .ic{width:44px;height:44px;border-radius:50%;background:var(--wine);display:grid;place-items:center;margin-bottom:14px;color:#fff}
+  .cbox h3{font-family:Raleway,sans-serif;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:#f3c6cf;margin-bottom:8px}
+  .cbox a,.cbox p{display:block;color:#fff;font-size:1rem;line-height:1.55;word-break:break-word}
+  .cbox a:hover{text-decoration:underline}
+  .cbox .big{font-family:"Libre Baskerville",Georgia,serif;font-size:1.45rem}
+  .cbox p + p{margin-top:12px}
+  .cbox small{display:block;color:#c3cad3;font-size:.86rem}
+
+  footer{padding:30px 0;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot img{height:48px;width:auto}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 14px}
+  .foot nav a{text-decoration:underline}
+  .social{display:flex;gap:10px}
+  .social a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--slate)}
+  .social a:hover{border-color:var(--wine);color:var(--wine)}
+
+  .callbar{display:none}
+
+  @media (max-width:1080px){
+    .menu{display:none}
+    .mnav{display:block}
+    .svc-grid{grid-template-columns:repeat(3,1fr)}
+    .promo-grid{grid-template-columns:repeat(2,1fr)}
+    .promo.wide{grid-column:span 2}
+  }
+  @media (max-width:860px){
+    .hero-grid,.about,.ops-grid,.contact-grid{grid-template-columns:1fr}
+    .hero-photo .tag{left:12px;bottom:-26px}
+    .news-grid{grid-template-columns:1fr 1fr}
+    .svc-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .nav{height:72px}
+    .nav .logo img{height:52px}
+    .nav-cta{display:none}
+    .hero{padding:40px 0 64px}
+    .hero .row .btn{width:100%}
+    section{padding:60px 0}
+    .promos{padding:48px 0 10px}
+    .promo-grid,.news-grid,.svc-grid,.partners{grid-template-columns:1fr}
+    .promo.wide{grid-column:auto}
+    .promo{min-height:220px}
+    .about .card{padding:26px 22px}
+    .team .wrap{min-height:380px}
+    .team::before{background:linear-gradient(180deg,rgba(31,41,51,.35) 0%,rgba(31,41,51,.9) 75%)}
+    .team .wrap{justify-content:flex-end}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.86rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Asesores Legales Valladolid · demo no oficial</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://www.asesoreslegalesvalladolid.es/" aria-label="Asesores Legales Valladolid"><img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/asesores-legales-valladolid.png" alt="Asesores Legales Valladolid Logo" width="210" height="103"></a>
+
+    <ul class="menu">
+      <li><a href="https://www.asesoreslegalesvalladolid.es/despacho-abogados/">Conózcanos</a>
+        <div class="sub">
+          <a href="https://www.asesoreslegalesvalladolid.es/despacho-abogados/">El Despacho</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/equipo/">Nuestro equipo</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/como-trabajamos/">Cómo trabajamos</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/opiniones/">Opiniones</a>
+        </div>
+      </li>
+      <li><a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/">Servicios Jurídicos</a>
+        <div class="sub cols">
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-laboral/">Derecho Laboral</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-bancario/">Derecho Bancario</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-de-sucesiones/">Derecho de Sucesiones</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-matrimonial/">Derecho Matrimonial</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-civil/">Derecho Civil</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-penal/">Derecho Penal-penitenciario</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-administrativo/">Derecho Administrativo</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/iguala-juridica/">Iguala Jurídica</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-mercantil/">Derecho Mercantil</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/mediacion/">Mediación</a>
+        </div>
+      </li>
+      <li><a href="https://www.asesoreslegalesvalladolid.es/blog/">Blog</a>
+        <div class="sub">
+          <a href="https://www.asesoreslegalesvalladolid.es/blog/">Información de interés</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/faq/">FAQ</a>
+          <a href="https://www.asesoreslegalesvalladolid.es/enlaces-de-interes/">Enlaces de interés</a>
+        </div>
+      </li>
+      <li><a href="https://www.asesoreslegalesvalladolid.es/contacto/">Contacto</a></li>
+    </ul>
+
+    <a href="tel:+34983342122" class="btn btn-wine btn-sm nav-cta">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span class="tel">+34 983 342 122</span>
+    </a>
+
+    <details class="mnav">
+      <summary><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Menú</summary>
+      <div class="panel">
+        <b><a href="https://www.asesoreslegalesvalladolid.es/despacho-abogados/">Conózcanos</a></b>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/despacho-abogados/">El Despacho</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/equipo/">Nuestro equipo</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/como-trabajamos/">Cómo trabajamos</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/opiniones/">Opiniones</a>
+        <b><a href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/">Servicios Jurídicos</a></b>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-laboral/">Derecho Laboral</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-bancario/">Derecho Bancario</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-de-sucesiones/">Derecho de Sucesiones</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-matrimonial/">Derecho Matrimonial</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-civil/">Derecho Civil</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-penal/">Derecho Penal-penitenciario</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-administrativo/">Derecho Administrativo</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/iguala-juridica/">Iguala Jurídica</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-mercantil/">Derecho Mercantil</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/mediacion/">Mediación</a>
+        <b><a href="https://www.asesoreslegalesvalladolid.es/blog/">Blog</a></b>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/blog/">Información de interés</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/faq/">FAQ</a>
+        <a class="l" href="https://www.asesoreslegalesvalladolid.es/enlaces-de-interes/">Enlaces de interés</a>
+        <b><a href="https://www.asesoreslegalesvalladolid.es/contacto/">Contacto</a></b>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Nuestro despacho de abogados</span>
+        <h1>Asesores Legales <em>Valladolid</em></h1>
+        <p class="lead">Asesoría integral en todos los temas relacionados con el Derecho con más de 30 años de experiencia</p>
+        <p class="welcome">Le damos la bienvenida al despacho de abogados ASESORES LEGALES, situado en pleno centro de Valladolid.</p>
+        <div class="row">
+          <a href="https://www.asesoreslegalesvalladolid.es/contacto/" class="btn btn-wine">Contacte con nosotros</a>
+          <a href="tel:+34983342122" class="btn btn-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span class="tel">+34 983 342 122</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/GRUPO-BLANCO-Y-NEGRO2.jpg" alt="Equipo de Asesores Legales Valladolid">      </div>
+    </div>
+  </div>
+
+  <!-- PROMOS (contenido del slider) -->
+  <div class="promos">
+    <div class="wrap promo-grid">
+      <a class="promo wide" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/iguala-juridica/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/el-despacho.jpg" alt="" loading="lazy">
+        <span class="k">Contrato de iguala jurídica</span>
+        <h3>Si es una empresa, contrate con nosotros y benefíciese de nuestros servicios exclusivos</h3>
+        <span class="go">Iguala jurídica →</span>
+      </a>
+      <a class="promo" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-bancario/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/hipoteca.jpg" alt="" loading="lazy">
+        <h3>Recupere los gastos de formalización de su hipoteca.</h3>
+        <p>Contáctenos.</p>
+        <span class="go">Derecho bancario →</span>
+      </a>
+      <a class="promo" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-bancario/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/negotiations-about-contract-terms-concept-hand-pointing-at-document-closeup.jpg" alt="" loading="lazy">
+        <h3>¿Tiene una tarjeta revolving?</h3>
+        <p>Reclame los intereses abusivos.</p>
+        <span class="go">Derecho bancario →</span>
+      </a>
+      <a class="promo" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-matrimonial/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/divorcio.jpg" alt="" loading="lazy">
+        <h3>¿Está usted en proceso de separación o divorcio?</h3>
+        <p>Nosotros le ayudamos.</p>
+        <span class="go">Abogados matrimoniales →</span>
+      </a>
+      <a class="promo" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-laboral/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/negative-emotions-because-of-being-fired.jpg" alt="" loading="lazy">
+        <h3>¿Qué puede hacer ante un despido?</h3>
+        <p>Contacte con nosotros.</p>
+        <span class="go">Derecho laboral →</span>
+      </a>
+      <a class="promo" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-civil/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/derecho-laboral.jpg" alt="" loading="lazy">
+        <h3>¿Su compañía de gas o electricidad ha rescindido unilateralmente el contrato que tenía suscrito con su empresa?</h3>
+        <p>Contacte con nuestros abogados.</p>
+        <span class="go">Abogados civiles →</span>
+      </a>
+      <a class="promo" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-mercantil/">
+        <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/car-dashboard-and-wheel-close-up.jpg" alt="indemnizaciones" loading="lazy">
+        <h3>¿Es usted uno de los afectados por el cártel de coches?</h3>
+        <p>Reclame su indemnización.</p>
+        <span class="go">Derecho mercantil →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="despacho">
+    <div class="wrap about">
+      <div class="card">
+        <span class="eyebrow">Asesores Legales Valladolid</span>
+        <h2>Despacho de Abogados en Valladolid</h2>
+        <p>En Asesores Legales contamos con un equipo multidisciplinar de abogados y abogadas, lo que nos permite prestar un servicio profesional de asesoría integral en todos los temas relacionado con el Derecho. Nuestro despacho de abogados, situado en pleno centro de Valladolid, cuenta con más de 30 años de experiencia ofreciendo servicios legales.</p>
+      </div>
+      <div class="card dark">
+        <span class="eyebrow">El despacho</span>
+        <h2>Conózcanos</h2>
+        <p>Con el objetivo de prestar un servicio de asesoramiento global y completo para satisfacer las necesidades de nuestros clientes, nuestros abogados colaboran con expertos asesores contables, fiscales y laborales. Nuestros abogados y asesores le mantendrán al tanto y le informarán de todos los avances que se lleven a cabo a lo largo de todo el procedimiento.</p>
+        <a href="https://www.asesoreslegalesvalladolid.es/despacho-abogados/" class="btn btn-ghost btn-sm">El Despacho</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Áreas del Derecho</span>
+        <h2>Servicios jurídicos</h2>
+        <p>Asesores Legales dispone de una plantilla de profesionales altamente especializados en las distintas áreas del Derecho:</p>
+      </div>
+      <div class="svc-grid">
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-laboral/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/ICONO-1.png" alt="" loading="lazy">
+          <h3>Derecho Laboral</h3>
+          <p>El derecho del trabajo es el conjunto de normas que regulan los aspectos fundamentales de la relación laboral entre empresarios y trabajadores.</p>
+          <span class="go">Abogados laborales →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-bancario/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/12/ICONO-bancario.png" alt="" loading="lazy">
+          <h3>Derecho Bancario</h3>
+          <p>El derecho bancario es la norma que regula cómo deben proceder los bancos al comercializar un producto u ofrecer un servicio bancario a un cliente.</p>
+          <span class="go">Abogados bancarios →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-de-sucesiones/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/12/ICONO-sucesiones.png" alt="" loading="lazy">
+          <h3>Derecho de Sucesiones</h3>
+          <p>Nuestros abogados especializados en herencias se ocuparán de la planificación de la sucesión y la tramitación de los procedimientos hereditarios.</p>
+          <span class="go">Abogados de sucesiones →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-matrimonial/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/12/ICONO-matrimonial.png" alt="" loading="lazy">
+          <h3>Derecho Matrimonial</h3>
+          <p>Abogados especializados en derecho de familia ofreciendo servicios en separaciones o divorcios, violencia doméstica, procedimientos de menores…</p>
+          <span class="go">Abogados matrimoniales →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-civil/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/ICONO-5.png" alt="" loading="lazy">
+          <h3>Derecho Civil</h3>
+          <p>Nuestros profesionales están especializados en diferentes campos del derecho civil como el derecho patrimonial, el derecho inmobiliario y seguros.</p>
+          <span class="go">Abogados civiles →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-penal/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/ICONO-4.png" alt="" loading="lazy">
+          <h3>Derecho Penal-Penitenciario</h3>
+          <p>El derecho penal es la rama del derecho que se ocupa de delitos perseguidos por el Estado como hurtos, delitos contra la seguridad vial, lesiones…</p>
+          <span class="go">Abogados penales →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-administrativo/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/ICONO-2.png" alt="" loading="lazy">
+          <h3>Derecho Administrativo</h3>
+          <p>El derecho administrativo regula la relación de los ciudadanos con la Administración General del Estado, las CCAA y la Administración Local.</p>
+          <span class="go">Abogados administrativos →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/iguala-juridica/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/ICONO-3.png" alt="" loading="lazy">
+          <h3>Iguala Jurídica</h3>
+          <p>Un contrato de Iguala Jurídica consiste en la prestación de asesoramiento jurídico integral de forma permanente por parte de nuestros abogados.</p>
+          <span class="go">Iguala jurídica →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/derecho-mercantil/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/ICONO-6.png" alt="" loading="lazy">
+          <h3>Derecho Mercantil</h3>
+          <p>El derecho mercantil se ocupa de regular la vida y el funcionamiento de las sociedades y las relaciones entre las mismas y las personas físicas.</p>
+          <span class="go">Abogados mercantiles →</span>
+        </a>
+        <a class="svc" href="https://www.asesoreslegalesvalladolid.es/servicios-juridicos/mediacion/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/12/ICONO-mediacion.png" alt="" loading="lazy">
+          <h3>Mediación</h3>
+          <p>Servicio completo de mediación en el que el resultado depende de las partes, mientras que en los tribunales depende de la decisión del Juez.</p>
+          <span class="go">Abogados para mediación →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="equipo">
+    <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/GRUPO-BLANCO-Y-NEGRO2.jpg" alt="" loading="lazy">
+    <div class="wrap">
+      <h2>Conozca a nuestros abogados</h2>
+      <a href="https://www.asesoreslegalesvalladolid.es/equipo/" class="btn btn-wine">Nuestro equipo</a>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="noticias">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Blog</span>
+        <h2>Últimas noticias</h2>
+      </div>
+      <div class="news-grid">
+        <a class="post" href="https://www.asesoreslegalesvalladolid.es/realmente-es-tan-importante-cancelar-mis-antecedentes-penales/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/antecedentes-penales-800x531.jpg" alt="" loading="lazy">
+          <div class="b">
+            <time datetime="2022-03-21">21 de marzo de 2022</time>
+            <h3>¿Realmente es tan importante cancelar mis antecedentes penales?</h3>
+            <p>La cancelación de los antecedentes penales es algo fundamental para todas las personas que han sido condenadas alguna vez por [...]</p>
+          </div>
+        </a>
+        <a class="post" href="https://www.asesoreslegalesvalladolid.es/regimen-juridico-de-las-mascotas-en-los-procesos-de-separacion-o-divorcio/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/divorcio-animales-800x533.jpg" alt="" loading="lazy">
+          <div class="b">
+            <time datetime="2022-03-17">17 de marzo de 2022</time>
+            <h3>Régimen jurídico de las mascotas en los procesos de separación o divorcio</h3>
+            <p>Con la publicación el 16 de diciembre de 2021 en el BOE de la Ley 17/2021, de 15 de diciembre, [...]</p>
+          </div>
+        </a>
+        <a class="post" href="https://www.asesoreslegalesvalladolid.es/eres-uno-de-los-afectados-por-las-tarjetas-revolving/">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/post-revolving-800x534.jpg" alt="" loading="lazy">
+          <div class="b">
+            <time datetime="2022-03-16">16 de marzo de 2022</time>
+            <h3>¿Eres uno de los afectados por las tarjetas revolving?</h3>
+            <p>Si eres titular de un tarjeta revolving y has acumulado una deuda que no puedes afrontar, nosotros podemos orientarte con [...]</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONS + PARTNERS -->
+  <section class="ops" id="opiniones">
+    <div class="wrap">
+      <div class="ops-grid">
+        <div>
+          <span class="eyebrow">Opiniones</span>
+          <h2>¿Qué opinan nuestros clientes?</h2>
+          <a href="https://www.asesoreslegalesvalladolid.es/opiniones/" class="btn btn-wine">Ver todas las opiniones</a>
+        </div>
+        <a class="badge" href="https://www.educavalladolid.es/empresas/asesores-legales/" target="_blank" rel="noopener">
+          <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2022/03/educa-va-logo.png" alt="Educa Valladolid" loading="lazy">
+        </a>
+      </div>
+      <div class="partners">
+        <a class="partner" href="https://www.legalitas.com/" target="_blank" rel="noopener"><img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/logo-legalitas.png" alt="LEGALITAS" loading="lazy">LEGALITAS</a>
+        <a class="partner" href="https://www.bni.com/es" target="_blank" rel="noopener"><img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/bni-logo.png" alt="Networking BNI" loading="lazy">Networking BNI</a>
+        <a class="partner" href="https://www.educavalladolid.es/" target="_blank" rel="noopener"><img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/educa-valladolid-logo.png" alt="Asociación de Empresas y Profesionales Educa Valladolid" loading="lazy">Asociación de Empresas y Profesionales Educa Valladolid</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="cbox">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+        <h3>Teléfono</h3>
+        <a class="big tel" href="tel:+34983342122">+34 983 342 122</a>
+      </div>
+      <div class="cbox">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+        <h3>Email</h3>
+        <a href="mailto:asesoreslegales@asesoreslegalesvalladolid.es">asesoreslegales@asesoreslegalesvalladolid.es</a>
+        <a href="mailto:administracion@asesoreslegalesvalladolid.es" style="margin-top:8px">administracion@asesoreslegalesvalladolid.es</a>
+      </div>
+      <div class="cbox">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <h3>Dirección</h3>
+        <p>C/ Miguel Íscar 12, 3º – Of. 4, 47001 – Valladolid</p>
+        <p>C/Teodoro Valdés Nº8 La Pedraja de Portillo – Valladolid <small>(Jueves de 17:00 a 20:00 con cita previa)</small></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="https://www.asesoreslegalesvalladolid.es/wp-content/uploads/2021/11/asesores-legales-valladolid.png" alt="Asesores Legales Valladolid Logo" loading="lazy">
+    <nav>
+      <span>© 2022 ASESORES LEGALES</span>
+      <a href="https://www.asesoreslegalesvalladolid.es/aviso-legal/">Aviso Legal</a>
+      <a href="https://www.asesoreslegalesvalladolid.es/politica-privacidad/">Política de privacidad</a>
+      <a href="https://www.asesoreslegalesvalladolid.es/cookies/">Cookies</a>
+    </nav>
+    <div class="social">
+      <a href="https://www.facebook.com/AsesoresLegalesValladolid/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-3.5 0-4 2.6-4 4.3V8H7v4h3v11h4V12h3.4l.6-4z"/></svg></a>
+      <a href="https://twitter.com/AsesoreslegVall" target="_blank" rel="noopener" aria-label="Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9L1 2h7l4.8 6.4zm-1.2 18h1.9L7.1 4H5.1z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34983342122" class="btn btn-wine">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    <span class="tel">983 342 122</span>
+  </a>
+  <a href="https://www.asesoreslegalesvalladolid.es/contacto/" class="btn btn-line">Contacto</a>
+</div>
+
+</body>
+</html>

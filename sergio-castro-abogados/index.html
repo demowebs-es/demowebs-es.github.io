@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergio Castro Abogados · Propuesta de rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1B568B; --navy:#12395C; --navy-2:#00468C; --yellow:#FEDB04; --amber:#FBB034;
+    --ink:#1A1A1A; --text:#3d4650; --muted:#555555; --line:#e3e8ee; --tint:#F8F8F8; --sky:#eef3f8;
+    --white:#fff; --radius:12px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .slab{font-family:"Roboto Slab",Georgia,serif}
+
+  .demo{background:var(--navy);color:#cfe0f1;font-size:.76rem;text-align:center;padding:6px 16px}
+
+  /* topbar */
+  .topbar{background:var(--sky);font-size:.84rem;color:var(--navy);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;flex-wrap:wrap}
+  .topbar .info{display:flex;gap:22px;flex-wrap:wrap}
+  .topbar .info span,.topbar .info a{display:inline-flex;align-items:center;gap:7px}
+  .topbar .social{display:flex;gap:14px;font-weight:500}
+  .topbar .social a:hover,.topbar .info a:hover{color:var(--blue);text-decoration:underline}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px}
+  .nav .logo img{height:54px;width:auto}
+  .menu{display:flex;gap:4px;list-style:none;align-items:center}
+  .menu > li{position:relative}
+  .menu > li > a{display:block;padding:10px 12px;font-weight:500;font-size:.93rem;color:var(--navy);border-radius:8px}
+  .menu > li > a:hover{background:var(--sky)}
+  .menu .has > a::after{content:"";display:inline-block;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px}
+  .drop{position:absolute;top:100%;left:0;min-width:290px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 20px 40px -20px rgba(18,57,92,.35);padding:8px;list-style:none;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+  .menu li:hover .drop,.menu li:focus-within .drop{opacity:1;visibility:visible;transform:none}
+  .drop a{display:block;padding:8px 12px;border-radius:7px;font-size:.9rem}
+  .drop a:hover{background:var(--sky);color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:8px;font-weight:600;font-size:.94rem;transition:.2s;border:1.5px solid var(--blue);cursor:pointer;font-family:inherit;white-space:nowrap}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--navy);border-color:var(--navy)}
+  .btn-yellow{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}
+  .btn-yellow:hover{background:var(--amber);border-color:var(--amber)}
+  .btn-line{background:#fff;color:var(--blue)}
+  .btn-line:hover{background:var(--sky)}
+  .btn-sm{padding:10px 16px;font-size:.88rem}
+  .nav-cta{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+  .nav-cta small{font-size:.72rem;color:var(--muted)}
+  .burger{display:none}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--sky),#fff 85%);overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end}
+  .hero-copy{padding:72px 0 80px}
+  .hero h1{font-family:"Roboto Slab",Georgia,serif;font-weight:700;font-size:clamp(2.1rem,4.3vw,3.4rem);line-height:1.1;color:var(--navy);margin:14px 0 22px}
+  .who{display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:10px;max-width:520px}
+  .who b{display:block;color:var(--ink);font-size:1.05rem}
+  .who span{color:var(--muted);font-size:.92rem}
+  .hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 30px}
+  .tag{padding:7px 16px;border-radius:999px;border:1.5px solid var(--blue);color:var(--blue);font-weight:600;font-size:.88rem;background:#fff}
+  .tag:hover{background:var(--blue);color:#fff}
+  .hero .row{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-photo{align-self:end;position:relative}
+  .hero-photo::before{content:"";position:absolute;left:10%;right:0;bottom:0;height:78%;background:var(--blue);border-radius:200px 200px 0 0}
+  .hero-photo img{position:relative;width:100%;max-width:420px;margin:0 auto}
+
+  /* intro */
+  section{padding:88px 0}
+  .head{max-width:760px;margin-bottom:40px}
+  .head h2{font-family:"Roboto Slab",Georgia,serif;font-weight:700;font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.15;color:var(--navy);margin-top:10px}
+  .head p{color:var(--muted);margin-top:14px;font-size:1.02rem}
+  .intro{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .intro p{font-size:1.06rem}
+  .intro h2{font-family:"Roboto Slab",Georgia,serif;font-size:clamp(1.8rem,3.2vw,2.4rem);color:var(--navy);line-height:1.15;margin:10px 0 18px}
+  .intro .ph{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 60px -36px rgba(18,57,92,.6)}
+  .intro .ph img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+  /* services */
+  .services{background:var(--tint)}
+  .area{margin-top:52px}
+  .area:first-of-type{margin-top:0}
+  .area-head{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:end;padding-bottom:18px;border-bottom:2px solid var(--blue);margin-bottom:22px}
+  .area-head .n{font-family:"Roboto Slab",serif;font-size:2.6rem;line-height:1;color:var(--yellow);-webkit-text-stroke:1px var(--navy);font-weight:700}
+  .area-head h3{font-family:"Roboto Slab",serif;font-size:1.6rem;color:var(--navy);line-height:1.15}
+  .area-head p{color:var(--muted);font-size:.96rem;margin-top:6px;max-width:720px}
+  .area-head .more{font-weight:600;color:var(--blue);font-size:.9rem;white-space:nowrap}
+  .area-head .more:hover{text-decoration:underline}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:.2s}
+  .card:hover{border-color:var(--blue);box-shadow:0 18px 40px -26px rgba(18,57,92,.5);transform:translateY(-2px)}
+  .card h4{font-size:1.06rem;color:var(--ink);margin-bottom:8px;font-weight:700}
+  .card p{font-size:.93rem;flex:1}
+  .card .info{margin-top:16px;font-weight:700;color:var(--blue);font-size:.9rem}
+  .card .info::after{content:" →"}
+
+  /* advantage */
+  .adv{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .adv .ph img{width:100%;border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover}
+  .adv h2{font-family:"Roboto Slab",serif;font-size:clamp(1.8rem,3.2vw,2.4rem);color:var(--navy);line-height:1.15;margin:10px 0 18px}
+  .adv .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .adv .tags span{padding:6px 14px;background:var(--sky);color:var(--navy);border-radius:999px;font-size:.86rem;font-weight:600}
+
+  /* band */
+  .band{background:var(--navy);color:#dbe6f1;padding:88px 0;position:relative;overflow:hidden}
+  .band-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .band h2{font-family:"Roboto Slab",serif;font-size:clamp(1.8rem,3.2vw,2.4rem);color:#fff;line-height:1.15;margin:10px 0 8px}
+  .band h3{color:var(--yellow);font-size:1.1rem;font-weight:600;margin-bottom:16px}
+  .band .eyebrow{color:var(--yellow)}
+  .band .ph img{border-radius:var(--radius);width:100%;aspect-ratio:3/2;object-fit:cover}
+  .exp{margin-top:26px;padding:22px;border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);background:rgba(255,255,255,.04)}
+  .exp .k{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .exp h4{font-family:"Roboto Slab",serif;color:#fff;font-size:1.4rem;margin:4px 0 8px}
+  .band .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .band .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .band .btn-line:hover{background:rgba(255,255,255,.08);border-color:#fff}
+
+  /* reviews */
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .rev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:14px}
+  .stars{color:var(--amber);letter-spacing:2px;font-size:1rem}
+  .rev p{font-size:.94rem;flex:1}
+  .rev b{color:var(--navy);font-size:.95rem}
+  .rev-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+
+  /* blog */
+  .blog{background:var(--sky)}
+  .blog .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+  .blog h2{font-family:"Roboto Slab",serif;color:var(--navy);font-size:clamp(1.6rem,2.8vw,2.1rem);line-height:1.2;margin:8px 0 10px}
+  .blog p{max-width:620px}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+  .contact-grid h2{font-family:"Roboto Slab",serif;color:var(--navy);font-size:clamp(1.8rem,3.2vw,2.4rem);line-height:1.15;margin:10px 0 6px}
+  .contact-grid .sub{color:var(--muted);margin-bottom:22px}
+  .contact-grid h3{color:var(--ink);font-size:1.2rem;margin-bottom:8px}
+  .box{background:var(--navy);color:#dbe6f1;border-radius:var(--radius);padding:30px;border-top:4px solid var(--yellow)}
+  .box dl{display:grid;gap:18px}
+  .box dt{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .box dd{color:#fff;font-size:1.05rem;margin-top:2px}
+  .box dd a:hover{text-decoration:underline}
+  .box .btn{width:100%;margin-top:24px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;font-size:.86rem;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+  .foot img{height:40px;width:auto}
+  .foot nav{display:flex;gap:16px;flex-wrap:wrap}
+  .foot nav a:hover{color:var(--blue);text-decoration:underline}
+
+  .callbar{display:none}
+
+  @media (max-width:1060px){
+    .menu{display:none}
+    .burger{display:block}
+    .burger summary{list-style:none;cursor:pointer;padding:10px 14px;border:1.5px solid var(--line);border-radius:8px;font-weight:600;color:var(--navy);font-size:.9rem}
+    .burger summary::-webkit-details-marker{display:none}
+    .burger[open] .mob{display:block}
+    .mob{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);max-height:75vh;overflow:auto;padding:10px 20px 20px}
+    .mob a{display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--navy);font-weight:500}
+    .mob .sub a{padding-left:16px;font-weight:400;font-size:.92rem;color:var(--text)}
+    .nav-cta{display:none}
+  }
+  @media (max-width:900px){
+    .hero-grid,.intro,.adv,.band-grid,.contact-grid{grid-template-columns:1fr}
+    .hero-copy{padding:48px 0 10px}
+    .hero-photo{max-width:300px;margin:0 auto;width:100%}
+    .hero-photo img{max-width:320px}
+    .cards,.reviews{grid-template-columns:1fr 1fr}
+    .area-head{grid-template-columns:auto 1fr}
+    .area-head .more{grid-column:1/-1}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .topbar .social{display:none}
+    .topbar .info{gap:4px 16px;font-size:.8rem;padding:6px 0}
+    .nav{height:68px}
+    .nav .logo img{height:42px}
+    .cards,.reviews{grid-template-columns:1fr}
+    section,.band{padding:60px 0}
+    .area-head .n{font-size:2rem}
+    .area-head h3{font-size:1.35rem}
+    .hero .row .btn,.band .row .btn,.rev-ctas .btn,.blog .btn{width:100%}
+    .hero-photo{max-width:230px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+    .callbar .btn{padding:13px 8px;font-size:.88rem}
+    body{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Propuesta de rediseño para Sergio Castro Abogados · demo no oficial</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="info">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>C. de Santiago 16, 2ºB, 47001 Valladolid</span>
+      <a href="mailto:info@sergiocastroabogados.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>info@sergiocastroabogados.com</a>
+      <a href="tel:+34655360475"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>655 36 04 75</a>
+    </div>
+    <div class="social">
+      <a href="https://es.linkedin.com/in/sergio-castro-gonz%C3%A1lez-164173112" target="_blank" rel="noopener">Linkedin</a>
+      <a href="https://twitter.com/SergioCastro_3" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://www.facebook.com/profile.php?id=100054586293460" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="https://sergiocastroabogados.com/" aria-label="Sergio Castro Abogados"><img src="https://sergiocastroabogados.com/wp-content/uploads/2023/03/cropped-Castro_AZUL_LIMITE-05-600x171.png" alt="Sergio Castro Abogado"></a>
+    <ul class="menu">
+      <li><a href="https://sergiocastroabogados.com/quienes-somos/">Quiénes somos</a></li>
+      <li class="has"><a href="https://sergiocastroabogados.com/derecho-civil/">Derecho civil</a>
+        <ul class="drop">
+          <li><a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-familia/">Abogado de Familia</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-herencias/">Abogado de Herencias</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-civil/abogado-especialista-en-contratos/">Abogado Especialista en Contratos</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-seguros/">Abogado de Seguros</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-derecho-bancario/">Abogado de Derecho Bancario</a></li>
+        </ul>
+      </li>
+      <li class="has"><a href="https://sergiocastroabogados.com/derecho-mercantil/">Derecho Mercantil</a>
+        <ul class="drop">
+          <li><a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-contratacion-mercantil/">Abogado Contratación Mercantil</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-derecho-societario/">Abogado Derecho Societario</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-mercantil/responsabilidad-de-administradores/">Responsabilidad de Administradores</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-de-competencia-desleal/">Abogado de Competencia Desleal</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-de-propiedad-industrial-e-intelectual/">Abogado de Propiedad Industrial e Intelectual</a></li>
+        </ul>
+      </li>
+      <li class="has"><a href="https://sergiocastroabogados.com/derecho-concursal/">Derecho Concursal</a>
+        <ul class="drop">
+          <li><a href="https://sergiocastroabogados.com/derecho-concursal/abogado-concurso-de-acreedores/">Abogado Concurso de Acreedores</a></li>
+          <li><a href="https://sergiocastroabogados.com/derecho-concursal/abogados-ley-de-segunda-oportunidad/">Abogados Ley de Segunda Oportunidad</a></li>
+        </ul>
+      </li>
+      <li><a href="https://sergiocastroabogados.com/notas-de-prensa/">Prensa</a></li>
+      <li><a href="https://sergiocastroabogados.com/blog/">Blog</a></li>
+      <li><a href="https://sergiocastroabogados.com/contacto/">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+34655360475" class="btn btn-blue btn-sm">655 36 04 75</a>
+      <small>L-V Servicio de atención</small>
+    </div>
+    <details class="burger">
+      <summary>Menú</summary>
+      <div class="mob">
+        <a href="https://sergiocastroabogados.com/quienes-somos/">Quiénes somos</a>
+        <a href="https://sergiocastroabogados.com/derecho-civil/">Derecho civil</a>
+        <div class="sub">
+          <a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-familia/">Abogado de Familia</a>
+          <a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-herencias/">Abogado de Herencias</a>
+          <a href="https://sergiocastroabogados.com/derecho-civil/abogado-especialista-en-contratos/">Abogado Especialista en Contratos</a>
+          <a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-seguros/">Abogado de Seguros</a>
+          <a href="https://sergiocastroabogados.com/derecho-civil/abogado-de-derecho-bancario/">Abogado de Derecho Bancario</a>
+        </div>
+        <a href="https://sergiocastroabogados.com/derecho-mercantil/">Derecho Mercantil</a>
+        <div class="sub">
+          <a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-contratacion-mercantil/">Abogado Contratación Mercantil</a>
+          <a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-derecho-societario/">Abogado Derecho Societario</a>
+          <a href="https://sergiocastroabogados.com/derecho-mercantil/responsabilidad-de-administradores/">Responsabilidad de Administradores</a>
+          <a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-de-competencia-desleal/">Abogado de Competencia Desleal</a>
+          <a href="https://sergiocastroabogados.com/derecho-mercantil/abogado-de-propiedad-industrial-e-intelectual/">Abogado de Propiedad Industrial e Intelectual</a>
+        </div>
+        <a href="https://sergiocastroabogados.com/derecho-concursal/">Derecho Concursal</a>
+        <div class="sub">
+          <a href="https://sergiocastroabogados.com/derecho-concursal/abogado-concurso-de-acreedores/">Abogado Concurso de Acreedores</a>
+          <a href="https://sergiocastroabogados.com/derecho-concursal/abogados-ley-de-segunda-oportunidad/">Abogados Ley de Segunda Oportunidad</a>
+        </div>
+        <a href="https://sergiocastroabogados.com/notas-de-prensa/">Prensa</a>
+        <a href="https://sergiocastroabogados.com/blog/">Blog</a>
+        <a href="https://sergiocastroabogados.com/contacto/">Contacto</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Sergio Castro Abogados</span>
+        <h1>Abogado en Valladolid especializado en Derecho Civil, Mercantil y Concursal</h1>
+        <div class="who">
+          <div><b>Sergio Castro González</b><span>Abogado, Doctor en Derecho y profesor universitario</span></div>
+        </div>
+        <div class="tags">
+          <a class="tag" href="https://sergiocastroabogados.com/derecho-civil/">Civil</a>
+          <a class="tag" href="https://sergiocastroabogados.com/derecho-mercantil/">Mercantil</a>
+          <a class="tag" href="https://sergiocastroabogados.com/derecho-concursal/">Concursal</a>
+        </div>
+        <div class="row">
+          <a href="tel:+34655360475" class="btn btn-blue">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            655 36 04 75
+          </a>
+          <a href="https://sergiocastroabogados.com/contacto/" class="btn btn-line">CONTÁCTANOS</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://sergiocastroabogados.com/wp-content/uploads/2023/02/DSC5175-720x1080.png" alt="Sergio Castro González" width="720" height="1080">
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section>
+    <div class="wrap intro">
+      <div>
+        <span class="eyebrow">Sergio Castro Abogados</span>
+        <h2>Especialización y experiencia a su servicio</h2>
+        <p>En Sergio Castro Abogados ofrecemos el mejor asesoramiento y defensa jurídica tanto a particulares como empresas en Valladolid. Nuestro despacho está especializado en Derecho Civil, Derecho Mercantil y Derecho Concursal, lo que nos permite proporcionar soluciones legales eficaces y adaptadas a las necesidades de cada cliente.</p>
+      </div>
+      <div class="ph"><img src="https://sergiocastroabogados.com/wp-content/uploads/2023/02/DSC5878-1.jpg" alt="Sergio Castro en su despacho" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Sergio Castro Abogados</span>
+        <h2>Nuestros servicios jurídicos en Valladolid</h2>
+      </div>
+
+      <div class="area">
+        <div class="area-head">
+          <span class="n">01</span>
+          <div><h3>Derecho Civil</h3><p>En Sergio Castro Abogados prestamos asesoramiento y defensa legal en las principales áreas del Derecho Civil.</p></div>
+          <a class="more" href="https://sergiocastroabogados.com/derecho-civil/">Derecho civil →</a>
+        </div>
+        <div class="cards">
+          <a class="card" href="https://sergiocastroabogados.com/derecho-civil/abogado-de-familia/"><h4>Abogado de familia</h4><p>Asesoramiento y representación legal en divorcios, separaciones, custodias, pensiones, modificaciones de medidas…</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-civil/abogado-de-herencias/"><h4>Abogado de Herencias</h4><p>Planificación de herencias, redacción de testamentos, aceptación y participación de herencias, reclamaciones de herencias…</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-civil/abogado-especialista-en-contratos/"><h4>Obligaciones y contratos</h4><p>Redacción, revisión y reclamación de contratos de compraventa, arrendamiento, préstamos, donaciones, prestación de servicios…</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-civil/abogado-de-seguros/"><h4>Abogado de seguros</h4><p>Reclamación de indemnizaciones por accidentes de tráfico, daños materiales y daños personales frente a aseguradoras.</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-civil/abogado-de-derecho-bancario/"><h4>Abogado de Derecho bancario</h4><p>Asesoramiento legal para reclamación de cláusulas abusivas, gastos hipotecarios, préstamos y otros conflictos con entidades financieras.</p><span class="info">+ info</span></a>
+        </div>
+      </div>
+
+      <div class="area">
+        <div class="area-head">
+          <span class="n">02</span>
+          <div><h3>Derecho Mercantil</h3><p>Asesoramos a empresas, autónomos y emprendedores en todas las áreas del Derecho Mercantil a fin de proteger su actividad empresarial y minimizar riesgos.</p></div>
+          <a class="more" href="https://sergiocastroabogados.com/derecho-mercantil/">Derecho Mercantil →</a>
+        </div>
+        <div class="cards">
+          <a class="card" href="https://sergiocastroabogados.com/derecho-mercantil/abogado-contratacion-mercantil/"><h4>Contratación mercantil</h4><p>Redacción, revisión, negociación y reclamación de contratos mercantiles, pactos de socios, compraventa de sociedades…</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-mercantil/abogado-derecho-societario/"><h4>Derecho Societario</h4><p>Constitución de sociedades, modificaciones estatutarias, impugnación de acuerdos, conflictos entre socios…</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-mercantil/responsabilidad-de-administradores/"><h4>Responsabilidad de administradores</h4><p>Defensa y reclamación en procedimientos relacionados con la responsabilidad mercantil, civil, tributaria y concursal de administradores.</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-mercantil/abogado-de-competencia-desleal/"><h4>Competencia desleal y Defensa de la competencia</h4><p>Asesoramiento y defensa frente a prácticas anticompetitivas, publicidad ilícita y actos de competencia desleal.</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-mercantil/abogado-de-propiedad-industrial-e-intelectual/"><h4>Propiedad Industrial e Intelectual</h4><p>Protección y defensa de marcas, patentes, diseños industriales, modelos de utilidad y derechos de propiedad intelectual.</p><span class="info">+ info</span></a>
+        </div>
+      </div>
+
+      <div class="area">
+        <div class="area-head">
+          <span class="n">03</span>
+          <div><h3>Derecho Concursal</h3><p>En Sergio Castro Abogados ofrecemos asesoramiento especializado a empresas, autónomos y particulares que atraviesan dificultades económicas o situaciones de insolvencia.</p></div>
+          <a class="more" href="https://sergiocastroabogados.com/derecho-concursal/">Derecho Concursal →</a>
+        </div>
+        <div class="cards">
+          <a class="card" href="https://sergiocastroabogados.com/derecho-concursal/abogado-concurso-de-acreedores/"><h4>Concurso de acreedores</h4><p>Asistencia integral en procedimientos concursales, reestructuración de deuda, negociación con acreedores y liquidación concursal.</p><span class="info">+ info</span></a>
+          <a class="card" href="https://sergiocastroabogados.com/derecho-concursal/abogados-ley-de-segunda-oportunidad/"><h4>Ley de Segunda oportunidad</h4><p>Ayudamos a particulares y autónomos a cancelar total o parcialmente sus deudas gracias a la Ley de Segunda Oportunidad.</p><span class="info">+ info</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGE -->
+  <section>
+    <div class="wrap adv">
+      <div class="ph"><img src="https://sergiocastroabogados.com/wp-content/uploads/2024/01/DSC6438.jpg" alt="Despacho de Sergio Castro Abogados" loading="lazy"></div>
+      <div>
+        <span class="eyebrow">Nuestra mayor ventaja</span>
+        <h2>Nuestra especialización</h2>
+        <p>En Sergio Castro Abogados contamos con más de 18 años de experiencia en Derecho Civil, Derecho Mercantil y Derecho Concursal. Nuestro objetivo es ofrecer soluciones jurídicas que permitan prevenir conflictos, proteger los intereses de nuestros clientes y garantizar la máxima seguridad jurídica.</p>
+        <div class="tags"><span>Derecho Mercantil</span><span>Derecho Civil</span><span>Derecho Concursal</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <div class="band">
+    <div class="wrap band-grid">
+      <div>
+        <span class="eyebrow">Abogados especializados y con amplia Experiencia en Valladolid</span>
+        <h2>Ayudamos a nuestros clientes a resolver sus problemas legales</h2>
+        <p>En un mundo cada vez más cambiante y dinámico estar al día y actualizado en la materia en la que prestamos nuestros servicios nos permite añadir un valor adicional a los asuntos que nuestros clientes nos encomiendan.</p>
+        <div class="exp">
+          <span class="k">Soluciones reales</span>
+          <h4>Más de 18 años de Experiencia</h4>
+          <p>La experiencia de nuestros abogados en el sector nos permite conocer la problemática existente en la práctica jurídica. Por ello, desde nuestro despacho apostamos por un ejercicio de la abogacía basado en la calidad y experiencia.</p>
+        </div>
+        <div class="row">
+          <a href="https://sergiocastroabogados.com/contacto/" class="btn btn-yellow">CONTÁCTANOS</a>
+          <a href="https://sergiocastroabogados.com/quienes-somos/" class="btn btn-line">Conócenos</a>
+        </div>
+      </div>
+      <div class="ph"><img src="https://sergiocastroabogados.com/wp-content/uploads/2023/02/DSC5886.jpg" alt="Sergio Castro trabajando en el despacho" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Testimonios de clientes</span>
+        <h2>¿Qué piensan nuestros clientes?</h2>
+        <p>Desde nuestro despacho de abogados en Valladolid apostamos por el ejercicio de la abogacía en la calidad y la experiencia.</p>
+      </div>
+      <div class="reviews">
+        <article class="rev"><p>Mi madre tuvo un accidente de tráfico importante y nos lo estaba llevando otro abogado de muy malas maneras por lo que decidió cambiar. Lo tramitó todo impecablemente, con la profesionalidad y amabilidad que lo caracteriza. Sin duda un 10.</p><b>Mónica De Diego</b></article>
+        <article class="rev"><p>Gran despacho con grandes profesionales. Sergio me llevó un caso y no puedo estar más satisfecha del modo en que lo hizo. Es de agradecer que haya profesionales como él.</p><b>Elisa Moreno Sánchez</b></article>
+        <article class="rev"><p>Un gran profesional. Todo en el momento justo, sin tener que preocuparte por nada. Cercano, amable y resolutivo. Sin duda alguna un gran acierto contactar con él.</p><b>Bea Garrosa Morante</b></article>
+        <article class="rev"><p>Excelente profesional. Muy atento y disponible para resolver cualquier duda. En todo momento me explicó las pautas a seguir y me sentí muy apoyado durante todo el proceso. Recomendable 100%.</p><b>Víctor Velasco</b></article>
+        <article class="rev"><p>Fue una gran suerte poder contar con un profesional de calidad como Sergio Castro, que te facilita, asesora y soluciona cualquier contratiempo que pueda surgir en el proceso. Trato atento, de confianza, personalizado y lo más importante: resolutivo y esclarecedor con cualquier tipo de duda.</p><b>Cristina Hilenia</b></article>
+        <article class="rev"><p>Gran profesional, trato cercano y muy resolutivo, se ve que sabe de lo que habla. Me llevó un tema hereditario y quedamos muy satisfechos con sus servicios. Lo recomendaría sin duda.</p><b>Ana Lucas</b></article>
+        <article class="rev"><p>Grandes profesionales, fueron en todo momento muy cercanos y amables, pendientes de todos los detalles de nuestro caso. Volvería a contar con ellos sin duda.</p><b>Sara Martínez</b></article>
+        <article class="rev"><p>100% recomendable! Atención y trato exquisito; soluciones a todos los problemas en el menor tiempo posible. No duden en consultar</p><b>Carles Alberich Ribe</b></article>
+        <article class="rev"><p>Buenos profesionales, trato atento y personalizado con el cliente, respetando en todo momento la deontología de la profesión.</p><b>Mar Lázaro</b></article>
+      </div>
+      <div class="rev-ctas">
+        <a class="btn btn-blue" href="https://www.google.com/search?q=segio+castro+abogado&amp;oq=segio+castro+abogado+&amp;aqs=chrome..69i57j0i22i30l5.3536j1j4&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0xd476d52dd2a00c3:0x457e77f91189bb2c,1,,," target="_blank" rel="noopener">Ver todas las reseñas</a>
+        <a class="btn btn-line" href="https://www.google.com/search?q=segio+castro+abogado&amp;oq=segio+castro+abogado+&amp;aqs=chrome..69i57j0i22i30l5.3536j1j4&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0xd476d52dd2a00c3:0x457e77f91189bb2c,1,,," target="_blank" rel="noopener">¿Quieres dejar tu reseña?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Noticias y Blog</span>
+        <h2>Te ofrecemos información precisa y útil</h2>
+        <p>Si estás buscando conocer más sobre tus derechos y cómo protegerlos, nuestro blog es el lugar perfecto para ti</p>
+      </div>
+      <a class="btn btn-blue" href="https://sergiocastroabogados.com/blog/">Ir al blog</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Abogados en Valladolid</span>
+        <h2>Contacta con nuestros abogados en Valladolid</h2>
+        <p class="sub">para obtener más información</p>
+        <h3>¿Necesitas asesoramiento legal?</h3>
+        <p>Si buscas un abogado en Valladolid especializado en Derecho Civil, Derecho Mercantil y Derecho Concursal, no dudes en contactar con nosotros. Estaremos encantados de ayudarte.</p>
+        <div class="row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+          <a href="https://sergiocastroabogados.com/contacto/" class="btn btn-blue">Contacta ahora</a>
+          <a href="mailto:info@sergiocastroabogados.com" class="btn btn-line">info@sergiocastroabogados.com</a>
+        </div>
+      </div>
+      <div class="box">
+        <dl>
+          <div><dt>Teléfono:</dt><dd><a href="tel:+34655360475">655 36 04 75</a></dd></div>
+          <div><dt>Oficina:</dt><dd>C. de Santiago 16, 2ºB, 47001 Valladolid</dd></div>
+          <div><dt>Horario:</dt><dd>8h a 14h y de 16h a 19h, L-V</dd></div>
+        </dl>
+        <a href="tel:+34655360475" class="btn btn-yellow">Llamar al 655 36 04 75</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="https://sergiocastroabogados.com/wp-content/uploads/2023/03/cropped-Castro_AZUL_LIMITE-05-600x171.png" alt="Sergio Castro Abogado" loading="lazy">
+    <nav>
+      <a href="https://es.linkedin.com/in/sergio-castro-gonz%C3%A1lez-164173112" target="_blank" rel="noopener">Linkedin</a>
+      <a href="https://twitter.com/SergioCastro_3" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://www.facebook.com/profile.php?id=100054586293460" target="_blank" rel="noopener">Facebook</a>
+    </nav>
+    <nav>
+      <a href="https://sergiocastroabogados.com/privacidad">Privacidad</a>
+      <a href="https://sergiocastroabogados.com/terminos-de-uso">Términos de uso</a>
+      <a href="https://sergiocastroabogados.com/cookies">Cookies</a>
+      <a href="https://sergiocastroabogados.com/accesibilidad">Accesibilidad</a>
+    </nav>
+    <span>Copyright © 2023 Sergio Castro Abogados</span>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:+34655360475" class="btn btn-blue">Llamar 655 36 04 75</a>
+  <a href="https://sergiocastroabogados.com/contacto/" class="btn btn-line">Contacta ahora</a>
+</div>
+</body>
+</html>
